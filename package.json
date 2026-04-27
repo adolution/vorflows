@@ -1,0 +1,14 @@
+{
+  "name": "website-template",
+  "version": "1.0.0",
+  "description": "Static HTML website template with local dev server and screenshot tooling.",
+  "main": "serve.mjs",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "screenshot": "node screenshot.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "^24.39.0"
+  }
+}
