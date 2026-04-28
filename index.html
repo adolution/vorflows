@@ -273,42 +273,9 @@
       .ft-tag.add { color: var(--accent); }
       .ft-tag.mod { color: var(--text-secondary); }
 
-      /* Subscription Killer Strip */
-      .sk-strip {
-        border-top: 1px solid var(--border);
+      /* Hero → next-section transition */
+      .hero {
         border-bottom: 1px solid var(--border);
-        padding-block: clamp(48px, 6vw, 80px);
-      }
-      .sk-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: clamp(24px, 4vw, 64px);
-      }
-      @media (max-width: 720px) {
-        .sk-grid { grid-template-columns: 1fr; }
-      }
-      .sk-num {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(36px, 4.5vw, 52px);
-        letter-spacing: -0.02em;
-        line-height: 1;
-        margin: 0 0 12px;
-      }
-      .sk-num small { color: var(--text-secondary); font-size: 0.55em; font-family: 'Inter', sans-serif; font-weight: 400; }
-      .sk-label {
-        color: var(--text-secondary);
-        font-size: 15px;
-        line-height: 1.55;
-      }
-      .sk-foot {
-        margin-top: clamp(40px, 5vw, 64px);
-        text-align: center;
-        font-family: 'Fraunces', Georgia, serif;
-        font-style: italic;
-        font-weight: 400;
-        font-size: 18px;
-        color: var(--text-secondary);
       }
 
       /* Eyebrow */
@@ -625,15 +592,41 @@
         font-family: 'JetBrains Mono', monospace;
         font-size: 14.5px;
       }
+      .skill-group + .skill-group { margin-top: 36px; }
+      .skill-group-head {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
+        align-items: baseline;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-strong);
+      }
+      .skill-group-num {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .skill-group-name {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 19px;
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+      }
+      @media (max-width: 720px) {
+        .skill-group-head { grid-template-columns: 1fr; gap: 4px; }
+      }
       .skill-row {
         display: grid;
         grid-template-columns: 240px 1fr;
         gap: 24px;
-        padding: 14px 0;
+        padding: 12px 0;
         border-top: 1px solid var(--border);
         align-items: baseline;
       }
-      .skill-row:last-child { border-bottom: 1px solid var(--border); }
+      .skill-group .skill-row:first-of-type { border-top: 0; padding-top: 14px; }
       @media (max-width: 720px) {
         .skill-row { grid-template-columns: 1fr; gap: 4px; }
       }
@@ -644,7 +637,9 @@
         font-size: 15.5px;
       }
       .skill-foot {
-        margin-top: 28px;
+        margin-top: 36px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
         font-size: 14px;
         color: var(--text-secondary);
       }
@@ -701,11 +696,9 @@
 
       /* Pricing */
       .pricing-table {
-        margin-top: 56px;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
+        margin-top: 72px;
+        background: transparent;
+        position: relative;
       }
       .pricing-grid {
         display: grid;
@@ -716,26 +709,76 @@
       }
       .pricing-col {
         padding: 32px 28px;
-        border-left: 1px solid var(--border);
         position: relative;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        border-left: 1px solid var(--border);
       }
-      .pricing-col:first-child { border-left: 0; }
+      .pricing-col:first-child {
+        border-radius: 12px 0 0 12px;
+      }
+      .pricing-col:nth-child(3) {
+        border-right: 1px solid var(--border);
+        border-radius: 0 12px 12px 0;
+      }
       @media (max-width: 980px) {
-        .pricing-col { border-left: 0; border-top: 1px solid var(--border); }
-        .pricing-col:first-child { border-top: 0; }
+        .pricing-col {
+          border-left: 1px solid var(--border);
+          border-right: 1px solid var(--border);
+          border-radius: 0;
+          border-top: 0;
+        }
+        .pricing-col:first-child {
+          border-top: 1px solid var(--border);
+          border-radius: 12px 12px 0 0;
+        }
+        .pricing-col:nth-child(3) {
+          border-radius: 0 0 12px 12px;
+        }
       }
       .pricing-col.recommended {
-        background: var(--accent-soft);
+        background: linear-gradient(180deg, rgba(200, 99, 62, 0.10) 0%, rgba(200, 99, 62, 0.05) 100%);
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        box-shadow:
+          0 24px 56px -32px rgba(200, 99, 62, 0.45),
+          0 4px 16px -8px rgba(26, 26, 26, 0.08);
+        z-index: 2;
+        transform: translateY(-6px);
+        padding-block: 38px 36px;
+        margin-left: 12px;
+      }
+      @media (max-width: 980px) {
+        .pricing-col.recommended {
+          margin-left: 0;
+          margin-top: 12px;
+          transform: none;
+          border-radius: 12px;
+        }
       }
       .pricing-col.recommended::after {
-        content: "RECOMMENDED";
+        content: "Empfohlen";
         position: absolute;
-        top: 14px;
-        right: 16px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10.5px;
-        letter-spacing: 0.1em;
-        color: var(--accent);
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Fraunces', Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: -0.01em;
+        color: var(--bg-light);
+        background: var(--accent);
+        padding: 5px 14px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      @media (max-width: 980px) {
+        .pricing-col.recommended {
+          transform: none;
+          border-radius: 0;
+        }
       }
       .pricing-name {
         font-family: 'Inter', sans-serif;
@@ -978,6 +1021,129 @@
         gap: 12px;
       }
 
+      /* Sticky pricing CTA — appears after hero scroll-out */
+      .sticky-cta {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 60;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        text-decoration: none;
+        box-shadow:
+          0 1px 0 rgba(26, 26, 26, 0.04),
+          0 16px 40px -12px rgba(200, 99, 62, 0.55),
+          0 4px 12px -4px rgba(26, 26, 26, 0.18);
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 280ms ease-out, transform 280ms ease-out, background 150ms ease-out;
+      }
+      .sticky-cta.visible {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .sticky-cta:hover { background: var(--accent-hover); }
+      .sticky-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .sticky-cta-kbd {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.18);
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1;
+      }
+      @media (max-width: 600px) {
+        .sticky-cta-kbd { display: none; }
+      }
+
+      /* Code-block copy button */
+      .codeblock-wrap { position: relative; }
+      .codeblock-copy {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        color: #B8B6AE;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 150ms ease-out, color 150ms ease-out, border-color 150ms ease-out;
+      }
+      .codeblock-wrap:hover .codeblock-copy,
+      .codeblock-copy:focus-visible { opacity: 1; }
+      .codeblock-copy:hover { color: var(--accent); border-color: var(--accent); }
+      .codeblock-copy.copied { color: var(--accent); border-color: var(--accent); opacity: 1; }
+      .codeblock-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      /* Filetree copy variant (light bg) */
+      .filetree-wrap { position: relative; }
+      .filetree-copy {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 9px;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 150ms, color 150ms, border-color 150ms;
+      }
+      .filetree-wrap:hover .filetree-copy,
+      .filetree-copy:focus-visible { opacity: 1; }
+      .filetree-copy:hover, .filetree-copy.copied {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .filetree-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      /* Keyboard hints in footer */
+      .kbd-hints {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-secondary);
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        opacity: 0.7;
+      }
+      .kbd-hints kbd {
+        font-family: inherit;
+        background: var(--border);
+        color: var(--text-primary);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border-bottom: 1px solid var(--border-strong);
+        font-size: 10.5px;
+        margin-right: 4px;
+      }
+      @media (max-width: 600px) {
+        .kbd-hints { display: none; }
+      }
+
       /* Reveal animation */
       @media (prefers-reduced-motion: no-preference) {
         .fade-in {
@@ -1025,50 +1191,32 @@
             <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
           </div>
         </div>
-        <aside class="filetree" aria-hidden="true">
-          <div class="filetree-head">
-            <span class="filetree-dot"></span>
-            theme/ — vorflows-edit
-          </div>
-          <div>
-            <div>theme/</div>
-            <div>├── sections/</div>
-            <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
-            <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
-            <div>├── snippets/</div>
-            <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
-            <div>└── templates/</div>
-          </div>
-        </aside>
+        <div class="filetree-wrap">
+          <aside class="filetree" aria-hidden="true">
+            <div class="filetree-head">
+              <span class="filetree-dot"></span>
+              theme/ — vorflows-edit
+            </div>
+            <div>
+              <div>theme/</div>
+              <div>├── sections/</div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
+              <div>├── snippets/</div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
+              <div>└── templates/</div>
+            </div>
+          </aside>
+          <button type="button" class="filetree-copy" data-copy-target=".filetree" aria-label="Tree-Struktur kopieren">copy</button>
+        </div>
       </div>
     </header>
 
-    <!-- 03 SUBSCRIPTION-KILLER STRIP -->
-    <section class="sk-strip">
-      <div class="container">
-        <div class="sk-grid">
-          <div>
-            <p class="sk-num">30 €<small> /Monat</small></p>
-            <p class="sk-label">Free-Shipping-Bar im Cart — ein paar Zeilen Liquid.</p>
-          </div>
-          <div>
-            <p class="sk-num">40 €<small> /Monat</small></p>
-            <p class="sk-label">In-Cart-Upsell-App, lebt in einem Snippet.</p>
-          </div>
-          <div>
-            <p class="sk-num">89 €<small> /Monat</small></p>
-            <p class="sk-label">Bundle-Builder, der in einer Section lebt.</p>
-          </div>
-        </div>
-        <p class="sk-foot">Apps zahlst du jeden Monat. Custom Code besitzt du.</p>
-      </div>
-    </section>
-
-    <!-- 04 PROBLEM -->
+    <!-- 03 PROBLEM -->
     <section class="section">
       <div class="container-prose">
         <div class="meta eyebrow">Das Problem</div>
-        <h2 class="h2 display">Du sitzt in einem <em>Shop, der dir nicht gehört.</em></h2>
+        <h2 class="h2 display">Du sitzt in einem Shop, der dir nicht gehört.</h2>
         <div class="problem-list">
           <div class="problem-item">
             <div class="problem-num mono">01</div>
@@ -1124,15 +1272,19 @@
             <div class="wf-num">STEP 01</div>
             <div>
               <h3 class="wf-title">Duplikat erstellen</h3>
-              <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Duplicate
+              <div class="codeblock-wrap">
+                <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Duplicate
   vorflows-edit <span class="check">✓</span>  <span class="comment"># Live-Theme bleibt unangetastet</span></pre>
+                <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
+              </div>
             </div>
           </div>
           <div class="wf-step">
             <div class="wf-num">STEP 02</div>
             <div>
               <h3 class="wf-title">Claude bearbeitet</h3>
-              <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
+              <div class="codeblock-wrap">
+                <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
 <span class="comment">  Threshold: 75 €. Position: oben im Cart-Drawer.</span>
 
 <span class="file">snippets/free-shipping-bar.liquid</span>
@@ -1142,6 +1294,8 @@
 <span class="add">+   &lt;/span&gt;</span>
 <span class="add">+   &lt;div class="shipping-bar__progress"&gt;&lt;/div&gt;</span>
 <span class="add">+ &lt;/div&gt;</span></pre>
+                <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
+              </div>
               <figure class="wf-preview">
                 <figcaption class="wf-preview-cap">Ergebnis im Cart — live nach Publish</figcaption>
                 <svg viewBox="0 0 880 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free Shipping Bar Vorschau" style="display:block;width:100%;height:auto;background:#FAFAF7;">
@@ -1157,10 +1311,13 @@
             <div class="wf-num">STEP 03</div>
             <div>
               <h3 class="wf-title">Review &amp; Publish</h3>
-              <pre class="codeblock"><span class="prompt">$</span> Theme: vorflows-edit
+              <div class="codeblock-wrap">
+                <pre class="codeblock"><span class="prompt">$</span> Theme: vorflows-edit
   <span class="comment">→</span> Preview  <span class="check">✓</span>
   <span class="comment">→</span> Review   <span class="check">✓</span>
   <span class="comment">→</span> Publish  <span class="check">✓</span>  <span class="comment"># live theme unangetastet bis hier</span></pre>
+                <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1173,7 +1330,7 @@
       <div class="container">
         <div style="max-width: 720px;">
           <div class="meta eyebrow">Drei Module · Ein System</div>
-          <h2 class="h2 display">Base baut. SEOFlow rankt. <em>ClarityFlow optimiert.</em></h2>
+          <h2 class="h2 display">Base baut. SEOFlow rankt. ClarityFlow optimiert.</h2>
         </div>
         <div class="modules">
           <div class="module">
@@ -1202,7 +1359,7 @@
     <section class="section-tight" style="background: #F4F2EC;">
       <div class="container-prose">
         <div class="meta eyebrow">Subscription-Killer</div>
-        <h2 class="h2 display">Was du jeden Monat zahlst — <em>und was du stattdessen besitzen könntest.</em></h2>
+        <h2 class="h2 display">Was du jeden Monat zahlst — und was du stattdessen besitzen könntest.</h2>
         <table class="compare-table">
           <thead>
             <tr>
@@ -1229,7 +1386,7 @@
     <section class="section">
       <div class="container-prose">
         <div class="meta eyebrow">Outcome</div>
-        <h2 class="h2 display"><em>Tag 1</em> mit vorflows.</h2>
+        <h2 class="h2 display">Tag 1 mit vorflows.</h2>
         <div class="outcome-list">
           <div class="outcome-item">
             <div class="outcome-day">TAG 01</div>
@@ -1251,17 +1408,35 @@
     <section class="section-tight">
       <div class="container-prose">
         <div class="meta eyebrow">Skill-Stack</div>
-        <h2 class="h2 display">Base ist der komplette Workflow + <em>Skill &amp; Plugin Stack.</em></h2>
+        <h2 class="h2 display">Base ist der komplette Workflow + Skill &amp; Plugin Stack.</h2>
         <p class="skill-sub">Eine Datei führt dich automatisch durch den Setup-Prozess.</p>
         <div class="skill-list">
-          <div class="skill-row"><span class="skill-name">theme-architecture</span><span class="skill-desc">Wie Shopify-Themes intern aufgebaut sind, was wo lebt.</span></div>
-          <div class="skill-row"><span class="skill-name">liquid-fundamentals</span><span class="skill-desc">Was du wissen musst, um Sections selbst zu lesen.</span></div>
-          <div class="skill-row"><span class="skill-name">claude-project-setup</span><span class="skill-desc">Wie du dein Theme so lädst, dass Claude konsistent arbeitet.</span></div>
-          <div class="skill-row"><span class="skill-name">duplicate-publish-flow</span><span class="skill-desc">Der sichere Weg vom Edit zum Live-Theme.</span></div>
-          <div class="skill-row"><span class="skill-name">app-replacement-patterns</span><span class="skill-desc">Welche App-Typen sich gut, welche schlecht ersetzen lassen.</span></div>
-          <div class="skill-row"><span class="skill-name">seo-data-loop</span><span class="skill-desc">Wie Search-Console-Daten zu Code-Änderungen werden.</span></div>
-          <div class="skill-row"><span class="skill-name">behavioral-data-reading</span><span class="skill-desc">Heatmap-Patterns lesen, ohne sich was einzubilden.</span></div>
-          <div class="skill-row"><span class="skill-name">prompt-discipline</span><span class="skill-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</span></div>
+          <div class="skill-group">
+            <div class="skill-group-head">
+              <span class="skill-group-num">01 / Theme &amp; Build</span>
+              <span class="skill-group-name">Wie du dein Theme sicher umbaust.</span>
+            </div>
+            <div class="skill-row"><span class="skill-name">theme-architecture</span><span class="skill-desc">Wie Shopify-Themes intern aufgebaut sind, was wo lebt.</span></div>
+            <div class="skill-row"><span class="skill-name">liquid-fundamentals</span><span class="skill-desc">Was du wissen musst, um Sections selbst zu lesen.</span></div>
+            <div class="skill-row"><span class="skill-name">claude-project-setup</span><span class="skill-desc">Wie du dein Theme so lädst, dass Claude konsistent arbeitet.</span></div>
+            <div class="skill-row"><span class="skill-name">duplicate-publish-flow</span><span class="skill-desc">Der sichere Weg vom Edit zum Live-Theme.</span></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-head">
+              <span class="skill-group-num">02 / Apps &amp; Prompting</span>
+              <span class="skill-group-name">Wie du Claude führst und Apps ersetzt.</span>
+            </div>
+            <div class="skill-row"><span class="skill-name">app-replacement-patterns</span><span class="skill-desc">Welche App-Typen sich gut, welche schlecht ersetzen lassen.</span></div>
+            <div class="skill-row"><span class="skill-name">prompt-discipline</span><span class="skill-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</span></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-head">
+              <span class="skill-group-num">03 / Daten &amp; Insights</span>
+              <span class="skill-group-name">Wie aus Daten Code-Änderungen werden.</span>
+            </div>
+            <div class="skill-row"><span class="skill-name">seo-data-loop</span><span class="skill-desc">Wie Search-Console-Daten zu Code-Änderungen werden.</span></div>
+            <div class="skill-row"><span class="skill-name">behavioral-data-reading</span><span class="skill-desc">Heatmap-Patterns lesen, ohne sich was einzubilden.</span></div>
+          </div>
         </div>
         <p class="skill-foot">Inkludiert in jedem Paket. Keine Upsell-Stufen.</p>
       </div>
@@ -1271,7 +1446,7 @@
     <section class="section">
       <div class="container-prose">
         <div class="meta eyebrow">Für wen das ist</div>
-        <h2 class="h2 display">Für alle, die mehr wollen — <em>und es schneller wollen.</em></h2>
+        <h2 class="h2 display">Für alle, die mehr wollen — und es schneller wollen.</h2>
         <div class="qualifier-grid">
           <div class="qualifier-col">
             <h3>vorflows ist für dich, wenn —</h3>
@@ -1329,7 +1504,6 @@
               <div class="pricing-price-block">
                 <span class="pricing-price">497&nbsp;€</span>
                 <span class="pricing-price-suffix">einmalig</span>
-                <span class="pricing-save">Spar 50&nbsp;€</span>
               </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
@@ -1346,7 +1520,6 @@
               <div class="pricing-price-block">
                 <span class="pricing-price">497&nbsp;€</span>
                 <span class="pricing-price-suffix">einmalig</span>
-                <span class="pricing-save">Spar 50&nbsp;€</span>
               </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
@@ -1359,7 +1532,7 @@
             </div>
             <div class="pricing-col recommended">
               <h3 class="pricing-name">Bundle</h3>
-              <p class="pricing-position">Beste Preis-Leistung. Empfohlen.</p>
+              <p class="pricing-position">Beste Preis-Leistung. Alles drin.</p>
               <div class="pricing-price-block">
                 <span class="pricing-price">597&nbsp;€</span>
                 <span class="pricing-price-strike">697&nbsp;€</span>
@@ -1387,7 +1560,7 @@
     <section class="section" id="faq">
       <div class="container-prose">
         <div class="meta eyebrow">FAQ</div>
-        <h2 class="h2 display">Was du dich <em>zurecht fragst.</em></h2>
+        <h2 class="h2 display">Was du dich zurecht fragst.</h2>
         <div class="faq">
           <details class="faq-item" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
@@ -1472,8 +1645,20 @@
           <span>© 2026 vorflows</span>
           <span>built with claude code</span>
         </div>
+        <div class="kbd-hints" aria-label="Keyboard shortcuts">
+          <span><kbd>w</kbd>workflow</span>
+          <span><kbd>m</kbd>module</span>
+          <span><kbd>p</kbd>pricing</span>
+          <span><kbd>f</kbd>faq</span>
+          <span><kbd>g</kbd>top</span>
+        </div>
       </div>
     </footer>
+
+    <a href="#pricing" class="sticky-cta" id="stickyCta" aria-label="Zum Pricing">
+      <span>Pricing ansehen</span>
+      <span class="sticky-cta-kbd">P</span>
+    </a>
 
     <script>
       // Nav border on scroll
@@ -1500,6 +1685,63 @@
       } else {
         fadeEls.forEach((el) => el.classList.add('visible'));
       }
+
+      // Sticky pricing CTA — visible after hero scrolls out, hidden inside #pricing
+      const sticky = document.getElementById('stickyCta');
+      const hero = document.querySelector('.hero');
+      const pricing = document.getElementById('pricing');
+      if (sticky && hero && pricing && 'IntersectionObserver' in window) {
+        let pastHero = false;
+        let inPricing = false;
+        const update = () => {
+          if (pastHero && !inPricing) sticky.classList.add('visible');
+          else sticky.classList.remove('visible');
+        };
+        new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; update(); },
+          { threshold: 0, rootMargin: '0px 0px -40% 0px' }).observe(hero);
+        new IntersectionObserver(([e]) => { inPricing = e.isIntersecting; update(); },
+          { threshold: 0.05 }).observe(pricing);
+      }
+
+      // Code-block + filetree copy buttons
+      document.querySelectorAll('.codeblock-copy, .filetree-copy').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const wrap = btn.closest('.codeblock-wrap, .filetree-wrap');
+          const target = wrap && wrap.querySelector(btn.dataset.copyTarget || 'pre');
+          if (!target) return;
+          const text = target.innerText.trim();
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy'); ta.remove();
+          }
+          const original = btn.textContent;
+          btn.textContent = 'copied';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }, 1400);
+        });
+      });
+
+      // Keyboard shortcuts: w/m/p/f/g — skip when typing in input/textarea/contenteditable
+      const targets = { w: '#workflow', m: '#module', p: '#pricing', f: '#faq' };
+      window.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const ae = document.activeElement;
+        if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA' || ae.isContentEditable)) return;
+        const k = e.key.toLowerCase();
+        if (targets[k]) {
+          e.preventDefault();
+          document.querySelector(targets[k])?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (k === 'g') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
     </script>
 
   </body>
