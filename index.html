@@ -181,7 +181,9 @@
       .nav-cta {
         padding: 9px 16px;
         font-size: 14px;
+        color: #fff;
       }
+      .nav-cta:hover { color: #fff; }
       @media (max-width: 768px) {
         .nav-links a:not(.nav-cta) { display: none; }
       }
@@ -207,7 +209,7 @@
         font-size: clamp(34px, 4vw, 52px);
         font-weight: 500;
         margin: 0 0 28px;
-        max-width: 18ch;
+        max-width: 24ch;
         line-height: 1.04;
       }
       .hero-headline em {
@@ -465,6 +467,27 @@
       .codeblock .rem { color: #C58383; }
       .codeblock .comment { color: #6E6E68; }
       .codeblock .file { color: #B8B6AE; padding-bottom: 6px; display: block; border-bottom: 1px solid #2A2A2A; margin-bottom: 8px; }
+      .wf-preview {
+        margin: 16px 0 0;
+        background: #1A1A1A;
+        border: 1px solid var(--border-dark);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .wf-preview-cap {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary-dark);
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border-dark);
+      }
+      .wf-preview img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
       .wf-foot {
         max-width: 920px;
         margin: clamp(40px, 5vw, 56px) auto 0;
@@ -624,6 +647,12 @@
         margin-top: 28px;
         font-size: 14px;
         color: var(--text-secondary);
+      }
+      .skill-sub {
+        margin: -36px 0 0;
+        font-size: 17px;
+        color: var(--text-secondary);
+        max-width: 56ch;
       }
 
       /* Qualifier */
@@ -922,8 +951,8 @@
         <div>
           <div class="meta hero-eyebrow">Shopify · Claude Code · Workflow-System</div>
           <h1 class="display hero-headline">
-            Bau deinen Shopify-Store wie ein <em>Senior Dev.</em>
-            <span class="break">Ohne Senior-Dev-Salär.</span>
+            Lass KI deinen Store wie ein <em>Senior Dev</em> anpassen.
+            <span class="break">Nur schneller — und exakt nach deinen Vorstellungen.</span>
           </h1>
           <p class="hero-sub">
             vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
@@ -956,12 +985,12 @@
       <div class="container">
         <div class="sk-grid">
           <div>
-            <p class="sk-num">47 €<small> /Monat</small></p>
-            <p class="sk-label">Klaviyo-Add-On, das du selbst bauen kannst.</p>
+            <p class="sk-num">30 €<small> /Monat</small></p>
+            <p class="sk-label">Free-Shipping-Bar im Cart — ein paar Zeilen Liquid.</p>
           </div>
           <div>
-            <p class="sk-num">129 €<small> /Monat</small></p>
-            <p class="sk-label">Wishlist-App, ersetzbar mit drei Snippets.</p>
+            <p class="sk-num">40 €<small> /Monat</small></p>
+            <p class="sk-label">In-Cart-Upsell-App, lebt in einem Snippet.</p>
           </div>
           <div>
             <p class="sk-num">89 €<small> /Monat</small></p>
@@ -989,14 +1018,21 @@
             <div class="problem-num mono">02</div>
             <div>
               <h3 class="problem-title">App-Stack.</h3>
-              <p class="problem-body">Jede Funktion ist ein Abo. Jeden Monat zieht jemand Geld von deinem Konto, das du längst selbst hosten könntest.</p>
+              <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
             </div>
           </div>
           <div class="problem-item">
             <div class="problem-num mono">03</div>
             <div>
               <h3 class="problem-title">Agentur-Loop.</h3>
-              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt — und ärmer.</p>
+              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt — und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-num mono">04</div>
+            <div>
+              <h3 class="problem-title">Liegen gelassenes Potential.</h3>
+              <p class="problem-body">KI baut in Minuten, wofür ein Dev Stunden braucht. Im deutschsprachigen Raum nutzt das fast niemand — wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
             </div>
           </div>
         </div>
@@ -1007,9 +1043,9 @@
     <section class="section-tight">
       <div class="container-prose reveal">
         <div class="meta eyebrow">Die Lösung</div>
-        <h2 class="reveal-head display">Claude Code wird der <em>technische Co-Founder,</em> den dein Shop nie hatte.</h2>
-        <div class="reveal-flow"><span class="token">theme.zip</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">duplicate theme</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
-        <p class="reveal-body">Reproduzierbar. Nichts in der CLI. Kein Magic. Du bleibst in Kontrolle, Claude liefert die Datei-Änderungen.</p>
+        <h2 class="reveal-head display">Claude Code wird dein <em>technischer Co-Founder</em> — nur schneller, ohne hohe Kosten.</h2>
+        <div class="reveal-flow"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
+        <p class="reveal-body">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
     </section>
 
@@ -1024,29 +1060,41 @@
           <div class="wf-step">
             <div class="wf-num">STEP 01</div>
             <div>
-              <h3 class="wf-title">Theme exportieren</h3>
-              <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Download theme file
-  theme.zip <span class="check">✓</span></pre>
+              <h3 class="wf-title">Duplikat erstellen</h3>
+              <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Duplicate
+  vorflows-edit <span class="check">✓</span>  <span class="comment"># Live-Theme bleibt unangetastet</span></pre>
             </div>
           </div>
           <div class="wf-step">
             <div class="wf-num">STEP 02</div>
             <div>
               <h3 class="wf-title">Claude bearbeitet</h3>
-              <pre class="codeblock"><span class="file">sections/hero.liquid</span><span class="rem">- {% if section.settings.show_button %}</span>
-<span class="add">+ {% if section.settings.show_button and product.available %}</span>
-<span class="add">+   &lt;button class="cta cta--primary"&gt;</span>
-<span class="add">+     {{ section.settings.button_text }}</span>
-<span class="add">+   &lt;/button&gt;</span>
-<span class="rem">- {% endif %}</span>
-<span class="add">+ {% endif %}</span></pre>
+              <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
+<span class="comment">  Threshold: 75 €. Position: oben im Cart-Drawer.</span>
+
+<span class="file">snippets/free-shipping-bar.liquid</span>
+<span class="add">+ &lt;div class="shipping-bar" data-threshold="7500"&gt;</span>
+<span class="add">+   &lt;span class="shipping-bar__msg"&gt;</span>
+<span class="add">+     Noch &lt;b&gt;{{ remaining | money }}&lt;/b&gt; bis Free Shipping</span>
+<span class="add">+   &lt;/span&gt;</span>
+<span class="add">+   &lt;div class="shipping-bar__progress"&gt;&lt;/div&gt;</span>
+<span class="add">+ &lt;/div&gt;</span></pre>
+              <figure class="wf-preview">
+                <figcaption class="wf-preview-cap">Ergebnis im Cart — live nach Publish</figcaption>
+                <svg viewBox="0 0 880 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free Shipping Bar Vorschau" style="display:block;width:100%;height:auto;background:#FAFAF7;">
+                  <text x="60" y="64" fill="#1A1A1A" font-family="Inter, sans-serif" font-size="20" font-weight="600">Noch 12,50 € bis Free Shipping</text>
+                  <rect x="60" y="92" width="760" height="14" rx="7" fill="#E5E3DD"/>
+                  <rect x="60" y="92" width="495" height="14" rx="7" fill="#C8633E"/>
+                  <text x="60" y="138" fill="#5C5C5C" font-family="Inter, sans-serif" font-size="13">65 % erreicht · live im Cart-Drawer</text>
+                </svg>
+              </figure>
             </div>
           </div>
           <div class="wf-step">
             <div class="wf-num">STEP 03</div>
             <div>
-              <h3 class="wf-title">Duplicate Theme published</h3>
-              <pre class="codeblock"><span class="prompt">$</span> Theme: vorflows-edit-2026-04-27
+              <h3 class="wf-title">Review &amp; Publish</h3>
+              <pre class="codeblock"><span class="prompt">$</span> Theme: vorflows-edit
   <span class="comment">→</span> Preview  <span class="check">✓</span>
   <span class="comment">→</span> Review   <span class="check">✓</span>
   <span class="comment">→</span> Publish  <span class="check">✓</span>  <span class="comment"># live theme unangetastet bis hier</span></pre>
@@ -1062,7 +1110,7 @@
       <div class="container">
         <div style="max-width: 720px;">
           <div class="meta eyebrow">Drei Module · Ein System</div>
-          <h2 class="h2 display">Base baut. SEO rankt. <em>ClarityFlow optimiert.</em></h2>
+          <h2 class="h2 display">Base baut. SEOFlow rankt. <em>ClarityFlow optimiert.</em></h2>
         </div>
         <div class="modules">
           <div class="module">
@@ -1072,7 +1120,7 @@
             <p class="module-body">Änderungen landen in einem Duplicate Theme — erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
           <div class="module">
-            <div class="meta module-label">02 / SEO — Add-On</div>
+            <div class="meta module-label">02 / SEOFlow — Add-On</div>
             <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht und ohne dich läuft.</h3>
             <p class="module-body">Geführter Setup-Flow, kein Doku-Marathon. Search Console mit Claude Code verknüpft.</p>
             <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
@@ -1122,15 +1170,15 @@
         <div class="outcome-list">
           <div class="outcome-item">
             <div class="outcome-day">TAG 01</div>
-            <p class="outcome-text">Du hast eine Section gebaut, die vorher nur als App existierte.</p>
+            <p class="outcome-text">Du hast eine Section gebaut, die vorher nur als App existierte. Du kündigst die App und sparst jeden Monat Geld.</p>
           </div>
           <div class="outcome-item">
             <div class="outcome-day">TAG 07</div>
-            <p class="outcome-text">Du hast einen App-Vertrag gekündigt und den Custom-Code im Live-Theme.</p>
+            <p class="outcome-text">Claude schaut sich deine Besucherdaten an und stellt deinen Shop für eine bessere Conversion-Rate um. Dein Shop optimiert sich nun eigenständig.</p>
           </div>
           <div class="outcome-item">
             <div class="outcome-day">TAG 30</div>
-            <p class="outcome-text">Du hast einen Workflow, den du jeden Monat wieder anwenden kannst.</p>
+            <p class="outcome-text">Claude erkennt versteckte SEO-Potentiale, gibt dir Handlungsempfehlungen und optimiert komplexere SEO-Funktionen wie Schema &amp; Rich Snippets — ohne dass du wissen musst, was das ist.</p>
           </div>
         </div>
       </div>
@@ -1140,7 +1188,8 @@
     <section class="section-tight">
       <div class="container-prose">
         <div class="meta eyebrow">Skill-Stack</div>
-        <h2 class="h2 display">Base ist nicht nur ein Workflow. Es ist <em>ein Skill-Pack.</em></h2>
+        <h2 class="h2 display">Base ist der komplette Workflow + <em>Skill &amp; Plugin Stack.</em></h2>
+        <p class="skill-sub">Eine Datei führt dich automatisch durch den Setup-Prozess.</p>
         <div class="skill-list">
           <div class="skill-row"><span class="skill-name">theme-architecture</span><span class="skill-desc">Wie Shopify-Themes intern aufgebaut sind, was wo lebt.</span></div>
           <div class="skill-row"><span class="skill-name">liquid-fundamentals</span><span class="skill-desc">Was du wissen musst, um Sections selbst zu lesen.</span></div>
@@ -1159,25 +1208,27 @@
     <section class="section">
       <div class="container-prose">
         <div class="meta eyebrow">Für wen das ist</div>
-        <h2 class="h2 display">Wenn du <em>selbst Hand anlegst,</em> ist vorflows für dich.</h2>
+        <h2 class="h2 display">Für alle, die mehr wollen — <em>und es schneller wollen.</em></h2>
         <div class="qualifier-grid">
           <div class="qualifier-col">
             <h3>vorflows ist für dich, wenn —</h3>
             <ul class="qualifier-list qualifier-yes">
-              <li>Dein Shop läuft, aber du gegen Theme- und App-Limits stößt.</li>
-              <li>Du selbst Hand anlegst, statt zu delegieren.</li>
-              <li>KI für dich Werkzeug ist, nicht Spielzeug.</li>
-              <li>Du verstehst, was ein Liquid-File ist (oder bereit bist, es in 20 Minuten zu lernen).</li>
+              <li>Du aktuelle Technologien aufs Maximum ausreizen willst, um dir einen massiven Vorsprung zu holen.</li>
+              <li>Du Speed willst.</li>
+              <li>Du alles umsetzen willst — ohne coden zu können, ohne Devs zu bezahlen, ohne 100 Apps.</li>
+              <li>Du deine Conversion und dein SEO optimieren willst.</li>
+              <li>Du dich nicht davor scheust, ein paar Dateien hin und her zu kopieren.</li>
+              <li>Du dich auf einer Skala von 1–10 mindestens als 3 technikaffin einschätzt.</li>
+              <li>Du schneller KI-gestützt arbeiten willst.</li>
+              <li>Du von KI vom Hocker gehauen werden willst.</li>
             </ul>
           </div>
           <div class="qualifier-divider" aria-hidden="true"></div>
           <div class="qualifier-col">
             <h3>vorflows ist nicht für dich, wenn —</h3>
             <ul class="qualifier-list qualifier-no">
-              <li>Du noch nie ein Shopify-Backend von innen gesehen hast.</li>
-              <li>Du eine fertige Lösung suchst, die du nur installierst.</li>
-              <li>Du jemanden willst, dem du das Problem delegieren kannst.</li>
-              <li>Du nach „Ein-Klick-AI-Magic" suchst.</li>
+              <li>Du einen Magic-Button willst, der in einem Klick alles erledigt.</li>
+              <li>Du keine Lust hast, ein paar Accounts und Verbindungen einzurichten (nur nötig für SEOFlow und ClarityFlow).</li>
             </ul>
           </div>
         </div>
@@ -1198,29 +1249,29 @@
               <p class="pricing-position">Einstieg. Erstmal testen.</p>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
-                <li><span class="no">−</span><span class="muted">SEO Module</span></li>
+                <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
                 <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Start mit Base</a>
             </div>
             <div class="pricing-col">
-              <h3 class="pricing-name">Base + SEO</h3>
+              <h3 class="pricing-name">Base + SEOFlow</h3>
               <p class="pricing-position">Für Founder mit Traffic-Fokus.</p>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
-                <li><span class="yes">✓</span> SEO Module</li>
+                <li><span class="yes">✓</span> SEOFlow</li>
                 <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
-              <a href="#" class="pricing-cta">Base + SEO</a>
+              <a href="#" class="pricing-cta">Base + SEOFlow</a>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + ClarityFlow</h3>
               <p class="pricing-position">Für Founder mit Conversion-Fokus.</p>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
-                <li><span class="no">−</span><span class="muted">SEO Module</span></li>
+                <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
                 <li><span class="yes">✓</span> ClarityFlow</li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
@@ -1231,7 +1282,7 @@
               <p class="pricing-position">Beste Preis-Leistung. Empfohlen.</p>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
-                <li><span class="yes">✓</span> SEO Module</li>
+                <li><span class="yes">✓</span> SEOFlow</li>
                 <li><span class="yes">✓</span> ClarityFlow</li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
@@ -1253,7 +1304,7 @@
         <div class="faq">
           <details class="faq-item" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
-            <div class="faq-body">Nein, aber Lese-Verständnis für Liquid hilft. Der Skill-Stack zieht dich da in 30–60 Minuten durch.</div>
+            <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet — alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
           </details>
           <details class="faq-item">
             <summary>Was, wenn ich mein Theme zerschieße?</summary>
@@ -1273,7 +1324,7 @@
           </details>
           <details class="faq-item">
             <summary>Wie lange dauert das Onboarding?</summary>
-            <div class="faq-body">Base: 30 Minuten Setup, erste Section am selben Tag. SEO: 10 Minuten Setup. ClarityFlow: 15 Minuten Setup.</div>
+            <div class="faq-body">Base: 20–30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30–40 Minuten Setup.</div>
           </details>
           <details class="faq-item">
             <summary>Was passiert mit meinen Daten?</summary>
@@ -1290,8 +1341,8 @@
     <!-- 14 FINAL CTA -->
     <section class="final-cta section">
       <div class="container-prose">
-        <h2 class="display">Du hast schon einen Shop. <em>Mach ihn dir zurück.</em></h2>
-        <p>Start mit Base. 30 Minuten Setup. Erste Section noch heute.</p>
+        <h2 class="display">Bau deinen Shop schneller — <em>als alle anderen.</em></h2>
+        <p>Start mit Base. 20–30 Minuten Setup. Erste Section noch heute.</p>
         <a href="#pricing" class="btn btn-primary">Start mit Base →</a>
       </div>
     </section>
