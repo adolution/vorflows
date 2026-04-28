@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Datenschutzerklärung — vorflows</title>
+    <meta name="description" content="Datenschutzerklärung von vorflows. Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-light: #FAFAF7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #5C5C5C;
+        --text-tertiary: #8A8A82;
+        --border: #E5E3DD;
+        --border-strong: #C7C4BB;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "ss01", "cv11";
+      }
+
+      a { color: inherit; text-decoration: none; }
+      a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-inline: clamp(20px, 4vw, 48px);
+      }
+
+      .container-prose {
+        max-width: 760px;
+        margin: 0 auto;
+        padding-inline: clamp(20px, 4vw, 48px);
+      }
+
+      .meta {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 11px;
+      }
+
+      /* Nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(250, 250, 247, 0.85);
+        backdrop-filter: saturate(180%) blur(10px);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        border-bottom: 1px solid transparent;
+        transition: border-color 200ms ease-out;
+      }
+      .nav.scrolled { border-bottom-color: var(--border); }
+      .nav-inner {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .wordmark {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        transition: color 150ms ease-out;
+      }
+      .nav-back:hover { color: var(--text-primary); }
+      .nav-back svg { width: 14px; height: 14px; }
+
+      /* Hero */
+      .legal-hero {
+        padding-block: clamp(72px, 10vw, 128px) clamp(40px, 5vw, 56px);
+      }
+      .legal-eyebrow {
+        color: var(--accent);
+        margin-bottom: 24px;
+      }
+      .legal-h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(40px, 6vw, 64px);
+        letter-spacing: -0.025em;
+        line-height: 1.04;
+        margin: 0 0 16px;
+      }
+      .legal-h1 em { font-style: italic; font-weight: 400; }
+      .legal-stamp {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        color: var(--text-tertiary);
+        margin: 0 0 24px;
+      }
+      .legal-lead {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 56ch;
+        margin: 0;
+      }
+
+      /* TOC */
+      .toc {
+        margin-top: 56px;
+        padding: 28px 32px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .toc-head {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-secondary);
+        margin: 0 0 14px;
+      }
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        columns: 2;
+        column-gap: 32px;
+      }
+      @media (max-width: 600px) { .toc-list { columns: 1; } }
+      .toc-list li {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        padding: 4px 0;
+        break-inside: avoid;
+      }
+      .toc-list a {
+        color: var(--text-secondary);
+        transition: color 150ms;
+      }
+      .toc-list a:hover { color: var(--accent); }
+      .toc-list .num { color: var(--accent); margin-right: 8px; }
+
+      /* Body */
+      .legal-body {
+        padding-block: clamp(56px, 7vw, 88px) clamp(96px, 12vw, 160px);
+      }
+      .ds-section {
+        padding-block: clamp(40px, 5vw, 64px);
+        border-top: 1px solid var(--border);
+      }
+      .ds-section:last-of-type { border-bottom: 1px solid var(--border); }
+      .ds-section h2 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(26px, 3vw, 34px);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin: 0 0 8px;
+        scroll-margin-top: 96px;
+      }
+      .ds-section h2 .num {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 10px;
+        letter-spacing: 0.05em;
+      }
+      .ds-section h3 {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-secondary);
+        margin: 32px 0 12px;
+      }
+      .ds-section p {
+        margin: 0 0 16px;
+        font-size: 17px;
+        line-height: 1.7;
+        color: var(--text-primary);
+      }
+      .ds-section p.muted { color: var(--text-secondary); }
+      .ds-section ul {
+        margin: 0 0 16px;
+        padding-left: 0;
+        list-style: none;
+      }
+      .ds-section ul li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      .ds-section ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+      }
+      .ds-section a {
+        color: var(--accent);
+        border-bottom: 1px solid transparent;
+        transition: border-color 150ms ease-out;
+        word-break: break-word;
+      }
+      .ds-section a:hover { border-bottom-color: var(--accent); }
+      .ds-section strong { font-weight: 600; }
+      .ds-section .source-line {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13.5px;
+        color: var(--text-secondary);
+        padding: 12px 16px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin: 14px 0;
+        word-break: break-all;
+      }
+
+      /* Footer */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 56px 0 40px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+      .footer-col h4 {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-secondary);
+        margin: 0 0 16px;
+        font-weight: 500;
+      }
+      .footer-col ul { list-style: none; padding: 0; margin: 0; }
+      .footer-col li {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        padding: 6px 0;
+      }
+      .footer-col a { color: var(--text-secondary); transition: color 150ms; }
+      .footer-col a:hover { color: var(--accent); }
+      .footer-bottom {
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <div class="container nav-inner">
+        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
+        <a href="/" class="nav-back">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Zurück zur Startseite
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="legal-hero">
+      <div class="container-prose">
+        <div class="meta legal-eyebrow">Rechtliches</div>
+        <h1 class="legal-h1">Datenschutz&shy;erklärung.</h1>
+        <p class="legal-stamp">Stand: April 2026</p>
+        <p class="legal-lead">Informationen zur Verarbeitung personenbezogener Daten beim Besuch von vorflows.com gemäß Art. 13, 14 DSGVO.</p>
+
+        <nav class="toc" aria-label="Inhaltsverzeichnis">
+          <p class="toc-head">// Inhalt</p>
+          <ol class="toc-list">
+            <li><a href="#sec-1"><span class="num">01</span>Verantwortlicher</a></li>
+            <li><a href="#sec-2"><span class="num">02</span>Allgemeines</a></li>
+            <li><a href="#sec-3"><span class="num">03</span>Hosting & Server-Logs</a></li>
+            <li><a href="#sec-4"><span class="num">04</span>Kontaktformular & EmailJS</a></li>
+            <li><a href="#sec-5"><span class="num">05</span>Google Analytics</a></li>
+            <li><a href="#sec-6"><span class="num">06</span>Hotjar</a></li>
+            <li><a href="#sec-7"><span class="num">07</span>Meta Pixel & Conversions API</a></li>
+            <li><a href="#sec-8"><span class="num">08</span>Cookies</a></li>
+            <li><a href="#sec-9"><span class="num">09</span>Ihre Rechte</a></li>
+            <li><a href="#sec-10"><span class="num">10</span>Aktualität</a></li>
+          </ol>
+        </nav>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <main class="legal-body">
+      <div class="container-prose">
+
+        <section class="ds-section" id="sec-1">
+          <h2><span class="num">// 01</span>Verantwortlicher</h2>
+          <p>
+            AMD Media GmbH<br>
+            c/o Pioneers Club, Ritterstraße 8, 33602 Bielefeld<br>
+            E-Mail: <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+          </p>
+          <p class="muted">
+            Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze sowie sonstiger datenschutzrechtlicher Bestimmungen ist die oben genannte Gesellschaft.
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-2">
+          <h2><span class="num">// 02</span>Allgemeines zur Datenverarbeitung</h2>
+          <p>
+            Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen Gründen nicht möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.
+          </p>
+          <h3>Rechtsgrundlagen</h3>
+          <ul>
+            <li>Art. 6 Abs. 1 lit. a DSGVO — Einwilligung</li>
+            <li>Art. 6 Abs. 1 lit. b DSGVO — Vertragserfüllung / vorvertragliche Maßnahmen</li>
+            <li>Art. 6 Abs. 1 lit. f DSGVO — berechtigte Interessen</li>
+          </ul>
+          <h3>Datenlöschung und Speicherdauer</h3>
+          <p>
+            Die personenbezogenen Daten der betroffenen Person werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt. Eine darüber hinausgehende Speicherung kann erfolgen, wenn dies durch europäische oder nationale Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder sonstigen Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde (z. B. steuerliche Aufbewahrungsfristen).
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-3">
+          <h2><span class="num">// 03</span>Hosting & Server-Log-Dateien</h2>
+          <p>
+            Der Anbieter der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:
+          </p>
+          <ul>
+            <li>Browsertyp und Browserversion</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Referrer URL</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>Uhrzeit der Serveranfrage</li>
+            <li>IP-Adresse (anonymisiert)</li>
+          </ul>
+          <p>
+            Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website).
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-4">
+          <h2><span class="num">// 04</span>Kontaktformular & EmailJS</h2>
+          <p>
+            Wenn Sie uns über das Kontaktformular auf unserer Website kontaktieren, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse sowie der Inhalt Ihrer Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet.
+          </p>
+          <p>
+            Die Übermittlung der Formularanfragen erfolgt über den Dienst <strong>EmailJS</strong> (EmailJS Inc., USA). EmailJS verarbeitet die eingegebenen Daten auf Servern, die sich ggf. außerhalb des EWR befinden können. EmailJS ist nach dem EU-US Data Privacy Framework zertifiziert bzw. wir stützen die Übertragung auf Standarddatenschutzklauseln der EU-Kommission.
+          </p>
+          <p>
+            Die Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahme) bzw. Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+          <div class="source-line">
+            Datenschutzerklärung EmailJS: <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">emailjs.com/legal/privacy-policy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-5">
+          <h2><span class="num">// 05</span>Google Analytics</h2>
+          <p>
+            Diese Website nutzt <strong>Google Analytics</strong>, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics verwendet Cookies und ähnliche Technologien, die eine Analyse der Benutzung der Website ermöglichen.
+          </p>
+          <h3>Was wird verarbeitet</h3>
+          <ul>
+            <li>IP-Adresse (anonymisiert durch IP-Masking)</li>
+            <li>Aufgerufene Seiten und Verweildauer</li>
+            <li>Herkunft des Besuchers (Referrer, Land, Gerät)</li>
+            <li>Interaktionen mit Seiteninhalten</li>
+          </ul>
+          <h3>Datenübertragung in die USA</h3>
+          <p>
+            Google verarbeitet Daten ggf. in den USA. Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. Zusätzlich werden Standarddatenschutzklauseln vereinbart.
+          </p>
+          <h3>Rechtsgrundlage & Widerspruch</h3>
+          <p>
+            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen. Alternativ können Sie die Erfassung durch Google Analytics durch das Browser-Add-on unter <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a> verhindern.
+          </p>
+          <div class="source-line">
+            Datenschutzerklärung Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-6">
+          <h2><span class="num">// 06</span>Hotjar</h2>
+          <p>
+            Diese Website nutzt <strong>Hotjar</strong>, einen Webanalyse- und Feedback-Dienst der Hotjar Ltd., Level 2, St Julian's Business Centre, 3, Elia Zammit Street, St Julian's STJ 1000, Malta.
+          </p>
+          <h3>Was wird verarbeitet</h3>
+          <ul>
+            <li>Mausbewegungen, Klicks, Scrollverhalten (Heatmaps)</li>
+            <li>Sitzungsaufzeichnungen (Recordings) — anonymisiert</li>
+            <li>Gerätedaten, Browsertyp, Bildschirmgröße</li>
+            <li>IP-Adresse (anonymisiert)</li>
+          </ul>
+          <p>
+            Hotjar speichert keine personenbezogenen Daten (z. B. E-Mail-Adressen) aus den Formularfeldern. Texteingaben werden automatisch maskiert.
+          </p>
+          <h3>Rechtsgrundlage & Widerspruch</h3>
+          <p>
+            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Um die Datenerfassung durch Hotjar zu deaktivieren, besuchen Sie: <a href="https://www.hotjar.com/policies/do-not-track/" target="_blank" rel="noopener">hotjar.com/policies/do-not-track</a>
+          </p>
+          <div class="source-line">
+            Datenschutzerklärung Hotjar: <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener">hotjar.com/legal/policies/privacy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-7">
+          <h2><span class="num">// 07</span>Meta Pixel & Meta Conversions API</h2>
+          <p>
+            Diese Website nutzt den <strong>Meta Pixel</strong> sowie die <strong>Meta Conversions API</strong> der Meta Platforms Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland.
+          </p>
+          <h3>Meta Pixel (clientseitig)</h3>
+          <p>
+            Der Meta Pixel ist ein JavaScript-Code-Snippet, das in Ihrem Browser Conversion-Ereignisse erfasst (z. B. Seitenaufruf, Klick auf einen Button, Formularabsendung). Die dabei erhobenen Daten werden an Meta übertragen und können zur Messung der Wirksamkeit unserer Werbeanzeigen sowie zur Erstellung von Custom Audiences für Retargeting-Kampagnen genutzt werden.
+          </p>
+          <h3>Meta Conversions API (serverseitig)</h3>
+          <p>
+            Ergänzend zum Pixel nutzen wir die Meta Conversions API, um Conversion-Ereignisse direkt von unserem Server an Meta zu übermitteln. Dabei werden Daten wie gehashte E-Mail-Adressen, IP-Adressen oder Browserkennung (User-Agent) in anonymisierter/gehashter Form übertragen. Eine Identifizierung einzelner Personen durch Meta ist durch das Hashing nicht direkt möglich.
+          </p>
+          <h3>Verarbeitete Datenkategorien</h3>
+          <ul>
+            <li>IP-Adresse</li>
+            <li>Browser-Informationen (User-Agent)</li>
+            <li>Besuchte URLs und Conversion-Ereignisse</li>
+            <li>Gehashte E-Mail-Adresse (nur bei Formularabsendung, SHA-256)</li>
+            <li>Klick-ID (fbclid) aus Meta-Anzeigen</li>
+          </ul>
+          <h3>Datenübertragung in die USA</h3>
+          <p>
+            Meta Platforms Inc. (USA) kann auf die Daten zugreifen. Meta ist nach dem EU-US Data Privacy Framework zertifiziert. Zusätzlich werden Standarddatenschutzklauseln vereinbart.
+          </p>
+          <h3>Rechtsgrundlage & Widerspruch</h3>
+          <p>
+            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen. Zusätzlich können Sie der personalisierten Werbung unter <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">facebook.com/adpreferences</a> widersprechen.
+          </p>
+          <div class="source-line">
+            Datenschutzerklärung Meta: <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy/policy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-8">
+          <h2><span class="num">// 08</span>Cookies</h2>
+          <p>
+            Unsere Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Wir unterscheiden zwischen:
+          </p>
+          <ul>
+            <li><strong>Technisch notwendige Cookies</strong> — für den Betrieb der Website erforderlich, keine Einwilligung nötig</li>
+            <li><strong>Analyse-Cookies</strong> (Google Analytics, Hotjar) — nur mit Ihrer Einwilligung</li>
+            <li><strong>Marketing-Cookies</strong> (Meta Pixel) — nur mit Ihrer Einwilligung</li>
+          </ul>
+          <p>
+            Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen oder Cookies in Ihrem Browser deaktivieren. Beachten Sie, dass die Deaktivierung bestimmter Cookies die Funktionalität der Website einschränken kann.
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-9">
+          <h2><span class="num">// 09</span>Ihre Rechte</h2>
+          <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+          <ul>
+            <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO)</li>
+            <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO)</li>
+            <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO)</li>
+            <li><strong>Recht auf Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+            <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+            <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO)</li>
+            <li><strong>Recht auf Widerruf einer Einwilligung</strong> (Art. 7 Abs. 3 DSGVO)</li>
+          </ul>
+          <p>
+            Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+          </p>
+          <p>
+            Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Die zuständige Aufsichtsbehörde für Nordrhein-Westfalen ist die Landesbeauftragte für Datenschutz und Informationsfreiheit NRW: <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">ldi.nrw.de</a>
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-10">
+          <h2><span class="num">// 10</span>Aktualität dieser Datenschutzerklärung</h2>
+          <p>
+            Diese Datenschutzerklärung hat den Stand April 2026. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
+          </p>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
+              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Produkt</h4>
+            <ul>
+              <li><a href="/#module">Module</a></li>
+              <li><a href="/#workflow">Workflow</a></li>
+              <li><a href="/#pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="/#faq">FAQ</a></li>
+              <li><a href="#">Changelog</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/impressum.html">Impressum</a></li>
+              <li><a href="/datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 vorflows</span>
+          <span>built with claude code</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      const onScroll = () => {
+        if (window.scrollY > 8) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    </script>
+  </body>
+</html>
