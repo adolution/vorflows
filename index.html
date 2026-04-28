@@ -181,11 +181,93 @@
       .nav-cta {
         padding: 9px 16px;
         font-size: 14px;
-        color: #fff;
+        color: var(--bg-light);
       }
-      .nav-cta:hover { color: #fff; }
+      .nav-cta:hover { color: var(--bg-light); }
+
+      /* Mobile menu toggle */
+      .nav-toggle {
+        display: none;
+        background: transparent;
+        border: 0;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        margin-left: 12px;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: background-color 150ms ease-out;
+      }
+      .nav-toggle:hover { background: var(--border); }
+      .nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .nav-toggle span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--text-primary);
+        transition: transform 220ms ease-out, opacity 180ms ease-out;
+      }
+      .nav-toggle span + span { margin-top: 4px; }
+      .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+      .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 64px 0 0;
+        background: var(--bg-light);
+        z-index: 48;
+        padding: clamp(24px, 5vw, 48px) clamp(20px, 4vw, 48px) 48px;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 240ms ease-out, transform 240ms ease-out, visibility 240ms;
+        overflow-y: auto;
+      }
+      .mobile-menu.open {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        visibility: visible;
+      }
+      .mobile-menu a {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(28px, 5vw, 36px);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-primary);
+      }
+      .mobile-menu a:first-child { border-top: 1px solid var(--border); }
+      .mobile-menu .mobile-cta {
+        display: inline-flex;
+        align-self: flex-start;
+        margin-top: 32px;
+        padding: 14px 22px;
+        background: var(--accent);
+        color: var(--bg-light);
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0;
+        border-bottom: 0;
+      }
+      .mobile-menu a:first-child.mobile-cta { border-top: 0; }
       @media (max-width: 768px) {
         .nav-links a:not(.nav-cta) { display: none; }
+        .nav-toggle { display: inline-flex; }
+      }
+      @media (min-width: 769px) {
+        .mobile-menu { display: none; }
       }
 
       /* Hero */
@@ -467,6 +549,16 @@
       }
 
       /* Module */
+      .module-lead {
+        font-family: 'Fraunces', Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(18px, 2vw, 22px);
+        line-height: 1.5;
+        color: var(--text-secondary);
+        margin: -32px 0 0;
+        max-width: 60ch;
+      }
       .modules {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -537,7 +629,7 @@
         padding-top: 24px;
         font-weight: 600;
       }
-      .compare-table .sum-row .num { font-family: 'Fraunces', serif; font-size: 20px; }
+      .compare-table .sum-row .num { font-size: 17px; font-weight: 600; }
       .compare-foot {
         margin-top: 48px;
         text-align: center;
@@ -586,69 +678,84 @@
         margin: 0;
       }
 
-      /* Skill Stack */
-      .skill-list {
-        margin-top: 48px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 14.5px;
-      }
-      .skill-group + .skill-group { margin-top: 36px; }
-      .skill-group-head {
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-        align-items: baseline;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--border-strong);
-      }
-      .skill-group-num {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .skill-group-name {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 500;
-        font-size: 19px;
-        letter-spacing: -0.01em;
-        color: var(--text-primary);
-      }
-      @media (max-width: 720px) {
-        .skill-group-head { grid-template-columns: 1fr; gap: 4px; }
-      }
-      .skill-row {
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-        padding: 12px 0;
-        border-top: 1px solid var(--border);
-        align-items: baseline;
-      }
-      .skill-group .skill-row:first-of-type { border-top: 0; padding-top: 14px; }
-      @media (max-width: 720px) {
-        .skill-row { grid-template-columns: 1fr; gap: 4px; }
-      }
-      .skill-name { color: var(--accent); }
-      .skill-desc {
-        font-family: 'Inter', sans-serif;
-        color: var(--text-secondary);
-        font-size: 15.5px;
-      }
-      .skill-foot {
-        margin-top: 36px;
-        padding-top: 24px;
-        border-top: 1px solid var(--border);
-        font-size: 14px;
-        color: var(--text-secondary);
-      }
+      /* Skill Stack — card grid */
       .skill-sub {
         margin: -36px 0 0;
         font-size: 17px;
         color: var(--text-secondary);
         max-width: 56ch;
       }
+      .skill-list {
+        margin-top: 48px;
+        display: grid;
+        gap: 20px;
+      }
+      .skill-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 32px 24px;
+        box-shadow: 0 1px 0 rgba(26, 26, 26, 0.02);
+      }
+      .skill-card-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 18px;
+      }
+      .skill-card-num {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        flex: 0 0 auto;
+      }
+      .skill-card-name {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(18px, 2vw, 22px);
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+        margin: 0;
+        line-height: 1.3;
+      }
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 32px;
+      }
+      @media (max-width: 720px) {
+        .skill-grid { grid-template-columns: 1fr; gap: 14px; }
+        .skill-card { padding: 24px 22px 20px; }
+      }
+      .skill-tile-name {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13.5px;
+        color: var(--accent);
+        margin: 0 0 4px;
+      }
+      .skill-tile-desc {
+        margin: 0;
+        font-size: 14.5px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+      .skill-foot {
+        margin-top: 32px;
+        padding-top: 0;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        text-align: center;
+      }
+      .skill-foot::first-letter { color: var(--accent); }
 
       /* Qualifier */
       .qualifier-grid {
@@ -702,7 +809,8 @@
       }
       .pricing-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr 1fr 1fr 1.45fr;
+        align-items: stretch;
       }
       @media (max-width: 980px) {
         .pricing-grid { grid-template-columns: 1fr; }
@@ -738,48 +846,46 @@
         }
       }
       .pricing-col.recommended {
-        background: linear-gradient(180deg, rgba(200, 99, 62, 0.10) 0%, rgba(200, 99, 62, 0.05) 100%);
+        background: linear-gradient(180deg, rgba(200, 99, 62, 0.12) 0%, rgba(200, 99, 62, 0.04) 100%);
         border: 1px solid var(--accent);
         border-radius: 12px;
         box-shadow:
-          0 24px 56px -32px rgba(200, 99, 62, 0.45),
-          0 4px 16px -8px rgba(26, 26, 26, 0.08);
+          0 32px 72px -36px rgba(200, 99, 62, 0.55),
+          0 6px 20px -8px rgba(26, 26, 26, 0.10);
         z-index: 2;
-        transform: translateY(-6px);
-        padding-block: 38px 36px;
-        margin-left: 12px;
+        transform: translateY(-10px);
+        padding: 0 32px 38px;
+        margin-left: 16px;
+        overflow: hidden;
       }
       @media (max-width: 980px) {
         .pricing-col.recommended {
           margin-left: 0;
-          margin-top: 12px;
+          margin-top: 16px;
           transform: none;
-          border-radius: 12px;
+          padding: 0 28px 32px;
         }
       }
-      .pricing-col.recommended::after {
-        content: "Empfohlen";
-        position: absolute;
-        top: -14px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: 'Fraunces', Georgia, serif;
-        font-style: italic;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: -0.01em;
-        color: var(--bg-light);
+      .pricing-recommend-strip {
+        margin: 0 -32px 28px;
+        padding: 11px 24px;
         background: var(--accent);
-        padding: 5px 14px;
-        border-radius: 999px;
-        white-space: nowrap;
+        color: var(--bg-light);
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 11.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-align: center;
       }
       @media (max-width: 980px) {
-        .pricing-col.recommended {
-          transform: none;
-          border-radius: 0;
-        }
+        .pricing-recommend-strip { margin: 0 -28px 24px; }
       }
+      .pricing-col.recommended .pricing-name {
+        font-size: 19px;
+        margin-top: 6px;
+      }
+      .pricing-col.recommended .pricing-price { font-size: 46px; }
       .pricing-name {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
@@ -882,20 +988,21 @@
       }
       .pricing-cta.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
-      .pricing-guarantee {
-        margin-top: 14px;
+      .pricing-trust {
+        margin-top: 36px;
+        text-align: center;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.04em;
+        font-size: 12px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--text-secondary);
-        text-align: center;
-        line-height: 1.5;
       }
-      .pricing-guarantee::before {
-        content: "◆ ";
+      .pricing-trust::before {
+        content: "◆";
         color: var(--accent);
+        margin-right: 10px;
       }
+      .pricing-trust strong { color: var(--text-primary); font-weight: 500; }
 
       .pricing-note {
         margin-top: 32px;
@@ -1021,52 +1128,6 @@
         gap: 12px;
       }
 
-      /* Sticky pricing CTA — appears after hero scroll-out */
-      .sticky-cta {
-        position: fixed;
-        right: clamp(16px, 3vw, 32px);
-        bottom: clamp(16px, 3vw, 32px);
-        z-index: 60;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 18px;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #fff;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        text-decoration: none;
-        box-shadow:
-          0 1px 0 rgba(26, 26, 26, 0.04),
-          0 16px 40px -12px rgba(200, 99, 62, 0.55),
-          0 4px 12px -4px rgba(26, 26, 26, 0.18);
-        opacity: 0;
-        transform: translateY(12px);
-        pointer-events: none;
-        transition: opacity 280ms ease-out, transform 280ms ease-out, background 150ms ease-out;
-      }
-      .sticky-cta.visible {
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-      .sticky-cta:hover { background: var(--accent-hover); }
-      .sticky-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-      .sticky-cta-kbd {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
-        padding: 2px 6px;
-        border-radius: 4px;
-        background: rgba(255, 255, 255, 0.18);
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1;
-      }
-      @media (max-width: 600px) {
-        .sticky-cta-kbd { display: none; }
-      }
-
       /* Code-block copy button */
       .codeblock-wrap { position: relative; }
       .codeblock-copy {
@@ -1169,10 +1230,21 @@
           <a href="#workflow">Workflow</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
-          <a href="#pricing" class="btn btn-primary nav-cta">Start mit Base →</a>
+          <a href="#pricing" class="btn btn-primary nav-cta">Pricing →</a>
+          <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+      <a href="#module">Module</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#pricing" class="mobile-cta">Pricing ansehen →</a>
+    </div>
 
     <!-- 02 HERO -->
     <header class="hero container">
@@ -1331,6 +1403,7 @@
         <div style="max-width: 720px;">
           <div class="meta eyebrow">Drei Module · Ein System</div>
           <h2 class="h2 display">Base baut. SEOFlow rankt. ClarityFlow optimiert.</h2>
+          <p class="module-lead">Base ist Pflicht. SEOFlow und ClarityFlow sind optionale Add-Ons. Alle drei zusammen sparen 100&nbsp;€.</p>
         </div>
         <div class="modules">
           <div class="module">
@@ -1408,37 +1481,43 @@
     <section class="section-tight">
       <div class="container-prose">
         <div class="meta eyebrow">Skill-Stack</div>
-        <h2 class="h2 display">Base ist der komplette Workflow + Skill &amp; Plugin Stack.</h2>
-        <p class="skill-sub">Eine Datei führt dich automatisch durch den Setup-Prozess.</p>
+        <h2 class="h2 display">Was du am Ende kannst — geführt durch eine einzige Datei.</h2>
+        <p class="skill-sub">Base ist der komplette Workflow plus Skill- und Plugin-Stack. Inkludiert in jedem Paket.</p>
         <div class="skill-list">
-          <div class="skill-group">
-            <div class="skill-group-head">
-              <span class="skill-group-num">01 / Theme &amp; Build</span>
-              <span class="skill-group-name">Wie du dein Theme sicher umbaust.</span>
+          <article class="skill-card">
+            <header class="skill-card-head">
+              <span class="skill-card-num">01 / Theme &amp; Build</span>
+              <h3 class="skill-card-name">Dein Theme sicher umbauen.</h3>
+            </header>
+            <div class="skill-grid">
+              <div><span class="skill-tile-name">theme-architecture</span><p class="skill-tile-desc">Wie Shopify-Themes intern aufgebaut sind — was wo lebt.</p></div>
+              <div><span class="skill-tile-name">liquid-fundamentals</span><p class="skill-tile-desc">Was du wissen musst, um Sections selbst zu lesen.</p></div>
+              <div><span class="skill-tile-name">claude-project-setup</span><p class="skill-tile-desc">Theme so laden, dass Claude konsistent arbeitet.</p></div>
+              <div><span class="skill-tile-name">duplicate-publish-flow</span><p class="skill-tile-desc">Der sichere Weg vom Edit zum Live-Theme.</p></div>
             </div>
-            <div class="skill-row"><span class="skill-name">theme-architecture</span><span class="skill-desc">Wie Shopify-Themes intern aufgebaut sind, was wo lebt.</span></div>
-            <div class="skill-row"><span class="skill-name">liquid-fundamentals</span><span class="skill-desc">Was du wissen musst, um Sections selbst zu lesen.</span></div>
-            <div class="skill-row"><span class="skill-name">claude-project-setup</span><span class="skill-desc">Wie du dein Theme so lädst, dass Claude konsistent arbeitet.</span></div>
-            <div class="skill-row"><span class="skill-name">duplicate-publish-flow</span><span class="skill-desc">Der sichere Weg vom Edit zum Live-Theme.</span></div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-head">
-              <span class="skill-group-num">02 / Apps &amp; Prompting</span>
-              <span class="skill-group-name">Wie du Claude führst und Apps ersetzt.</span>
+          </article>
+          <article class="skill-card">
+            <header class="skill-card-head">
+              <span class="skill-card-num">02 / Apps &amp; Prompting</span>
+              <h3 class="skill-card-name">Claude führen und Apps ersetzen.</h3>
+            </header>
+            <div class="skill-grid">
+              <div><span class="skill-tile-name">app-replacement-patterns</span><p class="skill-tile-desc">Welche App-Typen sich gut, welche schlecht ersetzen lassen.</p></div>
+              <div><span class="skill-tile-name">prompt-discipline</span><p class="skill-tile-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</p></div>
             </div>
-            <div class="skill-row"><span class="skill-name">app-replacement-patterns</span><span class="skill-desc">Welche App-Typen sich gut, welche schlecht ersetzen lassen.</span></div>
-            <div class="skill-row"><span class="skill-name">prompt-discipline</span><span class="skill-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</span></div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-head">
-              <span class="skill-group-num">03 / Daten &amp; Insights</span>
-              <span class="skill-group-name">Wie aus Daten Code-Änderungen werden.</span>
+          </article>
+          <article class="skill-card">
+            <header class="skill-card-head">
+              <span class="skill-card-num">03 / Daten &amp; Insights</span>
+              <h3 class="skill-card-name">Aus Daten Code-Änderungen machen.</h3>
+            </header>
+            <div class="skill-grid">
+              <div><span class="skill-tile-name">seo-data-loop</span><p class="skill-tile-desc">Wie Search-Console-Daten zu Code-Änderungen werden.</p></div>
+              <div><span class="skill-tile-name">behavioral-data-reading</span><p class="skill-tile-desc">Heatmap-Patterns lesen, ohne sich was einzubilden.</p></div>
             </div>
-            <div class="skill-row"><span class="skill-name">seo-data-loop</span><span class="skill-desc">Wie Search-Console-Daten zu Code-Änderungen werden.</span></div>
-            <div class="skill-row"><span class="skill-name">behavioral-data-reading</span><span class="skill-desc">Heatmap-Patterns lesen, ohne sich was einzubilden.</span></div>
-          </div>
+          </article>
         </div>
-        <p class="skill-foot">Inkludiert in jedem Paket. Keine Upsell-Stufen.</p>
+        <p class="skill-foot">◆ In jedem Paket enthalten — keine Upsell-Stufen.</p>
       </div>
     </section>
 
@@ -1496,7 +1575,6 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Start mit Base</a>
-              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + SEOFlow</h3>
@@ -1512,7 +1590,6 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Base + SEOFlow</a>
-              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + ClarityFlow</h3>
@@ -1528,11 +1605,11 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Base + ClarityFlow</a>
-              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col recommended">
+              <div class="pricing-recommend-strip">Empfohlen — Beste Preis-Leistung</div>
               <h3 class="pricing-name">Bundle</h3>
-              <p class="pricing-position">Beste Preis-Leistung. Alles drin.</p>
+              <p class="pricing-position">Alles drin. Kein Add-On später nötig.</p>
               <div class="pricing-price-block">
                 <span class="pricing-price">597&nbsp;€</span>
                 <span class="pricing-price-strike">697&nbsp;€</span>
@@ -1546,10 +1623,10 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta primary">Bundle holen →</a>
-              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
           </div>
         </div>
+        <p class="pricing-trust"><strong>Setup-Garantie</strong> auf alle Pakete · 14 Tage Geld-zurück</p>
         <div class="pricing-note">
           <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen — je 150&nbsp;€.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt: 397&nbsp;+&nbsp;150&nbsp;+&nbsp;150&nbsp;=&nbsp;697&nbsp;€. Wer das Bundle gleich nimmt, zahlt 597&nbsp;€ und spart 100&nbsp;€.
         </div>
@@ -1602,8 +1679,8 @@
     <section class="final-cta section">
       <div class="container-prose">
         <h2 class="display">Bau deinen Shop schneller — <em>als alle anderen.</em></h2>
-        <p>Start mit Base. 20–30 Minuten Setup. Erste Section noch heute.</p>
-        <a href="#pricing" class="btn btn-primary">Start mit Base →</a>
+        <p>Wähle dein Paket. 20–30 Minuten Setup. Erste Section noch heute.</p>
+        <a href="#pricing" class="btn btn-primary">Pakete ansehen →</a>
       </div>
     </section>
 
@@ -1655,11 +1732,6 @@
       </div>
     </footer>
 
-    <a href="#pricing" class="sticky-cta" id="stickyCta" aria-label="Zum Pricing">
-      <span>Pricing ansehen</span>
-      <span class="sticky-cta-kbd">P</span>
-    </a>
-
     <script>
       // Nav border on scroll
       const nav = document.getElementById('nav');
@@ -1686,22 +1758,28 @@
         fadeEls.forEach((el) => el.classList.add('visible'));
       }
 
-      // Sticky pricing CTA — visible after hero scrolls out, hidden inside #pricing
-      const sticky = document.getElementById('stickyCta');
-      const hero = document.querySelector('.hero');
-      const pricing = document.getElementById('pricing');
-      if (sticky && hero && pricing && 'IntersectionObserver' in window) {
-        let pastHero = false;
-        let inPricing = false;
-        const update = () => {
-          if (pastHero && !inPricing) sticky.classList.add('visible');
-          else sticky.classList.remove('visible');
-        };
-        new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; update(); },
-          { threshold: 0, rootMargin: '0px 0px -40% 0px' }).observe(hero);
-        new IntersectionObserver(([e]) => { inPricing = e.isIntersecting; update(); },
-          { threshold: 0.05 }).observe(pricing);
-      }
+      // Mobile menu toggle
+      const navToggle = document.getElementById('navToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMobile = () => {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+        navToggle?.setAttribute('aria-label', 'Menü öffnen');
+        document.body.style.overflow = '';
+      };
+      navToggle?.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      mobileMenu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobile));
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMobile();
+      });
+      const mq = window.matchMedia('(min-width: 769px)');
+      mq.addEventListener?.('change', (e) => { if (e.matches) closeMobile(); });
 
       // Code-block + filetree copy buttons
       document.querySelectorAll('.codeblock-copy, .filetree-copy').forEach((btn) => {

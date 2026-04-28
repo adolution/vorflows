@@ -1,17 +1,17 @@
-# forflow – Product Brief
+# vorflows – Product Brief
 
 > Kontext-Datei für die Claude Code Instanz, die die Landing Page baut.
 > Lies das hier, bevor du eine Zeile Code schreibst.
 
 ---
 
-## Was ist forflow?
+## Was ist vorflows?
 
-forflow ist ein System für Shopify-Founder, die ihren Shop mit KI umbauen, optimieren und skalieren wollen – ohne Agentur, ohne teure Apps, ohne Dev-Team.
+vorflows ist ein System für Shopify-Founder, die ihren Shop mit KI umbauen, optimieren und skalieren wollen – ohne Agentur, ohne teure Apps, ohne Dev-Team.
 
 Kern-Idee: **Claude Code wird zum technischen Co-Founder des Shops.** Theme-Umbau, App-Replacement durch Custom Code, SEO-Automatisierung und datengetriebene Conversion-Optimierung laufen über einen sicheren, geführten Workflow – nicht über CLI-Magie, sondern über reproduzierbare File-Prozesse, die jeder Founder bedienen kann.
 
-forflow verkauft nicht "noch ein Tool". Es verkauft **die Methode**, mit der Founder ihren Shop selbst auf Senior-Dev-Niveau bauen, ranken und optimieren.
+vorflows verkauft nicht "noch ein Tool". Es verkauft **die Methode**, mit der Founder ihren Shop selbst auf Senior-Dev-Niveau bauen, ranken und optimieren.
 
 ---
 
@@ -23,7 +23,7 @@ Die Landing Page bewirbt das **übergeordnete System**, nicht ein einzelnes Modu
 2. **Apps durch KI ersetzen** – statt monatlicher App-Subscriptions Custom-Code-Lösungen, die der Founder besitzt
 3. **Store mit KI optimieren** – SEO-Automatisierung und Conversion-Optimierung aus echten User-Daten
 
-Roter Faden: *Du brauchst keine Agentur. Du brauchst keine 15 Apps. Du brauchst forflow.*
+Roter Faden: *Du brauchst keine Agentur. Du brauchst keine 15 Apps. Du brauchst vorflows.*
 
 ---
 
