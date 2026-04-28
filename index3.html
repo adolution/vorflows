@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>vorflows — Der Workflow für Shopify-Founder, die ihren Store ernst meinen.</title>
+  <meta name="description" content="Bau, ranke und optimiere deinen Shopify-Store mit Claude Code als technischem Co-Founder. Ohne Agentur. Ohne 15 Apps." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — Terminal / Workflow
+       ============================================================ */
+    :root {
+      --bg:           #0A0A0A;
+      --bg-elev:      #141414;
+      --bg-section:   #0F0F0F;
+      --ink:          #EAEAE5;
+      --ink-2:        #8A8A85;
+      --ink-3:        #5A5A55;
+      --rule:         #2A2A2A;
+      --rule-soft:    #1A1A1A;
+      --accent:       #E8B85C;
+      --accent-h:     #D4A348;
+      --diff-add:     #4A6B4A;
+      --diff-add-bg:  #1A2418;
+      --diff-rm:      #6B4A4A;
+      --diff-rm-bg:   #241818;
+
+      --mono:  'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sans:  'Inter', 'Geist', system-ui, -apple-system, Segoe UI, sans-serif;
+
+      --col-prose: 700px;
+      --col-wide:  1100px;
+
+      --t-fast:   150ms cubic-bezier(.2,.6,.2,1);
+      --t-mid:    240ms cubic-bezier(.2,.6,.2,1);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    /* dezente vertikale Editor-Lineale */
+    @media (min-width: 1280px) {
+      body::before, body::after {
+        content: "";
+        position: fixed;
+        top: 0; bottom: 0;
+        width: 1px;
+        background: var(--rule-soft);
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::before { left: calc(50% - 550px); }
+      body::after  { right: calc(50% - 550px); }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    .display {
+      font-family: var(--mono);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .h1 { font-size: clamp(32px, 5vw, 56px); }
+    .h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.18; }
+    .h3 {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .lead {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--ink-2);
+      max-width: 56ch;
+    }
+    .caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-3);
+    }
+    .mono { font-family: var(--mono); font-size: 14px; }
+    .amber { color: var(--accent); }
+
+    em { font-style: normal; color: var(--accent); font-weight: 500; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+    .prose { max-width: var(--col-prose); }
+    .wide  { max-width: var(--col-wide); }
+
+    section { padding-block: clamp(80px, 12vw, 140px); position: relative; }
+    section + section { border-top: 1px solid var(--rule); }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in oklab, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .wordmark {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .wordmark .dot { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-2);
+      transition: color var(--t-fast);
+    }
+    .nav-link:hover { color: var(--ink); }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .nav-cta:hover { color: var(--accent-h); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero { padding-top: clamp(80px, 14vh, 140px); padding-bottom: clamp(96px, 14vw, 160px); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .hero-pathstamp {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      margin: 0 0 32px;
+      letter-spacing: 0.04em;
+    }
+    .hero-pathstamp .prompt { color: var(--accent); margin-right: 8px; }
+    .hero-headline {
+      max-width: 18ch;
+      margin: 0 0 24px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 0.95em;
+      vertical-align: -0.06em;
+      background: var(--accent);
+      margin-left: 0.18em;
+      animation: blink 1.05s steps(1, end) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-lead {
+      margin: 0 0 40px;
+      max-width: 60ch;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #1A1A1A;
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: var(--accent-h); }
+    .btn-primary:active { transform: translateY(1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--rule);
+    }
+    .btn-ghost:hover { border-color: var(--ink-2); }
+    .btn .arr { color: inherit; }
+
+    /* hero file-tree */
+    .hero-tree {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .hero-tree .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--rule);
+      background: #181818;
+    }
+    .hero-tree .titlebar .dots {
+      display: flex; gap: 6px;
+    }
+    .hero-tree .titlebar .dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #2A2A2A;
+    }
+    .hero-tree .titlebar .name {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      margin-left: 8px;
+      letter-spacing: 0.02em;
+    }
+    .hero-tree pre {
+      margin: 0;
+      padding: 18px 18px 22px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--ink-2);
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .hero-tree pre .dir { color: var(--accent); }
+    .hero-tree pre .file { color: var(--ink); }
+    .hero-tree pre .cmt { color: var(--ink-3); }
+
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ============================================================
+       MANIFEST
+       ============================================================ */
+    .manifest .caption { margin-bottom: 28px; }
+    .manifest p {
+      max-width: var(--col-prose);
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0 0 22px;
+    }
+    .manifest p + p { color: var(--ink-2); }
+    .manifest p strong { color: var(--ink); font-weight: 600; }
+
+    /* ============================================================
+       WORKFLOW
+       ============================================================ */
+    .workflow .caption { margin-bottom: 24px; }
+    .workflow .h2 { max-width: 22ch; margin: 0 0 20px; }
+    .workflow .lead { margin: 0 0 64px; }
+
+    .step { max-width: var(--col-wide); margin-top: 56px; }
+    .step:first-of-type { margin-top: 0; }
+    .step-head {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .step-title {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .step-body {
+      max-width: 60ch;
+      color: var(--ink-2);
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+    .codeblock {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .codeblock .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--rule);
+      background: #181818;
+      color: var(--ink-3);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .codeblock .head .lang { color: var(--ink-2); }
+    .codeblock pre {
+      margin: 0;
+      padding: 18px 16px 20px;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--ink-2);
+    }
+    .codeblock pre .prompt { color: var(--accent); }
+    .codeblock pre .arr { color: var(--ink-3); }
+    .codeblock pre .ok { color: var(--accent); }
+    .codeblock pre .file { color: var(--ink); }
+
+    .diff {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .diff .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--rule);
+      background: #181818;
+      color: var(--ink-3);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .diff .head .file { color: var(--ink-2); }
+    .diff pre { margin: 0; padding: 14px 0; white-space: pre; overflow-x: auto; }
+    .diff .row { display: block; padding: 0 16px 0 8px; }
+    .diff .row.add { background: var(--diff-add-bg); color: #C8E6C8; }
+    .diff .row.add::before { content: "+ "; color: #6B8E6B; padding-left: 0; }
+    .diff .row.rm  { background: var(--diff-rm-bg); color: #E6C8C8; }
+    .diff .row.rm::before  { content: "- "; color: #8E6B6B; }
+    .diff .row.ctx { color: var(--ink-2); }
+    .diff .row.ctx::before { content: "  "; }
+    .diff .row.hunk { color: var(--ink-3); padding: 4px 16px; }
+
+    .step-divider {
+      margin: 40px 0 0 22px;
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(to bottom, var(--rule) 0%, var(--rule) 50%, transparent 100%);
+      border-left: 1px dashed var(--rule);
+      background: transparent;
+    }
+
+    /* ============================================================
+       SUBSCRIPTION KILLER
+       ============================================================ */
+    .killer .caption { margin-bottom: 24px; }
+    .killer .h2 { max-width: 22ch; margin: 0 0 24px; }
+    .killer p { max-width: var(--col-prose); color: var(--ink-2); font-size: 17px; margin: 0 0 20px; line-height: 1.7; }
+    .killer-table {
+      margin-top: 56px;
+      max-width: 760px;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    .killer-table .head {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--rule);
+      background: #181818;
+      color: var(--ink-3);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .kt-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1.6fr;
+      gap: 24px;
+      padding: 12px 18px;
+      align-items: baseline;
+      border-bottom: 1px dashed var(--rule-soft);
+    }
+    .kt-row:last-of-type { border-bottom: 0; }
+    .kt-row .lhs { color: var(--ink); }
+    .kt-row .rhs { color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+    .kt-row .note { color: var(--ink-3); font-family: var(--sans); font-size: 13px; }
+    .kt-row.sum {
+      border-top: 1px solid var(--rule);
+      border-bottom: 0;
+      background: #181818;
+      padding: 14px 18px;
+    }
+    .kt-row.sum .lhs,
+    .kt-row.sum .rhs { color: var(--accent); font-weight: 600; }
+    .killer-foot {
+      margin-top: 16px;
+      color: var(--ink-3);
+      font-size: 13px;
+      font-family: var(--mono);
+    }
+    .killer-foot::before { content: "// "; color: var(--ink-3); }
+
+    /* ============================================================
+       MODULES
+       ============================================================ */
+    .modules .caption { margin-bottom: 24px; }
+    .modules .h2 { max-width: 22ch; margin: 0 0 20px; }
+    .modules .lead { margin: 0 0 56px; }
+
+    .module-files {
+      display: grid;
+      gap: 28px;
+      max-width: var(--col-wide);
+    }
+    .module-file {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color var(--t-mid);
+    }
+    .module-file:hover { border-color: #3a3a3a; }
+    .module-file .tabbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--rule);
+      background: #181818;
+    }
+    .module-file .tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink);
+      border-right: 1px solid var(--rule);
+      background: var(--bg-elev);
+      margin-bottom: -1px;
+      border-bottom: 1px solid var(--bg-elev);
+    }
+    .module-file .tab .ext { color: var(--accent); }
+    .module-file .tab.required::after {
+      content: "REQUIRED";
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+    .module-file .tab.addon::after {
+      content: "ADD-ON";
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--ink-2);
+      border: 1px solid var(--rule);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+    .module-file .tabbar .meta {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+    }
+    .module-body {
+      padding: 28px 28px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 40px;
+    }
+    .module-body h3.mt {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.005em;
+      margin: 0 0 14px;
+      color: var(--ink);
+    }
+    .module-body p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      margin: 0 0 14px;
+      max-width: 60ch;
+    }
+    .module-body p strong { color: var(--ink); font-weight: 500; }
+    .module-aside {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--ink-2);
+    }
+    .module-aside .heading {
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .module-aside ul { list-style: none; padding: 0; margin: 0; }
+    .module-aside li {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      padding: 4px 0;
+    }
+    .module-aside li .mark {
+      color: var(--accent);
+    }
+    .module-aside li .lbl { color: var(--ink); }
+
+    @media (max-width: 800px) {
+      .module-body { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    /* ============================================================
+       PRICING
+       ============================================================ */
+    .pricing .caption { margin-bottom: 24px; }
+    .pricing .h2 { margin: 0 0 16px; max-width: 24ch; }
+    .pricing .lead { margin: 0 0 48px; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: var(--col-wide);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-elev);
+    }
+    .pricing-col {
+      padding: 28px 22px 26px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .pricing-col:last-child { border-right: 0; }
+    .pricing-col.recommended {
+      border: 1px solid var(--accent);
+      margin: -1px;
+      z-index: 2;
+      background: #161513;
+    }
+    .pricing-col .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-3);
+      margin-bottom: 14px;
+      min-height: 14px;
+    }
+    .pricing-col.recommended .label { color: var(--accent); }
+    .pricing-col .label::before { content: "// "; }
+
+    .pricing-col .name {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 17px;
+      margin: 0 0 6px;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+    }
+    .pricing-col .pos {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-2);
+      margin: 0 0 24px;
+      line-height: 1.55;
+      max-width: 24ch;
+    }
+    .pricing-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 2;
+      flex: 1;
+    }
+    .pricing-col ul li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: baseline;
+    }
+    .pricing-col ul li.yes { color: var(--ink); }
+    .pricing-col ul li.no  { color: var(--ink-3); }
+    .pricing-col ul li .mark { color: var(--ink-3); }
+    .pricing-col ul li.yes .mark { color: var(--accent); }
+
+    .pricing-col .price {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      color: var(--ink);
+    }
+    .pricing-col .price small {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-3);
+    }
+    .pricing-col .price.tbc {
+      color: var(--ink-3);
+      font-style: italic;
+      font-size: 18px;
+    }
+    .pricing-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      align-self: flex-start;
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+    }
+    .pricing-cta:hover { border-color: var(--ink-2); }
+    .pricing-col.recommended .pricing-cta {
+      background: var(--accent);
+      color: #1A1A1A;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    .pricing-col.recommended .pricing-cta:hover {
+      background: var(--accent-h);
+      border-color: var(--accent-h);
+    }
+
+    .pricing-note {
+      max-width: var(--col-wide);
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-2);
+    }
+    .pricing-note .ln { display: block; }
+    .pricing-note .ln::before { content: "// "; color: var(--ink-3); }
+    .pricing-note .ln strong { color: var(--ink); font-weight: 500; }
+
+    @media (max-width: 1000px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-col { border-bottom: 1px solid var(--rule); }
+      .pricing-col:nth-child(2) { border-right: 0; }
+      .pricing-col:nth-child(3), .pricing-col:nth-child(4) { border-bottom: 0; }
+    }
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-col { border-right: 0; border-bottom: 1px solid var(--rule); }
+      .pricing-col:last-child { border-bottom: 0; }
+    }
+
+    /* ============================================================
+       FAQ
+       ============================================================ */
+    .faq .caption { margin-bottom: 24px; }
+    .faq .h2 { margin: 0 0 48px; max-width: 22ch; }
+    .faq-list {
+      max-width: 880px;
+      border-top: 1px solid var(--rule);
+    }
+    details.faq-item {
+      border-bottom: 1px solid var(--rule);
+      padding: 20px 0;
+    }
+    details.faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 15px;
+      color: var(--ink);
+      transition: color var(--t-fast);
+      font-weight: 500;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary:hover { color: var(--accent); }
+    details.faq-item summary .chev {
+      font-family: var(--mono);
+      flex: 0 0 auto;
+      font-size: 18px;
+      color: var(--accent);
+      line-height: 1;
+      transition: transform var(--t-mid);
+    }
+    details.faq-item[open] summary .chev { transform: rotate(45deg); }
+    details.faq-item .answer {
+      padding: 16px 0 4px;
+      max-width: 720px;
+      color: var(--ink-2);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       FINAL CTA
+       ============================================================ */
+    .final-cta { padding-block: clamp(96px, 14vw, 160px); }
+    .final-cta .caption { margin-bottom: 24px; }
+    .final-cta .h1 { max-width: 22ch; margin: 0 0 24px; }
+    .final-cta .lead { margin: 0 0 40px; }
+    .final-cta .pair { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 48px 0 40px;
+      background: var(--bg-section);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .footer-blurb {
+      max-width: 36ch;
+      margin-top: 12px;
+      color: var(--ink-3);
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .footer-col .caption { margin-bottom: 14px; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { padding: 3px 0; font-family: var(--mono); font-size: 13px; }
+    .footer-col ul li a { color: var(--ink-2); transition: color var(--t-fast); }
+    .footer-col ul li a:hover { color: var(--ink); }
+    .footer-meta {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--ink-3);
+      font-family: var(--mono);
+      font-size: 12px;
+      flex-wrap: wrap;
+      letter-spacing: 0.04em;
+    }
+    .build-stamp { color: var(--ink-3); }
+    .build-stamp .ok { color: var(--accent); }
+
+    @media (max-width: 760px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+
+    /* ============================================================
+       PAGE-LOAD FADE
+       ============================================================ */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-pathstamp, .hero-headline, .hero-lead, .hero-actions, .hero-tree {
+        animation: rise 460ms cubic-bezier(.2,.6,.2,1) both;
+      }
+      .hero-pathstamp { animation-delay: 40ms; }
+      .hero-headline  { animation-delay: 100ms; }
+      .hero-lead      { animation-delay: 220ms; }
+      .hero-actions   { animation-delay: 320ms; }
+      .hero-tree      { animation-delay: 200ms; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="wordmark">~/vorflows<span class="dot">.</span></a>
+      <div class="nav-links">
+        <a href="#workflow" class="nav-link">workflow</a>
+        <a href="#modules" class="nav-link">modules</a>
+        <a href="#pricing" class="nav-link">pricing</a>
+        <a href="#faq" class="nav-link">faq</a>
+      </div>
+      <a href="#pricing" class="nav-cta">$ get bundle →</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-pathstamp"><span class="prompt">$</span>~/vorflows · for shopify founders · build 01</p>
+          <h1 class="display h1 hero-headline">
+            Shopify-Stores auf <span class="amber">Senior-Dev-Niveau</span><span class="cursor"></span>
+          </h1>
+          <p class="lead hero-lead">
+            Theme-Umbau, App-Replacement, SEO und Conversion — alles über Claude Code, alles in einem reproduzierbaren Workflow. Kein Agentur-Retainer, keine Subscription-Hölle.
+          </p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">$ get bundle <span class="arr">→</span></a>
+            <a href="#workflow" class="btn btn-ghost">read workflow.md <span class="arr">→</span></a>
+          </div>
+        </div>
+
+        <div class="hero-tree">
+          <div class="titlebar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="name">~/your-shop</span>
+          </div>
+<pre><span class="cmt"># Shopify Theme Workspace</span>
+<span class="dir">~/your-shop</span>
+├── <span class="dir">theme/</span>
+│   ├── <span class="dir">sections/</span>
+│   ├── <span class="dir">snippets/</span>
+│   └── <span class="dir">templates/</span>
+├── <span class="dir">.claude/</span>
+│   └── <span class="dir">workflows/</span>
+│       ├── <span class="file">base.md</span>
+│       ├── <span class="file">seo.md</span>
+│       └── <span class="file">clarityflow.md</span>
+└── <span class="file">claude.md</span>           <span class="cmt"># context</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MANIFEST
+       ============================================================ -->
+  <section class="manifest">
+    <div class="wrap prose">
+      <p class="caption">// manifest</p>
+      <p>
+        <strong>Shopify-Stores werden heute auf zwei Wegen gebaut.</strong> Entweder über eine Agentur, die zu viel kostet und zu langsam liefert. Oder über einen Stack aus 15 Apps, der jeden Monat 500 € abzieht — und dem Founder am Ende nichts gehört.
+      </p>
+      <p>
+        <em>vorflows</em> ist der dritte Weg. Ein geführter Workflow, der Claude Code zum technischen Co-Founder des Shops macht. Theme als File-Export, Änderungen über Claude, dupliziertes Theme, Review, Publish. Keine CLI-Magie. Keine Agentur. Kein App-Stack.
+      </p>
+      <p>
+        Was ein Senior Dev kann, kann der Workflow. Nur ohne Salär, ohne Retainer, ohne 15 Apps, die du nicht besitzt.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORKFLOW
+       ============================================================ -->
+  <section id="workflow" class="workflow">
+    <div class="wrap">
+      <p class="caption">// workflow</p>
+      <h2 class="display h2">In drei Schritten vom Theme-Export zum publizierten Build.</h2>
+      <p class="lead">Nichts läuft an deinem Live-Theme vorbei. Jede Änderung passiert in einer Kopie, wird reviewt und erst dann published.</p>
+
+      <!-- STEP 01 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num">01</span>
+          <span class="step-title">EXPORT</span>
+        </div>
+        <p class="step-body">Theme als File-Export aus Shopify. Roh, vollständig, lokal. In ein Claude Project geladen, mit Lese- und Schreibzugriff.</p>
+        <div class="codeblock">
+          <div class="head">
+            <span class="lang">terminal</span>
+            <span>~/your-shop</span>
+          </div>
+<pre><span class="prompt">$</span> shopify theme pull --live              <span class="arr">#</span> raw export
+<span class="prompt">$</span> claude project init ./theme            <span class="arr">#</span> load workspace
+<span class="prompt">$</span> claude project add ./.claude/workflows
+<span class="prompt">→</span> <span class="ok">workspace ready · 142 files indexed</span></pre>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+
+      <!-- STEP 02 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num">02</span>
+          <span class="step-title">CLAUDE</span>
+        </div>
+        <p class="step-body">Sections, Snippets, Templates. File-In, File-Out — kein CLI-Tunnel, keine Black-Box. Du siehst jede Änderung, bevor sie irgendwo landet.</p>
+        <div class="diff">
+          <div class="head">
+            <span class="file">sections/cart-drawer.liquid</span>
+            <span>+18 −9</span>
+          </div>
+<pre><span class="row hunk">@@ cart upsell — replacing app stack @@</span>
+<span class="row ctx">{% liquid</span>
+<span class="row rm">  assign upsell = app_block.settings.upsell_id</span>
+<span class="row rm">  assign source = "external_app"</span>
+<span class="row add">  assign upsell = section.settings.upsell_handle</span>
+<span class="row add">  assign source = "theme"</span>
+<span class="row ctx">%}</span>
+<span class="row ctx">{%- if cart.item_count > 0 -%}</span>
+<span class="row rm">  &lt;div class="ext-upsell" data-app="bundle"&gt;</span>
+<span class="row add">  &lt;div class="cart-upsell" data-section="{{ section.id }}"&gt;</span>
+<span class="row add">    {% render 'product-card', product: products[upsell] %}</span>
+<span class="row ctx">  &lt;/div&gt;</span>
+<span class="row ctx">{%- endif -%}</span></pre>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+
+      <!-- STEP 03 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num">03</span>
+          <span class="step-title">PUBLISH</span>
+        </div>
+        <p class="step-body">Geänderte Files wandern in ein dupliziertes Theme. Preview, Review, Publish. Live-Theme bleibt unangetastet, bis du es willst.</p>
+        <div class="codeblock">
+          <div class="head">
+            <span class="lang">terminal</span>
+            <span>~/your-shop</span>
+          </div>
+<pre><span class="prompt">$</span> shopify theme push --unpublished       <span class="arr">#</span> upload duplicate
+<span class="prompt">→</span> theme uploaded · id <span class="file">142978653</span>
+<span class="prompt">$</span> shopify theme open --preview           <span class="arr">#</span> review live
+<span class="prompt">$</span> shopify theme publish                  <span class="arr">#</span> ship it
+<span class="prompt">→</span> <span class="ok">live · 0.84s avg · checkout intact ✓</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SUBSCRIPTION KILLER
+       ============================================================ -->
+  <section class="killer">
+    <div class="wrap">
+      <p class="caption">// subscription-killer</p>
+      <h2 class="display h2">Apps ersetzen statt abonnieren.</h2>
+      <p>Klaviyo, Bundle Builder, Wishlist, Reviews-Apps, Upsell-Tools — eine durchschnittliche Shopify-App-Stack zieht <em>466 €/Monat</em>. Das sind 5.592 € im Jahr für Funktionalität, die zu großen Teilen aus drei Snippets, einer Section und etwas LocalStorage besteht.</p>
+      <p>Mit dem Base-Workflow ersetzt du diese Apps durch eigene Sections. Einmal über Claude gebaut. Du besitzt sie. Sie laufen im Theme. Sie kosten nichts mehr.</p>
+
+      <div class="killer-table">
+        <div class="head">
+          <span>// app stack</span>
+          <span>monthly</span>
+        </div>
+        <div class="kt-row"><span class="lhs">klaviyo-pro</span><span class="rhs">150 €/mo</span><span class="note">→ E-Mail-Capture als Custom Section</span></div>
+        <div class="kt-row"><span class="lhs">bundle-builder</span><span class="rhs">89 €/mo</span><span class="note">→ Liquid-Section mit Variant-Logic</span></div>
+        <div class="kt-row"><span class="lhs">wishlist-app</span><span class="rhs">49 €/mo</span><span class="note">→ LocalStorage + drei Snippets</span></div>
+        <div class="kt-row"><span class="lhs">reviews-app</span><span class="rhs">79 €/mo</span><span class="note">→ Theme-native Review-Section</span></div>
+        <div class="kt-row"><span class="lhs">upsell-app</span><span class="rhs">99 €/mo</span><span class="note">→ Cart-Drawer-Section</span></div>
+        <div class="kt-row sum"><span class="lhs">∑ total</span><span class="rhs">466 €/mo</span><span class="note">Einmalig gebaut. Du besitzt es.</span></div>
+      </div>
+      <p class="killer-foot">Zahlen illustrativ — typische Shop-Stack-Kosten.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MODULES
+       ============================================================ -->
+  <section id="modules" class="modules">
+    <div class="wrap">
+      <p class="caption">// modules</p>
+      <h2 class="display h2">Drei Module. Ein Workflow.</h2>
+      <p class="lead">Base ist Pflicht. SEO und ClarityFlow sind Add-Ons, die auf demselben Theme-Workflow aufsitzen — keine separaten Tools, keine zweite Logik.</p>
+
+      <div class="module-files">
+        <!-- BASE -->
+        <article class="module-file">
+          <div class="tabbar">
+            <span class="tab required">base<span class="ext">.module</span></span>
+            <span class="meta">module 01 · 142 files</span>
+          </div>
+          <div class="module-body">
+            <div>
+              <h3 class="mt">Theme Optimization Workflow</h3>
+              <p>Der geführte Prozess, mit dem du dein Shopify-Theme über Claude Code umbaust. Das Pflicht-Modul. Das Fundament, auf dem die Add-Ons sitzen.</p>
+              <p>Theme-Export aus Shopify, Arbeit im Claude Project, dupliziertes Theme, Preview, Review, Publish. <strong>Kein CLI-Wrapper, kein magic deploy</strong> — File-In, File-Out, immer überprüfbar.</p>
+            </div>
+            <aside class="module-aside">
+              <div class="heading">// includes</div>
+              <ul>
+                <li><span class="mark">[x]</span><span class="lbl">Workflow Schritt-für-Schritt</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Skill-Stack komplett</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Section-Architektur</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Performance-Patterns</span></li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+
+        <!-- SEO -->
+        <article class="module-file">
+          <div class="tabbar">
+            <span class="tab addon">seo<span class="ext">.module</span></span>
+            <span class="meta">module 02 · search-console loop</span>
+          </div>
+          <div class="module-body">
+            <div>
+              <h3 class="mt">Search Console + Claude Code, in 10 Minuten.</h3>
+              <p>Geführtes Setup, das dich durch jeden Schritt zieht. Keine Doku-Lektüre, keine Konfig-Hölle. Am Ende ist Claude Code mit der Search Console verbunden und sieht echte Suchdaten, Rankings, CTRs.</p>
+              <p>Was Claude erkennt, wandert in zwei Outputs: konkrete Handlungsempfehlungen — oder direkte Code-Änderungen am Theme über den Base-Workflow. <strong>Kein einmaliges Audit, sondern ein dauerhafter Loop.</strong></p>
+            </div>
+            <aside class="module-aside">
+              <div class="heading">// loop</div>
+              <ul>
+                <li><span class="mark">[x]</span><span class="lbl">GSC ↔ Claude Setup</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Daten → Hypothese</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Hypothese → Code</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Output: Recommendations</span></li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+
+        <!-- CLARITYFLOW -->
+        <article class="module-file">
+          <div class="tabbar">
+            <span class="tab addon">clarityflow<span class="ext">.module</span></span>
+            <span class="meta">module 03 · behaviour ingest</span>
+          </div>
+          <div class="module-body">
+            <div>
+              <h3 class="mt">Verhaltensdaten, die Claude lesen kann.</h3>
+              <p>Verbindet Claude Code mit Verhaltensdaten — Scrolltiefe, Klickpfade, Heatmaps, Session-Verhalten. Claude erkennt Reibungspunkte, ignorierte CTAs, tote Sections und Drop-off-Stellen.</p>
+              <p>Vorschläge wandern als UX-, Copy- und Layout-Änderungen in den Base-Workflow: dupliziertes Theme, Review, Publish. <strong>Der Loop aus Daten und Code schließt sich</strong>, ohne dass du selbst Hypothesen sortieren musst.</p>
+            </div>
+            <aside class="module-aside">
+              <div class="heading">// reads</div>
+              <ul>
+                <li><span class="mark">[x]</span><span class="lbl">Scrolltiefe · Klicks</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Heatmaps · Sessions</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Drop-off-Detection</span></li>
+                <li><span class="mark">[x]</span><span class="lbl">Output → base.module</span></li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING
+       ============================================================ -->
+  <section id="pricing" class="pricing">
+    <div class="wrap">
+      <p class="caption">// pricing</p>
+      <h2 class="display h2">Einsteigen mit Base. Oder das ganze System mit dem <em>Bundle</em>.</h2>
+      <p class="lead">Vier Pakete. Keine versteckten Tarife, keine "Save 30 %"-Sticker. Erst Base oder gleich alles.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-col">
+          <span class="label">&nbsp;</span>
+          <h3 class="name">base.only</h3>
+          <p class="pos">Einstieg. Erstmal testen.</p>
+          <ul>
+            <li class="yes"><span class="mark">[x]</span><span>base system</span></li>
+            <li class="no"><span class="mark">[ ]</span><span>seo module</span></li>
+            <li class="no"><span class="mark">[ ]</span><span>clarityflow</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>skill-stack</span></li>
+          </ul>
+          <div class="price tbc">a. A.</div>
+          <a href="#" class="pricing-cta">$ start →</a>
+        </div>
+
+        <div class="pricing-col">
+          <span class="label">&nbsp;</span>
+          <h3 class="name">base + seo</h3>
+          <p class="pos">Für Founder mit Traffic-Fokus.</p>
+          <ul>
+            <li class="yes"><span class="mark">[x]</span><span>base system</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>seo module</span></li>
+            <li class="no"><span class="mark">[ ]</span><span>clarityflow</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>skill-stack</span></li>
+          </ul>
+          <div class="price tbc">a. A.</div>
+          <a href="#" class="pricing-cta">$ install →</a>
+        </div>
+
+        <div class="pricing-col">
+          <span class="label">&nbsp;</span>
+          <h3 class="name">base + clarityflow</h3>
+          <p class="pos">Für Founder mit Conversion-Fokus.</p>
+          <ul>
+            <li class="yes"><span class="mark">[x]</span><span>base system</span></li>
+            <li class="no"><span class="mark">[ ]</span><span>seo module</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>clarityflow</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>skill-stack</span></li>
+          </ul>
+          <div class="price tbc">a. A.</div>
+          <a href="#" class="pricing-cta">$ install →</a>
+        </div>
+
+        <div class="pricing-col recommended">
+          <span class="label">recommended</span>
+          <h3 class="name">bundle</h3>
+          <p class="pos">Beste Preis-Leistung. Empfohlen.</p>
+          <ul>
+            <li class="yes"><span class="mark">[x]</span><span>base system</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>seo module</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>clarityflow</span></li>
+            <li class="yes"><span class="mark">[x]</span><span>skill-stack</span></li>
+          </ul>
+          <div class="price tbc">a. A.</div>
+          <a href="#" class="pricing-cta">$ get bundle →</a>
+        </div>
+      </div>
+
+      <div class="pricing-note">
+        <span class="ln"><strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen.</strong></span>
+        <span class="ln">Add-Ons nach Erstkauf: ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, spart.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section id="faq" class="faq">
+    <div class="wrap">
+      <p class="caption">// faq</p>
+      <h2 class="display h2">Was Founder vor dem Kauf fragen.</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Brauche ich Programmierkenntnisse? <span class="chev">+</span></summary>
+          <div class="answer">Du brauchst keine, aber du solltest Liquid-Files lesen können. vorflows ist nicht für absolute Beginner — die Zielgruppe sind Founder, die ihren Stack verstehen wollen. Der Skill-Stack im Base-Modul deckt alles ab, was im Workflow gebraucht wird.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Funktioniert das mit jedem Shopify-Theme? <span class="chev">+</span></summary>
+          <div class="answer">Ja. Der Workflow operiert auf den Standard-Shopify-Files (sections, snippets, templates, config). Custom-Themes, Premium-Themes, Dawn — alle nutzen dieselbe Struktur. Solange du Theme-Export-Rechte hast, läuft der Prozess.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was ist, wenn mein Theme schon stark angepasst ist? <span class="chev">+</span></summary>
+          <div class="answer">Umso besser für Claude — mehr Kontext, mehr Hebel. Stark angepasste Themes profitieren am meisten, weil App-Replacements und Custom-Sections oft die nächste logische Stufe sind. Der Workflow verändert nichts ohne Review.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Kann ich Module später nachkaufen? <span class="chev">+</span></summary>
+          <div class="answer">Ja, aber zum Einzelpreis ohne Bundle-Rabatt. Wer von Anfang an weiß, dass er SEO oder ClarityFlow ohnehin will, fährt mit dem Bundle besser.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie lange dauert das Setup? <span class="chev">+</span></summary>
+          <div class="answer">Base: ein konzentrierter Nachmittag, bis der erste Theme-Umbau läuft. SEO: ~10 Minuten geführter Setup-Flow. ClarityFlow: ~15 Minuten, sobald die Verhaltensdaten-Quelle steht.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was passiert, wenn Claude einen Fehler im Theme macht? <span class="chev">+</span></summary>
+          <div class="answer">Keine Änderung landet je direkt im Live-Theme. Der Workflow arbeitet immer in einem Duplikat — du reviewst, du publishst. Schiefgehen ohne Review ist im Prozess nicht vorgesehen.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="final-cta">
+    <div class="wrap">
+      <p class="caption">// ship</p>
+      <h2 class="display h1">
+        Du brauchst keine Agentur. Keine 15 Apps. Du brauchst <em>vorflows</em>.
+      </h2>
+      <p class="lead">Bau deinen Store, wie ein Senior Dev ihn bauen würde. Ohne Senior-Dev-Salär.</p>
+      <div class="pair">
+        <a href="#pricing" class="btn btn-primary">$ get bundle <span class="arr">→</span></a>
+        <a href="#workflow" class="btn btn-ghost">read workflow.md <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="wordmark">~/vorflows<span class="dot">.</span></a>
+          <p class="footer-blurb">// Der Workflow für Shopify-Founder, die ihren Store mit Claude Code auf Senior-Dev-Niveau bauen.</p>
+        </div>
+        <div class="footer-col">
+          <p class="caption">// system</p>
+          <ul>
+            <li><a href="#workflow">workflow</a></li>
+            <li><a href="#modules">modules</a></li>
+            <li><a href="#pricing">pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="caption">// modules</p>
+          <ul>
+            <li><a href="#modules">base</a></li>
+            <li><a href="#modules">seo</a></li>
+            <li><a href="#modules">clarityflow</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="caption">// contact</p>
+          <ul>
+            <li><a href="mailto:hello@vorflows.com">hello@vorflows.com</a></li>
+            <li><a href="#">twitter / x</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 vorflows · hand-built · no template</span>
+        <span class="build-stamp">build <span class="ok">v1.0.0</span> · ok</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

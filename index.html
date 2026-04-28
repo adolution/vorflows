@@ -746,9 +746,57 @@
       .pricing-position {
         color: var(--text-secondary);
         font-size: 14px;
-        margin: 0 0 28px;
+        margin: 0 0 24px;
         font-style: italic;
         font-family: 'Fraunces', serif;
+      }
+      .pricing-price-block {
+        margin: 0 0 28px;
+        padding: 0 0 24px;
+        border-bottom: 1px dashed var(--border);
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pricing-price {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 38px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+      }
+      .pricing-price-suffix {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .pricing-price-strike {
+        font-family: 'Fraunces', serif;
+        font-size: 17px;
+        color: var(--text-secondary);
+        text-decoration: line-through;
+        text-decoration-thickness: 1px;
+      }
+      .pricing-save {
+        display: inline-block;
+        margin-left: auto;
+        padding: 4px 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .pricing-col.recommended .pricing-save {
+        background: #fff;
       }
       .pricing-features {
         list-style: none;
@@ -790,6 +838,21 @@
         color: var(--bg-light);
       }
       .pricing-cta.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+      .pricing-guarantee {
+        margin-top: 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        text-align: center;
+        line-height: 1.5;
+      }
+      .pricing-guarantee::before {
+        content: "◆ ";
+        color: var(--accent);
+      }
 
       .pricing-note {
         margin-top: 32px;
@@ -1247,6 +1310,10 @@
             <div class="pricing-col">
               <h3 class="pricing-name">Base only</h3>
               <p class="pricing-position">Einstieg. Erstmal testen.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">397&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+              </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
                 <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
@@ -1254,10 +1321,16 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Start mit Base</a>
+              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + SEOFlow</h3>
               <p class="pricing-position">Für Founder mit Traffic-Fokus.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
+              </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
                 <li><span class="yes">✓</span> SEOFlow</li>
@@ -1265,10 +1338,16 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Base + SEOFlow</a>
+              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + ClarityFlow</h3>
               <p class="pricing-position">Für Founder mit Conversion-Fokus.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
+              </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
                 <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
@@ -1276,10 +1355,17 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta">Base + ClarityFlow</a>
+              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
             <div class="pricing-col recommended">
               <h3 class="pricing-name">Bundle</h3>
               <p class="pricing-position">Beste Preis-Leistung. Empfohlen.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">597&nbsp;€</span>
+                <span class="pricing-price-strike">697&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 100&nbsp;€</span>
+              </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
                 <li><span class="yes">✓</span> SEOFlow</li>
@@ -1287,11 +1373,12 @@
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
               <a href="#" class="pricing-cta primary">Bundle holen →</a>
+              <p class="pricing-guarantee">Setup-Garantie: kein Ergebnis, volles Geld zurück.</p>
             </div>
           </div>
         </div>
         <div class="pricing-note">
-          <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt — wer das Bundle gleich nimmt, spart.
+          <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen — je 150&nbsp;€.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt: 397&nbsp;+&nbsp;150&nbsp;+&nbsp;150&nbsp;=&nbsp;697&nbsp;€. Wer das Bundle gleich nimmt, zahlt 597&nbsp;€ und spart 100&nbsp;€.
         </div>
       </div>
     </section>
