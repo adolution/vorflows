@@ -2,7 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import puppeteer from 'puppeteer';
 
-const SVG = await fs.readFile('brand_assets/logos/07a-paper-v.svg', 'utf8');
+const RAW_SVG = await fs.readFile('brand_assets/logos/07a-paper-v.svg', 'utf8');
+// Strip hard-coded width/height on the root <svg> so CSS sizing wins.
+const SVG = RAW_SVG.replace(/<svg([^>]*)>/, (m, attrs) =>
+  `<svg${attrs.replace(/\s(width|height)="[^"]*"/g, '')} preserveAspectRatio="xMidYMid meet">`
+);
 const OUT = path.resolve('brand_assets/logos');
 
 const browser = await puppeteer.launch({ headless: 'new' });
@@ -14,14 +18,34 @@ const sizes = [
   { name: 'apple-touch-icon.png', px: 180 },
 ];
 
+// Zoom: scale glyph up inside container, clip to box, round corners.
+const ZOOM = 2.3;           // >1 = closer / bigger glyph
+const RADIUS_RATIO = 0.22;  // border-radius as fraction of icon size
+
 for (const { name, px } of sizes) {
+  const inner = Math.round(px * ZOOM);
+  const radius = Math.round(px * RADIUS_RATIO);
   const html = `<!doctype html><html><head><meta charset="utf-8">
-<style>html,body{margin:0;padding:0;}svg{display:block;width:${px}px;height:${px}px;}</style>
-</head><body>${SVG}</body></html>`;
+<style>
+  html,body{margin:0;padding:0;background:transparent;}
+  .icon{
+    width:${px}px;height:${px}px;
+    border-radius:${radius}px;
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    background:#ffffff;
+  }
+  .icon svg{display:block;width:${inner}px;height:${inner}px;flex:0 0 auto;min-width:${inner}px;min-height:${inner}px;}
+</style>
+</head><body><div class="icon">${SVG}</div></body></html>`;
   await page.setViewport({ width: px, height: px, deviceScaleFactor: 1 });
   await page.setContent(html, { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: path.join(OUT, name), clip: { x: 0, y: 0, width: px, height: px } });
+  await page.screenshot({
+    path: path.join(OUT, name),
+    omitBackground: true,
+    clip: { x: 0, y: 0, width: px, height: px },
+  });
   console.log(`wrote ${name}`);
 }
 

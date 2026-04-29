@@ -1228,6 +1228,114 @@
           transform: none;
         }
       }
+
+      /* Waitlist modal */
+      .waitlist-modal {
+        position: fixed; inset: 0; z-index: 100;
+        background: rgba(15, 15, 15, 0.6);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center; justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        transition: opacity 200ms ease-out;
+      }
+      .waitlist-modal.open { display: flex; opacity: 1; }
+      .waitlist-card {
+        width: 100%; max-width: 460px;
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 32px 28px 28px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.6),
+          0 24px 60px -20px rgba(200, 99, 62, 0.25),
+          0 12px 30px -10px rgba(15, 15, 15, 0.18);
+        position: relative;
+        transform: translateY(8px);
+        transition: transform 240ms cubic-bezier(.22,.61,.36,1);
+      }
+      .waitlist-modal.open .waitlist-card { transform: none; }
+      .waitlist-close {
+        position: absolute; top: 12px; right: 12px;
+        width: 32px; height: 32px;
+        display: inline-flex; align-items: center; justify-content: center;
+        border: 1px solid transparent; background: transparent;
+        border-radius: 8px; cursor: pointer;
+        color: var(--text-secondary);
+        transition: background 160ms ease, color 160ms ease;
+      }
+      .waitlist-close:hover { background: var(--accent-soft); color: var(--accent); }
+      .waitlist-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .waitlist-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 10px;
+      }
+      .waitlist-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 28px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+        color: var(--text-primary);
+      }
+      .waitlist-sub {
+        margin: 0 0 22px;
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+      .waitlist-form { display: flex; gap: 8px; }
+      .waitlist-input {
+        flex: 1; min-width: 0;
+        font: inherit; font-size: 15px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border-strong);
+        background: #fff;
+        color: var(--text-primary);
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+      .waitlist-input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      .waitlist-submit {
+        font: inherit; font-size: 14.5px; font-weight: 500;
+        padding: 12px 18px;
+        background: var(--accent);
+        color: var(--bg-light);
+        border: 0; border-radius: 10px;
+        cursor: pointer;
+        transition: background 160ms ease, transform 100ms ease;
+        white-space: nowrap;
+      }
+      .waitlist-submit:hover { background: var(--accent-hover); }
+      .waitlist-submit:active { transform: translateY(1px); }
+      .waitlist-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+      .waitlist-submit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .waitlist-foot {
+        margin: 14px 0 0;
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+      .waitlist-status {
+        margin: 14px 0 0;
+        font-size: 14px;
+        min-height: 1.2em;
+        color: var(--text-secondary);
+      }
+      .waitlist-status.error { color: #B0382E; }
+      .waitlist-success { text-align: center; padding: 8px 4px 4px; }
+      @media (max-width: 480px) {
+        .waitlist-form { flex-direction: column; }
+        .waitlist-submit { width: 100%; }
+      }
     </style>
   </head>
   <body>
@@ -1241,7 +1349,7 @@
           <a href="#workflow">Workflow</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
-          <a href="#pricing" class="btn btn-primary nav-cta">Pricing →</a>
+          <a href="#" class="btn btn-primary nav-cta" data-waitlist="nav">Join Waitlist</a>
           <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
             <span></span><span></span><span></span>
           </button>
@@ -1254,7 +1362,7 @@
       <a href="#workflow">Workflow</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="#pricing" class="mobile-cta">Pricing ansehen →</a>
+      <a href="#" class="mobile-cta" data-waitlist="mobile-menu">Join Waitlist</a>
     </div>
 
     <!-- 02 HERO -->
@@ -1270,8 +1378,8 @@
             vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
           </p>
           <div class="hero-ctas">
-            <a href="#pricing" class="btn btn-primary">Start mit Base →</a>
-            <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
+            <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
+            <a href="#" class="btn btn-ghost" data-waitlist="hero-ghost">Join Waitlist</a>
           </div>
         </div>
         <div class="filetree-wrap">
@@ -1585,7 +1693,7 @@
                 <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
-              <a href="#" class="pricing-cta">Start mit Base</a>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-base">Join Waitlist</a>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + SEOFlow</h3>
@@ -1600,7 +1708,7 @@
                 <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
-              <a href="#" class="pricing-cta">Base + SEOFlow</a>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-seoflow">Join Waitlist</a>
             </div>
             <div class="pricing-col">
               <h3 class="pricing-name">Base + ClarityFlow</h3>
@@ -1615,7 +1723,7 @@
                 <li><span class="yes">✓</span> ClarityFlow</li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
-              <a href="#" class="pricing-cta">Base + ClarityFlow</a>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-clarityflow">Join Waitlist</a>
             </div>
             <div class="pricing-col recommended">
               <div class="pricing-recommend-strip">Empfohlen — Beste Preis-Leistung</div>
@@ -1633,7 +1741,7 @@
                 <li><span class="yes">✓</span> ClarityFlow</li>
                 <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
-              <a href="#" class="pricing-cta primary">Bundle holen →</a>
+              <a href="#" class="pricing-cta primary" data-waitlist="pricing-bundle">Join Waitlist</a>
             </div>
           </div>
         </div>
@@ -1691,7 +1799,7 @@
       <div class="container-prose">
         <h2 class="display">Bau deinen Shop schneller — <em>als alle anderen.</em></h2>
         <p>Wähle dein Paket. 20–30 Minuten Setup. Erste Section noch heute.</p>
-        <a href="#pricing" class="btn btn-primary">Pakete ansehen →</a>
+        <a href="#" class="btn btn-primary" data-waitlist="final-cta">Join Waitlist</a>
       </div>
     </section>
 
@@ -1742,6 +1850,36 @@
         </div>
       </div>
     </footer>
+
+    <!-- Waitlist modal -->
+    <div class="waitlist-modal" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="waitlistTitle" aria-hidden="true">
+      <div class="waitlist-card" role="document">
+        <button type="button" class="waitlist-close" id="waitlistClose" aria-label="Schließen">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M3 3 L13 13 M13 3 L3 13" />
+          </svg>
+        </button>
+        <div id="waitlistDefault">
+          <p class="waitlist-eyebrow">Waitlist</p>
+          <h2 class="waitlist-title" id="waitlistTitle">Sei dabei beim Launch.</h2>
+          <p class="waitlist-sub">Trag deine E-Mail ein. Du bekommst als Erste:r Zugang, Frühbucher-Preis und keinen Spam.</p>
+          <form class="waitlist-form" id="waitlistForm" novalidate>
+            <input type="email" class="waitlist-input" id="waitlistEmail" name="email" placeholder="deine@email.de" autocomplete="email" required />
+            <button type="submit" class="waitlist-submit" id="waitlistSubmit">Eintragen</button>
+          </form>
+          <p class="waitlist-status" id="waitlistStatus" aria-live="polite"></p>
+          <p class="waitlist-foot">Wir verwenden deine E-Mail nur für Launch-Updates. Abmelden jederzeit.</p>
+        </div>
+        <div class="waitlist-success" id="waitlistSuccess" hidden>
+          <p class="waitlist-eyebrow">Bestätigt</p>
+          <h2 class="waitlist-title">Du bist drauf.</h2>
+          <p class="waitlist-sub">Wir melden uns, sobald es losgeht.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
       // Nav border on scroll
@@ -1814,6 +1952,97 @@
             btn.classList.remove('copied');
           }, 1400);
         });
+      });
+
+      // ── Waitlist modal + EmailJS ──────────────────────────────────────
+      // Fill these three values from your EmailJS dashboard:
+      const EMAILJS_PUBLIC_KEY  = 'CZA78YoNau3nzdYht';
+      const EMAILJS_SERVICE_ID  = 'service_94dzz6l';
+      const EMAILJS_TEMPLATE_ID = 'template_ddbirrv';
+
+      const emailjsReady = () =>
+        window.emailjs && EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+      if (emailjsReady()) {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      }
+
+      const wlModal   = document.getElementById('waitlistModal');
+      const wlClose   = document.getElementById('waitlistClose');
+      const wlForm    = document.getElementById('waitlistForm');
+      const wlInput   = document.getElementById('waitlistEmail');
+      const wlSubmit  = document.getElementById('waitlistSubmit');
+      const wlStatus  = document.getElementById('waitlistStatus');
+      const wlDefault = document.getElementById('waitlistDefault');
+      const wlSuccess = document.getElementById('waitlistSuccess');
+      let wlPlan = '';
+      let wlPrevFocus = null;
+
+      const openWaitlist = (plan) => {
+        wlPlan = plan || 'unknown';
+        wlPrevFocus = document.activeElement;
+        wlModal.classList.add('open');
+        wlModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        wlDefault.hidden = false;
+        wlSuccess.hidden = true;
+        wlStatus.textContent = '';
+        wlStatus.className = 'waitlist-status';
+        wlSubmit.disabled = false;
+        wlInput.value = '';
+        setTimeout(() => wlInput.focus(), 50);
+      };
+      const closeWaitlist = () => {
+        wlModal.classList.remove('open');
+        wlModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        wlPrevFocus?.focus?.();
+      };
+
+      document.querySelectorAll('[data-waitlist]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Close mobile menu if it was open
+          if (mobileMenu?.classList.contains('open')) closeMobile();
+          openWaitlist(el.dataset.waitlist);
+        });
+      });
+      wlClose.addEventListener('click', closeWaitlist);
+      wlModal.addEventListener('click', (e) => { if (e.target === wlModal) closeWaitlist(); });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && wlModal.classList.contains('open')) closeWaitlist();
+      });
+
+      wlForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = wlInput.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          wlStatus.textContent = 'Bitte gib eine gültige E-Mail ein.';
+          wlStatus.className = 'waitlist-status error';
+          return;
+        }
+        if (!emailjsReady()) {
+          wlStatus.textContent = 'EmailJS ist noch nicht konfiguriert.';
+          wlStatus.className = 'waitlist-status error';
+          return;
+        }
+        wlSubmit.disabled = true;
+        wlStatus.textContent = 'Wird gesendet …';
+        wlStatus.className = 'waitlist-status';
+        try {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            email,
+            selected_plan: wlPlan,
+            page_url: location.href,
+            submitted_at: new Date().toISOString(),
+          });
+          wlDefault.hidden = true;
+          wlSuccess.hidden = false;
+        } catch (err) {
+          console.error('emailjs error', err);
+          wlStatus.textContent = 'Konnte nicht gesendet werden. Versuch es nochmal.';
+          wlStatus.className = 'waitlist-status error';
+          wlSubmit.disabled = false;
+        }
       });
 
       // Keyboard shortcuts: w/m/p/f/g — skip when typing in input/textarea/contenteditable
