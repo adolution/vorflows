@@ -3,6 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2002118703756086');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2002118703756086&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
     <title>vorflows — Bau deinen Shopify-Store wie ein Senior Dev.</title>
     <meta name="description" content="vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1902,11 +1918,41 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
+      // Meta Pixel + CAPI dedup helper
+      const trackFb = (name, customData = {}, email = null) => {
+        const eventId = (window.crypto?.randomUUID?.() ||
+          (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+        if (window.fbq) fbq('track', name, customData, { eventID: eventId });
+        try {
+          fetch('/api/capi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              event_name: name,
+              event_id: eventId,
+              email,
+              event_source_url: location.href,
+              custom_data: customData,
+            }),
+            keepalive: true,
+          }).catch(() => {});
+        } catch {}
+      };
+      trackFb('PageView');
+
       // Nav border on scroll
       const nav = document.getElementById('nav');
+      let viewContentFired = false;
       const onScroll = () => {
         if (window.scrollY > 8) nav.classList.add('scrolled');
         else nav.classList.remove('scrolled');
+        if (!viewContentFired) {
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          if (max > 0 && window.scrollY / max > 0.2) {
+            viewContentFired = true;
+            trackFb('ViewContent');
+          }
+        }
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
@@ -2023,6 +2069,7 @@
           e.preventDefault();
           // Close mobile menu if it was open
           if (mobileMenu?.classList.contains('open')) closeMobile();
+          trackFb('AddToCart', { content_name: el.dataset.waitlist });
           openWaitlist(el.dataset.waitlist);
         });
       });
@@ -2055,6 +2102,7 @@
             page_url: location.href,
             submitted_at: new Date().toISOString(),
           });
+          trackFb('Lead', { content_name: wlPlan }, email);
           wlDefault.hidden = true;
           wlSuccess.hidden = false;
         } catch (err) {
