@@ -1918,11 +1918,67 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
-      // Meta Pixel + CAPI dedup helper
-      const trackFb = (name, customData = {}, email = null) => {
-        const eventId = (window.crypto?.randomUUID?.() ||
-          (Date.now().toString(36) + Math.random().toString(36).slice(2)));
-        if (window.fbq) fbq('track', name, customData, { eventID: eventId });
+      // ── Meta tracking: Pixel + CAPI with Advanced Matching ──────────────
+      const META_PIXEL_ID = '2002118703756086';
+      const PLAN_VALUE = {
+        'pricing-base': 397,
+        'pricing-seoflow': 497,
+        'pricing-clarityflow': 497,
+        'pricing-bundle': 597,
+      };
+      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 597);
+
+      const uuid = () => (window.crypto?.randomUUID?.() ||
+        (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+
+      // Capture fbclid → _fbc cookie (90-day persistence) so server-side reads it
+      (() => {
+        try {
+          const fbclid = new URLSearchParams(location.search).get('fbclid');
+          if (!fbclid) return;
+          const has = document.cookie.split('; ').some((c) => c.startsWith('_fbc='));
+          if (has) return;
+          document.cookie =
+            `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax`;
+        } catch {}
+      })();
+
+      // Persistent External ID — improves Event Match Quality across sessions
+      let extId = null;
+      try {
+        extId = localStorage.getItem('vf_ext_id');
+        if (!extId) {
+          extId = uuid();
+          localStorage.setItem('vf_ext_id', extId);
+        }
+      } catch {}
+
+      // Re-init pixel with Advanced Matching (extId + country)
+      const baseAdvancedMatching = () => {
+        const am = { country: 'de' };
+        if (extId) am.external_id = extId;
+        return am;
+      };
+      if (window.fbq) fbq('init', META_PIXEL_ID, baseAdvancedMatching());
+
+      // Stored email after a Lead — used for follow-up events
+      let knownEmail = null;
+      try { knownEmail = localStorage.getItem('vf_known_email'); } catch {}
+      if (knownEmail && window.fbq) {
+        fbq('init', META_PIXEL_ID, { ...baseAdvancedMatching(), em: knownEmail });
+      }
+
+      const trackFb = (name, customData = {}, userData = {}) => {
+        const eventId = uuid();
+        const email = userData.email || knownEmail || null;
+
+        if (window.fbq) {
+          if (email && email !== knownEmail) {
+            fbq('init', META_PIXEL_ID, { ...baseAdvancedMatching(), em: email });
+          }
+          fbq('track', name, customData, { eventID: eventId });
+        }
+
         try {
           fetch('/api/capi', {
             method: 'POST',
@@ -1930,14 +1986,20 @@
             body: JSON.stringify({
               event_name: name,
               event_id: eventId,
-              email,
               event_source_url: location.href,
               custom_data: customData,
+              user_data: {
+                external_id: extId,
+                country: 'de',
+                ...userData,
+                ...(email ? { email } : {}),
+              },
             }),
             keepalive: true,
           }).catch(() => {});
         } catch {}
       };
+
       trackFb('PageView');
 
       // Nav border on scroll
@@ -1950,7 +2012,7 @@
           const max = document.documentElement.scrollHeight - window.innerHeight;
           if (max > 0 && window.scrollY / max > 0.2) {
             viewContentFired = true;
-            trackFb('ViewContent');
+            trackFb('ViewContent', { content_name: 'landing-20-percent', content_category: 'engagement' });
           }
         }
       };
@@ -2069,8 +2131,15 @@
           e.preventDefault();
           // Close mobile menu if it was open
           if (mobileMenu?.classList.contains('open')) closeMobile();
-          trackFb('AddToCart', { content_name: el.dataset.waitlist });
-          openWaitlist(el.dataset.waitlist);
+          const plan = el.dataset.waitlist;
+          trackFb('AddToCart', {
+            content_name: plan,
+            content_ids: [plan],
+            content_type: 'product',
+            value: planValue(plan),
+            currency: 'EUR',
+          });
+          openWaitlist(plan);
         });
       });
       wlClose.addEventListener('click', closeWaitlist);
@@ -2102,7 +2171,15 @@
             page_url: location.href,
             submitted_at: new Date().toISOString(),
           });
-          trackFb('Lead', { content_name: wlPlan }, email);
+          try { localStorage.setItem('vf_known_email', email); } catch {}
+          knownEmail = email;
+          trackFb('Lead', {
+            content_name: wlPlan,
+            content_ids: [wlPlan],
+            content_category: 'waitlist',
+            value: planValue(wlPlan),
+            currency: 'EUR',
+          }, { email });
           wlDefault.hidden = true;
           wlSuccess.hidden = false;
         } catch (err) {
