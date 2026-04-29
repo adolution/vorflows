@@ -645,6 +645,8 @@
       /* Compare table */
       .compare-table {
         width: 100%;
+        max-width: 100%;
+        table-layout: fixed;
         border-collapse: collapse;
         margin-top: 48px;
         font-size: 16px;
@@ -653,6 +655,20 @@
         text-align: left;
         padding: 18px 12px;
         border-bottom: 1px solid var(--border);
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+      }
+      .compare-table col.col-stack { width: 38%; }
+      .compare-table col.col-price { width: 18%; }
+      .compare-table col.col-vorflows { width: 44%; }
+      .compare-table thead th.num { white-space: normal; }
+      @media (max-width: 480px) {
+        .compare-table { font-size: 14px; }
+        .compare-table th, .compare-table td { padding: 14px 6px; }
+        .compare-table col.col-stack { width: 34%; }
+        .compare-table col.col-price { width: 24%; }
+        .compare-table col.col-vorflows { width: 42%; }
       }
       .compare-table thead th {
         font-family: 'Inter', sans-serif;
@@ -1668,6 +1684,11 @@
         <div class="meta eyebrow">Subscription-Killer</div>
         <h2 class="h2 display">Was du jeden Monat zahlst — und was du stattdessen besitzen könntest.</h2>
         <table class="compare-table">
+          <colgroup>
+            <col class="col-stack" />
+            <col class="col-price" />
+            <col class="col-vorflows" />
+          </colgroup>
           <thead>
             <tr>
               <th>App-Stack (typisch)</th>
