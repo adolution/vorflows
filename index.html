@@ -523,6 +523,23 @@
         color: #D4D2CC;
         overflow-x: auto;
       }
+      @media (max-width: 600px) {
+        .codeblock {
+          font-size: 11px;
+          line-height: 1.55;
+          padding: 14px 14px;
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-x: hidden;
+        }
+        .filetree {
+          font-size: 11.5px;
+          line-height: 1.65;
+          padding: 18px 16px 16px;
+        }
+        .filetree .ft-row { gap: 8px; }
+        .filetree .ft-tag { font-size: 9.5px; }
+      }
       .codeblock .prompt { color: var(--accent); user-select: none; }
       .codeblock .check { color: var(--accent); }
       .codeblock .add { color: #6FBF8F; }
