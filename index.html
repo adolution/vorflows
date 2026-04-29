@@ -3,22 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel loader — invoked only after consent (DSGVO) -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '2002118703756086');
+      function _loadFbPixelSdk() {
+        if (window.fbq) return;
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      }
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=2002118703756086&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
     <title>vorflows — Bau deinen Shopify-Store wie ein Senior Dev.</title>
     <meta name="description" content="vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1325,7 +1323,9 @@
         font-size: 15px;
         line-height: 1.55;
       }
-      .waitlist-form { display: flex; gap: 8px; }
+      .waitlist-form { display: flex; flex-direction: column; gap: 8px; }
+      .waitlist-row { display: flex; gap: 8px; }
+      @media (max-width: 480px) { .waitlist-row { flex-direction: column; } }
       .waitlist-input {
         flex: 1; min-width: 0;
         font: inherit; font-size: 15px;
@@ -1368,8 +1368,87 @@
       }
       .waitlist-status.error { color: #B0382E; }
       .waitlist-success { text-align: center; padding: 8px 4px 4px; }
+
+      /* Cookie consent banner */
+      .cookie-banner {
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: 460px;
+        margin: 0 auto;
+        background: #FFFFFF;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: 0 18px 48px rgba(15, 15, 15, 0.12), 0 2px 8px rgba(15, 15, 15, 0.06);
+        padding: 18px 18px 16px;
+        z-index: 1100;
+        font-family: 'Inter', system-ui, sans-serif;
+        animation: cookieRise 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      @keyframes cookieRise {
+        from { transform: translateY(20px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+      .cookie-banner[hidden] { display: none; }
+      .cookie-title {
+        font-size: 14.5px;
+        font-weight: 600;
+        margin: 0 0 6px;
+        color: var(--text-primary);
+        letter-spacing: -0.005em;
+      }
+      .cookie-text {
+        font-size: 13px;
+        line-height: 1.55;
+        color: var(--text-secondary);
+        margin: 0 0 14px;
+      }
+      .cookie-text a {
+        color: var(--accent);
+        border-bottom: 1px solid currentColor;
+      }
+      .cookie-text a:hover { color: var(--accent-hover); }
+      .cookie-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .cookie-btn {
+        padding: 9px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: inherit;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+      }
+      .cookie-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .cookie-btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+        border: 1px solid var(--border-strong);
+      }
+      .cookie-btn-ghost:hover {
+        color: var(--text-primary);
+        border-color: var(--text-primary);
+      }
+      .cookie-btn-primary {
+        background: var(--accent);
+        color: #FFFFFF;
+        border: 1px solid var(--accent);
+      }
+      .cookie-btn-primary:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+      }
       @media (max-width: 480px) {
-        .waitlist-form { flex-direction: column; }
+        .cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 16px; }
+        .cookie-actions { flex-direction: column-reverse; }
+        .cookie-btn { width: 100%; }
+      }
+      @media (max-width: 480px) {
         .waitlist-submit { width: 100%; }
       }
     </style>
@@ -1870,6 +1949,7 @@
             <ul>
               <li><a href="/impressum.html">Impressum</a></li>
               <li><a href="/datenschutz.html">Datenschutz</a></li>
+              <li><a href="#" data-cookie-reopen>Cookie-Einstellungen</a></li>
             </ul>
           </div>
         </div>
@@ -1900,8 +1980,11 @@
           <h2 class="waitlist-title" id="waitlistTitle">Sei dabei beim Launch.</h2>
           <p class="waitlist-sub">Trag deine E-Mail ein. Du bekommst als Erste:r Zugang, Frühbucher-Preis und keinen Spam.</p>
           <form class="waitlist-form" id="waitlistForm" novalidate>
-            <input type="email" class="waitlist-input" id="waitlistEmail" name="email" placeholder="deine@email.de" autocomplete="email" required />
-            <button type="submit" class="waitlist-submit" id="waitlistSubmit">Eintragen</button>
+            <input type="text" class="waitlist-input" id="waitlistFirstName" name="first_name" placeholder="Vorname" autocomplete="given-name" required minlength="2" />
+            <div class="waitlist-row">
+              <input type="email" class="waitlist-input" id="waitlistEmail" name="email" placeholder="deine@email.de" autocomplete="email" required />
+              <button type="submit" class="waitlist-submit" id="waitlistSubmit">Eintragen</button>
+            </div>
           </form>
           <p class="waitlist-status" id="waitlistStatus" aria-live="polite"></p>
           <p class="waitlist-foot">Wir verwenden deine E-Mail nur für Launch-Updates. Abmelden jederzeit.</p>
@@ -1911,6 +1994,18 @@
           <h2 class="waitlist-title">Du bist drauf.</h2>
           <p class="waitlist-sub">Wir melden uns, sobald es losgeht.</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Cookie consent banner -->
+    <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+      <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
+      <p class="cookie-text" id="cookieText">
+        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API) für Reichweitenmessung und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cookie-actions">
+        <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
+        <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAccept">Alle akzeptieren</button>
       </div>
     </div>
 
@@ -1931,50 +2026,77 @@
       const uuid = () => (window.crypto?.randomUUID?.() ||
         (Date.now().toString(36) + Math.random().toString(36).slice(2)));
 
-      // Capture fbclid → _fbc cookie (90-day persistence) so server-side reads it
-      (() => {
-        try {
-          const fbclid = new URLSearchParams(location.search).get('fbclid');
-          if (!fbclid) return;
-          const has = document.cookie.split('; ').some((c) => c.startsWith('_fbc='));
-          if (has) return;
-          document.cookie =
-            `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax`;
-        } catch {}
-      })();
+      // ── Consent state (DSGVO) ────────────────────────────────────────────
+      // 'granted' = full marketing tracking, 'denied' = nothing, null = ask
+      let consentState = null;
+      try { consentState = localStorage.getItem('vf_consent'); } catch {}
 
-      // Persistent External ID — improves Event Match Quality across sessions
+      // Identifiers persisted after Lead — only loaded if consent granted
       let extId = null;
-      try {
-        extId = localStorage.getItem('vf_ext_id');
-        if (!extId) {
-          extId = uuid();
-          localStorage.setItem('vf_ext_id', extId);
-        }
-      } catch {}
+      let knownEmail = null;
+      let knownFirstName = null;
+      let trackingInitialized = false;
 
-      // Re-init pixel with Advanced Matching (extId + country)
       const baseAdvancedMatching = () => {
         const am = { country: 'de' };
         if (extId) am.external_id = extId;
         return am;
       };
-      if (window.fbq) fbq('init', META_PIXEL_ID, baseAdvancedMatching());
+      const advancedMatchingWithUser = (extra = {}) => {
+        const am = baseAdvancedMatching();
+        if (knownEmail) am.em = knownEmail;
+        if (knownFirstName) am.fn = knownFirstName;
+        return { ...am, ...extra };
+      };
 
-      // Stored email after a Lead — used for follow-up events
-      let knownEmail = null;
-      try { knownEmail = localStorage.getItem('vf_known_email'); } catch {}
-      if (knownEmail && window.fbq) {
-        fbq('init', META_PIXEL_ID, { ...baseAdvancedMatching(), em: knownEmail });
+      function initTracking() {
+        if (trackingInitialized) return;
+        trackingInitialized = true;
+
+        // Capture fbclid → _fbc cookie (90 days)
+        try {
+          const fbclid = new URLSearchParams(location.search).get('fbclid');
+          if (fbclid && !document.cookie.split('; ').some((c) => c.startsWith('_fbc='))) {
+            document.cookie =
+              `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax`;
+          }
+        } catch {}
+
+        // Persistent External ID
+        try {
+          extId = localStorage.getItem('vf_ext_id');
+          if (!extId) {
+            extId = uuid();
+            localStorage.setItem('vf_ext_id', extId);
+          }
+        } catch {}
+
+        // Stored Lead identifiers
+        try {
+          knownEmail = localStorage.getItem('vf_known_email');
+          knownFirstName = localStorage.getItem('vf_known_first_name');
+        } catch {}
+
+        // Load + init Pixel SDK
+        if (typeof _loadFbPixelSdk === 'function') _loadFbPixelSdk();
+        if (window.fbq) fbq('init', META_PIXEL_ID, advancedMatchingWithUser());
+
+        trackFb('PageView');
       }
 
       const trackFb = (name, customData = {}, userData = {}) => {
+        if (consentState !== 'granted') return; // DSGVO: no tracking without consent
         const eventId = uuid();
         const email = userData.email || knownEmail || null;
+        const firstName = userData.first_name || knownFirstName || null;
 
         if (window.fbq) {
-          if (email && email !== knownEmail) {
-            fbq('init', META_PIXEL_ID, { ...baseAdvancedMatching(), em: email });
+          const newSignal = (email && email !== knownEmail) || (firstName && firstName !== knownFirstName);
+          if (newSignal) {
+            const am = advancedMatchingWithUser();
+            if (email) am.em = email;
+            if (firstName) am.fn = firstName;
+            fbq('init', META_PIXEL_ID, am);
           }
           fbq('track', name, customData, { eventID: eventId });
         }
@@ -1993,6 +2115,7 @@
                 country: 'de',
                 ...userData,
                 ...(email ? { email } : {}),
+                ...(firstName ? { first_name: firstName } : {}),
               },
             }),
             keepalive: true,
@@ -2000,7 +2123,41 @@
         } catch {}
       };
 
-      trackFb('PageView');
+      // ── Cookie banner ────────────────────────────────────────────────────
+      const cookieBanner   = document.getElementById('cookieBanner');
+      const cookieAcceptEl = document.getElementById('cookieAccept');
+      const cookieDeclineEl = document.getElementById('cookieDecline');
+
+      const showCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = false; };
+      const hideCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = true; };
+
+      const grantConsent = () => {
+        consentState = 'granted';
+        try { localStorage.setItem('vf_consent', 'granted'); } catch {}
+        hideCookieBanner();
+        initTracking();
+      };
+      const denyConsent = () => {
+        consentState = 'denied';
+        try { localStorage.setItem('vf_consent', 'denied'); } catch {}
+        hideCookieBanner();
+      };
+
+      cookieAcceptEl?.addEventListener('click', grantConsent);
+      cookieDeclineEl?.addEventListener('click', denyConsent);
+
+      // Re-open from any link with data-cookie-reopen
+      document.querySelectorAll('[data-cookie-reopen]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          try { localStorage.removeItem('vf_consent'); } catch {}
+          consentState = null;
+          showCookieBanner();
+        });
+      });
+
+      if (consentState === 'granted') initTracking();
+      else if (consentState !== 'denied') showCookieBanner();
 
       // Nav border on scroll
       const nav = document.getElementById('nav');
@@ -2098,6 +2255,7 @@
       const wlClose   = document.getElementById('waitlistClose');
       const wlForm    = document.getElementById('waitlistForm');
       const wlInput   = document.getElementById('waitlistEmail');
+      const wlFirst   = document.getElementById('waitlistFirstName');
       const wlSubmit  = document.getElementById('waitlistSubmit');
       const wlStatus  = document.getElementById('waitlistStatus');
       const wlDefault = document.getElementById('waitlistDefault');
@@ -2117,7 +2275,8 @@
         wlStatus.className = 'waitlist-status';
         wlSubmit.disabled = false;
         wlInput.value = '';
-        setTimeout(() => wlInput.focus(), 50);
+        if (wlFirst) wlFirst.value = '';
+        setTimeout(() => (wlFirst || wlInput).focus(), 50);
       };
       const closeWaitlist = () => {
         wlModal.classList.remove('open');
@@ -2150,7 +2309,14 @@
 
       wlForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        const firstName = (wlFirst?.value || '').trim();
         const email = wlInput.value.trim();
+        if (firstName.length < 2) {
+          wlStatus.textContent = 'Bitte gib deinen Vornamen ein.';
+          wlStatus.className = 'waitlist-status error';
+          wlFirst?.focus();
+          return;
+        }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           wlStatus.textContent = 'Bitte gib eine gültige E-Mail ein.';
           wlStatus.className = 'waitlist-status error';
@@ -2167,19 +2333,26 @@
         try {
           await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
             email,
+            first_name: firstName,
             selected_plan: wlPlan,
             page_url: location.href,
             submitted_at: new Date().toISOString(),
           });
-          try { localStorage.setItem('vf_known_email', email); } catch {}
-          knownEmail = email;
+          if (consentState === 'granted') {
+            try {
+              localStorage.setItem('vf_known_email', email);
+              localStorage.setItem('vf_known_first_name', firstName);
+            } catch {}
+            knownEmail = email;
+            knownFirstName = firstName;
+          }
           trackFb('Lead', {
             content_name: wlPlan,
             content_ids: [wlPlan],
             content_category: 'waitlist',
             value: planValue(wlPlan),
             currency: 'EUR',
-          }, { email });
+          }, { email, first_name: firstName });
           wlDefault.hidden = true;
           wlSuccess.hidden = false;
         } catch (err) {

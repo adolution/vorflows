@@ -3,23 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel loader — invoked only after consent (DSGVO) -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '2002118703756086');
-      fbq('track', 'PageView');
+      function _loadFbPixelSdk() {
+        if (window.fbq) return;
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      }
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=2002118703756086&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
     <title>Datenschutzerklärung — vorflows</title>
     <meta name="description" content="Datenschutzerklärung von vorflows. Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO." />
     <meta name="robots" content="noindex, nofollow" />
@@ -305,6 +302,43 @@
         flex-wrap: wrap;
         gap: 12px;
       }
+
+      /* Cookie consent banner */
+      .cookie-banner {
+        position: fixed; bottom: 16px; left: 16px; right: 16px;
+        max-width: 460px; margin: 0 auto;
+        background: #FFFFFF; border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: 0 18px 48px rgba(15, 15, 15, 0.12), 0 2px 8px rgba(15, 15, 15, 0.06);
+        padding: 18px 18px 16px; z-index: 1100;
+        font-family: 'Inter', system-ui, sans-serif;
+        animation: cookieRise 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      @keyframes cookieRise {
+        from { transform: translateY(20px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+      .cookie-banner[hidden] { display: none; }
+      .cookie-title { font-size: 14.5px; font-weight: 600; margin: 0 0 6px; color: var(--text-primary); }
+      .cookie-text { font-size: 13px; line-height: 1.55; color: var(--text-secondary); margin: 0 0 14px; }
+      .cookie-text a { color: var(--accent); border-bottom: 1px solid currentColor; }
+      .cookie-text a:hover { color: var(--accent-hover); }
+      .cookie-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+      .cookie-btn {
+        padding: 9px 14px; font-size: 13px; font-weight: 500; font-family: inherit;
+        border-radius: 8px; cursor: pointer;
+        transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+      }
+      .cookie-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .cookie-btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-strong); }
+      .cookie-btn-ghost:hover { color: var(--text-primary); border-color: var(--text-primary); }
+      .cookie-btn-primary { background: var(--accent); color: #FFFFFF; border: 1px solid var(--accent); }
+      .cookie-btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+      @media (max-width: 480px) {
+        .cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 16px; }
+        .cookie-actions { flex-direction: column-reverse; }
+        .cookie-btn { width: 100%; }
+      }
     </style>
   </head>
   <body>
@@ -336,13 +370,11 @@
             <li><a href="#sec-1"><span class="num">01</span>Verantwortlicher</a></li>
             <li><a href="#sec-2"><span class="num">02</span>Allgemeines</a></li>
             <li><a href="#sec-3"><span class="num">03</span>Hosting & Server-Logs</a></li>
-            <li><a href="#sec-4"><span class="num">04</span>Kontaktformular & EmailJS</a></li>
-            <li><a href="#sec-5"><span class="num">05</span>Google Analytics</a></li>
-            <li><a href="#sec-6"><span class="num">06</span>Hotjar</a></li>
-            <li><a href="#sec-7"><span class="num">07</span>Meta Pixel & Conversions API</a></li>
-            <li><a href="#sec-8"><span class="num">08</span>Cookies</a></li>
-            <li><a href="#sec-9"><span class="num">09</span>Ihre Rechte</a></li>
-            <li><a href="#sec-10"><span class="num">10</span>Aktualität</a></li>
+            <li><a href="#sec-4"><span class="num">04</span>Waitlist-Formular & EmailJS</a></li>
+            <li><a href="#sec-5"><span class="num">05</span>Meta Pixel & Conversions API</a></li>
+            <li><a href="#sec-6"><span class="num">06</span>Cookies & lokaler Speicher</a></li>
+            <li><a href="#sec-7"><span class="num">07</span>Ihre Rechte</a></li>
+            <li><a href="#sec-8"><span class="num">08</span>Aktualität</a></li>
           </ol>
         </nav>
       </div>
@@ -400,15 +432,25 @@
         </section>
 
         <section class="ds-section" id="sec-4">
-          <h2><span class="num">// 04</span>Kontaktformular & EmailJS</h2>
+          <h2><span class="num">// 04</span>Waitlist-Formular & EmailJS</h2>
           <p>
-            Wenn Sie uns über das Kontaktformular auf unserer Website kontaktieren, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse sowie der Inhalt Ihrer Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet.
+            Wenn Sie sich über das Waitlist-Formular auf unserer Website eintragen, verarbeiten wir die folgenden, von Ihnen eingegebenen Daten zum Zweck der Aufnahme in unsere Vorab-Registrierungsliste und zur späteren Kontaktaufnahme zum Produkt-Launch:
+          </p>
+          <ul>
+            <li>Vorname</li>
+            <li>E-Mail-Adresse</li>
+            <li>Ausgewählter Plan / Auslöser des Formulars (z. B. „pricing-bundle", „hero-primary")</li>
+            <li>URL der aufgerufenen Seite zum Zeitpunkt der Übermittlung</li>
+            <li>Zeitstempel der Übermittlung</li>
+          </ul>
+          <p>
+            Die Übermittlung erfolgt über den Dienstleister <strong>EmailJS</strong> (EmailJS Inc., 27 Sand Pebble Lane, Bristol, RI 02809, USA), der die Daten an unser internes Postfach weiterleitet. EmailJS verarbeitet die Daten auf Servern in den USA. Die Übertragung in ein Drittland erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework (Beschluss vom 10.07.2023). Ergänzend werden Standardvertragsklauseln der EU-Kommission abgeschlossen.
           </p>
           <p>
-            Die Übermittlung der Formularanfragen erfolgt über den Dienst <strong>EmailJS</strong> (EmailJS Inc., USA). EmailJS verarbeitet die eingegebenen Daten auf Servern, die sich ggf. außerhalb des EWR befinden können. EmailJS ist nach dem EU-US Data Privacy Framework zertifiziert bzw. wir stützen die Übertragung auf Standarddatenschutzklauseln der EU-Kommission.
+            Die Daten werden ausschließlich zur Beantwortung Ihrer Waitlist-Eintragung sowie zur Information über den Produkt-Launch verwendet und nicht an unbeteiligte Dritte weitergegeben. Eine Speicherung erfolgt bis zum Launch und maximal 24 Monate, sofern Sie Ihre Eintragung nicht zuvor widerrufen.
           </p>
           <p>
-            Die Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahme) bzw. Art. 6 Abs. 1 lit. f DSGVO.
+            <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage) sowie Art. 6 Abs. 1 lit. a DSGVO (Einwilligung in die Aufnahme in die Waitlist).
           </p>
           <div class="source-line">
             Datenschutzerklärung EmailJS: <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">emailjs.com/legal/privacy-policy</a>
@@ -416,105 +458,115 @@
         </section>
 
         <section class="ds-section" id="sec-5">
-          <h2><span class="num">// 05</span>Google Analytics</h2>
+          <h2><span class="num">// 05</span>Meta Pixel & Meta Conversions API</h2>
           <p>
-            Diese Website nutzt <strong>Google Analytics</strong>, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics verwendet Cookies und ähnliche Technologien, die eine Analyse der Benutzung der Website ermöglichen.
+            Auf Grundlage Ihrer ausdrücklichen Einwilligung nutzen wir den <strong>Meta Pixel</strong> sowie die <strong>Meta Conversions API</strong> der Meta Platforms Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland („Meta"). Beide Werkzeuge dienen der Messung des Werbeerfolgs unserer Kampagnen sowie der Auslieferung anzeigenrelevanter Inhalte.
           </p>
-          <h3>Was wird verarbeitet</h3>
-          <ul>
-            <li>IP-Adresse (anonymisiert durch IP-Masking)</li>
-            <li>Aufgerufene Seiten und Verweildauer</li>
-            <li>Herkunft des Besuchers (Referrer, Land, Gerät)</li>
-            <li>Interaktionen mit Seiteninhalten</li>
-          </ul>
-          <h3>Datenübertragung in die USA</h3>
-          <p>
-            Google verarbeitet Daten ggf. in den USA. Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. Zusätzlich werden Standarddatenschutzklauseln vereinbart.
-          </p>
-          <h3>Rechtsgrundlage & Widerspruch</h3>
-          <p>
-            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen. Alternativ können Sie die Erfassung durch Google Analytics durch das Browser-Add-on unter <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a> verhindern.
-          </p>
-          <div class="source-line">
-            Datenschutzerklärung Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
-          </div>
-        </section>
 
-        <section class="ds-section" id="sec-6">
-          <h2><span class="num">// 06</span>Hotjar</h2>
-          <p>
-            Diese Website nutzt <strong>Hotjar</strong>, einen Webanalyse- und Feedback-Dienst der Hotjar Ltd., Level 2, St Julian's Business Centre, 3, Elia Zammit Street, St Julian's STJ 1000, Malta.
-          </p>
-          <h3>Was wird verarbeitet</h3>
+          <h3>Zweck der Verarbeitung</h3>
           <ul>
-            <li>Mausbewegungen, Klicks, Scrollverhalten (Heatmaps)</li>
-            <li>Sitzungsaufzeichnungen (Recordings) — anonymisiert</li>
-            <li>Gerätedaten, Browsertyp, Bildschirmgröße</li>
-            <li>IP-Adresse (anonymisiert)</li>
+            <li>Messung der Wirksamkeit unserer Werbeanzeigen auf Facebook und Instagram</li>
+            <li>Bildung von Zielgruppen (Custom Audiences, Lookalike Audiences) zur Auslieferung passgenauer Werbung</li>
+            <li>Optimierung von Kampagnen durch Conversion-Tracking (z. B. Waitlist-Eintragung)</li>
           </ul>
-          <p>
-            Hotjar speichert keine personenbezogenen Daten (z. B. E-Mail-Adressen) aus den Formularfeldern. Texteingaben werden automatisch maskiert.
-          </p>
-          <h3>Rechtsgrundlage & Widerspruch</h3>
-          <p>
-            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Um die Datenerfassung durch Hotjar zu deaktivieren, besuchen Sie: <a href="https://www.hotjar.com/policies/do-not-track/" target="_blank" rel="noopener">hotjar.com/policies/do-not-track</a>
-          </p>
-          <div class="source-line">
-            Datenschutzerklärung Hotjar: <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener">hotjar.com/legal/policies/privacy</a>
-          </div>
-        </section>
 
-        <section class="ds-section" id="sec-7">
-          <h2><span class="num">// 07</span>Meta Pixel & Meta Conversions API</h2>
-          <p>
-            Diese Website nutzt den <strong>Meta Pixel</strong> sowie die <strong>Meta Conversions API</strong> der Meta Platforms Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland.
-          </p>
           <h3>Meta Pixel (clientseitig)</h3>
           <p>
-            Der Meta Pixel ist ein JavaScript-Code-Snippet, das in Ihrem Browser Conversion-Ereignisse erfasst (z. B. Seitenaufruf, Klick auf einen Button, Formularabsendung). Die dabei erhobenen Daten werden an Meta übertragen und können zur Messung der Wirksamkeit unserer Werbeanzeigen sowie zur Erstellung von Custom Audiences für Retargeting-Kampagnen genutzt werden.
+            Der Meta Pixel ist ein JavaScript-Code, der in Ihrem Browser ausgeführt wird und Cookies setzt (siehe Abschnitt 06). Erfasst werden Seitenaufrufe sowie von Ihnen ausgelöste Ereignisse (z. B. Scroll-Tiefe, Klick auf einen Call-to-Action, erfolgreiche Formularabsendung).
           </p>
+
           <h3>Meta Conversions API (serverseitig)</h3>
           <p>
-            Ergänzend zum Pixel nutzen wir die Meta Conversions API, um Conversion-Ereignisse direkt von unserem Server an Meta zu übermitteln. Dabei werden Daten wie gehashte E-Mail-Adressen, IP-Adressen oder Browserkennung (User-Agent) in anonymisierter/gehashter Form übertragen. Eine Identifizierung einzelner Personen durch Meta ist durch das Hashing nicht direkt möglich.
+            Ergänzend übermitteln wir Conversion-Ereignisse direkt von unserem Server (Hosting bei Vercel) an Meta. Dies dient der Verbesserung der Datenqualität, insbesondere wenn Browser-Tracking durch Adblocker, Browsereinstellungen oder iOS-Restriktionen eingeschränkt ist. Browser- und Server-Ereignisse werden über eine eindeutige Event-ID dedupliziert, sodass Ereignisse nicht doppelt gezählt werden.
           </p>
-          <h3>Verarbeitete Datenkategorien</h3>
+
+          <h3>Verarbeitete Daten und Datenfelder</h3>
+          <p>An Meta werden folgende Daten übermittelt:</p>
           <ul>
+            <li>Ereignisname (z. B. „PageView", „ViewContent", „AddToCart", „Lead")</li>
+            <li>Zeitstempel und URL der aufgerufenen Seite</li>
             <li>IP-Adresse</li>
-            <li>Browser-Informationen (User-Agent)</li>
-            <li>Besuchte URLs und Conversion-Ereignisse</li>
-            <li>Gehashte E-Mail-Adresse (nur bei Formularabsendung, SHA-256)</li>
-            <li>Klick-ID (fbclid) aus Meta-Anzeigen</li>
+            <li>User-Agent (Browser- und Geräteinformationen)</li>
+            <li>Pixel-Cookies (<code>_fbp</code>, <code>_fbc</code>) zur Wiedererkennung</li>
+            <li>Meta-Klick-ID (<code>fbclid</code>) bei Aufruf über eine Meta-Werbeanzeige</li>
+            <li>Pseudonyme Geräte-Kennung (<code>external_id</code>, vor Übertragung gehasht via SHA-256)</li>
+            <li>Geo-Informationen (Land, Region, Stadt, Postleitzahl) abgeleitet aus der IP-Adresse, vor Übertragung gehasht</li>
+            <li>Bei einer Waitlist-Eintragung zusätzlich: Vorname und E-Mail-Adresse, beide vor Übertragung mit SHA-256 gehasht</li>
+            <li>Conversion-Wert und Währung (z. B. zu welchem ausgewählten Plan ein Lead erfolgte)</li>
           </ul>
-          <h3>Datenübertragung in die USA</h3>
           <p>
-            Meta Platforms Inc. (USA) kann auf die Daten zugreifen. Meta ist nach dem EU-US Data Privacy Framework zertifiziert. Zusätzlich werden Standarddatenschutzklauseln vereinbart.
+            E-Mail-Adresse, Vorname, Geräte-Kennung sowie Geo-Daten werden vor Übertragung an Meta auf unserem Server mittels SHA-256 irreversibel gehasht. Eine direkte Identifizierung Ihrer Person durch Meta auf Grundlage dieser gehashten Werte ist nicht möglich; Meta kann jedoch durch Abgleich mit eigenen Datensätzen eine Zuordnung zu einem Meta-Konto vornehmen, sofern eines existiert.
           </p>
-          <h3>Rechtsgrundlage & Widerspruch</h3>
+
+          <h3>Datenübertragung in Drittländer (USA)</h3>
           <p>
-            Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen. Zusätzlich können Sie der personalisierten Werbung unter <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">facebook.com/adpreferences</a> widersprechen.
+            Meta Platforms, Inc. mit Sitz in den USA hat Zugriff auf die Daten. Die Übertragung erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework vom 10.07.2023. Meta Platforms, Inc. ist unter dem Data Privacy Framework zertifiziert. Ergänzend kommen Standardvertragsklauseln der EU-Kommission zur Anwendung.
           </p>
+
+          <h3>Gemeinsame Verantwortlichkeit</h3>
+          <p>
+            Für den Einsatz des Meta Pixels und der Conversions API sind wir und Meta gemeinsam Verantwortliche im Sinne des Art. 26 DSGVO, soweit es um die Erhebung und Übermittlung der Daten an Meta geht. Eine entsprechende Vereinbarung haben wir mit Meta abgeschlossen: <a href="https://www.facebook.com/legal/controller_addendum" target="_blank" rel="noopener">facebook.com/legal/controller_addendum</a>. Die nachgelagerte Verarbeitung der Daten durch Meta zu eigenen Zwecken erfolgt in alleiniger Verantwortung von Meta.
+          </p>
+
+          <h3>Speicherdauer</h3>
+          <p>
+            Cookies des Meta Pixels werden bis zu 90 Tage in Ihrem Browser gespeichert. Auf Server-Seite werden Ereignisse direkt nach erfolgreicher Übermittlung an Meta verworfen — wir betreiben kein eigenes Tracking-Archiv. Die Speicherdauer bei Meta richtet sich nach den dortigen Datenschutzbestimmungen.
+          </p>
+
+          <h3>Rechtsgrundlage</h3>
+          <p>
+            Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG (Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz, ehemals TTDSG) für das Setzen und Auslesen von Cookies und ähnlichen Technologien.
+          </p>
+
+          <h3>Widerruf der Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Klicken Sie hierzu im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> und wählen Sie „Nur notwendige". Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+          </p>
+          <p>
+            Zusätzlich können Sie der personalisierten Werbung in Ihrem Meta-Konto widersprechen: <a href="https://accountscenter.facebook.com/ad_preferences" target="_blank" rel="noopener">accountscenter.facebook.com/ad_preferences</a>.
+          </p>
+
           <div class="source-line">
             Datenschutzerklärung Meta: <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy/policy</a>
           </div>
         </section>
 
-        <section class="ds-section" id="sec-8">
-          <h2><span class="num">// 08</span>Cookies</h2>
+        <section class="ds-section" id="sec-6">
+          <h2><span class="num">// 06</span>Cookies & lokaler Speicher</h2>
           <p>
-            Unsere Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Wir unterscheiden zwischen:
+            Wir verwenden Cookies sowie den lokalen Speicher Ihres Browsers (Local Storage). Diese sind kleine Datenmengen, die auf Ihrem Endgerät gespeichert werden. Rechtsgrundlage für nicht-notwendige Cookies und Local-Storage-Einträge ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TDDDG.
+          </p>
+
+          <h3>Technisch notwendige Speicherzugriffe</h3>
+          <p>
+            Diese sind für den Betrieb der Website erforderlich und werden ohne Einwilligung gesetzt (§ 25 Abs. 2 Nr. 2 TDDDG):
           </p>
           <ul>
-            <li><strong>Technisch notwendige Cookies</strong> — für den Betrieb der Website erforderlich, keine Einwilligung nötig</li>
-            <li><strong>Analyse-Cookies</strong> (Google Analytics, Hotjar) — nur mit Ihrer Einwilligung</li>
-            <li><strong>Marketing-Cookies</strong> (Meta Pixel) — nur mit Ihrer Einwilligung</li>
+            <li><code>vf_consent</code> (Local Storage) — speichert Ihre Cookie-Entscheidung („granted" oder „denied"), damit der Banner nicht erneut angezeigt wird. Speicherdauer: bis zum Löschen durch Sie oder bis Sie die Auswahl widerrufen.</li>
           </ul>
+
+          <h3>Marketing-Cookies und ähnliche Technologien (nur mit Einwilligung)</h3>
           <p>
-            Sie können Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen oder Cookies in Ihrem Browser deaktivieren. Beachten Sie, dass die Deaktivierung bestimmter Cookies die Funktionalität der Website einschränken kann.
+            Diese werden ausschließlich nach Ihrer ausdrücklichen Einwilligung gesetzt. Details siehe Abschnitt 05:
+          </p>
+          <ul>
+            <li><code>_fbp</code> (Cookie, Meta Pixel) — pseudonyme Browserkennung. Speicherdauer: 90 Tage.</li>
+            <li><code>_fbc</code> (Cookie, Meta Pixel) — Klick-ID einer Meta-Werbeanzeige. Speicherdauer: 90 Tage. Wird nur gesetzt, wenn Sie unsere Seite über eine Meta-Anzeige aufrufen.</li>
+            <li><code>vf_ext_id</code> (Local Storage) — pseudonyme, sitzungsübergreifende Kennung zur Verbesserung der Conversion-Zuordnung. Speicherdauer: bis zum Löschen oder Widerruf.</li>
+            <li><code>vf_known_email</code> / <code>vf_known_first_name</code> (Local Storage) — speichern Vorname und E-Mail-Adresse einer erfolgreichen Waitlist-Eintragung lokal in Ihrem Browser, um diese bei Folgebesuchen erneut (gehasht) an Meta zu übermitteln und so die Zuordnung zu verbessern. Speicherdauer: bis zum Löschen oder Widerruf.</li>
+          </ul>
+
+          <h3>Verwaltung Ihrer Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit widerrufen oder anpassen, indem Sie im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> klicken. Bei Widerruf werden keine neuen Marketing-Cookies oder Local-Storage-Einträge mehr gesetzt. Bereits gesetzte Marketing-Cookies bleiben technisch bestehen, bis sie ablaufen oder Sie sie über Ihre Browser-Einstellungen löschen.
+          </p>
+          <p>
+            Über die Einstellungen Ihres Browsers können Sie Cookies generell blockieren oder löschen. Eine Anleitung finden Sie in der Hilfe Ihres Browsers. Beachten Sie, dass das vollständige Blockieren bestimmter Cookies die Funktionalität der Website einschränken kann.
           </p>
         </section>
 
-        <section class="ds-section" id="sec-9">
-          <h2><span class="num">// 09</span>Ihre Rechte</h2>
+        <section class="ds-section" id="sec-7">
+          <h2><span class="num">// 07</span>Ihre Rechte</h2>
           <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
           <ul>
             <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO)</li>
@@ -533,8 +585,8 @@
           </p>
         </section>
 
-        <section class="ds-section" id="sec-10">
-          <h2><span class="num">// 10</span>Aktualität dieser Datenschutzerklärung</h2>
+        <section class="ds-section" id="sec-8">
+          <h2><span class="num">// 08</span>Aktualität dieser Datenschutzerklärung</h2>
           <p>
             Diese Datenschutzerklärung hat den Stand April 2026. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
           </p>
@@ -574,6 +626,7 @@
             <ul>
               <li><a href="/impressum.html">Impressum</a></li>
               <li><a href="/datenschutz.html">Datenschutz</a></li>
+              <li><a href="#" data-cookie-reopen>Cookie-Einstellungen</a></li>
             </ul>
           </div>
         </div>
@@ -584,6 +637,18 @@
       </div>
     </footer>
 
+    <!-- Cookie consent banner -->
+    <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+      <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
+      <p class="cookie-text" id="cookieText">
+        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API) für Reichweitenmessung und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cookie-actions">
+        <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
+        <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAccept">Alle akzeptieren</button>
+      </div>
+    </div>
+
     <script>
       const nav = document.getElementById('nav');
       const onScroll = () => {
@@ -592,6 +657,49 @@
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+
+      // ── Consent gate for Meta Pixel ─────────────────────────────────────
+      const META_PIXEL_ID = '2002118703756086';
+      let consentState = null;
+      try { consentState = localStorage.getItem('vf_consent'); } catch {}
+      let pixelInitialized = false;
+
+      function initPixel() {
+        if (pixelInitialized) return;
+        pixelInitialized = true;
+        if (typeof _loadFbPixelSdk === 'function') _loadFbPixelSdk();
+        if (window.fbq) {
+          fbq('init', META_PIXEL_ID, { country: 'de' });
+          fbq('track', 'PageView');
+        }
+      }
+
+      const cookieBanner = document.getElementById('cookieBanner');
+      const showBanner = () => { if (cookieBanner) cookieBanner.hidden = false; };
+      const hideBanner = () => { if (cookieBanner) cookieBanner.hidden = true; };
+
+      document.getElementById('cookieAccept')?.addEventListener('click', () => {
+        consentState = 'granted';
+        try { localStorage.setItem('vf_consent', 'granted'); } catch {}
+        hideBanner();
+        initPixel();
+      });
+      document.getElementById('cookieDecline')?.addEventListener('click', () => {
+        consentState = 'denied';
+        try { localStorage.setItem('vf_consent', 'denied'); } catch {}
+        hideBanner();
+      });
+      document.querySelectorAll('[data-cookie-reopen]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          try { localStorage.removeItem('vf_consent'); } catch {}
+          consentState = null;
+          showBanner();
+        });
+      });
+
+      if (consentState === 'granted') initPixel();
+      else if (consentState !== 'denied') showBanner();
     </script>
   </body>
 </html>
