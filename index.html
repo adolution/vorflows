@@ -309,14 +309,14 @@
       }
       .hero-grid > * { min-width: 0; }
       @media (max-width: 900px) {
-        .hero-grid { grid-template-columns: minmax(0, 1fr); }
+        .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
         .hero-text { display: contents; }
-        .hero-eyebrow { order: 1; }
-        .hero-headline { order: 2; }
-        .hero-lead { order: 3; }
-        .hero-sub { order: 4; }
-        .filetree-wrap { order: 5; margin-block: 8px 24px; }
-        .hero-ctas { order: 6; }
+        .hero-eyebrow { display: none; }
+        .hero-headline { order: 1; margin-bottom: 16px; }
+        .hero-lead { order: 2; margin-bottom: 20px; }
+        .hero-ctas { order: 3; }
+        .filetree-wrap { order: 4; margin-block: 8px 0; }
+        .hero-sub { order: 5; margin-bottom: 0; }
       }
       .hero-eyebrow {
         color: var(--accent);
@@ -644,6 +644,19 @@
       @media (max-width: 900px) {
         .module { border-left: 0; border-top: 1px solid var(--border); padding: 36px 0; }
         .module:first-child { border-top: 0; padding-top: 0; }
+      }
+      .module-box {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        margin: 0 0 28px -12px;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+      @media (max-width: 900px) {
+        .module-box { max-width: 240px; margin-left: 0; }
       }
       .module-label {
         color: var(--accent);
@@ -1688,18 +1701,21 @@
         </div>
         <div class="modules">
           <div class="module">
+            <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">01 / Base · Pflicht-Modul</div>
             <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
             <p class="module-body">File-Export aus Shopify, Claude Project laden, Sections und Snippets bearbeiten.</p>
             <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
           <div class="module">
+            <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">02 / SEOFlow · Add-On</div>
             <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht und ohne dich läuft.</h3>
             <p class="module-body">Geführter Setup-Flow, kein Doku-Marathon. Search Console mit Claude Code verknüpft.</p>
             <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
           </div>
           <div class="module">
+            <img class="module-box" src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">03 / ClarityFlow · Add-On</div>
             <h3 class="module-title">Dein Shop verrät, was nicht funktioniert. Claude hört zu und handelt.</h3>
             <p class="module-body">Verbindet Claude Code mit Verhaltensdaten: Klicks, Scroll, Heatmaps.</p>
