@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vorflows — Box Export v2</title>
+<link rel="stylesheet" href="../shared/colors_and_type.css" />
+<style>
+  html, body { margin:0; padding:0; background:#0F0F0F; color:#EAEAE5; font-family:'Inter', system-ui, sans-serif; }
+  .viewer-head { padding: 28px 32px 20px; border-bottom:1px solid #1F1F1F; display:flex; align-items:flex-end; gap:24px; flex-wrap:wrap; }
+  .viewer-head .left { display:flex; flex-direction:column; gap:6px; }
+  .viewer-head .back { color:#8A8A82; text-decoration:none; font-size:13px; font-family:'JetBrains Mono', ui-monospace, monospace; letter-spacing:0.04em; }
+  .viewer-head .back:hover { color:#C8633E; }
+  .viewer-head h1 { font-family:'Fraunces', Georgia, serif; font-weight:500; font-size:32px; letter-spacing:-0.02em; margin:0; line-height:1.1; }
+  .viewer-head h1 em { font-style:italic; color:#C8633E; font-weight:400; }
+  .viewer-head .sub { color:#8A8A82; font-size:13px; margin:0; }
+
+  .toolbar { margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .toolbar label { font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; color:#8A8A82; letter-spacing:0.08em; text-transform:uppercase; }
+  .toolbar select, .btn {
+    background:#1A1A1A; color:#EAEAE5; border:1px solid #2F2F2F;
+    border-radius:6px; padding:8px 14px; font-size:13px; cursor:pointer;
+    font-family:inherit;
+  }
+  .btn:hover, .toolbar select:hover { border-color:#C8633E; color:#C8633E; }
+  .btn.primary { background:#C8633E; color:#0F0F0F; border-color:#C8633E; }
+  .btn.primary:hover { background:#B05530; border-color:#B05530; color:#0F0F0F; }
+  .btn:disabled { opacity:.45; cursor:wait; }
+  .status { font-family:'JetBrains Mono', monospace; font-size:11px; color:#8A8A82; min-width: 180px; }
+
+  .viewer-grid { padding: 32px; display:grid; grid-template-columns: repeat(auto-fit, minmax(540px, 1fr)); gap: 24px; }
+
+  .frame-wrap {
+    background:#141414; border:1px solid #1F1F1F; border-radius:12px;
+    padding:14px; display:flex; flex-direction:column; gap:10px;
+  }
+  .frame-meta {
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    font-family:'JetBrains Mono', monospace; font-size:11px; color:#8A8A82;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .frame-meta .id { color:#D4D2CC; }
+  .frame-actions { display:flex; gap:6px; flex-wrap:wrap; }
+  .frame-actions button {
+    background:transparent; color:#8A8A82; border:1px solid #2F2F2F;
+    border-radius:4px; padding:4px 10px; font-size:10.5px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .frame-actions button:hover { color:#C8633E; border-color:#C8633E; }
+  .frame-actions button:disabled { opacity:.45; cursor:wait; }
+
+  .frame {
+    position: relative; width:500px; height:500px; max-width:100%;
+    aspect-ratio: 1 / 1; margin: 0 auto;
+  }
+  .frame-wrap[data-family="1"] { grid-column: 1 / -1; }
+  /* family stage renders at native 1000×1000 then shrinks visually inside its wrapper */
+  .frame-wrap[data-family="1"] .frame {
+    width: 1000px; height: 1000px;
+    transform: scale(var(--fam-scale, 1));
+    transform-origin: top center;
+    margin-bottom: calc((var(--fam-scale, 1) - 1) * 1000px);
+  }
+  @media (max-width: 1100px) { .frame-wrap[data-family="1"] { --fam-scale: 0.7; } }
+  @media (max-width: 800px)  { .frame-wrap[data-family="1"] { --fam-scale: 0.5; } }
+  .frame[data-bg="transparent"] {
+    background-image:
+      linear-gradient(45deg, #1F1F1F 25%, transparent 25%),
+      linear-gradient(-45deg, #1F1F1F 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1F1F1F 75%),
+      linear-gradient(-45deg, transparent 75%, #1F1F1F 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  .frame[data-bg="white"] { background:#fff; }
+  .frame .stage {
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+</style>
+</head>
+<body>
+
+<header class="viewer-head">
+  <div class="left">
+    <a class="back" href="../index.html">← Workspace</a>
+    <h1>Box Export <em>v2</em></h1>
+    <p class="sub">3 module × 3 logo-style × 2 background — 18 frames · native 500×500</p>
+  </div>
+  <div class="toolbar">
+    <label for="resSel">Auflösung</label>
+    <select id="resSel">
+      <option value="1">500 px (1×)</option>
+      <option value="2.4" selected>1200 px (2.4×)</option>
+      <option value="4.8">2400 px (4.8×)</option>
+    </select>
+    <button class="btn" id="btnZip">⬇ Alle (ZIP · 4 Formate)</button>
+    <span class="status" id="status"></span>
+  </div>
+</header>
+
+<main class="viewer-grid" id="root"></main>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/html-to-image@1.11.13/dist/html-to-image.js"></script>
+<script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+
+<script type="text/babel">
+// ---------- Box primitives (ported from box-export-v2.html) ----------
+const ACCENT = '#C8633E';
+const ACCENT_DEEP = '#A84829';
+const ACCENT_HOVER = '#B05530';
+const INK = '#1A1A1A';
+const PAPER = '#FAFAF7';
+const PAPER_DARK = '#EAEAE5';
+const PAPER_DEEP = '#F4F2EC';
+const MUTED = '#5C5C5C';
+const MUTED_DARK = '#8A8A82';
+const BORDER = '#E5E3DD';
+const BORDER_DARK = '#2A2A2A';
+
+// ===== DESIGN LOCKED =====
+// Box3D geometry, BoxFront/Side/Top layout, FAMILY_BOXES positions, color
+// palettes (paper/ink/accent), logo styles (contrast/tonal/naked) and the
+// translateZ(d/2) Z-alignment fix were validated against base-tonal-1x1.webp
+// reference and explicitly approved 2026-05-02. Do NOT modify geometry,
+// transform order, positions, scale, rotation angles, or color tokens
+// without explicit user approval. Caret color uses the variant's `accent`
+// (white on accent variant, terracotta otherwise) — keep it that way.
+const Box3D = ({ w=320, h=440, d=90, rotateY=-28, rotateX=6, front, side, top, shadow=true }) => (
+  <div style={{ width: w+d, height: h+d*0.5, perspective: 1800, perspectiveOrigin: '50% 40%', position:'relative' }}>
+    <div style={{ position:'absolute', inset:0, transformStyle:'preserve-3d', transform:`rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}>
+      <div style={{ position:'absolute', width:w, height:h, left:d*0.5, top:d*0.25, transform:`translateZ(${d/2}px)`, backfaceVisibility:'hidden', boxShadow:'inset 1px 0 0 rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.04)' }}>{front}</div>
+      <div style={{ position:'absolute', width:d, height:h, left:d*0.5+w, top:d*0.25, transformOrigin:'left center', transform:`translateZ(${d/2}px) rotateY(90deg)`, backfaceVisibility:'hidden', filter:'brightness(0.88)' }}>{side}</div>
+      {/* top face removed — was leaking through front face on some renders */}
+    </div>
+    {shadow && (
+      <div style={{ position:'absolute', left:d*0.4, right:-d*0.2, bottom:-d*0.05, height:32,
+        background:'radial-gradient(ellipse at 35% 50%, rgba(26,26,26,0.32), rgba(26,26,26,0) 70%)',
+        filter:'blur(8px)', zIndex:-1 }}/>
+    )}
+  </div>
+);
+
+const Wordmark = ({ size=28, color=INK, accentColor=ACCENT }) => (
+  <span style={{ fontFamily:"'Fraunces', Georgia, serif", fontWeight:500, fontSize:size, letterSpacing:'-0.02em', color, fontFeatureSettings:'"ss01"', lineHeight:1 }}>
+    vor<span style={{ fontStyle:'italic', fontWeight:500, color: accentColor }}>flows</span>
+  </span>
+);
+
+const MODULES = {
+  base:    { name:'BaseFlow',    sub:'theme · core',    glyph:'v', desc:'Theme umbauen, ohne dass dein Live-Shop wackelt. Duplicate-Theme, Claude-Project, Sections & Snippets.' },
+  seo:     { name:'SEOFlow',     sub:'rank · jsonld',   glyph:'v', desc:'SEO-Daten als Input. Output: SEO Optimierung + Code-Änderungen am Theme.' },
+  clarity: { name:'ClarityFlow', sub:'optimize · loop', glyph:'v', desc:'Heatmaps, Scroll, Klicks. Erkennt Drop-offs und schließt den Loop: Daten → Hypothese → Code.' },
+};
+
+const BoxFront = ({ variant='paper', mod='base', version='v1', logoStyle='contrast' }) => {
+  const m = MODULES[mod];
+  const isInk = variant==='ink', isAccent = variant==='accent';
+  const bg = isInk ? '#0F0F0F' : isAccent ? ACCENT : '#F0EDE5';
+  const fg = isInk ? PAPER_DARK : isAccent ? PAPER : INK;
+  const accent = isInk ? ACCENT : isAccent ? PAPER : ACCENT;
+  const muted = isInk ? MUTED_DARK : isAccent ? 'rgba(250,250,247,0.7)' : MUTED;
+  const border = isInk ? BORDER_DARK : isAccent ? 'rgba(250,250,247,0.18)' : BORDER;
+  let markBg = isInk ? PAPER : INK;
+  let markFg = isInk ? INK : PAPER_DARK;
+  let markBorder = 'transparent';
+  if (logoStyle === 'tonal') {
+    markBg = bg;
+    markFg = fg;
+    markBorder = isAccent ? 'rgba(250,250,247,0.30)' : isInk ? 'rgba(250,250,247,0.20)' : 'rgba(26,26,26,0.18)';
+  } else if (logoStyle === 'naked') {
+    markBg = 'transparent';
+    markFg = fg;
+  }
+  return (
+    <div style={{ width:'100%', height:'100%', background:bg, color:fg, padding:'22px 22px 20px', display:'flex', flexDirection:'column', justifyContent:'space-between', boxSizing:'border-box' }}>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', fontFamily:"'JetBrains Mono', monospace", fontSize:9, letterSpacing:'0.16em', textTransform:'uppercase', color:muted }}>
+        <span>method</span>
+        <span style={{ display:'inline-flex', alignItems:'center', gap:6 }}>
+          <span style={{ width:6, height:6, borderRadius:'50%', background:accent }}/>
+          {version}
+        </span>
+      </div>
+      <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', justifyContent:'center', gap:24, paddingTop:8 }}>
+        <div style={{ width:84, height:84, background:markBg, border: markBorder==='transparent' ? '0' : `1px solid ${markBorder}`, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'JetBrains Mono', monospace", fontWeight:500, lineHeight:1, boxSizing:'border-box' }}>
+          <span style={{ color:accent, fontSize:52, lineHeight:1 }}>›</span>
+          <span style={{ fontFamily:"'Fraunces', Georgia, serif", fontStyle:'italic', fontWeight:500, color:markFg, fontSize:52, lineHeight:1, marginLeft:-3 }}>{m.glyph}</span>
+        </div>
+        <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
+          <span style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, letterSpacing:'0.18em', textTransform:'uppercase', color:muted }}>module · {m.sub}</span>
+          <span style={{ fontFamily:"'Fraunces', Georgia, serif", fontStyle:'italic', fontWeight:500, fontSize:46, letterSpacing:'-0.02em', lineHeight:0.95, color:fg }}>{m.name}</span>
+        </div>
+        <div style={{ width:38, height:1, background:accent }}/>
+        <div style={{ fontFamily:"'Inter', sans-serif", fontSize:11, lineHeight:1.55, color:muted, maxWidth:240 }}>{m.desc}</div>
+      </div>
+      <div style={{ borderTop:`1px solid ${border}`, paddingTop:14, display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
+        <Wordmark size={24} color={fg} accentColor={accent}/>
+        <span style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:9, letterSpacing:'0.14em', textTransform:'uppercase', color:muted }}>shopify · claude code</span>
+      </div>
+    </div>
+  );
+};
+
+const BoxSide = ({ variant='paper', mod='base' }) => {
+  const m = MODULES[mod];
+  const isInk = variant==='ink', isAccent = variant==='accent';
+  const bg = isInk ? '#0A0A0A' : isAccent ? ACCENT_HOVER : '#E6E2D8';
+  const fg = isInk ? PAPER_DARK : isAccent ? PAPER : INK;
+  const accent = isInk ? ACCENT : isAccent ? PAPER : ACCENT;
+  const muted = isInk ? MUTED_DARK : isAccent ? 'rgba(250,250,247,0.7)' : MUTED;
+  return (
+    <div style={{ width:'100%', height:'100%', background:bg, color:fg, padding:'22px 12px 20px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', boxSizing:'border-box' }}>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:"'JetBrains Mono', monospace", fontSize:9, letterSpacing:'0.14em', textTransform:'uppercase', color:muted }}>
+        <span style={{ width:5, height:5, borderRadius:'50%', background:accent }}/> v1
+      </span>
+      <div style={{ writingMode:'vertical-rl', transform:'rotate(180deg)', fontFamily:"'Fraunces', Georgia, serif", fontWeight:500, fontSize:20, letterSpacing:'-0.02em', lineHeight:1, display:'inline-flex', alignItems:'center', gap:14 }}>
+        <span>vor<span style={{ fontStyle:'italic', fontWeight:500, color:accent }}>flows</span></span>
+        <span style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, letterSpacing:'0.2em', textTransform:'uppercase', color:muted }}>· {m.name}</span>
+      </div>
+      <span style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:9, letterSpacing:'0.14em', textTransform:'uppercase', color:muted }}>method</span>
+    </div>
+  );
+};
+
+const BoxTop = ({ variant='paper', mod='base' }) => {
+  const m = MODULES[mod];
+  const isInk = variant==='ink', isAccent = variant==='accent';
+  const bg = isInk ? '#1A1A1A' : isAccent ? ACCENT_DEEP : '#F6F3EC';
+  const fg = isInk ? PAPER_DARK : isAccent ? PAPER : INK;
+  const accent = isInk ? ACCENT : isAccent ? PAPER : ACCENT;
+  const muted = isInk ? MUTED_DARK : isAccent ? 'rgba(250,250,247,0.7)' : MUTED;
+  return (
+    <div style={{ width:'100%', height:'100%', background:bg, color:fg, padding:'0 22px', display:'flex', alignItems:'center', justifyContent:'space-between', boxSizing:'border-box' }}>
+      <span style={{ fontFamily:"'Fraunces', Georgia, serif", fontWeight:500, fontSize:16, letterSpacing:'-0.02em' }}>
+        vor<span style={{ fontStyle:'italic', fontWeight:500, color:accent }}>flows</span>
+      </span>
+      <span style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:9, letterSpacing:'0.16em', textTransform:'uppercase', color:muted }}>· {m.name} · v1</span>
+    </div>
+  );
+};
+
+const FloorLine = () => (
+  <div style={{ position:'absolute', left:0, right:0, bottom:'38%', height:1,
+    background:'linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent)' }}/>
+);
+
+// ---------- Frame composition (matches v2 layout) ----------
+const FRAME_W = 500, FRAME_H = 500, BOX_SCALE = 0.85;
+const FAMILY_W = 1000, FAMILY_H = 1000;
+
+const FrameStage = ({ id, variant, mod, kind, logoStyle }) => {
+  const showFloor = kind === 'white-11';
+  const bg = kind === 'white-11' ? '#fff' : 'transparent';
+  return (
+    <div className="frame" data-bg={kind==='transparent-11' ? 'transparent' : 'white'}>
+      <div className="stage" data-export-id={id} data-export-bg={bg} style={{ background: bg }}>
+        {showFloor && <FloorLine/>}
+        <div style={{ transform:`scale(${BOX_SCALE})`, transformOrigin:'center' }}>
+          <Box3D
+            w={320} h={440} d={90}
+            front={<BoxFront variant={variant} mod={mod} logoStyle={logoStyle}/>}
+            side={<BoxSide variant={variant} mod={mod}/>}
+            top={<BoxTop variant={variant} mod={mod}/>}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ---------- Family stage: 3 boxes in one frame ----------
+// BaseFlow front-center (largest, may overlap), SEO left-back, Clarity right-back.
+const FAMILY_BOXES = [
+  { mod:'seo',     variant:'ink',    x:  60, y: 160, scale: 0.78, ry: -28, zIndex: 1 },
+  { mod:'clarity', variant:'accent', x: 520, y: 160, scale: 0.78, ry: -28, zIndex: 1 },
+  { mod:'base',    variant:'paper',  x: 240, y: 240, scale: 1.00, ry: -28, zIndex: 3 },
+];
+
+const FamilyStage = ({ id, kind, logoStyle }) => {
+  const showFloor = kind === 'white-11';
+  const bg = kind === 'white-11' ? '#fff' : 'transparent';
+  return (
+    <div className="frame frame-family" data-bg={kind==='transparent-11' ? 'transparent' : 'white'}
+         style={{ width: FAMILY_W, height: FAMILY_H, aspectRatio: '1 / 1' }}>
+      <div className="stage" data-export-id={id} data-export-bg={bg}
+           style={{ background: bg, width: FAMILY_W, height: FAMILY_H }}>
+        {showFloor && (
+          <div style={{ position:'absolute', left:0, right:0, bottom:'24%', height:1,
+            background:'linear-gradient(90deg, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent)' }}/>
+        )}
+        {FAMILY_BOXES.map((b, i) => (
+          <div key={i} style={{ position:'absolute', left:b.x, top:b.y, zIndex: b.zIndex,
+                                 transform:`scale(${b.scale})`, transformOrigin:'top left' }}>
+            <Box3D
+              w={320} h={440} d={90}
+              rotateY={b.ry} rotateX={6}
+              front={<BoxFront variant={b.variant} mod={b.mod} logoStyle={logoStyle}/>}
+              side={<BoxSide variant={b.variant} mod={b.mod}/>}
+              top={<BoxTop variant={b.variant} mod={b.mod}/>}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ---------- Frame catalog ----------
+const MOD_VARIANT = [
+  { mod:'base',    variant:'paper'  },
+  { mod:'seo',     variant:'ink'    },
+  { mod:'clarity', variant:'accent' },
+];
+const LOGO_STYLES = ['contrast', 'tonal', 'naked'];
+const KINDS = [
+  { key: 'white-11',       suffix: '-1x1' },
+  { key: 'transparent-11', suffix: '-1x1-transparent' },
+];
+const FRAMES = [];
+for (const ls of LOGO_STYLES) {
+  for (const k of KINDS) {
+    for (const mv of MOD_VARIANT) {
+      const lsSfx = ls === 'contrast' ? '' : '-' + ls;
+      FRAMES.push({
+        id: `${mv.mod}${lsSfx}${k.suffix}`,
+        mod: mv.mod, variant: mv.variant,
+        kind: k.key, logoStyle: ls,
+        type: 'single',
+      });
+    }
+  }
+}
+// Family bundle frames (all 3 modules in one image)
+for (const ls of LOGO_STYLES) {
+  for (const k of KINDS) {
+    const lsSfx = ls === 'contrast' ? '' : '-' + ls;
+    FRAMES.push({
+      id: `family${lsSfx}${k.suffix}`,
+      kind: k.key, logoStyle: ls,
+      type: 'family',
+    });
+  }
+}
+
+// ---------- Per-frame card with download buttons ----------
+const FrameCard = ({ frame, fontEmbedCSS, getPixelRatio, setStatus }) => {
+  const stageRef = React.useRef(null);
+  const [busy, setBusy] = React.useState(false);
+
+  const targetEl = () => stageRef.current?.querySelector('[data-export-id]');
+
+  const isFamily = frame.type === 'family';
+  const w = isFamily ? FAMILY_W : FRAME_W;
+  const h = isFamily ? FAMILY_H : FRAME_H;
+  const opts = () => ({
+    pixelRatio: getPixelRatio(),
+    cacheBust: true,
+    fontEmbedCSS: fontEmbedCSS || undefined,
+    backgroundColor: frame.kind === 'white-11' ? '#ffffff' : undefined,
+    skipAutoScale: true,
+    width: w,
+    height: h,
+    style: { transform: 'none' },
+  });
+
+  const dl = (blob, ext) => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `${frame.id}.${ext}`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  };
+
+  const dlDataUrl = (dataUrl, ext) => {
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = `${frame.id}.${ext}`;
+    document.body.appendChild(a); a.click(); a.remove();
+  };
+
+  const toBlob = async (kind) => {
+    const el = targetEl();
+    if (!el) return null;
+    // Server-side puppeteer capture for raster formats (clean Z-order, no glyph holes).
+    if (kind === 'png' || kind === 'jpg' || kind === 'webp') {
+      const url = `/api/box-export?id=${encodeURIComponent(frame.id)}&format=${kind}&scale=${getPixelRatio()}`;
+      const r = await fetch(url);
+      if (!r.ok) {
+        const j = await r.json().catch(() => ({}));
+        throw new Error(j.error || `HTTP ${r.status}`);
+      }
+      return await r.blob();
+    }
+    if (kind === 'svg') {
+      // SVG remains client-side via html-to-image (foreignObject vector output).
+      const dataUrl = await window.htmlToImage.toSvg(el, opts());
+      const svgText = decodeURIComponent(dataUrl.replace(/^data:image\/svg\+xml;charset=utf-8,/, ''));
+      return new Blob([svgText], { type: 'image/svg+xml' });
+    }
+  };
+
+  const onDownload = async (kind) => {
+    setBusy(true); setStatus(`Rendere ${frame.id}.${kind}…`);
+    try {
+      const blob = await toBlob(kind);
+      if (!blob) throw new Error('Frame nicht gefunden');
+      dl(blob, kind);
+      setStatus(`✓ ${frame.id}.${kind} heruntergeladen`);
+    } catch (e) {
+      console.error(e);
+      setStatus(`Fehler: ${e.message}`);
+    } finally { setBusy(false); }
+  };
+
+  return (
+    <div className="frame-wrap" ref={stageRef} data-family={isFamily ? '1' : '0'}>
+      <div className="frame-meta">
+        <span className="id">{frame.id}</span>
+        <span>{isFamily ? 'family · 3 modules' : `${frame.mod} · ${frame.logoStyle}`} · {frame.kind === 'white-11' ? 'white' : 'transparent'}</span>
+      </div>
+      {isFamily ? <FamilyStage {...frame}/> : <FrameStage {...frame}/>}
+      <div className="frame-actions">
+        <button disabled={busy} onClick={() => onDownload('png')}>PNG</button>
+        <button disabled={busy} onClick={() => onDownload('jpg')}>JPG</button>
+        <button disabled={busy} onClick={() => onDownload('webp')}>WebP</button>
+        <button disabled={busy} onClick={() => onDownload('svg')}>SVG</button>
+      </div>
+    </div>
+  );
+};
+
+// ---------- App root ----------
+const App = () => {
+  const [fontEmbedCSS, setFontEmbedCSS] = React.useState('');
+  const [status, setStatus] = React.useState('Lade Schriften…');
+  const resSelRef = React.useRef(null);
+
+  React.useEffect(() => {
+    let cancel = false;
+    (async () => {
+      try {
+        await document.fonts.ready;
+        const css = await window.htmlToImage.getFontEmbedCSS(document.body);
+        if (!cancel) { setFontEmbedCSS(css); setStatus('Bereit'); }
+      } catch (e) {
+        console.warn('Font embed failed, continuing without:', e);
+        if (!cancel) setStatus('Bereit (ohne Font-Embed)');
+      }
+    })();
+    return () => { cancel = true; };
+  }, []);
+
+  const getPixelRatio = () => parseFloat(resSelRef.current?.value || '2.4');
+
+  // Mount toolbar handlers via effect — toolbar lives in static HTML
+  React.useEffect(() => {
+    const sel = document.getElementById('resSel');
+    resSelRef.current = sel;
+    const btnZip = document.getElementById('btnZip');
+    const statusEl = document.getElementById('status');
+    const setS = (msg) => { if (statusEl) statusEl.textContent = msg; setStatus(msg); };
+    setS(status);
+
+    const onZip = async () => {
+      btnZip.disabled = true; setS('Baue ZIP… (0/72)');
+      const zip = new JSZip();
+      const formats = [
+        { kind: 'png',  ext: 'png',  folder: 'png'  },
+        { kind: 'jpg',  ext: 'jpg',  folder: 'jpg'  },
+        { kind: 'webp', ext: 'webp', folder: 'webp' },
+        { kind: 'svg',  ext: 'svg',  folder: 'svg'  },
+      ];
+      const total = FRAMES.length * formats.length;
+      let done = 0;
+      try {
+        for (const f of FRAMES) {
+          const el = document.querySelector(`[data-export-id="${f.id}"]`);
+          if (!el) continue;
+          const isFam = f.type === 'family';
+          const baseOpts = {
+            pixelRatio: getPixelRatio(),
+            cacheBust: true,
+            fontEmbedCSS: fontEmbedCSS || undefined,
+            skipAutoScale: true,
+            width: isFam ? FAMILY_W : FRAME_W,
+            height: isFam ? FAMILY_H : FRAME_H,
+            style: { transform: 'none' },
+          };
+          for (const fmt of formats) {
+            let blob;
+            if (fmt.kind === 'png' || fmt.kind === 'jpg' || fmt.kind === 'webp') {
+              const url = `/api/box-export?id=${encodeURIComponent(f.id)}&format=${fmt.kind}&scale=${getPixelRatio()}`;
+              const r = await fetch(url);
+              if (!r.ok) throw new Error(`Frame ${f.id} ${fmt.kind}: HTTP ${r.status}`);
+              blob = await r.blob();
+            } else if (fmt.kind === 'svg') {
+              const dataUrl = await window.htmlToImage.toSvg(el, { ...baseOpts, backgroundColor: f.kind==='white-11' ? '#ffffff' : undefined });
+              const svgText = decodeURIComponent(dataUrl.replace(/^data:image\/svg\+xml;charset=utf-8,/, ''));
+              blob = new Blob([svgText], { type: 'image/svg+xml' });
+            }
+            zip.file(`${fmt.folder}/${f.id}.${fmt.ext}`, blob);
+            done++;
+            setS(`Baue ZIP… (${done}/${total})`);
+          }
+        }
+        const out = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(out);
+        a.download = 'vorflows-box-exports.zip';
+        document.body.appendChild(a); a.click(); a.remove();
+        setS(`✓ ZIP fertig (${total} Files)`);
+      } catch (e) {
+        console.error(e);
+        setS('ZIP Fehler: ' + e.message);
+      } finally {
+        btnZip.disabled = false;
+      }
+    };
+    btnZip.addEventListener('click', onZip);
+    return () => btnZip.removeEventListener('click', onZip);
+  }, [fontEmbedCSS, status]);
+
+  return (
+    <>
+      {FRAMES.map(f => (
+        <FrameCard key={f.id} frame={f}
+          fontEmbedCSS={fontEmbedCSS}
+          getPixelRatio={getPixelRatio}
+          setStatus={(m) => { setStatus(m); const el = document.getElementById('status'); if (el) el.textContent = m; }}
+        />
+      ))}
+    </>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+</body>
+</html>
