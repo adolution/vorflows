@@ -363,152 +363,6 @@
         flex-wrap: wrap;
       }
 
-      /* Hero family-bundle (3 module boxes in CSS 3D) */
-      .hero-family {
-        position: relative; width: 100%; max-width: 520px;
-        aspect-ratio: 1 / 1; margin: 0 auto;
-        --family-scale: 0.46;
-      }
-      .hero-family-stage {
-        position: absolute; left: 50%; top: 50%;
-        width: 1000px; height: 1000px;
-        transform: translate(-50%, -50%) scale(var(--family-scale));
-        transform-origin: center;
-      }
-      .hf-floor {
-        position: absolute; left: 6%; right: 6%; bottom: 24%; height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(26,26,26,0.12) 20%, rgba(26,26,26,0.12) 80%, transparent);
-      }
-      .hf-box {
-        position: absolute; width: 410px; height: 485px;
-        perspective: 1800px; perspective-origin: 50% 40%;
-      }
-      .hf-box-inner {
-        position: absolute; inset: 0;
-        transform-style: preserve-3d;
-        transform: rotateX(6deg) rotateY(var(--ry, -28deg));
-      }
-      .hf-shadow {
-        position: absolute; left: 36px; right: -18px; bottom: -4px; height: 32px;
-        background: radial-gradient(ellipse at 35% 50%, rgba(26,26,26,0.32), rgba(26,26,26,0) 70%);
-        filter: blur(8px); z-index: -1;
-      }
-      .hf-face { position: absolute; backface-visibility: hidden; box-sizing: border-box; }
-      .hf-front {
-        width: 320px; height: 440px; left: 45px; top: 22.5px;
-        transform: translateZ(45px);
-        background: var(--m-bg); color: var(--m-fg);
-        padding: 22px 22px 20px;
-        display: flex; flex-direction: column; justify-content: space-between;
-        box-shadow: inset 1px 0 0 rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.04);
-      }
-      .hf-side {
-        width: 90px; height: 440px; left: 365px; top: 22.5px;
-        transform-origin: left center; transform: translateZ(45px) rotateY(90deg);
-        background: var(--m-side); color: var(--m-fg);
-        filter: brightness(0.88); padding: 22px 12px 20px;
-        display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-      }
-      .hf-top {
-        width: 320px; height: 90px; left: 45px; top: 22.5px;
-        transform-origin: top center; transform: translateZ(45px) rotateX(-90deg);
-        background: var(--m-top); color: var(--m-fg);
-        filter: brightness(1.05); padding: 0 22px;
-        display: flex; align-items: center; justify-content: space-between;
-      }
-      .hf-meta {
-        display: flex; justify-content: space-between; align-items: center;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-muted);
-      }
-      .hf-meta .dot { display: inline-flex; align-items: center; gap: 6px; }
-      .hf-meta .dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--m-acc); }
-      .hf-mid {
-        flex: 1; display: flex; flex-direction: column; align-items: flex-start;
-        justify-content: center; gap: 24px; padding-top: 8px;
-      }
-      .hf-mark {
-        width: 84px; height: 84px; background: var(--m-mark-bg);
-        display: flex; align-items: center; justify-content: center;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-weight: 500; line-height: 1; box-sizing: border-box;
-      }
-      .hf-mark .caret { color: #C8633E; font-size: 52px; line-height: 1; }
-      .hf-mark .glyph {
-        font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500;
-        color: var(--m-mark-fg); font-size: 52px; line-height: 1; margin-left: -3px;
-      }
-      .hf-modlabel { display: flex; flex-direction: column; gap: 6px; }
-      .hf-modlabel .sub {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--m-muted);
-      }
-      .hf-modlabel .name {
-        font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500;
-        font-size: 46px; letter-spacing: -0.02em; line-height: 0.95; color: var(--m-fg);
-      }
-      .hf-rule { width: 38px; height: 1px; background: var(--m-acc); }
-      .hf-desc { font-family: 'Inter', sans-serif; font-size: 11px; line-height: 1.55; color: var(--m-muted); max-width: 240px; }
-      .hf-foot {
-        border-top: 1px solid var(--m-border); padding-top: 14px;
-        display: flex; justify-content: space-between; align-items: baseline;
-      }
-      .hf-foot .wm {
-        font-family: 'Fraunces', Georgia, serif; font-weight: 500;
-        font-size: 24px; letter-spacing: -0.02em; line-height: 1; color: var(--m-fg);
-      }
-      .hf-foot .wm em { font-style: italic; font-weight: 500; color: var(--m-acc); }
-      .hf-foot .meta {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--m-muted);
-      }
-      .hf-side .stripe {
-        display: inline-flex; align-items: center; gap: 6px;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--m-muted);
-      }
-      .hf-side .stripe::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--m-acc); }
-      .hf-side .vert {
-        writing-mode: vertical-rl; transform: rotate(180deg);
-        font-family: 'Fraunces', Georgia, serif; font-weight: 500;
-        font-size: 20px; letter-spacing: -0.02em; line-height: 1;
-        display: inline-flex; align-items: center; gap: 14px;
-      }
-      .hf-side .vert em { font-style: italic; font-weight: 500; color: var(--m-acc); }
-      .hf-side .vert .label {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--m-muted);
-      }
-      .hf-top .wm { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 16px; letter-spacing: -0.02em; }
-      .hf-top .wm em { font-style: italic; font-weight: 500; color: var(--m-acc); }
-      .hf-top .label {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-muted);
-      }
-
-      .hf-base {
-        --m-bg: #F0EDE5; --m-fg: #1A1A1A; --m-muted: #5C5C5C; --m-border: #E5E3DD;
-        --m-acc: #C8633E; --m-side: #E6E2D8; --m-top: #F6F3EC;
-        --m-mark-bg: #1A1A1A; --m-mark-fg: #EAEAE5;
-      }
-      .hf-seo {
-        --m-bg: #0F0F0F; --m-fg: #EAEAE5; --m-muted: #8A8A82; --m-border: #2A2A2A;
-        --m-acc: #C8633E; --m-side: #0A0A0A; --m-top: #1A1A1A;
-        --m-mark-bg: #FAFAF7; --m-mark-fg: #1A1A1A;
-      }
-      .hf-clarity {
-        --m-bg: #C8633E; --m-fg: #FAFAF7; --m-muted: rgba(250,250,247,0.7); --m-border: rgba(250,250,247,0.18);
-        --m-acc: #FAFAF7; --m-side: #B05530; --m-top: #A84829;
-        --m-mark-bg: #1A1A1A; --m-mark-fg: #EAEAE5;
-      }
-
-      .hf-pos-base    { left: 70px;  top: 230px; transform: scale(0.55); transform-origin: top left; }
-      .hf-pos-seo     { left: 360px; top: 180px; transform: scale(0.62); transform-origin: top left; }
-      .hf-pos-clarity { left: 660px; top: 230px; transform: scale(0.55); transform-origin: top left; }
-
-      @media (max-width: 900px) { .hero-family { --family-scale: 0.40; max-width: 460px; } }
-      @media (max-width: 560px) { .hero-family { --family-scale: 0.32; max-width: 340px; } }
-
       /* File tree */
       .filetree {
         background: #fff;
@@ -1686,104 +1540,23 @@
           </div>
           <p class="hero-closer">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
         </div>
-        <div class="hero-family" aria-hidden="true">
-          <div class="hero-family-stage">
-            <div class="hf-floor"></div>
-
-            <div class="hf-box hf-base hf-pos-base">
-              <div class="hf-box-inner" style="--ry:-22deg">
-                <div class="hf-face hf-front">
-                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
-                  <div class="hf-mid">
-                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
-                    <div class="hf-modlabel">
-                      <span class="sub">module · theme · core</span>
-                      <span class="name">BaseFlow</span>
-                    </div>
-                    <div class="hf-rule"></div>
-                    <div class="hf-desc">Theme umbauen, ohne dass dein Live-Shop wackelt. Duplicate-Theme, Claude-Project, Sections &amp; Snippets.</div>
-                  </div>
-                  <div class="hf-foot">
-                    <span class="wm">vor<em>flows</em></span>
-                    <span class="meta">shopify · claude code</span>
-                  </div>
-                </div>
-                <div class="hf-face hf-side">
-                  <span class="stripe">v1</span>
-                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· BaseFlow</span></span>
-                  <span class="stripe" style="visibility:hidden">·</span>
-                </div>
-                <div class="hf-face hf-top">
-                  <span class="wm">vor<em>flows</em></span>
-                  <span class="label">· BaseFlow · v1</span>
-                </div>
-              </div>
-              <div class="hf-shadow"></div>
+        <div class="filetree-wrap">
+          <aside class="filetree" aria-hidden="true">
+            <div class="filetree-head">
+              <span class="filetree-dot"></span>
+              theme/ — vorflows-edit
             </div>
-
-            <div class="hf-box hf-seo hf-pos-seo">
-              <div class="hf-box-inner" style="--ry:-28deg">
-                <div class="hf-face hf-front">
-                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
-                  <div class="hf-mid">
-                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
-                    <div class="hf-modlabel">
-                      <span class="sub">module · rank · jsonld</span>
-                      <span class="name">SEOFlow</span>
-                    </div>
-                    <div class="hf-rule"></div>
-                    <div class="hf-desc">SEO-Daten als Input. Output: SEO-Optimierung + Code-Änderungen am Theme.</div>
-                  </div>
-                  <div class="hf-foot">
-                    <span class="wm">vor<em>flows</em></span>
-                    <span class="meta">shopify · claude code</span>
-                  </div>
-                </div>
-                <div class="hf-face hf-side">
-                  <span class="stripe">v1</span>
-                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· SEOFlow</span></span>
-                  <span class="stripe" style="visibility:hidden">·</span>
-                </div>
-                <div class="hf-face hf-top">
-                  <span class="wm">vor<em>flows</em></span>
-                  <span class="label">· SEOFlow · v1</span>
-                </div>
-              </div>
-              <div class="hf-shadow"></div>
+            <div>
+              <div>theme/</div>
+              <div>├── sections/</div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
+              <div>├── snippets/</div>
+              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
+              <div>└── templates/</div>
             </div>
-
-            <div class="hf-box hf-clarity hf-pos-clarity">
-              <div class="hf-box-inner" style="--ry:-34deg">
-                <div class="hf-face hf-front">
-                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
-                  <div class="hf-mid">
-                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
-                    <div class="hf-modlabel">
-                      <span class="sub">module · optimize · loop</span>
-                      <span class="name">ClarityFlow</span>
-                    </div>
-                    <div class="hf-rule"></div>
-                    <div class="hf-desc">Heatmaps, Scroll, Klicks. Erkennt Drop-offs und schließt den Loop: Daten → Hypothese → Code.</div>
-                  </div>
-                  <div class="hf-foot">
-                    <span class="wm">vor<em>flows</em></span>
-                    <span class="meta">shopify · claude code</span>
-                  </div>
-                </div>
-                <div class="hf-face hf-side">
-                  <span class="stripe">v1</span>
-                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· ClarityFlow</span></span>
-                  <span class="stripe" style="visibility:hidden">·</span>
-                </div>
-                <div class="hf-face hf-top">
-                  <span class="wm">vor<em>flows</em></span>
-                  <span class="label">· ClarityFlow · v1</span>
-                </div>
-              </div>
-              <div class="hf-shadow"></div>
-            </div>
-
-          </div>
+          </aside>
+          <button type="button" class="filetree-copy" data-copy-target=".filetree" aria-label="Tree-Struktur kopieren">copy</button>
         </div>
       </div>
     </header>
