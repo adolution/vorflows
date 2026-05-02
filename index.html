@@ -290,7 +290,7 @@
       }
       .mobile-menu a:first-child.mobile-cta { border-top: 0; }
       @media (max-width: 768px) {
-        .nav-links a:not(.nav-cta) { display: none; }
+        .nav-links a { display: none; }
         .nav-toggle { display: inline-flex; }
       }
       @media (min-width: 769px) {
@@ -310,6 +310,13 @@
       .hero-grid > * { min-width: 0; }
       @media (max-width: 900px) {
         .hero-grid { grid-template-columns: minmax(0, 1fr); }
+        .hero-text { display: contents; }
+        .hero-eyebrow { order: 1; }
+        .hero-headline { order: 2; }
+        .hero-lead { order: 3; }
+        .hero-sub { order: 4; }
+        .filetree-wrap { order: 5; margin-block: 8px 24px; }
+        .hero-ctas { order: 6; }
       }
       .hero-eyebrow {
         color: var(--accent);
@@ -346,15 +353,6 @@
         line-height: 1.55;
         max-width: 52ch;
         margin: 0 0 32px;
-      }
-      .hero-closer {
-        font-size: clamp(14px, 1vw, 15px);
-        color: var(--text-secondary);
-        line-height: 1.5;
-        max-width: 44ch;
-        margin: 24px 0 0;
-        font-style: italic;
-        opacity: 0.85;
       }
       .hero-ctas {
         display: flex;
@@ -1158,6 +1156,14 @@
         font-size: 17px;
         margin: 0 0 40px;
       }
+      .final-cta-closer {
+        margin: 32px auto 0 !important;
+        font-style: italic;
+        font-size: 15px;
+        color: var(--text-secondary-dark);
+        opacity: 0.85;
+        max-width: 44ch;
+      }
 
       /* Footer */
       .footer {
@@ -1517,13 +1523,12 @@
       <a href="#workflow">Workflow</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="#" class="mobile-cta" data-waitlist="mobile-menu">Join Waitlist</a>
     </div>
 
     <!-- 02 HERO -->
     <header class="hero container">
       <div class="hero-grid">
-        <div>
+        <div class="hero-text">
           <div class="meta hero-eyebrow">Shopify · Claude Code · Workflow-System</div>
           <h1 class="display hero-headline">
             Wann war deine letzte Shop Section <em>genau so, wie du sie wolltest?</em>
@@ -1538,7 +1543,6 @@
             <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
             <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
           </div>
-          <p class="hero-closer">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
         </div>
         <div class="filetree-wrap">
           <aside class="filetree" aria-hidden="true">
@@ -1965,6 +1969,7 @@
         <h2 class="display">Bau deinen Shop schneller <em>als alle anderen.</em></h2>
         <p>Wähle dein Paket. 20–30 Minuten Setup. Erste Section noch heute.</p>
         <a href="#" class="btn btn-primary" data-waitlist="final-cta">Join Waitlist</a>
+        <p class="final-cta-closer">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
     </section>
 
