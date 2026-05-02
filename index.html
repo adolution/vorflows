@@ -365,12 +365,9 @@
 
       /* Hero family-bundle (3 module boxes in CSS 3D) */
       .hero-family {
-        position: relative; width: 100%; max-width: 580px;
+        position: relative; width: 100%; max-width: 520px;
         aspect-ratio: 1 / 1; margin: 0 auto;
-        --family-scale: 0.56;
-        background:
-          radial-gradient(120% 90% at 50% 65%, rgba(200, 99, 62, 0.05) 0%, transparent 60%),
-          radial-gradient(80% 60% at 50% 50%, rgba(26, 26, 26, 0.03) 0%, transparent 70%);
+        --family-scale: 0.46;
       }
       .hero-family-stage {
         position: absolute; left: 50%; top: 50%;
@@ -505,12 +502,12 @@
         --m-mark-bg: #1A1A1A; --m-mark-fg: #EAEAE5;
       }
 
-      .hf-pos-seo     { left: 110px; top: 230px; transform: scale(0.62); transform-origin: top left; z-index: 1; }
-      .hf-pos-clarity { left: 600px; top: 230px; transform: scale(0.62); transform-origin: top left; z-index: 1; }
-      .hf-pos-base    { left: 290px; top: 290px; transform: scale(0.78); transform-origin: top left; z-index: 3; }
+      .hf-pos-base    { left: 70px;  top: 230px; transform: scale(0.55); transform-origin: top left; }
+      .hf-pos-seo     { left: 360px; top: 180px; transform: scale(0.62); transform-origin: top left; }
+      .hf-pos-clarity { left: 660px; top: 230px; transform: scale(0.55); transform-origin: top left; }
 
-      @media (max-width: 900px) { .hero-family { --family-scale: 0.50; max-width: 500px; } }
-      @media (max-width: 560px) { .hero-family { --family-scale: 0.36; max-width: 360px; } }
+      @media (max-width: 900px) { .hero-family { --family-scale: 0.40; max-width: 460px; } }
+      @media (max-width: 560px) { .hero-family { --family-scale: 0.32; max-width: 340px; } }
 
       /* File tree */
       .filetree {
@@ -1694,7 +1691,7 @@
             <div class="hf-floor"></div>
 
             <div class="hf-box hf-base hf-pos-base">
-              <div class="hf-box-inner" style="--ry:-28deg">
+              <div class="hf-box-inner" style="--ry:-22deg">
                 <div class="hf-face hf-front">
                   <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
                   <div class="hf-mid">
@@ -1756,7 +1753,7 @@
             </div>
 
             <div class="hf-box hf-clarity hf-pos-clarity">
-              <div class="hf-box-inner" style="--ry:-28deg">
+              <div class="hf-box-inner" style="--ry:-34deg">
                 <div class="hf-face hf-front">
                   <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
                   <div class="hf-mid">
