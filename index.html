@@ -309,6 +309,7 @@
       }
       .hero-grid > * { min-width: 0; }
       @media (max-width: 900px) {
+        .hero { padding-block: 36px clamp(56px, 8vw, 96px); }
         .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
         .hero-text { display: contents; }
         .hero-eyebrow { display: none; }
