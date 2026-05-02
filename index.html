@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Meta Pixel loader — invoked only after consent (DSGVO) -->
+    <!-- Meta Pixel loader, invoked only after consent (DSGVO) -->
     <script>
       function _loadFbPixelSdk() {
         if (window.fbq) return;
@@ -17,8 +17,8 @@
         'https://connect.facebook.net/en_US/fbevents.js');
       }
     </script>
-    <title>vorflows — Bau deinen Shopify-Store wie ein Senior Dev.</title>
-    <meta name="description" content="vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team." />
+    <title>vorflows. Bau deinen Shopify-Store wie ein Senior Dev.</title>
+    <meta name="description" content="vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren. Ohne Agentur, ohne App-Stack, ohne Dev-Team." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -46,6 +46,8 @@
       * { box-sizing: border-box; }
 
       html { scroll-behavior: smooth; }
+
+      html, body { overflow-x: clip; }
 
       body {
         margin: 0;
@@ -338,6 +340,152 @@
         align-items: center;
         flex-wrap: wrap;
       }
+
+      /* Hero family-bundle (3 module boxes in CSS 3D) */
+      .hero-family {
+        position: relative; width: 100%; max-width: 520px;
+        aspect-ratio: 1 / 1; margin: 0 auto;
+        --family-scale: 0.46;
+      }
+      .hero-family-stage {
+        position: absolute; left: 50%; top: 50%;
+        width: 1000px; height: 1000px;
+        transform: translate(-50%, -50%) scale(var(--family-scale));
+        transform-origin: center;
+      }
+      .hf-floor {
+        position: absolute; left: 6%; right: 6%; bottom: 24%; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(26,26,26,0.12) 20%, rgba(26,26,26,0.12) 80%, transparent);
+      }
+      .hf-box {
+        position: absolute; width: 410px; height: 485px;
+        perspective: 1800px; perspective-origin: 50% 40%;
+      }
+      .hf-box-inner {
+        position: absolute; inset: 0;
+        transform-style: preserve-3d;
+        transform: rotateX(6deg) rotateY(var(--ry, -28deg));
+      }
+      .hf-shadow {
+        position: absolute; left: 36px; right: -18px; bottom: -4px; height: 32px;
+        background: radial-gradient(ellipse at 35% 50%, rgba(26,26,26,0.32), rgba(26,26,26,0) 70%);
+        filter: blur(8px); z-index: -1;
+      }
+      .hf-face { position: absolute; backface-visibility: hidden; box-sizing: border-box; }
+      .hf-front {
+        width: 320px; height: 440px; left: 45px; top: 22.5px;
+        transform: translateZ(45px);
+        background: var(--m-bg); color: var(--m-fg);
+        padding: 22px 22px 20px;
+        display: flex; flex-direction: column; justify-content: space-between;
+        box-shadow: inset 1px 0 0 rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.04);
+      }
+      .hf-side {
+        width: 90px; height: 440px; left: 365px; top: 22.5px;
+        transform-origin: left center; transform: rotateY(90deg);
+        background: var(--m-side); color: var(--m-fg);
+        filter: brightness(0.88); padding: 22px 12px 20px;
+        display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      }
+      .hf-top {
+        width: 320px; height: 90px; left: 45px; top: 22.5px;
+        transform-origin: top center; transform: rotateX(-90deg);
+        background: var(--m-top); color: var(--m-fg);
+        filter: brightness(1.05); padding: 0 22px;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .hf-meta {
+        display: flex; justify-content: space-between; align-items: center;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-muted);
+      }
+      .hf-meta .dot { display: inline-flex; align-items: center; gap: 6px; }
+      .hf-meta .dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--m-acc); }
+      .hf-mid {
+        flex: 1; display: flex; flex-direction: column; align-items: flex-start;
+        justify-content: center; gap: 24px; padding-top: 8px;
+      }
+      .hf-mark {
+        width: 84px; height: 84px; background: var(--m-mark-bg);
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-weight: 500; line-height: 1; box-sizing: border-box;
+      }
+      .hf-mark .caret { color: #C8633E; font-size: 52px; line-height: 1; }
+      .hf-mark .glyph {
+        font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500;
+        color: var(--m-mark-fg); font-size: 52px; line-height: 1; margin-left: -3px;
+      }
+      .hf-modlabel { display: flex; flex-direction: column; gap: 6px; }
+      .hf-modlabel .sub {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--m-muted);
+      }
+      .hf-modlabel .name {
+        font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500;
+        font-size: 46px; letter-spacing: -0.02em; line-height: 0.95; color: var(--m-fg);
+      }
+      .hf-rule { width: 38px; height: 1px; background: var(--m-acc); }
+      .hf-desc { font-family: 'Inter', sans-serif; font-size: 11px; line-height: 1.55; color: var(--m-muted); max-width: 240px; }
+      .hf-foot {
+        border-top: 1px solid var(--m-border); padding-top: 14px;
+        display: flex; justify-content: space-between; align-items: baseline;
+      }
+      .hf-foot .wm {
+        font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+        font-size: 24px; letter-spacing: -0.02em; line-height: 1; color: var(--m-fg);
+      }
+      .hf-foot .wm em { font-style: italic; font-weight: 500; color: var(--m-acc); }
+      .hf-foot .meta {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--m-muted);
+      }
+      .hf-side .stripe {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--m-muted);
+      }
+      .hf-side .stripe::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--m-acc); }
+      .hf-side .vert {
+        writing-mode: vertical-rl; transform: rotate(180deg);
+        font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+        font-size: 20px; letter-spacing: -0.02em; line-height: 1;
+        display: inline-flex; align-items: center; gap: 14px;
+      }
+      .hf-side .vert em { font-style: italic; font-weight: 500; color: var(--m-acc); }
+      .hf-side .vert .label {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--m-muted);
+      }
+      .hf-top .wm { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 16px; letter-spacing: -0.02em; }
+      .hf-top .wm em { font-style: italic; font-weight: 500; color: var(--m-acc); }
+      .hf-top .label {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-muted);
+      }
+
+      .hf-base {
+        --m-bg: #F0EDE5; --m-fg: #1A1A1A; --m-muted: #5C5C5C; --m-border: #E5E3DD;
+        --m-acc: #C8633E; --m-side: #E6E2D8; --m-top: #F6F3EC;
+        --m-mark-bg: #1A1A1A; --m-mark-fg: #EAEAE5;
+      }
+      .hf-seo {
+        --m-bg: #0F0F0F; --m-fg: #EAEAE5; --m-muted: #8A8A82; --m-border: #2A2A2A;
+        --m-acc: #C8633E; --m-side: #0A0A0A; --m-top: #1A1A1A;
+        --m-mark-bg: #FAFAF7; --m-mark-fg: #1A1A1A;
+      }
+      .hf-clarity {
+        --m-bg: #C8633E; --m-fg: #FAFAF7; --m-muted: rgba(250,250,247,0.7); --m-border: rgba(250,250,247,0.18);
+        --m-acc: #FAFAF7; --m-side: #B05530; --m-top: #A84829;
+        --m-mark-bg: #1A1A1A; --m-mark-fg: #EAEAE5;
+      }
+
+      .hf-pos-base    { left: 70px;  top: 230px; transform: scale(0.55); transform-origin: top left; }
+      .hf-pos-seo     { left: 360px; top: 180px; transform: scale(0.62); transform-origin: top left; }
+      .hf-pos-clarity { left: 660px; top: 230px; transform: scale(0.55); transform-origin: top left; }
+
+      @media (max-width: 900px) { .hero-family { --family-scale: 0.40; max-width: 460px; } }
+      @media (max-width: 560px) { .hero-family { --family-scale: 0.32; max-width: 340px; } }
 
       /* File tree */
       .filetree {
@@ -739,7 +887,7 @@
         margin: 0;
       }
 
-      /* Skill Stack — card grid */
+      /* Skill Stack: card grid */
       .skill-sub {
         margin: -36px 0 0;
         font-size: 17px;
@@ -1503,33 +1651,114 @@
           <div class="meta hero-eyebrow">Shopify · Claude Code · Workflow-System</div>
           <h1 class="display hero-headline">
             Lass KI deinen Store wie ein <em>Senior Dev</em> anpassen.
-            <span class="break">Nur schneller — und exakt nach deinen Vorstellungen.</span>
+            <span class="break">Nur schneller. Und exakt nach deinen Vorstellungen.</span>
           </h1>
           <p class="hero-sub">
-            vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
+            vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren. Ohne Agentur, ohne App-Stack, ohne Dev-Team.
           </p>
           <div class="hero-ctas">
             <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
             <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
           </div>
         </div>
-        <div class="filetree-wrap">
-          <aside class="filetree" aria-hidden="true">
-            <div class="filetree-head">
-              <span class="filetree-dot"></span>
-              theme/ — vorflows-edit
+        <div class="hero-family" aria-hidden="true">
+          <div class="hero-family-stage">
+            <div class="hf-floor"></div>
+
+            <div class="hf-box hf-base hf-pos-base">
+              <div class="hf-box-inner" style="--ry:-22deg">
+                <div class="hf-face hf-front">
+                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
+                  <div class="hf-mid">
+                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
+                    <div class="hf-modlabel">
+                      <span class="sub">module · theme · core</span>
+                      <span class="name">BaseFlow</span>
+                    </div>
+                    <div class="hf-rule"></div>
+                    <div class="hf-desc">Theme umbauen, ohne dass dein Live-Shop wackelt. Duplicate-Theme, Claude-Project, Sections &amp; Snippets.</div>
+                  </div>
+                  <div class="hf-foot">
+                    <span class="wm">vor<em>flows</em></span>
+                    <span class="meta">shopify · claude code</span>
+                  </div>
+                </div>
+                <div class="hf-face hf-side">
+                  <span class="stripe">v1</span>
+                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· BaseFlow</span></span>
+                  <span class="stripe" style="visibility:hidden">·</span>
+                </div>
+                <div class="hf-face hf-top">
+                  <span class="wm">vor<em>flows</em></span>
+                  <span class="label">· BaseFlow · v1</span>
+                </div>
+              </div>
+              <div class="hf-shadow"></div>
             </div>
-            <div>
-              <div>theme/</div>
-              <div>├── sections/</div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
-              <div>├── snippets/</div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
-              <div>└── templates/</div>
+
+            <div class="hf-box hf-seo hf-pos-seo">
+              <div class="hf-box-inner" style="--ry:-28deg">
+                <div class="hf-face hf-front">
+                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
+                  <div class="hf-mid">
+                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
+                    <div class="hf-modlabel">
+                      <span class="sub">module · rank · jsonld</span>
+                      <span class="name">SEOFlow</span>
+                    </div>
+                    <div class="hf-rule"></div>
+                    <div class="hf-desc">SEO-Daten als Input. Output: SEO-Optimierung + Code-Änderungen am Theme.</div>
+                  </div>
+                  <div class="hf-foot">
+                    <span class="wm">vor<em>flows</em></span>
+                    <span class="meta">shopify · claude code</span>
+                  </div>
+                </div>
+                <div class="hf-face hf-side">
+                  <span class="stripe">v1</span>
+                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· SEOFlow</span></span>
+                  <span class="stripe" style="visibility:hidden">·</span>
+                </div>
+                <div class="hf-face hf-top">
+                  <span class="wm">vor<em>flows</em></span>
+                  <span class="label">· SEOFlow · v1</span>
+                </div>
+              </div>
+              <div class="hf-shadow"></div>
             </div>
-          </aside>
-          <button type="button" class="filetree-copy" data-copy-target=".filetree" aria-label="Tree-Struktur kopieren">copy</button>
+
+            <div class="hf-box hf-clarity hf-pos-clarity">
+              <div class="hf-box-inner" style="--ry:-34deg">
+                <div class="hf-face hf-front">
+                  <div class="hf-meta"><span>method</span><span class="dot">v1</span></div>
+                  <div class="hf-mid">
+                    <div class="hf-mark"><span class="caret">›</span><span class="glyph">v</span></div>
+                    <div class="hf-modlabel">
+                      <span class="sub">module · optimize · loop</span>
+                      <span class="name">ClarityFlow</span>
+                    </div>
+                    <div class="hf-rule"></div>
+                    <div class="hf-desc">Heatmaps, Scroll, Klicks. Erkennt Drop-offs und schließt den Loop: Daten → Hypothese → Code.</div>
+                  </div>
+                  <div class="hf-foot">
+                    <span class="wm">vor<em>flows</em></span>
+                    <span class="meta">shopify · claude code</span>
+                  </div>
+                </div>
+                <div class="hf-face hf-side">
+                  <span class="stripe">v1</span>
+                  <span class="vert"><span>vor<em>flows</em></span><span class="label">· ClarityFlow</span></span>
+                  <span class="stripe" style="visibility:hidden">·</span>
+                </div>
+                <div class="hf-face hf-top">
+                  <span class="wm">vor<em>flows</em></span>
+                  <span class="label">· ClarityFlow · v1</span>
+                </div>
+              </div>
+              <div class="hf-shadow"></div>
+            </div>
+
+          </div>
         </div>
       </div>
     </header>
@@ -1558,14 +1787,14 @@
             <div class="problem-num mono">03</div>
             <div>
               <h3 class="problem-title">Agentur-Loop.</h3>
-              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt — und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
+              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
             </div>
           </div>
           <div class="problem-item">
             <div class="problem-num mono">04</div>
             <div>
               <h3 class="problem-title">Liegen gelassenes Potential.</h3>
-              <p class="problem-body">KI baut in Minuten, wofür ein Dev Stunden braucht. Im deutschsprachigen Raum nutzt das fast niemand — wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
+              <p class="problem-body">KI baut in Minuten, wofür ein Dev Stunden braucht. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
             </div>
           </div>
         </div>
@@ -1576,7 +1805,7 @@
     <section class="section-tight">
       <div class="container-prose reveal">
         <div class="meta eyebrow">Die Lösung</div>
-        <h2 class="reveal-head display">Claude Code wird dein <em>technischer Co-Founder</em> — nur schneller, ohne hohe Kosten.</h2>
+        <h2 class="reveal-head display">Claude Code wird dein <em>technischer Co-Founder</em>. Nur schneller, ohne hohe Kosten.</h2>
         <div class="reveal-flow"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
         <p class="reveal-body">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
@@ -1619,7 +1848,7 @@
                 <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
               </div>
               <figure class="wf-preview">
-                <figcaption class="wf-preview-cap">Ergebnis im Cart — live nach Publish</figcaption>
+                <figcaption class="wf-preview-cap">Ergebnis im Cart, live nach Publish</figcaption>
                 <svg viewBox="0 0 880 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free Shipping Bar Vorschau" style="display:block;width:100%;height:auto;background:#FAFAF7;">
                   <text x="60" y="64" fill="#1A1A1A" font-family="Inter, sans-serif" font-size="20" font-weight="600">Noch 12,50 € bis Free Shipping</text>
                   <rect x="60" y="92" width="760" height="14" rx="7" fill="#E5E3DD"/>
@@ -1657,21 +1886,21 @@
         </div>
         <div class="modules">
           <div class="module">
-            <div class="meta module-label">01 / Base — Pflicht-Modul</div>
+            <div class="meta module-label">01 / Base · Pflicht-Modul</div>
             <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
             <p class="module-body">File-Export aus Shopify, Claude Project laden, Sections und Snippets bearbeiten.</p>
-            <p class="module-body">Änderungen landen in einem Duplicate Theme — erst nach Review wird published. Skill-Stack inklusive.</p>
+            <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
           <div class="module">
-            <div class="meta module-label">02 / SEOFlow — Add-On</div>
+            <div class="meta module-label">02 / SEOFlow · Add-On</div>
             <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht und ohne dich läuft.</h3>
             <p class="module-body">Geführter Setup-Flow, kein Doku-Marathon. Search Console mit Claude Code verknüpft.</p>
             <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
           </div>
           <div class="module">
-            <div class="meta module-label">03 / ClarityFlow — Add-On</div>
-            <h3 class="module-title">Dein Shop verrät, was nicht funktioniert. Claude hört zu — und handelt.</h3>
-            <p class="module-body">Verbindet Claude Code mit Verhaltensdaten — Klicks, Scroll, Heatmaps.</p>
+            <div class="meta module-label">03 / ClarityFlow · Add-On</div>
+            <h3 class="module-title">Dein Shop verrät, was nicht funktioniert. Claude hört zu und handelt.</h3>
+            <p class="module-body">Verbindet Claude Code mit Verhaltensdaten: Klicks, Scroll, Heatmaps.</p>
             <p class="module-body">Erkennt Drop-offs, ignorierte CTAs, tote Sections. Schließt den Loop: Daten → Hypothese → Code → neue Daten.</p>
           </div>
         </div>
@@ -1682,7 +1911,7 @@
     <section class="section-tight" style="background: #F4F2EC;">
       <div class="container-prose">
         <div class="meta eyebrow">Subscription-Killer</div>
-        <h2 class="h2 display">Was du jeden Monat zahlst — und was du stattdessen besitzen könntest.</h2>
+        <h2 class="h2 display">Was du jeden Monat zahlst. Und was du stattdessen besitzen könntest.</h2>
         <table class="compare-table">
           <colgroup>
             <col class="col-stack" />
@@ -1710,7 +1939,7 @@
           </tbody>
         </table>
         <p class="compare-foot display-italic">5.232 € pro Jahr in Apps. Oder einmal vorflows.</p>
-        <p class="compare-disclaimer">Zahlen illustrativ — typische Shop-Stack-Kosten.</p>
+        <p class="compare-disclaimer">Zahlen illustrativ. Typische Shop-Stack-Kosten.</p>
       </div>
     </section>
 
@@ -1730,7 +1959,7 @@
           </div>
           <div class="outcome-item">
             <div class="outcome-day">TAG 30</div>
-            <p class="outcome-text">Claude erkennt versteckte SEO-Potentiale, gibt dir Handlungsempfehlungen und optimiert komplexere SEO-Funktionen wie Schema &amp; Rich Snippets — ohne dass du wissen musst, was das ist.</p>
+            <p class="outcome-text">Claude erkennt versteckte SEO-Potentiale, gibt dir Handlungsempfehlungen und optimiert komplexere SEO-Funktionen wie Schema &amp; Rich Snippets, ohne dass du wissen musst, was das ist.</p>
           </div>
         </div>
       </div>
@@ -1740,7 +1969,7 @@
     <section class="section-tight">
       <div class="container-prose">
         <div class="meta eyebrow">Skill-Stack</div>
-        <h2 class="h2 display">Was du am Ende kannst — geführt durch eine einzige Datei.</h2>
+        <h2 class="h2 display">Was du am Ende kannst, geführt durch eine einzige Datei.</h2>
         <p class="skill-sub">Base ist der komplette Workflow plus Skill- und Plugin-Stack. Inkludiert in jedem Paket.</p>
         <div class="skill-list">
           <article class="skill-card">
@@ -1749,7 +1978,7 @@
               <h3 class="skill-card-name">Dein Theme sicher umbauen.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">theme-architecture</span><p class="skill-tile-desc">Wie Shopify-Themes intern aufgebaut sind — was wo lebt.</p></div>
+              <div><span class="skill-tile-name">theme-architecture</span><p class="skill-tile-desc">Wie Shopify-Themes intern aufgebaut sind und was wo lebt.</p></div>
               <div><span class="skill-tile-name">liquid-fundamentals</span><p class="skill-tile-desc">Was du wissen musst, um Sections selbst zu lesen.</p></div>
               <div><span class="skill-tile-name">claude-project-setup</span><p class="skill-tile-desc">Theme so laden, dass Claude konsistent arbeitet.</p></div>
               <div><span class="skill-tile-name">duplicate-publish-flow</span><p class="skill-tile-desc">Der sichere Weg vom Edit zum Live-Theme.</p></div>
@@ -1776,7 +2005,6 @@
             </div>
           </article>
         </div>
-        <p class="skill-foot">◆ In jedem Paket enthalten — keine Upsell-Stufen.</p>
       </div>
     </section>
 
@@ -1784,21 +2012,21 @@
     <section class="section">
       <div class="container-prose">
         <div class="meta eyebrow">Für wen das ist</div>
-        <h2 class="h2 display">Für alle, die mehr wollen — und es schneller wollen.</h2>
+        <h2 class="h2 display">Für alle, die mehr wollen. Und es schneller wollen.</h2>
         <div class="qualifier-grid">
           <div class="qualifier-col">
-            <h3>vorflows ist für dich, wenn —</h3>
+            <h3>vorflows ist für dich, wenn:</h3>
             <ul class="qualifier-list qualifier-yes">
               <li>Du aktuelle Technologien aufs Maximum ausreizen willst, um dir einen massiven Vorsprung zu holen.</li>
               <li>Du Speed willst.</li>
-              <li>Du alles umsetzen willst — ohne coden zu können, ohne Devs zu bezahlen, ohne 100 Apps.</li>
+              <li>Du alles umsetzen willst, ohne coden zu können, ohne Devs zu bezahlen, ohne 100 Apps.</li>
               <li>Du deine Conversion und dein SEO optimieren willst.</li>
               <li>Du dich nicht davor scheust, ein paar Dateien hin und her zu kopieren.</li>
             </ul>
           </div>
           <div class="qualifier-divider" aria-hidden="true"></div>
           <div class="qualifier-col">
-            <h3>vorflows ist nicht für dich, wenn —</h3>
+            <h3>vorflows ist nicht für dich, wenn:</h3>
             <ul class="qualifier-list qualifier-no">
               <li>Du einen Magic-Button willst, der in einem Klick alles erledigt.</li>
               <li>Du keine Lust hast, ein paar Accounts und Verbindungen einzurichten (nur nötig für SEOFlow und ClarityFlow).</li>
@@ -1865,7 +2093,7 @@
               <a href="#" class="pricing-cta" data-waitlist="pricing-clarityflow">Join Waitlist</a>
             </div>
             <div class="pricing-col recommended">
-              <div class="pricing-recommend-strip">Empfohlen — Beste Preis-Leistung</div>
+              <div class="pricing-recommend-strip">Empfohlen · Beste Preis-Leistung</div>
               <h3 class="pricing-name">Bundle</h3>
               <p class="pricing-position">Alles drin. Kein Add-On später nötig.</p>
               <div class="pricing-price-block">
@@ -1886,7 +2114,7 @@
         </div>
         <p class="pricing-trust"><strong>Setup-Garantie:</strong> Wenn das System nicht für dich funktioniert, bekommst du dein Geld zurück.</p>
         <div class="pricing-note">
-          <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen — je 150&nbsp;€.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt: 397&nbsp;+&nbsp;150&nbsp;+&nbsp;150&nbsp;=&nbsp;697&nbsp;€. Wer das Bundle gleich nimmt, zahlt 597&nbsp;€ und spart 100&nbsp;€.
+          <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen, je 150&nbsp;€.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt: 397&nbsp;+&nbsp;150&nbsp;+&nbsp;150&nbsp;=&nbsp;697&nbsp;€. Wer das Bundle gleich nimmt, zahlt 597&nbsp;€ und spart 100&nbsp;€.
         </div>
       </div>
     </section>
@@ -1899,14 +2127,14 @@
         <div class="faq">
           <details class="faq-item" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
-            <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet — alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
+            <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
           </details>
           <details class="faq-item">
             <summary>Was, wenn ich mein Theme zerschieße?</summary>
             <div class="faq-body">Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy.</div>
           </details>
           <details class="faq-item">
-            <summary>Funktioniert das mit jedem Theme — Dawn, Custom, Premium?</summary>
+            <summary>Funktioniert das mit jedem Theme: Dawn, Custom, Premium?</summary>
             <div class="faq-body">Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert.</div>
           </details>
           <details class="faq-item">
@@ -1923,7 +2151,7 @@
           </details>
           <details class="faq-item">
             <summary>Was passiert mit meinen Daten?</summary>
-            <div class="faq-body">SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten — alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude. Wenn du dich unwohl dabei fühlst, dass Claude deine Daten verarbeitet, ist vorflows nicht das richtige für dich.</div>
+            <div class="faq-body">SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude. Wenn du dich unwohl dabei fühlst, dass Claude deine Daten verarbeitet, ist vorflows nicht das richtige für dich.</div>
           </details>
           <details class="faq-item">
             <summary>Gibt es eine Geld-zurück-Garantie?</summary>
@@ -1936,7 +2164,7 @@
     <!-- 14 FINAL CTA -->
     <section class="final-cta section">
       <div class="container-prose">
-        <h2 class="display">Bau deinen Shop schneller — <em>als alle anderen.</em></h2>
+        <h2 class="display">Bau deinen Shop schneller <em>als alle anderen.</em></h2>
         <p>Wähle dein Paket. 20–30 Minuten Setup. Erste Section noch heute.</p>
         <a href="#" class="btn btn-primary" data-waitlist="final-cta">Join Waitlist</a>
       </div>
@@ -2055,7 +2283,7 @@
       let consentState = null;
       try { consentState = localStorage.getItem('vf_consent'); } catch {}
 
-      // Identifiers persisted after Lead — only loaded if consent granted
+      // Identifiers persisted after Lead, only loaded if consent granted
       let extId = null;
       let knownEmail = null;
       let knownFirstName = null;
@@ -2387,7 +2615,7 @@
         }
       });
 
-      // Keyboard shortcuts: w/m/p/f/g — skip when typing in input/textarea/contenteditable
+      // Keyboard shortcuts: w/m/p/f/g, skip when typing in input/textarea/contenteditable
       const targets = { w: '#workflow', m: '#module', p: '#pricing', f: '#faq' };
       window.addEventListener('keydown', (e) => {
         if (e.metaKey || e.ctrlKey || e.altKey) return;
