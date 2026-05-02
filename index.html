@@ -241,6 +241,7 @@
       .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
       .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
       .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+      .nav-toggle[aria-expanded="true"] { visibility: hidden; }
 
       .mobile-menu {
         position: fixed;
@@ -289,6 +290,27 @@
         border-bottom: 0;
       }
       .mobile-menu a:first-child.mobile-cta { border-top: 0; }
+      .mobile-menu-close {
+        position: fixed;
+        top: 14px;
+        right: clamp(20px, 4vw, 48px);
+        width: 40px;
+        height: 40px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: var(--text-primary);
+        border: 0;
+        border-radius: 8px;
+        color: var(--bg-light);
+        cursor: pointer;
+        z-index: 60;
+        transition: background-color 150ms ease-out, transform 150ms ease-out;
+      }
+      .mobile-menu-close:active { transform: scale(0.94); }
+      .mobile-menu.open ~ .mobile-menu-close { display: inline-flex; }
+      .mobile-menu-close:hover { background: var(--accent); color: #fff; }
+      .mobile-menu-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       @media (max-width: 768px) {
         .nav-links a { display: none; }
         .nav-toggle { display: inline-flex; }
@@ -1539,6 +1561,9 @@
       <a href="#faq">FAQ</a>
       <a href="#" class="mobile-cta" data-waitlist="mobile-menu">Join Waitlist</a>
     </div>
+    <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Menü schließen">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l12 12M16 4L4 16"/></svg>
+    </button>
 
     <!-- 02 HERO -->
     <header class="hero container">
@@ -2282,6 +2307,7 @@
         document.body.style.overflow = open ? 'hidden' : '';
       });
       mobileMenu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobile));
+      document.getElementById('mobileMenuClose')?.addEventListener('click', closeMobile);
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMobile();
       });
