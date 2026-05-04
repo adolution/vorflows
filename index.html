@@ -245,10 +245,10 @@
 
       .mobile-menu {
         position: fixed;
-        inset: 64px 0 0;
+        inset: 0;
         background: var(--bg-light);
-        z-index: 48;
-        padding: clamp(24px, 5vw, 48px) clamp(20px, 4vw, 48px) 48px;
+        z-index: 55;
+        padding: clamp(72px, 12vw, 96px) clamp(20px, 4vw, 48px) 48px;
         display: flex;
         flex-direction: column;
         opacity: 0;
@@ -257,6 +257,7 @@
         visibility: hidden;
         transition: opacity 240ms ease-out, transform 240ms ease-out, visibility 240ms;
         overflow-y: auto;
+        overscroll-behavior: contain;
       }
       .mobile-menu.open {
         opacity: 1;
@@ -1105,27 +1106,29 @@
       .pricing-col.recommended {
         background: linear-gradient(180deg, rgba(200, 99, 62, 0.12) 0%, rgba(200, 99, 62, 0.04) 100%);
         border: 1px solid var(--accent);
-        border-radius: 12px;
+        border-radius: 0 0 12px 12px;
         box-shadow:
           0 32px 72px -36px rgba(200, 99, 62, 0.55),
           0 6px 20px -8px rgba(26, 26, 26, 0.10);
         z-index: 2;
-        transform: translateY(-10px);
-        padding: 0 32px 38px;
+        padding: 32px 32px 38px;
         margin-left: 16px;
-        overflow: hidden;
+        overflow: visible;
       }
       @media (max-width: 980px) {
         .pricing-col.recommended {
           margin-left: 0;
-          margin-top: 16px;
-          transform: none;
-          padding: 0 28px 32px;
+          margin-top: 48px;
+          padding: 32px 28px;
         }
       }
       .pricing-recommend-strip {
-        margin: 0 -32px 28px;
-        padding: 11px 24px;
+        position: absolute;
+        left: -1px;
+        right: -1px;
+        bottom: 100%;
+        margin: 0;
+        padding: 9px 24px;
         background: var(--accent);
         color: var(--bg-light);
         font-family: 'Inter', sans-serif;
@@ -1134,14 +1137,11 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         text-align: center;
+        border-radius: 12px 12px 0 0;
+        border: 1px solid var(--accent);
+        border-bottom: 0;
       }
-      @media (max-width: 980px) {
-        .pricing-recommend-strip { margin: 0 -28px 24px; }
-      }
-      .pricing-col.recommended .pricing-name {
-        font-size: 19px;
-        margin-top: 6px;
-      }
+      .pricing-col.recommended .pricing-name { font-size: 19px; }
       .pricing-col.recommended .pricing-price { font-size: 46px; }
       .pricing-name {
         font-family: 'Inter', sans-serif;
