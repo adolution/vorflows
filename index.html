@@ -21,7 +21,7 @@
     <meta name="description" content="vorflows ist das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren. Ohne Agentur, ohne App-Stack, ohne Dev-Team." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" sizes="32x32" href="brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="brand_assets/logos/apple-touch-icon.png" />
@@ -1375,6 +1375,41 @@
       .codeblock-wrap { position: relative; min-width: 0; max-width: 100%; }
       .filetree-wrap { position: relative; min-width: 0; max-width: 100%; overflow: hidden; }
 
+      /* Handwritten annotation pointing into a codeblock */
+      .codeblock-annotated { padding-top: 78px; }
+      .code-annotation {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        color: var(--accent);
+        pointer-events: none;
+        transform: rotate(-3deg);
+        transform-origin: top right;
+      }
+      .code-annotation .ca-text {
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 1;
+        white-space: nowrap;
+        margin-top: 14px;
+      }
+      .code-annotation .ca-arrow {
+        width: 54px;
+        height: 44px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      @media (max-width: 720px) {
+        .codeblock-annotated { padding-top: 64px; }
+        .code-annotation { right: 4px; }
+        .code-annotation .ca-text { font-size: 18px; margin-top: 12px; }
+        .code-annotation .ca-arrow { width: 42px; height: 36px; }
+      }
+
       /* Hero stack — centered single column with video as centerpiece */
       .hero-stack {
         display: flex;
@@ -1969,7 +2004,7 @@
             <div class="wf-num">STEP 02</div>
             <div>
               <h3 class="wf-title">Claude bearbeitet</h3>
-              <div class="codeblock-wrap">
+              <div class="codeblock-wrap codeblock-annotated">
                 <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
 <span class="comment">  Threshold konfigurierbar via Theme-Editor. Position: Cart-Drawer.</span>
 
@@ -1977,10 +2012,14 @@
 <span class="add">+ {%- assign threshold = section.settings.threshold | times: 100 -%}</span>
 <span class="add">+ {%- assign remaining = threshold | minus: cart.items_subtotal_price -%}</span>
 <span class="add">+ &lt;div class="shipping-bar" data-threshold="{{ threshold }}"&gt;</span>
-<span class="add">+   &lt;span class="shipping-bar__msg"&gt;</span>
-<span class="add">+     {%- if remaining &gt; 0 -%}</span>
-<span class="add">+       Noch &lt;b&gt;{{ remaining | money }}&lt;/b&gt; bis Free Shipping</span>
 <span class="comment">      …</span></pre>
+                <div class="code-annotation" aria-hidden="true">
+                  <span class="ca-text">Claude schreibt das für dich</span>
+                  <svg class="ca-arrow" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 8 C 30 4, 58 12, 70 38 L 70 56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M62 50 L 70 60 L 78 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
               <figure class="wf-preview">
                 <figcaption class="wf-preview-cap">Ergebnis im Cart, live nach Publish</figcaption>
