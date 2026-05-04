@@ -572,16 +572,16 @@
         font-size: 13.5px;
         line-height: 1.75;
         color: #D4D2CC;
-        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        overflow-x: hidden;
       }
       @media (max-width: 600px) {
         .codeblock {
           font-size: 11px;
           line-height: 1.55;
           padding: 14px 14px;
-          white-space: pre-wrap;
-          word-break: break-word;
-          overflow-x: hidden;
         }
         .filetree {
           font-size: 11.5px;
@@ -867,6 +867,141 @@
         text-align: center;
       }
       .skill-foot::first-letter { color: var(--accent); }
+
+      /* Files in package */
+      .files-grid {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 900px) {
+        .files-grid { grid-template-columns: 1fr; gap: 16px; }
+      }
+      .file-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px 24px 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 1px 0 rgba(26, 26, 26, 0.02);
+      }
+      .file-card-name {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.02em;
+        color: var(--accent);
+        margin: 0 0 6px;
+      }
+      .file-card-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(17px, 1.6vw, 19px);
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+        margin: 0 0 12px;
+        line-height: 1.3;
+      }
+      .file-card-desc {
+        margin: 0 0 18px;
+        font-size: 14.5px;
+        color: var(--text-secondary);
+        line-height: 1.55;
+      }
+      .file-card-preview {
+        margin-top: auto;
+        background: var(--bg-dark);
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        line-height: 1.65;
+        color: #B8B6AE;
+        overflow: hidden;
+      }
+      .file-card-preview .pv-key { color: var(--accent); }
+      .file-card-preview .pv-com { color: #6E6E68; }
+      .file-card-preview .pv-str { color: #6FBF8F; }
+      .file-card-preview .pv-add { color: #6FBF8F; }
+
+      .demo-video-wrap {
+        margin: 48px 0 0;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #0A0A0A;
+        box-shadow:
+          0 1px 0 rgba(200, 99, 62, 0.08),
+          0 16px 40px -16px rgba(200, 99, 62, 0.22),
+          0 32px 80px -28px rgba(26, 26, 26, 0.22);
+      }
+      .demo-video-wrap video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .demo-video-cap {
+        margin: 14px 0 0;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        text-align: center;
+      }
+
+      .security-strip {
+        margin-top: 32px;
+        padding: 22px 26px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 8px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .security-strip .ss-icon {
+        flex: 0 0 auto;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent);
+        display: grid;
+        place-items: center;
+      }
+      .security-strip .ss-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+      .security-strip .ss-body {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--text-primary);
+      }
+      .security-strip .ss-body strong { font-weight: 600; }
+      .security-strip .ss-body .ss-sub { color: var(--text-secondary); display: block; margin-top: 6px; }
+      @media (max-width: 600px) {
+        .security-strip { padding: 18px 18px; gap: 14px; }
+        .security-strip .ss-icon { width: 32px; height: 32px; }
+        .security-strip .ss-body { font-size: 14px; }
+      }
+
+      .skill-section-divider {
+        margin: 56px 0 0;
+        height: 1px;
+        background: var(--border);
+      }
+      .skill-rail-label {
+        margin: 36px 0 -24px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
 
       /* Qualifier */
       .qualifier-grid {
@@ -2046,12 +2181,51 @@
       </div>
     </section>
 
-    <!-- 10 SKILL STACK -->
+    <!-- 10 PAKET-INHALT + SKILL STACK -->
     <section class="section-tight">
       <div class="container-prose">
-        <div class="meta eyebrow">Skill-Stack</div>
-        <h2 class="h2 display">Was du am Ende kannst, geführt durch eine einzige Datei.</h2>
-        <p class="skill-sub">Base ist der komplette Workflow plus Skill- und Plugin-Stack. Inkludiert in jedem Paket.</p>
+        <div class="meta eyebrow">Was im Paket liegt</div>
+        <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
+        <p class="skill-sub">Wochenlang gebaut, getestet, geschärft. Du installierst per Klick — kein Setup-Marathon.</p>
+
+        <div class="files-grid">
+          <article class="file-card">
+            <span class="file-card-name">setup.md</span>
+            <h3 class="file-card-title">Auto-Installer</h3>
+            <p class="file-card-desc">Ein Befehl. Skills, Plugins, Konfig — alles landet in deinem Claude-Workspace, fertig konfiguriert.</p>
+            <div class="file-card-preview"><span class="pv-com"># einmal ausführen</span><br>$ <span class="pv-key">claude</span> setup.md<br><span class="pv-com"># → Skills + Plugins ready</span></div>
+          </article>
+          <article class="file-card">
+            <span class="file-card-name">CLAUDE.md</span>
+            <h3 class="file-card-title">Mein Playbook für deine KI</h3>
+            <p class="file-card-desc">Wochenlang an echten Shop-Cases geschärft. Sagt deiner KI, wie sie arbeiten soll: welche Patterns funktionieren, welche nicht, welche Reihenfolge sicher ist.</p>
+            <div class="file-card-preview"><span class="pv-com"># Auszug</span><br><span class="pv-key">always:</span> <span class="pv-str">duplikat zuerst</span><br><span class="pv-key">never:</span> <span class="pv-str">live-theme direkt</span><br><span class="pv-key">prefer:</span> <span class="pv-str">section &gt; app</span></div>
+          </article>
+          <article class="file-card">
+            <span class="file-card-name">memory.md</span>
+            <h3 class="file-card-title">Lernt dich kennen</h3>
+            <p class="file-card-desc">Speichert Vorlieben, Constraints, Shop-Eigenheiten. Aktualisiert sich automatisch nach jedem Chat. Claude vergisst nichts.</p>
+            <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">brand_color:</span> <span class="pv-str">"#C8633E"</span><br><span class="pv-key">tone:</span> <span class="pv-str">"direkt, knapp"</span><br><span class="pv-key">avoid:</span> <span class="pv-str">"app stack"</span></div>
+          </article>
+        </div>
+
+        <figure class="demo-video-wrap">
+          <video autoplay muted loop playsinline preload="metadata" src="/assets/video/vorflows-demo.mp4"></video>
+        </figure>
+        <p class="demo-video-cap">Kurzerklärung der drei Dateien — was drin steckt, wie sie zusammenspielen.</p>
+
+        <aside class="security-strip">
+          <span class="ss-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="ss-body">
+            <strong>Sicher by design.</strong> Claude arbeitet immer auf einem Duplikat deines Themes — niemals direkt am Live-Shop. Kein Zugriff auf Kundendaten, keine API-Keys.
+            <span class="ss-sub">Du kopierst Dateien gelegentlich rüber und entscheidest selbst, wann published wird.</span>
+          </div>
+        </aside>
+
+        <div class="skill-section-divider" aria-hidden="true"></div>
+        <p class="skill-rail-label">Skill-Stack · komplett im Base inklusive</p>
         <div class="skill-list">
           <article class="skill-card">
             <header class="skill-card-head">
