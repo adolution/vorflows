@@ -321,7 +321,7 @@
 
       /* Hero */
       .hero {
-        padding-block: clamp(72px, 9vw, 120px) clamp(64px, 8vw, 112px);
+        padding-block: clamp(12px, 1.5vw, 20px) clamp(40px, 5vw, 72px);
       }
       .hero-grid {
         display: grid;
@@ -332,14 +332,6 @@
       .hero-grid > * { min-width: 0; }
       @media (max-width: 900px) {
         .hero { padding-block: 36px clamp(56px, 8vw, 96px); }
-        .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-        .hero-text { display: contents; }
-        .hero-eyebrow { display: none; }
-        .hero-headline { order: 1; margin-bottom: 16px; }
-        .hero-lead { order: 2; margin-bottom: 20px; }
-        .hero-ctas { order: 3; }
-        .filetree-wrap { order: 4; margin-block: 8px 0; }
-        .hero-sub { order: 5; margin-bottom: 0; }
       }
       .hero-eyebrow {
         color: var(--accent);
@@ -1307,6 +1299,193 @@
       }
       .filetree-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+      /* Hero stack — centered single column with video as centerpiece */
+      .hero-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: clamp(10px, 1.2vw, 16px);
+      }
+      .hero-stack .hero-eyebrow { margin: 0; }
+      .hero-stack .hero-headline {
+        margin: 0;
+        max-width: 1040px;
+        width: 100%;
+        font-size: clamp(28px, 3.6vw, 50px);
+        line-height: 1.06;
+        text-wrap: balance;
+      }
+      .hero-stack .hero-video {
+        width: min(100%, 1040px, calc((100vh - 360px) * 16 / 9));
+        margin-top: clamp(6px, 0.8vw, 12px);
+      }
+      .hero-stack .hero-sub {
+        margin: 0;
+        max-width: 60ch;
+        font-size: clamp(15px, 1.15vw, 17px);
+        line-height: 1.55;
+        color: var(--text-secondary);
+      }
+      .hero-stack .hero-ctas {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-top: clamp(4px, 0.6vw, 10px);
+      }
+      @media (max-width: 720px) {
+        .hero-stack { gap: 14px; }
+        .hero-stack .hero-headline { font-size: clamp(28px, 7vw, 38px); }
+        .hero-stack .hero-ctas { flex-direction: column; gap: 12px; width: 100%; }
+        .hero-stack .hero-ctas .btn { width: 100%; justify-content: center; }
+      }
+
+      /* Hero video player */
+      .hero-video {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #0A0A0A;
+        box-shadow:
+          0 1px 0 rgba(200, 99, 62, 0.08),
+          0 16px 40px -16px rgba(200, 99, 62, 0.22),
+          0 32px 80px -28px rgba(26, 26, 26, 0.22);
+        isolation: isolate;
+      }
+      .hero-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .hero-video.is-playing video { cursor: pointer; }
+      .hero-video .hv-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: linear-gradient(180deg, rgba(10,10,10,0.10) 0%, rgba(10,10,10,0.40) 100%);
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        transition: opacity 320ms cubic-bezier(.2,.8,.2,1), background 240ms ease;
+      }
+      .hero-video:hover .hv-play { background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.30) 100%); }
+      .hero-video.is-playing .hv-play { opacity: 0; pointer-events: none; }
+      .hero-video .hv-play-btn {
+        width: 64px;
+        height: 64px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+        border: 1.5px solid rgba(255,255,255,0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: grid;
+        place-items: center;
+        transition: background 240ms ease, border-color 240ms ease, transform 240ms cubic-bezier(.2,.8,.2,1);
+      }
+      .hero-video:hover .hv-play-btn {
+        background: rgba(255,255,255,0.18);
+        border-color: rgba(255,255,255,1);
+        transform: scale(1.04);
+      }
+      .hero-video .hv-play-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: rgba(255,255,255,0.96);
+        margin-left: 2px;
+      }
+      .hero-video .hv-play-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: rgba(255,255,255,0.92);
+        text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+      }
+      .hero-video .hv-play:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 14px;
+      }
+      .hero-video .hv-controls {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        display: none;
+        align-items: center;
+        gap: 8px;
+        background: rgba(10,10,10,0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 5px 6px 5px 12px;
+        border-radius: 6px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.70);
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 240ms ease;
+      }
+      .hero-video.is-playing .hv-controls { display: inline-flex; opacity: 1; }
+      .hero-video .hv-speed {
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.96);
+        font-family: inherit;
+        font-size: 11px;
+        letter-spacing: inherit;
+        text-transform: none;
+        padding: 3px 22px 3px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='white' stroke-opacity='.7' stroke-width='1.4' stroke-linecap='round'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 6px center;
+      }
+      .hero-video .hv-speed:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      @media (max-width: 720px) {
+        .hero-video { border-radius: 12px; }
+        .hero-video .hv-play-btn { width: 56px; height: 56px; }
+        .hero-video .hv-play-btn svg { width: 16px; height: 16px; }
+        .hero-video .hv-play-label { font-size: 12px; }
+      }
+
+      /* Workflow-dark filetree contrast override */
+      .workflow-dark .filetree {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.88);
+      }
+      .workflow-dark .filetree-head {
+        color: rgba(255,255,255,0.65);
+        border-color: rgba(255,255,255,0.10);
+      }
+      .workflow-dark .filetree-copy {
+        border-color: rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.65);
+      }
+      .workflow-dark .filetree-copy:hover,
+      .workflow-dark .filetree-copy.copied {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .workflow-dark .filetree .ft-tag { color: var(--text-secondary-dark); }
+      .workflow-dark .filetree .ft-tag.mod { color: var(--text-secondary-dark); }
+      .workflow-dark .filetree .ft-tag.add { color: var(--accent); }
+
       /* Keyboard hints in footer */
       .kbd-hints {
         font-family: 'JetBrains Mono', monospace;
@@ -1567,40 +1746,43 @@
 
     <!-- 02 HERO -->
     <header class="hero container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="meta hero-eyebrow">Shopify · Claude Code · Workflow-System</div>
-          <h1 class="display hero-headline">
-            Wann war deine letzte Shop Section <em>genau so, wie du sie wolltest?</em>
-          </h1>
-          <p class="hero-lead">
-            Mit vorflows beschreibst du sie einmal. Claude baut sie.
-          </p>
-          <p class="hero-sub">
-            vorflows ist das System, mit dem Founder ihren Shop über Claude Code umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
-          </p>
-          <div class="hero-ctas">
-            <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
-            <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
+      <div class="hero-stack">
+        <div class="meta hero-eyebrow">Für Shop Owner · Sections bauen · SEO · CVR Optimierung</div>
+        <h1 class="display hero-headline">
+          So holst du mit KI das <em>Maximum</em> aus deinem Shop heraus
+        </h1>
+        <div class="hero-video" data-hero-video>
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            src="/assets/video/vorflows-salesletter.mp4"
+          ></video>
+          <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
+            <span class="hv-play-btn">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z"/></svg>
+            </span>
+            <span class="hv-play-label">Vorflows schnell erklärt</span>
+          </button>
+          <div class="hv-controls" aria-label="Video-Einstellungen">
+            <span class="hv-controls-label">Speed</span>
+            <select class="hv-speed" aria-label="Wiedergabegeschwindigkeit">
+              <option value="0.75">0.75×</option>
+              <option value="1" selected>1×</option>
+              <option value="1.25">1.25×</option>
+              <option value="1.5">1.5×</option>
+              <option value="2">2×</option>
+            </select>
           </div>
         </div>
-        <div class="filetree-wrap">
-          <aside class="filetree" aria-hidden="true">
-            <div class="filetree-head">
-              <span class="filetree-dot"></span>
-              theme/ — vorflows-edit
-            </div>
-            <div>
-              <div>theme/</div>
-              <div>├── sections/</div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
-              <div>├── snippets/</div>
-              <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
-              <div>└── templates/</div>
-            </div>
-          </aside>
-          <button type="button" class="filetree-copy" data-copy-target=".filetree" aria-label="Tree-Struktur kopieren">copy</button>
+        <p class="hero-sub">
+          vorflows ist das System, mit dem Founder ihren Shop über Claude Code umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
+        </p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
+          <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
         </div>
       </div>
     </header>
@@ -1669,6 +1851,24 @@
                 <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Duplicate
   vorflows-edit <span class="check">✓</span>  <span class="comment"># Live-Theme bleibt unangetastet</span></pre>
                 <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
+              </div>
+              <div class="filetree-wrap" style="margin-top: 20px;">
+                <aside class="filetree" aria-hidden="true">
+                  <div class="filetree-head">
+                    <span class="filetree-dot"></span>
+                    theme/ — vorflows-edit
+                  </div>
+                  <div>
+                    <div>theme/</div>
+                    <div>├── sections/</div>
+                    <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;├── hero.liquid</span><span class="ft-tag mod">modified</span></div>
+                    <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── product-card.liquid</span><span class="ft-tag mod">modified</span></div>
+                    <div>├── snippets/</div>
+                    <div class="ft-row"><span>│&nbsp;&nbsp;&nbsp;└── bundle-builder.liquid</span><span class="ft-tag add">new</span></div>
+                    <div>└── templates/</div>
+                  </div>
+                </aside>
+                <button type="button" class="filetree-copy" data-copy-target=".filetree" aria-label="Tree-Struktur kopieren">copy</button>
               </div>
             </div>
           </div>
@@ -2335,6 +2535,43 @@
             btn.textContent = original;
             btn.classList.remove('copied');
           }, 1400);
+        });
+      });
+
+      // Hero video — muted background autoplay, click to unmute + restart with sound.
+      // No native controls; custom speed selector only. Click on video toggles play/pause.
+      document.querySelectorAll('[data-hero-video]').forEach((wrap) => {
+        const video = wrap.querySelector('video');
+        const playBtn = wrap.querySelector('.hv-play');
+        const speedSelect = wrap.querySelector('.hv-speed');
+        if (!video || !playBtn) return;
+
+        playBtn.addEventListener('click', () => {
+          wrap.classList.add('is-playing');
+          video.muted = false;
+          video.loop = false;
+          video.currentTime = 0;
+          if (speedSelect) video.playbackRate = parseFloat(speedSelect.value);
+          video.play().catch(() => {});
+        });
+
+        video.addEventListener('click', () => {
+          if (!wrap.classList.contains('is-playing')) return;
+          if (video.paused) video.play().catch(() => {}); else video.pause();
+        });
+
+        speedSelect?.addEventListener('change', () => {
+          video.playbackRate = parseFloat(speedSelect.value);
+        });
+
+        video.addEventListener('ended', () => {
+          wrap.classList.remove('is-playing');
+          video.muted = true;
+          video.loop = true;
+          video.currentTime = 0;
+          video.playbackRate = 1;
+          if (speedSelect) speedSelect.value = '1';
+          video.play().catch(() => {});
         });
       });
 
