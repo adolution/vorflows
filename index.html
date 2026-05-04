@@ -1376,18 +1376,19 @@
       .filetree-wrap { position: relative; min-width: 0; max-width: 100%; overflow: hidden; }
 
       /* Handwritten annotation pointing into a codeblock */
-      .codeblock-annotated { padding-top: 78px; }
       .code-annotation {
         position: absolute;
-        top: 0;
+        bottom: 100%;
         right: 8px;
+        margin-bottom: -18px;
         display: flex;
         align-items: flex-start;
         gap: 4px;
         color: var(--accent);
         pointer-events: none;
         transform: rotate(-3deg);
-        transform-origin: top right;
+        transform-origin: bottom right;
+        z-index: 2;
       }
       .code-annotation .ca-text {
         font-family: 'Caveat', cursive;
@@ -1404,9 +1405,15 @@
         margin-top: 2px;
       }
       @media (max-width: 720px) {
-        .codeblock-annotated { padding-top: 64px; }
-        .code-annotation { right: 4px; }
-        .code-annotation .ca-text { font-size: 18px; margin-top: 12px; }
+        .codeblock-annotated { padding-top: 56px; }
+        .code-annotation {
+          position: absolute;
+          bottom: auto;
+          top: 0;
+          right: 4px;
+          margin-bottom: 0;
+        }
+        .code-annotation .ca-text { font-size: 18px; margin-top: 10px; }
         .code-annotation .ca-arrow { width: 42px; height: 36px; }
       }
 
