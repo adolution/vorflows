@@ -1183,6 +1183,17 @@
       .pricing-col.recommended .pricing-save {
         background: #fff;
       }
+      .pricing-col:not(.recommended) .pricing-save {
+        padding: 3px 8px;
+        font-size: 9.5px;
+        color: var(--text-secondary);
+        background: transparent;
+        border: 1px solid var(--border);
+      }
+      .pricing-col:not(.recommended) .pricing-price-strike {
+        font-size: 15px;
+        opacity: 0.7;
+      }
       .pricing-features {
         list-style: none;
         padding: 0;
@@ -1966,7 +1977,7 @@
     <section class="section-tight">
       <div class="container-prose reveal">
         <div class="meta eyebrow">Die Lösung</div>
-        <h2 class="reveal-head display">Claude Code wird dein <em>technischer Co-Founder</em>. Nur schneller, ohne hohe Kosten.</h2>
+        <h2 class="reveal-head display">KI wird dein <em>technischer Co-Founder</em>. Nur schneller &amp; ohne Kosten.</h2>
         <div class="reveal-flow"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
         <p class="reveal-body">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
@@ -2154,7 +2165,7 @@
         <div style="max-width: 720px;">
           <div class="meta eyebrow">Was im Paket liegt</div>
           <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
-          <p class="skill-sub">Wochenlang gebaut, getestet, geschärft. Du installierst per Klick — kein Setup-Marathon.</p>
+          <p class="skill-sub">Wochenlang gebaut, getestet, geschärft. Du gibst einen Befehl, die KI führt dich durchs Setup.</p>
         </div>
 
         <div class="files-grid">
@@ -2168,13 +2179,13 @@
             <span class="file-card-name">CLAUDE.md</span>
             <h3 class="file-card-title">Mein Playbook für deine KI</h3>
             <p class="file-card-desc">Wochenlang an echten Shop-Cases geschärft. Sagt deiner KI, wie sie arbeiten soll: welche Patterns funktionieren, welche nicht, welche Reihenfolge sicher ist.</p>
-            <div class="file-card-preview"><span class="pv-com"># Auszug</span><br><span class="pv-key">always:</span> <span class="pv-str">duplikat zuerst</span><br><span class="pv-key">never:</span> <span class="pv-str">live-theme direkt</span><br><span class="pv-key">prefer:</span> <span class="pv-str">section &gt; app</span></div>
+            <div class="file-card-preview"><span class="pv-com"># Anweisungen</span><br><span class="pv-key">always:</span> <span class="pv-str">Backup anlegen</span><br><span class="pv-key">never:</span> <span class="pv-str">Code ohne Plan schreiben</span><br><span class="pv-key">prefer:</span> <span class="pv-str">editable section</span></div>
           </article>
           <article class="file-card">
             <span class="file-card-name">memory.md</span>
             <h3 class="file-card-title">Lernt dich kennen</h3>
             <p class="file-card-desc">Speichert Vorlieben, Constraints, Shop-Eigenheiten. Aktualisiert sich automatisch nach jedem Chat. Claude vergisst nichts.</p>
-            <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">brand_color:</span> <span class="pv-str">"#C8633E"</span><br><span class="pv-key">tone:</span> <span class="pv-str">"direkt, knapp"</span><br><span class="pv-key">avoid:</span> <span class="pv-str">"app stack"</span></div>
+            <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">brand_color:</span> <span class="pv-str">"#C8633E"</span><br><span class="pv-key">tone:</span> <span class="pv-str">"direkt, knapp"</span><br><span class="pv-key">avoid:</span> <span class="pv-str">"edits in file xy"</span></div>
           </article>
         </div>
 
@@ -2319,7 +2330,9 @@
               <p class="pricing-position">Für Founder mit Traffic-Fokus.</p>
               <div class="pricing-price-block">
                 <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-strike">547&nbsp;€</span>
                 <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
               </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
@@ -2334,7 +2347,9 @@
               <p class="pricing-position">Für Founder mit Conversion-Fokus.</p>
               <div class="pricing-price-block">
                 <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-strike">547&nbsp;€</span>
                 <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
               </div>
               <ul class="pricing-features">
                 <li><span class="yes">✓</span> Base System</li>
@@ -2345,7 +2360,7 @@
               <a href="#" class="pricing-cta" data-waitlist="pricing-clarityflow">Join Waitlist</a>
             </div>
             <div class="pricing-col recommended">
-              <div class="pricing-recommend-strip">Empfohlen · Beste Preis-Leistung</div>
+              <div class="pricing-recommend-strip">Preis-Leistung Sieger</div>
               <h3 class="pricing-name">Bundle</h3>
               <p class="pricing-position">Alles drin. Kein Add-On später nötig.</p>
               <div class="pricing-price-block">
@@ -2416,8 +2431,8 @@
     <!-- 14 FINAL CTA -->
     <section class="final-cta section">
       <div class="container-prose">
-        <h2 class="display">Bau deinen Shop schneller <em>als alle anderen.</em></h2>
-        <p>Wähle dein Paket. 20–30 Minuten Setup. Erste Section noch heute.</p>
+        <h2 class="display">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
+        <p>Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
         <a href="#" class="btn btn-primary" data-waitlist="final-cta">Join Waitlist</a>
         <p class="final-cta-closer">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
