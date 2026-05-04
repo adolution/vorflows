@@ -1335,7 +1335,16 @@
       }
       @media (max-width: 720px) {
         .hero-stack { gap: 14px; }
-        .hero-stack .hero-headline { font-size: clamp(28px, 7vw, 38px); }
+        .hero-stack .hero-eyebrow {
+          white-space: nowrap;
+          font-size: clamp(9.5px, 2.6vw, 12px);
+          letter-spacing: 0.06em;
+        }
+        .hero-stack .hero-headline {
+          font-size: clamp(22px, 5.6vw, 32px);
+          max-width: 22ch;
+          text-wrap: balance;
+        }
         .hero-stack .hero-ctas { flex-direction: column; gap: 12px; width: 100%; }
         .hero-stack .hero-ctas .btn { width: 100%; justify-content: center; }
       }
@@ -1417,7 +1426,7 @@
         position: absolute;
         bottom: 14px;
         right: 14px;
-        display: none;
+        display: inline-flex;
         align-items: center;
         gap: 8px;
         background: rgba(10,10,10,0.55);
@@ -1432,9 +1441,25 @@
         color: rgba(255,255,255,0.70);
         z-index: 2;
         opacity: 0;
+        pointer-events: none;
         transition: opacity 240ms ease;
       }
-      .hero-video.is-playing .hv-controls { display: inline-flex; opacity: 1; }
+      .hero-video .hv-controls.is-visible { opacity: 1; pointer-events: auto; }
+      .hero-video .hv-fullscreen {
+        appearance: none;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.92);
+        padding: 3px 6px;
+        border-radius: 4px;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background 200ms ease, border-color 200ms ease;
+      }
+      .hero-video .hv-fullscreen:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.40); }
+      .hero-video .hv-fullscreen svg { width: 12px; height: 12px; fill: currentColor; }
+      .hero-video .hv-fullscreen:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       .hero-video .hv-speed {
         appearance: none;
         -webkit-appearance: none;
@@ -1747,7 +1772,7 @@
     <!-- 02 HERO -->
     <header class="hero container">
       <div class="hero-stack">
-        <div class="meta hero-eyebrow">Für Shop Owner · Sections bauen · SEO · CVR Optimierung</div>
+        <div class="meta hero-eyebrow">Sections bauen · SEO · CVR Optimierung</div>
         <h1 class="display hero-headline">
           So holst du mit KI das <em>Maximum</em> aus deinem Shop heraus
         </h1>
@@ -1775,6 +1800,9 @@
               <option value="1.5">1.5×</option>
               <option value="2">2×</option>
             </select>
+            <button type="button" class="hv-fullscreen" aria-label="Vollbild">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2h5v1.6H3.6V7H2V2zm12 0v5h-1.6V3.6H9V2h5zM2 14V9h1.6v3.4H7V14H2zm12 0H9v-1.6h3.4V9H14v5z"/></svg>
+            </button>
           </div>
         </div>
         <p class="hero-sub">
@@ -1878,15 +1906,23 @@
               <h3 class="wf-title">Claude bearbeitet</h3>
               <div class="codeblock-wrap">
                 <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
-<span class="comment">  Threshold: 75 €. Position: oben im Cart-Drawer.</span>
+<span class="comment">  Threshold konfigurierbar via Theme-Editor. Position: Cart-Drawer.</span>
 
-<span class="file">snippets/free-shipping-bar.liquid</span>
-<span class="add">+ &lt;div class="shipping-bar" data-threshold="7500"&gt;</span>
+<span class="file">sections/free-shipping-bar.liquid</span>
+<span class="add">+ {%- assign threshold = section.settings.threshold | times: 100 -%}</span>
+<span class="add">+ {%- assign remaining = threshold | minus: cart.items_subtotal_price -%}</span>
+<span class="add">+ &lt;div class="shipping-bar" data-threshold="{{ threshold }}"&gt;</span>
 <span class="add">+   &lt;span class="shipping-bar__msg"&gt;</span>
-<span class="add">+     Noch &lt;b&gt;{{ remaining | money }}&lt;/b&gt; bis Free Shipping</span>
+<span class="add">+     {%- if remaining &gt; 0 -%}</span>
+<span class="add">+       Noch &lt;b&gt;{{ remaining | money }}&lt;/b&gt; bis Free Shipping</span>
+<span class="add">+     {%- else -%}Free Shipping freigeschaltet ✓{%- endif -%}</span>
 <span class="add">+   &lt;/span&gt;</span>
 <span class="add">+   &lt;div class="shipping-bar__progress"&gt;&lt;/div&gt;</span>
-<span class="add">+ &lt;/div&gt;</span></pre>
+<span class="add">+ &lt;/div&gt;</span>
+<span class="add">+ {% schema %}</span>
+<span class="add">+ { "name": "Free Shipping Bar",</span>
+<span class="add">+   "settings": [{ "type": "number", "id": "threshold", "label": "Schwelle (€)", "default": 75 }] }</span>
+<span class="add">+ {% endschema %}</span></pre>
                 <button type="button" class="codeblock-copy" data-copy-target="pre" aria-label="Code kopieren">copy</button>
               </div>
               <figure class="wf-preview">
@@ -2539,12 +2575,36 @@
       });
 
       // Hero video — muted background autoplay, click to unmute + restart with sound.
-      // No native controls; custom speed selector only. Click on video toggles play/pause.
+      // Custom controls (speed + fullscreen) reveal on tap, fade after 3 s.
+      // iOS Low Power Mode blocks muted autoplay → fall back to first-frame paint.
       document.querySelectorAll('[data-hero-video]').forEach((wrap) => {
         const video = wrap.querySelector('video');
         const playBtn = wrap.querySelector('.hv-play');
+        const controls = wrap.querySelector('.hv-controls');
         const speedSelect = wrap.querySelector('.hv-speed');
+        const fsBtn = wrap.querySelector('.hv-fullscreen');
         if (!video || !playBtn) return;
+
+        let hideTimer = null;
+        const showControls = () => {
+          if (!controls) return;
+          controls.classList.add('is-visible');
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => controls.classList.remove('is-visible'), 3000);
+        };
+
+        // Try background autoplay; on failure (iOS Low Power), nudge first frame visible.
+        const paintFirstFrame = () => {
+          const seek = () => { try { video.currentTime = 0.05; } catch (e) {} };
+          if (video.readyState >= 2) seek();
+          else video.addEventListener('loadeddata', seek, { once: true });
+        };
+        const tryAutoplay = () => {
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(paintFirstFrame);
+        };
+        if (video.readyState >= 2) tryAutoplay();
+        else video.addEventListener('loadedmetadata', tryAutoplay, { once: true });
 
         playBtn.addEventListener('click', () => {
           wrap.classList.add('is-playing');
@@ -2553,15 +2613,38 @@
           video.currentTime = 0;
           if (speedSelect) video.playbackRate = parseFloat(speedSelect.value);
           video.play().catch(() => {});
+          showControls();
         });
 
         video.addEventListener('click', () => {
+          showControls();
           if (!wrap.classList.contains('is-playing')) return;
           if (video.paused) video.play().catch(() => {}); else video.pause();
         });
 
+        controls?.addEventListener('pointerdown', (e) => { e.stopPropagation(); showControls(); });
+
         speedSelect?.addEventListener('change', () => {
           video.playbackRate = parseFloat(speedSelect.value);
+          showControls();
+        });
+
+        fsBtn?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showControls();
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            (document.exitFullscreen || document.webkitExitFullscreen)?.call(document);
+            return;
+          }
+          if (typeof video.webkitEnterFullscreen === 'function') {
+            video.webkitEnterFullscreen();
+          } else if (wrap.requestFullscreen) {
+            wrap.requestFullscreen();
+          } else if (wrap.webkitRequestFullscreen) {
+            wrap.webkitRequestFullscreen();
+          } else if (video.requestFullscreen) {
+            video.requestFullscreen();
+          }
         });
 
         video.addEventListener('ended', () => {
