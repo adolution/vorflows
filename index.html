@@ -202,23 +202,8 @@
         text-decoration: none;
         font-size: 14px;
         color: var(--text-secondary);
-        position: relative;
-        padding-bottom: 4px;
         transition: color 150ms ease-out;
       }
-      .nav-links a:not(.nav-cta)::after {
-        content: "";
-        position: absolute;
-        left: 0; right: 0;
-        bottom: -2px;
-        height: 1.5px;
-        background: var(--accent);
-        transform: scaleX(0);
-        transform-origin: left center;
-        transition: transform 200ms ease;
-      }
-      .nav-links a:not(.nav-cta).is-active::after { transform: scaleX(1); }
-      .nav-links a:not(.nav-cta).is-active { color: var(--text-primary); }
       .nav-links a:hover { color: var(--text-primary); }
       .nav-links a.nav-cta {
         padding: 9px 16px;
@@ -226,20 +211,6 @@
         color: #fff;
       }
       .nav-links a.nav-cta:hover { color: #fff; }
-      .nav-links a.nav-cta::after { display: none; }
-
-      /* Scroll progress bar */
-      .scroll-progress {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 2px;
-        width: 0;
-        background: var(--accent);
-        z-index: 70;
-        transition: width 80ms linear;
-        pointer-events: none;
-      }
 
       /* Mobile menu toggle */
       .nav-toggle {
@@ -470,76 +441,35 @@
       }
       .h2 em { font-style: italic; font-weight: 400; }
 
-      /* Problem section — asymmetric sticky-head layout */
-      .problem-asym {
-        display: grid;
-        grid-template-columns: minmax(280px, 380px) 1fr;
-        gap: 80px;
-        align-items: start;
-      }
-      @media (max-width: 880px) {
-        .problem-asym { grid-template-columns: 1fr; gap: 32px; }
-      }
-      .problem-head {
-        position: sticky;
-        top: 100px;
-      }
-      @media (max-width: 880px) {
-        .problem-head { position: static; }
-      }
-      .problem-head .meta { margin-bottom: 18px; }
-      .problem-head .h2 { margin: 0 0 18px; }
-      .problem-head-tag {
-        display: inline-block;
-        margin-top: 8px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        padding: 6px 10px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-      }
       .problem-list {
         display: grid;
-        gap: 0;
+        gap: 36px;
+        margin-top: 48px;
       }
       .problem-item {
         display: grid;
-        grid-template-columns: 88px 1fr;
-        gap: 28px;
-        padding: 28px 0;
+        grid-template-columns: 56px 1fr;
+        gap: 20px;
+        padding-block: 24px;
         border-top: 1px solid var(--border);
-        align-items: baseline;
       }
-      .problem-item:first-child { border-top: 0; padding-top: 0; }
+      .problem-item:last-child { border-bottom: 1px solid var(--border); }
       .problem-num {
-        font-family: 'Fraunces', serif;
-        font-weight: 500;
-        font-size: 56px;
-        line-height: 1;
-        letter-spacing: -0.04em;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
         color: var(--accent);
-        align-self: start;
-      }
-      @media (max-width: 880px) {
-        .problem-item { grid-template-columns: 64px 1fr; gap: 18px; }
-        .problem-num { font-size: 42px; }
+        padding-top: 4px;
       }
       .problem-title {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
-        font-size: 22px;
-        margin: 0 0 10px;
-        letter-spacing: -0.005em;
+        font-size: 21px;
+        margin: 0 0 8px;
       }
       .problem-body {
         color: var(--text-secondary);
         margin: 0;
         font-size: 16.5px;
-        max-width: 56ch;
-        line-height: 1.6;
       }
 
       /* Solution Reveal */
@@ -831,182 +761,6 @@
         font-weight: 600;
       }
       .compare-table .sum-row .num { font-size: 17px; font-weight: 600; }
-
-      /* Group + subtotal rows */
-      .compare-table .group-row td {
-        padding: 28px 12px 10px;
-        border-bottom: 0;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      .compare-table tbody tr.group-row:first-child td { padding-top: 12px; }
-      .compare-table .group-row .group-mapping {
-        color: var(--text-secondary);
-        text-transform: none;
-        letter-spacing: 0.04em;
-        font-size: 11.5px;
-      }
-      .compare-table .subtotal-row td {
-        padding: 12px 12px 14px;
-        border-bottom: 1px solid var(--border-strong);
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        color: var(--text-secondary);
-        background: rgba(200, 99, 62, 0.025);
-      }
-      .compare-table .subtotal-row .num { color: var(--text-primary); font-weight: 600; font-size: 15px; }
-      .compare-table .subtotal-row td.subtotal-arrow {
-        color: var(--accent);
-        font-style: italic;
-        font-family: 'Fraunces', serif;
-      }
-      .compare-pre-note {
-        margin-top: 14px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      /* Mobile sticky bottom CTA */
-      .sticky-cta-bar {
-        display: none;
-        position: fixed;
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-        z-index: 60;
-        padding: 12px 14px 12px 18px;
-        background: #1A1A1A;
-        color: #F5F2EA;
-        border-radius: 14px;
-        box-shadow: 0 18px 36px -10px rgba(0,0,0,0.32);
-        align-items: center;
-        gap: 12px;
-        opacity: 0;
-        transform: translateY(120%);
-        transition: opacity 220ms ease, transform 220ms ease;
-        pointer-events: none;
-      }
-      .sticky-cta-bar.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      @media (max-width: 880px) {
-        .sticky-cta-bar { display: flex; }
-        body.has-sticky-cta { padding-bottom: 84px; }
-      }
-      .sticky-cta-text {
-        flex: 1;
-        min-width: 0;
-        display: grid;
-        gap: 2px;
-      }
-      .sticky-cta-label {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10.5px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(245, 242, 234, 0.6);
-      }
-      .sticky-cta-price {
-        font-family: 'Fraunces', serif;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 1.1;
-      }
-      .sticky-cta-price strong {
-        color: var(--accent);
-        font-weight: 500;
-      }
-      .sticky-cta-btn {
-        flex-shrink: 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 11px 16px;
-        background: var(--accent);
-        color: #fff;
-        border-radius: 999px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        text-decoration: none;
-        transition: background 150ms;
-      }
-      .sticky-cta-btn:hover, .sticky-cta-btn:active {
-        background: var(--accent-hover);
-      }
-
-      .compare-explainer {
-        margin: 8px 0 28px;
-        font-size: 14.5px;
-        color: var(--text-secondary);
-        line-height: 1.55;
-        font-style: italic;
-        font-family: 'Fraunces', serif;
-        max-width: 60ch;
-      }
-      .compare-explainer strong {
-        font-style: normal;
-        font-family: 'Inter', sans-serif;
-        color: var(--text-primary);
-        font-weight: 500;
-      }
-
-      /* Inline gloss / tooltip */
-      .gloss {
-        position: relative;
-        text-decoration: underline dotted var(--accent);
-        text-underline-offset: 4px;
-        text-decoration-thickness: 1px;
-        cursor: help;
-      }
-      .gloss::after {
-        content: attr(data-tip);
-        position: absolute;
-        left: 50%;
-        bottom: calc(100% + 10px);
-        transform: translateX(-50%) translateY(4px);
-        width: max-content;
-        max-width: 320px;
-        padding: 12px 14px;
-        background: #1A1A1A;
-        color: #F5F2EA;
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
-        font-size: 13px;
-        line-height: 1.5;
-        font-weight: 400;
-        letter-spacing: 0;
-        text-transform: none;
-        border-radius: 8px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 160ms ease, transform 160ms ease;
-        z-index: 50;
-        box-shadow: 0 12px 32px -12px rgba(0,0,0,0.5);
-      }
-      .gloss:hover::after,
-      .gloss:focus-visible::after {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-      .gloss:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: 2px;
-      }
-      @media (max-width: 640px) {
-        .gloss::after { left: 0; transform: translateY(4px); max-width: 280px; }
-        .gloss:hover::after, .gloss:focus-visible::after { transform: translateY(0); }
-      }
-
       .compare-foot {
         margin-top: 48px;
         text-align: center;
@@ -1023,82 +777,28 @@
         color: var(--text-secondary);
       }
 
-      /* Outcome — vertical timeline */
+      /* Outcome */
       .outcome-list {
-        margin-top: 56px;
+        margin-top: 48px;
         display: grid;
         gap: 0;
-        position: relative;
-      }
-      .outcome-list::before {
-        content: "";
-        position: absolute;
-        left: 138px;
-        top: 24px;
-        bottom: 24px;
-        width: 1px;
-        background: rgba(200, 99, 62, 0.18);
-      }
-      .outcome-list::after {
-        content: "";
-        position: absolute;
-        left: 138px;
-        top: 24px;
-        width: 1px;
-        height: var(--rail-fill, 0%);
-        background: linear-gradient(180deg, var(--accent) 0%, var(--accent) 80%, rgba(200, 99, 62, 0.0) 100%);
-        transition: height 120ms linear;
-        pointer-events: none;
-      }
-      @media (max-width: 720px) {
-        .outcome-list::before { left: 14px; }
-        .outcome-list::after { left: 14px; }
-      }
-      .outcome-item::before {
-        background: rgba(200, 99, 62, 0.22);
-        transition: background 240ms ease, transform 240ms ease;
-      }
-      .outcome-item.is-reached::before {
-        background: var(--accent);
-        transform: scale(1.05);
       }
       .outcome-item {
         display: grid;
         grid-template-columns: 120px 1fr;
-        gap: 36px;
-        padding: 36px 0 36px 0;
+        gap: 32px;
+        padding: 28px 0;
+        border-top: 1px solid var(--border);
         align-items: baseline;
-        position: relative;
       }
-      .outcome-item:first-child { padding-top: 12px; }
-      .outcome-item::before {
-        content: "";
-        position: absolute;
-        left: 132px;
-        top: 50px;
-        width: 13px;
-        height: 13px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 4px #EDE9DC;
-      }
-      .outcome-item:first-child::before { top: 26px; }
+      .outcome-item:last-child { border-bottom: 1px solid var(--border); }
       @media (max-width: 720px) {
-        .outcome-item { grid-template-columns: 1fr; gap: 12px; padding-left: 36px; }
-        .outcome-item::before { left: 8px; top: 42px; }
-        .outcome-item:first-child::before { top: 18px; }
+        .outcome-item { grid-template-columns: 1fr; gap: 8px; }
       }
       .outcome-day {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+        font-size: 13px;
         color: var(--accent);
-        text-align: right;
-        padding-right: 0;
-      }
-      @media (max-width: 720px) {
-        .outcome-day { text-align: left; }
       }
       .outcome-text {
         font-family: 'Fraunces', Georgia, serif;
@@ -1358,8 +1058,26 @@
       .qualifier-no li::before { content: "−"; color: var(--text-secondary); }
 
       /* Pricing */
+      .bundle-hero {
+        margin: 48px auto 0;
+        max-width: 640px;
+        padding: 0;
+        text-align: center;
+      }
+      .bundle-hero-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 560px;
+        margin: 0 auto;
+        filter: drop-shadow(0 28px 40px rgba(20, 18, 14, 0.12)) drop-shadow(0 8px 14px rgba(20, 18, 14, 0.06));
+      }
+      @media (max-width: 720px) {
+        .bundle-hero { margin-top: 32px; max-width: 420px; }
+        .bundle-hero-img { max-width: 360px; }
+      }
       .pricing-table {
-        margin-top: 72px;
+        margin-top: 40px;
         background: transparent;
         position: relative;
       }
@@ -1596,402 +1314,6 @@
       }
       .pricing-note strong { color: var(--text-primary); font-weight: 500; }
 
-      /* Bundle-first pricing layout */
-      .bundle-hero {
-        position: relative;
-        margin-top: 64px;
-        background: linear-gradient(180deg, rgba(200, 99, 62, 0.08) 0%, rgba(200, 99, 62, 0.02) 100%);
-        border: 1px solid var(--accent);
-        border-radius: 16px;
-        box-shadow:
-          0 40px 96px -48px rgba(200, 99, 62, 0.55),
-          0 8px 24px -10px rgba(26, 26, 26, 0.10);
-      }
-      .bundle-hero-strip {
-        position: absolute;
-        left: 24px;
-        top: -14px;
-        padding: 7px 16px;
-        background: var(--accent);
-        color: var(--bg-light);
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 11.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        border-radius: 999px;
-      }
-      .bundle-hero-grid {
-        display: grid;
-        grid-template-columns: 1.15fr 1fr;
-        gap: 0;
-      }
-      @media (max-width: 880px) {
-        .bundle-hero-grid { grid-template-columns: 1fr; }
-      }
-      .bundle-hero-pitch {
-        padding: 56px 48px 48px;
-      }
-      @media (max-width: 880px) {
-        .bundle-hero-pitch { padding: 44px 28px 32px; }
-      }
-      .bundle-hero-name {
-        font-family: 'Fraunces', serif;
-        font-weight: 500;
-        font-size: 32px;
-        letter-spacing: -0.02em;
-        margin: 0 0 10px;
-        color: var(--text-primary);
-      }
-      .bundle-hero-tagline {
-        font-family: 'Fraunces', serif;
-        font-style: italic;
-        font-size: 19px;
-        line-height: 1.45;
-        color: var(--text-primary);
-        margin: 0 0 28px;
-        max-width: 36ch;
-      }
-      .bundle-hero-price-block {
-        display: flex;
-        align-items: baseline;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin: 0 0 20px;
-      }
-      .bundle-hero-price {
-        font-family: 'Fraunces', serif;
-        font-weight: 500;
-        font-size: clamp(56px, 7vw, 76px);
-        line-height: 1;
-        letter-spacing: -0.025em;
-        color: var(--text-primary);
-      }
-      .bundle-hero-strike {
-        font-family: 'Fraunces', serif;
-        font-size: 22px;
-        color: var(--text-secondary);
-        text-decoration: line-through;
-        text-decoration-thickness: 1px;
-      }
-      .bundle-hero-suffix {
-        flex-basis: 100%;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .bundle-math {
-        margin: 0 0 32px;
-        padding: 16px 18px;
-        background: rgba(255,255,255,0.55);
-        border: 1px dashed var(--border-strong);
-        border-radius: 10px;
-        font-size: 14.5px;
-        color: var(--text-secondary);
-        line-height: 1.55;
-      }
-      .bundle-math strong {
-        color: var(--text-primary);
-        font-weight: 500;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 13.5px;
-      }
-      .bundle-hero-cta {
-        display: inline-block;
-        padding: 18px 32px;
-        background: var(--accent);
-        color: var(--bg-light);
-        border: 1px solid var(--accent);
-        border-radius: 8px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        text-decoration: none;
-        transition: background 150ms, transform 150ms;
-      }
-      .bundle-hero-cta:hover {
-        background: var(--accent-hover);
-        border-color: var(--accent-hover);
-      }
-      .bundle-hero-cta:focus-visible {
-        outline: 2px solid var(--text-primary);
-        outline-offset: 3px;
-      }
-      .bundle-hero-guarantee {
-        margin: 18px 0 0;
-        font-size: 13px;
-        line-height: 1.55;
-        color: var(--text-secondary);
-        max-width: 44ch;
-      }
-      .bundle-hero-guarantee a,
-      .bundle-hero-guarantee .guarantee-toggle {
-        color: var(--text-primary);
-        text-decoration: underline;
-        text-decoration-color: var(--border-strong);
-        text-underline-offset: 3px;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-      }
-      .guarantee-toggle:hover { text-decoration-color: var(--accent); }
-      .guarantee-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: 2px;
-      }
-      .guarantee-notice {
-        margin: 12px 0 0;
-        padding: 14px 16px;
-        background: rgba(255,255,255,0.55);
-        border-left: 2px solid var(--accent);
-        border-radius: 0 8px 8px 0;
-        font-size: 13.5px;
-        line-height: 1.55;
-        color: var(--text-primary);
-        max-width: 44ch;
-      }
-      .guarantee-notice[hidden] { display: none; }
-      .bundle-hero-features {
-        padding: 56px 48px 48px;
-        border-left: 1px solid rgba(200, 99, 62, 0.22);
-        background: rgba(255,255,255,0.35);
-        border-radius: 0 16px 16px 0;
-      }
-      @media (max-width: 880px) {
-        .bundle-hero-features {
-          padding: 32px 28px 40px;
-          border-left: 0;
-          border-top: 1px solid rgba(200, 99, 62, 0.22);
-          border-radius: 0 0 16px 16px;
-        }
-      }
-      .bundle-feat-label {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 22px;
-      }
-      .bundle-hero-features ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .bundle-hero-features li {
-        display: grid;
-        grid-template-columns: 22px 1fr;
-        gap: 14px;
-        padding: 14px 0;
-        border-top: 1px solid rgba(0,0,0,0.06);
-      }
-      .bundle-hero-features li:first-child { border-top: 0; padding-top: 0; }
-      .bundle-hero-features li:last-child { padding-bottom: 0; }
-      .bundle-hero-features .check {
-        color: var(--accent);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 14px;
-        margin-top: 2px;
-      }
-      .bundle-hero-features li strong {
-        display: block;
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-        color: var(--text-primary);
-        margin-bottom: 4px;
-      }
-      .bundle-hero-features li span {
-        display: block;
-        font-size: 13.5px;
-        line-height: 1.5;
-        color: var(--text-secondary);
-      }
-
-      .alt-tiers-divider {
-        margin: 72px 0 32px;
-        text-align: center;
-        position: relative;
-      }
-      .alt-tiers-divider::before {
-        content: "";
-        position: absolute;
-        left: 0; right: 0; top: 50%;
-        height: 1px;
-        background: var(--border);
-      }
-      .alt-tiers-divider span {
-        position: relative;
-        background: #F4F2EC;
-        padding: 0 18px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .alt-tiers {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-      @media (max-width: 880px) {
-        .alt-tiers { grid-template-columns: 1fr; }
-      }
-      .alt-tier {
-        padding: 22px 24px;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        display: grid;
-        grid-template-rows: auto auto auto auto;
-        gap: 4px;
-      }
-      .alt-tier-name {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-        color: var(--text-primary);
-      }
-      .alt-tier-pos {
-        font-family: 'Fraunces', serif;
-        font-style: italic;
-        font-size: 13.5px;
-        color: var(--text-secondary);
-        margin-bottom: 14px;
-      }
-      .alt-tier-price {
-        font-family: 'Fraunces', serif;
-        font-weight: 500;
-        font-size: 28px;
-        letter-spacing: -0.02em;
-        color: var(--text-primary);
-        line-height: 1;
-        margin-bottom: 14px;
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-      }
-      .alt-tier-strike {
-        font-size: 14px;
-        color: var(--text-secondary);
-        text-decoration: line-through;
-        font-weight: 400;
-      }
-      .alt-tier-cta {
-        font-family: 'Inter', sans-serif;
-        font-size: 13.5px;
-        color: var(--text-primary);
-        text-decoration: none;
-        border-bottom: 1px solid var(--border-strong);
-        padding-bottom: 6px;
-        align-self: end;
-        justify-self: start;
-        transition: border-color 150ms, color 150ms;
-      }
-      .alt-tier-cta:hover {
-        color: var(--accent);
-        border-bottom-color: var(--accent);
-      }
-      .alt-tier-cta:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 4px;
-        border-radius: 2px;
-      }
-      .pricing-cta:focus-visible,
-      .sticky-cta-btn:focus-visible,
-      .trust-tile-body a:focus-visible,
-      .bundle-hero-guarantee a:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: 4px;
-      }
-      .alt-note {
-        margin-top: 28px;
-        text-align: center;
-        font-size: 13.5px;
-        color: var(--text-secondary);
-        line-height: 1.55;
-      }
-
-      /* Trust strip — pre-pricing reassurance */
-      .trust-strip {
-        margin: 0 0 64px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-      @media (max-width: 880px) {
-        .trust-strip { grid-template-columns: 1fr; }
-      }
-      .trust-tile {
-        padding: 24px 24px 22px;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        display: grid;
-        grid-template-rows: auto auto auto;
-        gap: 8px;
-      }
-      .trust-tile-mark {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 20px;
-        line-height: 1;
-        color: var(--accent);
-        margin-bottom: 6px;
-      }
-      .trust-tile-title {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 15.5px;
-        color: var(--text-primary);
-        margin: 0;
-      }
-      .trust-tile-body {
-        font-size: 14px;
-        line-height: 1.55;
-        color: var(--text-secondary);
-        margin: 0;
-      }
-      .trust-tile-body a {
-        color: var(--text-primary);
-        text-decoration: underline;
-        text-decoration-color: var(--border-strong);
-        text-underline-offset: 3px;
-      }
-      .pricing-beta-row {
-        margin: 28px 0 40px;
-      }
-      .pricing-social {
-        margin-top: 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 6px 14px 6px 10px;
-        background: rgba(200, 99, 62, 0.08);
-        border: 1px solid rgba(200, 99, 62, 0.25);
-        border-radius: 999px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--text-primary);
-      }
-      .pricing-social-dot {
-        width: 8px; height: 8px; border-radius: 50%;
-        background: var(--accent);
-        animation: pulse-dot 2s ease-in-out infinite;
-      }
-      @keyframes pulse-dot {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.6; transform: scale(0.85); }
-      }
-
       /* FAQ */
       .faq {
         margin-top: 48px;
@@ -2158,7 +1480,7 @@
         .code-annotation .ca-arrow { width: 42px; height: 36px; }
       }
 
-      /* Hero stack — centered single column with video as centerpiece */
+      /* Hero stack: centered single column with video as centerpiece */
       .hero-stack {
         display: flex;
         flex-direction: column;
@@ -2619,16 +1941,6 @@
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l12 12M16 4L4 16"/></svg>
     </button>
 
-    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-    <aside class="sticky-cta-bar" id="stickyCtaBar" aria-label="Bundle reservieren">
-      <div class="sticky-cta-text">
-        <span class="sticky-cta-label">Empfohlen · spar 100&nbsp;€</span>
-        <span class="sticky-cta-price">Bundle <strong>597&nbsp;€</strong></span>
-      </div>
-      <a href="#pricing" class="sticky-cta-btn" data-waitlist="sticky-mobile">Reservieren →</a>
-    </aside>
-
     <!-- 02 HERO -->
     <header class="hero container">
       <div class="hero-stack">
@@ -2666,7 +1978,7 @@
           </div>
         </div>
         <p class="hero-sub">
-          vorflows ist das System, mit dem Founder ihren Shop über <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">Claude&nbsp;Code</span> umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
+          vorflows ist das System, mit dem Founder ihren Shop über Claude Code umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
         </p>
         <div class="hero-ctas">
           <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
@@ -2675,43 +1987,38 @@
       </div>
     </header>
 
-    <!-- 03 PROBLEM — asymmetric -->
+    <!-- 03 PROBLEM -->
     <section class="section">
-      <div class="container">
-        <div class="problem-asym">
-          <div class="problem-head">
-            <div class="meta eyebrow">Das Problem</div>
-            <h2 class="h2 display">Du sitzt in einem Shop, der dir nicht gehört.</h2>
-            <span class="problem-head-tag">4 Reibungspunkte</span>
+      <div class="container-prose">
+        <div class="meta eyebrow">Das Problem</div>
+        <h2 class="h2 display">Du sitzt in einem Shop, der dir nicht gehört.</h2>
+        <div class="problem-list">
+          <div class="problem-item">
+            <div class="problem-num mono">01</div>
+            <div>
+              <h3 class="problem-title">Theme-Limits.</h3>
+              <p class="problem-body">Du willst eine Section, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
+            </div>
           </div>
-          <div class="problem-list">
-            <div class="problem-item">
-              <div class="problem-num">01</div>
-              <div>
-                <h3 class="problem-title">Theme-Limits.</h3>
-                <p class="problem-body">Du willst eine Section, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
-              </div>
+          <div class="problem-item">
+            <div class="problem-num mono">02</div>
+            <div>
+              <h3 class="problem-title">App-Stack.</h3>
+              <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
             </div>
-            <div class="problem-item">
-              <div class="problem-num">02</div>
-              <div>
-                <h3 class="problem-title">App-Stack.</h3>
-                <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
-              </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-num mono">03</div>
+            <div>
+              <h3 class="problem-title">Agentur-Loop.</h3>
+              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
             </div>
-            <div class="problem-item">
-              <div class="problem-num">03</div>
-              <div>
-                <h3 class="problem-title">Agentur-Loop.</h3>
-                <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
-              </div>
-            </div>
-            <div class="problem-item">
-              <div class="problem-num">04</div>
-              <div>
-                <h3 class="problem-title">Liegen gelassenes Potential.</h3>
-                <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
-              </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-num mono">04</div>
+            <div>
+              <h3 class="problem-title">Liegen gelassenes Potential.</h3>
+              <p class="problem-body">KI baut in Minuten, wofür ein Dev Stunden braucht. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
             </div>
           </div>
         </div>
@@ -2720,9 +2027,9 @@
 
     <!-- 05 SOLUTION REVEAL -->
     <section class="section-tight">
-      <div class="container reveal" style="max-width: 1040px; margin-inline: auto;">
+      <div class="container-prose reveal">
         <div class="meta eyebrow">Die Lösung</div>
-        <h2 class="reveal-head display">KI wird dein <em>technischer Co-Founder</em>.<br>Nur schneller &amp; ohne Kosten.</h2>
+        <h2 class="reveal-head display">KI wird dein <em>technischer Co-Founder</em>. Nur schneller &amp; ohne Kosten.</h2>
         <div class="reveal-flow"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
         <p class="reveal-body">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
@@ -2748,7 +2055,7 @@
                 <aside class="filetree" aria-hidden="true">
                   <div class="filetree-head">
                     <span class="filetree-dot"></span>
-                    theme/ — vorflows-edit
+                    theme/ · vorflows-edit
                   </div>
                   <div>
                     <div>theme/</div>
@@ -2790,7 +2097,7 @@
                   <text x="60" y="40" fill="#1A1A1A" font-family="Inter, sans-serif" font-size="20" font-weight="600">Noch 12,50 € bis Free Shipping</text>
                   <rect x="60" y="60" width="760" height="14" rx="7" fill="#E5E3DD"/>
                   <rect x="60" y="60" width="495" height="14" rx="7" fill="#C8633E"/>
-                  <text x="60" y="104" fill="#5C5C5C" font-family="Inter, sans-serif" font-size="13">65 % erreicht</text>
+                  <text x="60" y="104" fill="#5C5C5C" font-family="Inter, sans-serif" font-size="13">65 % erreicht · live im Cart-Drawer</text>
                 </svg>
               </figure>
             </div>
@@ -2818,21 +2125,21 @@
         <div style="max-width: 720px;">
           <div class="meta eyebrow">Drei Module · Ein System</div>
           <h2 class="h2 display">Base baut. SEOFlow rankt. ClarityFlow optimiert.</h2>
-          <p class="module-lead">Base ist Pflicht. SEOFlow und ClarityFlow sind optionale Add-Ons. Alle drei zusammen sparen 100&nbsp;€.</p>
+          <p class="module-lead">Base ist das Fundament. SEOFlow und ClarityFlow sind optionale Add-Ons.</p>
         </div>
         <div class="modules">
           <div class="module">
             <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">01 / Base · Pflicht-Modul</div>
             <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
-            <p class="module-body">File-Export aus Shopify, Claude Project laden, Sections und Snippets bearbeiten.</p>
+            <p class="module-body">Duplicate Theme, Claude Project laden, Sections und Snippets bearbeiten.</p>
             <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
           <div class="module">
             <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">02 / SEOFlow · Add-On</div>
-            <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht und ohne dich läuft.</h3>
-            <p class="module-body">Geführter Setup-Flow, kein Doku-Marathon. Search Console mit Claude Code verknüpft.</p>
+            <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht.</h3>
+            <p class="module-body">Geführter Setup-Flow. Reale Suchdaten mit der SEO-KI verknüpft.</p>
             <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
           </div>
           <div class="module">
@@ -2851,8 +2158,6 @@
       <div class="container-prose">
         <div class="meta eyebrow">Subscription-Killer</div>
         <h2 class="h2 display">Was du jeden Monat zahlst. Und was du stattdessen besitzen könntest.</h2>
-        <p class="compare-pre-note">Beispielrechnung · Marktübliche Preise eines typischen Shop-Stacks</p>
-        <p class="compare-explainer">Lies das so: links die Apps, die viele Founder monatlich zahlen. Rechts das, was vorflows stattdessen direkt in dein Theme baut — als <strong>Section</strong> oder <strong>Snippet</strong>. Du musst nicht wissen, was das ist. Claude Code baut es für dich.</p>
         <table class="compare-table">
           <colgroup>
             <col class="col-stack" />
@@ -2867,35 +2172,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="group-row"><td colspan="3">Conversion · Cart · Funnel <span class="group-mapping">— ersetzt durch Base</span></td></tr>
             <tr><td>Shipping-Bar-App</td><td class="num" style="text-align:right;">29 €</td><td>Liquid-Section mit Threshold-Logic</td></tr>
             <tr><td>Cart-Upsell-App</td><td class="num" style="text-align:right;">49 €</td><td>Cart-Drawer-Section mit Variant-Logic</td></tr>
             <tr><td>Bundle-Builder</td><td class="num" style="text-align:right;">79 €</td><td>Liquid-Section mit Variant-Logic</td></tr>
             <tr><td>Page-Builder</td><td class="num" style="text-align:right;">39 €</td><td>Native Shopify-Sections + Blocks</td></tr>
             <tr><td>Countdown-Timer-App</td><td class="num" style="text-align:right;">15 €</td><td>Liquid-Snippet mit JS-Timer</td></tr>
+            <tr><td>SEO-Suite</td><td class="num" style="text-align:right;">99 €</td><td>SEOFlow-Modul</td></tr>
+            <tr><td>Analytics-Add-on</td><td class="num" style="text-align:right;">36 €</td><td>ClarityFlow-Modul</td></tr>
             <tr><td>Sticky-Add-to-Cart-Bar</td><td class="num" style="text-align:right;">15 €</td><td>Liquid-Snippet mit IntersectionObserver</td></tr>
-            <tr><td>Lead-Form Builder</td><td class="num" style="text-align:right;">75 €</td><td>Custom Section mit Email-Schnittstelle</td></tr>
-            <tr class="subtotal-row"><td>Zwischensumme · 7 Apps</td><td class="num" style="text-align:right;">301 €</td><td class="subtotal-arrow">→ alles im Base-Modul</td></tr>
-
-            <tr class="group-row"><td colspan="3">SEO <span class="group-mapping">— ersetzt durch SEOFlow</span></td></tr>
-            <tr><td>SEO-Suite</td><td class="num" style="text-align:right;">99 €</td><td>SEOFlow-Modul mit Search-Console-Loop</td></tr>
-            <tr class="subtotal-row"><td>Zwischensumme · 1 App</td><td class="num" style="text-align:right;">99 €</td><td class="subtotal-arrow">→ alles im SEOFlow-Modul</td></tr>
-
-            <tr class="group-row"><td colspan="3">Analytics · Verhaltensdaten <span class="group-mapping">— ersetzt durch ClarityFlow</span></td></tr>
-            <tr><td>Analytics-Add-on</td><td class="num" style="text-align:right;">36 €</td><td>ClarityFlow-Modul mit Heatmap-Loop</td></tr>
-            <tr class="subtotal-row"><td>Zwischensumme · 1 App</td><td class="num" style="text-align:right;">36 €</td><td class="subtotal-arrow">→ alles im ClarityFlow-Modul</td></tr>
-
-            <tr class="sum-row"><td>Summe · 9 Apps</td><td class="num" style="text-align:right;">436 €</td><td>Einmalig gebaut. Du besitzt es.</td></tr>
+            <tr><td>Lead-Form Builder</td><td class="num" style="text-align:right;">75 €</td><td>Custom Section mit Schnittstelle zu deinem Emailtool</td></tr>
+            <tr class="sum-row"><td>Summe</td><td class="num" style="text-align:right;">436 €</td><td>Einmalig gebaut. Du besitzt es.</td></tr>
           </tbody>
         </table>
-        <p class="compare-foot display-italic">5.232 € pro Jahr in Apps. Oder einmal das <em>Bundle</em>.</p>
+        <p class="compare-foot display-italic">5.232 € pro Jahr in Apps. Oder einmal vorflows.</p>
+        <p class="compare-disclaimer">Zahlen illustrativ. Typische Shop-Stack-Kosten.</p>
       </div>
     </section>
 
     <!-- 09 OUTCOME -->
-    <section class="section" style="background: #EDE9DC;">
+    <section class="section">
       <div class="container-prose">
-        <div class="meta eyebrow">Outcome · 30 Tage</div>
+        <div class="meta eyebrow">Outcome</div>
         <h2 class="h2 display">Tag 1 mit vorflows.</h2>
         <div class="outcome-list">
           <div class="outcome-item">
@@ -2927,7 +2224,7 @@
           <article class="file-card">
             <span class="file-card-name">setup.md</span>
             <h3 class="file-card-title">Auto-Installer</h3>
-            <p class="file-card-desc">Ein Befehl. Skills, Plugins, Konfig — alles landet in deinem Claude-Workspace, fertig konfiguriert.</p>
+            <p class="file-card-desc">Ein Befehl. Skills, Plugins, Konfig. Alles landet in deinem Claude-Workspace, fertig konfiguriert.</p>
             <div class="file-card-preview"><span class="pv-com"># einmal ausführen</span><br>$ <span class="pv-key">claude</span> setup.md<br><span class="pv-com"># → Skills + Plugins ready</span></div>
           </article>
           <article class="file-card">
@@ -2974,7 +2271,7 @@
               </button>
             </div>
           </div>
-          <figcaption class="demo-video-cap">Kurzerklärung der drei Dateien — was drin steckt, wie sie zusammenspielen.</figcaption>
+          <figcaption class="demo-video-cap">Kurzerklärung der drei Dateien. Was drin steckt, wie sie zusammenspielen.</figcaption>
         </figure>
 
         <aside class="security-strip">
@@ -2982,7 +2279,7 @@
             <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
           <div class="ss-body">
-            <strong>Sicher by design.</strong> Claude arbeitet immer auf einem Duplikat deines Themes — niemals direkt am Live-Shop. Kein Zugriff auf Kundendaten, keine API-Keys.
+            <strong>Sicher by design.</strong> Claude arbeitet immer auf einem Duplikat deines Themes, niemals direkt am Live-Shop. Kein Zugriff auf Kundendaten, keine API-Keys.
             <span class="ss-sub">Du kopierst Dateien gelegentlich rüber und entscheidest selbst, wann published wird.</span>
           </div>
         </aside>
@@ -3056,92 +2353,91 @@
       </div>
     </section>
 
-    <!-- 12 PRICING — Bundle-first -->
+    <!-- 12 PRICING -->
     <section class="section" id="pricing" style="background: #F4F2EC;">
       <div class="container">
-        <div style="max-width: 760px;">
-          <div class="meta eyebrow">Pricing</div>
-          <h2 class="h2 display">Hol dir das ganze System auf einmal. Spar dir das Add-On-<em>Theater.</em></h2>
+        <div style="max-width: 720px;">
+          <div class="meta eyebrow">Pricing · Vier Pakete</div>
+          <h2 class="h2 display">Einsteigen mit Base. Oder das ganze System mit dem <em>Bundle.</em></h2>
         </div>
-
-        <div class="pricing-beta-row">
-          <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
-        </div>
-
-        <div class="trust-strip" aria-label="Sicherheit & Vertrauen">
-          <div class="trust-tile">
-            <span class="trust-tile-mark" aria-hidden="true">[ SAFE ]</span>
-            <h3 class="trust-tile-title">Live-Theme bleibt unangetastet</h3>
-            <p class="trust-tile-body">Du arbeitest immer auf einem Duplicate. Kein Auto-Deploy. Du publishst, wenn du soweit bist — niemals automatisch.</p>
-          </div>
-          <div class="trust-tile">
-            <span class="trust-tile-mark" aria-hidden="true">[ MONEY-BACK ]</span>
-            <h3 class="trust-tile-title">Setup-Garantie</h3>
-            <p class="trust-tile-body">Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück. <a href="#faq">Bedingungen</a></p>
-          </div>
-          <div class="trust-tile">
-            <span class="trust-tile-mark" aria-hidden="true">[ DATA ]</span>
-            <h3 class="trust-tile-title">Deine Daten bleiben bei dir</h3>
-            <p class="trust-tile-body">vorflows hostet keine Shop-Daten. SEO- und Verhaltensdaten bleiben in deinen Accounts. Alles läuft über deine eigenen Verbindungen.</p>
-          </div>
-        </div>
-
-        <article class="bundle-hero" aria-labelledby="bundle-name">
-          <div class="bundle-hero-strip">Launch-Offer · Spar 100&nbsp;€</div>
-          <div class="bundle-hero-grid">
-            <div class="bundle-hero-pitch">
-              <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
-              <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow. Alles drin. Kein Add-On später nötig.</p>
-              <div class="bundle-hero-price-block">
-                <span class="bundle-hero-price">597&nbsp;€</span>
-                <span class="bundle-hero-strike">697&nbsp;€</span>
-                <span class="bundle-hero-suffix">einmal zahlen, dauerhaft besitzen</span>
+        <figure class="bundle-hero" aria-label="vorflows Bundle: BaseFlow, SEOFlow und ClarityFlow">
+          <img class="bundle-hero-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
+        </figure>
+        <div class="pricing-table">
+          <div class="pricing-grid">
+            <div class="pricing-col">
+              <h3 class="pricing-name">Base only</h3>
+              <p class="pricing-position">Einstieg. Erstmal testen.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">397&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
               </div>
-              <div class="bundle-math">
-                <strong>Nur zum Launch:</strong> Hol dir das komplette System mit <strong>100&nbsp;€&nbsp;Rabatt</strong>. Nach dem Launch-Fenster kostet das Bundle den vollen Preis von 697&nbsp;€ — und Add-Ons gibt's nur noch einzeln, ohne Bundle-Konditionen.
-              </div>
-              <a href="#" class="bundle-hero-cta" data-waitlist="pricing-bundle">Bundle reservieren</a>
-              <p class="bundle-hero-guarantee">Setup-Garantie: Funktioniert das System nicht für dich, bekommst du dein Geld zurück. <button type="button" class="guarantee-toggle" aria-expanded="false" aria-controls="guaranteeNotice">Bedingungen ansehen</button></p>
-              <div class="guarantee-notice" id="guaranteeNotice" hidden>
-                Folgst du dem System und kannst damit keine funktionierenden Elemente bauen, bekommst du dein Geld zurück.
-              </div>
-            </div>
-            <div class="bundle-hero-features">
-              <div class="bundle-feat-label">Was im Bundle drin ist</div>
-              <ul>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>Base System</strong><span>Theme-Optimization-Workflow + kompletter Skill-Stack</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>SEOFlow</strong><span>Echtzeit-Daten gesteuerte SEO-Maschine, für kontinuierliche Optimierung</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>ClarityFlow</strong><span>Verhaltensdaten-Loop für CVR-Optimierung aus echten Sessions</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>Alle künftigen Updates</strong><span>Solange du das System besitzt, ohne Aufpreis</span></div></li>
+              <ul class="pricing-features">
+                <li><span class="yes">✓</span> Base System</li>
+                <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
+                <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
+                <li><span class="yes">✓</span> Skill-Stack komplett</li>
               </ul>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-base">Join Waitlist</a>
+            </div>
+            <div class="pricing-col">
+              <h3 class="pricing-name">Base + SEOFlow</h3>
+              <p class="pricing-position">Für Founder mit Traffic-Fokus.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-strike">547&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
+              </div>
+              <ul class="pricing-features">
+                <li><span class="yes">✓</span> Base System</li>
+                <li><span class="yes">✓</span> SEOFlow</li>
+                <li><span class="no">−</span><span class="muted">ClarityFlow</span></li>
+                <li><span class="yes">✓</span> Skill-Stack komplett</li>
+              </ul>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-seoflow">Join Waitlist</a>
+            </div>
+            <div class="pricing-col">
+              <h3 class="pricing-name">Base + ClarityFlow</h3>
+              <p class="pricing-position">Für Founder mit Conversion-Fokus.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">497&nbsp;€</span>
+                <span class="pricing-price-strike">547&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 50&nbsp;€</span>
+              </div>
+              <ul class="pricing-features">
+                <li><span class="yes">✓</span> Base System</li>
+                <li><span class="no">−</span><span class="muted">SEOFlow</span></li>
+                <li><span class="yes">✓</span> ClarityFlow</li>
+                <li><span class="yes">✓</span> Skill-Stack komplett</li>
+              </ul>
+              <a href="#" class="pricing-cta" data-waitlist="pricing-clarityflow">Join Waitlist</a>
+            </div>
+            <div class="pricing-col recommended">
+              <div class="pricing-recommend-strip">Preis-Leistung Sieger</div>
+              <h3 class="pricing-name">Bundle</h3>
+              <p class="pricing-position">Alles drin. Kein Add-On später nötig.</p>
+              <div class="pricing-price-block">
+                <span class="pricing-price">597&nbsp;€</span>
+                <span class="pricing-price-strike">697&nbsp;€</span>
+                <span class="pricing-price-suffix">einmalig</span>
+                <span class="pricing-save">Spar 100&nbsp;€</span>
+              </div>
+              <ul class="pricing-features">
+                <li><span class="yes">✓</span> Base System</li>
+                <li><span class="yes">✓</span> SEOFlow</li>
+                <li><span class="yes">✓</span> ClarityFlow</li>
+                <li><span class="yes">✓</span> Skill-Stack komplett</li>
+              </ul>
+              <a href="#" class="pricing-cta primary" data-waitlist="pricing-bundle">Join Waitlist</a>
             </div>
           </div>
-        </article>
-
-        <div class="alt-tiers-divider"><span>Lieber einzeln einsteigen?</span></div>
-
-        <div class="alt-tiers">
-          <div class="alt-tier">
-            <div class="alt-tier-name">Base only</div>
-            <div class="alt-tier-pos">Einstieg, erstmal testen</div>
-            <div class="alt-tier-price">397&nbsp;€</div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-base">Mit Base starten →</a>
-          </div>
-          <div class="alt-tier">
-            <div class="alt-tier-name">Base + SEOFlow</div>
-            <div class="alt-tier-pos">Traffic-Fokus</div>
-            <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-seoflow">Diese Kombi nehmen →</a>
-          </div>
-          <div class="alt-tier">
-            <div class="alt-tier-name">Base + ClarityFlow</div>
-            <div class="alt-tier-pos">Conversion-Fokus</div>
-            <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-clarityflow">Diese Kombi nehmen →</a>
-          </div>
         </div>
-
-        <p class="alt-note">Add-Ons nach Erstkauf: je 150&nbsp;€, ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, fährt am günstigsten.</p>
+        <p class="pricing-trust"><strong>Setup-Garantie:</strong> Wenn das System nicht für dich funktioniert, bekommst du dein Geld zurück.</p>
+        <div class="pricing-note">
+          <strong>Du kannst mit Base einsteigen, das System testen und Module später nachkaufen, je 150&nbsp;€.</strong> Add-Ons nach Erstkauf sind ohne Bundle-Rabatt: 397&nbsp;+&nbsp;150&nbsp;+&nbsp;150&nbsp;=&nbsp;697&nbsp;€. Wer das Bundle gleich nimmt, zahlt 597&nbsp;€ und spart 100&nbsp;€.
+        </div>
       </div>
     </section>
 
@@ -3173,7 +2469,7 @@
           </details>
           <details class="faq-item">
             <summary>Wie lange dauert das Onboarding?</summary>
-            <div class="faq-body">Base: 20–30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30–40 Minuten Setup.</div>
+            <div class="faq-body">Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup.</div>
           </details>
           <details class="faq-item">
             <summary>Was passiert mit meinen Daten?</summary>
@@ -3436,19 +2732,7 @@
       });
 
       if (consentState === 'granted') initTracking();
-      else if (consentState !== 'denied') {
-        // Defer banner to avoid blocking first-fold content; show after first scroll or 2.5s
-        let bannerShown = false;
-        const showOnce = () => {
-          if (bannerShown) return;
-          bannerShown = true;
-          showCookieBanner();
-          window.removeEventListener('scroll', onFirstScroll);
-        };
-        const onFirstScroll = () => { if (window.scrollY > 80) showOnce(); };
-        window.addEventListener('scroll', onFirstScroll, { passive: true });
-        setTimeout(showOnce, 2500);
-      }
+      else if (consentState !== 'denied') showCookieBanner();
 
       // Nav border on scroll
       const nav = document.getElementById('nav');
@@ -3466,126 +2750,6 @@
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
-
-      // Outcome timeline — scroll-driven rail fill + dot activation
-      (() => {
-        const list = document.querySelector('.outcome-list');
-        if (!list) return;
-        const items = Array.from(list.querySelectorAll('.outcome-item'));
-        let ticking = false;
-        const update = () => {
-          ticking = false;
-          const rect = list.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const trigger = vh * 0.6;
-          const total = rect.height;
-          const distance = trigger - rect.top;
-          const pct = Math.max(0, Math.min(1, distance / total));
-          list.style.setProperty('--rail-fill', (pct * 100) + '%');
-          // Mark dots reached when their center crossed the trigger line
-          items.forEach((item) => {
-            const r = item.getBoundingClientRect();
-            const itemMid = r.top + r.height * 0.45;
-            item.classList.toggle('is-reached', itemMid <= trigger);
-          });
-        };
-        const onScroll = () => {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(update);
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
-        update();
-      })();
-
-      // Guarantee inline toggle
-      (() => {
-        const btn = document.querySelector('.guarantee-toggle');
-        const notice = document.getElementById('guaranteeNotice');
-        if (!btn || !notice) return;
-        btn.addEventListener('click', () => {
-          const open = !notice.hidden;
-          notice.hidden = open;
-          btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-        });
-      })();
-
-      // Scroll progress bar
-      (() => {
-        const bar = document.getElementById('scrollProgress');
-        if (!bar) return;
-        const update = () => {
-          const doc = document.documentElement;
-          const max = doc.scrollHeight - window.innerHeight;
-          const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-          bar.style.width = pct + '%';
-        };
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-      })();
-
-      // Active nav link via section observation
-      (() => {
-        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)');
-        if (!navLinks.length) return;
-        const map = new Map();
-        navLinks.forEach((a) => {
-          const id = a.getAttribute('href').slice(1);
-          const el = id ? document.getElementById(id) : null;
-          if (el) map.set(el, a);
-        });
-        if (!map.size || !('IntersectionObserver' in window)) return;
-        const setActive = (el) => {
-          navLinks.forEach((a) => a.classList.remove('is-active'));
-          const link = map.get(el);
-          if (link) link.classList.add('is-active');
-        };
-        const io = new IntersectionObserver((entries) => {
-          const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          if (visible[0]) setActive(visible[0].target);
-        }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.15, 0.5] });
-        map.forEach((_, el) => io.observe(el));
-      })();
-
-      // Sticky mobile CTA visibility — show after hero, hide when pricing or final-cta in view
-      (() => {
-        const stickyBar = document.getElementById('stickyCtaBar');
-        if (!stickyBar) return;
-        const pricingEl = document.getElementById('pricing');
-        const finalCta = document.querySelector('.final-cta');
-        const heroEl = document.querySelector('.hero');
-        const mql = window.matchMedia('(max-width: 880px)');
-        let pricingVisible = false;
-        let finalVisible = false;
-        let pastHero = false;
-        const update = () => {
-          if (!mql.matches) {
-            stickyBar.classList.remove('is-visible');
-            document.body.classList.remove('has-sticky-cta');
-            return;
-          }
-          const show = pastHero && !pricingVisible && !finalVisible;
-          stickyBar.classList.toggle('is-visible', show);
-          document.body.classList.toggle('has-sticky-cta', show);
-        };
-        if ('IntersectionObserver' in window) {
-          const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.target === pricingEl) pricingVisible = entry.isIntersecting;
-              else if (entry.target === finalCta) finalVisible = entry.isIntersecting;
-              else if (entry.target === heroEl) pastHero = !entry.isIntersecting;
-            });
-            update();
-          }, { rootMargin: '-10% 0px -10% 0px', threshold: 0 });
-          if (pricingEl) io.observe(pricingEl);
-          if (finalCta) io.observe(finalCta);
-          if (heroEl) io.observe(heroEl);
-        }
-        mql.addEventListener?.('change', update);
-        update();
-      })();
 
       // Fade-in on scroll
       const fadeEls = document.querySelectorAll('.fade-in');
@@ -3627,7 +2791,7 @@
       const mq = window.matchMedia('(min-width: 769px)');
       mq.addEventListener?.('change', (e) => { if (e.matches) closeMobile(); });
 
-      // Hero video — muted background autoplay, click to unmute + restart with sound.
+      // Hero video: muted background autoplay, click to unmute + restart with sound.
       // Custom controls (speed + fullscreen) reveal on tap, fade after 3 s.
       // iOS Low Power Mode blocks muted autoplay → fall back to first-frame paint.
       document.querySelectorAll('[data-hero-video]').forEach((wrap) => {
