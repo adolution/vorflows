@@ -538,12 +538,13 @@
       }
       .wf-step {
         display: grid;
-        grid-template-columns: 100px minmax(0, 1fr);
-        gap: clamp(20px, 3vw, 40px);
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: clamp(20px, 3vw, 36px);
         align-items: start;
         padding-bottom: clamp(36px, 5vw, 56px);
         border-bottom: 1px solid var(--border-dark);
         min-width: 0;
+        position: relative;
       }
       .wf-step > * { min-width: 0; }
       .wf-step:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -552,9 +553,27 @@
       }
       .wf-num {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 13px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
         color: var(--accent);
-        padding-top: 6px;
+        padding-top: 8px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .wf-num::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+        flex-shrink: 0;
+        box-shadow: 0 0 0 4px rgba(200, 99, 62, 0.18);
+      }
+      @media (max-width: 720px) {
+        .wf-num { padding-top: 0; }
       }
       .wf-title {
         font-family: 'Inter', sans-serif;
@@ -2041,11 +2060,11 @@
               </div>
               <figure class="wf-preview">
                 <figcaption class="wf-preview-cap">Ergebnis im Cart, live nach Publish</figcaption>
-                <svg viewBox="0 0 880 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free Shipping Bar Vorschau" style="display:block;width:100%;height:auto;background:#FAFAF7;">
-                  <text x="60" y="64" fill="#1A1A1A" font-family="Inter, sans-serif" font-size="20" font-weight="600">Noch 12,50 € bis Free Shipping</text>
-                  <rect x="60" y="92" width="760" height="14" rx="7" fill="#E5E3DD"/>
-                  <rect x="60" y="92" width="495" height="14" rx="7" fill="#C8633E"/>
-                  <text x="60" y="138" fill="#5C5C5C" font-family="Inter, sans-serif" font-size="13">65 % erreicht · live im Cart-Drawer</text>
+                <svg viewBox="0 0 880 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free Shipping Bar Vorschau" style="display:block;width:100%;height:auto;background:#FAFAF7;">
+                  <text x="60" y="40" fill="#1A1A1A" font-family="Inter, sans-serif" font-size="20" font-weight="600">Noch 12,50 € bis Free Shipping</text>
+                  <rect x="60" y="60" width="760" height="14" rx="7" fill="#E5E3DD"/>
+                  <rect x="60" y="60" width="495" height="14" rx="7" fill="#C8633E"/>
+                  <text x="60" y="104" fill="#5C5C5C" font-family="Inter, sans-serif" font-size="13">65 % erreicht · live im Cart-Drawer</text>
                 </svg>
               </figure>
             </div>
