@@ -9,7 +9,6 @@
   "lang": "de",
   "icons": [
     { "src": "/brand_assets/logos/favicon-32.png", "sizes": "32x32", "type": "image/png" },
-    { "src": "/brand_assets/logos/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/brand_assets/logos/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "/brand_assets/logos/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ]
 }
