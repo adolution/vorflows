@@ -1962,36 +1962,12 @@
         color: var(--text-secondary);
         max-width: 44ch;
       }
-      .bundle-hero-guarantee a,
-      .bundle-hero-guarantee .guarantee-toggle {
+      .bundle-hero-guarantee a {
         color: var(--text-primary);
         text-decoration: underline;
         text-decoration-color: var(--border-strong);
         text-underline-offset: 3px;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
       }
-      .guarantee-toggle:hover { text-decoration-color: var(--accent); }
-      .guarantee-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: 2px;
-      }
-      .guarantee-notice {
-        margin: 12px 0 0;
-        padding: 14px 16px;
-        background: rgba(255,255,255,0.55);
-        border-left: 2px solid var(--accent);
-        border-radius: 0 8px 8px 0;
-        font-size: 13.5px;
-        line-height: 1.55;
-        color: var(--text-primary);
-        max-width: 44ch;
-      }
-      .guarantee-notice[hidden] { display: none; }
       .bundle-hero-features {
         display: flex;
         flex-direction: column;
@@ -2113,6 +2089,23 @@
         color: var(--text-secondary);
       }
 
+      /* Generic smooth-expand pattern for <details data-animate> */
+      details[data-animate] [data-animate-body] {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 380ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      details[data-animate].is-open [data-animate-body] {
+        grid-template-rows: 1fr;
+      }
+      details[data-animate] [data-animate-body] > * {
+        overflow: hidden;
+        min-height: 0;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        details[data-animate] [data-animate-body] { transition: none; }
+      }
+
       .alt-disclose {
         margin: 72px 0 0;
       }
@@ -2189,11 +2182,11 @@
         height: 10px;
         transform: translate(-50%, -50%);
       }
-      .alt-disclose[open] .alt-disclose-icon {
+      .alt-disclose.is-open .alt-disclose-icon {
         transform: rotate(45deg);
       }
-      .alt-disclose-body {
-        margin-top: 32px;
+      .alt-disclose-inner {
+        padding-top: 32px;
       }
       @media (prefers-reduced-motion: reduce) {
         .alt-disclose-icon,
@@ -2393,22 +2386,21 @@
         transition: transform 320ms var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
         will-change: transform;
       }
-      .faq-item[open] summary::after { transform: rotate(45deg); }
+      .faq-item.is-open summary::after { transform: rotate(45deg); }
       .faq-body {
         padding: 0 0 24px;
         color: var(--text-secondary);
         font-size: 16px;
         line-height: 1.65;
         max-width: 60ch;
+        opacity: 0.001;
+        transition: opacity 280ms ease 80ms;
       }
-      @media (prefers-reduced-motion: no-preference) {
-        .faq-item[open] .faq-body {
-          animation: faqBodyIn 360ms var(--ease-out-quart, cubic-bezier(.25,1,.5,1)) both;
-        }
+      .faq-item.is-open .faq-body {
+        opacity: 1;
       }
-      @keyframes faqBodyIn {
-        from { opacity: 0; transform: translate3d(0, -4px, 0); }
-        to   { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .faq-body { transition: none; opacity: 1; }
       }
 
       /* Final CTA */
@@ -3678,10 +3670,7 @@
                 <strong>Nur zum Launch:</strong> Hol dir das komplette System mit <strong>100&nbsp;€&nbsp;Rabatt</strong>. Nach dem Launch-Fenster kostet das Bundle den vollen Preis von 697&nbsp;€. Add-Ons gibt's nur noch einzeln, ohne Bundle-Konditionen.
               </div>
               <a href="#" class="bundle-hero-cta" data-waitlist="pricing-bundle" data-magnetic>Bundle reservieren</a>
-              <p class="bundle-hero-guarantee">Setup-Garantie: Funktioniert das System nicht für dich, bekommst du dein Geld zurück. <button type="button" class="guarantee-toggle" aria-expanded="false" aria-controls="guaranteeNotice">Bedingungen ansehen</button></p>
-              <div class="guarantee-notice" id="guaranteeNotice" hidden>
-                Folgst du dem System und kannst damit keine funktionierenden Elemente bauen, bekommst du dein Geld zurück.
-              </div>
+              <p class="bundle-hero-guarantee">Setup-Garantie: Funktioniert das System nicht für dich, bekommst du dein Geld zurück. <span class="gloss" tabindex="0" role="note" data-tip="Folgst du dem System und kannst damit keine funktionierenden Elemente bauen, bekommst du dein Geld zurück.">Bedingungen ansehen</span></p>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
@@ -3695,14 +3684,15 @@
           </div>
         </article>
 
-        <details class="alt-disclose" data-reveal="fade">
+        <details class="alt-disclose" data-animate data-reveal="fade">
           <summary aria-label="Einzelne Tiers anzeigen">
             <span class="alt-disclose-summary-inner">
               <span>Lieber einzeln einsteigen?</span>
               <span class="alt-disclose-icon" aria-hidden="true"></span>
             </span>
           </summary>
-          <div class="alt-disclose-body">
+          <div class="alt-disclose-body" data-animate-body>
+           <div class="alt-disclose-inner">
             <div class="alt-tiers">
               <div class="alt-tier">
                 <div class="alt-tier-name">Base only</div>
@@ -3724,6 +3714,7 @@
               </div>
             </div>
             <p class="alt-note">Add-Ons nach Erstkauf: je 150&nbsp;€, ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, fährt am günstigsten.</p>
+           </div>
           </div>
         </details>
       </div>
@@ -3737,35 +3728,35 @@
           <h2 class="h2 display">Was du dich zurecht fragst.</h2>
         </div>
         <div class="faq" data-reveal-stagger="details">
-          <details class="faq-item" data-reveal="up" open>
+          <details class="faq-item" data-animate data-reveal="up" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
             <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Was, wenn ich mein Theme zerschieße?</summary>
             <div class="faq-body">Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Funktioniert das mit jedem Theme: Dawn, Custom, Premium?</summary>
             <div class="faq-body">Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Brauche ich Claude Pro / Claude Code?</summary>
             <div class="faq-body">Ja, einen Claude-Account mit Code-Zugang. Du bekommst ein kurzes 5-Minuten-Video, in dem du das Setup nachklicken kannst.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Kann ich später Add-Ons dazukaufen?</summary>
             <div class="faq-body">Ja. Aber: Add-Ons nach Erstkauf gibt's ohne Bundle-Rabatt. Wer alles will, fährt mit dem Bundle besser.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Wie lange dauert das Onboarding?</summary>
             <div class="faq-body">Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Was passiert mit meinen Daten?</summary>
             <div class="faq-body">SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude. Wenn du dich unwohl dabei fühlst, dass Claude deine Daten verarbeitet, ist vorflows nicht das richtige für dich.</div>
           </details>
-          <details class="faq-item" data-reveal="up">
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Gibt es eine Geld-zurück-Garantie?</summary>
             <div class="faq-body">Das ist zwar bisher nie passiert, aber: Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück.</div>
           </details>
@@ -4085,15 +4076,41 @@
         update();
       })();
 
-      // Guarantee inline toggle
+      // Smooth animated <details data-animate> — grid-template-rows expand/collapse
       (() => {
-        const btn = document.querySelector('.guarantee-toggle');
-        const notice = document.getElementById('guaranteeNotice');
-        if (!btn || !notice) return;
-        btn.addEventListener('click', () => {
-          const open = !notice.hidden;
-          notice.hidden = open;
-          btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        const list = document.querySelectorAll('details[data-animate]');
+        list.forEach((d) => {
+          const summary = d.querySelector(':scope > summary');
+          if (!summary) return;
+
+          // Auto-wrap remaining children if not pre-wrapped
+          let body = d.querySelector(':scope > [data-animate-body]');
+          if (!body) {
+            body = document.createElement('div');
+            body.setAttribute('data-animate-body', '');
+            const moves = [];
+            for (let n = summary.nextSibling; n; n = n.nextSibling) moves.push(n);
+            moves.forEach((n) => body.appendChild(n));
+            d.appendChild(body);
+          }
+
+          const startOpen = d.hasAttribute('open');
+          // Always keep <details> open natively so the wrapper renders during animation
+          if (!d.hasAttribute('open')) d.setAttribute('open', '');
+
+          if (startOpen) {
+            d.classList.add('is-open');
+            summary.setAttribute('aria-expanded', 'true');
+          } else {
+            summary.setAttribute('aria-expanded', 'false');
+          }
+
+          summary.addEventListener('click', (e) => {
+            e.preventDefault();
+            const willOpen = !d.classList.contains('is-open');
+            d.classList.toggle('is-open', willOpen);
+            summary.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+          });
         });
       })();
 
