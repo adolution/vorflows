@@ -849,46 +849,40 @@
       }
       .modules {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0;
+        grid-template-columns: 1.15fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 56px;
+        row-gap: 40px;
         margin-top: 56px;
       }
       @media (max-width: 900px) {
-        .modules { grid-template-columns: 1fr; }
+        .modules {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          column-gap: 0;
+          row-gap: 0;
+        }
       }
       .module {
-        padding: 40px 32px 36px;
-        border-left: 1px solid var(--border);
-      }
-      .module:first-child { border-left: 0; padding-left: 0; }
-      .module:last-child { padding-right: 0; }
-      @media (max-width: 900px) {
-        .module { border-left: 0; border-top: 1px solid var(--border); padding: 36px 0; }
-        .module:first-child { border-top: 0; padding-top: 0; }
+        padding: 0;
       }
       .module-box {
         display: block;
         width: 100%;
-        max-width: 280px;
         aspect-ratio: 1 / 1;
         height: auto;
-        margin: 0 0 28px -12px;
         user-select: none;
         -webkit-user-drag: none;
       }
-      @media (max-width: 900px) {
-        .module-box { max-width: 240px; margin-left: 0; }
-      }
       .module-label {
         color: var(--accent);
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
       .module-title {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
-        font-size: 22px;
         line-height: 1.3;
-        margin: 0 0 16px;
+        margin: 0 0 14px;
       }
       .module-body {
         color: var(--text-secondary);
@@ -897,6 +891,85 @@
         margin: 0;
       }
       .module-body + .module-body { margin-top: 14px; }
+
+      /* Lead module — BaseFlow */
+      .module--lead {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        padding-right: 16px;
+        border-right: 1px solid var(--border);
+      }
+      .module--lead .module-box {
+        max-width: 380px;
+        margin: 0 0 32px -16px;
+      }
+      .module--lead .module-title {
+        font-size: clamp(22px, 2.4vw, 26px);
+      }
+      .module--lead .module-body {
+        font-size: 16px;
+        max-width: 46ch;
+      }
+
+      /* Small modules — SEOFlow, ClarityFlow */
+      .module--small {
+        grid-column: 2;
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+      }
+      .module--small + .module--small {
+        border-top: 1px solid var(--border);
+        padding-top: 32px;
+      }
+      .module--small .module-box {
+        flex: 0 0 168px;
+        max-width: 168px;
+        margin: 0;
+      }
+      .module--small .module-content {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .module--small .module-title {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      .module--small .module-body {
+        font-size: 14.5px;
+        line-height: 1.55;
+      }
+      .module--small .module-label {
+        margin-bottom: 10px;
+      }
+
+      @media (max-width: 900px) {
+        .module--lead {
+          grid-column: 1;
+          grid-row: auto;
+          padding-right: 0;
+          border-right: 0;
+          padding-bottom: 36px;
+          border-bottom: 1px solid var(--border);
+        }
+        .module--lead .module-box {
+          max-width: 260px;
+          margin: 0 0 28px;
+        }
+        .module--small {
+          grid-column: 1;
+          flex-direction: column;
+          gap: 20px;
+          padding-top: 36px;
+        }
+        .module--small + .module--small {
+          padding-top: 36px;
+        }
+        .module--small .module-box {
+          flex: 0 0 auto;
+          max-width: 200px;
+        }
+      }
 
       /* Compare table */
       .compare-table {
@@ -2040,27 +2113,92 @@
         color: var(--text-secondary);
       }
 
-      .alt-tiers-divider {
-        margin: 72px 0 32px;
+      .alt-disclose {
+        margin: 72px 0 0;
+      }
+      .alt-disclose > summary {
+        list-style: none;
+        cursor: pointer;
         text-align: center;
         position: relative;
+        padding: 0;
+        outline: none;
       }
-      .alt-tiers-divider::before {
+      .alt-disclose > summary::-webkit-details-marker { display: none; }
+      .alt-disclose > summary::before {
         content: "";
         position: absolute;
         left: 0; right: 0; top: 50%;
         height: 1px;
         background: var(--border);
+        pointer-events: none;
       }
-      .alt-tiers-divider span {
+      .alt-disclose-summary-inner {
         position: relative;
-        background: #F4F2EC;
-        padding: 0 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #fff;
+        padding: 11px 22px;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
         font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--text-secondary);
+        color: var(--text-primary);
+        transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
+      }
+      .alt-disclose > summary:hover .alt-disclose-summary-inner {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: rgba(200, 99, 62, 0.04);
+        transform: translate3d(0, -1px, 0);
+      }
+      .alt-disclose > summary:active .alt-disclose-summary-inner {
+        transform: translate3d(0, 0, 0);
+      }
+      .alt-disclose > summary:focus-visible .alt-disclose-summary-inner {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .alt-disclose-icon {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .alt-disclose-icon::before,
+      .alt-disclose-icon::after {
+        content: "";
+        position: absolute;
+        background: currentColor;
+        left: 50%;
+        top: 50%;
+        border-radius: 1px;
+      }
+      .alt-disclose-icon::before {
+        width: 10px;
+        height: 1.5px;
+        transform: translate(-50%, -50%);
+      }
+      .alt-disclose-icon::after {
+        width: 1.5px;
+        height: 10px;
+        transform: translate(-50%, -50%);
+      }
+      .alt-disclose[open] .alt-disclose-icon {
+        transform: rotate(45deg);
+      }
+      .alt-disclose-body {
+        margin-top: 32px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .alt-disclose-icon,
+        .alt-disclose-summary-inner { transition: none; }
+        .alt-disclose > summary:hover .alt-disclose-summary-inner { transform: none; }
       }
       .alt-tiers {
         display: grid;
@@ -2139,11 +2277,14 @@
         border-radius: 4px;
       }
       .alt-note {
-        margin-top: 28px;
+        margin: 24px 0 0;
         text-align: center;
-        font-size: 13.5px;
+        font-size: 12.5px;
         color: var(--text-secondary);
         line-height: 1.55;
+        font-style: italic;
+        font-family: 'Fraunces', serif;
+        opacity: 0.85;
       }
 
       /* Trust strip: pre-pricing reassurance */
@@ -3052,7 +3193,7 @@
       <div class="hero-stack" data-reveal-stagger>
         <div class="meta hero-eyebrow">Sections bauen · SEO · CVR Optimierung</div>
         <h1 class="display hero-headline">
-          So holst du mit KI das <em>Maximum</em> aus deinem Shop heraus
+          So holst du mit KI <em>mehr</em> aus deinem Shop
         </h1>
         <div class="hero-video" data-hero-video>
           <video
@@ -3241,26 +3382,28 @@
           <p class="module-lead">Base ist das Fundament. SEOFlow und ClarityFlow sind optionale Add-Ons.</p>
         </div>
         <div class="modules" data-reveal-stagger>
-          <div class="module" data-reveal="up">
+          <div class="module module--lead" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">01 / Base · Pflicht-Modul</div>
             <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
             <p class="module-body">Duplicate Theme, Claude Project laden, Sections und Snippets bearbeiten.</p>
             <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
-          <div class="module" data-reveal="up">
+          <div class="module module--small" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
-            <div class="meta module-label">02 / SEOFlow · Add-On</div>
-            <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht.</h3>
-            <p class="module-body">Geführter Setup-Flow. Reale Suchdaten mit der SEO-KI verknüpft.</p>
-            <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
+            <div class="module-content">
+              <div class="meta module-label">02 / SEOFlow · Add-On</div>
+              <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht.</h3>
+              <p class="module-body">Reale Suchdaten verknüpft mit Claude. Rankings, CTRs als Input. Output: Code-Änderungen am Theme.</p>
+            </div>
           </div>
-          <div class="module" data-reveal="up">
+          <div class="module module--small" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
-            <div class="meta module-label">03 / ClarityFlow · Add-On</div>
-            <h3 class="module-title">Dein Shop verrät, was nicht funktioniert. Claude hört zu und handelt.</h3>
-            <p class="module-body">Verbindet Claude Code mit Verhaltensdaten: Klicks, Scroll, Heatmaps.</p>
-            <p class="module-body">Erkennt Drop-offs, ignorierte CTAs, tote Sections. Schließt den Loop: Daten → Hypothese → Code → neue Daten.</p>
+            <div class="module-content">
+              <div class="meta module-label">03 / ClarityFlow · Add-On</div>
+              <h3 class="module-title">Verhaltensdaten als Input. Code als Output.</h3>
+              <p class="module-body">Claude liest Klicks, Scrolls, Heatmaps. Erkennt Drop-offs, tote Sections. Schließt den Loop: Daten → Hypothese → Code.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -3344,7 +3487,7 @@
         <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Was im Paket liegt</div>
           <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
-          <p class="skill-sub">Wochenlang gebaut, getestet, geschärft. Du gibst einen Befehl, die KI führt dich durchs Setup.</p>
+          <p class="skill-sub">Du installierst sie einmal. Danach kennt Claude deinen Shop, weiß welche Patterns funktionieren und merkt sich, was du entschieden hast.</p>
         </div>
 
         <div class="files-grid" data-reveal-stagger>
@@ -3408,7 +3551,7 @@
             <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
           <div class="ss-body">
-            <strong>Sicher by design.</strong> Claude arbeitet immer auf einem Duplikat deines Themes, niemals direkt am Live-Shop. Kein Zugriff auf Kundendaten, keine API-Keys.
+            <strong>Safe by design.</strong> Claude arbeitet immer auf einem Duplikat deines Themes, niemals direkt am Live-Shop. Kein Zugriff auf Kundendaten, keine API-Keys.
             <span class="ss-sub">Du kopierst Dateien gelegentlich rüber und entscheidest selbst, wann published wird.</span>
           </div>
         </aside>
@@ -3552,30 +3695,37 @@
           </div>
         </article>
 
-        <div class="alt-tiers-divider" data-reveal="fade"><span>Lieber einzeln einsteigen?</span></div>
-
-        <div class="alt-tiers" data-reveal-stagger>
-          <div class="alt-tier" data-reveal="up">
-            <div class="alt-tier-name">Base only</div>
-            <div class="alt-tier-pos">Einstieg, erstmal testen</div>
-            <div class="alt-tier-price">397&nbsp;€</div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-base">Mit Base starten →</a>
+        <details class="alt-disclose" data-reveal="fade">
+          <summary aria-label="Einzelne Tiers anzeigen">
+            <span class="alt-disclose-summary-inner">
+              <span>Lieber einzeln einsteigen?</span>
+              <span class="alt-disclose-icon" aria-hidden="true"></span>
+            </span>
+          </summary>
+          <div class="alt-disclose-body">
+            <div class="alt-tiers">
+              <div class="alt-tier">
+                <div class="alt-tier-name">Base only</div>
+                <div class="alt-tier-pos">Einstieg, erstmal testen</div>
+                <div class="alt-tier-price">397&nbsp;€</div>
+                <a href="#" class="alt-tier-cta" data-waitlist="pricing-base">Mit Base starten →</a>
+              </div>
+              <div class="alt-tier">
+                <div class="alt-tier-name">Base + SEOFlow</div>
+                <div class="alt-tier-pos">Traffic-Fokus</div>
+                <div class="alt-tier-price">547&nbsp;€</div>
+                <a href="#" class="alt-tier-cta" data-waitlist="pricing-seoflow">Diese Kombi nehmen →</a>
+              </div>
+              <div class="alt-tier">
+                <div class="alt-tier-name">Base + ClarityFlow</div>
+                <div class="alt-tier-pos">Conversion-Fokus</div>
+                <div class="alt-tier-price">547&nbsp;€</div>
+                <a href="#" class="alt-tier-cta" data-waitlist="pricing-clarityflow">Diese Kombi nehmen →</a>
+              </div>
+            </div>
+            <p class="alt-note">Add-Ons nach Erstkauf: je 150&nbsp;€, ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, fährt am günstigsten.</p>
           </div>
-          <div class="alt-tier" data-reveal="up">
-            <div class="alt-tier-name">Base + SEOFlow</div>
-            <div class="alt-tier-pos">Traffic-Fokus</div>
-            <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-seoflow">Diese Kombi nehmen →</a>
-          </div>
-          <div class="alt-tier" data-reveal="up">
-            <div class="alt-tier-name">Base + ClarityFlow</div>
-            <div class="alt-tier-pos">Conversion-Fokus</div>
-            <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
-            <a href="#" class="alt-tier-cta" data-waitlist="pricing-clarityflow">Diese Kombi nehmen →</a>
-          </div>
-        </div>
-
-        <p class="alt-note">Add-Ons nach Erstkauf: je 150&nbsp;€, ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, fährt am günstigsten.</p>
+        </details>
       </div>
     </section>
 
