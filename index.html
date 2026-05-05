@@ -3000,7 +3000,8 @@
             playsinline
             preload="none"
             poster="/assets/video/vorflows-salesletter-poster.jpg"
-            data-src="/assets/video/vorflows-salesletter-720.mp4"
+            data-src="/assets/video/vorflows-salesletter-720-silent.mp4"
+            data-src-audio="/assets/video/vorflows-salesletter-720.mp4"
             aria-label="vorflows Salesletter Video"
           ></video>
           <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
@@ -3314,7 +3315,8 @@
               playsinline
               preload="none"
               poster="/assets/video/vorflows-demo-poster.jpg"
-              data-src="/assets/video/vorflows-demo-720.mp4"
+              data-src="/assets/video/vorflows-demo-720-silent.mp4"
+              data-src-audio="/assets/video/vorflows-demo-720.mp4"
               aria-label="vorflows Demo Video"
             ></video>
             <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
@@ -4188,8 +4190,20 @@
           loadAndPlay();
         }
 
+        // On unmute click, swap silent autoplay source for the audio-bearing one.
+        let audioSwapped = false;
+        const swapToAudioSrc = () => {
+          if (audioSwapped) return;
+          const audioSrc = video.getAttribute('data-src-audio');
+          if (!audioSrc) return;
+          audioSwapped = true;
+          video.src = audioSrc;
+          video.load();
+        };
+
         playBtn.addEventListener('click', () => {
           loadAndPlay();
+          swapToAudioSrc();
           wrap.classList.add('is-playing');
           video.muted = false;
           video.loop = false;
