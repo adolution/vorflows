@@ -914,19 +914,10 @@
       }
       .modules {
         display: grid;
-        grid-template-columns: 1.15fr 1fr;
-        grid-template-rows: auto auto;
-        column-gap: 56px;
-        row-gap: 40px;
-        margin-top: 56px;
-      }
-      @media (max-width: 900px) {
-        .modules {
-          grid-template-columns: 1fr;
-          grid-template-rows: auto;
-          column-gap: 0;
-          row-gap: 0;
-        }
+        grid-template-columns: 1fr 1fr;
+        column-gap: clamp(48px, 5vw, 80px);
+        row-gap: clamp(40px, 5vw, 56px);
+        margin-top: clamp(48px, 6vw, 72px);
       }
       .module {
         padding: 0;
@@ -957,43 +948,44 @@
       }
       .module-body + .module-body { margin-top: 14px; }
 
-      /* Lead module — BaseFlow */
+      /* Lead module — BaseFlow (full-width anchor row) */
       .module--lead {
-        grid-column: 1;
-        grid-row: 1 / span 2;
-        padding-right: 16px;
-        border-right: 1px solid var(--border);
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(280px, 0.9fr) 1fr;
+        column-gap: clamp(40px, 6vw, 80px);
+        align-items: center;
+        padding-bottom: clamp(40px, 5vw, 56px);
+        border-bottom: 1px solid var(--border);
       }
       .module--lead .module-box {
-        max-width: 400px;
-        margin: 0 0 32px -16px;
+        max-width: 420px;
+        margin: 0 0 0 -16px;
+        justify-self: start;
       }
-      .module--lead .module-title {
-        font-size: clamp(22px, 2.4vw, 26px);
-      }
-      .module--lead .module-body {
-        font-size: 16px;
+      .module--lead .module-content {
         max-width: 46ch;
       }
-
-      /* Small modules — SEOFlow, ClarityFlow */
-      .module--small {
-        grid-column: 2;
-        display: flex;
-        gap: 24px;
-        align-items: flex-start;
+      .module--lead .module-title {
+        font-size: clamp(24px, 2.6vw, 30px);
+        max-width: 22ch;
       }
-      .module--small + .module--small {
-        border-top: 1px solid var(--border);
-        padding-top: 40px;
+      .module--lead .module-body {
+        font-size: 16.5px;
+      }
+
+      /* Add-On modules — SEOFlow, ClarityFlow (parallel columns) */
+      .module--small {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        column-gap: 24px;
+        align-items: start;
       }
       .module--small .module-box {
-        flex: 0 0 132px;
-        max-width: 132px;
+        max-width: 96px;
         margin: 0;
       }
       .module--small .module-content {
-        flex: 1 1 auto;
         min-width: 0;
       }
       .module--small .module-title {
@@ -1011,30 +1003,22 @@
       }
 
       @media (max-width: 900px) {
+        .modules {
+          grid-template-columns: 1fr;
+          row-gap: 40px;
+        }
         .module--lead {
-          grid-column: 1;
-          grid-row: auto;
-          padding-right: 0;
-          border-right: 0;
+          grid-template-columns: 1fr;
+          row-gap: 28px;
           padding-bottom: 36px;
-          border-bottom: 1px solid var(--border);
         }
         .module--lead .module-box {
           max-width: 260px;
-          margin: 0 0 28px;
+          margin: 0;
         }
         .module--small {
-          grid-column: 1;
-          flex-direction: column;
-          gap: 20px;
-          padding-top: 36px;
-        }
-        .module--small + .module--small {
-          padding-top: 36px;
-        }
-        .module--small .module-box {
-          flex: 0 0 auto;
-          max-width: 200px;
+          grid-template-columns: 84px 1fr;
+          column-gap: 20px;
         }
       }
 
@@ -3443,10 +3427,12 @@
         <div class="modules" data-reveal-stagger>
           <div class="module module--lead" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
-            <div class="meta module-label">01 / Base · Pflicht-Modul</div>
-            <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
-            <p class="module-body">Duplicate Theme, Claude Project laden, Sections und Snippets bearbeiten.</p>
-            <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
+            <div class="module-content">
+              <div class="meta module-label">01 / Base · Pflicht-Modul</div>
+              <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
+              <p class="module-body">Duplicate Theme, Claude Project laden, Sections und Snippets bearbeiten.</p>
+              <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
+            </div>
           </div>
           <div class="module module--small" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
