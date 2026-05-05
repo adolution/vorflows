@@ -89,40 +89,54 @@
           "brand": { "@id": "https://vorflows.com/#organization" },
           "image": "https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp",
           "category": "Shopify Optimization System",
-          "offers": [
-            {
-              "@type": "Offer",
-              "name": "BaseFlow",
-              "price": "397",
-              "priceCurrency": "EUR",
-              "availability": "https://schema.org/PreOrder",
-              "url": "https://vorflows.com/#pricing"
-            },
-            {
-              "@type": "Offer",
-              "name": "BaseFlow + SEOFlow",
-              "price": "497",
-              "priceCurrency": "EUR",
-              "availability": "https://schema.org/PreOrder",
-              "url": "https://vorflows.com/#pricing"
-            },
-            {
-              "@type": "Offer",
-              "name": "BaseFlow + ClarityFlow",
-              "price": "497",
-              "priceCurrency": "EUR",
-              "availability": "https://schema.org/PreOrder",
-              "url": "https://vorflows.com/#pricing"
-            },
-            {
-              "@type": "Offer",
-              "name": "Bundle (BaseFlow + SEOFlow + ClarityFlow)",
-              "price": "597",
-              "priceCurrency": "EUR",
-              "availability": "https://schema.org/PreOrder",
-              "url": "https://vorflows.com/#pricing"
-            }
-          ]
+          "inLanguage": "de-DE",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "EUR",
+            "lowPrice": "397",
+            "highPrice": "597",
+            "offerCount": 4,
+            "availability": "https://schema.org/PreOrder",
+            "url": "https://vorflows.com/#pricing",
+            "offers": [
+              {
+                "@type": "Offer",
+                "sku": "vf-base",
+                "name": "BaseFlow",
+                "price": "397",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/PreOrder",
+                "url": "https://vorflows.com/#pricing"
+              },
+              {
+                "@type": "Offer",
+                "sku": "vf-base-seo",
+                "name": "BaseFlow + SEOFlow",
+                "price": "497",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/PreOrder",
+                "url": "https://vorflows.com/#pricing"
+              },
+              {
+                "@type": "Offer",
+                "sku": "vf-base-clarity",
+                "name": "BaseFlow + ClarityFlow",
+                "price": "497",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/PreOrder",
+                "url": "https://vorflows.com/#pricing"
+              },
+              {
+                "@type": "Offer",
+                "sku": "vf-bundle",
+                "name": "Bundle (BaseFlow + SEOFlow + ClarityFlow)",
+                "price": "597",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/PreOrder",
+                "url": "https://vorflows.com/#pricing"
+              }
+            ]
+          }
         },
         {
           "@type": "FAQPage",

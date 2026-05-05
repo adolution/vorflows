@@ -1,12 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /carousels/
-Disallow: /carousel-extract/
-Disallow: /carousel-original/
-Disallow: /index2.html
-Disallow: /index3.html
-Disallow: /index-critique.html
-Disallow: /index.backup-*
 
 Sitemap: https://vorflows.com/sitemap.xml
