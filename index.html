@@ -900,7 +900,7 @@
         border-right: 1px solid var(--border);
       }
       .module--lead .module-box {
-        max-width: 380px;
+        max-width: 400px;
         margin: 0 0 32px -16px;
       }
       .module--lead .module-title {
@@ -915,16 +915,16 @@
       .module--small {
         grid-column: 2;
         display: flex;
-        gap: 28px;
+        gap: 24px;
         align-items: flex-start;
       }
       .module--small + .module--small {
         border-top: 1px solid var(--border);
-        padding-top: 32px;
+        padding-top: 40px;
       }
       .module--small .module-box {
-        flex: 0 0 168px;
-        max-width: 168px;
+        flex: 0 0 132px;
+        max-width: 132px;
         margin: 0;
       }
       .module--small .module-content {
@@ -932,12 +932,14 @@
         min-width: 0;
       }
       .module--small .module-title {
-        font-size: 18px;
+        font-size: 17px;
+        line-height: 1.35;
         margin: 0 0 10px;
       }
       .module--small .module-body {
         font-size: 14.5px;
         line-height: 1.55;
+        max-width: 38ch;
       }
       .module--small .module-label {
         margin-bottom: 10px;
@@ -1210,6 +1212,49 @@
         text-align: center;
         font-size: 13px;
         color: var(--text-secondary);
+      }
+
+      /* Subscription-Killer: dark-surface variant */
+      .compare-on-dark { color: var(--text-inverse); }
+      .compare-on-dark .meta.eyebrow { color: var(--accent); }
+      .compare-on-dark .h2.display { color: var(--text-inverse); }
+      .compare-on-dark .compare-pre-note { color: var(--text-secondary-dark); }
+      .compare-on-dark .compare-explainer { color: var(--text-secondary-dark); }
+      .compare-on-dark .compare-explainer strong { color: var(--text-inverse); }
+      .compare-on-dark .compare-foot { color: var(--text-inverse); }
+      .compare-on-dark .compare-foot em { color: var(--accent); font-style: italic; }
+      .compare-on-dark .compare-disclaimer { color: var(--text-secondary-dark); }
+
+      .compare-on-dark .compare-table th,
+      .compare-on-dark .compare-table td {
+        border-bottom-color: var(--border-dark);
+      }
+      .compare-on-dark .compare-table thead th {
+        color: var(--text-secondary-dark);
+        border-bottom-color: var(--border-dark);
+      }
+      .compare-on-dark .compare-table .num { color: var(--text-inverse); }
+      .compare-on-dark .compare-table tbody td { color: var(--text-inverse); }
+
+      .compare-on-dark .compare-table col.col-stack    { background: rgba(139, 58, 58, 0.09); }
+      .compare-on-dark .compare-table col.col-vorflows { background: rgba(47, 111, 79, 0.10); }
+
+      .compare-on-dark .compare-table .group-row td { color: var(--accent); }
+      .compare-on-dark .compare-table .group-row .group-mapping { color: var(--text-secondary-dark); }
+
+      .compare-on-dark .compare-table .subtotal-row td {
+        background: rgba(200, 99, 62, 0.07);
+        border-bottom-color: var(--border-dark);
+        color: var(--text-secondary-dark);
+      }
+      .compare-on-dark .compare-table .subtotal-row .num { color: var(--text-inverse); }
+      .compare-on-dark .compare-table .subtotal-row td.subtotal-arrow { color: var(--accent); }
+
+      .compare-on-dark .compare-table .sum-row td { color: var(--text-inverse); }
+      .compare-on-dark .compare-table .sum-row .num { color: var(--text-inverse); }
+
+      .compare-on-dark .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row):hover {
+        background-color: rgba(234, 234, 229, 0.04);
       }
 
       /* Outcome: vertical timeline */
@@ -3149,7 +3194,7 @@
         <div class="nav-links">
           <a href="#module">Module</a>
           <a href="#workflow">Workflow</a>
-          <a href="#pricing">Pricing</a>
+          <a href="#pricing">Investment</a>
           <a href="#faq">FAQ</a>
           <a href="#" class="btn btn-primary nav-cta" data-waitlist="nav" data-magnetic>Join Waitlist</a>
           <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
@@ -3162,7 +3207,7 @@
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
       <a href="#module">Module</a>
       <a href="#workflow">Workflow</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#pricing">Investment</a>
       <a href="#faq">FAQ</a>
       <a href="#" class="mobile-cta" data-waitlist="mobile-menu">Join Waitlist</a>
     </div>
@@ -3385,7 +3430,7 @@
             <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="module-content">
               <div class="meta module-label">02 / SEOFlow · Add-On</div>
-              <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht.</h3>
+              <h3 class="module-title">SEO-Maschine, die in 10&nbsp;Minuten steht.</h3>
               <p class="module-body">Reale Suchdaten verknüpft mit Claude. Rankings, CTRs als Input. Output: Code-Änderungen am Theme.</p>
             </div>
           </div>
@@ -3402,7 +3447,7 @@
     </section>
 
     <!-- 08 COMPARE TABLE -->
-    <section class="section-tight" style="background: #F4F2EC;">
+    <section class="section-tight section-dark compare-on-dark">
       <div class="container-prose">
         <div data-reveal="up">
           <div class="meta eyebrow">Subscription-Killer</div>
@@ -3459,15 +3504,15 @@
         <div class="outcome-list" data-reveal-stagger>
           <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 01</div>
-            <p class="outcome-text">Du hast eine Section gebaut, die vorher nur als App existierte. Du kündigst die App und sparst jeden Monat Geld.</p>
+            <p class="outcome-text">Erste Section ersetzt eine App. Subscription gekündigt.</p>
           </div>
           <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 07</div>
-            <p class="outcome-text">Claude schaut sich deine Besucherdaten an und stellt deinen Shop für eine bessere Conversion-Rate um. Dein Shop optimiert sich nun eigenständig.</p>
+            <p class="outcome-text">Claude liest deine Besucherdaten und stellt den Shop auf Conversion um. Optimierung läuft von selbst.</p>
           </div>
           <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 30</div>
-            <p class="outcome-text">Claude erkennt versteckte SEO-Potentiale, gibt dir Handlungsempfehlungen und optimiert komplexere SEO-Funktionen wie Schema &amp; Rich Snippets, ohne dass du wissen musst, was das ist.</p>
+            <p class="outcome-text">Claude findet versteckte SEO-Potentiale und baut Schema &amp; Rich Snippets ein. Du musst nicht wissen, was das ist.</p>
           </div>
         </div>
       </div>
@@ -3624,7 +3669,7 @@
       <div class="container">
         <div class="bundle-showcase" data-reveal-stagger>
           <div class="bundle-showcase-text" data-reveal="up">
-            <div class="meta eyebrow">Pricing</div>
+            <div class="meta eyebrow">Investment</div>
             <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
             <p class="bundle-showcase-caption"><em>Das ist drin.</em> BaseFlow, SEOFlow und ClarityFlow. Drei Module, ein Preis, einmal zahlen.</p>
           </div>
@@ -3789,7 +3834,7 @@
             <ul>
               <li><a href="#module">Module</a></li>
               <li><a href="#workflow">Workflow</a></li>
-              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#pricing">Investment</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -3816,7 +3861,7 @@
         <div class="kbd-hints" aria-label="Keyboard shortcuts">
           <span><kbd>w</kbd>workflow</span>
           <span><kbd>m</kbd>module</span>
-          <span><kbd>p</kbd>pricing</span>
+          <span><kbd>i</kbd>investment</span>
           <span><kbd>f</kbd>faq</span>
           <span><kbd>g</kbd>top</span>
         </div>
@@ -4607,8 +4652,8 @@
         }
       });
 
-      // Keyboard shortcuts: w/m/p/f/g, skip when typing in input/textarea/contenteditable
-      const targets = { w: '#workflow', m: '#module', p: '#pricing', f: '#faq' };
+      // Keyboard shortcuts: w/m/i/f/g, skip when typing in input/textarea/contenteditable
+      const targets = { w: '#workflow', m: '#module', i: '#pricing', f: '#faq' };
       window.addEventListener('keydown', (e) => {
         if (e.metaKey || e.ctrlKey || e.altKey) return;
         const ae = document.activeElement;
