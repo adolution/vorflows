@@ -1596,30 +1596,10 @@
       }
       .pricing-note strong { color: var(--text-primary); font-weight: 500; }
 
-      /* Bundle family showcase */
-      .bundle-family {
-        margin: 56px auto 0;
-        max-width: 640px;
-        padding: 0;
-        text-align: center;
-      }
-      .bundle-family-img {
-        display: block;
-        width: 100%;
-        height: auto;
-        max-width: 560px;
-        margin: 0 auto;
-        filter: drop-shadow(0 28px 40px rgba(20, 18, 14, 0.12)) drop-shadow(0 8px 14px rgba(20, 18, 14, 0.06));
-      }
-      @media (max-width: 720px) {
-        .bundle-family { margin-top: 32px; max-width: 420px; }
-        .bundle-family-img { max-width: 360px; }
-      }
-
       /* Bundle-first pricing layout */
       .bundle-hero {
         position: relative;
-        margin-top: 32px;
+        margin-top: 64px;
         background: linear-gradient(180deg, rgba(200, 99, 62, 0.08) 0%, rgba(200, 99, 62, 0.02) 100%);
         border: 1px solid var(--accent);
         border-radius: 16px;
@@ -1777,18 +1757,36 @@
       }
       .guarantee-notice[hidden] { display: none; }
       .bundle-hero-features {
-        padding: 56px 48px 48px;
+        padding: 40px 48px 48px;
         border-left: 1px solid rgba(200, 99, 62, 0.22);
-        background: rgba(255,255,255,0.35);
+        background:
+          radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.25) 60%, rgba(255, 255, 255, 0.15) 100%);
         border-radius: 0 16px 16px 0;
       }
       @media (max-width: 880px) {
         .bundle-hero-features {
-          padding: 32px 28px 40px;
+          padding: 24px 28px 40px;
           border-left: 0;
           border-top: 1px solid rgba(200, 99, 62, 0.22);
           border-radius: 0 0 16px 16px;
         }
+      }
+      .bundle-hero-art {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        margin: 0 auto 24px;
+        filter: drop-shadow(0 28px 40px rgba(20, 18, 14, 0.16)) drop-shadow(0 8px 14px rgba(20, 18, 14, 0.08));
+      }
+      @media (max-width: 880px) {
+        .bundle-hero-art { max-width: 280px; margin: 0 auto 20px; }
+      }
+      .bundle-hero-features hr.feat-rule {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(200, 99, 62, 0.0) 0%, rgba(200, 99, 62, 0.28) 50%, rgba(200, 99, 62, 0.0) 100%);
+        margin: 0 0 22px;
       }
       .bundle-feat-label {
         font-family: 'JetBrains Mono', monospace;
@@ -3081,7 +3079,7 @@
       <div class="container">
         <div style="max-width: 760px;">
           <div class="meta eyebrow">Pricing</div>
-          <h2 class="h2 display">Hol dir das ganze System auf einmal. Spar dir das Add-On-<em>Theater.</em></h2>
+          <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
         </div>
 
         <div class="pricing-beta-row">
@@ -3106,10 +3104,6 @@
           </div>
         </div>
 
-        <figure class="bundle-family" aria-label="Das vorflows Bundle: BaseFlow, SEOFlow und ClarityFlow">
-          <img class="bundle-family-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
-        </figure>
-
         <article class="bundle-hero" aria-labelledby="bundle-name">
           <div class="bundle-hero-strip">Launch-Offer · Spar 100&nbsp;€</div>
           <div class="bundle-hero-grid">
@@ -3131,6 +3125,8 @@
               </div>
             </div>
             <div class="bundle-hero-features">
+              <img class="bundle-hero-art" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
+              <hr class="feat-rule" aria-hidden="true" />
               <div class="bundle-feat-label">Was im Bundle drin ist</div>
               <ul>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Base System</strong><span>Theme-Optimization-Workflow + kompletter Skill-Stack</span></div></li>
