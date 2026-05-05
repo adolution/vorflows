@@ -49,6 +49,7 @@
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
     <meta name="twitter:image:alt" content="vorflows: Shopify-Store wie ein Senior Dev bauen" />
 
+    <link rel="preload" as="image" href="/assets/video/vorflows-salesletter-poster.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -3261,9 +3262,7 @@
             preload="none"
             poster="/assets/video/vorflows-salesletter-poster.jpg"
             data-src="/assets/video/vorflows-salesletter-720-silent.mp4"
-            data-src-mobile="/assets/video/vorflows-salesletter-480-silent.mp4"
             data-src-audio="/assets/video/vorflows-salesletter-720.mp4"
-            data-src-audio-mobile="/assets/video/vorflows-salesletter-480.mp4"
             aria-label="vorflows Salesletter Video"
           ></video>
           <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
@@ -3580,9 +3579,7 @@
               preload="none"
               poster="/assets/video/vorflows-demo-poster.jpg"
               data-src="/assets/video/vorflows-demo-720-silent.mp4"
-              data-src-mobile="/assets/video/vorflows-demo-480-silent.mp4"
               data-src-audio="/assets/video/vorflows-demo-720.mp4"
-              data-src-audio-mobile="/assets/video/vorflows-demo-480.mp4"
               aria-label="vorflows Demo Video"
             ></video>
             <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
@@ -4459,16 +4456,12 @@
           if (p && typeof p.catch === 'function') p.catch(paintFirstFrame);
         };
 
-        // Pick mobile variant on small viewports to keep mobile LCP/payload low.
-        const isMobile = window.matchMedia('(max-width: 767px)').matches;
-        const pickSrc = (base, mobile) => (isMobile && mobile) ? mobile : base;
-
         // Attach src + start playback only once the video enters viewport.
         let loaded = false;
         const loadAndPlay = () => {
           if (loaded) return;
           loaded = true;
-          const src = pickSrc(video.getAttribute('data-src'), video.getAttribute('data-src-mobile'));
+          const src = video.getAttribute('data-src');
           if (src && !video.src) {
             video.preload = 'auto';
             video.src = src;
@@ -4496,7 +4489,7 @@
         let audioSwapped = false;
         const swapToAudioSrc = () => {
           if (audioSwapped) return;
-          const audioSrc = pickSrc(video.getAttribute('data-src-audio'), video.getAttribute('data-src-audio-mobile'));
+          const audioSrc = video.getAttribute('data-src-audio');
           if (!audioSrc) return;
           audioSwapped = true;
           video.src = audioSrc;
