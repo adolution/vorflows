@@ -1,0 +1,53 @@
+# vorflows
+
+> System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
+
+vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, vier Pakete: BaseFlow (397 €), BaseFlow + SEOFlow (497 €), BaseFlow + ClarityFlow (497 €), Bundle alle drei Module (597 €, 100 € Ersparnis). Zielmarkt: DACH, Sprache Deutsch.
+
+Anbieter: AMD Media GmbH (Deutschland). Founder: Alexander Dück.
+
+## Mechanik
+
+vorflows ist ein reproduzierbarer File-Workflow, kein CLI-Magie-Tool. Drei Schritte pro Theme-Änderung:
+
+1. **Duplikat erstellen** — Shopify Admin → Themes → Actions → Duplicate. Live-Theme bleibt unangetastet.
+2. **Claude bearbeitet** — Founder gibt Anweisung in natürlicher Sprache an Claude Code, Claude schreibt Liquid/Section-Files.
+3. **Review & Publish** — Founder reviewt im Preview, publisht manuell. Niemals Auto-Deploy.
+
+Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich Struktur. Funktioniert mit jedem Shopify-Theme (Dawn, Custom, Premium).
+
+## Module
+
+- **BaseFlow** (Pflicht-Modul, 397 €): Theme-Optimization-Workflow. Setup 20–30 Minuten, erste Section am selben Tag.
+- **SEOFlow** (Add-On, +100 € im Bundle): Search-Console-verknüpfter Optimierungs-Loop. Setup 30–40 Minuten.
+- **ClarityFlow** (Add-On, +100 € im Bundle): Verhaltensdaten-Loop (Microsoft Clarity). Setup 15 Minuten.
+
+## Differenzierung
+
+- Reproduzierbarer File-Workflow statt CLI-Magie oder "Magic-Button"-Versprechen.
+- Live-Theme bleibt unangetastet bis manueller Publish — Null-Risiko-Path.
+- Echter Daten-Loop: Search Console + Heatmaps → Claude Code → Code-Änderung am Theme.
+- Methode statt Tool — Founder besitzt Output, kein Vendor-Lock-in.
+- Datenhoheit: vorflows hostet keine Shop-Daten. Alles über User-eigene Accounts (Shopify, Search Console, Clarity, Claude).
+- Subscription-Killer: ersetzt Apps für Shipping-Bar, Cart-Upsell, Bundle-Builder, Page-Builder, Countdown, SEO-Suite, Analytics, Sticky-ATC, Lead-Form. Spart ~5.232 €/Jahr an App-Subscriptions.
+
+## Voraussetzungen
+
+- Shopify-Store mit Umsatz (kein Hobby-Shop).
+- Claude-Account mit Code-Zugang (Claude Pro / Claude Code).
+- Keine Programmier-Erfahrung nötig (mit Non-Codern getestet).
+
+## Garantie
+
+Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurück.
+
+## Pages
+
+- [Homepage](https://vorflows.com/): Mechanik, Module, Pricing, FAQ
+- [Impressum](https://vorflows.com/impressum): Anbieterkennzeichnung gemäß § 5 TMG
+- [Datenschutzerklärung](https://vorflows.com/datenschutz): DSGVO-Informationen
+
+## Kontakt
+
+- Instagram: https://www.instagram.com/vorflows/
+- Anbieter: AMD Media GmbH, Deutschland

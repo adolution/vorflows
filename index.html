@@ -158,7 +158,39 @@
           }
         },
         {
+          "@type": "HowTo",
+          "@id": "https://vorflows.com/#mechanik",
+          "name": "Theme-Änderung mit vorflows in 3 Schritten",
+          "description": "Reproduzierbarer File-Workflow für jede Shopify-Theme-Änderung mit Claude Code. Live-Theme bleibt bis Publish unangetastet.",
+          "inLanguage": "de-DE",
+          "totalTime": "PT30M",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "position": 1,
+              "name": "Duplikat erstellen",
+              "text": "Shopify Admin → Themes → Actions → Duplicate. Das Live-Theme bleibt unangetastet, du arbeitest auf einer Kopie (z.B. vorflows-edit).",
+              "url": "https://vorflows.com/#workflow"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 2,
+              "name": "Claude bearbeitet",
+              "text": "Du gibst Claude Code in natürlicher Sprache eine Anweisung (z.B. 'Ersetze meine Shipping-Bar-App durch eine native Section'). Claude schreibt die Liquid-Files auf dem Duplicate-Theme.",
+              "url": "https://vorflows.com/#workflow"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 3,
+              "name": "Review & Publish",
+              "text": "Du reviewst das Ergebnis im Shopify-Preview, dann publishst du manuell. Niemals Auto-Deploy. Live-Theme bleibt unangetastet bis zu diesem Schritt.",
+              "url": "https://vorflows.com/#workflow"
+            }
+          ]
+        },
+        {
           "@type": "FAQPage",
+          "inLanguage": "de-DE",
           "mainEntity": [
             { "@type": "Question", "name": "Brauche ich Programmier-Erfahrung?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten." } },
             { "@type": "Question", "name": "Was, wenn ich mein Theme zerschieße?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy." } },
