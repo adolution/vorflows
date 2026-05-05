@@ -30,7 +30,7 @@ const slices = Math.ceil(pageHeight / viewportHeight);
 for (let i = 0; i < slices; i++) {
   const y = i * viewportHeight;
   await page.evaluate((y) => window.scrollTo(0, y), y);
-  await new Promise((r) => setTimeout(r, 350));
+  await new Promise((r) => setTimeout(r, 1300));
   const out = path.join(dir, `screenshot-${next}-slice-${String(i + 1).padStart(2, '0')}.png`);
   await page.screenshot({ path: out, fullPage: false });
   console.log(`Saved: screenshot-${next}-slice-${String(i + 1).padStart(2, '0')}.png`);

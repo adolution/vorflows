@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Mark JS available before paint so motion CSS can hide pre-reveal state without blocking non-JS readers -->
+    <script>document.documentElement.classList.add('js');</script>
     <!-- Meta Pixel loader, invoked only after consent (DSGVO) -->
     <script>
       function _loadFbPixelSdk() {
@@ -2061,22 +2063,36 @@
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         font-size: 17px;
+        transition: color 200ms ease;
       }
+      .faq-item summary:hover { color: var(--accent); }
       .faq-item summary::-webkit-details-marker { display: none; }
       .faq-item summary::after {
         content: "+";
         font-family: 'JetBrains Mono', monospace;
-        font-size: 18px;
+        font-size: 22px;
+        line-height: 1;
         color: var(--accent);
-        transition: transform 200ms ease-out;
+        transform-origin: center;
+        transition: transform 320ms var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
+        will-change: transform;
       }
-      .faq-item[open] summary::after { content: "−"; }
+      .faq-item[open] summary::after { transform: rotate(45deg); }
       .faq-body {
         padding: 0 0 24px;
         color: var(--text-secondary);
         font-size: 16px;
         line-height: 1.65;
         max-width: 60ch;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .faq-item[open] .faq-body {
+          animation: faqBodyIn 360ms var(--ease-out-quart, cubic-bezier(.25,1,.5,1)) both;
+        }
+      }
+      @keyframes faqBodyIn {
+        from { opacity: 0; transform: translate3d(0, -4px, 0); }
+        to   { opacity: 1; transform: none; }
       }
 
       /* Final CTA */
@@ -2436,16 +2452,193 @@
         .kbd-hints { display: none; }
       }
 
-      /* Reveal animation */
+      /* === Motion system =====================================================
+         Tokens: exponential easing, 14px reveal distance, 70ms stagger step.
+         Pattern: html.js [data-reveal] starts hidden, .is-in commits to rest.
+         Reduced motion: opacity-only crossfade ≤140ms, no transforms.
+         =================================================================== */
+      :root {
+        --ease-out-quart: cubic-bezier(.25, 1, .5, 1);
+        --ease-out-quint: cubic-bezier(.22, 1, .36, 1);
+        --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+        --reveal-distance: 14px;
+        --reveal-distance-lg: 28px;
+        --reveal-duration: 720ms;
+        --reveal-delay-step: 70ms;
+      }
+
+      /* Reveal — runs only when JS confirmed (.js on <html>) so non-JS still readable */
+      html.js [data-reveal] {
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        html.js [data-reveal="up"]         { transform: translate3d(0, var(--reveal-distance), 0); }
+        html.js [data-reveal="up-lg"]      { transform: translate3d(0, var(--reveal-distance-lg), 0); }
+        html.js [data-reveal="fade"]       { transform: none; }
+        html.js [data-reveal="right"]      { transform: translate3d(-12px, 0, 0); }
+        html.js [data-reveal="scale-soft"] { transform: scale(.985); }
+
+        html.js [data-reveal] {
+          transition:
+            opacity var(--reveal-duration) var(--ease-out-quart),
+            transform var(--reveal-duration) var(--ease-out-expo);
+          transition-delay: calc(var(--reveal-i, 0) * var(--reveal-delay-step));
+        }
+        html.js [data-reveal].is-in {
+          opacity: 1;
+          transform: none;
+          will-change: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.js [data-reveal] {
+          transform: none !important;
+          transition: opacity 140ms linear !important;
+          transition-delay: 0ms !important;
+        }
+        html.js [data-reveal].is-in { opacity: 1; }
+      }
+
+      /* Backward-compat: existing .fade-in still works */
       @media (prefers-reduced-motion: no-preference) {
         .fade-in {
           opacity: 0;
           transform: translateY(8px);
-          transition: opacity 600ms ease-out, transform 600ms ease-out;
+          transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-expo);
         }
         .fade-in.visible {
           opacity: 1;
           transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fade-in { opacity: 0; transition: opacity 140ms linear; }
+        .fade-in.visible { opacity: 1; }
+      }
+
+      /* Hero choreography — staggered reveal on the hero stack children.
+         Eyebrow → headline → video → sub → CTAs over ~1s, signature entrance. */
+      @media (prefers-reduced-motion: no-preference) {
+        html.js .hero-stack[data-reveal-stagger] > * {
+          opacity: 0;
+          transform: translate3d(0, 12px, 0);
+          transition:
+            opacity 720ms var(--ease-out-quart),
+            transform 720ms var(--ease-out-expo);
+          transition-delay: calc(var(--reveal-i, 0) * 90ms + 80ms);
+          will-change: transform, opacity;
+        }
+        html.js .hero-stack[data-reveal-stagger].is-in > * {
+          opacity: 1;
+          transform: none;
+          will-change: auto;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html.js .hero-stack[data-reveal-stagger] > * {
+          opacity: 0;
+          transition: opacity 140ms linear;
+        }
+        html.js .hero-stack[data-reveal-stagger].is-in > * { opacity: 1; }
+      }
+
+      /* Component micro-interactions — premium hover lifts.
+         Strict transform-only, exponential ease, no layout properties. */
+      @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        .module {
+          transition: transform 360ms var(--ease-out-quart);
+        }
+        .module:hover { transform: translate3d(0, -3px, 0); }
+        .module-box {
+          transition: transform 520ms var(--ease-out-expo), filter 520ms var(--ease-out-quart);
+        }
+        .module:hover .module-box {
+          transform: translate3d(0, -6px, 0);
+          filter: drop-shadow(0 18px 28px rgba(200, 99, 62, 0.18));
+        }
+
+        .file-card {
+          transition: transform 320ms var(--ease-out-quart), border-color 240ms ease;
+        }
+        .file-card:hover { transform: translate3d(0, -4px, 0); }
+
+        .alt-tier {
+          transition: transform 280ms var(--ease-out-quart), border-color 200ms ease, box-shadow 280ms var(--ease-out-quart);
+        }
+        .alt-tier:hover {
+          transform: translate3d(0, -3px, 0);
+          box-shadow: 0 18px 38px -22px rgba(15, 15, 15, 0.18);
+        }
+
+        .skill-card {
+          transition: transform 280ms var(--ease-out-quart), border-color 200ms ease;
+        }
+        .skill-card:hover { transform: translate3d(0, -2px, 0); }
+
+        .trust-tile {
+          transition: transform 240ms var(--ease-out-quart);
+        }
+        .trust-tile:hover { transform: translate3d(0, -2px, 0); }
+
+        /* Wordmark "flows" hover — italic accent breathes brighter */
+        .wordmark .flows {
+          transition: color 240ms var(--ease-out-quart), letter-spacing 320ms var(--ease-out-expo);
+        }
+        .wordmark:hover .flows {
+          color: var(--accent-hover);
+          letter-spacing: -0.005em;
+        }
+
+        /* Primary CTA — refined press. Slight lift on hover, settle on press. */
+        .btn-primary {
+          transition:
+            background-color 180ms var(--ease-out-quart),
+            transform 240ms var(--ease-out-expo),
+            box-shadow 320ms var(--ease-out-quart);
+        }
+        .btn-primary:hover {
+          transform: translate3d(0, -1px, 0);
+          box-shadow: 0 14px 28px -16px rgba(200, 99, 62, 0.55);
+        }
+        .btn-primary:active {
+          transform: translate3d(0, 1px, 0);
+          box-shadow: 0 4px 10px -8px rgba(200, 99, 62, 0.4);
+        }
+
+        /* Bundle hero CTA — same family but heavier */
+        .bundle-hero-cta {
+          transition: background 180ms var(--ease-out-quart), transform 240ms var(--ease-out-expo), box-shadow 320ms var(--ease-out-quart);
+        }
+        .bundle-hero-cta:hover {
+          transform: translate3d(0, -2px, 0);
+          box-shadow: 0 18px 36px -18px rgba(200, 99, 62, 0.55);
+        }
+
+        /* Compare-table rows — quiet hover highlight */
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) {
+          transition: background-color 180ms ease;
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row):hover {
+          background-color: rgba(200, 99, 62, 0.045);
+        }
+
+        /* FAQ summary chevron — smooth rotate when open */
+        .faq-item summary::after {
+          transition: transform 280ms var(--ease-out-quart);
+        }
+      }
+
+      /* Magnetic CTA pull — JS sets --mx/--my; CSS smooths the offset */
+      @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        [data-magnetic] {
+          transform: translate3d(var(--mx, 0px), var(--my, 0px), 0);
+          transition: transform 320ms var(--ease-out-expo), background-color 180ms var(--ease-out-quart), box-shadow 320ms var(--ease-out-quart);
+        }
+        [data-magnetic]:active {
+          transition-duration: 120ms;
         }
       }
 
@@ -2650,7 +2843,7 @@
           <a href="#workflow">Workflow</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
-          <a href="#" class="btn btn-primary nav-cta" data-waitlist="nav">Join Waitlist</a>
+          <a href="#" class="btn btn-primary nav-cta" data-waitlist="nav" data-magnetic>Join Waitlist</a>
           <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
             <span></span><span></span><span></span>
           </button>
@@ -2681,7 +2874,7 @@
 
     <!-- 02 HERO -->
     <header class="hero container">
-      <div class="hero-stack">
+      <div class="hero-stack" data-reveal-stagger>
         <div class="meta hero-eyebrow">Sections bauen · SEO · CVR Optimierung</div>
         <h1 class="display hero-headline">
           So holst du mit KI das <em>Maximum</em> aus deinem Shop heraus
@@ -2719,7 +2912,7 @@
           vorflows ist das System, mit dem Founder ihren Shop über <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">Claude&nbsp;Code</span> umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
         </p>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary" data-waitlist="hero-primary">Join Waitlist</a>
+          <a href="#" class="btn btn-primary" data-waitlist="hero-primary" data-magnetic>Join Waitlist</a>
           <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
         </div>
       </div>
@@ -2729,34 +2922,34 @@
     <section class="section">
       <div class="container">
         <div class="problem-asym">
-          <div class="problem-head">
+          <div class="problem-head" data-reveal="up">
             <div class="meta eyebrow">Das Problem</div>
             <h2 class="h2 display">Du sitzt in einem Shop, der dir nicht gehört.</h2>
             <span class="problem-head-tag">4 Reibungspunkte</span>
           </div>
-          <div class="problem-list">
-            <div class="problem-item">
+          <div class="problem-list" data-reveal-stagger>
+            <div class="problem-item" data-reveal="up">
               <div class="problem-num">01</div>
               <div>
                 <h3 class="problem-title">Theme-Limits.</h3>
                 <p class="problem-body">Du willst eine Section, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
               </div>
             </div>
-            <div class="problem-item">
+            <div class="problem-item" data-reveal="up">
               <div class="problem-num">02</div>
               <div>
                 <h3 class="problem-title">App-Stack.</h3>
                 <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
               </div>
             </div>
-            <div class="problem-item">
+            <div class="problem-item" data-reveal="up">
               <div class="problem-num">03</div>
               <div>
                 <h3 class="problem-title">Agentur-Loop.</h3>
                 <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
               </div>
             </div>
-            <div class="problem-item">
+            <div class="problem-item" data-reveal="up">
               <div class="problem-num">04</div>
               <div>
                 <h3 class="problem-title">Liegen gelassenes Potential.</h3>
@@ -2770,23 +2963,23 @@
 
     <!-- 05 SOLUTION REVEAL -->
     <section class="section-tight">
-      <div class="container reveal" style="max-width: 1040px; margin-inline: auto;">
-        <div class="meta eyebrow">Die Lösung</div>
-        <h2 class="reveal-head display">KI wird dein <em>technischer Co-Founder</em>.<br>Nur schneller &amp; ohne Kosten.</h2>
-        <div class="reveal-flow"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
-        <p class="reveal-body">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
+      <div class="container reveal" style="max-width: 1040px; margin-inline: auto;" data-reveal-stagger>
+        <div class="meta eyebrow" data-reveal="up">Die Lösung</div>
+        <h2 class="reveal-head display" data-reveal="up">KI wird dein <em>technischer Co-Founder</em>.<br>Nur schneller &amp; ohne Kosten.</h2>
+        <div class="reveal-flow" data-reveal="up"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
+        <p class="reveal-body" data-reveal="up">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
     </section>
 
     <!-- 06 WORKFLOW DARK -->
     <section class="workflow-dark section" id="workflow">
       <div class="container">
-        <div class="workflow-head">
+        <div class="workflow-head" data-reveal="up">
           <div class="meta">Mechanik · Drei Schritte</div>
           <h2>So läuft jede Änderung an deinem Theme.</h2>
         </div>
-        <div class="workflow-steps">
-          <div class="wf-step">
+        <div class="workflow-steps" data-reveal-stagger>
+          <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 01</div>
             <div>
               <h3 class="wf-title">Duplikat erstellen</h3>
@@ -2813,7 +3006,7 @@
               </div>
             </div>
           </div>
-          <div class="wf-step">
+          <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 02</div>
             <div>
               <h3 class="wf-title">Claude bearbeitet</h3>
@@ -2845,7 +3038,7 @@
               </figure>
             </div>
           </div>
-          <div class="wf-step">
+          <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 03</div>
             <div>
               <h3 class="wf-title">Review &amp; Publish</h3>
@@ -2865,27 +3058,27 @@
     <!-- 07 MODULE -->
     <section class="section" id="module">
       <div class="container">
-        <div style="max-width: 720px;">
+        <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Drei Module · Ein System</div>
           <h2 class="h2 display">Base baut. SEOFlow rankt. ClarityFlow optimiert.</h2>
           <p class="module-lead">Base ist das Fundament. SEOFlow und ClarityFlow sind optionale Add-Ons.</p>
         </div>
-        <div class="modules">
-          <div class="module">
+        <div class="modules" data-reveal-stagger>
+          <div class="module" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">01 / Base · Pflicht-Modul</div>
             <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
             <p class="module-body">Duplicate Theme, Claude Project laden, Sections und Snippets bearbeiten.</p>
             <p class="module-body">Änderungen landen in einem Duplicate Theme. Erst nach Review wird published. Skill-Stack inklusive.</p>
           </div>
-          <div class="module">
+          <div class="module" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">02 / SEOFlow · Add-On</div>
             <h3 class="module-title">SEO-Maschine, die in 10 Minuten steht.</h3>
             <p class="module-body">Geführter Setup-Flow. Reale Suchdaten mit der SEO-KI verknüpft.</p>
             <p class="module-body">Echte Suchdaten, Rankings, CTRs als Input. Output: Handlungsempfehlungen oder direkte Code-Änderungen am Theme.</p>
           </div>
-          <div class="module">
+          <div class="module" data-reveal="up">
             <img class="module-box" src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
             <div class="meta module-label">03 / ClarityFlow · Add-On</div>
             <h3 class="module-title">Dein Shop verrät, was nicht funktioniert. Claude hört zu und handelt.</h3>
@@ -2899,11 +3092,13 @@
     <!-- 08 COMPARE TABLE -->
     <section class="section-tight" style="background: #F4F2EC;">
       <div class="container-prose">
-        <div class="meta eyebrow">Subscription-Killer</div>
-        <h2 class="h2 display">Was du jeden Monat zahlst. Und was du stattdessen besitzen könntest.</h2>
-        <p class="compare-pre-note">Beispielrechnung · Marktübliche Preise eines typischen Shop-Stacks</p>
-        <p class="compare-explainer">Lies das so: links die Apps, die viele Founder monatlich zahlen. Rechts das, was vorflows stattdessen direkt in dein Theme baut, als <strong>Section</strong> oder <strong>Snippet</strong>. Du musst nicht wissen, was das ist. Claude Code baut es für dich.</p>
-        <table class="compare-table">
+        <div data-reveal="up">
+          <div class="meta eyebrow">Subscription-Killer</div>
+          <h2 class="h2 display">Was du jeden Monat zahlst. Und was du stattdessen besitzen könntest.</h2>
+          <p class="compare-pre-note">Beispielrechnung · Marktübliche Preise eines typischen Shop-Stacks</p>
+          <p class="compare-explainer">Lies das so: links die Apps, die viele Founder monatlich zahlen. Rechts das, was vorflows stattdessen direkt in dein Theme baut, als <strong>Section</strong> oder <strong>Snippet</strong>. Du musst nicht wissen, was das ist. Claude Code baut es für dich.</p>
+        </div>
+        <table class="compare-table" data-reveal="up">
           <colgroup>
             <col class="col-stack" />
             <col class="col-price" />
@@ -2938,25 +3133,27 @@
             <tr class="sum-row"><td>Summe · 9 Apps</td><td class="num" style="text-align:right;">436 €</td><td>Einmalig gebaut. Du besitzt es.</td></tr>
           </tbody>
         </table>
-        <p class="compare-foot display-italic">5.232 € pro Jahr in Apps. Oder einmal das <em>Bundle</em>.</p>
+        <p class="compare-foot display-italic" data-reveal="up"><span data-count-to="5232" data-count-suffix=" €">5.232&nbsp;€</span> pro Jahr in Apps. Oder einmal das <em>Bundle</em>.</p>
       </div>
     </section>
 
     <!-- 09 OUTCOME -->
     <section class="section" style="background: #EDE9DC;">
       <div class="container-prose">
-        <div class="meta eyebrow">Outcome · 30 Tage</div>
-        <h2 class="h2 display">Tag 1 mit vorflows.</h2>
-        <div class="outcome-list">
-          <div class="outcome-item">
+        <div data-reveal="up">
+          <div class="meta eyebrow">Outcome · 30 Tage</div>
+          <h2 class="h2 display">Tag 1 mit vorflows.</h2>
+        </div>
+        <div class="outcome-list" data-reveal-stagger>
+          <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 01</div>
             <p class="outcome-text">Du hast eine Section gebaut, die vorher nur als App existierte. Du kündigst die App und sparst jeden Monat Geld.</p>
           </div>
-          <div class="outcome-item">
+          <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 07</div>
             <p class="outcome-text">Claude schaut sich deine Besucherdaten an und stellt deinen Shop für eine bessere Conversion-Rate um. Dein Shop optimiert sich nun eigenständig.</p>
           </div>
-          <div class="outcome-item">
+          <div class="outcome-item" data-reveal="up">
             <div class="outcome-day">TAG 30</div>
             <p class="outcome-text">Claude erkennt versteckte SEO-Potentiale, gibt dir Handlungsempfehlungen und optimiert komplexere SEO-Funktionen wie Schema &amp; Rich Snippets, ohne dass du wissen musst, was das ist.</p>
           </div>
@@ -2967,26 +3164,26 @@
     <!-- 10 PAKET-INHALT + SKILL STACK -->
     <section class="section-tight">
       <div class="container">
-        <div style="max-width: 720px;">
+        <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Was im Paket liegt</div>
           <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
           <p class="skill-sub">Wochenlang gebaut, getestet, geschärft. Du gibst einen Befehl, die KI führt dich durchs Setup.</p>
         </div>
 
-        <div class="files-grid">
-          <article class="file-card">
+        <div class="files-grid" data-reveal-stagger>
+          <article class="file-card" data-reveal="up">
             <span class="file-card-name">setup.md</span>
             <h3 class="file-card-title">Auto-Installer</h3>
             <p class="file-card-desc">Ein Befehl. Skills, Plugins, Konfig. Alles landet in deinem Claude-Workspace, fertig konfiguriert.</p>
             <div class="file-card-preview"><span class="pv-com"># einmal ausführen</span><br>$ <span class="pv-key">claude</span> setup.md<br><span class="pv-com"># → Skills + Plugins ready</span></div>
           </article>
-          <article class="file-card">
+          <article class="file-card" data-reveal="up">
             <span class="file-card-name">CLAUDE.md</span>
             <h3 class="file-card-title">Mein Playbook für deine KI</h3>
             <p class="file-card-desc">Wochenlang an echten Shop-Cases geschärft. Sagt deiner KI, wie sie arbeiten soll: welche Patterns funktionieren, welche nicht, welche Reihenfolge sicher ist.</p>
             <div class="file-card-preview"><span class="pv-com"># Anweisungen</span><br><span class="pv-key">always:</span> <span class="pv-str">Backup anlegen</span><br><span class="pv-key">never:</span> <span class="pv-str">Code ohne Plan schreiben</span><br><span class="pv-key">prefer:</span> <span class="pv-str">editable section</span></div>
           </article>
-          <article class="file-card">
+          <article class="file-card" data-reveal="up">
             <span class="file-card-name">memory.md</span>
             <h3 class="file-card-title">Lernt dich kennen</h3>
             <p class="file-card-desc">Speichert Vorlieben, Constraints, Shop-Eigenheiten. Aktualisiert sich automatisch nach jedem Chat. Claude vergisst nichts.</p>
@@ -3027,7 +3224,7 @@
           <figcaption class="demo-video-cap">Kurzerklärung der drei Dateien. Was drin steckt, wie sie zusammenspielen.</figcaption>
         </figure>
 
-        <aside class="security-strip">
+        <aside class="security-strip" data-reveal="up">
           <span class="ss-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
@@ -3038,9 +3235,9 @@
         </aside>
 
         <div class="skill-section-divider" aria-hidden="true"></div>
-        <p class="skill-rail-label">Skill-Stack · komplett im Base inklusive</p>
-        <div class="skill-list">
-          <article class="skill-card">
+        <p class="skill-rail-label" data-reveal="up">Skill-Stack · komplett im Base inklusive</p>
+        <div class="skill-list" data-reveal-stagger>
+          <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
               <span class="skill-card-num">01 / Theme &amp; Build</span>
               <h3 class="skill-card-name">Dein Theme sicher umbauen.</h3>
@@ -3052,7 +3249,7 @@
               <div><span class="skill-tile-name">duplicate-publish-flow</span><p class="skill-tile-desc">Der sichere Weg vom Edit zum Live-Theme.</p></div>
             </div>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
               <span class="skill-card-num">02 / Apps &amp; Prompting</span>
               <h3 class="skill-card-name">Claude führen und Apps ersetzen.</h3>
@@ -3062,7 +3259,7 @@
               <div><span class="skill-tile-name">prompt-discipline</span><p class="skill-tile-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</p></div>
             </div>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
               <span class="skill-card-num">03 / Daten &amp; Insights</span>
               <h3 class="skill-card-name">Aus Daten Code-Änderungen machen.</h3>
@@ -3079,10 +3276,12 @@
     <!-- 11 QUALIFIER -->
     <section class="section">
       <div class="container-prose">
-        <div class="meta eyebrow">Für wen das ist</div>
-        <h2 class="h2 display">Für alle, die mehr wollen. Und es schneller wollen.</h2>
-        <div class="qualifier-grid">
-          <div class="qualifier-col">
+        <div data-reveal="up">
+          <div class="meta eyebrow">Für wen das ist</div>
+          <h2 class="h2 display">Für alle, die mehr wollen. Und es schneller wollen.</h2>
+        </div>
+        <div class="qualifier-grid" data-reveal-stagger>
+          <div class="qualifier-col" data-reveal="up">
             <h3>vorflows ist für dich, wenn:</h3>
             <ul class="qualifier-list qualifier-yes">
               <li>Du aktuelle Technologien aufs Maximum ausreizen willst, um dir einen massiven Vorsprung zu holen.</li>
@@ -3093,7 +3292,7 @@
             </ul>
           </div>
           <div class="qualifier-divider" aria-hidden="true"></div>
-          <div class="qualifier-col">
+          <div class="qualifier-col" data-reveal="up">
             <h3>vorflows ist nicht für dich, wenn:</h3>
             <ul class="qualifier-list qualifier-no">
               <li>Du einen Magic-Button willst, der in einem Klick alles erledigt.</li>
@@ -3109,54 +3308,54 @@
     <!-- 12 PRICING: Bundle-first -->
     <section class="section" id="pricing" style="background: #F4F2EC;">
       <div class="container">
-        <div class="bundle-showcase">
-          <div class="bundle-showcase-text">
+        <div class="bundle-showcase" data-reveal-stagger>
+          <div class="bundle-showcase-text" data-reveal="up">
             <div class="meta eyebrow">Pricing</div>
             <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
             <p class="bundle-showcase-caption"><em>Das ist drin.</em> BaseFlow, SEOFlow und ClarityFlow. Drei Module, ein Preis, einmal zahlen.</p>
           </div>
-          <figure class="bundle-showcase-figure">
+          <figure class="bundle-showcase-figure" data-reveal="scale-soft">
             <img class="bundle-showcase-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
           </figure>
         </div>
 
-        <div class="pricing-beta-row">
+        <div class="pricing-beta-row" data-reveal="up">
           <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
         </div>
 
-        <div class="trust-strip" aria-label="Sicherheit & Vertrauen">
-          <div class="trust-tile">
+        <div class="trust-strip" aria-label="Sicherheit & Vertrauen" data-reveal-stagger>
+          <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ SAFE ]</span>
             <h3 class="trust-tile-title">Live-Theme bleibt unangetastet</h3>
             <p class="trust-tile-body">Du arbeitest immer auf einem Duplicate. Kein Auto-Deploy. Du publishst, wenn du soweit bist. Niemals automatisch.</p>
           </div>
-          <div class="trust-tile">
+          <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ MONEY-BACK ]</span>
             <h3 class="trust-tile-title">Setup-Garantie</h3>
             <p class="trust-tile-body">Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück. <a href="#faq">Bedingungen</a></p>
           </div>
-          <div class="trust-tile">
+          <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ DATA ]</span>
             <h3 class="trust-tile-title">Deine Daten bleiben bei dir</h3>
             <p class="trust-tile-body">vorflows hostet keine Shop-Daten. SEO- und Verhaltensdaten bleiben in deinen Accounts. Alles läuft über deine eigenen Verbindungen.</p>
           </div>
         </div>
 
-        <article class="bundle-hero" aria-labelledby="bundle-name">
+        <article class="bundle-hero" aria-labelledby="bundle-name" data-reveal="up-lg">
           <div class="bundle-hero-strip">Launch-Offer · Spar 100&nbsp;€</div>
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
               <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
               <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow. Alles drin. Kein Add-On später nötig.</p>
               <div class="bundle-hero-price-block">
-                <span class="bundle-hero-price">597&nbsp;€</span>
+                <span class="bundle-hero-price"><span data-count-to="597" data-count-suffix="&nbsp;€">597&nbsp;€</span></span>
                 <span class="bundle-hero-strike">697&nbsp;€</span>
                 <span class="bundle-hero-suffix">einmal zahlen, dauerhaft besitzen</span>
               </div>
               <div class="bundle-math">
                 <strong>Nur zum Launch:</strong> Hol dir das komplette System mit <strong>100&nbsp;€&nbsp;Rabatt</strong>. Nach dem Launch-Fenster kostet das Bundle den vollen Preis von 697&nbsp;€. Add-Ons gibt's nur noch einzeln, ohne Bundle-Konditionen.
               </div>
-              <a href="#" class="bundle-hero-cta" data-waitlist="pricing-bundle">Bundle reservieren</a>
+              <a href="#" class="bundle-hero-cta" data-waitlist="pricing-bundle" data-magnetic>Bundle reservieren</a>
               <p class="bundle-hero-guarantee">Setup-Garantie: Funktioniert das System nicht für dich, bekommst du dein Geld zurück. <button type="button" class="guarantee-toggle" aria-expanded="false" aria-controls="guaranteeNotice">Bedingungen ansehen</button></p>
               <div class="guarantee-notice" id="guaranteeNotice" hidden>
                 Folgst du dem System und kannst damit keine funktionierenden Elemente bauen, bekommst du dein Geld zurück.
@@ -3174,22 +3373,22 @@
           </div>
         </article>
 
-        <div class="alt-tiers-divider"><span>Lieber einzeln einsteigen?</span></div>
+        <div class="alt-tiers-divider" data-reveal="fade"><span>Lieber einzeln einsteigen?</span></div>
 
-        <div class="alt-tiers">
-          <div class="alt-tier">
+        <div class="alt-tiers" data-reveal-stagger>
+          <div class="alt-tier" data-reveal="up">
             <div class="alt-tier-name">Base only</div>
             <div class="alt-tier-pos">Einstieg, erstmal testen</div>
             <div class="alt-tier-price">397&nbsp;€</div>
             <a href="#" class="alt-tier-cta" data-waitlist="pricing-base">Mit Base starten →</a>
           </div>
-          <div class="alt-tier">
+          <div class="alt-tier" data-reveal="up">
             <div class="alt-tier-name">Base + SEOFlow</div>
             <div class="alt-tier-pos">Traffic-Fokus</div>
             <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
             <a href="#" class="alt-tier-cta" data-waitlist="pricing-seoflow">Diese Kombi nehmen →</a>
           </div>
-          <div class="alt-tier">
+          <div class="alt-tier" data-reveal="up">
             <div class="alt-tier-name">Base + ClarityFlow</div>
             <div class="alt-tier-pos">Conversion-Fokus</div>
             <div class="alt-tier-price">497&nbsp;€<span class="alt-tier-strike">547&nbsp;€</span></div>
@@ -3204,38 +3403,40 @@
     <!-- 13 FAQ -->
     <section class="section" id="faq">
       <div class="container-prose">
-        <div class="meta eyebrow">FAQ</div>
-        <h2 class="h2 display">Was du dich zurecht fragst.</h2>
-        <div class="faq">
-          <details class="faq-item" open>
+        <div data-reveal="up">
+          <div class="meta eyebrow">FAQ</div>
+          <h2 class="h2 display">Was du dich zurecht fragst.</h2>
+        </div>
+        <div class="faq" data-reveal-stagger="details">
+          <details class="faq-item" data-reveal="up" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
             <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Was, wenn ich mein Theme zerschieße?</summary>
             <div class="faq-body">Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Funktioniert das mit jedem Theme: Dawn, Custom, Premium?</summary>
             <div class="faq-body">Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Brauche ich Claude Pro / Claude Code?</summary>
             <div class="faq-body">Ja, einen Claude-Account mit Code-Zugang. Du bekommst ein kurzes 5-Minuten-Video, in dem du das Setup nachklicken kannst.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Kann ich später Add-Ons dazukaufen?</summary>
             <div class="faq-body">Ja. Aber: Add-Ons nach Erstkauf gibt's ohne Bundle-Rabatt. Wer alles will, fährt mit dem Bundle besser.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Wie lange dauert das Onboarding?</summary>
             <div class="faq-body">Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Was passiert mit meinen Daten?</summary>
             <div class="faq-body">SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude. Wenn du dich unwohl dabei fühlst, dass Claude deine Daten verarbeitet, ist vorflows nicht das richtige für dich.</div>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal="up">
             <summary>Gibt es eine Geld-zurück-Garantie?</summary>
             <div class="faq-body">Das ist zwar bisher nie passiert, aber: Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück.</div>
           </details>
@@ -3245,11 +3446,11 @@
 
     <!-- 14 FINAL CTA -->
     <section class="final-cta section">
-      <div class="container-prose">
-        <h2 class="display">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
-        <p>Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
-        <a href="#" class="btn btn-primary" data-waitlist="final-cta">Join Waitlist</a>
-        <p class="final-cta-closer">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
+      <div class="container-prose" data-reveal-stagger>
+        <h2 class="display" data-reveal="up">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
+        <p data-reveal="up">Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
+        <a href="#" class="btn btn-primary" data-waitlist="final-cta" data-magnetic data-reveal="up">Join Waitlist</a>
+        <p class="final-cta-closer" data-reveal="up">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
     </section>
 
@@ -3658,6 +3859,134 @@
       } else {
         fadeEls.forEach((el) => el.classList.add('visible'));
       }
+
+      /* === Motion: reveal + stagger ====================================
+         Any [data-reveal] element fades/translates in once visible.
+         A parent with [data-reveal-stagger] cascades --reveal-i across its
+         children (or selected descendants via [data-reveal-stagger="selector"]).
+         The hero stack uses its own keyed transition via the same index.
+         ================================================================ */
+      (() => {
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('[data-reveal], [data-reveal-stagger]')
+            .forEach((el) => el.classList.add('is-in'));
+          return;
+        }
+
+        // Assign --reveal-i so CSS can compute transition-delay per item
+        document.querySelectorAll('[data-reveal-stagger]').forEach((parent) => {
+          const sel = parent.getAttribute('data-reveal-stagger');
+          const targets = sel
+            ? parent.querySelectorAll(sel)
+            : parent.children;
+          let i = 0;
+          Array.from(targets).forEach((child) => {
+            // Don't re-index if author set it manually
+            if (child.style.getPropertyValue('--reveal-i') === '') {
+              child.style.setProperty('--reveal-i', String(i));
+            }
+            i += 1;
+          });
+        });
+
+        const revealIo = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              revealIo.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+        document.querySelectorAll('[data-reveal], [data-reveal-stagger]')
+          .forEach((el) => revealIo.observe(el));
+      })();
+
+      /* === Magnetic CTA pull ===========================================
+         Subtle pointer-follow on primary CTAs. Disabled for touch and
+         reduced-motion. Capped offset, eased return on leave.
+         ================================================================ */
+      (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (reduceMotion || !fineHover) return;
+
+        const targets = document.querySelectorAll('[data-magnetic]');
+        if (!targets.length) return;
+
+        const STRENGTH = 0.22;   // fraction of pointer offset applied
+        const MAX = 8;           // px cap
+
+        const clamp = (v, m) => Math.max(-m, Math.min(m, v));
+
+        targets.forEach((el) => {
+          let raf = 0;
+          const onMove = (e) => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              const r = el.getBoundingClientRect();
+              const dx = clamp((e.clientX - (r.left + r.width / 2)) * STRENGTH, MAX);
+              const dy = clamp((e.clientY - (r.top + r.height / 2)) * STRENGTH, MAX);
+              el.style.setProperty('--mx', dx.toFixed(2) + 'px');
+              el.style.setProperty('--my', dy.toFixed(2) + 'px');
+            });
+          };
+          const onLeave = () => {
+            cancelAnimationFrame(raf);
+            el.style.setProperty('--mx', '0px');
+            el.style.setProperty('--my', '0px');
+          };
+          el.addEventListener('pointerenter', onMove);
+          el.addEventListener('pointermove', onMove);
+          el.addEventListener('pointerleave', onLeave);
+          el.addEventListener('blur', onLeave);
+        });
+      })();
+
+      /* === Count-up on key numbers =====================================
+         Numbers with data-count-to animate from 0 to target the first
+         time they enter view. Format honors data-count-suffix.
+         ================================================================ */
+      (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const els = document.querySelectorAll('[data-count-to]');
+        if (!els.length) return;
+
+        const formatNumber = (n) => n.toLocaleString('de-DE');
+
+        const animate = (el) => {
+          const target = parseFloat(el.getAttribute('data-count-to')) || 0;
+          const suffix = el.getAttribute('data-count-suffix') || '';
+          if (reduceMotion) {
+            el.textContent = formatNumber(target) + suffix;
+            return;
+          }
+          const dur = 1100;
+          const start = performance.now();
+          const ease = (t) => 1 - Math.pow(1 - t, 4); // ease-out-quart
+          const step = (now) => {
+            const t = Math.min(1, (now - start) / dur);
+            const v = Math.round(target * ease(t));
+            el.textContent = formatNumber(v) + suffix;
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(animate);
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animate(entry.target);
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.6 });
+        els.forEach((el) => io.observe(el));
+      })();
 
       // Mobile menu toggle
       const navToggle = document.getElementById('navToggle');
