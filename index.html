@@ -54,7 +54,8 @@
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="brand_assets/logos/apple-touch-icon.png" />
