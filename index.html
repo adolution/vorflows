@@ -4472,21 +4472,21 @@
 
         <article class="bundle-hero" id="bundle" aria-labelledby="bundle-name" data-reveal="up-lg">
           <!-- ─────────────────────────────────────────────────────────────
-               Founder counter — manually updated.
-               To change the count, edit FOUNDER_SOLD in the main <script>
-               tag (search for "Founder counter").
+               Launch-Sale window — date-bound. To change the deadline,
+               edit LAUNCH_END in the main <script> tag (search for
+               "Launch sale window") and sync priceValidUntil in JSON-LD.
                ───────────────────────────────────────────────────────────── -->
-          <header class="bundle-hero-launch" data-founder-active>
+          <header class="bundle-hero-launch" data-launch-active>
             <div class="bundle-hero-launch-row">
-              <span class="bundle-hero-launch-tag">Founder-Launch · 297&nbsp;€ statt 597&nbsp;€</span>
-              <span class="bundle-hero-launch-count"><strong data-founder-sold>0</strong> von <span data-founder-total>100</span> Plätzen vergeben</span>
+              <span class="bundle-hero-launch-tag">Launch-Preis · 297&nbsp;€ statt 597&nbsp;€ · spar 300&nbsp;€</span>
+              <span class="bundle-hero-launch-count">Noch <strong data-launch-days>—</strong> Tage · bis <span data-launch-until>—</span></span>
             </div>
             <div class="bundle-hero-launch-track" aria-hidden="true">
-              <div class="bundle-hero-launch-fill" data-founder-bar style="width: 0%"></div>
+              <div class="bundle-hero-launch-fill" data-launch-bar style="width: 0%"></div>
             </div>
           </header>
-          <header class="bundle-hero-launch bundle-hero-launch--soldout" data-founder-soldout hidden>
-            <span class="bundle-hero-launch-tag">Founder-Launch abgeschlossen</span>
+          <header class="bundle-hero-launch bundle-hero-launch--soldout" data-launch-expired hidden>
+            <span class="bundle-hero-launch-tag">Launch-Preis abgelaufen</span>
             <span class="bundle-hero-launch-count">Bundle dauerhaft zu 597&nbsp;€</span>
           </header>
           <div class="bundle-hero-grid">
@@ -4686,23 +4686,26 @@
       };
       const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
 
-      // ── Founder counter — UPDATE FOUNDER_SOLD when a sale comes in ──────
-      // Counter shown on #pricing: "X von 100 Plätzen vergeben".
-      // Increment FOUNDER_SOLD by 1 each sale, save, push.
-      const FOUNDER_TOTAL = 100;
-      const FOUNDER_SOLD = 3;  // ← update this number when a Bundle sale happens
-      (function applyFounderCounter() {
-        const remaining = Math.max(0, FOUNDER_TOTAL - FOUNDER_SOLD);
-        const sold = Math.min(FOUNDER_TOTAL, FOUNDER_SOLD);
-        const fillPct = (sold / FOUNDER_TOTAL) * 100;
+      // ── Launch sale window — date-bound, no fake scarcity ──────────────
+      // To change the deadline, edit LAUNCH_END below and sync the
+      // priceValidUntil field in the Product JSON-LD at the top of <head>.
+      const LAUNCH_START = new Date('2026-05-06T00:00:00+02:00');
+      const LAUNCH_END   = new Date('2026-05-31T23:59:00+02:00');
+      (function applyLaunchCountdown() {
+        const now = new Date();
+        const total = LAUNCH_END - LAUNCH_START;
+        const remainingMs = LAUNCH_END - now;
+        const remaining = Math.max(0, Math.min(total, remainingMs));
+        const days = Math.max(0, Math.ceil(remainingMs / 86400000));
+        const fillPct = total > 0 ? (remaining / total) * 100 : 0;
+        const dateFmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long' }).format(LAUNCH_END);
         const apply = () => {
-          document.querySelectorAll('[data-founder-remaining]').forEach((el) => { el.textContent = remaining; });
-          document.querySelectorAll('[data-founder-sold]').forEach((el) => { el.textContent = sold; });
-          document.querySelectorAll('[data-founder-total]').forEach((el) => { el.textContent = FOUNDER_TOTAL; });
-          document.querySelectorAll('[data-founder-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
-          if (remaining <= 0) {
-            document.querySelectorAll('[data-founder-soldout]').forEach((el) => { el.hidden = false; });
-            document.querySelectorAll('[data-founder-active]').forEach((el) => { el.hidden = true; });
+          document.querySelectorAll('[data-launch-days]').forEach((el) => { el.textContent = days; });
+          document.querySelectorAll('[data-launch-until]').forEach((el) => { el.textContent = dateFmt; });
+          document.querySelectorAll('[data-launch-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
+          if (remainingMs <= 0) {
+            document.querySelectorAll('[data-launch-expired]').forEach((el) => { el.hidden = false; });
+            document.querySelectorAll('[data-launch-active]').forEach((el) => { el.hidden = true; });
           }
         };
         if (document.readyState === 'loading') {
