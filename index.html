@@ -1552,15 +1552,28 @@
         text-align: center;
       }
       .skill-foot::first-letter { color: var(--accent); }
+      .skill-card-foot {
+        margin: 18px 0 0;
+        padding-top: 16px;
+        border-top: 1px dashed var(--border);
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--text-secondary);
+      }
+      .skill-card-foot span {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--accent);
+      }
 
       /* Files in package */
       .files-grid {
         margin-top: 48px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
       }
-      @media (max-width: 900px) {
+      @media (max-width: 720px) {
         .files-grid { grid-template-columns: 1fr; gap: 16px; }
       }
       .file-card {
@@ -3676,28 +3689,34 @@
       <div class="container">
         <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Was im Paket liegt</div>
-          <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
-          <p class="skill-sub">Du installierst sie einmal. Danach kennt Claude deinen Shop, weiß welche Patterns funktionieren und merkt sich, was du entschieden hast.</p>
+          <h2 class="h2 display">Vier Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
+          <p class="skill-sub">Du klickst dich durch vier Browser-Schritte, den Rest macht Claude allein. Danach kennt er dein Theme, weiß welche Patterns funktionieren und merkt sich, was du entschieden hast.</p>
         </div>
 
         <div class="files-grid" data-reveal-stagger>
           <article class="file-card" data-reveal="up">
-            <span class="file-card-name">setup.md</span>
-            <h3 class="file-card-title">Auto-Installer</h3>
-            <p class="file-card-desc">Ein Befehl. Skills, Plugins, Konfig. Alles landet in deinem Claude-Workspace, fertig konfiguriert.</p>
-            <div class="file-card-preview"><span class="pv-com"># einmal ausführen</span><br>$ <span class="pv-key">claude</span> setup.md<br><span class="pv-com"># → Skills + Plugins ready</span></div>
+            <span class="file-card-name">SETUP.md</span>
+            <h3 class="file-card-title">4 Klicks im Browser</h3>
+            <p class="file-card-desc">Was du selbst machst: Theme duplizieren, ZIP herunterladen, entpacken, Ordner in VS&nbsp;Code öffnen. Kein Terminal, kein npm, kein GitHub.</p>
+            <div class="file-card-preview"><span class="pv-com"># dein Teil — 4 Klicks</span><br><span class="pv-key">1.</span> <span class="pv-str">Duplicate</span> <span class="pv-com">// Theme im Shopify Admin</span><br><span class="pv-key">2.</span> <span class="pv-str">Download ZIP</span><br><span class="pv-key">3.</span> <span class="pv-str">Unzip</span><br><span class="pv-key">4.</span> <span class="pv-str">Open in VS Code</span></div>
+          </article>
+          <article class="file-card" data-reveal="up">
+            <span class="file-card-name">BOOTSTRAP.md</span>
+            <h3 class="file-card-title">Auto-Installer für Claude</h3>
+            <p class="file-card-desc">Du sagst nur „Lies BOOTSTRAP.md". Claude lädt Plugins, kopiert dein Theme an die richtige Stelle, mappt die Architektur und schreibt sie in MEMORY.md.</p>
+            <div class="file-card-preview"><span class="pv-com"># einmal sagen</span><br>&gt; <span class="pv-str">"Lies BOOTSTRAP.md"</span><br><span class="pv-com"># Claude erledigt</span><br><span class="pv-key">→</span> Plugins · Theme-Mapping · MEMORY</div>
           </article>
           <article class="file-card" data-reveal="up">
             <span class="file-card-name">CLAUDE.md</span>
             <h3 class="file-card-title">Mein Playbook für deine KI</h3>
-            <p class="file-card-desc">Wochenlang an echten Shop-Cases geschärft. Sagt deiner KI, wie sie arbeiten soll: welche Patterns funktionieren, welche nicht, welche Reihenfolge sicher ist.</p>
-            <div class="file-card-preview"><span class="pv-com"># Anweisungen</span><br><span class="pv-key">always:</span> <span class="pv-str">Backup anlegen</span><br><span class="pv-key">never:</span> <span class="pv-str">Code ohne Plan schreiben</span><br><span class="pv-key">prefer:</span> <span class="pv-str">editable section</span></div>
+            <p class="file-card-desc">An echten Shop-Cases geschärft. Sagt deiner KI: niemals Live-Theme, immer Duplikat, immer Deploy-Block mit Rollback-Pfad, immer Senior-Skill vor jedem Code.</p>
+            <div class="file-card-preview"><span class="pv-com"># Hard Rules</span><br><span class="pv-key">never:</span> <span class="pv-str">edit live theme</span><br><span class="pv-key">always:</span> <span class="pv-str">duplicate + rollback</span><br><span class="pv-key">before code:</span> <span class="pv-str">load senior-dev skill</span></div>
           </article>
           <article class="file-card" data-reveal="up">
-            <span class="file-card-name">memory.md</span>
-            <h3 class="file-card-title">Lernt dich kennen</h3>
-            <p class="file-card-desc">Speichert Vorlieben, Constraints, Shop-Eigenheiten. Aktualisiert sich automatisch nach jedem Chat. Claude vergisst nichts.</p>
-            <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">brand_color:</span> <span class="pv-str">"#C8633E"</span><br><span class="pv-key">tone:</span> <span class="pv-str">"direkt, knapp"</span><br><span class="pv-key">avoid:</span> <span class="pv-str">"edits in file xy"</span></div>
+            <span class="file-card-name">MEMORY.md</span>
+            <h3 class="file-card-title">Lernt deinen Shop kennen</h3>
+            <p class="file-card-desc">Theme-Architektur, Operator-Vorlieben, Sackgassen, bestätigte Patterns. Wächst mit jeder Session. Claude liest sie vor jeder Aufgabe und vergisst nichts.</p>
+            <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">theme:</span> <span class="pv-str">"Dawn 15.3 — OS 2.0"</span><br><span class="pv-key">main-product:</span> <span class="pv-str">main-product.liquid</span><br><span class="pv-key">avoid:</span> <span class="pv-str">{% stylesheet %} blocks</span></div>
           </article>
         </div>
 
@@ -3746,38 +3765,42 @@
         </aside>
 
         <div class="skill-section-divider" aria-hidden="true"></div>
-        <p class="skill-rail-label" data-reveal="up">Skill-Stack · komplett im Base inklusive</p>
+        <p class="skill-rail-label" data-reveal="up">Skill-Stack · 24 Skills im Base inklusive · Pflicht-Skills laden automatisch</p>
         <div class="skill-list" data-reveal-stagger>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
-              <span class="skill-card-num">01 / Theme &amp; Build</span>
-              <h3 class="skill-card-name">Dein Theme sicher umbauen.</h3>
+              <span class="skill-card-num">01 / Shopify-Engineering · Pflicht</span>
+              <h3 class="skill-card-name">Code wie ein Senior-Shopify-Dev.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">theme-architecture</span><p class="skill-tile-desc">Wie Shopify-Themes intern aufgebaut sind und was wo lebt.</p></div>
-              <div><span class="skill-tile-name">liquid-fundamentals</span><p class="skill-tile-desc">Was du wissen musst, um Sections selbst zu lesen.</p></div>
-              <div><span class="skill-tile-name">claude-project-setup</span><p class="skill-tile-desc">Theme so laden, dass Claude konsistent arbeitet.</p></div>
-              <div><span class="skill-tile-name">duplicate-publish-flow</span><p class="skill-tile-desc">Der sichere Weg vom Edit zum Live-Theme.</p></div>
+              <div><span class="skill-tile-name">shop-architecture</span><p class="skill-tile-desc">Lernt dein Theme einmalig komplett kennen — Architektur, Sections, Snippets, integrierte Apps, Idiome. Schreibt alles in MEMORY.md, damit jede Session mit vollem Kontext startet.</p></div>
+              <div><span class="skill-tile-name">shopify-senior-dev</span><p class="skill-tile-desc">Lädt automatisch vor jeder Code-Änderung. Folgt der offiziellen Shopify-Doku: Liquid-Korrektheit, Schema-Patterns, Theme-Editor-Sicherheit, WCAG&nbsp;2.2&nbsp;AA, Performance-Budget.</p></div>
             </div>
           </article>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
-              <span class="skill-card-num">02 / Apps &amp; Prompting</span>
-              <h3 class="skill-card-name">Claude führen und Apps ersetzen.</h3>
+              <span class="skill-card-num">02 / Design, UI &amp; UX · 21 Skills</span>
+              <h3 class="skill-card-name">Sections, die nicht nach KI aussehen.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">app-replacement-patterns</span><p class="skill-tile-desc">Welche App-Typen sich gut, welche schlecht ersetzen lassen.</p></div>
-              <div><span class="skill-tile-name">prompt-discipline</span><p class="skill-tile-desc">Wie du Claude Aufgaben gibst, die er zuverlässig löst.</p></div>
+              <div><span class="skill-tile-name">frontend-design</span><p class="skill-tile-desc">Production-grade UI ohne Generic-KI-Look.</p></div>
+              <div><span class="skill-tile-name">critique</span><p class="skill-tile-desc">Senior-Designer-Review mit Persona-Tests und Score.</p></div>
+              <div><span class="skill-tile-name">audit</span><p class="skill-tile-desc">A11y, Performance, Anti-Patterns mit P0–P3-Severity.</p></div>
+              <div><span class="skill-tile-name">polish</span><p class="skill-tile-desc">Pre-Launch-Politur — Alignment, Spacing, Mikro-Details.</p></div>
+              <div><span class="skill-tile-name">harden</span><p class="skill-tile-desc">Edge-Cases, Error States, Overflow, i18n-Robustheit.</p></div>
+              <div><span class="skill-tile-name">typeset</span><p class="skill-tile-desc">Fonts, Hierarchie, Pairing, Readability.</p></div>
+              <div><span class="skill-tile-name">colorize</span><p class="skill-tile-desc">Strategische Farbe in zu monochromen Designs.</p></div>
+              <div><span class="skill-tile-name">arrange</span><p class="skill-tile-desc">Layout, Spacing, Visual Rhythm, Hierarchie.</p></div>
             </div>
+            <p class="skill-card-foot">+ 13 weitere: <span>adapt</span> · <span>animate</span> · <span>bolder</span> · <span>clarify</span> · <span>delight</span> · <span>distill</span> · <span>extract</span> · <span>normalize</span> · <span>onboard</span> · <span>optimize</span> · <span>overdrive</span> · <span>quieter</span> · <span>teach-impeccable</span></p>
           </article>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
-              <span class="skill-card-num">03 / Daten &amp; Insights</span>
-              <h3 class="skill-card-name">Aus Daten Code-Änderungen machen.</h3>
+              <span class="skill-card-num">03 / Browser-QA</span>
+              <h3 class="skill-card-name">Sehen, was du wirklich gebaut hast.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">seo-data-loop</span><p class="skill-tile-desc">Wie Search-Console-Daten zu Code-Änderungen werden.</p></div>
-              <div><span class="skill-tile-name">behavioral-data-reading</span><p class="skill-tile-desc">Heatmap-Patterns lesen, ohne sich was einzubilden.</p></div>
+              <div><span class="skill-tile-name">playwright-cli</span><p class="skill-tile-desc">Automatisierte Visual-QA gegen die Theme-Preview-URL deines Duplikats. Screenshots, Click-Flows, Cross-Device-Checks. Claude prüft das Ergebnis selbst — du musst nicht jede Section händisch durchklicken.</p></div>
             </div>
           </article>
         </div>
