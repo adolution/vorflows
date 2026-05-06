@@ -2748,6 +2748,7 @@
       .testimonial-slot {
         flex: 0 0 auto;
         width: 540px;
+        margin: 0;
         padding: 4px 64px;
         display: flex;
         flex-direction: column;
@@ -2823,14 +2824,19 @@
         .testimonial-slot {
           flex: 0 0 100vw;
           width: 100vw;
+          min-width: 0;
+          max-width: 100vw;
           box-sizing: border-box;
-          scroll-snap-align: center;
+          scroll-snap-align: start;
           scroll-snap-stop: always;
           border-right: none;
           padding: 6px 56px;
           gap: 18px;
           min-height: 220px;
           justify-content: center;
+        }
+        .testimonial-slot .testimonial-quote {
+          overflow-wrap: anywhere;
         }
         .testimonial-slot[aria-hidden="true"] { display: none; }
         .testimonial-quote { font-size: 18px; }
@@ -2865,6 +2871,10 @@
           outline: none;
         }
         .testimonials-nav:active { transform: translateY(-50%) scale(0.94); }
+        .testimonials-nav[disabled] {
+          opacity: 0.35;
+          pointer-events: none;
+        }
         .testimonials-nav-prev { left: 10px; }
         .testimonials-nav-next { right: 10px; }
       }
@@ -5227,13 +5237,39 @@
         const prev = document.querySelector('.testimonials-nav-prev');
         const next = document.querySelector('.testimonials-nav-next');
         if (!viewport || !prev || !next) return;
+        const visibleSlots = () => Array.from(viewport.querySelectorAll('.testimonial-slot')).filter(el => el.offsetParent !== null);
+        const currentIndex = (list) => {
+          const sl = viewport.scrollLeft;
+          let best = 0, min = Infinity;
+          list.forEach((s, i) => {
+            const d = Math.abs(s.offsetLeft - sl);
+            if (d < min) { min = d; best = i; }
+          });
+          return best;
+        };
+        const sync = () => {
+          const list = visibleSlots();
+          if (!list.length) { prev.disabled = true; next.disabled = true; return; }
+          const idx = currentIndex(list);
+          prev.disabled = idx <= 0;
+          next.disabled = idx >= list.length - 1;
+        };
         const step = (dir) => {
-          const visible = viewport.querySelector('.testimonial-slot:not([aria-hidden="true"])');
-          const w = visible ? visible.offsetWidth : viewport.clientWidth;
-          viewport.scrollBy({ left: dir * w, behavior: 'smooth' });
+          const list = visibleSlots();
+          if (!list.length) return;
+          const idx = currentIndex(list);
+          const target = Math.max(0, Math.min(list.length - 1, idx + dir));
+          viewport.scrollTo({ left: list[target].offsetLeft, behavior: 'smooth' });
         };
         prev.addEventListener('click', () => step(-1));
         next.addEventListener('click', () => step(1));
+        let scrollTimer;
+        viewport.addEventListener('scroll', () => {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(sync, 90);
+        }, { passive: true });
+        window.addEventListener('resize', sync);
+        sync();
       })();
 
       // Keyboard shortcuts: w/m/i/f/g, skip when typing in input/textarea/contenteditable
