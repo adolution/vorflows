@@ -2723,18 +2723,22 @@
       .testimonials-marquee {
         position: relative;
         width: 100%;
+      }
+      .testimonials-viewport {
+        width: 100%;
         overflow: hidden;
         -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
                 mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
       }
+      .testimonials-nav { display: none; }
       .testimonials-track {
         display: flex;
         width: max-content;
         animation: testimonials-scroll 80s linear infinite;
         will-change: transform;
       }
-      .testimonials-marquee:hover .testimonials-track,
-      .testimonials-marquee:focus-within .testimonials-track {
+      .testimonials-viewport:hover .testimonials-track,
+      .testimonials-viewport:focus-within .testimonials-track {
         animation-play-state: paused;
       }
       @keyframes testimonials-scroll {
@@ -2799,11 +2803,70 @@
       }
       @media (max-width: 720px) {
         .testimonials-band { padding: 64px 0 72px; }
-        .testimonials-band-head { margin-bottom: 36px; }
-        .testimonial-slot { width: 360px; padding: 4px 36px; gap: 18px; }
+        .testimonials-band-head { margin-bottom: 28px; }
+        .testimonials-viewport {
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          scroll-behavior: smooth;
+          -webkit-mask-image: none;
+                  mask-image: none;
+        }
+        .testimonials-viewport::-webkit-scrollbar { display: none; }
+        .testimonials-track {
+          animation: none !important;
+          transform: none !important;
+          width: auto;
+        }
+        .testimonial-slot {
+          flex: 0 0 100vw;
+          width: 100vw;
+          box-sizing: border-box;
+          scroll-snap-align: center;
+          scroll-snap-stop: always;
+          border-right: none;
+          padding: 6px 56px;
+          gap: 18px;
+          min-height: 220px;
+          justify-content: center;
+        }
+        .testimonial-slot[aria-hidden="true"] { display: none; }
         .testimonial-quote { font-size: 18px; }
         .testimonial-mark { font-size: 64px; height: 20px; }
-        .testimonials-track { animation-duration: 60s; }
+        .testimonials-nav {
+          display: grid;
+          place-items: center;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: rgba(250, 250, 247, 0.92);
+          border: 1px solid rgba(26, 26, 26, 0.12);
+          color: var(--text-primary);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          cursor: pointer;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 16px;
+          line-height: 1;
+          padding: 0;
+          z-index: 2;
+          transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+          box-shadow: 0 4px 14px -6px rgba(26, 26, 26, 0.18);
+        }
+        .testimonials-nav:hover,
+        .testimonials-nav:focus-visible {
+          background: var(--accent);
+          color: var(--bg-light);
+          outline: none;
+        }
+        .testimonials-nav:active { transform: translateY(-50%) scale(0.94); }
+        .testimonials-nav-prev { left: 10px; }
+        .testimonials-nav-next { right: 10px; }
       }
 
       /* FAQ */
@@ -4090,6 +4153,9 @@
         <span class="meta eyebrow">Aus der geschlossenen Beta</span>
       </div>
       <div class="testimonials-marquee" data-reveal="up">
+        <button type="button" class="testimonials-nav testimonials-nav-prev" aria-label="Vorheriges Testimonial">&#8592;</button>
+        <button type="button" class="testimonials-nav testimonials-nav-next" aria-label="Nächstes Testimonial">&#8594;</button>
+        <div class="testimonials-viewport">
         <div class="testimonials-track">
           <figure class="testimonial-slot">
             <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
@@ -4121,6 +4187,7 @@
             <blockquote class="testimonial-quote">Das SEO-Modul ist eine 10/10. Hat sofort Sachen gefunden, bei denen ich auf Seite 2 auftauche, und mich innerhalb einer Woche auf Seite 1 gebracht. Ich freu mich schon auf deine nächsten Erweiterungen.</blockquote>
             <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Maja</span><span class="testimonial-attr-sep"></span><span>Founder &middot; D2C Unterhaltung</span></figcaption>
           </figure>
+        </div>
         </div>
       </div>
     </section>
@@ -5153,6 +5220,21 @@
           wlSubmit.disabled = false;
         }
       });
+
+      // Testimonials carousel arrows (mobile)
+      (() => {
+        const viewport = document.querySelector('.testimonials-viewport');
+        const prev = document.querySelector('.testimonials-nav-prev');
+        const next = document.querySelector('.testimonials-nav-next');
+        if (!viewport || !prev || !next) return;
+        const step = (dir) => {
+          const visible = viewport.querySelector('.testimonial-slot:not([aria-hidden="true"])');
+          const w = visible ? visible.offsetWidth : viewport.clientWidth;
+          viewport.scrollBy({ left: dir * w, behavior: 'smooth' });
+        };
+        prev.addEventListener('click', () => step(-1));
+        next.addEventListener('click', () => step(1));
+      })();
 
       // Keyboard shortcuts: w/m/i/f/g, skip when typing in input/textarea/contenteditable
       const targets = { w: '#workflow', m: '#module', i: '#pricing', f: '#faq' };
