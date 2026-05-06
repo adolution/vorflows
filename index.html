@@ -1570,10 +1570,10 @@
       .files-grid {
         margin-top: 48px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
       }
-      @media (max-width: 720px) {
+      @media (max-width: 900px) {
         .files-grid { grid-template-columns: 1fr; gap: 16px; }
       }
       .file-card {
@@ -3403,8 +3403,8 @@
             playsinline
             preload="none"
             poster="/assets/video/vorflows-salesletter-poster.jpg"
-            data-src="/assets/video/vorflows-salesletter-720-silent.mp4"
-            data-src-audio="/assets/video/vorflows-salesletter-720.mp4"
+            data-src="/assets/video/vorflows-salesletter-1080-silent.mp4"
+            data-src-audio="/assets/video/vorflows-salesletter-1080.mp4"
             aria-label="vorflows Salesletter Video"
           ></video>
           <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
@@ -3689,17 +3689,11 @@
       <div class="container">
         <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Was im Paket liegt</div>
-          <h2 class="h2 display">Vier Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
-          <p class="skill-sub">Du klickst dich durch vier Browser-Schritte, den Rest macht Claude allein. Danach kennt er dein Theme, weiß welche Patterns funktionieren und merkt sich, was du entschieden hast.</p>
+          <h2 class="h2 display">Drei Dateien. Ein System, das mit dir <em>mitwächst.</em></h2>
+          <p class="skill-sub">Einmal sagen „Lies BOOTSTRAP.md", den Rest macht Claude allein. Danach kennt er dein Theme, weiß welche Patterns funktionieren und merkt sich, was du entschieden hast.</p>
         </div>
 
         <div class="files-grid" data-reveal-stagger>
-          <article class="file-card" data-reveal="up">
-            <span class="file-card-name">SETUP.md</span>
-            <h3 class="file-card-title">4 Klicks im Browser</h3>
-            <p class="file-card-desc">Was du selbst machst: Theme duplizieren, ZIP herunterladen, entpacken, Ordner in VS&nbsp;Code öffnen. Kein Terminal, kein npm, kein GitHub.</p>
-            <div class="file-card-preview"><span class="pv-com"># dein Teil — 4 Klicks</span><br><span class="pv-key">1.</span> <span class="pv-str">Duplicate</span> <span class="pv-com">// Theme im Shopify Admin</span><br><span class="pv-key">2.</span> <span class="pv-str">Download ZIP</span><br><span class="pv-key">3.</span> <span class="pv-str">Unzip</span><br><span class="pv-key">4.</span> <span class="pv-str">Open in VS Code</span></div>
-          </article>
           <article class="file-card" data-reveal="up">
             <span class="file-card-name">BOOTSTRAP.md</span>
             <h3 class="file-card-title">Auto-Installer für Claude</h3>
@@ -3765,7 +3759,7 @@
         </aside>
 
         <div class="skill-section-divider" aria-hidden="true"></div>
-        <p class="skill-rail-label" data-reveal="up">Skill-Stack · 24 Skills im Base inklusive · Pflicht-Skills laden automatisch</p>
+        <p class="skill-rail-label" data-reveal="up">Skill-Stack · drei Module, alle aus echten Daten gespeist</p>
         <div class="skill-list" data-reveal-stagger>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
@@ -3779,28 +3773,30 @@
           </article>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
-              <span class="skill-card-num">02 / Design, UI &amp; UX · 21 Skills</span>
-              <h3 class="skill-card-name">Sections, die nicht nach KI aussehen.</h3>
+              <span class="skill-card-num">02 / Suchmaschinen-Optimierung</span>
+              <h3 class="skill-card-name">SEO aus echten Ranking-Daten.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">frontend-design</span><p class="skill-tile-desc">Production-grade UI ohne Generic-KI-Look.</p></div>
-              <div><span class="skill-tile-name">critique</span><p class="skill-tile-desc">Senior-Designer-Review mit Persona-Tests und Score.</p></div>
-              <div><span class="skill-tile-name">audit</span><p class="skill-tile-desc">A11y, Performance, Anti-Patterns mit P0–P3-Severity.</p></div>
-              <div><span class="skill-tile-name">polish</span><p class="skill-tile-desc">Pre-Launch-Politur — Alignment, Spacing, Mikro-Details.</p></div>
-              <div><span class="skill-tile-name">harden</span><p class="skill-tile-desc">Edge-Cases, Error States, Overflow, i18n-Robustheit.</p></div>
-              <div><span class="skill-tile-name">typeset</span><p class="skill-tile-desc">Fonts, Hierarchie, Pairing, Readability.</p></div>
-              <div><span class="skill-tile-name">colorize</span><p class="skill-tile-desc">Strategische Farbe in zu monochromen Designs.</p></div>
-              <div><span class="skill-tile-name">arrange</span><p class="skill-tile-desc">Layout, Spacing, Visual Rhythm, Hierarchie.</p></div>
+              <div><span class="skill-tile-name">seo-audit</span><p class="skill-tile-desc">Vollständiger Health-Check deines Shops — Crawl, Index, On-Page, Schema, technische Lücken. Eine Liste mit P0–P3-Severity, sortiert nach Impact.</p></div>
+              <div><span class="skill-tile-name">seo-technical</span><p class="skill-tile-desc">Technische Optimierung: Indexierbarkeit, Sitemap, Canonical, Hreflang, Core Web Vitals, JS-Rendering. Claude fixt direkt im Theme-Code.</p></div>
+              <div><span class="skill-tile-name">seo-content</span><p class="skill-tile-desc">Inhaltsoptimierung gegen reale Suchintentionen — Tiefe, E-E-A-T, Snippet-Tauglichkeit, interne Verlinkung. Keine generischen Keyword-Listen.</p></div>
+              <div><span class="skill-tile-name">ai-visibility</span><p class="skill-tile-desc">Optimierung für AI-Antworten: ChatGPT, Perplexity, Google AI Overviews, Bing Copilot. Passage-Citability, llms.txt, Brand-Mentions.</p></div>
+              <div><span class="skill-tile-name">opportunity-detection</span><p class="skill-tile-desc">Chancenerkennung aus echten Performance-Daten — Quick-Wins bei hohen Impressions mit niedriger CTR, Position 11–20, Cannibalization.</p></div>
+              <div><span class="skill-tile-name">data-driven-loop</span><p class="skill-tile-desc">Alle Empfehlungen ziehen sich live aus den Performance-Daten deines eigenen Shops. Keine Schätzungen, keine Branchen-Benchmarks.</p></div>
             </div>
-            <p class="skill-card-foot">+ 13 weitere: <span>adapt</span> · <span>animate</span> · <span>bolder</span> · <span>clarify</span> · <span>delight</span> · <span>distill</span> · <span>extract</span> · <span>normalize</span> · <span>onboard</span> · <span>optimize</span> · <span>overdrive</span> · <span>quieter</span> · <span>teach-impeccable</span></p>
           </article>
           <article class="skill-card" data-reveal="up">
             <header class="skill-card-head">
-              <span class="skill-card-num">03 / Browser-QA</span>
-              <h3 class="skill-card-name">Sehen, was du wirklich gebaut hast.</h3>
+              <span class="skill-card-num">03 / Conversion-Rate-Optimierung</span>
+              <h3 class="skill-card-name">CRO aus echtem Nutzerverhalten.</h3>
             </header>
             <div class="skill-grid">
-              <div><span class="skill-tile-name">playwright-cli</span><p class="skill-tile-desc">Automatisierte Visual-QA gegen die Theme-Preview-URL deines Duplikats. Screenshots, Click-Flows, Cross-Device-Checks. Claude prüft das Ergebnis selbst — du musst nicht jede Section händisch durchklicken.</p></div>
+              <div><span class="skill-tile-name">placement-cro</span><p class="skill-tile-desc">Prüft Platzierung von CTAs, Trust-Modulen, Reviews, Pricing. Claude verschiebt Elemente dorthin, wo Nutzer in deinen Sessions tatsächlich hinschauen und klicken.</p></div>
+              <div><span class="skill-tile-name">trust-signals</span><p class="skill-tile-desc">Optimiert Trust-Strips, Garantien, Reviews, Social Proof — auf Basis der Stellen, an denen echte Nutzer im Funnel zögern oder abspringen.</p></div>
+              <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Liest aus, wie tief Besucher pro Page-Type scrollen. Verschiebt verkaufsentscheidende Module nach oben, wenn 60 % nie unten ankommen.</p></div>
+              <div><span class="skill-tile-name">click-behavior</span><p class="skill-tile-desc">Erkennt Dead-Clicks, Rage-Clicks und Frust-Patterns. Markiert Elemente, die wie Buttons aussehen, aber nichts tun — und macht sie klickbar.</p></div>
+              <div><span class="skill-tile-name">funnel-friction</span><p class="skill-tile-desc">Findet die Schritte zwischen PDP und Checkout, an denen Nutzer aussteigen. Schlägt konkrete Code-Änderungen vor, die diesen Drop-Off entschärfen.</p></div>
+              <div><span class="skill-tile-name">session-driven-loop</span><p class="skill-tile-desc">Alle Vorschläge basieren auf echten Session-Daten deines Shops — nicht auf Best-Practice-Listen aus dem Internet.</p></div>
             </div>
           </article>
         </div>
