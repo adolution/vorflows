@@ -189,7 +189,7 @@
 
       * { box-sizing: border-box; }
 
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
       html, body { overflow-x: clip; }
 
@@ -312,14 +312,70 @@
       }
       .btn-outline:hover { border-color: var(--text-primary); }
 
+      /* Mid-page inline CTA — restrained, terracotta accent on hover */
+      .inline-cta-row {
+        display: flex;
+        justify-content: center;
+        margin-top: clamp(32px, 4vw, 56px);
+      }
+      .inline-cta {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 14px;
+        padding: 12px 22px;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: border-color 200ms ease-out, background 200ms ease-out, transform 200ms ease-out;
+      }
+      .inline-cta:hover {
+        border-color: var(--accent);
+        background: var(--accent-soft, rgba(200, 99, 62, 0.08));
+      }
+      .inline-cta:active { transform: translateY(1px); }
+      .inline-cta-label { font-weight: 500; }
+      .inline-cta-sep {
+        color: var(--border-strong);
+        align-self: center;
+        font-size: 11px;
+      }
+      .inline-cta-meta {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        color: var(--text-secondary);
+        letter-spacing: 0.02em;
+        font-feature-settings: "tnum";
+      }
+      .inline-cta:hover .inline-cta-meta { color: var(--accent); }
+      .inline-cta-arrow {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--accent);
+        font-size: 13px;
+        transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .inline-cta:hover .inline-cta-arrow { transform: translateX(4px); }
+      .inline-cta:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      @media (max-width: 600px) {
+        .inline-cta { padding: 11px 18px; gap: 10px; font-size: 13.5px; }
+        .inline-cta-meta { font-size: 11.5px; }
+      }
+
       /* Nav */
       .nav {
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(250, 250, 247, 0.85);
-        backdrop-filter: saturate(180%) blur(10px);
-        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        background: rgba(250, 250, 247, 0.96);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
         border-bottom: 1px solid transparent;
         transition: border-color 200ms ease-out;
       }
@@ -2150,7 +2206,7 @@
         outline-offset: 3px;
       }
       .bundle-hero-guarantee {
-        margin: 18px 0 0;
+        margin: 0;
         font-size: 13px;
         line-height: 1.55;
         color: var(--text-secondary);
@@ -2161,6 +2217,25 @@
         text-decoration: underline;
         text-decoration-color: var(--border-strong);
         text-underline-offset: 3px;
+      }
+      .bundle-hero-foot {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(200, 99, 62, 0.18);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .bundle-pay-note {
+        margin: 0;
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: var(--text-secondary);
+        font-feature-settings: "tnum";
+      }
+      .bundle-pay-note strong {
+        color: var(--text-primary);
+        font-weight: 600;
       }
       .bundle-hero-features {
         display: flex;
@@ -3219,11 +3294,6 @@
       .hero-video .hv-fullscreen:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.40); }
       .hero-video .hv-fullscreen svg { width: 12px; height: 12px; fill: currentColor; }
       .hero-video .hv-fullscreen:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      /* Desktop / pointer-fine: hide fullscreen, only speed selector remains.
-         Mobile (coarse pointer) keeps the fullscreen affordance. */
-      @media (hover: hover) and (pointer: fine) {
-        .hero-video .hv-fullscreen { display: none !important; }
-      }
       .hero-video .hv-speed {
         appearance: none;
         -webkit-appearance: none;
@@ -3979,6 +4049,14 @@
           </tbody>
         </table>
         <p class="compare-foot display-italic" data-reveal="up"><span data-count-to="5232" data-count-suffix=" €">5.232&nbsp;€</span> pro Jahr in Apps. Oder einmal das <em>Bundle</em>.</p>
+        <div class="inline-cta-row" data-reveal="up">
+          <a href="#pricing" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Bundle ansehen</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">297&nbsp;€ einmalig</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -4002,6 +4080,14 @@
             <div class="outcome-day">TAG 30</div>
             <p class="outcome-text">Claude findet versteckte SEO-Potentiale und baut Schema &amp; Rich Snippets ein. Du musst nicht wissen, was das ist.</p>
           </div>
+        </div>
+        <div class="inline-cta-row" data-reveal="up">
+          <a href="#pricing" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Tag 1 starten</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">Bundle 297&nbsp;€</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -4154,6 +4240,14 @@
             </ul>
           </div>
         </div>
+        <div class="inline-cta-row" data-reveal="up">
+          <a href="#pricing" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Bundle sichern</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">297&nbsp;€ · 14 Tage Refund</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -4232,7 +4326,7 @@
             <p class="trust-tile-body">Funktioniert das System nicht für dich, schreibst du eine Mail. Refund kommt zurück.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
-            <span class="trust-tile-mark" aria-hidden="true">[ DATA ]</span>
+            <span class="trust-tile-mark" aria-hidden="true">[ DATEN ]</span>
             <h3 class="trust-tile-title">Deine Daten bleiben bei dir</h3>
             <p class="trust-tile-body">vorflows hostet keine Shop-Daten. SEO- und Verhaltensdaten bleiben in deinen Accounts. Alles läuft über deine eigenen Verbindungen.</p>
           </div>
@@ -4246,16 +4340,16 @@
                ───────────────────────────────────────────────────────────── -->
           <header class="bundle-hero-launch" data-founder-active>
             <div class="bundle-hero-launch-row">
-              <span class="bundle-hero-launch-tag">Launch-Offer · -50% · spar 300&nbsp;€</span>
-              <span class="bundle-hero-launch-count">Noch <strong data-founder-remaining>100</strong> von <span data-founder-total>100</span> Founder-Plätzen</span>
+              <span class="bundle-hero-launch-tag">Founder-Launch · 297&nbsp;€ statt 597&nbsp;€</span>
+              <span class="bundle-hero-launch-count"><strong data-founder-sold>0</strong> von <span data-founder-total>100</span> Plätzen vergeben</span>
             </div>
             <div class="bundle-hero-launch-track" aria-hidden="true">
-              <div class="bundle-hero-launch-fill" data-founder-bar style="width: 100%"></div>
+              <div class="bundle-hero-launch-fill" data-founder-bar style="width: 0%"></div>
             </div>
           </header>
           <header class="bundle-hero-launch bundle-hero-launch--soldout" data-founder-soldout hidden>
-            <span class="bundle-hero-launch-tag">Launch-Plätze ausverkauft</span>
-            <span class="bundle-hero-launch-count">Bundle jetzt zu 597&nbsp;€</span>
+            <span class="bundle-hero-launch-tag">Founder-Launch abgeschlossen</span>
+            <span class="bundle-hero-launch-count">Bundle dauerhaft zu 597&nbsp;€</span>
           </header>
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
@@ -4266,15 +4360,14 @@
                 <span class="bundle-hero-strike">597&nbsp;€</span>
                 <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
               </div>
-              <div class="bundle-pay" role="note" aria-label="Ratenzahlung">
-                <span class="bundle-pay-anchor">oder ab <strong>49,50&nbsp;€</strong>/Monat</span>
-                <span class="bundle-pay-detail">sechs monatliche Raten via Klarna oder PayPal</span>
-              </div>
               <div class="bundle-math">
                 Spart <strong>~5.232&nbsp;€&nbsp;/Jahr</strong> ggü. typischem App-Stack. Break-Even meist <strong>nach einem Monat</strong> — je nach App-Stack.
               </div>
               <a href="https://www.digistore24.com/product/688983" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
-              <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
+              <div class="bundle-hero-foot">
+                <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
+                <p class="bundle-pay-note" aria-label="Ratenzahlung">Oder ab <strong>49,50&nbsp;€</strong>/Monat — sechs Raten via Klarna oder PayPal.</p>
+              </div>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
@@ -4452,17 +4545,19 @@
       const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
 
       // ── Founder counter — UPDATE FOUNDER_SOLD when a sale comes in ──────
-      // Counter shown on #pricing: "Noch X von 100 Founder-Plätzen zum Launch-Preis".
+      // Counter shown on #pricing: "X von 100 Plätzen vergeben".
       // Increment FOUNDER_SOLD by 1 each sale, save, push.
       const FOUNDER_TOTAL = 100;
       const FOUNDER_SOLD = 3;  // ← update this number when a Bundle sale happens
       (function applyFounderCounter() {
         const remaining = Math.max(0, FOUNDER_TOTAL - FOUNDER_SOLD);
-        const pct = (remaining / FOUNDER_TOTAL) * 100;
+        const sold = Math.min(FOUNDER_TOTAL, FOUNDER_SOLD);
+        const fillPct = (sold / FOUNDER_TOTAL) * 100;
         const apply = () => {
           document.querySelectorAll('[data-founder-remaining]').forEach((el) => { el.textContent = remaining; });
+          document.querySelectorAll('[data-founder-sold]').forEach((el) => { el.textContent = sold; });
           document.querySelectorAll('[data-founder-total]').forEach((el) => { el.textContent = FOUNDER_TOTAL; });
-          document.querySelectorAll('[data-founder-bar]').forEach((el) => { el.style.width = pct + '%'; });
+          document.querySelectorAll('[data-founder-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
           if (remaining <= 0) {
             document.querySelectorAll('[data-founder-soldout]').forEach((el) => { el.hidden = false; });
             document.querySelectorAll('[data-founder-active]').forEach((el) => { el.hidden = true; });
