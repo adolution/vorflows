@@ -118,7 +118,7 @@
             "priceCurrency": "EUR",
             "availability": "https://schema.org/PreOrder",
             "url": "https://vorflows.com/#pricing",
-            "priceValidUntil": "2026-12-31"
+            "priceValidUntil": "2026-05-31"
           }
         },
         {
@@ -366,6 +366,10 @@
       @media (max-width: 600px) {
         .inline-cta { padding: 11px 18px; gap: 10px; font-size: 13.5px; }
         .inline-cta-meta { font-size: 11.5px; }
+      }
+      .inline-cta-row.mobile-only { display: none; }
+      @media (max-width: 880px) {
+        .inline-cta-row.mobile-only { display: flex; margin-top: 32px; }
       }
 
       /* Nav */
@@ -1582,6 +1586,16 @@
       .skill-card-foot span {
         font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
+        color: var(--accent);
+      }
+      .skill-more {
+        margin: 18px 0 0;
+        padding-top: 14px;
+        border-top: 1px dashed var(--border);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: var(--accent);
       }
 
@@ -3844,9 +3858,9 @@
         <div class="nav-links">
           <a href="#module">Module</a>
           <a href="#workflow">Workflow</a>
-          <a href="#pricing">Investment</a>
+          <a href="#bundle">Investment</a>
           <a href="#faq">FAQ</a>
-          <a href="#pricing" class="btn btn-primary nav-cta" data-magnetic>Jetzt sichern</a>
+          <a href="#bundle" class="btn btn-primary nav-cta" data-magnetic>Jetzt sichern</a>
           <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
             <span></span><span></span><span></span>
           </button>
@@ -3857,9 +3871,9 @@
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
       <a href="#module">Module</a>
       <a href="#workflow">Workflow</a>
-      <a href="#pricing">Investment</a>
+      <a href="#bundle">Investment</a>
       <a href="#faq">FAQ</a>
-      <a href="#pricing" class="mobile-cta">Jetzt sichern</a>
+      <a href="#bundle" class="mobile-cta">Jetzt sichern</a>
     </div>
     <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Menü schließen">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l12 12M16 4L4 16"/></svg>
@@ -3872,7 +3886,7 @@
         <span class="sticky-cta-label">Launch-Preis · spar 300&nbsp;€</span>
         <span class="sticky-cta-price">Bundle <strong>297&nbsp;€</strong> · ab 49,50&nbsp;€/Mon.</span>
       </div>
-      <a href="#pricing" class="sticky-cta-btn">Sichern →</a>
+      <a href="#bundle" class="sticky-cta-btn">Sichern →</a>
     </aside>
 
     <!-- 02 HERO -->
@@ -3917,7 +3931,7 @@
           vorflows ist das System, mit dem Founder ihren Shop über <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">Claude&nbsp;Code</span> umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
         </p>
         <div class="hero-ctas">
-          <a href="#pricing" class="btn btn-primary" data-magnetic>Jetzt sichern</a>
+          <a href="#bundle" class="btn btn-primary" data-magnetic>Jetzt sichern</a>
           <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
         </div>
       </div>
@@ -3962,6 +3976,14 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="inline-cta-row mobile-only" data-reveal="up">
+          <a href="#bundle" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Vorsprung sichern</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">Bundle&nbsp;297&nbsp;€</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -4057,6 +4079,14 @@
           </div>
         </div>
         <p class="wf-foot">Live-Theme bleibt unberührt. Du publishst, wenn du soweit bist. Niemals automatisch.</p>
+        <div class="inline-cta-row mobile-only" data-reveal="up">
+          <a href="#bundle" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Workflow starten</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">Bundle&nbsp;297&nbsp;€</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -4095,11 +4125,19 @@
             </div>
           </div>
         </div>
+        <div class="inline-cta-row mobile-only" data-reveal="up">
+          <a href="#bundle" class="inline-cta" data-magnetic>
+            <span class="inline-cta-label">Alle drei Module sichern</span>
+            <span class="inline-cta-sep" aria-hidden="true">·</span>
+            <span class="inline-cta-meta">297&nbsp;€</span>
+            <span class="inline-cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- 08 COMPARE TABLE -->
-    <section class="section-tight" style="background: #F4F2EC;">
+    <section class="section-tight" id="compare" style="background: #F4F2EC;">
       <div class="container-prose">
         <div data-reveal="up">
           <div class="meta eyebrow">Subscription-Killer</div>
@@ -4144,7 +4182,7 @@
         </table>
         <p class="compare-foot display-italic" data-reveal="up"><span data-count-to="5232" data-count-suffix=" €">5.232&nbsp;€</span> pro Jahr in Apps. Oder einmal das <em>Bundle</em>.</p>
         <div class="inline-cta-row" data-reveal="up">
-          <a href="#pricing" class="inline-cta" data-magnetic>
+          <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Bundle ansehen</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
             <span class="inline-cta-meta">297&nbsp;€ einmalig</span>
@@ -4176,7 +4214,7 @@
           </div>
         </div>
         <div class="inline-cta-row" data-reveal="up">
-          <a href="#pricing" class="inline-cta" data-magnetic>
+          <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Tag 1 starten</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
             <span class="inline-cta-meta">Bundle 297&nbsp;€</span>
@@ -4264,8 +4302,8 @@
         <details class="skill-stack-toggle" data-reveal="up">
           <summary>
             <span class="sst-label">
-              Skill-Stack · drei Module
-              <strong>Was Claude unter der Haube wirklich kann.</strong>
+              Skill-Stack
+              <strong>Welche Skills sind enthalten?</strong>
             </span>
             <span class="sst-hint">
               <span class="sst-hint-closed">Aufklappen für Details</span>
@@ -4290,13 +4328,10 @@
                 <h3 class="skill-card-name">SEO aus echten Ranking-Daten.</h3>
               </header>
               <div class="skill-grid">
-                <div><span class="skill-tile-name">seo-audit</span><p class="skill-tile-desc">Health-Check, Liste nach Impact sortiert.</p></div>
-                <div><span class="skill-tile-name">seo-technical</span><p class="skill-tile-desc">Fixt Index, Sitemap, Canonical, Core Web Vitals direkt im Theme.</p></div>
-                <div><span class="skill-tile-name">seo-content</span><p class="skill-tile-desc">Schärft Content auf echte Suchintention.</p></div>
-                <div><span class="skill-tile-name">ai-visibility</span><p class="skill-tile-desc">Macht dich zitierbar in ChatGPT, Perplexity, AI&nbsp;Overviews.</p></div>
                 <div><span class="skill-tile-name">opportunity-detection</span><p class="skill-tile-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</p></div>
-                <div><span class="skill-tile-name">data-driven-loop</span><p class="skill-tile-desc">Empfehlungen aus deinen Daten — keine Branchen-Benchmarks.</p></div>
+                <div><span class="skill-tile-name">weekly-report</span><p class="skill-tile-desc">Wöchentlicher Performance-Report mit konkreten Fix-Vorschlägen.</p></div>
               </div>
+              <p class="skill-more">und viele mehr</p>
             </article>
             <article class="skill-card">
               <header class="skill-card-head">
@@ -4304,13 +4339,10 @@
                 <h3 class="skill-card-name">CRO aus echtem Nutzerverhalten.</h3>
               </header>
               <div class="skill-grid">
-                <div><span class="skill-tile-name">placement-cro</span><p class="skill-tile-desc">Verschiebt CTAs dorthin, wo Nutzer wirklich klicken.</p></div>
-                <div><span class="skill-tile-name">trust-signals</span><p class="skill-tile-desc">Stärkt Trust an den Stellen, wo Nutzer zögern.</p></div>
-                <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Holt verkaufsentscheidende Module nach oben.</p></div>
                 <div><span class="skill-tile-name">click-behavior</span><p class="skill-tile-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</p></div>
-                <div><span class="skill-tile-name">funnel-friction</span><p class="skill-tile-desc">Lokalisiert Drop-Offs PDP → Checkout, schlägt Fixes vor.</p></div>
-                <div><span class="skill-tile-name">session-driven-loop</span><p class="skill-tile-desc">Vorschläge aus echten Session-Daten — keine Listen aus dem Netz.</p></div>
+                <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Holt verkaufsentscheidende Module nach oben.</p></div>
               </div>
+              <p class="skill-more">und viele mehr</p>
             </article>
           </div>
         </details>
@@ -4347,7 +4379,7 @@
           </div>
         </div>
         <div class="inline-cta-row" data-reveal="up">
-          <a href="#pricing" class="inline-cta" data-magnetic>
+          <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Bundle sichern</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
             <span class="inline-cta-meta">297&nbsp;€ · 14 Tage Refund</span>
@@ -4438,7 +4470,7 @@
           </div>
         </div>
 
-        <article class="bundle-hero" aria-labelledby="bundle-name" data-reveal="up-lg">
+        <article class="bundle-hero" id="bundle" aria-labelledby="bundle-name" data-reveal="up-lg">
           <!-- ─────────────────────────────────────────────────────────────
                Founder counter — manually updated.
                To change the count, edit FOUNDER_SOLD in the main <script>
@@ -4547,7 +4579,7 @@
       <div class="container-prose" data-reveal-stagger>
         <h2 class="display" data-reveal="up">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
         <p data-reveal="up">Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
-        <a href="#pricing" class="btn btn-primary" data-magnetic data-reveal="up">Jetzt sichern</a>
+        <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Jetzt sichern</a>
         <p class="final-cta-closer" data-reveal="up">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
     </section>
@@ -4567,7 +4599,7 @@
             <ul>
               <li><a href="#module">Module</a></li>
               <li><a href="#workflow">Workflow</a></li>
-              <li><a href="#pricing">Investment</a></li>
+              <li><a href="#bundle">Investment</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -4953,31 +4985,31 @@
         map.forEach((_, el) => io.observe(el));
       })();
 
-      // Sticky mobile CTA visibility: show after user has seen the modules section,
+      // Sticky mobile CTA visibility: show after user has seen the app-cost compare section,
       // hide while the pricing section is in view. Otherwise stays visible.
       (() => {
         const stickyBar = document.getElementById('stickyCtaBar');
         if (!stickyBar) return;
         const pricingEl = document.getElementById('pricing');
-        const moduleEl = document.getElementById('module');
+        const compareEl = document.getElementById('compare');
         const mql = window.matchMedia('(max-width: 880px)');
         let pricingVisible = false;
-        let pastModule = false;
+        let pastCompare = false;
         const update = () => {
           if (!mql.matches) {
             stickyBar.classList.remove('is-visible');
             document.body.classList.remove('has-sticky-cta');
             return;
           }
-          const show = pastModule && !pricingVisible;
+          const show = pastCompare && !pricingVisible;
           stickyBar.classList.toggle('is-visible', show);
           document.body.classList.toggle('has-sticky-cta', show);
         };
-        const checkPastModule = () => {
-          if (!moduleEl) return;
-          const rect = moduleEl.getBoundingClientRect();
-          // user has scrolled past the bottom of the module section
-          if (rect.bottom <= window.innerHeight * 0.4) pastModule = true;
+        const checkPastCompare = () => {
+          if (!compareEl) return;
+          const rect = compareEl.getBoundingClientRect();
+          // user has scrolled past the bottom of the compare-table section
+          if (rect.bottom <= window.innerHeight * 0.4) pastCompare = true;
         };
         if ('IntersectionObserver' in window) {
           const io = new IntersectionObserver((entries) => {
@@ -4988,11 +5020,11 @@
           }, { rootMargin: '-10% 0px -10% 0px', threshold: 0 });
           if (pricingEl) io.observe(pricingEl);
         }
-        const onScroll = () => { checkPastModule(); update(); };
+        const onScroll = () => { checkPastCompare(); update(); };
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll);
         mql.addEventListener?.('change', update);
-        checkPastModule();
+        checkPastCompare();
         update();
       })();
 
@@ -5478,7 +5510,7 @@
       })();
 
       // Keyboard shortcuts: w/m/i/f/g, skip when typing in input/textarea/contenteditable
-      const targets = { w: '#workflow', m: '#module', i: '#pricing', f: '#faq' };
+      const targets = { w: '#workflow', m: '#module', i: '#bundle', f: '#faq' };
       window.addEventListener('keydown', (e) => {
         if (e.metaKey || e.ctrlKey || e.altKey) return;
         const ae = document.activeElement;
