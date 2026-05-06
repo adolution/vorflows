@@ -289,6 +289,13 @@
         padding-block: clamp(48px, 6vw, 96px);
       }
 
+      /* Mobile rhythm: tighten the vertical breathing room so the page
+         doesn't feel like 20+ scrolls of empty bands. */
+      @media (max-width: 600px) {
+        .section { padding-block: 56px; }
+        .section-tight { padding-block: 40px; }
+      }
+
       .section-dark {
         background: var(--bg-dark);
         color: var(--text-inverse);
@@ -644,12 +651,16 @@
       .h2 {
         font-family: 'Fraunces', Georgia, serif;
         font-weight: 500;
-        font-size: clamp(32px, 4.5vw, 48px);
+        font-size: clamp(28px, 4.5vw, 48px);
         letter-spacing: -0.02em;
         line-height: 1.08;
         margin: 0 0 56px;
+        text-wrap: balance;
       }
       .h2 em { font-style: italic; font-weight: 400; }
+      @media (max-width: 600px) {
+        .h2 { font-size: 30px; line-height: 1.15; margin-bottom: 32px; }
+      }
 
       /* Problem section: asymmetric sticky-head layout */
       .problem-asym {
@@ -730,10 +741,27 @@
       .reveal-head {
         font-family: 'Fraunces', Georgia, serif;
         font-weight: 500;
-        font-size: clamp(36px, 5.5vw, 60px);
+        font-size: clamp(28px, 5.5vw, 60px);
         letter-spacing: -0.02em;
-        line-height: 1.05;
+        line-height: 1.08;
         margin: 0 0 36px;
+        text-wrap: balance;
+      }
+      .reveal-head .nowrap { white-space: nowrap; }
+      /* Mobile: headline must fit on exactly two lines, no wrapping. The
+         longest line is "KI wird dein technischer Co-Founder." at ~36
+         glyphs; we clamp the font size to whatever the container can
+         accommodate so the line never breaks. */
+      @media (max-width: 600px) {
+        .reveal-head {
+          font-size: clamp(15px, 4.4vw, 19px);
+          line-height: 1.28;
+          letter-spacing: -0.018em;
+          margin-bottom: 22px;
+        }
+        .reveal-head br { display: none; }
+        .reveal-head .reveal-line { display: block; white-space: nowrap; }
+        .reveal-head .reveal-line + .reveal-line { margin-top: 4px; }
       }
       .reveal-head em { font-style: italic; font-weight: 400; }
       .reveal-flow {
@@ -1043,12 +1071,75 @@
       .compare-table col.col-price { width: 18%; }
       .compare-table col.col-vorflows { width: 44%; }
       .compare-table thead th.num { white-space: normal; }
-      @media (max-width: 480px) {
-        .compare-table { font-size: 14px; }
-        .compare-table th, .compare-table td { padding: 14px 6px; }
-        .compare-table col.col-stack { width: 34%; }
-        .compare-table col.col-price { width: 24%; }
-        .compare-table col.col-vorflows { width: 42%; }
+      @media (max-width: 600px) {
+        /* On narrow screens the 3-column table cramps and hyphenates badly
+           ("Countdown-Ti-mer-App"). Stack each row as a card: app name +
+           price on top, arrow + vorflows solution underneath. */
+        .compare-table { display: block; font-size: 15px; margin-top: 32px; }
+        .compare-table colgroup, .compare-table thead { display: none; }
+        .compare-table tbody, .compare-table tr { display: block; width: 100%; }
+        .compare-table td { display: block; padding: 0; border: 0; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+        .compare-table tbody tr {
+          padding: 14px 14px 16px;
+          border-bottom: 1px solid var(--border);
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          row-gap: 4px;
+          column-gap: 12px;
+          align-items: baseline;
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:first-child {
+          font-weight: 500;
+          color: var(--text-primary);
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td.num {
+          text-align: right !important;
+          font-size: 14px;
+          color: var(--text-primary);
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:last-child {
+          grid-column: 1 / -1;
+          font-size: 13.5px;
+          color: var(--text-secondary);
+          line-height: 1.5;
+        }
+        .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:last-child::before {
+          content: "→ ";
+          color: var(--accent);
+          font-family: 'Fraunces', serif;
+          font-style: italic;
+          margin-right: 4px;
+        }
+        .compare-table .group-row td {
+          padding: 22px 14px 8px;
+          font-size: 11px;
+          letter-spacing: 0.16em;
+        }
+        .compare-table .group-row .group-mapping { display: block; margin-top: 4px; }
+        .compare-table .subtotal-row {
+          display: grid !important;
+          grid-template-columns: 1fr auto;
+          gap: 4px 12px;
+          padding: 12px 14px 14px;
+          background: rgba(200, 99, 62, 0.04);
+        }
+        .compare-table .subtotal-row td { font-size: 13.5px; padding: 0; border: 0; }
+        .compare-table .subtotal-row td.num { text-align: right !important; font-size: 14.5px; }
+        .compare-table .subtotal-row td.subtotal-arrow { grid-column: 1 / -1; font-size: 13px; }
+        .compare-table .sum-row {
+          display: grid !important;
+          grid-template-columns: 1fr auto;
+          gap: 6px 12px;
+          padding: 18px 14px;
+          border-top: 2px solid var(--text-primary);
+          background: transparent;
+        }
+        .compare-table .sum-row td { padding: 0; border: 0; }
+        .compare-table .sum-row td:first-child { font-size: 15px; font-weight: 600; }
+        .compare-table .sum-row td.num { text-align: right !important; font-size: 18px; }
+        .compare-table .sum-row td:last-child { grid-column: 1 / -1; font-size: 13.5px; color: var(--text-secondary); font-weight: 400; }
       }
       .compare-table thead th {
         font-family: 'Inter', sans-serif;
@@ -1255,6 +1346,30 @@
         font-weight: 400;
         font-size: clamp(22px, 2.6vw, 30px);
         line-height: 1.3;
+      }
+      /* Layout-shift-safe count-up: ghost reserves the final glyph box so
+         the growing digits never push neighbouring layout. Tabular figures
+         keep individual columns stable mid-tween. */
+      .count-locked {
+        position: relative;
+        display: inline-block;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1, "lnum" 1;
+        white-space: nowrap;
+        text-align: inherit;
+      }
+      .count-locked .count-ghost {
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .count-locked .count-live {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        text-align: inherit;
       }
       .compare-disclaimer {
         margin-top: 20px;
@@ -2744,6 +2859,11 @@
       .hero-video .hv-fullscreen:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.40); }
       .hero-video .hv-fullscreen svg { width: 12px; height: 12px; fill: currentColor; }
       .hero-video .hv-fullscreen:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      /* Desktop / pointer-fine: hide fullscreen, only speed selector remains.
+         Mobile (coarse pointer) keeps the fullscreen affordance. */
+      @media (hover: hover) and (pointer: fine) {
+        .hero-video .hv-fullscreen { display: none !important; }
+      }
       .hero-video .hv-speed {
         appearance: none;
         -webkit-appearance: none;
@@ -3326,7 +3446,7 @@
     <section class="section-tight">
       <div class="container reveal" style="max-width: 1040px; margin-inline: auto;" data-reveal-stagger>
         <div class="meta eyebrow" data-reveal="up">Die Lösung</div>
-        <h2 class="reveal-head display" data-reveal="up">KI wird dein <em>technischer Co-Founder</em>.<br>Nur schneller &amp; ohne Kosten.</h2>
+        <h2 class="reveal-head display" data-reveal="up"><span class="reveal-line">KI wird dein <em>technischer <span class="nowrap">Co-Founder</span></em>.</span><span class="reveal-line">Nur schneller &amp; ohne Kosten.</span></h2>
         <div class="reveal-flow" data-reveal="up"><span class="token">duplikat erstellen</span><span class="arrow">→</span><span class="token">claude project</span><span class="arrow">→</span><span class="token">file edits</span><span class="arrow">→</span><span class="token">review</span><span class="arrow">→</span><span class="token">publish</span></div>
         <p class="reveal-body" data-reveal="up">Du hast die Kontrolle. Claude liefert die Änderungen.</p>
       </div>
@@ -4205,41 +4325,46 @@
         map.forEach((_, el) => io.observe(el));
       })();
 
-      // Sticky mobile CTA visibility: show after hero, hide when pricing or final-cta in view
+      // Sticky mobile CTA visibility: show after user has seen the modules section,
+      // hide while the pricing section is in view. Otherwise stays visible.
       (() => {
         const stickyBar = document.getElementById('stickyCtaBar');
         if (!stickyBar) return;
         const pricingEl = document.getElementById('pricing');
-        const finalCta = document.querySelector('.final-cta');
-        const heroEl = document.querySelector('.hero');
+        const moduleEl = document.getElementById('module');
         const mql = window.matchMedia('(max-width: 880px)');
         let pricingVisible = false;
-        let finalVisible = false;
-        let pastHero = false;
+        let pastModule = false;
         const update = () => {
           if (!mql.matches) {
             stickyBar.classList.remove('is-visible');
             document.body.classList.remove('has-sticky-cta');
             return;
           }
-          const show = pastHero && !pricingVisible && !finalVisible;
+          const show = pastModule && !pricingVisible;
           stickyBar.classList.toggle('is-visible', show);
           document.body.classList.toggle('has-sticky-cta', show);
+        };
+        const checkPastModule = () => {
+          if (!moduleEl) return;
+          const rect = moduleEl.getBoundingClientRect();
+          // user has scrolled past the bottom of the module section
+          if (rect.bottom <= window.innerHeight * 0.4) pastModule = true;
         };
         if ('IntersectionObserver' in window) {
           const io = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (entry.target === pricingEl) pricingVisible = entry.isIntersecting;
-              else if (entry.target === finalCta) finalVisible = entry.isIntersecting;
-              else if (entry.target === heroEl) pastHero = !entry.isIntersecting;
             });
             update();
           }, { rootMargin: '-10% 0px -10% 0px', threshold: 0 });
           if (pricingEl) io.observe(pricingEl);
-          if (finalCta) io.observe(finalCta);
-          if (heroEl) io.observe(heroEl);
         }
+        const onScroll = () => { checkPastModule(); update(); };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
         mql.addEventListener?.('change', update);
+        checkPastModule();
         update();
       })();
 
@@ -4345,6 +4470,8 @@
       /* === Count-up on key numbers =====================================
          Numbers with data-count-to animate from 0 to target the first
          time they enter view. Format honors data-count-suffix.
+         Layout-shift safe: pre-reserves the final glyph width with a
+         hidden ghost span so the text box does not grow during animation.
          ================================================================ */
       (() => {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -4353,11 +4480,32 @@
 
         const formatNumber = (n) => n.toLocaleString('de-DE');
 
+        // Lock the final layout up-front: render a visually hidden ghost
+        // with the final value, and a live span we can mutate without
+        // affecting the parent's width.
+        els.forEach((el) => {
+          const target = parseFloat(el.getAttribute('data-count-to')) || 0;
+          const suffix = el.getAttribute('data-count-suffix') || '';
+          el.classList.add('count-locked');
+          el.replaceChildren();
+          const live = document.createElement('span');
+          live.className = 'count-live';
+          live.textContent = reduceMotion ? formatNumber(target) + suffix : '0' + suffix;
+          const ghost = document.createElement('span');
+          ghost.className = 'count-ghost';
+          ghost.setAttribute('aria-hidden', 'true');
+          ghost.textContent = formatNumber(target) + suffix;
+          el.appendChild(live);
+          el.appendChild(ghost);
+        });
+
         const animate = (el) => {
           const target = parseFloat(el.getAttribute('data-count-to')) || 0;
           const suffix = el.getAttribute('data-count-suffix') || '';
+          const live = el.querySelector('.count-live');
+          if (!live) return;
           if (reduceMotion) {
-            el.textContent = formatNumber(target) + suffix;
+            live.textContent = formatNumber(target) + suffix;
             return;
           }
           const dur = 1100;
@@ -4366,7 +4514,7 @@
           const step = (now) => {
             const t = Math.min(1, (now - start) / dur);
             const v = Math.round(target * ease(t));
-            el.textContent = formatNumber(v) + suffix;
+            live.textContent = formatNumber(v) + suffix;
             if (t < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
