@@ -1585,6 +1585,80 @@
         color: var(--accent);
       }
 
+      /* Collapsible Skill Stack */
+      .skill-stack-toggle {
+        margin: 32px auto 0;
+        max-width: 960px;
+      }
+      .skill-stack-toggle > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 22px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+        box-shadow: 0 1px 0 rgba(26, 26, 26, 0.02);
+      }
+      .skill-stack-toggle > summary::-webkit-details-marker { display: none; }
+      .skill-stack-toggle > summary::marker { content: ''; }
+      .skill-stack-toggle > summary:hover {
+        border-color: var(--accent);
+        transform: translate3d(0, -1px, 0);
+      }
+      .skill-stack-toggle[open] > summary {
+        border-color: var(--accent);
+      }
+      .skill-stack-toggle > summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .sst-label {
+        flex: 1;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        line-height: 1.3;
+      }
+      .sst-label strong {
+        display: block;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        color: var(--text-primary);
+        margin-top: 4px;
+      }
+      .sst-hint {
+        flex: 0 0 auto;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+      .skill-stack-toggle[open] .sst-hint .sst-hint-closed,
+      .skill-stack-toggle:not([open]) .sst-hint .sst-hint-open { display: none; }
+      .sst-chev {
+        flex: 0 0 16px;
+        width: 16px;
+        height: 16px;
+        color: var(--accent);
+        transition: transform 220ms ease;
+      }
+      .skill-stack-toggle[open] .sst-chev { transform: rotate(180deg); }
+      .skill-stack-toggle .skill-list { margin-top: 24px; }
+      @media (max-width: 640px) {
+        .skill-stack-toggle > summary { padding: 16px 18px; gap: 12px; }
+        .sst-label { font-size: 11px; }
+        .sst-label strong { font-size: 15px; }
+        .sst-hint { display: none; }
+      }
+
       /* Files in package */
       .files-grid {
         margin-top: 48px;
@@ -2140,10 +2214,15 @@
       }
       .bundle-hero-price-block {
         display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 0 0 24px;
+      }
+      .bp-row {
+        display: flex;
         align-items: baseline;
         gap: 16px;
         flex-wrap: wrap;
-        margin: 0 0 20px;
       }
       .bundle-hero-price {
         font-family: 'Fraunces', serif;
@@ -2152,6 +2231,7 @@
         line-height: 1;
         letter-spacing: -0.025em;
         color: var(--text-primary);
+        font-feature-settings: "tnum";
       }
       .bundle-hero-strike {
         font-family: 'Fraunces', serif;
@@ -2167,6 +2247,39 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: var(--text-secondary);
+      }
+      .bp-divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .bp-divider::before,
+      .bp-divider::after {
+        content: "";
+        flex: 1 1 auto;
+        height: 1px;
+        background: var(--border);
+      }
+      .bp-alt-price {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: clamp(30px, 3.6vw, 40px);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        font-feature-settings: "tnum";
+      }
+      .bp-alt-unit {
+        font-family: 'Fraunces', serif;
+        font-size: 0.55em;
+        color: var(--text-secondary);
+        font-weight: 400;
+        margin-left: 2px;
       }
       .bundle-math {
         margin: 14px 0 32px;
@@ -2206,7 +2319,7 @@
         outline-offset: 3px;
       }
       .bundle-hero-guarantee {
-        margin: 0;
+        margin: 18px 0 0;
         font-size: 13px;
         line-height: 1.55;
         color: var(--text-secondary);
@@ -2217,25 +2330,6 @@
         text-decoration: underline;
         text-decoration-color: var(--border-strong);
         text-underline-offset: 3px;
-      }
-      .bundle-hero-foot {
-        margin-top: 18px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(200, 99, 62, 0.18);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .bundle-pay-note {
-        margin: 0;
-        font-size: 12.5px;
-        line-height: 1.5;
-        color: var(--text-secondary);
-        font-feature-settings: "tnum";
-      }
-      .bundle-pay-note strong {
-        color: var(--text-primary);
-        font-weight: 600;
       }
       .bundle-hero-features {
         display: flex;
@@ -3843,7 +3937,7 @@
               <div class="problem-num">01</div>
               <div>
                 <h3 class="problem-title">Theme-Limits.</h3>
-                <p class="problem-body">Du willst eine Section, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
+                <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
               </div>
             </div>
             <div class="problem-item" data-reveal="up">
@@ -4011,7 +4105,7 @@
           <div class="meta eyebrow">Subscription-Killer</div>
           <h2 class="h2 display">Was du jeden Monat zahlst. Und was du stattdessen besitzen könntest.</h2>
           <p class="compare-pre-note">Beispielrechnung · Marktübliche Preise eines typischen Shop-Stacks</p>
-          <p class="compare-explainer">Lies das so: links die Apps, die viele Founder monatlich zahlen. Rechts das, was vorflows stattdessen direkt in dein Theme baut, als <strong>Section</strong> oder <strong>Snippet</strong>. Du musst nicht wissen, was das ist. Claude Code baut es für dich.</p>
+          <p class="compare-explainer">Lies das so: links die Apps, die viele Founder monatlich zahlen. Rechts das, was vorflows stattdessen direkt in dein Theme baut, als <strong>Section</strong> oder <span class="gloss" tabindex="0" role="note" data-tip="Snippet = ein kleines, wiederverwendbares Code-Stück im Theme (z.B. Sticky-Cart, Countdown). Wird in Sections eingebaut. Claude erstellt das selbst.">Snippet</span>. Du musst nicht wissen, was das ist. Claude Code baut es für dich.</p>
         </div>
         <table class="compare-table" data-reveal="up">
           <colgroup>
@@ -4028,7 +4122,7 @@
           </thead>
           <tbody>
             <tr class="group-row"><td colspan="3">Conversion · Cart · Funnel <span class="group-mapping">ersetzt durch Base</span></td></tr>
-            <tr><td>Shipping-Bar-App</td><td class="num" style="text-align:right;">29 €</td><td>Liquid-Section mit Threshold-Logic</td></tr>
+            <tr><td>Shipping-Bar-App</td><td class="num" style="text-align:right;">29 €</td><td><span class="gloss" tabindex="0" role="note" data-tip="Liquid = die Template-Sprache von Shopify. So sind Theme-Dateien geschrieben. Du musst nichts davon können — Claude schreibt den Code für dich.">Liquid</span>-Section mit Threshold-Logic</td></tr>
             <tr><td>Cart-Upsell-App</td><td class="num" style="text-align:right;">49 €</td><td>Cart-Drawer-Section mit Variant-Logic</td></tr>
             <tr><td>Bundle-Builder</td><td class="num" style="text-align:right;">79 €</td><td>Liquid-Section mit Variant-Logic</td></tr>
             <tr><td>Page-Builder</td><td class="num" style="text-align:right;">39 €</td><td>Native Shopify-Sections + Blocks</td></tr>
@@ -4167,47 +4261,59 @@
         </aside>
 
         <div class="skill-section-divider" aria-hidden="true"></div>
-        <p class="skill-rail-label" data-reveal="up">Skill-Stack · drei Module, alle aus echten Daten gespeist</p>
-        <div class="skill-list" data-reveal-stagger>
-          <article class="skill-card" data-reveal="up">
-            <header class="skill-card-head">
-              <span class="skill-card-num">01 / Shopify-Engineering · Pflicht</span>
-              <h3 class="skill-card-name">Code wie ein Senior-Shopify-Dev.</h3>
-            </header>
-            <div class="skill-grid">
-              <div><span class="skill-tile-name">shop-architecture</span><p class="skill-tile-desc">Lernt dein Theme einmalig komplett kennen — Architektur, Sections, Snippets, integrierte Apps, Idiome. Schreibt alles in MEMORY.md, damit jede Session mit vollem Kontext startet.</p></div>
-              <div><span class="skill-tile-name">shopify-senior-dev</span><p class="skill-tile-desc">Lädt automatisch vor jeder Code-Änderung. Folgt der offiziellen Shopify-Doku: Liquid-Korrektheit, Schema-Patterns, Theme-Editor-Sicherheit, WCAG&nbsp;2.2&nbsp;AA, Performance-Budget.</p></div>
-            </div>
-          </article>
-          <article class="skill-card" data-reveal="up">
-            <header class="skill-card-head">
-              <span class="skill-card-num">02 / Suchmaschinen-Optimierung</span>
-              <h3 class="skill-card-name">SEO aus echten Ranking-Daten.</h3>
-            </header>
-            <div class="skill-grid">
-              <div><span class="skill-tile-name">seo-audit</span><p class="skill-tile-desc">Vollständiger Health-Check deines Shops — Crawl, Index, On-Page, Schema, technische Lücken. Eine Liste mit P0–P3-Severity, sortiert nach Impact.</p></div>
-              <div><span class="skill-tile-name">seo-technical</span><p class="skill-tile-desc">Technische Optimierung: Indexierbarkeit, Sitemap, Canonical, Hreflang, Core Web Vitals, JS-Rendering. Claude fixt direkt im Theme-Code.</p></div>
-              <div><span class="skill-tile-name">seo-content</span><p class="skill-tile-desc">Inhaltsoptimierung gegen reale Suchintentionen — Tiefe, E-E-A-T, Snippet-Tauglichkeit, interne Verlinkung. Keine generischen Keyword-Listen.</p></div>
-              <div><span class="skill-tile-name">ai-visibility</span><p class="skill-tile-desc">Optimierung für AI-Antworten: ChatGPT, Perplexity, Google AI Overviews, Bing Copilot. Passage-Citability, llms.txt, Brand-Mentions.</p></div>
-              <div><span class="skill-tile-name">opportunity-detection</span><p class="skill-tile-desc">Chancenerkennung aus echten Performance-Daten — Quick-Wins bei hohen Impressions mit niedriger CTR, Position 11–20, Cannibalization.</p></div>
-              <div><span class="skill-tile-name">data-driven-loop</span><p class="skill-tile-desc">Alle Empfehlungen ziehen sich live aus den Performance-Daten deines eigenen Shops. Keine Schätzungen, keine Branchen-Benchmarks.</p></div>
-            </div>
-          </article>
-          <article class="skill-card" data-reveal="up">
-            <header class="skill-card-head">
-              <span class="skill-card-num">03 / Conversion-Rate-Optimierung</span>
-              <h3 class="skill-card-name">CRO aus echtem Nutzerverhalten.</h3>
-            </header>
-            <div class="skill-grid">
-              <div><span class="skill-tile-name">placement-cro</span><p class="skill-tile-desc">Prüft Platzierung von CTAs, Trust-Modulen, Reviews, Pricing. Claude verschiebt Elemente dorthin, wo Nutzer in deinen Sessions tatsächlich hinschauen und klicken.</p></div>
-              <div><span class="skill-tile-name">trust-signals</span><p class="skill-tile-desc">Optimiert Trust-Strips, Garantien, Reviews, Social Proof — auf Basis der Stellen, an denen echte Nutzer im Funnel zögern oder abspringen.</p></div>
-              <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Liest aus, wie tief Besucher pro Page-Type scrollen. Verschiebt verkaufsentscheidende Module nach oben, wenn 60 % nie unten ankommen.</p></div>
-              <div><span class="skill-tile-name">click-behavior</span><p class="skill-tile-desc">Erkennt Dead-Clicks, Rage-Clicks und Frust-Patterns. Markiert Elemente, die wie Buttons aussehen, aber nichts tun — und macht sie klickbar.</p></div>
-              <div><span class="skill-tile-name">funnel-friction</span><p class="skill-tile-desc">Findet die Schritte zwischen PDP und Checkout, an denen Nutzer aussteigen. Schlägt konkrete Code-Änderungen vor, die diesen Drop-Off entschärfen.</p></div>
-              <div><span class="skill-tile-name">session-driven-loop</span><p class="skill-tile-desc">Alle Vorschläge basieren auf echten Session-Daten deines Shops — nicht auf Best-Practice-Listen aus dem Internet.</p></div>
-            </div>
-          </article>
-        </div>
+        <details class="skill-stack-toggle" data-reveal="up">
+          <summary>
+            <span class="sst-label">
+              Skill-Stack · drei Module
+              <strong>Was Claude unter der Haube wirklich kann.</strong>
+            </span>
+            <span class="sst-hint">
+              <span class="sst-hint-closed">Aufklappen für Details</span>
+              <span class="sst-hint-open">Zuklappen</span>
+            </span>
+            <svg class="sst-chev" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 8 11 13 6"/></svg>
+          </summary>
+          <div class="skill-list">
+            <article class="skill-card">
+              <header class="skill-card-head">
+                <span class="skill-card-num">01 / Shopify-Engineering · Pflicht</span>
+                <h3 class="skill-card-name">Code wie ein Senior-Shopify-Dev.</h3>
+              </header>
+              <div class="skill-grid">
+                <div><span class="skill-tile-name">shop-architecture</span><p class="skill-tile-desc">Scannt dein Theme einmal komplett, merkt sich alles für jede Session.</p></div>
+                <div><span class="skill-tile-name">shopify-senior-dev</span><p class="skill-tile-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</p></div>
+              </div>
+            </article>
+            <article class="skill-card">
+              <header class="skill-card-head">
+                <span class="skill-card-num">02 / Suchmaschinen-Optimierung</span>
+                <h3 class="skill-card-name">SEO aus echten Ranking-Daten.</h3>
+              </header>
+              <div class="skill-grid">
+                <div><span class="skill-tile-name">seo-audit</span><p class="skill-tile-desc">Health-Check, Liste nach Impact sortiert.</p></div>
+                <div><span class="skill-tile-name">seo-technical</span><p class="skill-tile-desc">Fixt Index, Sitemap, Canonical, Core Web Vitals direkt im Theme.</p></div>
+                <div><span class="skill-tile-name">seo-content</span><p class="skill-tile-desc">Schärft Content auf echte Suchintention.</p></div>
+                <div><span class="skill-tile-name">ai-visibility</span><p class="skill-tile-desc">Macht dich zitierbar in ChatGPT, Perplexity, AI&nbsp;Overviews.</p></div>
+                <div><span class="skill-tile-name">opportunity-detection</span><p class="skill-tile-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</p></div>
+                <div><span class="skill-tile-name">data-driven-loop</span><p class="skill-tile-desc">Empfehlungen aus deinen Daten — keine Branchen-Benchmarks.</p></div>
+              </div>
+            </article>
+            <article class="skill-card">
+              <header class="skill-card-head">
+                <span class="skill-card-num">03 / Conversion-Rate-Optimierung</span>
+                <h3 class="skill-card-name">CRO aus echtem Nutzerverhalten.</h3>
+              </header>
+              <div class="skill-grid">
+                <div><span class="skill-tile-name">placement-cro</span><p class="skill-tile-desc">Verschiebt CTAs dorthin, wo Nutzer wirklich klicken.</p></div>
+                <div><span class="skill-tile-name">trust-signals</span><p class="skill-tile-desc">Stärkt Trust an den Stellen, wo Nutzer zögern.</p></div>
+                <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Holt verkaufsentscheidende Module nach oben.</p></div>
+                <div><span class="skill-tile-name">click-behavior</span><p class="skill-tile-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</p></div>
+                <div><span class="skill-tile-name">funnel-friction</span><p class="skill-tile-desc">Lokalisiert Drop-Offs PDP → Checkout, schlägt Fixes vor.</p></div>
+                <div><span class="skill-tile-name">session-driven-loop</span><p class="skill-tile-desc">Vorschläge aus echten Session-Daten — keine Listen aus dem Netz.</p></div>
+              </div>
+            </article>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -4356,18 +4462,22 @@
               <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
               <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow — alles, was du für mehr Umsatz und weniger Ausgaben brauchst.</p>
               <div class="bundle-hero-price-block">
-                <span class="bundle-hero-price"><span data-count-to="297" data-count-suffix="&nbsp;€">297&nbsp;€</span></span>
-                <span class="bundle-hero-strike">597&nbsp;€</span>
-                <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
+                <div class="bp-row">
+                  <span class="bundle-hero-price"><span data-count-to="297" data-count-suffix="&nbsp;€">297&nbsp;€</span></span>
+                  <span class="bundle-hero-strike">597&nbsp;€</span>
+                  <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
+                </div>
+                <div class="bp-divider" aria-hidden="true"><span>oder</span></div>
+                <div class="bp-row">
+                  <span class="bp-alt-price">49,50&nbsp;€<span class="bp-alt-unit">/Monat</span></span>
+                  <span class="bundle-hero-suffix">6 Raten · Klarna oder PayPal</span>
+                </div>
               </div>
               <div class="bundle-math">
                 Spart <strong>~5.232&nbsp;€&nbsp;/Jahr</strong> ggü. typischem App-Stack. Break-Even meist <strong>nach einem Monat</strong> — je nach App-Stack.
               </div>
               <a href="https://www.digistore24.com/product/688983" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
-              <div class="bundle-hero-foot">
-                <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
-                <p class="bundle-pay-note" aria-label="Ratenzahlung">Oder ab <strong>49,50&nbsp;€</strong>/Monat — sechs Raten via Klarna oder PayPal.</p>
-              </div>
+              <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
