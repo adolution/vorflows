@@ -111,51 +111,14 @@
           "category": "Shopify Optimization System",
           "inLanguage": "de-DE",
           "offers": {
-            "@type": "AggregateOffer",
+            "@type": "Offer",
+            "sku": "vf-bundle",
+            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow) — Launch-Preis",
+            "price": "297",
             "priceCurrency": "EUR",
-            "lowPrice": "397",
-            "highPrice": "597",
-            "offerCount": 4,
             "availability": "https://schema.org/PreOrder",
             "url": "https://vorflows.com/#pricing",
-            "offers": [
-              {
-                "@type": "Offer",
-                "sku": "vf-base",
-                "name": "BaseFlow",
-                "price": "397",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/PreOrder",
-                "url": "https://vorflows.com/#pricing"
-              },
-              {
-                "@type": "Offer",
-                "sku": "vf-base-seo",
-                "name": "BaseFlow + SEOFlow",
-                "price": "497",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/PreOrder",
-                "url": "https://vorflows.com/#pricing"
-              },
-              {
-                "@type": "Offer",
-                "sku": "vf-base-clarity",
-                "name": "BaseFlow + ClarityFlow",
-                "price": "497",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/PreOrder",
-                "url": "https://vorflows.com/#pricing"
-              },
-              {
-                "@type": "Offer",
-                "sku": "vf-bundle",
-                "name": "Bundle (BaseFlow + SEOFlow + ClarityFlow)",
-                "price": "597",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/PreOrder",
-                "url": "https://vorflows.com/#pricing"
-              }
-            ]
+            "priceValidUntil": "2026-12-31"
           }
         },
         {
@@ -197,7 +160,7 @@
             { "@type": "Question", "name": "Was, wenn ich mein Theme zerschieße?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy." } },
             { "@type": "Question", "name": "Funktioniert das mit jedem Theme: Dawn, Custom, Premium?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert." } },
             { "@type": "Question", "name": "Brauche ich Claude Pro / Claude Code?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, einen Claude-Account mit Code-Zugang. Du bekommst ein kurzes 5-Minuten-Video, in dem du das Setup nachklicken kannst." } },
-            { "@type": "Question", "name": "Kann ich später Add-Ons dazukaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Aber: Add-Ons nach Erstkauf gibt es ohne Bundle-Rabatt. Wer alles will, fährt mit dem Bundle besser." } },
+            { "@type": "Question", "name": "Kann ich nur ein Modul kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Auf der Seite verkaufen wir nur das Bundle zum Launch-Preis. Für Einzel-Module bitte kurz an alex@adolution.de schreiben." } },
             { "@type": "Question", "name": "Wie lange dauert das Onboarding?", "acceptedAnswer": { "@type": "Answer", "text": "Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup." } },
             { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude." } },
             { "@type": "Question", "name": "Gibt es eine Geld-zurück-Garantie?", "acceptedAnswer": { "@type": "Answer", "text": "Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück." } }
@@ -2023,27 +1986,70 @@
       /* Bundle-first pricing layout */
       .bundle-hero {
         position: relative;
-        margin-top: 48px;
+        margin-top: 36px;
         background: linear-gradient(180deg, rgba(200, 99, 62, 0.08) 0%, rgba(200, 99, 62, 0.02) 100%);
         border: 1px solid var(--accent);
         border-radius: 16px;
+        overflow: hidden;
         box-shadow:
           0 40px 96px -48px rgba(200, 99, 62, 0.55),
           0 8px 24px -10px rgba(26, 26, 26, 0.10);
       }
-      .bundle-hero-strip {
-        position: absolute;
-        left: 24px;
-        top: -14px;
-        padding: 7px 16px;
+      /* Launch header — integrated counter strip across top of card */
+      .bundle-hero-launch {
         background: var(--accent);
         color: var(--bg-light);
+        padding: 14px 24px 12px;
+      }
+      .bundle-hero-launch-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .bundle-hero-launch-tag {
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         font-size: 11.5px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
+        opacity: 0.96;
+      }
+      .bundle-hero-launch-count {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        opacity: 0.96;
+      }
+      .bundle-hero-launch-count strong {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 17px;
+        font-feature-settings: "tnum";
+      }
+      .bundle-hero-launch-track {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.18);
         border-radius: 999px;
+        overflow: hidden;
+      }
+      .bundle-hero-launch-fill {
+        height: 100%;
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 999px;
+        transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .bundle-hero-launch--soldout {
+        background: var(--text-secondary);
+      }
+      .bundle-hero-launch--soldout:not([hidden]) {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
       }
       .bundle-hero-grid {
         display: grid;
@@ -2107,7 +2113,7 @@
         color: var(--text-secondary);
       }
       .bundle-math {
-        margin: 0 0 32px;
+        margin: 14px 0 32px;
         padding: 16px 18px;
         background: rgba(255,255,255,0.55);
         border: 1px dashed var(--border-strong);
@@ -2176,14 +2182,17 @@
 
       /* Phone: tighten rhythm, lift hierarchy, full-width CTA */
       @media (max-width: 600px) {
-        .bundle-hero { margin-top: 40px; border-radius: 14px; }
-        .bundle-hero-strip {
-          left: 20px;
-          top: -13px;
-          padding: 6px 13px;
-          font-size: 10.5px;
-          letter-spacing: 0.12em;
+        .bundle-hero { margin-top: 28px; border-radius: 14px; }
+        .bundle-hero-launch { padding: 12px 18px 11px; }
+        .bundle-hero-launch-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+          margin-bottom: 8px;
         }
+        .bundle-hero-launch-tag { font-size: 10.5px; letter-spacing: 0.12em; }
+        .bundle-hero-launch-count { font-size: 13px; }
+        .bundle-hero-launch-count strong { font-size: 15px; }
         .bundle-hero-pitch { padding: 36px 22px 26px; }
         .bundle-hero-name { font-size: 36px; margin: 0 0 6px; }
         .bundle-hero-tagline {
@@ -2200,7 +2209,7 @@
         .bundle-hero-strike { font-size: 19px; }
         .bundle-hero-suffix { font-size: 11px; }
         .bundle-math {
-          margin: 0 0 24px;
+          margin: 12px 0 24px;
           padding: 14px 16px;
           background: rgba(255, 255, 255, 0.6);
           border: 0;
@@ -2466,6 +2475,148 @@
         font-style: italic;
         font-family: 'Fraunces', serif;
         opacity: 0.85;
+      }
+
+      /* Founder counter — Launch-Preis Knappheit (manuell aktualisiert) */
+      .founder-counter {
+        margin: 36px auto 28px;
+        max-width: 720px;
+        padding: 22px 28px 24px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        box-shadow: 0 1px 0 rgba(20, 16, 10, 0.02), 0 18px 40px -28px rgba(70, 40, 18, 0.18);
+      }
+      .founder-counter-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .founder-counter-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .founder-counter-value {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        color: var(--text-primary);
+        font-weight: 400;
+      }
+      .founder-counter-value strong {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 19px;
+        font-feature-settings: "tnum";
+        color: var(--text-primary);
+      }
+      .founder-counter-track {
+        height: 6px;
+        background: #F0EEE7;
+        border-radius: 999px;
+        overflow: hidden;
+        position: relative;
+      }
+      .founder-counter-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent) 0%, #D9784E 100%);
+        border-radius: 999px;
+        transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .founder-counter-foot {
+        margin: 12px 0 0;
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 12.5px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+      .founder-counter--soldout {
+        border-left-color: var(--text-secondary);
+        text-align: center;
+      }
+      .founder-counter--soldout .founder-counter-label,
+      .founder-counter--soldout .founder-counter-value {
+        display: block;
+      }
+      @media (max-width: 720px) {
+        .founder-counter { padding: 18px 20px 20px; margin: 28px auto 22px; }
+        .founder-counter-row { gap: 6px; flex-direction: column; align-items: flex-start; }
+        .founder-counter-value { font-size: 14.5px; }
+      }
+
+      /* Bundle Klarna pay anchor — sub-50€/mo psych framing */
+      .bundle-pay {
+        margin-top: 6px;
+        padding: 12px 14px;
+        background: rgba(200, 99, 62, 0.06);
+        border: 1px solid rgba(200, 99, 62, 0.18);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .bundle-pay-anchor {
+        font-family: 'Inter', sans-serif;
+        font-size: 14.5px;
+        color: var(--text-primary);
+        font-weight: 400;
+      }
+      .bundle-pay-anchor strong {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 18px;
+        color: var(--accent);
+        font-feature-settings: "tnum";
+      }
+      .bundle-pay-detail {
+        font-family: 'Inter', sans-serif;
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+      @media (max-width: 720px) {
+        .bundle-pay { padding: 10px 12px; }
+        .bundle-pay-anchor { font-size: 13.5px; }
+        .bundle-pay-anchor strong { font-size: 16px; }
+        .bundle-pay-detail { font-size: 12px; }
+      }
+
+      /* Single-module mail fallback */
+      .single-module-fallback {
+        margin: 36px auto 0;
+        max-width: 640px;
+        text-align: center;
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 14.5px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        opacity: 0.9;
+      }
+      .single-module-fallback a {
+        color: var(--text-primary);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border-strong);
+        padding-bottom: 1px;
+        font-style: normal;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: color 150ms, border-color 150ms;
+      }
+      .single-module-fallback a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .single-module-fallback a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
       }
 
       /* Trust strip: pre-pricing reassurance */
@@ -3383,10 +3534,10 @@
 
     <aside class="sticky-cta-bar" id="stickyCtaBar" aria-label="Bundle reservieren">
       <div class="sticky-cta-text">
-        <span class="sticky-cta-label">Empfohlen · spar 100&nbsp;€</span>
-        <span class="sticky-cta-price">Bundle <strong>597&nbsp;€</strong></span>
+        <span class="sticky-cta-label">Launch-Preis · spar 300&nbsp;€</span>
+        <span class="sticky-cta-price">Bundle <strong>297&nbsp;€</strong> · ab 49,50&nbsp;€/Mon.</span>
       </div>
-      <a href="#pricing" class="sticky-cta-btn">Reservieren →</a>
+      <a href="#pricing" class="sticky-cta-btn">Sichern →</a>
     </aside>
 
     <!-- 02 HERO -->
@@ -3840,7 +3991,7 @@
       <div class="container">
         <div class="bundle-showcase" data-reveal-stagger>
           <div class="bundle-showcase-text" data-reveal="up">
-            <div class="meta eyebrow">Investment</div>
+            <div class="meta eyebrow">Launch-Preis</div>
             <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
             <p class="bundle-showcase-caption"><em>Das ist drin.</em> BaseFlow, SEOFlow und ClarityFlow. Drei Module, ein Preis, einmal zahlen.</p>
           </div>
@@ -3861,8 +4012,8 @@
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ MONEY-BACK ]</span>
-            <h3 class="trust-tile-title">Setup-Garantie</h3>
-            <p class="trust-tile-body">Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück. <a href="#faq">Bedingungen</a></p>
+            <h3 class="trust-tile-title">14 Tage Geld-zurück</h3>
+            <p class="trust-tile-body">Funktioniert das System nicht für dich, schreibst du eine Mail. Refund kommt zurück.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ DATA ]</span>
@@ -3872,67 +4023,59 @@
         </div>
 
         <article class="bundle-hero" aria-labelledby="bundle-name" data-reveal="up-lg">
-          <div class="bundle-hero-strip">Launch-Offer · Spar 100&nbsp;€</div>
+          <!-- ─────────────────────────────────────────────────────────────
+               Founder counter — manually updated.
+               To change the count, edit FOUNDER_SOLD in the main <script>
+               tag (search for "Founder counter").
+               ───────────────────────────────────────────────────────────── -->
+          <header class="bundle-hero-launch" data-founder-active>
+            <div class="bundle-hero-launch-row">
+              <span class="bundle-hero-launch-tag">Launch-Offer · -50% · spar 300&nbsp;€</span>
+              <span class="bundle-hero-launch-count">Noch <strong data-founder-remaining>100</strong> von <span data-founder-total>100</span> Founder-Plätzen</span>
+            </div>
+            <div class="bundle-hero-launch-track" aria-hidden="true">
+              <div class="bundle-hero-launch-fill" data-founder-bar style="width: 100%"></div>
+            </div>
+          </header>
+          <header class="bundle-hero-launch bundle-hero-launch--soldout" data-founder-soldout hidden>
+            <span class="bundle-hero-launch-tag">Launch-Plätze ausverkauft</span>
+            <span class="bundle-hero-launch-count">Bundle jetzt zu 597&nbsp;€</span>
+          </header>
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
               <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
-              <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow. Alles drin. Kein Add-On später nötig.</p>
+              <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow — alles, was du für mehr Umsatz und weniger Ausgaben brauchst.</p>
               <div class="bundle-hero-price-block">
-                <span class="bundle-hero-price"><span data-count-to="597" data-count-suffix="&nbsp;€">597&nbsp;€</span></span>
-                <span class="bundle-hero-strike">697&nbsp;€</span>
-                <span class="bundle-hero-suffix">einmal zahlen, dauerhaft besitzen</span>
+                <span class="bundle-hero-price"><span data-count-to="297" data-count-suffix="&nbsp;€">297&nbsp;€</span></span>
+                <span class="bundle-hero-strike">597&nbsp;€</span>
+                <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
+              </div>
+              <div class="bundle-pay" role="note" aria-label="Ratenzahlung">
+                <span class="bundle-pay-anchor">oder ab <strong>49,50&nbsp;€</strong>/Monat</span>
+                <span class="bundle-pay-detail">sechs monatliche Raten via Klarna oder PayPal</span>
               </div>
               <div class="bundle-math">
-                <strong>Nur zum Launch:</strong> Hol dir das komplette System mit <strong>100&nbsp;€&nbsp;Rabatt</strong>.
+                Spart <strong>~5.232&nbsp;€&nbsp;/Jahr</strong> ggü. typischem App-Stack. Break-Even meist <strong>nach einem Monat</strong> — je nach App-Stack.
               </div>
-              <a href="https://www.digistore24.com/product/688983" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle bestellen</a>
-              <p class="bundle-hero-guarantee">Setup-Garantie: Funktioniert das System nicht für dich, bekommst du dein Geld zurück. <span class="gloss" tabindex="0" role="note" data-tip="Folgst du dem System und kannst damit keine funktionierenden Elemente bauen, bekommst du dein Geld zurück.">Bedingungen ansehen</span></p>
+              <a href="https://www.digistore24.com/product/688983" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
+              <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
               <ul>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Base System</strong><span>Theme-Optimization-Workflow + kompletter Skill-Stack</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>SEOFlow</strong><span>Echtzeit-Daten gesteuerte SEO-Maschine, für kontinuierliche Optimierung</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>ClarityFlow</strong><span>Verhaltensdaten-Loop für CVR-Optimierung aus echten Sessions</span></div></li>
+                <li><span class="check" aria-hidden="true">✓</span><div><strong>SEOFlow</strong><span>Search-Console-Loop für kontinuierliches Ranken</span></div></li>
+                <li><span class="check" aria-hidden="true">✓</span><div><strong>ClarityFlow</strong><span>Verhaltensdaten-Loop für CVR aus echten Sessions</span></div></li>
+                <li><span class="check" aria-hidden="true">✓</span><div><strong>Setup-Garantie</strong><span>Funktioniert nicht am selben Tag? Refund.</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Alle künftigen Updates</strong><span>Solange du das System besitzt, ohne Aufpreis</span></div></li>
               </ul>
             </div>
           </div>
         </article>
 
-        <details class="alt-disclose" data-animate data-reveal="fade">
-          <summary aria-label="Einzelne Tiers anzeigen">
-            <span class="alt-disclose-summary-inner">
-              <span>Lieber einzeln einsteigen?</span>
-              <span class="alt-disclose-icon" aria-hidden="true"></span>
-            </span>
-          </summary>
-          <div class="alt-disclose-body" data-animate-body>
-           <div class="alt-disclose-inner">
-            <div class="alt-tiers">
-              <div class="alt-tier">
-                <div class="alt-tier-name">Base only</div>
-                <div class="alt-tier-pos">Einstieg, erstmal testen</div>
-                <div class="alt-tier-price">397&nbsp;€</div>
-                <a href="https://www.digistore24.com/product/690701" class="alt-tier-cta" target="_blank" rel="noopener">Mit Base starten →</a>
-              </div>
-              <div class="alt-tier">
-                <div class="alt-tier-name">Base + SEOFlow</div>
-                <div class="alt-tier-pos">Traffic-Fokus</div>
-                <div class="alt-tier-price">547&nbsp;€</div>
-                <a href="https://www.digistore24.com/product/689603" class="alt-tier-cta" target="_blank" rel="noopener">Diese Kombi nehmen →</a>
-              </div>
-              <div class="alt-tier">
-                <div class="alt-tier-name">Base + ClarityFlow</div>
-                <div class="alt-tier-pos">Conversion-Fokus</div>
-                <div class="alt-tier-price">547&nbsp;€</div>
-                <a href="https://www.digistore24.com/product/690709" class="alt-tier-cta" target="_blank" rel="noopener">Diese Kombi nehmen →</a>
-              </div>
-            </div>
-            <p class="alt-note">Add-Ons nach Erstkauf: je 150&nbsp;€, ohne Bundle-Rabatt. Wer das Bundle gleich nimmt, fährt am günstigsten.</p>
-           </div>
-          </div>
-        </details>
+        <p class="single-module-fallback" data-reveal="fade">
+          Du willst nur ein Modul (BaseFlow, SEOFlow oder ClarityFlow) einzeln? Schreib uns kurz: <a href="mailto:alex@adolution.de?subject=Einzel-Modul%20Anfrage">alex@adolution.de</a>
+        </p>
       </div>
     </section>
 
@@ -3961,8 +4104,8 @@
             <div class="faq-body">Ja, einen Claude-Account mit Code-Zugang. Du bekommst ein kurzes 5-Minuten-Video, in dem du das Setup nachklicken kannst.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
-            <summary>Kann ich später Add-Ons dazukaufen?</summary>
-            <div class="faq-body">Ja. Aber: Add-Ons nach Erstkauf gibt's ohne Bundle-Rabatt. Wer alles will, fährt mit dem Bundle besser.</div>
+            <summary>Kann ich nur ein Modul (z.&nbsp;B. nur SEOFlow) kaufen?</summary>
+            <div class="faq-body">Auf der Seite verkaufen wir nur das Bundle zum Launch-Preis. Wenn du ausschließlich ein Einzel-Modul willst, schreib uns kurz an <a href="mailto:alex@adolution.de?subject=Einzel-Modul%20Anfrage">alex@adolution.de</a> — dann finden wir was passendes.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
             <summary>Wie lange dauert das Onboarding?</summary>
@@ -4088,12 +4231,33 @@
       // ── Meta tracking: Pixel + CAPI with Advanced Matching ──────────────
       const META_PIXEL_ID = '2002118703756086';
       const PLAN_VALUE = {
-        'pricing-base': 397,
-        'pricing-seoflow': 497,
-        'pricing-clarityflow': 497,
-        'pricing-bundle': 597,
+        'pricing-bundle': 297,
       };
-      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 597);
+      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
+
+      // ── Founder counter — UPDATE FOUNDER_SOLD when a sale comes in ──────
+      // Counter shown on #pricing: "Noch X von 100 Founder-Plätzen zum Launch-Preis".
+      // Increment FOUNDER_SOLD by 1 each sale, save, push.
+      const FOUNDER_TOTAL = 100;
+      const FOUNDER_SOLD = 3;  // ← update this number when a Bundle sale happens
+      (function applyFounderCounter() {
+        const remaining = Math.max(0, FOUNDER_TOTAL - FOUNDER_SOLD);
+        const pct = (remaining / FOUNDER_TOTAL) * 100;
+        const apply = () => {
+          document.querySelectorAll('[data-founder-remaining]').forEach((el) => { el.textContent = remaining; });
+          document.querySelectorAll('[data-founder-total]').forEach((el) => { el.textContent = FOUNDER_TOTAL; });
+          document.querySelectorAll('[data-founder-bar]').forEach((el) => { el.style.width = pct + '%'; });
+          if (remaining <= 0) {
+            document.querySelectorAll('[data-founder-soldout]').forEach((el) => { el.hidden = false; });
+            document.querySelectorAll('[data-founder-active]').forEach((el) => { el.hidden = true; });
+          }
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', apply, { once: true });
+        } else {
+          apply();
+        }
+      })();
 
       const uuid = () => (window.crypto?.randomUUID?.() ||
         (Date.now().toString(36) + Math.random().toString(36).slice(2)));
