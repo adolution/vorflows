@@ -823,6 +823,452 @@
         font-size: 17px;
       }
 
+      /* Product Reveal — scroll-scrubbed three-act reveal.
+         Act 1 (p 0.00–0.20): three modules fan out from a stacked center.
+         Act 2 (p 0.18–0.55): hairline threads draw from each box to a card.
+         Act 3 (p 0.30–0.95): cards rise into a 3×2 grid in column-stagger.
+         JS writes --pr-p (0..1) on the section, derived from the section's
+         position within the viewport (no scroll-pin). Mobile + reduced-motion
+         fall back to a static, fully-revealed state. */
+      .product-reveal {
+        --pr-p: 0;
+        background: #F4F2EC;
+        position: relative;
+        overflow: clip;
+        padding-block: clamp(72px, 9vw, 128px);
+      }
+      .product-reveal::before {
+        content: '';
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        width: min(960px, 95vw);
+        aspect-ratio: 1;
+        transform: translateX(-50%);
+        background: radial-gradient(circle at center,
+          rgba(200, 99, 62, 0.12) 0%,
+          rgba(200, 99, 62, 0.05) 32%,
+          transparent 64%);
+        pointer-events: none;
+        z-index: 0;
+        opacity: clamp(0, calc(var(--pr-p) * 3), 1);
+      }
+      .pr-track {
+        position: relative;
+        z-index: 1;
+        min-height: 360vh;
+      }
+      .pr-pin {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: clamp(80px, 9vh, 100px) 0 clamp(24px, 3vh, 40px);
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .pr-inner { position: relative; width: 100%; }
+      .pr-head {
+        max-width: 760px;
+        margin: 0 auto clamp(20px, 2.6vw, 36px);
+        text-align: center;
+      }
+      .pr-head .h2 { margin: 8px 0 8px; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
+      .pr-head .h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+      .pr-lead {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text-secondary);
+        max-width: 64ch;
+        margin: 0 auto;
+      }
+      .pr-stage {
+        position: relative;
+        /* Break out of the .container's 1200px max so the trio can use
+           full viewport width without clipping. Cards re-constrain below. */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: clamp(16px, 2.4vw, 32px);
+        justify-items: center;
+      }
+
+      /* Trio (three modules) — at p=0 SEO and Clarity sit stacked behind
+         Base AND the trio is translated up to overlap the headline (depth).
+         As p scrubs 0→0.10 the trio descends to natural position
+         (headline emerges from behind it). Then 0.10→0.40 boxes fan out. */
+      .pr-trio {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: clamp(28px, 3.6vw, 56px);
+        --pr-stack-offset: clamp(260px, 30vw, 480px);
+        padding-inline: clamp(16px, 3vw, 48px);
+      }
+      .pr-box {
+        margin: 0;
+        position: relative;
+        --raw-fan: calc((var(--pr-p) - 0.05) / 0.37);
+        --fan: clamp(0, var(--raw-fan), 1);
+      }
+      .pr-box img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+        display: block;
+        filter: drop-shadow(0 40px 70px rgba(26, 26, 26, 0.22))
+                drop-shadow(0 12px 22px rgba(26, 26, 26, 0.14));
+      }
+      .pr-box--lead { width: clamp(170px, 15vw, 220px); z-index: 3; }
+      .pr-box--side { width: clamp(140px, 12vw, 180px); padding-bottom: clamp(4px, 0.8vw, 12px); z-index: 1; }
+      .pr-box--seo {
+        transform: translate3d(calc((1 - var(--fan)) * var(--pr-stack-offset)), 0, 0)
+                   scale(calc(0.62 + var(--fan) * 0.38));
+        transform-origin: center;
+      }
+      .pr-box--clarity {
+        transform: translate3d(calc((1 - var(--fan)) * (-1 * var(--pr-stack-offset))), 0, 0)
+                   scale(calc(0.62 + var(--fan) * 0.38));
+        transform-origin: center;
+      }
+      .pr-box--base {
+        transform: scale(calc(0.94 + var(--fan) * 0.06));
+        transform-origin: center;
+      }
+
+      /* Cards — fly OUT of source box, growing as they go.
+         Each card has --idx (0..5) for stagger and --pr-src-dx/dy
+         (set by JS on layout) — the offset from the card's grid rest
+         position back to its source module box's center. At p=0 the
+         card is at the box center, scale 0.18, invisible. As p scrubs,
+         it translates to grid rest, scaling up, fading in. */
+      .pr-cards {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(16px, 1.8vw, 26px);
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-inline: clamp(16px, 3vw, 48px);
+        box-sizing: border-box;
+      }
+      .pr-card {
+        --idx: 0;
+        --pr-src-dx: 0px;
+        --pr-src-dy: -200px;
+        --start: 0;
+        --span: 0.30;
+        --raw-c: calc((var(--pr-p) - var(--start)) / var(--span));
+        --p-c: clamp(0, var(--raw-c), 1);
+        position: relative;
+        padding: 16px 18px 14px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-soft);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        height: clamp(130px, 16vh, 150px);
+        overflow: hidden;
+        opacity: var(--p-c);
+        transform:
+          translate3d(
+            calc((1 - var(--p-c)) * var(--pr-src-dx)),
+            calc((1 - var(--p-c)) * var(--pr-src-dy)),
+            0
+          )
+          scale(calc(0.18 + var(--p-c) * 0.82))
+          rotate(calc((1 - var(--p-c)) * var(--pr-src-rot, 0deg)));
+        transform-origin: center;
+        will-change: transform, opacity;
+      }
+      .pr-card:nth-child(3n+1) { --pr-src-rot: -3deg; }
+      .pr-card:nth-child(3n+2) { --pr-src-rot:  0deg; }
+      .pr-card:nth-child(3n)   { --pr-src-rot:  3deg; }
+      .pr-card::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: 22px;
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(var(--p-c));
+        transform-origin: left center;
+      }
+      .pr-card-num {
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
+      .pr-card-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        margin: 0;
+      }
+      .pr-card-body {
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+      .pr-card-meta {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px dashed var(--border-soft);
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.04em;
+        color: var(--text-secondary);
+      }
+      .pr-card-meta strong { color: var(--text-primary); font-weight: 500; }
+
+      /* Per-card scroll-window starts (desktop). Each card flies out from
+         its source box at a specific point in scroll progress. Base cards
+         (01/02/04) start almost immediately so emergence overlaps the
+         box-fan animation; side cards (03/05/06) wait until fan settles. */
+      .pr-card[data-cell="card01"] { --idx: 0; --start: 0.46; }
+      .pr-card[data-cell="card02"] { --idx: 1; --start: 0.52; }
+      .pr-card[data-cell="card03"] { --idx: 2; --start: 0.62; }
+      .pr-card[data-cell="card04"] { --idx: 3; --start: 0.56; }
+      .pr-card[data-cell="card05"] { --idx: 4; --start: 0.66; }
+      .pr-card[data-cell="card06"] { --idx: 5; --start: 0.70; }
+
+      /* Mobile + reduced-motion fallback.
+         Mobile becomes a pinned scroll-deck: all three boxes layered at
+         the top, swapping in order Base → SEO → Clarity as the active
+         card's source module changes. Cards stack-deal up one by one
+         from below, sequenced by source (Base cards first, then SEO,
+         then Clarity). Section gets a tall scroll runway via
+         min-height on .pr-track + sticky .pr-pin. */
+      @media (max-width: 880px) {
+        .product-reveal {
+          --pr-p: 0;
+          padding-block: 0;
+        }
+        .pr-track {
+          min-height: 460vh;
+          position: relative;
+        }
+        .pr-pin {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          overflow: hidden;
+          padding: clamp(72px, 14vw, 96px) 0 clamp(16px, 3vw, 24px);
+          box-sizing: border-box;
+        }
+        .pr-inner {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          padding-inline: 0;
+        }
+        .pr-head {
+          padding-inline: clamp(20px, 5vw, 36px);
+          margin-bottom: clamp(14px, 2.5vw, 24px);
+          flex-shrink: 0;
+        }
+        .pr-head .h2 { font-size: clamp(28px, 7vw, 38px); margin: 10px 0 12px; line-height: 1.12; }
+        .pr-lead { font-size: 15px; line-height: 1.5; }
+
+        .pr-stage {
+          flex: 1;
+          position: relative;
+          width: 100%;
+          margin: 0;
+          display: grid;
+          grid-template-rows: clamp(220px, 30vh, 280px) auto 1fr;
+          gap: clamp(6px, 1.2vw, 10px);
+          min-height: 0;
+        }
+        /* Trio container: top row, layered boxes.
+           Mobile disables the desktop trio rise — boxes are layered and
+           always at their target position from p=0 (no descend wait). */
+        .pr-trio {
+          grid-row: 1;
+          position: relative;
+          z-index: 3;
+          width: 100%;
+          height: 100%;
+          display: block;
+          padding: 0;
+          --pr-stack-offset: 0;
+          --pr-rise-distance: 0px;
+          transform: none !important;
+        }
+        .pr-cards { grid-row: 3; }
+        .pr-mobile-counter { grid-row: 2; }
+        /* All three boxes centered in the trio area, stacked.
+           Equal size for all three (override desktop side-padding etc.). */
+        .pr-box {
+          display: block !important;
+          position: absolute !important;
+          top: 50%;
+          left: 50%;
+          width: clamp(220px, 62vw, 320px) !important;
+          height: auto;
+          max-width: none;
+          margin: 0 !important;
+          padding: 0 !important;
+          z-index: 1;
+        }
+        .pr-box--seo,
+        .pr-box--clarity { display: block !important; }
+        /* Box swaps synced with the corresponding card slide-ins:
+             SEO box  + card05 (Rankings heben) glide in together at 0.30–0.40
+             Clarity  + card03 (Live-Daten)     glide in together at 0.46–0.56 */
+        .pr-box--base {
+          --slide-out-start: 0.28;
+          --slide-out-span: 0.10;
+          --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
+          transform: translate(-50%, -50%) translate3d(calc(var(--raw-out) * -120vw), 0, 0) !important;
+          z-index: 2;
+        }
+        .pr-box--seo {
+          --slide-in-start: 0.30;
+          --slide-in-span: 0.10;
+          --slide-out-start: 0.44;
+          --slide-out-span: 0.10;
+          --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
+          --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
+          transform: translate(-50%, -50%)
+                     translate3d(calc((1 - var(--raw-in)) * 120vw + var(--raw-out) * -120vw), 0, 0) !important;
+          z-index: 3;
+        }
+        .pr-box--clarity {
+          --slide-in-start: 0.46;
+          --slide-in-span: 0.10;
+          --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
+          transform: translate(-50%, -50%)
+                     translate3d(calc((1 - var(--raw-in)) * 120vw), 0, 0) !important;
+          z-index: 4;
+        }
+        .pr-box img {
+          filter: drop-shadow(0 24px 36px rgba(26, 26, 26, 0.16))
+                  drop-shadow(0 6px 12px rgba(26, 26, 26, 0.08));
+        }
+
+        /* Cards container: bottom row, holds absolutely-positioned card stack */
+        .pr-cards {
+          position: relative;
+          display: block;
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          height: 100%;
+          max-width: none;
+        }
+        .pr-card {
+          --pr-src-dx: 0px;
+          --pr-src-dy: 0px;
+          --pr-src-rot: 0deg;
+          --span: 0.10;
+          position: absolute !important;
+          left: 4vw;
+          right: 4vw;
+          bottom: clamp(8px, 2vw, 20px);
+          width: auto;
+          max-width: none;
+          margin: 0;
+          background: var(--bg-light);
+          box-shadow:
+            0 -1px 0 var(--border-soft),
+            0 -10px 32px rgba(26, 26, 26, 0.10),
+            0 -2px 8px rgba(26, 26, 26, 0.06);
+          padding: 16px 18px 14px;
+          /* Fixed height so the strip-overlap math is uniform across all
+             6 cards regardless of body length. Body text clips if too long. */
+          height: clamp(180px, 26vh, 220px);
+          min-height: unset;
+          overflow: hidden;
+          /* Stack with wider strips: each newer card sits ~36px LOWER
+             (closer to viewport bottom) than the previous, so each
+             previous card's accent strip + numbered eyebrow stays
+             clearly readable above the newer card's top. */
+          --strip: clamp(32px, 6vw, 40px);
+          --total-cards: 5;
+          bottom: calc(8px + (var(--total-cards) - var(--mobile-stack-i, 0)) * var(--strip));
+          --raw-c: calc((var(--pr-p) - var(--start)) / var(--span));
+          --p-c: clamp(0, var(--raw-c), 1);
+          opacity: 1;
+          transform: translate3d(0, calc((1 - var(--p-c)) * 105vh), 0);
+        }
+        /* Mobile accent strip — terracotta hairline at top of every card,
+           used as a visual marker so stacked card-tops read clearly. */
+        .pr-card::before {
+          display: block;
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          width: auto;
+          height: 2px;
+          background: var(--accent);
+          transform: none;
+        }
+
+        /* Card sequence on mobile follows source-box order:
+           Base (01, 02, 04) → SEO (05) → Clarity (03, 06).
+           Box swaps synced with the side-card slide-ins. z-index AND
+           --mobile-stack-i ascend in deal order so newer cards stack on top. */
+        .pr-card[data-cell="card01"] { --start: 0.04; --span: 0.10; z-index: 30; --mobile-stack-i: 0; }
+        .pr-card[data-cell="card02"] { --start: 0.12; --span: 0.10; z-index: 31; --mobile-stack-i: 1; }
+        .pr-card[data-cell="card04"] { --start: 0.20; --span: 0.10; z-index: 32; --mobile-stack-i: 2; }
+        .pr-card[data-cell="card05"] { --start: 0.30; --span: 0.10; z-index: 33; --mobile-stack-i: 3; }
+        .pr-card[data-cell="card03"] { --start: 0.46; --span: 0.10; z-index: 34; --mobile-stack-i: 4; }
+        .pr-card[data-cell="card06"] { --start: 0.62; --span: 0.30; z-index: 35; --mobile-stack-i: 5; }
+
+        /* Counter readout — shows current card position */
+        .pr-mobile-counter {
+          flex-shrink: 0;
+          font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--accent);
+          text-align: center;
+          margin-top: clamp(10px, 2vw, 16px);
+        }
+        .pr-mobile-counter[hidden] { display: none; }
+      }
+      @media (min-width: 881px) {
+        .pr-mobile-counter { display: none; }
+      }
+      @media (max-width: 540px) {
+        .pr-box--base { width: 50vw !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .product-reveal { --pr-p: 1 !important; }
+        .pr-card { --pr-src-rot: 0deg; }
+        @media (max-width: 880px) {
+          .pr-track { min-height: 0; }
+          .pr-pin { position: static; height: auto; padding-block: 40px; }
+          .pr-card {
+            position: relative !important;
+            left: auto; right: auto; bottom: auto;
+            transform: none !important;
+            margin: 12px 0;
+          }
+        }
+      }
+
       /* Workflow Dark */
       .workflow-dark {
         background: var(--bg-dark);
@@ -3990,6 +4436,83 @@
       </div>
     </header>
 
+    <!-- 02b PRODUCT REVEAL: scroll-scrubbed three-act unfold -->
+    <section class="product-reveal" id="produkt" aria-labelledby="produktTitle">
+      <div class="pr-track">
+        <div class="pr-pin">
+          <div class="container pr-inner">
+            <div class="pr-head">
+              <div class="meta eyebrow">Lieferumfang · Drei Module</div>
+              <h2 id="produktTitle" class="h2 display">
+                Ein Ordner. Drei Module. Dein <em>technischer&nbsp;Co-Founder</em>.
+              </h2>
+              <p class="pr-lead">
+                Du installierst einen Ordner mit Fähigkeiten in deine KI. Ab da kennt sie deinen Shop, deine Daten und dein Theme. Sie arbeitet auf Senior-Dev-Level, ohne Agentur, ohne App-Stack.
+              </p>
+            </div>
+            <div class="pr-stage">
+              <div class="pr-trio">
+                <div class="pr-box pr-box--side pr-box--seo">
+                  <img src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEO Flow Modul" width="500" height="500" loading="lazy" decoding="async" />
+                </div>
+                <div class="pr-box pr-box--lead pr-box--base">
+                  <img src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="Base Modul" width="500" height="500" loading="lazy" decoding="async" />
+                </div>
+                <div class="pr-box pr-box--side pr-box--clarity">
+                  <img src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="Clarity Flow Modul" width="500" height="500" loading="lazy" decoding="async" />
+                </div>
+              </div>
+
+              <div class="pr-cards">
+                <article class="pr-card" data-cell="card01">
+                  <span class="pr-card-num">01 · Fähigkeiten</span>
+                  <h3 class="pr-card-title">Skill-Ordner</h3>
+                  <p class="pr-card-body">Die KI bedient sich an einem Ordner mit über 20 Fähigkeiten. Sechs davon sind speziell für deinen Shop gebaut.</p>
+                  <p class="pr-card-meta"><strong>20+ Fähigkeiten</strong> · 6 Shop-spezifisch</p>
+                </article>
+
+                <article class="pr-card" data-cell="card02">
+                  <span class="pr-card-num">02 · Setup</span>
+                  <h3 class="pr-card-title">Installations-Videos</h3>
+                  <p class="pr-card-body">Schritt für Schritt: Ordner laden, Theme duplizieren, Daten anschließen. Keine Lücken, keine Hürden.</p>
+                  <p class="pr-card-meta"><strong>Klick für Klick</strong> · ohne Setup-Hürden</p>
+                </article>
+
+                <article class="pr-card" data-cell="card03">
+                  <span class="pr-card-num">03 · Daten</span>
+                  <h3 class="pr-card-title">Live-Daten verstehen</h3>
+                  <p class="pr-card-body">Die KI liest, was Besucher suchen, anklicken und scrollen. Wertet schneller aus als ein Mensch und optimiert direkt anhand der Daten.</p>
+                  <p class="pr-card-meta"><strong>3 Signale</strong> · Suche · Klicks · Scrolls</p>
+                </article>
+
+                <article class="pr-card" data-cell="card04">
+                  <span class="pr-card-num">04 · Build</span>
+                  <h3 class="pr-card-title">Shop-Bausteine bauen</h3>
+                  <p class="pr-card-body">Die KI baut dir genau das, was du in deinem Shop haben willst. Von Shipping-Bars bis Bundle-Selektoren.</p>
+                  <p class="pr-card-meta"><strong>2 Skills</strong> · sauberer Code</p>
+                </article>
+
+                <article class="pr-card" data-cell="card05">
+                  <span class="pr-card-num">05 · SEO</span>
+                  <h3 class="pr-card-title">Rankings heben</h3>
+                  <p class="pr-card-body">Skill 1 findet Begriffe mit vielen Impressionen, bei denen du auf Seite 2 stehst. Schlägt Verbesserungen vor und setzt sie direkt um, damit du auf Seite 1 kommst. Skill 2 überwacht alles, warnt bei Rückgang und sagt dir, was zu tun ist.</p>
+                  <p class="pr-card-meta"><strong>2 Skills</strong> · Finden &amp; Halten</p>
+                </article>
+
+                <article class="pr-card" data-cell="card06">
+                  <span class="pr-card-num">06 · CRO</span>
+                  <h3 class="pr-card-title">Conversion erhöhen</h3>
+                  <p class="pr-card-body">Die KI verschiebt Sections und platziert Buttons neu. Anhand echter Klick und Scroll-Daten deiner Besucher.</p>
+                  <p class="pr-card-meta"><strong>2 Skills</strong> · Layout &amp; Buttons</p>
+                </article>
+              </div>
+              <div class="pr-mobile-counter" aria-hidden="true"><span data-pr-counter>01</span> &thinsp;/&thinsp; 06</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 03 PROBLEM: asymmetric -->
     <section class="section">
       <div class="container">
@@ -5171,6 +5694,191 @@
 
         document.querySelectorAll('[data-reveal], [data-reveal-stagger]')
           .forEach((el) => revealIo.observe(el));
+      })();
+
+      /* === Product Reveal scroll-scrub =================================
+         Drives --pr-p (0..1) on #produkt based on the section's position
+         within the viewport (no scroll-pin). Computes per-card --pr-src-dx
+         and --pr-src-dy: the offset from each card's grid rest position
+         back to its source module box's center, so cards translate from
+         box → grid as they fly out. Mobile + reduced-motion: skip scrub,
+         CSS falls back to fully-revealed state.
+         ================================================================ */
+      (() => {
+        const section = document.getElementById('produkt');
+        if (!section) return;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const small = window.matchMedia('(max-width: 880px)').matches;
+
+        const stage = section.querySelector('.pr-stage');
+        const boxes = Array.from(section.querySelectorAll('.pr-box'));
+        const cards = Array.from(section.querySelectorAll('.pr-card'));
+
+        // Each card's source module:
+        //   0 Skill-Ordner → Base
+        //   1 Setup        → Base
+        //   2 Daten        → Clarity
+        //   3 Build        → Base
+        //   4 SEO          → SEO
+        //   5 CRO          → Clarity
+        // boxes order in DOM: [SEO, Base, Clarity] → indices 0, 1, 2
+        const colMap = [1, 1, 2, 1, 0, 2];
+
+        // Measure rest-position offsets via offsetLeft/Top (pre-transform),
+        // walking the offsetParent chain. Doesn't touch --pr-p.
+        const offsetWithin = (el, ancestor) => {
+          let x = 0, y = 0, n = el;
+          while (n && n !== ancestor && n !== document.body) {
+            x += n.offsetLeft;
+            y += n.offsetTop;
+            n = n.offsetParent;
+          }
+          return { x, y };
+        };
+        const layoutOrigins = () => {
+          if (!stage || boxes.length < 3 || cards.length < 6) return;
+          cards.forEach((card, i) => {
+            const sourceBox = boxes[colMap[i]];
+            const sourceImg = sourceBox.querySelector('img');
+            if (!sourceImg) return;
+            const cardPos = offsetWithin(card, stage);
+            const boxPos = offsetWithin(sourceImg, stage);
+            const cardCx = cardPos.x + card.offsetWidth / 2;
+            const cardCy = cardPos.y + card.offsetHeight / 2;
+            const boxCx = boxPos.x + sourceImg.offsetWidth / 2;
+            const boxCy = boxPos.y + sourceImg.offsetHeight / 2;
+            const dx = boxCx - cardCx;
+            const dy = boxCy - cardCy;
+            card.style.setProperty('--pr-src-dx', dx.toFixed(1) + 'px');
+            card.style.setProperty('--pr-src-dy', dy.toFixed(1) + 'px');
+          });
+        };
+
+        if (reduce) {
+          section.style.setProperty('--pr-p', '1');
+          return;
+        }
+
+        const cardsEl = section.querySelector('.pr-cards');
+        const trackEl = section.querySelector('.pr-track');
+        const pinEl = section.querySelector('.pr-pin');
+        const counterEl = section.querySelector('[data-pr-counter]');
+
+        // Smoothed --pr-p with a max change per frame, so instant scroll
+        // jumps don't snap the animation. `target` is derived from scroll
+        // position; `displayed` is the value actually written, lerping
+        // toward target with a cap (~0.018/frame ≈ full sweep in ~0.95s
+        // at 60fps even if user blasts to bottom of page in one swipe).
+        const LERP = 0.16;        // approach fraction per frame
+        const MAX_DELTA = 0.018;  // hard cap on per-frame change
+        const SETTLE_EPS = 0.0008;
+        let displayed = 0;
+        let raf = 0;
+        // Mobile uses a different progress source: scroll within the
+        // sticky-pinned track (deck-stack style, one card per scroll-step).
+        let isSmall = small;
+        const recomputeMode = () => {
+          isSmall = window.matchMedia('(max-width: 880px)').matches;
+        };
+
+        const computeTarget = () => {
+          // Unified track-relative progress: pin engages when trackEl top
+          // reaches viewport top, releases after trackEl.offsetHeight - pinEl.offsetHeight
+          // of scroll. This pins the section on BOTH desktop and mobile so
+          // animation always plays its full runway regardless of scroll speed.
+          if (!trackEl || !pinEl) return displayed;
+          const trackRect = trackEl.getBoundingClientRect();
+          const total = trackEl.offsetHeight - pinEl.offsetHeight;
+          if (total <= 0) return displayed;
+          let p = -trackRect.top / total;
+          if (p < 0) p = 0;
+          if (p > 1) p = 1;
+          return p;
+        };
+
+        // Mobile renumbering — cards display sequential numbers (01..06)
+        // based on the mobile deal order, not the source-module order.
+        const applyMobileNumbering = () => {
+          const map = isSmall
+            ? {
+              card01: '01 · Fähigkeiten',
+              card02: '02 · Setup',
+              card04: '03 · Build',
+              card05: '04 · SEO',
+              card03: '05 · Daten',
+              card06: '06 · CRO',
+            }
+            : null;
+          cards.forEach((c) => {
+            const num = c.querySelector('.pr-card-num');
+            if (!num) return;
+            if (map) {
+              if (!num.dataset.origNum) num.dataset.origNum = num.textContent;
+              num.textContent = map[c.dataset.cell] || num.textContent;
+            } else if (num.dataset.origNum) {
+              num.textContent = num.dataset.origNum;
+              delete num.dataset.origNum;
+            }
+          });
+        };
+        applyMobileNumbering();
+
+        // Mobile counter — shows current card position in the source-grouped
+        // sequence (Base 01/02/04 → SEO 05 → Clarity 03/06).
+        const updateCounter = (p) => {
+          if (!counterEl || !isSmall) return;
+          // Card sequence (label, --start), in deal order:
+          const seq = [
+            ['01', 0.04], ['02', 0.12], ['03', 0.20],
+            ['04', 0.30], ['05', 0.46], ['06', 0.62],
+          ];
+          let label = '01';
+          for (let i = 0; i < seq.length; i++) {
+            if (p >= seq[i][1] - 0.04) label = seq[i][0];
+          }
+          if (counterEl.textContent !== label) counterEl.textContent = label;
+        };
+
+        const tick = () => {
+          raf = 0;
+          if (section.dataset.scrubLock === '1') return;
+          const target = computeTarget();
+          const diff = target - displayed;
+          if (Math.abs(diff) < SETTLE_EPS) {
+            displayed = target;
+            section.style.setProperty('--pr-p', displayed.toFixed(4));
+            updateCounter(displayed);
+            return;
+          }
+          const ideal = diff * LERP;
+          const capped = Math.sign(ideal) * Math.min(Math.abs(ideal), MAX_DELTA);
+          displayed += capped;
+          section.style.setProperty('--pr-p', displayed.toFixed(4));
+          updateCounter(displayed);
+          raf = requestAnimationFrame(tick);
+        };
+
+        const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+        // Wait for layout + fonts so origin offsets are accurate
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          layoutOrigins();
+          // Initialize displayed to current target so we don't lerp from 0
+          // when user lands mid-section (e.g., back nav).
+          displayed = computeTarget();
+          section.style.setProperty('--pr-p', displayed.toFixed(4));
+          kick();
+        }));
+
+        window.addEventListener('scroll', kick, { passive: true });
+        window.addEventListener('resize', () => { recomputeMode(); applyMobileNumbering(); layoutOrigins(); kick(); }, { passive: true });
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(() => { layoutOrigins(); kick(); }).observe(section);
+        }
+        section.querySelectorAll('img').forEach((img) => {
+          if (!img.complete) img.addEventListener('load', () => { layoutOrigins(); kick(); }, { once: true });
+        });
       })();
 
       /* === Magnetic CTA pull ===========================================
