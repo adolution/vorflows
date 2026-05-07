@@ -856,7 +856,10 @@
       .pr-track {
         position: relative;
         z-index: 1;
-        min-height: 360vh;
+        /* Runway is fixed-pixel based (not vh) so scroll distance and
+           animation duration stay consistent across screen sizes.
+           Pin = 100vh + ~1500–2200px of scroll runway. */
+        min-height: calc(100vh + clamp(1500px, 180vh, 2200px));
       }
       .pr-pin {
         position: sticky;
@@ -864,34 +867,14 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        padding: clamp(80px, 9vh, 100px) 0 clamp(24px, 3vh, 40px);
+        justify-content: center;
+        padding: clamp(96px, 12vh, 128px) 0 clamp(24px, 3vh, 40px);
         box-sizing: border-box;
         overflow: hidden;
       }
       .pr-inner { position: relative; width: 100%; }
-
-      /* Desktop only: lift .pr-head out of pin flow so the pin
-         viewport can host the bigger trio + cards without overflow.
-         Head sits ABOVE pin element, scrolls past as pin engages. */
-      @media (min-width: 881px) {
-        .pr-pin {
-          overflow: visible;
-          padding-top: clamp(96px, 12vh, 128px);
-          margin-top: clamp(220px, 26vh, 320px);
-        }
-        .pr-pin .pr-head {
-          position: absolute;
-          bottom: calc(100% + clamp(40px, 4vh, 64px));
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100%;
-          max-width: 1200px;
-          padding-inline: clamp(20px, 4vw, 48px);
-          margin: 0;
-          box-sizing: border-box;
-          z-index: 4;
-        }
+      .pr-head-wrap {
+        margin-bottom: clamp(48px, 6vw, 88px);
       }
       .pr-head {
         max-width: 820px;
@@ -947,20 +930,19 @@
         display: block;
         filter: drop-shadow(0 24px 48px rgba(26, 26, 26, 0.18));
       }
-      .pr-box--lead { width: clamp(250px, 22vw, 330px); z-index: 3; }
-      .pr-box--side { width: clamp(190px, 17vw, 260px); padding-bottom: clamp(6px, 1vw, 14px); z-index: 1; }
-      /* Side boxes start invisible behind base, emerge as fan progresses
-         (opacity + scale 0→1 from base center). Only base shows at p=0. */
+      .pr-box--lead { width: clamp(280px, 22vw, 480px); z-index: 3; }
+      .pr-box--side { width: clamp(220px, 17vw, 380px); padding-bottom: clamp(6px, 1vw, 16px); z-index: 1; }
+      /* Side boxes start invisible (opacity 0, scale 0.5), emerge in place
+         at their natural flex positions as fan progresses. No translate
+         to avoid misalignment when stack-offset doesn't match flex gap. */
       .pr-box--seo {
         opacity: var(--fan);
-        transform: translate3d(calc((1 - var(--fan)) * var(--pr-stack-offset)), 0, 0)
-                   scale(calc(0.4 + var(--fan) * 0.6));
+        transform: scale(calc(0.5 + var(--fan) * 0.5));
         transform-origin: center;
       }
       .pr-box--clarity {
         opacity: var(--fan);
-        transform: translate3d(calc((1 - var(--fan)) * (-1 * var(--pr-stack-offset))), 0, 0)
-                   scale(calc(0.4 + var(--fan) * 0.6));
+        transform: scale(calc(0.5 + var(--fan) * 0.5));
         transform-origin: center;
       }
       .pr-box--base {
@@ -1090,7 +1072,7 @@
           padding-block: 0;
         }
         .pr-track {
-          min-height: 460vh;
+          min-height: 340vh;
           position: relative;
         }
         .pr-pin {
@@ -1101,7 +1083,7 @@
           flex-direction: column;
           justify-content: flex-start;
           overflow: hidden;
-          padding: clamp(72px, 14vw, 96px) 0 clamp(16px, 3vw, 24px);
+          padding: clamp(64px, 10vw, 80px) 0 clamp(16px, 3vw, 24px);
           box-sizing: border-box;
         }
         .pr-inner {
@@ -1168,21 +1150,22 @@
         }
         .pr-box--seo,
         .pr-box--clarity { display: block !important; }
-        /* Box swaps synced with the corresponding card slide-ins:
-             SEO box  + card05 (Rankings heben) glide in together at 0.30–0.40
-             Clarity  + card03 (Live-Daten)     glide in together at 0.46–0.56 */
+        /* Box swaps synced with new uniform mobile card timing:
+             Base cards (01, 02, 04) land at 0.04, 0.18, 0.32 — Base visible until ~0.40
+             SEO card  (05)         lands at 0.46 — SEO box swap-in at 0.40–0.46
+             Clarity   (03, 06)    land at 0.60, 0.74 — Clarity swap-in at 0.54–0.60 */
         .pr-box--base {
-          --slide-out-start: 0.28;
-          --slide-out-span: 0.10;
+          --slide-out-start: 0.40;
+          --slide-out-span: 0.06;
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%) translate3d(calc(var(--raw-out) * -120vw), 0, 0) !important;
           z-index: 2;
         }
         .pr-box--seo {
-          --slide-in-start: 0.30;
-          --slide-in-span: 0.10;
-          --slide-out-start: 0.44;
-          --slide-out-span: 0.10;
+          --slide-in-start: 0.40;
+          --slide-in-span: 0.06;
+          --slide-out-start: 0.54;
+          --slide-out-span: 0.06;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%)
@@ -1190,8 +1173,8 @@
           z-index: 3;
         }
         .pr-box--clarity {
-          --slide-in-start: 0.46;
-          --slide-in-span: 0.10;
+          --slide-in-start: 0.54;
+          --slide-in-span: 0.06;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           transform: translate(-50%, -50%)
                      translate3d(calc((1 - var(--raw-in)) * 120vw), 0, 0) !important;
@@ -1264,11 +1247,11 @@
            Box swaps synced with the side-card slide-ins. z-index AND
            --mobile-stack-i ascend in deal order so newer cards stack on top. */
         .pr-card[data-cell="card01"] { --start: 0.04; --span: 0.10; z-index: 30; --mobile-stack-i: 0; }
-        .pr-card[data-cell="card02"] { --start: 0.12; --span: 0.10; z-index: 31; --mobile-stack-i: 1; }
-        .pr-card[data-cell="card04"] { --start: 0.20; --span: 0.10; z-index: 32; --mobile-stack-i: 2; }
-        .pr-card[data-cell="card05"] { --start: 0.30; --span: 0.10; z-index: 33; --mobile-stack-i: 3; }
-        .pr-card[data-cell="card03"] { --start: 0.46; --span: 0.10; z-index: 34; --mobile-stack-i: 4; }
-        .pr-card[data-cell="card06"] { --start: 0.62; --span: 0.30; z-index: 35; --mobile-stack-i: 5; }
+        .pr-card[data-cell="card02"] { --start: 0.18; --span: 0.10; z-index: 31; --mobile-stack-i: 1; }
+        .pr-card[data-cell="card04"] { --start: 0.32; --span: 0.10; z-index: 32; --mobile-stack-i: 2; }
+        .pr-card[data-cell="card05"] { --start: 0.46; --span: 0.10; z-index: 33; --mobile-stack-i: 3; }
+        .pr-card[data-cell="card03"] { --start: 0.60; --span: 0.10; z-index: 34; --mobile-stack-i: 4; }
+        .pr-card[data-cell="card06"] { --start: 0.74; --span: 0.10; z-index: 35; --mobile-stack-i: 5; }
 
         /* Counter readout — shows current card position */
         .pr-mobile-counter {
@@ -4474,17 +4457,19 @@
     <!-- 02b PRODUCT REVEAL: scroll-scrubbed three-act unfold -->
     <section class="product-reveal" id="produkt" aria-labelledby="produktTitle">
       <div class="pr-track">
+        <div class="container pr-head-wrap">
+          <div class="pr-head">
+            <div class="meta eyebrow">Lieferumfang · Drei Module</div>
+            <h2 id="produktTitle" class="h2 display">
+              Ein Ordner. Drei Module. Dein <em>technischer&nbsp;Co-Founder</em>.
+            </h2>
+            <p class="pr-lead">
+              Du installierst einen Ordner mit Fähigkeiten in deine KI. Ab da kennt sie deinen Shop, deine Daten und dein Theme. Sie arbeitet auf Senior-Dev-Level, ohne Agentur, ohne App-Stack.
+            </p>
+          </div>
+        </div>
         <div class="pr-pin">
           <div class="container pr-inner">
-            <div class="pr-head">
-              <div class="meta eyebrow">Lieferumfang · Drei Module</div>
-              <h2 id="produktTitle" class="h2 display">
-                Ein Ordner. Drei Module. Dein <em>technischer&nbsp;Co-Founder</em>.
-              </h2>
-              <p class="pr-lead">
-                Du installierst einen Ordner mit Fähigkeiten in deine KI. Ab da kennt sie deinen Shop, deine Daten und dein Theme. Sie arbeitet auf Senior-Dev-Level, ohne Agentur, ohne App-Stack.
-              </p>
-            </div>
             <div class="pr-stage">
               <div class="pr-trio">
                 <div class="pr-box pr-box--side pr-box--seo">
@@ -5817,16 +5802,28 @@
           isSmall = window.matchMedia('(max-width: 880px)').matches;
         };
 
+        // Pin's natural offset within track (head-wrap above pin) — cached
+         // because Chromium's offsetTop on sticky elements reports the
+         // *current* sticky offset, not the static one.
+         let pinNaturalY = 0;
+         const measurePinOffset = () => {
+           if (!trackEl || !pinEl) return;
+           const trackTop = trackEl.getBoundingClientRect().top + window.scrollY;
+           const pinTop = pinEl.getBoundingClientRect().top + window.scrollY;
+           // If pin is currently stuck, getBoundingClientRect.top is at
+           // the sticky offset. To get the natural offset, only measure
+           // when pin is not yet stuck (scroll above pin's range).
+           if (window.scrollY < trackTop) {
+             pinNaturalY = pinTop - trackTop;
+           }
+         };
+
         const computeTarget = () => {
-          // Unified track-relative progress: pin engages when trackEl top
-          // reaches viewport top, releases after trackEl.offsetHeight - pinEl.offsetHeight
-          // of scroll. This pins the section on BOTH desktop and mobile so
-          // animation always plays its full runway regardless of scroll speed.
           if (!trackEl || !pinEl) return displayed;
           const trackRect = trackEl.getBoundingClientRect();
-          const total = trackEl.offsetHeight - pinEl.offsetHeight;
+          const total = trackEl.offsetHeight - pinEl.offsetHeight - pinNaturalY;
           if (total <= 0) return displayed;
-          let p = -trackRect.top / total;
+          let p = (-trackRect.top - pinNaturalY) / total;
           if (p < 0) p = 0;
           if (p > 1) p = 1;
           return p;
@@ -5864,13 +5861,15 @@
         const updateCounter = (p) => {
           if (!counterEl || !isSmall) return;
           // Card sequence (label, --start), in deal order:
+          // Use card LAND times (start + span) so the counter labels
+          // match whichever card is currently visible (not the upcoming one).
           const seq = [
-            ['01', 0.04], ['02', 0.12], ['03', 0.20],
-            ['04', 0.30], ['05', 0.46], ['06', 0.62],
+            ['01', 0.14], ['02', 0.28], ['03', 0.42],
+            ['04', 0.56], ['05', 0.70], ['06', 0.84],
           ];
           let label = '01';
           for (let i = 0; i < seq.length; i++) {
-            if (p >= seq[i][1] - 0.04) label = seq[i][0];
+            if (p >= seq[i][1]) label = seq[i][0];
           }
           if (counterEl.textContent !== label) counterEl.textContent = label;
         };
@@ -5898,6 +5897,7 @@
 
         // Wait for layout + fonts so origin offsets are accurate
         requestAnimationFrame(() => requestAnimationFrame(() => {
+          measurePinOffset();
           layoutOrigins();
           // Initialize displayed to current target so we don't lerp from 0
           // when user lands mid-section (e.g., back nav).
@@ -5907,12 +5907,12 @@
         }));
 
         window.addEventListener('scroll', kick, { passive: true });
-        window.addEventListener('resize', () => { recomputeMode(); applyMobileNumbering(); layoutOrigins(); kick(); }, { passive: true });
+        window.addEventListener('resize', () => { recomputeMode(); applyMobileNumbering(); measurePinOffset(); layoutOrigins(); kick(); }, { passive: true });
         if ('ResizeObserver' in window) {
-          new ResizeObserver(() => { layoutOrigins(); kick(); }).observe(section);
+          new ResizeObserver(() => { measurePinOffset(); layoutOrigins(); kick(); }).observe(section);
         }
         section.querySelectorAll('img').forEach((img) => {
-          if (!img.complete) img.addEventListener('load', () => { layoutOrigins(); kick(); }, { once: true });
+          if (!img.complete) img.addEventListener('load', () => { measurePinOffset(); layoutOrigins(); kick(); }, { once: true });
         });
       })();
 
