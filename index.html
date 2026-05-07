@@ -938,16 +938,16 @@
         opacity: 0;
         transform-origin: center;
         transition:
-          transform 1100ms cubic-bezier(0.2, 0.7, 0.1, 1) 120ms,
-          opacity 700ms ease-out 120ms;
+          transform 1500ms cubic-bezier(0.2, 0.7, 0.1, 1) 180ms,
+          opacity 900ms ease-out 180ms;
       }
       .pr-box--clarity {
         transform: translateX(-130%) scale(0.55);
         opacity: 0;
         transform-origin: center;
         transition:
-          transform 1100ms cubic-bezier(0.2, 0.7, 0.1, 1) 280ms,
-          opacity 700ms ease-out 280ms;
+          transform 1500ms cubic-bezier(0.2, 0.7, 0.1, 1) 380ms,
+          opacity 900ms ease-out 380ms;
       }
       .product-reveal.is-revealed .pr-box--seo,
       .product-reveal.is-revealed .pr-box--clarity {
@@ -1154,12 +1154,13 @@
         }
         .pr-box--seo,
         .pr-box--clarity { display: block !important; }
-        /* Box swaps synced with new uniform mobile card timing:
-             Base cards (01, 02, 04) land at 0.04, 0.18, 0.32 — Base visible until ~0.40
-             SEO card  (05)         lands at 0.46 — SEO box swap-in at 0.40–0.46
-             Clarity   (03, 06)    land at 0.60, 0.74 — Clarity swap-in at 0.54–0.60 */
+        /* Box swaps synced with mobile card emergence (display order):
+             01–03 (data-cells card01,02,04, Base): start 0.04, 0.18, 0.32 — Base visible until 0.46
+             04    (data-cell  card05,  SEO):    starts 0.46 — SEO swap-in 0.46–0.52
+             05    (data-cell  card03,  Clarity):starts 0.60 — Clarity swap-in 0.60–0.66
+             06    (data-cell  card06,  Clarity):starts 0.74 — Clarity stays */
         .pr-box--base {
-          --slide-out-start: 0.40;
+          --slide-out-start: 0.46;
           --slide-out-span: 0.06;
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%) translate3d(calc(var(--raw-out) * -120vw), 0, 0) !important;
@@ -1168,9 +1169,9 @@
           z-index: 2;
         }
         .pr-box--seo {
-          --slide-in-start: 0.40;
+          --slide-in-start: 0.46;
           --slide-in-span: 0.06;
-          --slide-out-start: 0.54;
+          --slide-out-start: 0.60;
           --slide-out-span: 0.06;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
@@ -1181,7 +1182,7 @@
           z-index: 3;
         }
         .pr-box--clarity {
-          --slide-in-start: 0.54;
+          --slide-in-start: 0.60;
           --slide-in-span: 0.06;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           transform: translate(-50%, -50%)
