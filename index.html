@@ -105,7 +105,7 @@
         {
           "@type": "Product",
           "name": "vorflows Bundle",
-          "description": "BaseFlow + SEOFlow + ClarityFlow. Shopify-Optimierungssystem für Founder. Einmalkauf statt Subscription.",
+          "description": "Digitales Produkt für Shopify-Founder. Inhalt: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflow-Anleitungen, Videos und alle künftigen Updates. Lieferung 100 % digital — sofort nach Zahlung per E-Mail mit Download-Link über Digistore24. Kein Versand, keine physischen Materialien. Einmalkauf statt Subscription.",
           "brand": { "@id": "https://vorflows.com/#organization" },
           "image": "https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp",
           "category": "Shopify Optimization System",
@@ -163,7 +163,8 @@
             { "@type": "Question", "name": "Kann ich nur ein Modul kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Auf der Seite verkaufen wir nur das Bundle zum Launch-Preis. Für Einzel-Module bitte kurz an alex@adolution.de schreiben." } },
             { "@type": "Question", "name": "Wie lange dauert das Onboarding?", "acceptedAnswer": { "@type": "Answer", "text": "Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup." } },
             { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude." } },
-            { "@type": "Question", "name": "Gibt es eine Geld-zurück-Garantie?", "acceptedAnswer": { "@type": "Answer", "text": "Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück." } }
+            { "@type": "Question", "name": "Wie funktioniert die Rückgabe?", "acceptedAnswer": { "@type": "Answer", "text": "14 Tage Rückgaberecht ab Kaufdatum, ohne Angabe von Gründen. Eine formlose E-Mail an alex@adolution.de oder direkt über Digistore24 reicht — du erhältst den vollen Betrag erstattet." } },
+            { "@type": "Question", "name": "Wie wird das Produkt geliefert?", "acceptedAnswer": { "@type": "Answer", "text": "vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien." } }
           ]
         }
       ]
@@ -2803,6 +2804,58 @@
       }
 
       /* Trust strip: pre-pricing reassurance */
+      .delivery-card {
+        margin: 0 0 28px;
+        padding: 28px 28px 24px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      @media (max-width: 880px) {
+        .delivery-card { grid-template-columns: 1fr; gap: 24px; padding: 22px 20px 20px; }
+      }
+      .delivery-col { display: flex; flex-direction: column; }
+      .delivery-mark {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .delivery-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--text-primary);
+        margin: 0 0 10px;
+      }
+      .delivery-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .delivery-list li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--text-secondary);
+      }
+      .delivery-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .delivery-list li strong { color: var(--text-primary); font-weight: 600; }
       .trust-strip {
         margin: 0 0 64px;
         display: grid;
@@ -4382,7 +4435,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Bundle sichern</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">297&nbsp;€ · 14 Tage Refund</span>
+            <span class="inline-cta-meta">297&nbsp;€ · 14 Tage Rückgabe</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -4452,6 +4505,33 @@
           <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
         </div>
 
+        <div class="delivery-card" aria-label="Inhalt und Lieferung" data-reveal="up">
+          <div class="delivery-col">
+            <span class="delivery-mark" aria-hidden="true">[ INHALT ]</span>
+            <h3 class="delivery-title">Was du bekommst</h3>
+            <ul class="delivery-list">
+              <li>Setup-Datei für Claude Code (Shopify-Theme-Workflow)</li>
+              <li>Kompletter Skill-Stack: Module, Prompts, Anleitungen</li>
+              <li>BaseFlow — Theme-Optimization-Workflow</li>
+              <li>SEOFlow — Search-Console-Loop</li>
+              <li>ClarityFlow — Verhaltensdaten-Loop</li>
+              <li>Schritt-für-Schritt-Videos zum Setup</li>
+              <li>Alle künftigen Updates ohne Aufpreis</li>
+            </ul>
+          </div>
+          <div class="delivery-col">
+            <span class="delivery-mark" aria-hidden="true">[ LIEFERUNG ]</span>
+            <h3 class="delivery-title">Wie du es erhältst</h3>
+            <ul class="delivery-list">
+              <li><strong>Digitales Produkt</strong> — kein Versand, keine physischen Materialien</li>
+              <li>Sofort nach Zahlung per E-Mail von Digistore24</li>
+              <li>Download-Link zu allen Dateien, Anleitungen und Videos</li>
+              <li>Direkter Zugang, dauerhafte Nutzung</li>
+              <li>Voraussetzung: Shopify-Shop und Claude-Account mit Code-Zugang</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="trust-strip" aria-label="Sicherheit & Vertrauen" data-reveal-stagger>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ SAFE ]</span>
@@ -4459,9 +4539,9 @@
             <p class="trust-tile-body">Du arbeitest immer auf einem Duplicate. Kein Auto-Deploy. Du publishst, wenn du soweit bist. Niemals automatisch.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
-            <span class="trust-tile-mark" aria-hidden="true">[ MONEY-BACK ]</span>
-            <h3 class="trust-tile-title">14 Tage Geld-zurück</h3>
-            <p class="trust-tile-body">Funktioniert das System nicht für dich, schreibst du eine Mail. Refund kommt zurück.</p>
+            <span class="trust-tile-mark" aria-hidden="true">[ RÜCKGABE ]</span>
+            <h3 class="trust-tile-title">14 Tage Rückgaberecht</h3>
+            <p class="trust-tile-body">Innerhalb von 14 Tagen ab Kauf — ohne Angabe von Gründen. Kurze E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder über Digistore24, du erhältst den vollen Betrag erstattet.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ DATEN ]</span>
@@ -4509,7 +4589,7 @@
                 Spart <strong>~5.232&nbsp;€&nbsp;/Jahr</strong> ggü. typischem App-Stack. Break-Even meist <strong>nach einem Monat</strong> — je nach App-Stack.
               </div>
               <a href="https://www.digistore24.com/product/688983" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
-              <p class="bundle-hero-guarantee">14 Tage Geld-zurück, wenn es für dich nicht funktioniert.</p>
+              <p class="bundle-hero-guarantee">14 Tage Rückgaberecht — ohne Angabe von Gründen.</p>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
@@ -4517,7 +4597,7 @@
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Base System</strong><span>Theme-Optimization-Workflow + kompletter Skill-Stack</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>SEOFlow</strong><span>Search-Console-Loop für kontinuierliches Ranken</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>ClarityFlow</strong><span>Verhaltensdaten-Loop für CVR aus echten Sessions</span></div></li>
-                <li><span class="check" aria-hidden="true">✓</span><div><strong>Setup-Garantie</strong><span>Funktioniert nicht am selben Tag? Refund.</span></div></li>
+                <li><span class="check" aria-hidden="true">✓</span><div><strong>Sofortige digitale Lieferung</strong><span>E-Mail mit Download-Link direkt nach Zahlung über Digistore24</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Alle künftigen Updates</strong><span>Solange du das System besitzt, ohne Aufpreis</span></div></li>
               </ul>
             </div>
@@ -4567,8 +4647,12 @@
             <div class="faq-body">SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude. Wenn du dich unwohl dabei fühlst, dass Claude deine Daten verarbeitet, ist vorflows nicht das richtige für dich.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
-            <summary>Gibt es eine Geld-zurück-Garantie?</summary>
-            <div class="faq-body">Das ist zwar bisher nie passiert, aber: Wenn du das Setup nach Anleitung durchführst und das System nicht für dich funktioniert, bekommst du dein Geld zurück.</div>
+            <summary>Wie funktioniert die Rückgabe?</summary>
+            <div class="faq-body">Du hast 14 Tage Rückgaberecht ab Kaufdatum — ohne Angabe von Gründen. Kurze formlose E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder direkt über Digistore24 reicht. Du erhältst den vollen Betrag erstattet.</div>
+          </details>
+          <details class="faq-item" data-animate data-reveal="up">
+            <summary>Wie wird das Produkt geliefert?</summary>
+            <div class="faq-body">vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien.</div>
           </details>
         </div>
       </div>
