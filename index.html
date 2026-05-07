@@ -3844,6 +3844,20 @@
         display: block;
       }
       .hero-video.is-playing video { cursor: pointer; }
+      /* Fullscreen: show full frame, no crop. Letterbox over black. */
+      .hero-video:fullscreen,
+      .hero-video:-webkit-full-screen {
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        background: #000;
+        border-radius: 0;
+      }
+      .hero-video:fullscreen video,
+      .hero-video:-webkit-full-screen video {
+        object-fit: contain;
+        background: #000;
+      }
       .hero-video .hv-play {
         position: absolute;
         inset: 0;
