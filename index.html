@@ -851,15 +851,16 @@
           transparent 64%);
         pointer-events: none;
         z-index: 0;
-        opacity: clamp(0, calc(var(--pr-p) * 3), 1);
+        opacity: 0;
+        transition: opacity 900ms ease-out 200ms;
       }
+      .product-reveal.is-revealed::before { opacity: 1; }
       .pr-track {
         position: relative;
         z-index: 1;
-        /* Runway is fixed-pixel based (not vh) so scroll distance and
-           animation duration stay consistent across screen sizes.
-           Pin = 100vh + ~1500–2200px of scroll runway. */
-        min-height: calc(100vh + clamp(1500px, 180vh, 2200px));
+        /* Runway is card-only (boxes are static). Pixel-based so scroll
+           distance stays consistent across screens. */
+        min-height: calc(100vh + clamp(900px, 110vh, 1400px));
       }
       .pr-pin {
         position: sticky;
@@ -902,25 +903,21 @@
         justify-items: center;
       }
 
-      /* Trio (three modules) — at p=0 SEO and Clarity sit stacked behind
-         Base AND the trio is translated up to overlap the headline (depth).
-         As p scrubs 0→0.10 the trio descends to natural position
-         (headline emerges from behind it). Then 0.10→0.40 boxes fan out. */
+      /* Trio (three modules) — boxes are static (no scroll-driven fan).
+         Side boxes fly out from behind Base on first viewport entry via
+         a one-time CSS transition triggered by .is-revealed class. */
       .pr-trio {
         position: relative;
         z-index: 3;
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        gap: clamp(28px, 3.6vw, 56px);
-        --pr-stack-offset: clamp(260px, 30vw, 480px);
+        gap: clamp(12px, 1.8vw, 28px);
         padding-inline: clamp(16px, 3vw, 48px);
       }
       .pr-box {
         margin: 0;
         position: relative;
-        --raw-fan: calc((var(--pr-p) - 0.05) / 0.37);
-        --fan: clamp(0, var(--raw-fan), 1);
       }
       .pr-box img {
         width: 100%;
@@ -932,22 +929,30 @@
       }
       .pr-box--lead { width: clamp(280px, 22vw, 480px); z-index: 3; }
       .pr-box--side { width: clamp(220px, 17vw, 380px); padding-bottom: clamp(6px, 1vw, 16px); z-index: 1; }
-      /* Side boxes start invisible (opacity 0, scale 0.5), emerge in place
-         at their natural flex positions as fan progresses. No translate
-         to avoid misalignment when stack-offset doesn't match flex gap. */
+      .pr-box--base { transform-origin: center; }
+      /* Side boxes start hidden behind Base (translateX pulls them to
+         Base center). On .is-revealed they slide outward to their natural
+         flex positions. One-shot — not scroll-driven. */
       .pr-box--seo {
-        opacity: var(--fan);
-        transform: scale(calc(0.5 + var(--fan) * 0.5));
+        transform: translateX(130%) scale(0.55);
+        opacity: 0;
         transform-origin: center;
+        transition:
+          transform 1100ms cubic-bezier(0.2, 0.7, 0.1, 1) 120ms,
+          opacity 700ms ease-out 120ms;
       }
       .pr-box--clarity {
-        opacity: var(--fan);
-        transform: scale(calc(0.5 + var(--fan) * 0.5));
+        transform: translateX(-130%) scale(0.55);
+        opacity: 0;
         transform-origin: center;
+        transition:
+          transform 1100ms cubic-bezier(0.2, 0.7, 0.1, 1) 280ms,
+          opacity 700ms ease-out 280ms;
       }
-      .pr-box--base {
-        transform: scale(calc(0.96 + var(--fan) * 0.04));
-        transform-origin: center;
+      .product-reveal.is-revealed .pr-box--seo,
+      .product-reveal.is-revealed .pr-box--clarity {
+        transform: translateX(0) scale(1);
+        opacity: 1;
       }
 
       /* Cards — fly OUT of source box, growing as they go.
@@ -1048,16 +1053,14 @@
       }
       .pr-card-meta strong { color: var(--text-primary); font-weight: 500; }
 
-      /* Per-card scroll-window starts (desktop). Each card flies out from
-         its source box at a specific point in scroll progress. Base cards
-         (01/02/04) start almost immediately so emergence overlaps the
-         box-fan animation; side cards (03/05/06) wait until fan settles. */
-      .pr-card[data-cell="card01"] { --idx: 0; --start: 0.46; }
-      .pr-card[data-cell="card02"] { --idx: 1; --start: 0.52; }
-      .pr-card[data-cell="card03"] { --idx: 2; --start: 0.62; }
-      .pr-card[data-cell="card04"] { --idx: 3; --start: 0.56; }
-      .pr-card[data-cell="card05"] { --idx: 4; --start: 0.66; }
-      .pr-card[data-cell="card06"] { --idx: 5; --start: 0.70; }
+      /* Per-card scroll-window starts (desktop). Cards now own the full
+         runway since boxes are static; spread evenly with span 0.30. */
+      .pr-card[data-cell="card01"] { --idx: 0; --start: 0.06; }
+      .pr-card[data-cell="card02"] { --idx: 1; --start: 0.18; }
+      .pr-card[data-cell="card03"] { --idx: 2; --start: 0.42; }
+      .pr-card[data-cell="card04"] { --idx: 3; --start: 0.30; }
+      .pr-card[data-cell="card05"] { --idx: 4; --start: 0.54; }
+      .pr-card[data-cell="card06"] { --idx: 5; --start: 0.66; }
 
       /* Mobile + reduced-motion fallback.
          Mobile becomes a pinned scroll-deck: all three boxes layered at
@@ -1070,9 +1073,10 @@
         .product-reveal {
           --pr-p: 0;
           padding-block: 0;
+          padding-top: clamp(40px, 8vw, 64px);
         }
         .pr-track {
-          min-height: 340vh;
+          min-height: 600vh;
           position: relative;
         }
         .pr-pin {
@@ -1159,6 +1163,8 @@
           --slide-out-span: 0.06;
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%) translate3d(calc(var(--raw-out) * -120vw), 0, 0) !important;
+          opacity: 1 !important;
+          transition: none !important;
           z-index: 2;
         }
         .pr-box--seo {
@@ -1170,6 +1176,8 @@
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%)
                      translate3d(calc((1 - var(--raw-in)) * 120vw + var(--raw-out) * -120vw), 0, 0) !important;
+          opacity: 1 !important;
+          transition: none !important;
           z-index: 3;
         }
         .pr-box--clarity {
@@ -1178,11 +1186,18 @@
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           transform: translate(-50%, -50%)
                      translate3d(calc((1 - var(--raw-in)) * 120vw), 0, 0) !important;
+          opacity: 1 !important;
+          transition: none !important;
           z-index: 4;
         }
         .pr-box img {
           filter: drop-shadow(0 24px 36px rgba(26, 26, 26, 0.16))
                   drop-shadow(0 6px 12px rgba(26, 26, 26, 0.08));
+          /* Force GPU layer so drop-shadow renders correctly on first
+             paint (Chrome sticky+filter paint-cache miss otherwise leaves
+             a hard bottom edge until the next scroll-jiggle). */
+          transform: translateZ(0);
+          will-change: transform, filter;
         }
 
         /* Cards container: bottom row, holds absolutely-positioned card stack */
@@ -5775,7 +5790,22 @@
           });
         };
 
+        // One-shot box entrance — when the section enters the viewport,
+        // tag .is-revealed so SEO+Clarity slide out from behind Base.
+        // Triggers once, then unobserves. Skipped on mobile (mobile uses
+        // its own scroll-driven box-swap), but harmless if class persists.
+        const revealOnce = new IntersectionObserver((entries, obs) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              section.classList.add('is-revealed');
+              obs.unobserve(section);
+            }
+          });
+        }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });
+        revealOnce.observe(section);
+
         if (reduce) {
+          section.classList.add('is-revealed');
           section.style.setProperty('--pr-p', '1');
           return;
         }
