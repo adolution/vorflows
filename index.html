@@ -2295,6 +2295,55 @@
         .security-strip .ss-body { font-size: 14px; }
       }
 
+      /* Hero trust strip — cold-traffic anchor between hero and product reveal */
+      .hero-trust-strip {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: rgba(200, 99, 62, 0.04);
+      }
+      .hero-trust-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px 22px;
+        padding-block: 18px;
+        font-family: 'Inter', sans-serif;
+        font-size: 13.5px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: var(--text-primary);
+      }
+      .hero-trust-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+      .hero-trust-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex: 0 0 auto;
+      }
+      .hero-trust-sep {
+        width: 1px;
+        height: 14px;
+        background: var(--border-strong);
+      }
+      .hero-trust-strong { font-weight: 600; }
+      @media (max-width: 720px) {
+        .hero-trust-inner {
+          flex-direction: column;
+          gap: 10px;
+          padding-block: 16px;
+          font-size: 13px;
+        }
+        .hero-trust-item { white-space: normal; text-align: center; }
+        .hero-trust-sep { display: none; }
+      }
+
       .skill-section-divider {
         margin: 56px auto 0;
         max-width: 960px;
@@ -4602,14 +4651,25 @@
           </div>
         </div>
         <p class="hero-sub">
-          vorflows ist das System, mit dem Founder ihren Shop über <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">Claude&nbsp;Code</span> umbauen, ranken und konvertieren. Die App-Rechnung wird nebenbei kleiner.
+          vorflows ist das System für Shopify-Founder. Du sagst, was du willst. Eine <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">KI</span> baut, rankt, optimiert. App-Stack, Agentur und Dev-Team werden überflüssig.
         </p>
         <div class="hero-ctas">
-          <a href="#bundle" class="btn btn-primary" data-magnetic>Jetzt sichern</a>
+          <a href="#bundle" class="btn btn-primary" data-magnetic>Bundle sichern · 297&nbsp;€ statt 597&nbsp;€</a>
           <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
         </div>
       </div>
     </header>
+
+    <!-- 02a HERO TRUST STRIP -->
+    <aside class="hero-trust-strip" aria-label="Vertrauenssignale">
+      <div class="container hero-trust-inner">
+        <span class="hero-trust-item"><span class="hero-trust-dot" aria-hidden="true"></span>Aus geschlossener Beta. Mit Shopify-Foundern getestet.</span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span class="hero-trust-item">Ersetzt App-Stack im Wert von <span class="hero-trust-strong">~5.232 € pro Jahr</span>.</span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span class="hero-trust-item"><span class="hero-trust-strong">Erfolgsgarantie:</span> läuft nicht, Geld zurück.</span>
+      </div>
+    </aside>
 
     <!-- 02b PRODUCT REVEAL: scroll-scrubbed three-act unfold -->
     <section class="product-reveal" id="produkt" aria-labelledby="produktTitle">
@@ -4831,8 +4891,8 @@
       <div class="container">
         <div style="max-width: 720px;" data-reveal="up">
           <div class="meta eyebrow">Drei Module · Ein System</div>
-          <h2 class="h2 display">Base baut. SEOFlow rankt. ClarityFlow optimiert.</h2>
-          <p class="module-lead">Base ist das Fundament. SEOFlow und ClarityFlow sind optionale Add-Ons.</p>
+          <h2 class="h2 display">Drei Module ersetzen deinen kompletten App-Stack.</h2>
+          <p class="module-lead">Theme bauen. Ranken. Optimieren. Alles ohne Subscription.</p>
         </div>
         <div class="modules" data-reveal-stagger>
           <div class="module module--lead" data-reveal="up">
@@ -5306,7 +5366,7 @@
     <!-- 14 FINAL CTA -->
     <section class="final-cta section">
       <div class="container-prose" data-reveal-stagger>
-        <h2 class="display" data-reveal="up">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
+        <h2 class="display" data-reveal="up">Apps kündigen. SEO und Conversion auf <em>Autopilot.</em></h2>
         <p data-reveal="up">Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
         <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Bundle sichern · 297&nbsp;€</a>
         <p class="final-cta-meta" data-reveal="up" style="margin-top: 8px; font-size: 14px; color: var(--text-secondary); letter-spacing: 0.02em;">14 Tage Rückgaberecht · sofortige digitale Lieferung</p>
