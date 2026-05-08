@@ -249,6 +249,12 @@
         padding-block: clamp(72px, 10vw, 160px);
       }
 
+      .section--squeeze-bottom {
+        padding-bottom: clamp(36px, 4vw, 64px);
+      }
+      .section-tight--squeeze-top {
+        padding-top: clamp(28px, 3vw, 48px);
+      }
       .section-tight {
         padding-block: clamp(48px, 6vw, 96px);
       }
@@ -2281,6 +2287,74 @@
         height: 1px;
         background: var(--border);
       }
+      .skill-flat {
+        margin: 36px auto 0;
+        max-width: 960px;
+      }
+      .skill-flat-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 6px;
+      }
+      .skill-flat-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .skill-flat-meta {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.04em;
+        color: var(--text-secondary);
+      }
+      .skill-flat-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .skill-flat-list li {
+        display: grid;
+        grid-template-columns: 100px 200px 1fr;
+        align-items: baseline;
+        gap: 18px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .skill-flat-list li:last-child { border-bottom: 0; }
+      .skill-flat-cat {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .skill-flat-name {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13.5px;
+        color: var(--accent);
+      }
+      .skill-flat-desc {
+        font-size: 14.5px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+      @media (max-width: 720px) {
+        .skill-flat-list li {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          padding: 12px 0;
+        }
+        .skill-flat-meta { display: none; }
+      }
       .skill-rail-label {
         margin: 36px auto -24px;
         max-width: 960px;
@@ -3396,6 +3470,9 @@
       .pricing-beta-row {
         margin: 28px 0 40px;
       }
+      .pricing-beta-row--inline {
+        margin: 18px 0 0;
+      }
       .pricing-social {
         margin-top: 0;
         display: inline-flex;
@@ -3456,8 +3533,8 @@
       .testimonials-viewport {
         width: 100%;
         overflow: hidden;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-                mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+                mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
       }
       .testimonials-nav { display: none; }
       .testimonials-track {
@@ -4578,7 +4655,7 @@
     </section>
 
     <!-- 03 PROBLEM: asymmetric -->
-    <section class="section">
+    <section class="section section--squeeze-bottom">
       <div class="container">
         <div class="problem-asym">
           <div class="problem-head" data-reveal="up">
@@ -4629,7 +4706,7 @@
     </section>
 
     <!-- 05 SOLUTION REVEAL -->
-    <section class="section-tight">
+    <section class="section-tight section-tight--squeeze-top">
       <div class="container reveal" style="max-width: 1040px; margin-inline: auto;" data-reveal-stagger>
         <div class="meta eyebrow" data-reveal="up">Die Lösung</div>
         <h2 class="reveal-head display" data-reveal="up"><span class="reveal-line">KI wird dein</span> <span class="reveal-line"><em>technischer <span class="nowrap">Co-Founder</span></em>.</span><span class="reveal-line reveal-line--sub">Nur schneller &amp; ohne Kosten.</span></h2>
@@ -4939,53 +5016,20 @@
         </aside>
 
         <div class="skill-section-divider" aria-hidden="true"></div>
-        <details class="skill-stack-toggle" data-reveal="up">
-          <summary>
-            <span class="sst-label">
-              Skill-Stack
-              <strong>Welche Skills sind enthalten?</strong>
-            </span>
-            <span class="sst-hint">
-              <span class="sst-hint-closed">Aufklappen für Details</span>
-              <span class="sst-hint-open">Zuklappen</span>
-            </span>
-            <svg class="sst-chev" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 8 11 13 6"/></svg>
-          </summary>
-          <div class="skill-list">
-            <article class="skill-card">
-              <header class="skill-card-head">
-                <span class="skill-card-num">01 / Shopify-Engineering · Pflicht</span>
-                <h3 class="skill-card-name">Code wie ein Senior-Shopify-Dev.</h3>
-              </header>
-              <div class="skill-grid">
-                <div><span class="skill-tile-name">shop-architecture</span><p class="skill-tile-desc">Scannt dein Theme einmal komplett, merkt sich alles für jede Session.</p></div>
-                <div><span class="skill-tile-name">shopify-senior-dev</span><p class="skill-tile-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</p></div>
-              </div>
-            </article>
-            <article class="skill-card">
-              <header class="skill-card-head">
-                <span class="skill-card-num">02 / Suchmaschinen-Optimierung</span>
-                <h3 class="skill-card-name">SEO aus echten Ranking-Daten.</h3>
-              </header>
-              <div class="skill-grid">
-                <div><span class="skill-tile-name">opportunity-detection</span><p class="skill-tile-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</p></div>
-                <div><span class="skill-tile-name">weekly-report</span><p class="skill-tile-desc">Wöchentlicher Performance-Report mit konkreten Fix-Vorschlägen.</p></div>
-              </div>
-              <p class="skill-more">und viele mehr</p>
-            </article>
-            <article class="skill-card">
-              <header class="skill-card-head">
-                <span class="skill-card-num">03 / Conversion-Rate-Optimierung</span>
-                <h3 class="skill-card-name">CRO aus echtem Nutzerverhalten.</h3>
-              </header>
-              <div class="skill-grid">
-                <div><span class="skill-tile-name">click-behavior</span><p class="skill-tile-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</p></div>
-                <div><span class="skill-tile-name">scroll-depth</span><p class="skill-tile-desc">Holt verkaufsentscheidende Module nach oben.</p></div>
-              </div>
-              <p class="skill-more">und viele mehr</p>
-            </article>
+        <div class="skill-flat" data-reveal="up">
+          <div class="skill-flat-head">
+            <span class="skill-flat-label">Skill-Stack</span>
+            <span class="skill-flat-meta">20+ Fähigkeiten · 6 Shop-spezifisch</span>
           </div>
-        </details>
+          <ul class="skill-flat-list">
+            <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shop-architecture</span><span class="skill-flat-desc">Scannt dein Theme einmal komplett, merkt sich alles.</span></li>
+            <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shopify-senior-dev</span><span class="skill-flat-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</span></li>
+            <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">opportunity-detection</span><span class="skill-flat-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</span></li>
+            <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">weekly-report</span><span class="skill-flat-desc">Wöchentlicher Performance-Report mit Fix-Vorschlägen.</span></li>
+            <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">click-behavior</span><span class="skill-flat-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</span></li>
+            <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">scroll-depth</span><span class="skill-flat-desc">Holt verkaufsentscheidende Module nach oben.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -5082,14 +5126,13 @@
             <div class="meta eyebrow">Launch-Preis</div>
             <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
             <p class="bundle-showcase-caption"><em>Das ist drin.</em> BaseFlow, SEOFlow und ClarityFlow. Drei Module, ein Preis, einmal zahlen.</p>
+            <div class="pricing-beta-row pricing-beta-row--inline">
+              <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
+            </div>
           </div>
           <figure class="bundle-showcase-figure" data-reveal="scale-soft">
             <img class="bundle-showcase-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
           </figure>
-        </div>
-
-        <div class="pricing-beta-row" data-reveal="up">
-          <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
         </div>
 
         <div class="delivery-card" aria-label="Inhalt und Lieferung" data-reveal="up">
