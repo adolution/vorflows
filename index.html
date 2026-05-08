@@ -263,6 +263,9 @@
       .section--squeeze-bottom {
         padding-bottom: clamp(36px, 4vw, 64px);
       }
+      .section--squeeze-top {
+        padding-top: clamp(36px, 4vw, 64px);
+      }
       .section-tight--squeeze-top {
         padding-top: clamp(28px, 3vw, 48px);
       }
@@ -2924,6 +2927,27 @@
         text-decoration-color: var(--border-strong);
         text-underline-offset: 3px;
       }
+      .bundle-hero-quote {
+        margin: 0 0 22px;
+        padding: 14px 16px 14px 18px;
+        border-left: 2px solid var(--accent);
+        background: rgba(255,255,255,0.5);
+        border-radius: 0 8px 8px 0;
+        font-family: 'Fraunces', serif;
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--text-primary);
+      }
+      .bundle-hero-quote-attr {
+        display: block;
+        margin-top: 6px;
+        font-family: 'Inter', sans-serif;
+        font-size: 12.5px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
       .bundle-hero-features {
         display: flex;
         flex-direction: column;
@@ -3527,7 +3551,7 @@
 
       /* Beta testimonials — editorial marquee band */
       .testimonials-band {
-        padding: 96px 0 104px;
+        padding: 96px 0 56px;
         overflow: hidden;
       }
       .testimonials-band-head {
@@ -3577,11 +3601,12 @@
         font-family: 'Fraunces', Georgia, serif;
         font-weight: 500;
         font-size: 84px;
-        line-height: 0.4;
+        line-height: 0.85;
         color: var(--accent);
-        height: 28px;
         letter-spacing: -0.04em;
         user-select: none;
+        display: block;
+        margin: 0 0 -16px;
       }
       .testimonial-quote {
         font-family: 'Fraunces', Georgia, serif;
@@ -3620,7 +3645,7 @@
         .testimonials-track { animation: none; }
       }
       @media (max-width: 720px) {
-        .testimonials-band { padding: 64px 0 72px; }
+        .testimonials-band { padding: 64px 0 36px; }
         .testimonials-band-head { margin-bottom: 28px; }
         .testimonials-viewport {
           overflow-x: auto;
@@ -3657,7 +3682,7 @@
         }
         .testimonial-slot[aria-hidden="true"] { display: none; }
         .testimonial-quote { font-size: 18px; }
-        .testimonial-mark { font-size: 64px; height: 20px; }
+        .testimonial-mark { font-size: 64px; line-height: 0.85; margin-bottom: -12px; }
         .testimonials-nav {
           display: grid;
           place-items: center;
@@ -4507,7 +4532,7 @@
         <div class="nav-links">
           <a href="#module">Module</a>
           <a href="#workflow">Workflow</a>
-          <a href="#bundle">Investment</a>
+          <a href="#bundle">Preis</a>
           <a href="#faq">FAQ</a>
           <a href="#bundle" class="btn btn-primary nav-cta" data-magnetic>Jetzt sichern</a>
           <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
@@ -4520,7 +4545,7 @@
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
       <a href="#module">Module</a>
       <a href="#workflow">Workflow</a>
-      <a href="#bundle">Investment</a>
+      <a href="#bundle">Preis</a>
       <a href="#faq">FAQ</a>
       <a href="#bundle" class="mobile-cta">Jetzt sichern</a>
     </div>
@@ -4535,7 +4560,7 @@
         <span class="sticky-cta-label">Launch-Preis · spar 300&nbsp;€</span>
         <span class="sticky-cta-price">Bundle <strong>297&nbsp;€</strong></span>
       </div>
-      <a href="#bundle" class="sticky-cta-btn">Sichern →</a>
+      <a href="#bundle" class="sticky-cta-btn">Bundle sichern →</a>
     </aside>
 
     <!-- 02 HERO -->
@@ -5113,12 +5138,12 @@
     </section>
 
     <!-- 12 PRICING: Bundle-first -->
-    <section class="section" id="pricing" style="background: #F4F2EC;">
+    <section class="section section--squeeze-top" id="pricing" style="background: #F4F2EC;">
       <div class="container">
         <div class="bundle-showcase" data-reveal-stagger>
           <div class="bundle-showcase-text" data-reveal="up">
             <div class="meta eyebrow">Launch-Preis</div>
-            <h2 class="h2 display">Hol dir das ganze System auf einmal.</h2>
+            <h2 class="h2 display">Subscription-Killer. Ein Preis, keine Wiederkehr.</h2>
             <p class="bundle-showcase-caption"><em>Das ist drin.</em> BaseFlow, SEOFlow und ClarityFlow. Drei Module, ein Preis, einmal zahlen.</p>
             <div class="pricing-beta-row pricing-beta-row--inline">
               <span class="pricing-social"><span class="pricing-social-dot" aria-hidden="true"></span>Mit Shopify-Foundern in geschlossener Beta getestet</span>
@@ -5183,10 +5208,10 @@
           <header class="bundle-hero-launch" data-launch-active>
             <div class="bundle-hero-launch-row">
               <span class="bundle-hero-launch-tag">Launch-Preis · 297&nbsp;€ statt 597&nbsp;€ · spar 300&nbsp;€</span>
-              <span class="bundle-hero-launch-count">Noch <strong data-launch-days>—</strong> Tage · bis <span data-launch-until>—</span></span>
+              <span class="bundle-hero-launch-count">Aktion bis <span data-launch-until>31. Mai</span><span data-launch-days-wrap hidden> · noch <strong data-launch-days>—</strong> Tage</span></span>
             </div>
             <div class="bundle-hero-launch-track" aria-hidden="true">
-              <div class="bundle-hero-launch-fill" data-launch-bar style="width: 0%"></div>
+              <div class="bundle-hero-launch-fill" data-launch-bar style="width: 100%"></div>
             </div>
           </header>
           <header class="bundle-hero-launch bundle-hero-launch--soldout" data-launch-expired hidden>
@@ -5196,7 +5221,7 @@
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
               <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
-              <p class="bundle-hero-tagline">Base + SEOFlow + ClarityFlow — alles, was du für mehr Umsatz und weniger Ausgaben brauchst.</p>
+              <p class="bundle-hero-tagline">Mehr Umsatz. Weniger Ausgaben. Alles drin.</p>
               <div class="bundle-hero-price-block">
                 <div class="bp-row">
                   <span class="bundle-hero-price"><span data-count-to="297" data-count-suffix="&nbsp;€">297&nbsp;€</span></span>
@@ -5204,9 +5229,10 @@
                   <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
                 </div>
               </div>
-              <div class="bundle-math">
-                Spart <strong>~5.232&nbsp;€&nbsp;/Jahr</strong> ggü. typischem App-Stack. Break-Even meist <strong>nach einem Monat</strong> — je nach App-Stack.
-              </div>
+              <blockquote class="bundle-hero-quote">
+                „Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt."
+                <cite class="bundle-hero-quote-attr">Adrian · Founder, Skincare D2C</cite>
+              </blockquote>
               <a href="https://www.digistore24.com/product/688983?voucher=launchsale" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
               <p class="bundle-hero-guarantee">14 Tage Rückgaberecht — ohne Angabe von Gründen.</p>
             </div>
@@ -5282,7 +5308,8 @@
       <div class="container-prose" data-reveal-stagger>
         <h2 class="display" data-reveal="up">Apps kündigen, SEO &amp; CVR <em>optimieren.</em></h2>
         <p data-reveal="up">Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
-        <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Jetzt sichern</a>
+        <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Bundle sichern · 297&nbsp;€</a>
+        <p class="final-cta-meta" data-reveal="up" style="margin-top: 8px; font-size: 14px; color: var(--text-secondary); letter-spacing: 0.02em;">14 Tage Rückgaberecht · sofortige digitale Lieferung</p>
         <p class="final-cta-closer" data-reveal="up">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
     </section>
@@ -5302,15 +5329,14 @@
             <ul>
               <li><a href="#module">Module</a></li>
               <li><a href="#workflow">Workflow</a></li>
-              <li><a href="#bundle">Investment</a></li>
+              <li><a href="#bundle">Preis</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>Resources</h4>
             <ul>
               <li><a href="#faq">FAQ</a></li>
-              <li><a href="#">Changelog</a></li>
-              <li><a href="#">Status</a></li>
+              <li><a href="mailto:alex@adolution.de">Support</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -5406,6 +5432,7 @@
           document.querySelectorAll('[data-launch-days]').forEach((el) => { el.textContent = days; });
           document.querySelectorAll('[data-launch-until]').forEach((el) => { el.textContent = dateFmt; });
           document.querySelectorAll('[data-launch-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
+          document.querySelectorAll('[data-launch-days-wrap]').forEach((el) => { el.hidden = false; });
           if (remainingMs <= 0) {
             document.querySelectorAll('[data-launch-expired]').forEach((el) => { el.hidden = false; });
             document.querySelectorAll('[data-launch-active]').forEach((el) => { el.hidden = true; });
