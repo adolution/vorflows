@@ -174,7 +174,7 @@
             { "@type": "Question", "name": "Kann ich nur ein Modul kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Auf der Seite verkaufen wir nur das Bundle zum Launch-Preis. Für Einzel-Module bitte kurz an alex@adolution.de schreiben." } },
             { "@type": "Question", "name": "Wie lange dauert das Onboarding?", "acceptedAnswer": { "@type": "Answer", "text": "Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup." } },
             { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "SEO- und Verhaltensdaten bleiben in deinen Accounts. vorflows hostet keine Shop-Daten. Alles läuft über deine eigenen Verbindungen zu Shopify, SEO-Tools und Claude." } },
-            { "@type": "Question", "name": "Wie funktioniert die Rückgabe?", "acceptedAnswer": { "@type": "Answer", "text": "14 Tage Rückgaberecht ab Kaufdatum, ohne Angabe von Gründen. Eine formlose E-Mail an alex@adolution.de oder direkt über Digistore24 reicht — du erhältst den vollen Betrag erstattet." } },
+            { "@type": "Question", "name": "Wie funktioniert die Rückgabe?", "acceptedAnswer": { "@type": "Answer", "text": "14 Tage Rückgaberecht ab Kaufdatum. Eine formlose E-Mail an alex@adolution.de oder direkt über Digistore24 reicht — du erhältst den vollen Betrag erstattet." } },
             { "@type": "Question", "name": "Wie wird das Produkt geliefert?", "acceptedAnswer": { "@type": "Answer", "text": "vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien." } }
           ]
         }
@@ -3037,12 +3037,15 @@
           max-width: 100%;
         }
         .bundle-hero-price-block {
-          gap: 12px;
+          gap: 10px;
           margin: 0 0 18px;
         }
         .bundle-hero-price { font-size: 64px; letter-spacing: -0.03em; }
         .bundle-hero-strike { font-size: 19px; }
         .bundle-hero-suffix { font-size: 11px; }
+        .bp-divider { font-size: 9.5px; gap: 10px; }
+        .bp-alt-price { font-size: 28px; }
+        .bp-alt-unit { font-size: 0.5em; }
         .bundle-math {
           margin: 12px 0 24px;
           padding: 14px 16px;
@@ -4667,7 +4670,7 @@
         <span class="hero-trust-sep" aria-hidden="true"></span>
         <span class="hero-trust-item">Ersetzt App-Stack im Wert von <span class="hero-trust-strong">~5.232 € pro Jahr</span>.</span>
         <span class="hero-trust-sep" aria-hidden="true"></span>
-        <span class="hero-trust-item"><span class="hero-trust-strong">14 Tage Rückgabe</span> · ohne Angabe von Gründen.</span>
+        <span class="hero-trust-item"><span class="hero-trust-strong">Erfolgsgarantie:</span> läuft nicht, Geld zurück.</span>
       </div>
     </aside>
 
@@ -5250,7 +5253,7 @@
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ RÜCKGABE ]</span>
             <h3 class="trust-tile-title">14 Tage Rückgaberecht</h3>
-            <p class="trust-tile-body">Innerhalb von 14 Tagen ab Kauf — ohne Angabe von Gründen. Kurze E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder über Digistore24, du erhältst den vollen Betrag erstattet.</p>
+            <p class="trust-tile-body">Innerhalb von 14 Tagen ab Kauf. Kurze E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder über Digistore24, du erhältst den vollen Betrag erstattet.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ DATEN ]</span>
@@ -5288,13 +5291,18 @@
                   <span class="bundle-hero-strike">597&nbsp;€</span>
                   <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
                 </div>
+                <div class="bp-divider" aria-hidden="true"><span>oder</span></div>
+                <div class="bp-row">
+                  <span class="bp-alt-price">49,50&nbsp;€<span class="bp-alt-unit">/Monat</span></span>
+                  <span class="bundle-hero-suffix">6 Raten · über Digistore24</span>
+                </div>
               </div>
               <blockquote class="bundle-hero-quote">
                 „Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt."
                 <cite class="bundle-hero-quote-attr">Adrian · Founder, Skincare D2C</cite>
               </blockquote>
               <a href="https://www.digistore24.com/product/688983?voucher=launchsale" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 297&nbsp;€</a>
-              <p class="bundle-hero-guarantee">14 Tage Rückgaberecht — ohne Angabe von Gründen.</p>
+              <p class="bundle-hero-guarantee">14 Tage Rückgaberecht.</p>
             </div>
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
@@ -5353,7 +5361,7 @@
           </details>
           <details class="faq-item" data-animate data-reveal="up">
             <summary>Wie funktioniert die Rückgabe?</summary>
-            <div class="faq-body">Du hast 14 Tage Rückgaberecht ab Kaufdatum — ohne Angabe von Gründen. Kurze formlose E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder direkt über Digistore24 reicht. Du erhältst den vollen Betrag erstattet.</div>
+            <div class="faq-body">Du hast 14 Tage Rückgaberecht ab Kaufdatum. Kurze formlose E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder direkt über Digistore24 reicht. Du erhältst den vollen Betrag erstattet.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
             <summary>Wie wird das Produkt geliefert?</summary>
