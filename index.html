@@ -19,6 +19,17 @@
         'https://connect.facebook.net/en_US/fbevents.js');
       }
     </script>
+    <!-- Microsoft Clarity loader, invoked only after consent (DSGVO) -->
+    <script>
+      function _loadClaritySdk() {
+        if (window.clarity && window.clarity.q !== undefined && document.querySelector('script[src*="clarity.ms/tag/"]')) return;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wnn5d5ehwn");
+      }
+    </script>
     <title>vorflows — Shopify-Store wie Senior Dev mit Claude Code</title>
     <meta name="description" content="vorflows: das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack." />
     <meta name="author" content="vorflows" />
@@ -5359,7 +5370,7 @@
     <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
       <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
       <p class="cookie-text" id="cookieText">
-        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API) für Reichweitenmessung und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
+        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
       </p>
       <div class="cookie-actions">
         <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
@@ -5464,6 +5475,9 @@
         // Load + init Pixel SDK
         if (typeof _loadFbPixelSdk === 'function') _loadFbPixelSdk();
         if (window.fbq) fbq('init', META_PIXEL_ID, advancedMatchingWithUser());
+
+        // Load Microsoft Clarity (heatmaps + session recordings)
+        if (typeof _loadClaritySdk === 'function') _loadClaritySdk();
 
         trackFb('PageView');
       }

@@ -17,6 +17,17 @@
         'https://connect.facebook.net/en_US/fbevents.js');
       }
     </script>
+    <!-- Microsoft Clarity loader — invoked only after consent (DSGVO) -->
+    <script>
+      function _loadClaritySdk() {
+        if (window.clarity && window.clarity.q !== undefined && document.querySelector('script[src*="clarity.ms/tag/"]')) return;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wnn5d5ehwn");
+      }
+    </script>
     <title>Datenschutzerklärung — vorflows</title>
     <meta name="description" content="Datenschutzerklärung von vorflows. Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO." />
     <meta name="robots" content="noindex, follow" />
@@ -378,9 +389,10 @@
             <li><a href="#sec-3"><span class="num">03</span>Hosting & Server-Logs</a></li>
             <li><a href="#sec-4"><span class="num">04</span>Waitlist-Formular & EmailJS</a></li>
             <li><a href="#sec-5"><span class="num">05</span>Meta Pixel & Conversions API</a></li>
-            <li><a href="#sec-6"><span class="num">06</span>Cookies & lokaler Speicher</a></li>
-            <li><a href="#sec-7"><span class="num">07</span>Ihre Rechte</a></li>
-            <li><a href="#sec-8"><span class="num">08</span>Aktualität</a></li>
+            <li><a href="#sec-6"><span class="num">06</span>Microsoft Clarity</a></li>
+            <li><a href="#sec-7"><span class="num">07</span>Cookies & lokaler Speicher</a></li>
+            <li><a href="#sec-8"><span class="num">08</span>Ihre Rechte</a></li>
+            <li><a href="#sec-9"><span class="num">09</span>Aktualität</a></li>
           </ol>
         </nav>
       </div>
@@ -478,7 +490,7 @@
 
           <h3>Meta Pixel (clientseitig)</h3>
           <p>
-            Der Meta Pixel ist ein JavaScript-Code, der in Ihrem Browser ausgeführt wird und Cookies setzt (siehe Abschnitt 06). Erfasst werden Seitenaufrufe sowie von Ihnen ausgelöste Ereignisse (z. B. Scroll-Tiefe, Klick auf einen Call-to-Action, erfolgreiche Formularabsendung).
+            Der Meta Pixel ist ein JavaScript-Code, der in Ihrem Browser ausgeführt wird und Cookies setzt (siehe Abschnitt 07). Erfasst werden Seitenaufrufe sowie von Ihnen ausgelöste Ereignisse (z. B. Scroll-Tiefe, Klick auf einen Call-to-Action, erfolgreiche Formularabsendung).
           </p>
 
           <h3>Meta Conversions API (serverseitig)</h3>
@@ -538,7 +550,58 @@
         </section>
 
         <section class="ds-section" id="sec-6">
-          <h2><span class="num">// 06</span>Cookies & lokaler Speicher</h2>
+          <h2><span class="num">// 06</span>Microsoft Clarity</h2>
+          <p>
+            Auf Grundlage Ihrer ausdrücklichen Einwilligung nutzen wir <strong>Microsoft Clarity</strong> der Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, D18 P521, Irland („Microsoft"). Clarity ist ein Tool zur Analyse des Nutzerverhaltens auf unserer Website (Heatmaps, Session-Aufzeichnungen, Klick- und Scroll-Verhalten).
+          </p>
+
+          <h3>Zweck der Verarbeitung</h3>
+          <ul>
+            <li>Analyse des Nutzerverhaltens (Klicks, Scroll-Tiefe, Maus-Bewegungen) zur Verbesserung der Website-Usability</li>
+            <li>Erkennung und Behebung technischer Fehler im Frontend (z. B. „Rage Clicks", abgebrochene Interaktionen)</li>
+            <li>Erstellung aggregierter Heatmaps und anonymisierter Session-Aufzeichnungen zur Optimierung von Layout, Conversion-Pfaden und Inhalten</li>
+          </ul>
+
+          <h3>Verarbeitete Daten</h3>
+          <ul>
+            <li>Geräteinformationen (Bildschirmauflösung, Browser, Betriebssystem)</li>
+            <li>Gekürzte/anonymisierte IP-Adresse</li>
+            <li>Referrer-URL und besuchte Seiten innerhalb von vorflows.com</li>
+            <li>Mausbewegungen, Klicks, Scroll-Verhalten, Tastatur-Interaktionen (ohne erfasste Eingabewerte — Formularinhalte werden vor der Aufzeichnung maskiert)</li>
+            <li>Pseudonyme Session- und User-IDs in Cookies (siehe Abschnitt 07)</li>
+            <li>Ungefährer geografischer Standort (Land/Region) abgeleitet aus der IP-Adresse</li>
+          </ul>
+          <p>
+            Texte, die Sie in Formularfelder eingeben, werden von Clarity standardmäßig maskiert und nicht in Aufzeichnungen sichtbar. Es findet keine Aufzeichnung von Passwörtern oder Zahlungsdaten statt.
+          </p>
+
+          <h3>Datenübertragung in Drittländer (USA)</h3>
+          <p>
+            Microsoft Corporation mit Sitz in den USA hat Zugriff auf die Daten. Die Übertragung erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework vom 10.07.2023. Microsoft Corporation ist unter dem Data Privacy Framework zertifiziert. Ergänzend kommen Standardvertragsklauseln der EU-Kommission zur Anwendung.
+          </p>
+
+          <h3>Speicherdauer</h3>
+          <p>
+            Clarity speichert Sitzungsdaten standardmäßig für bis zu <strong>13 Monate</strong>. Die Cookies in Ihrem Browser haben eine Lebensdauer von wenigen Tagen bis zu einem Jahr (siehe Abschnitt 07).
+          </p>
+
+          <h3>Rechtsgrundlage</h3>
+          <p>
+            Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG.
+          </p>
+
+          <h3>Widerruf der Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Klicken Sie hierzu im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> und wählen Sie „Nur notwendige". Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+          </p>
+
+          <div class="source-line">
+            Datenschutzerklärung Microsoft: <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener">privacy.microsoft.com/de-de/privacystatement</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-7">
+          <h2><span class="num">// 07</span>Cookies & lokaler Speicher</h2>
           <p>
             Wir verwenden Cookies sowie den lokalen Speicher Ihres Browsers (Local Storage). Diese sind kleine Datenmengen, die auf Ihrem Endgerät gespeichert werden. Rechtsgrundlage für nicht-notwendige Cookies und Local-Storage-Einträge ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TDDDG.
           </p>
@@ -551,15 +614,18 @@
             <li><code>vf_consent</code> (Local Storage) — speichert Ihre Cookie-Entscheidung („granted" oder „denied"), damit der Banner nicht erneut angezeigt wird. Speicherdauer: bis zum Löschen durch Sie oder bis Sie die Auswahl widerrufen.</li>
           </ul>
 
-          <h3>Marketing-Cookies und ähnliche Technologien (nur mit Einwilligung)</h3>
+          <h3>Marketing- und Analyse-Cookies und ähnliche Technologien (nur mit Einwilligung)</h3>
           <p>
-            Diese werden ausschließlich nach Ihrer ausdrücklichen Einwilligung gesetzt. Details siehe Abschnitt 05:
+            Diese werden ausschließlich nach Ihrer ausdrücklichen Einwilligung gesetzt. Details siehe Abschnitte 05 und 06:
           </p>
           <ul>
             <li><code>_fbp</code> (Cookie, Meta Pixel) — pseudonyme Browserkennung. Speicherdauer: 90 Tage.</li>
             <li><code>_fbc</code> (Cookie, Meta Pixel) — Klick-ID einer Meta-Werbeanzeige. Speicherdauer: 90 Tage. Wird nur gesetzt, wenn Sie unsere Seite über eine Meta-Anzeige aufrufen.</li>
             <li><code>vf_ext_id</code> (Local Storage) — pseudonyme, sitzungsübergreifende Kennung zur Verbesserung der Conversion-Zuordnung. Speicherdauer: bis zum Löschen oder Widerruf.</li>
             <li><code>vf_known_email</code> / <code>vf_known_first_name</code> (Local Storage) — speichern Vorname und E-Mail-Adresse einer erfolgreichen Waitlist-Eintragung lokal in Ihrem Browser, um diese bei Folgebesuchen erneut (gehasht) an Meta zu übermitteln und so die Zuordnung zu verbessern. Speicherdauer: bis zum Löschen oder Widerruf.</li>
+            <li><code>_clck</code> (Cookie, Microsoft Clarity) — pseudonyme User-ID. Speicherdauer: 1 Jahr.</li>
+            <li><code>_clsk</code> (Cookie, Microsoft Clarity) — verknüpft mehrere Seitenaufrufe einer Sitzung. Speicherdauer: 1 Tag.</li>
+            <li><code>CLID</code>, <code>ANONCHK</code>, <code>MR</code>, <code>MUID</code>, <code>SM</code> (Cookies, Microsoft) — von Clarity gesetzte Kennungen für Sitzungs- und Telemetriezwecke. Speicherdauer: 1 Tag bis 1 Jahr.</li>
           </ul>
 
           <h3>Verwaltung Ihrer Einwilligung</h3>
@@ -571,8 +637,8 @@
           </p>
         </section>
 
-        <section class="ds-section" id="sec-7">
-          <h2><span class="num">// 07</span>Ihre Rechte</h2>
+        <section class="ds-section" id="sec-8">
+          <h2><span class="num">// 08</span>Ihre Rechte</h2>
           <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
           <ul>
             <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO)</li>
@@ -591,8 +657,8 @@
           </p>
         </section>
 
-        <section class="ds-section" id="sec-8">
-          <h2><span class="num">// 08</span>Aktualität dieser Datenschutzerklärung</h2>
+        <section class="ds-section" id="sec-9">
+          <h2><span class="num">// 09</span>Aktualität dieser Datenschutzerklärung</h2>
           <p>
             Diese Datenschutzerklärung hat den Stand April 2026. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
           </p>
@@ -647,7 +713,7 @@
     <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
       <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
       <p class="cookie-text" id="cookieText">
-        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API) für Reichweitenmessung und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
       </p>
       <div class="cookie-actions">
         <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
@@ -678,6 +744,7 @@
           fbq('init', META_PIXEL_ID, { country: 'de' });
           fbq('track', 'PageView');
         }
+        if (typeof _loadClaritySdk === 'function') _loadClaritySdk();
       }
 
       const cookieBanner = document.getElementById('cookieBanner');
