@@ -372,6 +372,16 @@
       @media (max-width: 880px) {
         .inline-cta-row.mobile-only { display: flex; margin-top: 32px; }
       }
+      .workflow-dark .inline-cta {
+        color: var(--text-inverse);
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+      .workflow-dark .inline-cta-sep { color: rgba(255, 255, 255, 0.32); }
+      .workflow-dark .inline-cta-meta { color: rgba(255, 255, 255, 0.7); }
+      .workflow-dark .inline-cta:hover {
+        border-color: var(--accent);
+        background: rgba(200, 99, 62, 0.12);
+      }
 
       /* Nav */
       .nav {
@@ -861,11 +871,13 @@
         /* Runway is card-only (boxes are static). Pixel-based so scroll
            distance stays consistent across screens. */
         min-height: calc(100vh + clamp(900px, 110vh, 1400px));
+        min-height: calc(100svh + clamp(900px, 110svh, 1400px));
       }
       .pr-pin {
         position: sticky;
         top: 0;
         height: 100vh;
+        height: 100svh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1083,6 +1095,7 @@
           position: sticky;
           top: 0;
           height: 100vh;
+          height: 100svh;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -3793,6 +3806,7 @@
       }
       .hero-stack .hero-video {
         width: min(100%, 1040px, calc((100vh - 360px) * 16 / 9));
+        width: min(100%, 1040px, calc((100svh - 360px) * 16 / 9));
         margin-top: clamp(6px, 0.8vw, 12px);
       }
       .hero-stack .hero-sub {
@@ -5947,7 +5961,14 @@
         }));
 
         window.addEventListener('scroll', kick, { passive: true });
-        window.addEventListener('resize', () => { recomputeMode(); applyMobileNumbering(); measurePinOffset(); layoutOrigins(); kick(); }, { passive: true });
+        let _lastW = window.innerWidth;
+        window.addEventListener('resize', () => {
+          // Ignore height-only resizes (iOS / Instagram WebView toolbar toggle)
+          // to avoid pin-tracker recompute mid-scroll.
+          if (window.innerWidth === _lastW) return;
+          _lastW = window.innerWidth;
+          recomputeMode(); applyMobileNumbering(); measurePinOffset(); layoutOrigins(); kick();
+        }, { passive: true });
         if ('ResizeObserver' in window) {
           new ResizeObserver(() => { measurePinOffset(); layoutOrigins(); kick(); }).observe(section);
         }
