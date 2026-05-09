@@ -1,4 +1,96 @@
+# vorflows — robots.txt
+# Canonical host: https://vorflows.com
+
 User-agent: *
 Allow: /
+Disallow: /index-b
+Disallow: /index-b.html
+Disallow: /api/
+Disallow: /carousels/
+Disallow: /carousel-extract/
+Disallow: /carousel-original/
+Disallow: /ads/
 
+# Search engines — explicit allow for assets used in rich snippets
+User-agent: Googlebot
+Allow: /assets/
+Allow: /brand_assets/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.mp4$
+Allow: /*.css$
+Allow: /*.js$
+Disallow: /index-b
+Disallow: /index-b.html
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Disallow: /index-b
+Disallow: /index-b.html
+
+# AI crawlers — allow citation, retain attribution
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Resource hints for crawlers
 Sitemap: https://vorflows.com/sitemap.xml
+Host: https://vorflows.com

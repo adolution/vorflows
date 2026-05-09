@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://vorflows.com/</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/" />
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/og-image.jpg</image:loc>
+      <image:title>vorflows — Shopify-Store wie ein Senior Dev mit Claude Code</image:title>
+      <image:caption>vorflows Bundle: BaseFlow, SEOFlow, ClarityFlow für Shopify-Founder</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp</image:loc>
+      <image:title>vorflows Bundle Modul-Boxen</image:title>
+      <image:caption>BaseFlow, SEOFlow und ClarityFlow im vorflows Bundle</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/logos/10d.1-wordmark.png</image:loc>
+      <image:title>vorflows Wordmark Logo</image:title>
+    </image:image>
   </url>
 </urlset>

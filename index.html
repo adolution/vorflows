@@ -39,6 +39,22 @@
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href="https://vorflows.com/" />
+    <link rel="alternate" hreflang="de-DE" href="https://vorflows.com/" />
+    <link rel="alternate" hreflang="de" href="https://vorflows.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://vorflows.com/" />
+    <meta name="language" content="German" />
+    <meta http-equiv="content-language" content="de-DE" />
+    <meta name="geo.region" content="DE" />
+    <meta name="geo.placename" content="Deutschland" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="application-name" content="vorflows" />
+    <meta name="apple-mobile-web-app-title" content="vorflows" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="msapplication-TileColor" content="#C8633E" />
+    <meta name="keywords" content="Shopify Optimization, Shopify Theme, Claude Code, Shopify SEO, Shopify CRO, Shopify ohne Apps, Shopify Founder, Shopify Skill, BaseFlow, SEOFlow, ClarityFlow, Microsoft Clarity, Search Console, Liquid, Shopify Senior Dev" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -60,6 +76,16 @@
     <meta name="twitter:description" content="Shopify-Store über Claude Code umbauen, ranken, optimieren. Ohne Agentur, ohne App-Stack." />
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
     <meta name="twitter:image:alt" content="vorflows: Shopify-Store wie ein Senior Dev bauen" />
+    <meta property="og:see_also" content="https://www.instagram.com/vorflows/" />
+    <meta property="article:publisher" content="https://vorflows.com/" />
+    <meta property="business:contact_data:country_name" content="Germany" />
+    <meta property="product:brand" content="vorflows" />
+    <meta property="product:availability" content="preorder" />
+    <meta property="product:condition" content="new" />
+    <meta property="product:price:amount" content="297.00" />
+    <meta property="product:price:currency" content="EUR" />
+    <meta property="product:retailer_item_id" content="vf-bundle" />
+    <meta property="product:category" content="Shopify Optimization System" />
 
     <link rel="preload" as="image" href="/assets/video/ki-im-shop-poster.webp" type="image/webp" fetchpriority="high" />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -82,55 +108,253 @@
           "@type": "Organization",
           "@id": "https://vorflows.com/#organization",
           "name": "vorflows",
+          "alternateName": "vorflows — Shopify-Optimization-System",
           "url": "https://vorflows.com/",
-          "logo": "https://vorflows.com/brand_assets/logos/favicon-32.png",
-          "description": "System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren.",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://vorflows.com/#logo",
+            "url": "https://vorflows.com/brand_assets/logos/10d.1-wordmark.png",
+            "contentUrl": "https://vorflows.com/brand_assets/logos/10d.1-wordmark.png",
+            "width": 3200,
+            "height": 880,
+            "caption": "vorflows"
+          },
+          "image": { "@id": "https://vorflows.com/#logo" },
+          "description": "System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.",
+          "slogan": "Shopify-Store wie ein Senior Dev mit Claude Code.",
+          "foundingDate": "2026",
+          "knowsLanguage": ["de", "en"],
           "sameAs": [
             "https://www.instagram.com/vorflows/"
           ],
           "founder": { "@id": "https://vorflows.com/#founder" },
           "parentOrganization": {
             "@type": "Organization",
-            "name": "AMD Media GmbH"
-          }
+            "name": "AMD Media GmbH",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "DE"
+            }
+          },
+          "contactPoint": [{
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "alex@adolution.de",
+            "availableLanguage": ["de", "en"],
+            "areaServed": ["DE", "AT", "CH"]
+          }],
+          "areaServed": ["DE", "AT", "CH"]
         },
         {
           "@type": "Person",
           "@id": "https://vorflows.com/#founder",
           "name": "Alexander Dück",
+          "givenName": "Alexander",
+          "familyName": "Dück",
           "jobTitle": "Founder",
           "image": "https://vorflows.com/shop-ki-founder.webp",
+          "url": "https://vorflows.com/",
           "worksFor": { "@id": "https://vorflows.com/#organization" },
+          "knowsAbout": [
+            "Shopify",
+            "Shopify Theme Development",
+            "Conversion Rate Optimization",
+            "Claude Code",
+            "SEO",
+            "E-Commerce Strategy"
+          ],
           "affiliation": {
             "@type": "Organization",
             "name": "AMD Media GmbH"
-          }
+          },
+          "sameAs": [
+            "https://www.instagram.com/vorflows/"
+          ]
         },
         {
           "@type": "WebSite",
           "@id": "https://vorflows.com/#website",
           "url": "https://vorflows.com/",
           "name": "vorflows",
+          "alternateName": "vorflows.com",
           "publisher": { "@id": "https://vorflows.com/#organization" },
-          "inLanguage": "de-DE"
+          "inLanguage": "de-DE",
+          "copyrightHolder": { "@id": "https://vorflows.com/#organization" },
+          "copyrightYear": 2026
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://vorflows.com/#webpage",
+          "url": "https://vorflows.com/",
+          "name": "vorflows — Shopify-Store wie Senior Dev mit Claude Code",
+          "description": "vorflows: das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack.",
+          "inLanguage": "de-DE",
+          "isPartOf": { "@id": "https://vorflows.com/#website" },
+          "about": { "@id": "https://vorflows.com/#product-bundle" },
+          "mainEntity": { "@id": "https://vorflows.com/#product-bundle" },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://vorflows.com/brand_assets/og-image.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "breadcrumb": { "@id": "https://vorflows.com/#breadcrumb" },
+          "datePublished": "2026-04-27",
+          "dateModified": "2026-05-09"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://vorflows.com/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Start",
+              "item": "https://vorflows.com/"
+            }
+          ]
         },
         {
           "@type": "Product",
-          "name": "vorflows Bundle",
+          "@id": "https://vorflows.com/#product-bundle",
+          "name": "vorflows Bundle — BaseFlow + SEOFlow + ClarityFlow",
           "description": "Digitales Produkt für Shopify-Founder. Inhalt: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflow-Anleitungen, Videos und alle künftigen Updates. Lieferung 100 % digital — sofort nach Zahlung per E-Mail mit Download-Link über Digistore24. Kein Versand, keine physischen Materialien. Einmalkauf statt Subscription.",
           "brand": { "@id": "https://vorflows.com/#organization" },
-          "image": "https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp",
-          "category": "Shopify Optimization System",
+          "manufacturer": { "@id": "https://vorflows.com/#organization" },
+          "image": [
+            "https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp",
+            "https://vorflows.com/brand_assets/boxes/base-tonal-1x1-transparent.webp",
+            "https://vorflows.com/brand_assets/boxes/seo-tonal-1x1-transparent.webp",
+            "https://vorflows.com/brand_assets/boxes/clarity-tonal-1x1-transparent.webp"
+          ],
+          "category": "Digital Goods > Shopify Optimization System",
+          "productID": "vf-bundle",
+          "sku": "vf-bundle",
+          "mpn": "vf-bundle",
           "inLanguage": "de-DE",
+          "audience": {
+            "@type": "BusinessAudience",
+            "audienceType": "Shopify Store Founder"
+          },
+          "additionalProperty": [
+            { "@type": "PropertyValue", "name": "Lieferform", "value": "Digital Download" },
+            { "@type": "PropertyValue", "name": "Plattform", "value": "Shopify" },
+            { "@type": "PropertyValue", "name": "Voraussetzung", "value": "Claude Pro / Claude Code Account" },
+            { "@type": "PropertyValue", "name": "Sprache", "value": "Deutsch" }
+          ],
+          "isRelatedTo": [
+            { "@type": "Thing", "name": "BaseFlow", "description": "Theme-Optimization-Workflow für Shopify mit Claude Code." },
+            { "@type": "Thing", "name": "SEOFlow", "description": "Search-Console-verknüpfter SEO-Optimierungs-Loop für Shopify." },
+            { "@type": "Thing", "name": "ClarityFlow", "description": "Verhaltensdaten-Loop (Microsoft Clarity) für Shopify-Stores." }
+          ],
           "offers": {
             "@type": "Offer",
+            "@id": "https://vorflows.com/#offer-bundle",
             "sku": "vf-bundle",
             "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow) — Launch-Preis",
+            "description": "Einmalkauf 297 € statt 597 € · 100 € Launch-Rabatt · oder 6 Raten à 49,50 € via Digistore24.",
             "price": "297",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/PreOrder",
+            "itemCondition": "https://schema.org/NewCondition",
             "url": "https://vorflows.com/#pricing",
-            "priceValidUntil": "2026-05-31"
+            "priceValidUntil": "2026-05-31",
+            "validFrom": "2026-04-27",
+            "seller": { "@id": "https://vorflows.com/#organization" },
+            "areaServed": ["DE", "AT", "CH"],
+            "eligibleRegion": ["DE", "AT", "CH"],
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "priceType": "https://schema.org/SalePrice",
+                "price": "297",
+                "priceCurrency": "EUR",
+                "valueAddedTaxIncluded": true,
+                "validThrough": "2026-05-31"
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "priceType": "https://schema.org/ListPrice",
+                "price": "597",
+                "priceCurrency": "EUR",
+                "valueAddedTaxIncluded": true
+              }
+            ],
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": ["DE", "AT", "CH"],
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn"
+            }
+          }
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://vorflows.com/#modules",
+          "name": "vorflows Module",
+          "description": "Drei Module ersetzen den kompletten Shopify-App-Stack.",
+          "itemListOrder": "https://schema.org/ItemListOrderAscending",
+          "numberOfItems": 3,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "Product",
+                "name": "BaseFlow",
+                "description": "Theme-Optimization-Workflow für Shopify mit Claude Code. Setup 20–30 Minuten, erste Section am selben Tag.",
+                "image": "https://vorflows.com/brand_assets/boxes/base-tonal-1x1-transparent.webp",
+                "brand": { "@id": "https://vorflows.com/#organization" },
+                "category": "Digital Goods > Shopify Theme Workflow"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "Product",
+                "name": "SEOFlow",
+                "description": "Search-Console-verknüpfter SEO-Optimierungs-Loop für Shopify. Setup 30–40 Minuten.",
+                "image": "https://vorflows.com/brand_assets/boxes/seo-tonal-1x1-transparent.webp",
+                "brand": { "@id": "https://vorflows.com/#organization" },
+                "category": "Digital Goods > Shopify SEO Workflow"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Product",
+                "name": "ClarityFlow",
+                "description": "Verhaltensdaten-Loop (Microsoft Clarity) für Shopify-Stores. Setup 15 Minuten.",
+                "image": "https://vorflows.com/brand_assets/boxes/clarity-tonal-1x1-transparent.webp",
+                "brand": { "@id": "https://vorflows.com/#organization" },
+                "category": "Digital Goods > Shopify Behavior-Data Workflow"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "VideoObject",
+          "@id": "https://vorflows.com/#hero-video",
+          "name": "vorflows in 5 Minuten — Apps, SEO & CRO mit KI",
+          "description": "Live-Demo: Wie Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren. Apps, SEO und CRO ersetzt durch ein reproduzierbares Workflow-System.",
+          "thumbnailUrl": [
+            "https://vorflows.com/assets/video/ki-im-shop-poster.webp",
+            "https://vorflows.com/brand_assets/og-image.jpg"
+          ],
+          "uploadDate": "2026-05-07",
+          "duration": "PT5M",
+          "contentUrl": "https://vorflows.com/assets/video/ki-im-shop-1080.mp4",
+          "embedUrl": "https://vorflows.com/#hero",
+          "inLanguage": "de-DE",
+          "isFamilyFriendly": true,
+          "publisher": { "@id": "https://vorflows.com/#organization" },
+          "potentialAction": {
+            "@type": "WatchAction",
+            "target": "https://vorflows.com/#hero"
           }
         },
         {
@@ -140,6 +364,11 @@
           "description": "Reproduzierbarer File-Workflow für jede Shopify-Theme-Änderung mit Claude Code. Live-Theme bleibt bis Publish unangetastet.",
           "inLanguage": "de-DE",
           "totalTime": "PT30M",
+          "tool": [
+            { "@type": "HowToTool", "name": "Shopify Admin" },
+            { "@type": "HowToTool", "name": "Claude Code" },
+            { "@type": "HowToTool", "name": "vorflows Setup-Datei" }
+          ],
           "step": [
             {
               "@type": "HowToStep",
@@ -166,7 +395,9 @@
         },
         {
           "@type": "FAQPage",
+          "@id": "https://vorflows.com/#faq",
           "inLanguage": "de-DE",
+          "isPartOf": { "@id": "https://vorflows.com/#webpage" },
           "mainEntity": [
             { "@type": "Question", "name": "Brauche ich Programmier-Erfahrung?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten." } },
             { "@type": "Question", "name": "Was, wenn ich mein Theme zerschieße?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy." } },
@@ -4672,7 +4903,7 @@
             poster="/assets/video/ki-im-shop-poster.webp"
             data-src="/assets/video/ki-im-shop-1080-silent.mp4"
             data-src-audio="/assets/video/ki-im-shop-1080.mp4"
-            aria-label="vorflows Salesletter Video"
+            aria-label="vorflows Hero Video — Apps, SEO und CRO mit KI in 5 Minuten"
           ></video>
           <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
             <span class="hv-play-btn">
@@ -4734,13 +4965,13 @@
             <div class="pr-stage">
               <div class="pr-trio">
                 <div class="pr-box pr-box--side pr-box--seo">
-                  <img src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEO Flow Modul" width="500" height="500" loading="lazy" decoding="async" />
+                  <img src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="vorflows SEOFlow Modul-Box — Search-Console-Optimierungs-Loop für Shopify" width="500" height="500" loading="lazy" decoding="async" />
                 </div>
                 <div class="pr-box pr-box--lead pr-box--base">
-                  <img src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="Base Modul" width="500" height="500" loading="lazy" decoding="async" />
+                  <img src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="vorflows BaseFlow Modul-Box — Theme-Optimization-Workflow für Shopify" width="500" height="500" loading="lazy" decoding="async" />
                 </div>
                 <div class="pr-box pr-box--side pr-box--clarity">
-                  <img src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="Clarity Flow Modul" width="500" height="500" loading="lazy" decoding="async" />
+                  <img src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="vorflows ClarityFlow Modul-Box — Verhaltensdaten-Loop mit Microsoft Clarity" width="500" height="500" loading="lazy" decoding="async" />
                 </div>
               </div>
 
@@ -4940,7 +5171,7 @@
         </div>
         <div class="modules" data-reveal-stagger>
           <div class="module module--lead" data-reveal="up">
-            <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
+            <img class="module-box" src="brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="vorflows BaseFlow Modul-Box — Shopify-Theme umbauen ohne dass der Live-Shop wackelt" width="500" height="500" loading="lazy" decoding="async" />
             <div class="module-content">
               <div class="meta module-label">01 / Base · Pflicht-Modul</div>
               <h3 class="module-title">Theme umbauen, ohne dass dein Live-Shop wackelt.</h3>
@@ -4949,7 +5180,7 @@
             </div>
           </div>
           <div class="module module--small" data-reveal="up">
-            <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
+            <img class="module-box" src="brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="vorflows SEOFlow Modul-Box — SEO-Maschine für Shopify in 10 Minuten Setup" width="500" height="500" loading="lazy" decoding="async" />
             <div class="module-content">
               <div class="meta module-label">02 / SEOFlow · Add-On</div>
               <h3 class="module-title">SEO-Maschine, die in 10&nbsp;Minuten steht.</h3>
@@ -4957,7 +5188,7 @@
             </div>
           </div>
           <div class="module module--small" data-reveal="up">
-            <img class="module-box" src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box" width="500" height="500" loading="lazy" decoding="async" />
+            <img class="module-box" src="brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="vorflows ClarityFlow Modul-Box — Verhaltensdaten als Input, Code als Output" width="500" height="500" loading="lazy" decoding="async" />
             <div class="module-content">
               <div class="meta module-label">03 / ClarityFlow · Add-On</div>
               <h3 class="module-title">Verhaltensdaten als Input. Code als Output.</h3>
@@ -5104,7 +5335,7 @@
               poster="/assets/video/shopify-ki-uebersicht-poster.webp"
               data-src="/assets/video/shopify-ki-uebersicht-1080-silent.mp4"
               data-src-audio="/assets/video/shopify-ki-uebersicht-1080.mp4"
-              aria-label="vorflows Demo Video"
+              aria-label="vorflows Demo Video — Theme-Optimization-Loop in Aktion"
             ></video>
             <button type="button" class="hv-play" aria-label="Video mit Ton abspielen">
               <span class="hv-play-btn">
@@ -5253,7 +5484,7 @@
             </div>
           </div>
           <figure class="bundle-showcase-figure" data-reveal="scale-soft">
-            <img class="bundle-showcase-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle mit BaseFlow, SEOFlow und ClarityFlow" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img class="bundle-showcase-img" src="brand_assets/boxes/family-tonal-1x1-transparent.webp" alt="vorflows Bundle — BaseFlow + SEOFlow + ClarityFlow Modul-Boxen für Shopify-Founder" width="1000" height="1000" loading="lazy" decoding="async" />
           </figure>
         </div>
 
