@@ -1188,13 +1188,13 @@
         .pr-box--seo,
         .pr-box--clarity { display: block !important; }
         /* Box swaps synced with mobile card emergence (display order):
-             01–03 (data-cells card01,02,04, Base): start 0.04, 0.18, 0.32 — Base visible until 0.46
-             04    (data-cell  card05,  SEO):    starts 0.46 — SEO swap-in 0.46–0.52
-             05    (data-cell  card03,  Clarity):starts 0.60 — Clarity swap-in 0.60–0.66
-             06    (data-cell  card06,  Clarity):starts 0.74 — Clarity stays */
+             01–03 (data-cells card01,02,04, Base): land 0.00, 0.14, 0.30 — Base visible until card04 lands
+             04    (data-cell  card05,  SEO):    lands 0.46 — SEO swap-in 0.42–0.46
+             05    (data-cell  card03,  Clarity):lands 0.62 — Clarity swap-in 0.58–0.62
+             06    (data-cell  card06,  Clarity):lands 0.78 — Clarity stays */
         .pr-box--base {
-          --slide-out-start: 0.46;
-          --slide-out-span: 0.06;
+          --slide-out-start: 0.42;
+          --slide-out-span: 0.04;
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%) translate3d(calc(var(--raw-out) * -120vw), 0, 0) !important;
           opacity: 1 !important;
@@ -1202,10 +1202,10 @@
           z-index: 2;
         }
         .pr-box--seo {
-          --slide-in-start: 0.46;
-          --slide-in-span: 0.06;
-          --slide-out-start: 0.60;
-          --slide-out-span: 0.06;
+          --slide-in-start: 0.42;
+          --slide-in-span: 0.04;
+          --slide-out-start: 0.58;
+          --slide-out-span: 0.04;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           --raw-out: clamp(0, calc((var(--pr-p) - var(--slide-out-start)) / var(--slide-out-span)), 1);
           transform: translate(-50%, -50%)
@@ -1215,8 +1215,8 @@
           z-index: 3;
         }
         .pr-box--clarity {
-          --slide-in-start: 0.60;
-          --slide-in-span: 0.06;
+          --slide-in-start: 0.58;
+          --slide-in-span: 0.04;
           --raw-in: clamp(0, calc((var(--pr-p) - var(--slide-in-start)) / var(--slide-in-span)), 1);
           transform: translate(-50%, -50%)
                      translate3d(calc((1 - var(--raw-in)) * 120vw), 0, 0) !important;
@@ -1295,12 +1295,12 @@
            Base (01, 02, 04) → SEO (05) → Clarity (03, 06).
            Box swaps synced with the side-card slide-ins. z-index AND
            --mobile-stack-i ascend in deal order so newer cards stack on top. */
-        .pr-card[data-cell="card01"] { --start: -0.05; --span: 0.05; z-index: 30; --mobile-stack-i: 0; }
-        .pr-card[data-cell="card02"] { --start: 0.18; --span: 0.10; z-index: 31; --mobile-stack-i: 1; }
-        .pr-card[data-cell="card04"] { --start: 0.32; --span: 0.10; z-index: 32; --mobile-stack-i: 2; }
-        .pr-card[data-cell="card05"] { --start: 0.46; --span: 0.10; z-index: 33; --mobile-stack-i: 3; }
-        .pr-card[data-cell="card03"] { --start: 0.60; --span: 0.10; z-index: 34; --mobile-stack-i: 4; }
-        .pr-card[data-cell="card06"] { --start: 0.74; --span: 0.10; z-index: 35; --mobile-stack-i: 5; }
+        .pr-card[data-cell="card01"] { --start: -0.04; --span: 0.04; z-index: 30; --mobile-stack-i: 0; }
+        .pr-card[data-cell="card02"] { --start: 0.10; --span: 0.04; z-index: 31; --mobile-stack-i: 1; }
+        .pr-card[data-cell="card04"] { --start: 0.26; --span: 0.04; z-index: 32; --mobile-stack-i: 2; }
+        .pr-card[data-cell="card05"] { --start: 0.42; --span: 0.04; z-index: 33; --mobile-stack-i: 3; }
+        .pr-card[data-cell="card03"] { --start: 0.58; --span: 0.04; z-index: 34; --mobile-stack-i: 4; }
+        .pr-card[data-cell="card06"] { --start: 0.74; --span: 0.04; z-index: 35; --mobile-stack-i: 5; }
 
         /* Counter readout — shows current card position */
         .pr-mobile-counter {
@@ -5282,7 +5282,7 @@
                ───────────────────────────────────────────────────────────── -->
           <header class="bundle-hero-launch" data-launch-active>
             <div class="bundle-hero-launch-row">
-              <span class="bundle-hero-launch-tag">Launch-Preis · 297&nbsp;€ statt 597&nbsp;€ · spar 300&nbsp;€</span>
+              <span class="bundle-hero-launch-tag">Launch-Preis · spar 300&nbsp;€</span>
               <span class="bundle-hero-launch-count">Aktion bis <span data-launch-until>31. Mai</span><span data-launch-days-wrap hidden> · noch <strong data-launch-days>—</strong> Tage</span></span>
             </div>
             <div class="bundle-hero-launch-track" aria-hidden="true">
@@ -6090,8 +6090,8 @@
           // Use card LAND times (start + span) so the counter labels
           // match whichever card is currently visible (not the upcoming one).
           const seq = [
-            ['01', 0.14], ['02', 0.28], ['03', 0.42],
-            ['04', 0.56], ['05', 0.70], ['06', 0.84],
+            ['01', 0.00], ['02', 0.14], ['03', 0.30],
+            ['04', 0.46], ['05', 0.62], ['06', 0.78],
           ];
           let label = '01';
           for (let i = 0; i < seq.length; i++) {
