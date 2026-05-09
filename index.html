@@ -6213,7 +6213,7 @@
           el.replaceChildren();
           const live = document.createElement('span');
           live.className = 'count-live';
-          live.textContent = reduceMotion ? formatNumber(target) + suffix : '0' + suffix;
+          live.textContent = formatNumber(target) + suffix;
           const ghost = document.createElement('span');
           ghost.className = 'count-ghost';
           ghost.setAttribute('aria-hidden', 'true');
@@ -6231,6 +6231,7 @@
             live.textContent = formatNumber(target) + suffix;
             return;
           }
+          live.textContent = '0' + suffix;
           const dur = 1100;
           const start = performance.now();
           const ease = (t) => 1 - Math.pow(1 - t, 4); // ease-out-quart
