@@ -16,23 +16,38 @@ export default function middleware(req) {
 
   const ua = req.headers.get('user-agent') || '';
   const isMobile = MOBILE_UA.test(ua);
-
-  // Desktop bleibt deterministisch auf Variant A (Fixes sind mobile-only).
-  if (!isMobile) return next();
-
-  // Optional: ?ab=A|B query-param erlaubt manuelles Override (für QA).
+  const cookieHeader = req.headers.get('cookie') || '';
   const override = url.searchParams.get('ab');
-  let bucket = override === 'A' || override === 'B'
-    ? override
-    : (req.headers.get('cookie')?.match(/(?:^|; )vf_ab=([AB])/) || [])[1];
 
-  if (!bucket) bucket = Math.random() < 0.5 ? 'A' : 'B';
+  // Reihenfolge:
+  // 1. Override (?ab=A|B) hat höchste Priorität — funktioniert auch auf Desktop für QA.
+  // 2. Cookie sticky — returning visitor sieht stets gleiche Variante.
+  // 3. Mobile-only Random-Bucket — Desktop ohne Cookie + ohne Override bleibt auf A.
+  let bucket = (override === 'A' || override === 'B') ? override : null;
+  if (!bucket) bucket = (cookieHeader.match(/(?:^|; )vf_ab=([AB])/) || [])[1] || null;
+  let source = bucket ? (override ? 'override' : 'cookie') : null;
+
+  if (!bucket) {
+    if (!isMobile) {
+      // Desktop ohne Cookie/Override: deterministisch auf A, kein Cookie setzen.
+      const r = next();
+      r.headers.set('x-ab-bucket', 'A');
+      r.headers.set('x-ab-source', 'desktop-default');
+      r.headers.set('x-ab-mobile', '0');
+      return r;
+    }
+    bucket = Math.random() < 0.5 ? 'A' : 'B';
+    source = 'random';
+  }
 
   const target = bucket === 'B' ? '/index-b.html' : '/index.html';
   const res = url.pathname === target ? next() : rewrite(new URL(target, url));
 
+  res.headers.set('x-ab-bucket', bucket);
+  res.headers.set('x-ab-source', source || 'unknown');
+  res.headers.set('x-ab-mobile', isMobile ? '1' : '0');
+
   // Cookie 90d sticky setzen, falls noch nicht vorhanden.
-  const cookieHeader = req.headers.get('cookie') || '';
   if (!cookieHeader.includes('vf_ab=')) {
     res.headers.append(
       'set-cookie',
