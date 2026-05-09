@@ -1295,7 +1295,7 @@
            Base (01, 02, 04) → SEO (05) → Clarity (03, 06).
            Box swaps synced with the side-card slide-ins. z-index AND
            --mobile-stack-i ascend in deal order so newer cards stack on top. */
-        .pr-card[data-cell="card01"] { --start: 0.04; --span: 0.10; z-index: 30; --mobile-stack-i: 0; }
+        .pr-card[data-cell="card01"] { --start: -0.05; --span: 0.05; z-index: 30; --mobile-stack-i: 0; }
         .pr-card[data-cell="card02"] { --start: 0.18; --span: 0.10; z-index: 31; --mobile-stack-i: 1; }
         .pr-card[data-cell="card04"] { --start: 0.32; --span: 0.10; z-index: 32; --mobile-stack-i: 2; }
         .pr-card[data-cell="card05"] { --start: 0.46; --span: 0.10; z-index: 33; --mobile-stack-i: 3; }
@@ -1883,6 +1883,14 @@
         .gloss::after { left: 0; transform: translateY(4px); max-width: 280px; }
         .gloss:hover::after, .gloss:focus-visible::after { transform: translateY(0); }
       }
+      @media (max-width: 720px) {
+        .hero-sub .gloss {
+          text-decoration: none;
+          cursor: text;
+          pointer-events: none;
+        }
+        .hero-sub .gloss::after { content: none; }
+      }
 
       .compare-foot {
         margin-top: 48px;
@@ -2336,11 +2344,34 @@
       @media (max-width: 720px) {
         .hero-trust-inner {
           flex-direction: column;
-          gap: 10px;
-          padding-block: 16px;
+          align-items: stretch;
+          gap: 0;
+          padding-block: 6px;
+          padding-inline: 18px;
           font-size: 13px;
+          line-height: 1.45;
         }
-        .hero-trust-item { white-space: normal; text-align: center; }
+        .hero-trust-item {
+          white-space: normal;
+          text-align: left;
+          align-items: flex-start;
+          gap: 10px;
+          padding-block: 12px;
+        }
+        .hero-trust-item + .hero-trust-item {
+          border-top: 1px solid rgba(200, 99, 62, 0.22);
+        }
+        .hero-trust-item:not(:first-child)::before {
+          content: '';
+          display: block;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--accent);
+          flex: 0 0 auto;
+          margin-top: 7px;
+        }
+        .hero-trust-dot { margin-top: 7px; }
         .hero-trust-sep { display: none; }
       }
 
@@ -5006,7 +5037,7 @@
     <section class="section" style="background: #EDE9DC;">
       <div class="container-prose">
         <div data-reveal="up">
-          <div class="meta eyebrow">Outcome · 30 Tage</div>
+          <div class="meta eyebrow">Outcome · 14 Tage</div>
           <h2 class="h2 display">Tag 1 mit vorflows.</h2>
         </div>
         <div class="outcome-list" data-reveal-stagger>
@@ -5019,7 +5050,7 @@
             <p class="outcome-text">Claude liest deine Besucherdaten und stellt den Shop auf Conversion um. Optimierung läuft von selbst.</p>
           </div>
           <div class="outcome-item" data-reveal="up">
-            <div class="outcome-day">TAG 30</div>
+            <div class="outcome-day">TAG 14</div>
             <p class="outcome-text">Claude findet versteckte SEO-Potentiale und baut Schema &amp; Rich Snippets ein. Du musst nicht wissen, was das ist.</p>
           </div>
         </div>
