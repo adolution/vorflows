@@ -4613,6 +4613,76 @@
       @media (max-width: 480px) {
         .waitlist-submit { width: 100%; }
       }
+
+      /* === VARIANT B: #produkt mobile pin-scroll DEAKTIVIERT ===
+         Original: 600vh scroll-runway mit sticky pin → 6 viewport-tall
+         scroll-burden für Mobile-User. Variant B: Cards relative-stack als
+         normale vertikale Liste. Trio-Box statisch oben. Spart ~5 viewport-
+         Längen Scroll bis Pricing-Section. */
+      @media (max-width: 880px) {
+        .product-reveal { --pr-p: 1 !important; padding-bottom: 24px; }
+        .pr-track { min-height: 0 !important; }
+        .pr-pin {
+          position: static !important;
+          height: auto !important;
+          padding: 16px 0 24px !important;
+          overflow: visible !important;
+        }
+        .pr-stage {
+          display: block !important;
+          grid-template-rows: none !important;
+          min-height: 0 !important;
+          height: auto !important;
+        }
+        .pr-trio {
+          height: clamp(220px, 36vh, 300px) !important;
+          margin: 0 0 20px !important;
+          position: relative !important;
+        }
+        .pr-trio .pr-box {
+          transform: translate(-50%, -50%) !important;
+          opacity: 1 !important;
+          transition: none !important;
+        }
+        /* Variant B zeigt nur Base-Box statisch (Hero-Modul). SEO/Clarity
+           werden in den Cards selbst durch Eyebrow + Title repräsentiert. */
+        .pr-trio .pr-box--seo,
+        .pr-trio .pr-box--clarity { display: none !important; }
+        .pr-cards {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 14px !important;
+          height: auto !important;
+          padding: 0 4vw !important;
+        }
+        /* Display-Order matched to applyMobileNumbering() JS-mapping
+           (card01=01, card02=02, card04=03, card05=04, card03=05, card06=06)
+           damit visuelle Sequence sequentiell 01→06 ist. */
+        .pr-card[data-cell="card01"] { order: 1 !important; }
+        .pr-card[data-cell="card02"] { order: 2 !important; }
+        .pr-card[data-cell="card04"] { order: 3 !important; }
+        .pr-card[data-cell="card05"] { order: 4 !important; }
+        .pr-card[data-cell="card03"] { order: 5 !important; }
+        .pr-card[data-cell="card06"] { order: 6 !important; }
+        .pr-card {
+          position: relative !important;
+          left: auto !important;
+          right: auto !important;
+          bottom: auto !important;
+          top: auto !important;
+          height: auto !important;
+          min-height: unset !important;
+          max-width: none !important;
+          width: auto !important;
+          margin: 0 !important;
+          padding: 18px 20px 16px !important;
+          transform: none !important;
+          opacity: 1 !important;
+          overflow: visible !important;
+        }
+        .pr-card-body { -webkit-line-clamp: unset; line-clamp: unset; max-height: none; }
+        .pr-mobile-counter { display: none !important; }
+      }
     </style>
   </head>
   <body>
@@ -5712,7 +5782,6 @@
           window.clarity?.('set', 'experiment', variant);
           window.fbq?.('trackCustom', 'ExperimentAssigned', { variant });
         };
-        // Tag setzen sobald Tracker geladen
         if (window.clarity || window.fbq) sendTag();
         else setTimeout(sendTag, 1500);
 
@@ -5721,7 +5790,6 @@
           if (typeof trackFb === 'function') trackFb(name, { ...props, variant });
         };
 
-        // Pricing-View: #bundle 60% in viewport, einmal
         const bundleEl = document.getElementById('bundle');
         if (bundleEl && 'IntersectionObserver' in window) {
           const io = new IntersectionObserver((entries, obs) => {
@@ -5735,12 +5803,10 @@
           io.observe(bundleEl);
         }
 
-        // CTA-Klicks (delegated): differenziere hero / sticky / inline
         document.addEventListener('click', (ev) => {
           const a = ev.target.closest('a[href]');
           if (!a) return;
           const href = a.getAttribute('href') || '';
-          // Digistore-Redirect (Checkout-Initiation)
           if (href.includes('digistore24.com')) {
             cEvent('digistore_redirect', { dest: href });
             window.fbq?.('track', 'InitiateCheckout', { content_name: 'bundle', variant });
@@ -5754,14 +5820,12 @@
           cEvent('cta_click_' + loc, { loc });
         }, { passive: true });
 
-        // FAQ-Open
         document.querySelectorAll('details').forEach((d) => {
           d.addEventListener('toggle', () => {
             if (d.open) cEvent('faq_open', { q: (d.querySelector('summary')?.textContent || '').trim().slice(0, 80) });
           });
         });
 
-        // Video-Play (Hero-Video)
         document.querySelectorAll('video').forEach((v) => {
           v.addEventListener('play', () => cEvent('video_play'), { once: true });
         });
