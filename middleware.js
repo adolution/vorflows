@@ -39,7 +39,10 @@ export default function middleware(req) {
     source = 'random';
   }
 
-  const target = bucket === 'B' ? '/index-b.html' : '/index.html';
+  // cleanUrls: true in vercel.json → /index-b.html ist nicht direkt erreichbar.
+  // Rewrite-Target muss die clean-URL-Form sein (ohne .html), Vercel löst
+  // intern auf den entsprechenden Static-File auf.
+  const target = bucket === 'B' ? '/index-b' : '/index.html';
   const res = url.pathname === target ? next() : rewrite(new URL(target, url));
 
   // CDN darf diese Response NICHT cachen, sonst sehen alle Visitors das
