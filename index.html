@@ -4494,25 +4494,35 @@
       /* Cookie consent banner */
       .cookie-banner {
         position: fixed;
+        top: 50%;
         left: 50%;
-        bottom: 24px;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         width: calc(100% - 32px);
         max-width: 460px;
         text-align: center;
         background: #FFFFFF;
         border: 1px solid var(--border);
         border-radius: 14px;
-        box-shadow: 0 18px 48px rgba(15, 15, 15, 0.12), 0 2px 8px rgba(15, 15, 15, 0.06);
-        padding: 18px 18px 16px;
+        box-shadow: 0 18px 48px rgba(15, 15, 15, 0.18), 0 2px 8px rgba(15, 15, 15, 0.08);
+        padding: 22px 22px 20px;
         z-index: 1100;
         font-family: 'Inter', system-ui, sans-serif;
         animation: cookieRise 280ms cubic-bezier(0.22, 1, 0.36, 1);
       }
       @keyframes cookieRise {
-        from { transform: translate(-50%, 20px); opacity: 0; }
-        to   { transform: translate(-50%, 0);    opacity: 1; }
+        from { transform: translate(-50%, calc(-50% + 12px)); opacity: 0; }
+        to   { transform: translate(-50%, -50%);              opacity: 1; }
       }
+      .cookie-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 15, 15, 0.32);
+        backdrop-filter: blur(2px);
+        z-index: 1099;
+        animation: cookieFade 220ms ease-out;
+      }
+      .cookie-backdrop[hidden] { display: none; }
+      @keyframes cookieFade { from { opacity: 0; } to { opacity: 1; } }
       .cookie-banner[hidden] { display: none; }
       .cookie-title {
         font-size: 14.5px;
@@ -4567,7 +4577,7 @@
         border-color: var(--accent-hover);
       }
       @media (max-width: 480px) {
-        .cookie-banner { width: calc(100% - 24px); bottom: 12px; padding: 16px; }
+        .cookie-banner { width: calc(100% - 24px); padding: 18px 16px 16px; }
         .cookie-actions { flex-direction: column-reverse; }
         .cookie-btn { width: 100%; }
       }
@@ -5462,7 +5472,8 @@
     </div>
 
     <!-- Cookie consent banner -->
-    <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+    <div class="cookie-backdrop" id="cookieBackdrop" hidden></div>
+    <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
       <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
       <p class="cookie-text" id="cookieText">
         Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
@@ -5619,11 +5630,18 @@
 
       // ── Cookie banner ────────────────────────────────────────────────────
       const cookieBanner   = document.getElementById('cookieBanner');
+      const cookieBackdrop = document.getElementById('cookieBackdrop');
       const cookieAcceptEl = document.getElementById('cookieAccept');
       const cookieDeclineEl = document.getElementById('cookieDecline');
 
-      const showCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = false; };
-      const hideCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = true; };
+      const showCookieBanner = () => {
+        if (cookieBanner) cookieBanner.hidden = false;
+        if (cookieBackdrop) cookieBackdrop.hidden = false;
+      };
+      const hideCookieBanner = () => {
+        if (cookieBanner) cookieBanner.hidden = true;
+        if (cookieBackdrop) cookieBackdrop.hidden = true;
+      };
 
       const grantConsent = () => {
         consentState = 'granted';
@@ -5652,17 +5670,7 @@
 
       if (consentState === 'granted') initTracking();
       else if (consentState !== 'denied') {
-        // Defer banner to avoid blocking first-fold content; show after first scroll or 2.5s
-        let bannerShown = false;
-        const showOnce = () => {
-          if (bannerShown) return;
-          bannerShown = true;
-          showCookieBanner();
-          window.removeEventListener('scroll', onFirstScroll);
-        };
-        const onFirstScroll = () => { if (window.scrollY > 80) showOnce(); };
-        window.addEventListener('scroll', onFirstScroll, { passive: true });
-        setTimeout(showOnce, 2500);
+        showCookieBanner();
       }
 
       // Nav border on scroll
