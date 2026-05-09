@@ -31,6 +31,7 @@ export default function middleware(req) {
     if (!isMobile) {
       // Desktop ohne Cookie/Override: deterministisch auf A, kein Cookie setzen.
       const r = next();
+      r.headers.set('cache-control', 'private, no-store, max-age=0, must-revalidate');
       r.headers.set('x-ab-bucket', 'A');
       r.headers.set('x-ab-source', 'desktop-default');
       r.headers.set('x-ab-mobile', '0');
@@ -43,6 +44,9 @@ export default function middleware(req) {
   const target = bucket === 'B' ? '/index-b.html' : '/index.html';
   const res = url.pathname === target ? next() : rewrite(new URL(target, url));
 
+  // CDN darf diese Response NICHT cachen, sonst sehen alle Visitors das
+  // Bucket des ersten Visitors. Pro-Request frische middleware-Eval.
+  res.headers.set('cache-control', 'private, no-store, max-age=0, must-revalidate');
   res.headers.set('x-ab-bucket', bucket);
   res.headers.set('x-ab-source', source || 'unknown');
   res.headers.set('x-ab-mobile', isMobile ? '1' : '0');
