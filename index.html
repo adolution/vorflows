@@ -2342,37 +2342,26 @@
       }
       .hero-trust-strong { font-weight: 600; }
       @media (max-width: 720px) {
+        .hero-trust-strip { background: rgba(200, 99, 62, 0.05); }
         .hero-trust-inner {
           flex-direction: column;
-          align-items: stretch;
-          gap: 0;
-          padding-block: 6px;
-          padding-inline: 18px;
+          align-items: center;
+          gap: 8px;
+          padding-block: 16px;
+          padding-inline: 24px;
           font-size: 13px;
-          line-height: 1.45;
+          line-height: 1.5;
+          text-align: center;
         }
         .hero-trust-item {
-          white-space: normal;
-          text-align: left;
-          align-items: flex-start;
-          gap: 10px;
-          padding-block: 12px;
-        }
-        .hero-trust-item + .hero-trust-item {
-          border-top: 1px solid rgba(200, 99, 62, 0.22);
-        }
-        .hero-trust-item:not(:first-child)::before {
-          content: '';
           display: block;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--accent);
-          flex: 0 0 auto;
-          margin-top: 7px;
+          white-space: normal;
+          text-align: center;
         }
-        .hero-trust-dot { margin-top: 7px; }
-        .hero-trust-sep { display: none; }
+        .hero-trust-item--beta,
+        .hero-trust-sep--beta,
+        .hero-trust-sep,
+        .hero-trust-dot { display: none; }
       }
 
       .skill-section-divider {
@@ -4708,8 +4697,8 @@
     <!-- 02a HERO TRUST STRIP -->
     <aside class="hero-trust-strip" aria-label="Vertrauenssignale">
       <div class="container hero-trust-inner">
-        <span class="hero-trust-item"><span class="hero-trust-dot" aria-hidden="true"></span>Aus geschlossener Beta. Mit Shopify-Foundern getestet.</span>
-        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span class="hero-trust-item hero-trust-item--beta"><span class="hero-trust-dot" aria-hidden="true"></span>Aus geschlossener Beta. Mit Shopify-Foundern getestet.</span>
+        <span class="hero-trust-sep hero-trust-sep--beta" aria-hidden="true"></span>
         <span class="hero-trust-item">Ersetzt App-Stack im Wert von <span class="hero-trust-strong">~5.232 € pro Jahr</span>.</span>
         <span class="hero-trust-sep" aria-hidden="true"></span>
         <span class="hero-trust-item"><span class="hero-trust-strong">Erfolgsgarantie:</span> läuft nicht, Geld zurück.</span>
