@@ -39,11 +39,9 @@
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href="https://vorflows.com/" />
-    <link rel="alternate" hreflang="de-DE" href="https://vorflows.com/" />
     <link rel="alternate" hreflang="de" href="https://vorflows.com/" />
     <link rel="alternate" hreflang="x-default" href="https://vorflows.com/" />
-    <meta name="language" content="German" />
-    <meta http-equiv="content-language" content="de-DE" />
+    <meta http-equiv="content-language" content="de" />
     <meta name="geo.region" content="DE" />
     <meta name="geo.placename" content="Deutschland" />
     <meta name="rating" content="general" />
@@ -143,7 +141,15 @@
             "availableLanguage": ["de", "en"],
             "areaServed": ["DE", "AT", "CH"]
           }],
-          "areaServed": ["DE", "AT", "CH"]
+          "areaServed": ["DE", "AT", "CH"],
+          "knowsAbout": [
+            { "@type": "Thing", "name": "Shopify" },
+            { "@type": "Thing", "name": "Claude Code" },
+            { "@type": "Thing", "name": "Shopify Theme-Optimierung" },
+            { "@type": "Thing", "name": "Conversion-Optimierung" },
+            { "@type": "Thing", "name": "Suchmaschinenoptimierung" },
+            { "@type": "Thing", "name": "Verhaltensdaten-Analyse" }
+          ]
         },
         {
           "@type": "Person",
@@ -190,7 +196,20 @@
           "description": "vorflows: das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack.",
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/#website" },
-          "about": { "@id": "https://vorflows.com/#product-bundle" },
+          "about": [
+            { "@id": "https://vorflows.com/#product-bundle" },
+            { "@type": "Thing", "name": "Shopify" },
+            { "@type": "Thing", "name": "Claude Code" },
+            { "@type": "Thing", "name": "Shopify Theme-Optimierung" }
+          ],
+          "mentions": [
+            { "@type": "Thing", "name": "Conversion-Optimierung" },
+            { "@type": "Thing", "name": "Suchmaschinenoptimierung" },
+            { "@type": "Thing", "name": "Microsoft Clarity" },
+            { "@type": "Thing", "name": "Google Search Console" },
+            { "@type": "Thing", "name": "Shopify Apps" },
+            { "@type": "Thing", "name": "Heatmaps" }
+          ],
           "mainEntity": { "@id": "https://vorflows.com/#product-bundle" },
           "primaryImageOfPage": {
             "@type": "ImageObject",
@@ -215,10 +234,14 @@
           ]
         },
         {
-          "@type": "Product",
+          "@type": ["Product", "SoftwareApplication"],
           "@id": "https://vorflows.com/#product-bundle",
           "name": "vorflows Bundle — BaseFlow + SEOFlow + ClarityFlow",
           "description": "Digitales Produkt für Shopify-Founder. Inhalt: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflow-Anleitungen, Videos und alle künftigen Updates. Lieferung 100 % digital — sofort nach Zahlung per E-Mail mit Download-Link über Digistore24. Kein Versand, keine physischen Materialien. Einmalkauf statt Subscription.",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Shopify Optimization Workflow",
+          "operatingSystem": "Web (Browser-based)",
+          "softwareVersion": "1.0",
           "brand": { "@id": "https://vorflows.com/#organization" },
           "manufacturer": { "@id": "https://vorflows.com/#organization" },
           "image": [
@@ -246,6 +269,35 @@
             { "@type": "Thing", "name": "BaseFlow", "description": "Theme-Optimization-Workflow für Shopify mit Claude Code." },
             { "@type": "Thing", "name": "SEOFlow", "description": "Search-Console-verknüpfter SEO-Optimierungs-Loop für Shopify." },
             { "@type": "Thing", "name": "ClarityFlow", "description": "Verhaltensdaten-Loop (Microsoft Clarity) für Shopify-Stores." }
+          ],
+          "hasPart": [
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://vorflows.com/#baseflow",
+              "name": "BaseFlow",
+              "description": "Workflow-Modul für sichere Shopify-Theme-Optimierungen mit Claude Code.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web (Browser-based)",
+              "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://vorflows.com/#seoflow",
+              "name": "SEOFlow",
+              "description": "Workflow-Modul zur Nutzung von Google-Search-Console-Daten für Shopify-SEO-Optimierungen.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web (Browser-based)",
+              "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://vorflows.com/#clarityflow",
+              "name": "ClarityFlow",
+              "description": "Workflow-Modul zur Nutzung von Microsoft-Clarity-Verhaltensdaten für Conversion-Optimierungen.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web (Browser-based)",
+              "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
+            }
           ],
           "offers": {
             "@type": "Offer",
@@ -352,6 +404,8 @@
           "inLanguage": "de-DE",
           "isFamilyFriendly": true,
           "publisher": { "@id": "https://vorflows.com/#organization" },
+          "about": { "@id": "https://vorflows.com/#product-bundle" },
+          "mainEntityOfPage": { "@id": "https://vorflows.com/#webpage" },
           "potentialAction": {
             "@type": "WatchAction",
             "target": "https://vorflows.com/#hero"
@@ -363,6 +417,8 @@
           "name": "Theme-Änderung mit vorflows in 3 Schritten",
           "description": "Reproduzierbarer File-Workflow für jede Shopify-Theme-Änderung mit Claude Code. Live-Theme bleibt bis Publish unangetastet.",
           "inLanguage": "de-DE",
+          "about": { "@id": "https://vorflows.com/#product-bundle" },
+          "mainEntityOfPage": { "@id": "https://vorflows.com/#webpage" },
           "totalTime": "PT30M",
           "tool": [
             { "@type": "HowToTool", "name": "Shopify Admin" },
@@ -398,6 +454,7 @@
           "@id": "https://vorflows.com/#faq",
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/#webpage" },
+          "about": { "@id": "https://vorflows.com/#product-bundle" },
           "mainEntity": [
             { "@type": "Question", "name": "Brauche ich Programmier-Erfahrung?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten." } },
             { "@type": "Question", "name": "Was, wenn ich mein Theme zerschieße?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy." } },
@@ -3862,178 +3919,6 @@
         .pricing-social-dot { width: 7px; height: 7px; flex: none; }
       }
 
-      /* Beta testimonials — editorial marquee band */
-      .testimonials-band {
-        padding: 96px 0 56px;
-        overflow: hidden;
-      }
-      .testimonials-band-head {
-        text-align: center;
-        margin-bottom: 56px;
-      }
-      .testimonials-band-head .eyebrow {
-        margin-bottom: 0;
-      }
-      .testimonials-marquee {
-        position: relative;
-        width: 100%;
-      }
-      .testimonials-viewport {
-        width: 100%;
-        overflow: hidden;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
-                mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
-      }
-      .testimonials-nav { display: none; }
-      .testimonials-track {
-        display: flex;
-        width: max-content;
-        animation: testimonials-scroll 80s linear infinite;
-        will-change: transform;
-      }
-      .testimonials-viewport:hover .testimonials-track,
-      .testimonials-viewport:focus-within .testimonials-track {
-        animation-play-state: paused;
-      }
-      @keyframes testimonials-scroll {
-        from { transform: translate3d(0, 0, 0); }
-        to   { transform: translate3d(-50%, 0, 0); }
-      }
-      .testimonial-slot {
-        flex: 0 0 auto;
-        width: 540px;
-        margin: 0;
-        padding: 4px 64px;
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-        align-items: flex-start;
-        border-right: 1px solid rgba(26, 26, 26, 0.10);
-      }
-      .testimonial-mark {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 500;
-        font-size: 84px;
-        line-height: 0.85;
-        color: var(--accent);
-        letter-spacing: -0.04em;
-        user-select: none;
-        display: block;
-        margin: 0 0 -16px;
-      }
-      .testimonial-quote {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-style: italic;
-        font-size: 22px;
-        line-height: 1.42;
-        letter-spacing: -0.008em;
-        color: var(--text-primary);
-        margin: 0;
-        text-wrap: pretty;
-      }
-      .testimonial-attr {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        margin: 4px 0 0;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11.5px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .testimonial-attr-name {
-        color: var(--text-primary);
-        font-weight: 600;
-      }
-      .testimonial-attr-sep {
-        width: 24px;
-        height: 1px;
-        background: var(--accent);
-        align-self: center;
-        opacity: 0.7;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .testimonials-track { animation: none; }
-      }
-      @media (max-width: 720px) {
-        .testimonials-band { padding: 64px 0 36px; }
-        .testimonials-band-head { margin-bottom: 28px; }
-        .testimonials-viewport {
-          overflow-x: auto;
-          overflow-y: hidden;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          scroll-behavior: smooth;
-          -webkit-mask-image: none;
-                  mask-image: none;
-        }
-        .testimonials-viewport::-webkit-scrollbar { display: none; }
-        .testimonials-track {
-          animation: none !important;
-          transform: none !important;
-          width: auto;
-        }
-        .testimonial-slot {
-          flex: 0 0 100vw;
-          width: 100vw;
-          min-width: 0;
-          max-width: 100vw;
-          box-sizing: border-box;
-          scroll-snap-align: start;
-          scroll-snap-stop: always;
-          border-right: none;
-          padding: 6px 56px;
-          gap: 18px;
-          min-height: 220px;
-          justify-content: center;
-        }
-        .testimonial-slot .testimonial-quote {
-          overflow-wrap: anywhere;
-        }
-        .testimonial-slot[aria-hidden="true"] { display: none; }
-        .testimonial-quote { font-size: 18px; }
-        .testimonial-mark { font-size: 64px; line-height: 0.85; margin-bottom: -12px; }
-        .testimonials-nav {
-          display: grid;
-          place-items: center;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: rgba(250, 250, 247, 0.92);
-          border: 1px solid rgba(26, 26, 26, 0.12);
-          color: var(--text-primary);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-          cursor: pointer;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 16px;
-          line-height: 1;
-          padding: 0;
-          z-index: 2;
-          transition: background 200ms ease, color 200ms ease, transform 200ms ease;
-          box-shadow: 0 4px 14px -6px rgba(26, 26, 26, 0.18);
-        }
-        .testimonials-nav:hover,
-        .testimonials-nav:focus-visible {
-          background: var(--accent);
-          color: var(--bg-light);
-          outline: none;
-        }
-        .testimonials-nav:active { transform: translateY(-50%) scale(0.94); }
-        .testimonials-nav[disabled] {
-          opacity: 0.35;
-          pointer-events: none;
-        }
-        .testimonials-nav-prev { left: 10px; }
-        .testimonials-nav-next { right: 10px; }
-      }
-
       /* FAQ */
       .faq {
         margin-top: 48px;
@@ -4978,42 +4863,42 @@
               <div class="pr-cards">
                 <article class="pr-card" data-cell="card01">
                   <span class="pr-card-num">01 · Fähigkeiten</span>
-                  <h3 class="pr-card-title">Skill-Ordner</h3>
+                  <p class="pr-card-title">Skill-Ordner</p>
                   <p class="pr-card-body">Die KI bedient sich an einem Ordner mit über 20 Fähigkeiten. Sechs davon sind speziell für deinen Shop gebaut.</p>
                   <p class="pr-card-meta"><strong>20+ Fähigkeiten</strong> · 6 Shop-spezifisch</p>
                 </article>
 
                 <article class="pr-card" data-cell="card02">
                   <span class="pr-card-num">02 · Setup</span>
-                  <h3 class="pr-card-title">Installations-Videos</h3>
+                  <p class="pr-card-title">Installations-Videos</p>
                   <p class="pr-card-body">Schritt für Schritt: Ordner laden, Theme duplizieren, Daten anschließen. Keine Lücken, keine Hürden.</p>
                   <p class="pr-card-meta"><strong>Klick für Klick</strong> · ohne Setup-Hürden</p>
                 </article>
 
                 <article class="pr-card" data-cell="card03">
                   <span class="pr-card-num">03 · Daten</span>
-                  <h3 class="pr-card-title">Live-Daten verstehen</h3>
+                  <p class="pr-card-title">Live-Daten verstehen</p>
                   <p class="pr-card-body">Die KI liest, was Besucher suchen, anklicken und scrollen. Wertet schneller aus als ein Mensch und optimiert direkt anhand der Daten.</p>
                   <p class="pr-card-meta"><strong>3 Signale</strong> · Suche · Klicks · Scrolls</p>
                 </article>
 
                 <article class="pr-card" data-cell="card04">
                   <span class="pr-card-num">04 · Build</span>
-                  <h3 class="pr-card-title">Shop-Bausteine bauen</h3>
+                  <p class="pr-card-title">Shop-Bausteine bauen</p>
                   <p class="pr-card-body">Die KI baut dir genau das, was du in deinem Shop haben willst. Von Shipping-Bars bis Bundle-Selektoren.</p>
                   <p class="pr-card-meta"><strong>2 Skills</strong> · sauberer Code</p>
                 </article>
 
                 <article class="pr-card" data-cell="card05">
                   <span class="pr-card-num">05 · SEO</span>
-                  <h3 class="pr-card-title">Rankings heben</h3>
+                  <p class="pr-card-title">Rankings heben</p>
                   <p class="pr-card-body">Skill 1 findet Begriffe, bei denen du auf Seite 2 stehst, und schlägt direkt Verbesserungen vor. Skill 2 überwacht und warnt bei Rückgang.</p>
                   <p class="pr-card-meta"><strong>2 Skills</strong> · Finden &amp; Halten</p>
                 </article>
 
                 <article class="pr-card" data-cell="card06">
                   <span class="pr-card-num">06 · CRO</span>
-                  <h3 class="pr-card-title">Conversion erhöhen</h3>
+                  <p class="pr-card-title">Conversion erhöhen</p>
                   <p class="pr-card-body">Die KI verschiebt Sections und platziert Buttons neu. Anhand echter Klick und Scroll-Daten deiner Besucher.</p>
                   <p class="pr-card-meta"><strong>2 Skills</strong> · Layout &amp; Buttons</p>
                 </article>
@@ -5038,28 +4923,28 @@
             <div class="problem-item" data-reveal="up">
               <div class="problem-num">01</div>
               <div>
-                <h3 class="problem-title">Theme-Limits.</h3>
+                <p class="problem-title">Theme-Limits.</p>
                 <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
               </div>
             </div>
             <div class="problem-item" data-reveal="up">
               <div class="problem-num">02</div>
               <div>
-                <h3 class="problem-title">App-Stack.</h3>
+                <p class="problem-title">App-Stack.</p>
                 <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
               </div>
             </div>
             <div class="problem-item" data-reveal="up">
               <div class="problem-num">03</div>
               <div>
-                <h3 class="problem-title">Agentur-Loop.</h3>
+                <p class="problem-title">Agentur-Loop.</p>
                 <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
               </div>
             </div>
             <div class="problem-item" data-reveal="up">
               <div class="problem-num">04</div>
               <div>
-                <h3 class="problem-title">Liegen gelassenes Potential.</h3>
+                <p class="problem-title">Liegen gelassenes Potential.</p>
                 <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
               </div>
             </div>
@@ -5097,7 +4982,7 @@
           <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 01</div>
             <div>
-              <h3 class="wf-title">Duplikat erstellen</h3>
+              <p class="wf-title">Duplikat erstellen</p>
               <div class="codeblock-wrap">
                 <pre class="codeblock"><span class="prompt">$</span> Shopify Admin <span class="comment">→</span> Themes <span class="comment">→</span> Actions <span class="comment">→</span> Duplicate
   vorflows-edit <span class="check">✓</span>  <span class="comment"># Live-Theme bleibt unangetastet</span></pre>
@@ -5107,7 +4992,7 @@
           <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 02</div>
             <div>
-              <h3 class="wf-title">Claude bearbeitet</h3>
+              <p class="wf-title">Claude bearbeitet</p>
               <div class="codeblock-wrap codeblock-annotated">
                 <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
 <span class="comment">  Threshold konfigurierbar via Theme-Editor. Position: Cart-Drawer.</span>
@@ -5139,7 +5024,7 @@
           <div class="wf-step" data-reveal="up">
             <div class="wf-num">STEP 03</div>
             <div>
-              <h3 class="wf-title">Review &amp; Publish</h3>
+              <p class="wf-title">Review &amp; Publish</p>
               <div class="codeblock-wrap">
                 <pre class="codeblock"><span class="prompt">$</span> Theme: vorflows-edit
   <span class="comment">→</span> Preview  <span class="check">✓</span>
@@ -5307,19 +5192,19 @@
         <div class="files-grid" data-reveal-stagger>
           <article class="file-card" data-reveal="up">
             <span class="file-card-name">BOOTSTRAP.md</span>
-            <h3 class="file-card-title">Auto-Installer für Claude</h3>
+            <p class="file-card-title">Auto-Installer für Claude</p>
             <p class="file-card-desc">Du sagst nur „Lies BOOTSTRAP.md". Claude lädt Plugins, kopiert dein Theme an die richtige Stelle, mappt die Architektur und schreibt sie in MEMORY.md.</p>
             <div class="file-card-preview"><span class="pv-com"># einmal sagen</span><br>&gt; <span class="pv-str">"Lies BOOTSTRAP.md"</span><br><span class="pv-com"># Claude erledigt</span><br><span class="pv-key">→</span> Plugins · Theme-Mapping · MEMORY</div>
           </article>
           <article class="file-card" data-reveal="up">
             <span class="file-card-name">CLAUDE.md</span>
-            <h3 class="file-card-title">Mein Playbook für deine KI</h3>
+            <p class="file-card-title">Mein Playbook für deine KI</p>
             <p class="file-card-desc">An echten Shop-Cases geschärft. Sagt deiner KI: niemals Live-Theme, immer Duplikat, immer Deploy-Block mit Rollback-Pfad, immer Senior-Skill vor jedem Code.</p>
             <div class="file-card-preview"><span class="pv-com"># Hard Rules</span><br><span class="pv-key">never:</span> <span class="pv-str">edit live theme</span><br><span class="pv-key">always:</span> <span class="pv-str">duplicate + rollback</span><br><span class="pv-key">before code:</span> <span class="pv-str">load senior-dev skill</span></div>
           </article>
           <article class="file-card" data-reveal="up">
             <span class="file-card-name">MEMORY.md</span>
-            <h3 class="file-card-title">Lernt deinen Shop kennen</h3>
+            <p class="file-card-title">Lernt deinen Shop kennen</p>
             <p class="file-card-desc">Theme-Architektur, Operator-Vorlieben, Sackgassen, bestätigte Patterns. Wächst mit jeder Session. Claude liest sie vor jeder Aufgabe und vergisst nichts.</p>
             <div class="file-card-preview"><span class="pv-com"># nach 3 Sessions</span><br><span class="pv-key">theme:</span> <span class="pv-str">"Dawn 15.3 — OS 2.0"</span><br><span class="pv-key">main-product:</span> <span class="pv-str">main-product.liquid</span><br><span class="pv-key">avoid:</span> <span class="pv-str">{% stylesheet %} blocks</span></div>
           </article>
@@ -5427,51 +5312,6 @@
       </div>
     </section>
 
-    <!-- 11.5 BETA TESTIMONIALS — marquee band -->
-    <section class="testimonials-band" id="testimonials" style="background: #EDE9DC;" aria-label="Stimmen aus der geschlossenen Beta">
-      <div class="container testimonials-band-head" data-reveal="up">
-        <span class="meta eyebrow">Aus der geschlossenen Beta</span>
-      </div>
-      <div class="testimonials-marquee" data-reveal="up">
-        <button type="button" class="testimonials-nav testimonials-nav-prev" aria-label="Vorheriges Testimonial">&#8592;</button>
-        <button type="button" class="testimonials-nav testimonials-nav-next" aria-label="Nächstes Testimonial">&#8594;</button>
-        <div class="testimonials-viewport">
-        <div class="testimonials-track">
-          <figure class="testimonial-slot">
-            <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote class="testimonial-quote">Ich hab schonmal versucht, was im Shop mit Claude Code zu bauen, aber das war kein Vergleich zu dem System hier.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Lars</span><span class="testimonial-attr-sep" aria-hidden="true"></span><span>Shopify Agency Owner</span></figcaption>
-          </figure>
-          <figure class="testimonial-slot">
-            <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote class="testimonial-quote">Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Adrian</span><span class="testimonial-attr-sep" aria-hidden="true"></span><span>Founder &middot; Skincare D2C</span></figcaption>
-          </figure>
-          <figure class="testimonial-slot">
-            <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote class="testimonial-quote">Das SEO-Modul ist eine 10/10. Hat sofort Sachen gefunden, bei denen ich auf Seite 2 auftauche, und mich innerhalb einer Woche auf Seite 1 gebracht. Ich freu mich schon auf deine nächsten Erweiterungen.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Maja</span><span class="testimonial-attr-sep" aria-hidden="true"></span><span>Founder &middot; D2C Unterhaltung</span></figcaption>
-          </figure>
-          <figure class="testimonial-slot" aria-hidden="true">
-            <span class="testimonial-mark">&ldquo;</span>
-            <blockquote class="testimonial-quote">Ich hab schonmal versucht, was im Shop mit Claude Code zu bauen, aber das war kein Vergleich zu dem System hier.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Lars</span><span class="testimonial-attr-sep"></span><span>Shopify Agency Owner</span></figcaption>
-          </figure>
-          <figure class="testimonial-slot" aria-hidden="true">
-            <span class="testimonial-mark">&ldquo;</span>
-            <blockquote class="testimonial-quote">Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Adrian</span><span class="testimonial-attr-sep"></span><span>Founder &middot; Skincare D2C</span></figcaption>
-          </figure>
-          <figure class="testimonial-slot" aria-hidden="true">
-            <span class="testimonial-mark">&ldquo;</span>
-            <blockquote class="testimonial-quote">Das SEO-Modul ist eine 10/10. Hat sofort Sachen gefunden, bei denen ich auf Seite 2 auftauche, und mich innerhalb einer Woche auf Seite 1 gebracht. Ich freu mich schon auf deine nächsten Erweiterungen.</blockquote>
-            <figcaption class="testimonial-attr"><span class="testimonial-attr-name">Maja</span><span class="testimonial-attr-sep"></span><span>Founder &middot; D2C Unterhaltung</span></figcaption>
-          </figure>
-        </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 12 PRICING: Bundle-first -->
     <section class="section section--squeeze-top" id="pricing" style="background: #F4F2EC;">
       <div class="container">
@@ -5491,17 +5331,17 @@
         <div class="trust-strip" aria-label="Sicherheit & Vertrauen" data-reveal-stagger>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ SAFE ]</span>
-            <h3 class="trust-tile-title">Live-Theme bleibt unangetastet</h3>
+            <p class="trust-tile-title">Live-Theme bleibt unangetastet</p>
             <p class="trust-tile-body">Du arbeitest immer auf einem Duplicate. Kein Auto-Deploy. Du publishst, wenn du soweit bist. Niemals automatisch.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ RÜCKGABE ]</span>
-            <h3 class="trust-tile-title">14 Tage Rückgaberecht</h3>
+            <p class="trust-tile-title">14 Tage Rückgaberecht</p>
             <p class="trust-tile-body">Innerhalb von 14 Tagen ab Kauf. Kurze E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder über Digistore24, du erhältst den vollen Betrag erstattet.</p>
           </div>
           <div class="trust-tile" data-reveal="up">
             <span class="trust-tile-mark" aria-hidden="true">[ DATEN ]</span>
-            <h3 class="trust-tile-title">Deine Daten bleiben bei dir</h3>
+            <p class="trust-tile-title">Deine Daten bleiben bei dir</p>
             <p class="trust-tile-body">vorflows hostet keine Shop-Daten. SEO- und Verhaltensdaten bleiben in deinen Accounts. Alles läuft über deine eigenen Verbindungen.</p>
           </div>
         </div>
@@ -5527,7 +5367,7 @@
           </header>
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
-              <h3 class="bundle-hero-name" id="bundle-name">Bundle</h3>
+              <p class="bundle-hero-name" id="bundle-name">Bundle</p>
               <p class="bundle-hero-tagline">Mehr Umsatz. Weniger Ausgaben. Alles drin.</p>
               <div class="bundle-hero-price-block">
                 <div class="bp-row">
@@ -5564,7 +5404,7 @@
         <div class="delivery-card" aria-label="Inhalt und Lieferung" data-reveal="up">
           <div class="delivery-col">
             <span class="delivery-mark" aria-hidden="true">[ INHALT ]</span>
-            <h3 class="delivery-title">Was du bekommst</h3>
+            <p class="delivery-title">Was du bekommst</p>
             <ul class="delivery-list">
               <li>Setup-Datei für Claude Code (Shopify-Theme-Workflow)</li>
               <li>Kompletter Skill-Stack: Module, Prompts, Anleitungen</li>
@@ -5577,7 +5417,7 @@
           </div>
           <div class="delivery-col">
             <span class="delivery-mark" aria-hidden="true">[ LIEFERUNG ]</span>
-            <h3 class="delivery-title">Wie du es erhältst</h3>
+            <p class="delivery-title">Wie du es erhältst</p>
             <ul class="delivery-list">
               <li><strong>Digitales Produkt</strong> — kein Versand, keine physischen Materialien</li>
               <li>Sofort nach Zahlung per E-Mail von Digistore24</li>
@@ -5734,7 +5574,7 @@
     <!-- Cookie consent banner -->
     <div class="cookie-backdrop" id="cookieBackdrop" hidden></div>
     <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
-      <h3 class="cookie-title" id="cookieTitle">Cookies & Tracking</h3>
+      <p class="cookie-title" id="cookieTitle">Cookies & Tracking</p>
       <p class="cookie-text" id="cookieText">
         Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
       </p>
@@ -6829,47 +6669,6 @@
           wlSubmit.disabled = false;
         }
       });
-
-      // Testimonials carousel arrows (mobile)
-      (() => {
-        const viewport = document.querySelector('.testimonials-viewport');
-        const prev = document.querySelector('.testimonials-nav-prev');
-        const next = document.querySelector('.testimonials-nav-next');
-        if (!viewport || !prev || !next) return;
-        const visibleSlots = () => Array.from(viewport.querySelectorAll('.testimonial-slot')).filter(el => el.offsetParent !== null);
-        const currentIndex = (list) => {
-          const sl = viewport.scrollLeft;
-          let best = 0, min = Infinity;
-          list.forEach((s, i) => {
-            const d = Math.abs(s.offsetLeft - sl);
-            if (d < min) { min = d; best = i; }
-          });
-          return best;
-        };
-        const sync = () => {
-          const list = visibleSlots();
-          if (!list.length) { prev.disabled = true; next.disabled = true; return; }
-          const idx = currentIndex(list);
-          prev.disabled = idx <= 0;
-          next.disabled = idx >= list.length - 1;
-        };
-        const step = (dir) => {
-          const list = visibleSlots();
-          if (!list.length) return;
-          const idx = currentIndex(list);
-          const target = Math.max(0, Math.min(list.length - 1, idx + dir));
-          viewport.scrollTo({ left: list[target].offsetLeft, behavior: 'smooth' });
-        };
-        prev.addEventListener('click', () => step(-1));
-        next.addEventListener('click', () => step(1));
-        let scrollTimer;
-        viewport.addEventListener('scroll', () => {
-          clearTimeout(scrollTimer);
-          scrollTimer = setTimeout(sync, 90);
-        }, { passive: true });
-        window.addEventListener('resize', sync);
-        sync();
-      })();
 
       // Keyboard shortcuts: w/m/i/f/g, skip when typing in input/textarea/contenteditable
       const targets = { w: '#workflow', m: '#module', i: '#bundle', f: '#faq' };
