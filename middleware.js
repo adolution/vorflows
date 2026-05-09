@@ -1,18 +1,15 @@
 import { next, rewrite } from '@vercel/edge';
 
 export const config = {
-  matcher: '/((?!api|_next|_vercel|assets|brand_assets|carousels|.*\\.[a-z0-9]+).*)',
+  matcher: ['/', '/index.html'],
 };
 
 const MOBILE_UA = /Mobi|Android|iPhone|iPad|iPod/i;
+const MIDDLEWARE_VERSION = 'v3-2026-05-09';
 
 export default function middleware(req) {
   const url = new URL(req.url);
-
-  // Nur Root oder /index.html splitten — alle anderen Routen unverändert.
-  if (url.pathname !== '/' && url.pathname !== '/index.html') {
-    return next();
-  }
+  console.log(`[ab-middleware ${MIDDLEWARE_VERSION}] ${url.pathname}${url.search}`);
 
   const ua = req.headers.get('user-agent') || '';
   const isMobile = MOBILE_UA.test(ua);
@@ -35,6 +32,7 @@ export default function middleware(req) {
       r.headers.set('x-ab-bucket', 'A');
       r.headers.set('x-ab-source', 'desktop-default');
       r.headers.set('x-ab-mobile', '0');
+      r.headers.set('x-ab-mw-version', MIDDLEWARE_VERSION);
       return r;
     }
     bucket = Math.random() < 0.5 ? 'A' : 'B';
@@ -50,6 +48,7 @@ export default function middleware(req) {
   res.headers.set('x-ab-bucket', bucket);
   res.headers.set('x-ab-source', source || 'unknown');
   res.headers.set('x-ab-mobile', isMobile ? '1' : '0');
+  res.headers.set('x-ab-mw-version', MIDDLEWARE_VERSION);
 
   // Cookie 90d sticky setzen, falls noch nicht vorhanden.
   if (!cookieHeader.includes('vf_ab=')) {
