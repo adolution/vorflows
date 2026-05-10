@@ -50,7 +50,7 @@
           "image": "https://vorflows.com/brand_assets/og-image.jpg",
           "datePublished": "2026-05-10T08:00:00+02:00",
           "dateModified": "2026-05-10T08:00:00+02:00",
-          "wordCount": 2700,
+          "wordCount": 1659,
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
           "author": {
@@ -157,6 +157,10 @@
       <div class="post-body">
         <div class="container-prose">
 
+          <figure class="post-hero-figure" aria-hidden="true">
+            <img src="/assets/images/blog/seo-hero.webp" alt="Schema.org-Hierarchie als minimales Linien-Diagramm — Root-Knoten verzweigt zu fünf Schema-Typen mit je zwei Sub-Properties" width="1376" height="768" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
+
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
             <p>23 Punkte, in vier Blöcken: Technical (Punkte 1–8), On-Page (9–12), Content und AI-Suche (13–18), Monitoring (19–23).</p>
@@ -179,9 +183,9 @@
 
           <h2 id="was-anders">Was 2026 anders ist als 2022</h2>
           <p>Drei Verschiebungen, die das ganze Spiel verändert haben.</p>
-          <p><strong>AI Overviews und KI-Suche.</strong> Google AI Overviews zeigen direkte Antworten oberhalb der Top 10. ChatGPT, Perplexity und Bing Copilot ziehen einen wachsenden Teil der Recherche-Suchen aus den klassischen SERPs ab. Wenn dein Shop dort nicht zitierfähig ist, tauchst du in genau den Suchen nicht mehr auf, die dir früher den besten Traffic gebracht haben.</p>
-          <p><strong>Strukturierte Daten als Pflicht.</strong> 2022 waren Schema.org-Annotationen ein Nice-to-have. 2026 sind sie die Eintrittskarte für AI-Citations und Rich-Snippets. Ohne Schema bist du nicht mehr Teil des Spiels.</p>
-          <p><strong>Core Web Vitals strenger.</strong> INP (Interaction to Next Paint) hat 2024 FID abgelöst. INP misst echte Interaktionen, nicht nur den ersten Click. Shopify-Themes mit zu viel App-Stack-JS scheitern hier reihenweise.</p>
+          <p><strong>AI Overviews und KI-Suche.</strong> <a href="https://blog.google/products/search/generative-ai-google-search-may-2024/" rel="noopener" target="_blank">Google AI Overviews</a> zeigen direkte Antworten oberhalb der Top 10. ChatGPT, Perplexity und Bing Copilot ziehen einen wachsenden Teil der Recherche-Suchen aus den klassischen SERPs ab. Eine <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" rel="noopener" target="_blank">Pew-Research-Studie vom Juli 2025</a> fand AI-Summaries bei 18 % aller Google-Suchen — und nur 8 % Click-Rate auf klassische Links, wenn ein AI Overview erscheint, gegenüber 15 % ohne. Wenn dein Shop dort nicht zitierfähig ist, tauchst du in genau diesen Suchen nicht mehr auf.</p>
+          <p><strong>Strukturierte Daten als Pflicht.</strong> 2022 waren <a href="https://schema.org/" rel="noopener" target="_blank">Schema.org</a>-Annotationen ein Nice-to-have. 2026 sind sie die Eintrittskarte für AI-Citations und Rich-Snippets. Ohne Schema bist du nicht mehr Teil des Spiels.</p>
+          <p><strong>Core Web Vitals strenger.</strong> <a href="https://web.dev/articles/inp" rel="noopener" target="_blank">INP (Interaction to Next Paint)</a> hat 2024 FID abgelöst. INP misst echte Interaktionen, nicht nur den ersten Click. Shopify-Themes mit zu viel App-Stack-JS scheitern hier reihenweise.</p>
 
           <p class="pull-quote">Wenn dein Shop in AI-Antworten nicht zitierfähig ist, tauchst du in genau den Suchen nicht mehr auf, die dir früher den besten Traffic gebracht haben.</p>
 
@@ -215,13 +219,13 @@
             </li>
             <li>
               <strong>Core Web Vitals: LCP, INP, CLS</strong>
-              LCP unter 2,5 s, INP unter 200 ms, CLS unter 0,1. Häufige Shopify-Killer: zu viele Apps mit blockierendem JS, Bilder ohne Lazy-Loading, Custom-Webfonts ohne Swap.
-              <em>Quick-Check: PageSpeed Insights "Field Data" für deine Domain.</em>
+              <a href="https://web.dev/articles/lcp" rel="noopener" target="_blank">LCP</a> unter 2,5 s, <a href="https://web.dev/articles/inp" rel="noopener" target="_blank">INP</a> unter 200 ms, <a href="https://web.dev/articles/cls" rel="noopener" target="_blank">CLS</a> unter 0,1 — Googles offizielle Schwellenwerte. Häufige Shopify-Killer: zu viele Apps mit blockierendem JS, Bilder ohne Lazy-Loading, Custom-Webfonts ohne Swap.
+              <em>Quick-Check: <a href="https://pagespeed.web.dev/" rel="noopener" target="_blank">PageSpeed Insights</a> "Field Data" für deine Domain.</em>
             </li>
             <li>
               <strong>Schema.org: Product, Organization, Breadcrumb</strong>
-              JSON-LD im Theme, dynamisch befüllt. Pflicht-Typen: Organization (Homepage), Product (PDP), BreadcrumbList (alle Seiten unterhalb der Startseite), Offer mit <code>priceValidUntil</code> und <code>availability</code>.
-              <em>Quick-Check: Rich-Results-Test mit deiner Produkt-URL.</em>
+              JSON-LD im Theme, dynamisch befüllt. Pflicht-Typen: <a href="https://schema.org/Organization" rel="noopener" target="_blank">Organization</a> (Homepage), <a href="https://schema.org/Product" rel="noopener" target="_blank">Product</a> (PDP), <a href="https://schema.org/BreadcrumbList" rel="noopener" target="_blank">BreadcrumbList</a> (alle Seiten unterhalb der Startseite), <a href="https://schema.org/Offer" rel="noopener" target="_blank">Offer</a> mit <code>priceValidUntil</code> und <code>availability</code>.
+              <em>Quick-Check: <a href="https://search.google.com/test/rich-results" rel="noopener" target="_blank">Rich-Results-Test</a> mit deiner Produkt-URL.</em>
             </li>
             <li>
               <strong>Bilder optimiert (WebP, AVIF, lazy)</strong>
@@ -229,6 +233,11 @@
               <em>Quick-Check: DevTools Network-Tab, Filter "img", checke Format und Größen.</em>
             </li>
           </ol>
+
+          <figure class="post-figure">
+            <img src="/assets/images/blog/seo-cwv.webp" alt="Drei vertikale Score-Bars für Core Web Vitals — LCP, INP und CLS — als minimal Linien-Diagramm" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Core Web Vitals 2026: LCP &lt; 2,5 s · INP &lt; 200 ms · CLS &lt; 0,1.</figcaption>
+          </figure>
 
           <h2 id="onpage">On-Page SEO (Punkte 9–12)</h2>
 
@@ -281,10 +290,15 @@
             </li>
             <li>
               <strong>llms.txt im Root</strong>
-              Strukturierte Markdown-Datei für AI-Crawler unter <code>/llms.txt</code>. Beschreibt dein Produkt, dein Angebot, deine Pages. Nicht von Google offiziell anerkannt, aber von ChatGPT und Perplexity gelesen.
+              <a href="https://llmstxt.org/" rel="noopener" target="_blank">Strukturierte Markdown-Datei</a> für AI-Crawler unter <code>/llms.txt</code>. Beschreibt dein Produkt, dein Angebot, deine Pages. Nicht von Google offiziell anerkannt, aber von ChatGPT und Perplexity gelesen.
               <em>Quick-Check: <code>https://deindomain.com/llms.txt</code>.</em>
             </li>
           </ol>
+
+          <figure class="post-figure">
+            <img src="/assets/images/blog/seo-aiflow.webp" alt="Content-Dokument mit drei Verweis-Linien zu AI-Citation-Quellen — minimales Flow-Diagramm" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Wie zitierfähige Passagen in AI-Antworten als Quellen extrahiert werden.</figcaption>
+          </figure>
 
           <div class="callout callout--accent">
             <span class="callout-label">Praktischer Hinweis</span>
@@ -366,6 +380,17 @@
             <summary>Was, wenn meine Rankings trotz aller Punkte nicht steigen?</summary>
             <p>Dann ist das Problem nicht mehr On-Page. Es liegt entweder an der Qualität deines Contents (siehe Punkt 13) oder an Backlinks. SEO-Tools können dir die On-Page-Hygiene abnehmen, aber sie ersetzen keine echte Stärke in deiner Nische.</p>
           </details>
+
+          <aside class="author-bio" aria-label="Über den Autor">
+            <img class="author-bio-photo" src="/shop-ki-founder.webp" alt="Alexander Dück, Founder von vorflows" width="88" height="88" loading="lazy" decoding="async" />
+            <div class="author-bio-text">
+              <span class="author-bio-label">Über den Autor</span>
+              <h3 class="author-bio-name">Alexander Dück</h3>
+              <p class="author-bio-role">Founder, vorflows · Shopify-Theme-Workflow mit Claude Code</p>
+              <p>Baut vorflows als Drei-Modul-System (BaseFlow, SEOFlow, ClarityFlow) für Shopify-Stores, die ohne Agentur und ohne App-Stack arbeiten.</p>
+              <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" class="author-bio-link" rel="me noopener" target="_blank">LinkedIn ↗</a>
+            </div>
+          </aside>
 
           <section class="related" aria-label="Verwandte Artikel">
             <span class="related-label">Weiterlesen</span>

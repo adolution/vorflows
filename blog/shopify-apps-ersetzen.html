@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Shopify Apps ersetzen: die ehrliche Liste 2026 | vorflows</title>
-    <meta name="description" content="Welche Shopify-Apps du 2026 durch Theme-Code ersetzen kannst, welche nicht, und wie viel du im Jahr sparst. Mit Vergleichstabelle, Liquid-Beispielen und ehrlicher Empfehlung." />
+    <meta name="description" content="Welche Shopify-Apps du 2026 durch Theme-Code ersetzt. Vergleichstabelle, Liquid-Beispiele und ehrliche Spar-Rechnung. Plus: welche Apps bleiben." />
     <meta name="author" content="Alexander Dück" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="theme-color" content="#C8633E" />
@@ -50,7 +50,7 @@
           "image": "https://vorflows.com/brand_assets/og-image.jpg",
           "datePublished": "2026-05-10T08:00:00+02:00",
           "dateModified": "2026-05-10T08:00:00+02:00",
-          "wordCount": 2400,
+          "wordCount": 1887,
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
           "author": {
@@ -156,6 +156,10 @@
       <div class="post-body">
         <div class="container-prose">
 
+          <figure class="post-hero-figure" aria-hidden="true">
+            <img src="/assets/images/blog/apps-hero.webp" alt="App-Stack-Tower vs Theme-Code-Layer als minimales Linien-Diagramm — vertikale gestapelte App-Subscriptions versus horizontale Theme-Code-Schicht in Akzent-Farbe" width="1376" height="768" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
+
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
             <p>Die meisten Shopify-Stores zahlen 200–500 € pro Monat für Apps, die rein im Theme-Code wären. Shipping-Bar, Sticky-ATC, Bundle-Builder, Countdown, Page-Builder, Cart-Upsell, Reviews-Anzeige, Lead-Forms: alle ersetzbar.</p>
@@ -184,7 +188,7 @@
 
           <h2 id="warum">Warum der Shopify-App-Stack so teuer geworden ist</h2>
           <p>Apps haben Shopify groß gemacht. Das war 2015 die richtige Antwort: Theme-Code war Spezialwissen, Apps waren der Workaround. Du installiertest etwas, klicktest dich durch, fertig.</p>
-          <p>2026 ist die Welt eine andere. Theme-Architektur ist standardisiert (Online Store 2.0, Sections, Blocks, Settings). Liquid lässt sich von einer KI lesen wie eine Konfigurationsdatei. Was früher zwei Tage Arbeit eines Senior-Devs war, ist heute ein Satz an Claude.</p>
+          <p>2026 ist die Welt eine andere. Theme-Architektur ist standardisiert (<a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a>, Sections, Blocks, Settings). <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> lässt sich von einer KI lesen wie eine Konfigurationsdatei. Was früher zwei Tage Arbeit eines Senior-Devs war, ist heute ein Satz an Claude.</p>
           <p>Was geblieben ist, sind die Subscriptions. App-Anbieter haben kein Interesse an einem Markt, in dem du das Gleiche selbst hinbekommst. Also schreiben sie weiter Marketing-Texte über "advanced features", die in Wirklichkeit drei <code>{% if %}</code>-Statements und ein bisschen CSS sind.</p>
 
           <div class="callout">
@@ -266,6 +270,11 @@
 
           <p>Summe der ersetzbaren Apps: rund <strong>236 € pro Monat</strong>, also 2.832 € pro Jahr. Wenn dein Shop noch Trust-Badges, Color-Swatches und einen Wishlist-Button per App umsetzt, landest du schnell bei den 5.232 €, die wir im Median sehen.</p>
 
+          <figure class="post-figure">
+            <img src="/assets/images/blog/apps-cost.webp" alt="Zwei vertikale Kosten-Bars als minimales Linien-Diagramm — App-Stack hoch und outline-only links, Theme-Code-Aufwand niedrig und gefüllt rechts" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Laufende App-Kosten vs einmaliger Theme-Code-Aufwand — Median-Differenz im DACH-Markt.</figcaption>
+          </figure>
+
           <h2 id="shipping">Shipping-Bar: 80 Zeilen Liquid statt 19 € im Monat</h2>
           <p>Die Shipping-Bar ist das Schulbeispiel. Eine Bar oben auf der Seite zeigt: <em>"Noch 12 € bis zum kostenlosen Versand."</em> Das ist eine Zeile Mathe und ein bisschen Live-Update beim Cart-Change.</p>
           <p>So sieht der native Liquid-Code dafür aus, gekürzt auf das Wesentliche:</p>
@@ -310,13 +319,13 @@
           <h2 id="sticky">Countdown, Sticky-ATC, Trust-Badges</h2>
           <p>Drei Apps, die ich zusammenfasse, weil sie alle dieselbe Struktur haben: ein UI-Element, das auf der Seite klebt, mit einem winzigen Stück Logik dahinter.</p>
           <p><strong>Countdown.</strong> Ein <code>setInterval</code>, das bei null aufhört, plus eine Settings-Variable für das End-Datum. Zwanzig Minuten, inklusive End-Zustand-Handling.</p>
-          <p><strong>Sticky-ATC.</strong> Ein Section-Element mit <code>position: sticky</code>, das oberhalb eines bestimmten Scroll-Punktes erscheint. CSS und ein <code>IntersectionObserver</code>. Eine halbe Stunde.</p>
+          <p><strong>Sticky-ATC.</strong> Ein Section-Element mit <a href="https://developer.mozilla.org/de/docs/Web/CSS/position#sticky_positioning" rel="noopener" target="_blank"><code>position: sticky</code></a>, das oberhalb eines bestimmten Scroll-Punktes erscheint. CSS und ein <a href="https://developer.mozilla.org/de/docs/Web/API/Intersection_Observer_API" rel="noopener" target="_blank"><code>IntersectionObserver</code></a>. Eine halbe Stunde.</p>
           <p><strong>Trust-Badges.</strong> Drei oder vier SVG-Icons mit Text, in einer Section unter dem Add-to-Cart. Fünfzehn Minuten. Apps verlangen dafür 12 € pro Monat.</p>
 
           <h2 id="seo">SEO-Suite-Apps</h2>
           <p>SEO-Apps verkaufen dir drei Dinge: Meta-Title-Templates, Schema.org-Output und einen Audit-Report. Alle drei gehören ins Theme, nicht in eine externe App.</p>
           <p><strong>Meta-Templates.</strong> Eine Liquid-Snippet-Datei pro Template-Type (Product, Collection, Page, Article). Sie generiert <code>&lt;title&gt;</code> und <code>meta description</code> auf Basis von Produkt-Attributen.</p>
-          <p><strong>Schema.</strong> JSON-LD im Theme, dynamisch befüllt aus den Liquid-Variablen. Validierst du einmal mit dem Rich-Results-Test, dann läuft es jahrelang.</p>
+          <p><strong>Schema.</strong> JSON-LD im Theme, dynamisch befüllt aus den Liquid-Variablen. Validierst du einmal mit dem <a href="https://search.google.com/test/rich-results" rel="noopener" target="_blank">Rich-Results-Test</a>, dann läuft es jahrelang. Die offizielle Typ-Liste steht auf <a href="https://schema.org/" rel="noopener" target="_blank">schema.org</a>.</p>
           <p><strong>Audits.</strong> Hier hört der App-Vorteil auf. Audits sind ein Snapshot, kein laufender Wert. <a href="/seoflow">SEOFlow</a> macht das auf Knopfdruck mit echten Such-Daten und schreibt Code, statt nur Probleme aufzulisten.</p>
 
           <h2 id="leads">Lead-Forms und Email-Capture</h2>
@@ -327,6 +336,11 @@
           <p>Reviews sind die wichtigste Differenzierung in diesem Artikel. Das <em>Sammeln</em> von Reviews ist ein eigenes Produkt: E-Mail-Sequenzen nach Kauf, Foto-Uploads, Moderations-UI, Verified-Buyer-Logik. Das willst du nicht selbst bauen.</p>
           <p>Die <em>Anzeige</em> der Reviews ist Theme-Code. Du holst die Reviews per API oder JSON-Feed (jede Review-App bietet das an), formatierst sie in Liquid und fügst Schema.org-Markup hinzu, damit du Sterne in den SERPs bekommst. Das ist eine Sache von zwei Stunden.</p>
           <p>Resultat: du behältst Judge.me oder Loox für die Sammlung (5–15 € pro Monat), aber sparst dir den "Display-Plan", der bei vielen Anbietern dazukommt.</p>
+
+          <figure class="post-figure">
+            <img src="/assets/images/blog/apps-grid.webp" alt="3-mal-3-Grid mit neun outlined Tiles — fünf Tiles diagonal durchgestrichen — als minimales Linien-Diagramm" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Fünf von neun typischen Apps fallen weg, wenn du sie durch Theme-Code ersetzt — vier bleiben.</figcaption>
+          </figure>
 
           <h2 id="behalten">Apps, die du behalten solltest</h2>
           <p>Hier ist die ehrliche Liste der Apps, die ich nie zum Selber-Bauen empfehlen würde. Sie haben echte Logik oder echte Daten dahinter, und der Aufwand für eine eigene Lösung übersteigt den Subscription-Vorteil deutlich.</p>
@@ -385,6 +399,17 @@
             <summary>Was, wenn die ersetzte Funktion langsamer lädt als die App?</summary>
             <p>Sie lädt in den meisten Fällen schneller, weil App-Code zusätzliche Scripts und externe Calls nachlädt. Theme-Code wird mit der Seite ausgeliefert, nichts kommt extra.</p>
           </details>
+
+          <aside class="author-bio" aria-label="Über den Autor">
+            <img class="author-bio-photo" src="/shop-ki-founder.webp" alt="Alexander Dück, Founder von vorflows" width="88" height="88" loading="lazy" decoding="async" />
+            <div class="author-bio-text">
+              <span class="author-bio-label">Über den Autor</span>
+              <h3 class="author-bio-name">Alexander Dück</h3>
+              <p class="author-bio-role">Founder, vorflows · Shopify-Theme-Workflow mit Claude Code</p>
+              <p>Baut vorflows als Drei-Modul-System (BaseFlow, SEOFlow, ClarityFlow) für Shopify-Stores, die ohne Agentur und ohne App-Stack arbeiten.</p>
+              <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" class="author-bio-link" rel="me noopener" target="_blank">LinkedIn ↗</a>
+            </div>
+          </aside>
 
           <section class="related" aria-label="Verwandte Artikel">
             <span class="related-label">Weiterlesen</span>

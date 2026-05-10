@@ -50,7 +50,7 @@
           "image": "https://vorflows.com/brand_assets/og-image.jpg",
           "datePublished": "2026-05-10T08:00:00+02:00",
           "dateModified": "2026-05-10T08:00:00+02:00",
-          "wordCount": 2500,
+          "wordCount": 1713,
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
           "author": {
@@ -172,6 +172,10 @@
       <div class="post-body">
         <div class="container-prose">
 
+          <figure class="post-hero-figure" aria-hidden="true">
+            <img src="/assets/images/blog/theme-hero.webp" alt="Liquid-Code-Struktur als minimales Linien-Diagramm — gestapelte Brackets und Curly-Braces in Akzent-Farbe" width="1376" height="768" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
+
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
             <p>Du kannst heute selbst: neue Sections bauen, Layout ändern, CTAs platzieren, Farben und Schrift austauschen, Schema und Meta-Tags pflegen, Cart-Drawer und Sticky-ATC umsetzen.</p>
@@ -195,9 +199,9 @@
 
           <h2 id="wandel">Was sich seit 2020 verändert hat</h2>
           <p>Drei Dinge sind passiert, die das Theme-Bearbeiten komplett verändert haben.</p>
-          <p><strong>Online Store 2.0.</strong> Shopify hat 2021 die Theme-Architektur umgestellt. Sections und Blocks sind jetzt überall, nicht nur auf der Homepage. Settings-Schemas erlauben Konfiguration ohne Code. Was vorher pro Page hardcoded war, ist heute strukturiert.</p>
-          <p><strong>Dawn als Referenz.</strong> Shopify pflegt mit Dawn ein Open-Source-Theme, das alle aktuellen Best-Practices zeigt. Du kannst Patterns daraus kopieren, ohne ein Premium-Theme zu kaufen.</p>
-          <p><strong>KI-gestützte Code-Werkzeuge.</strong> Tools wie Claude Code lesen Liquid wie eine Spezifikation. Du beschreibst die Änderung in deutschem Klartext, das Tool schreibt den Code. Das ist der Punkt, an dem viele Founder zum ersten Mal merken: <em>Ich brauche keinen Dev mehr für das hier.</em></p>
+          <p><strong><a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a>.</strong> Shopify hat 2021 die Theme-Architektur umgestellt. Sections und Blocks sind jetzt überall, nicht nur auf der Homepage. Settings-Schemas erlauben Konfiguration ohne Code. Was vorher pro Page hardcoded war, ist heute strukturiert.</p>
+          <p><strong>Dawn als Referenz.</strong> Shopify pflegt mit <a href="https://github.com/Shopify/dawn" rel="noopener" target="_blank">Dawn</a> ein Open-Source-Theme, das alle aktuellen Best-Practices zeigt. Du kannst Patterns daraus kopieren, ohne ein Premium-Theme zu kaufen.</p>
+          <p><strong>KI-gestützte Code-Werkzeuge.</strong> Tools wie Claude Code lesen <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> wie eine Spezifikation. Du beschreibst die Änderung in deutschem Klartext, das Tool schreibt den Code. Das ist der Punkt, an dem viele Founder zum ersten Mal merken: <em>Ich brauche keinen Dev mehr für das hier.</em></p>
 
           <p class="pull-quote">Was vorher zwei Tage Senior-Dev-Arbeit war, ist heute ein Satz an Claude.</p>
 
@@ -215,7 +219,7 @@
           <h3>Typografie und Farben</h3>
           <ul>
             <li>Brand-Farben in <code>settings_data.json</code> oder Theme-Settings</li>
-            <li>Custom-Fonts einbinden (woff2, mit <code>font-display: swap</code>)</li>
+            <li>Custom-Fonts einbinden (woff2, mit <a href="https://web.dev/articles/font-display" rel="noopener" target="_blank"><code>font-display: swap</code></a>)</li>
             <li>Heading-Hierarchie überarbeiten (H1, H2, H3 Sizes und Line-Heights)</li>
             <li>Body-Type, Lesbarkeit, Antialiasing</li>
           </ul>
@@ -247,6 +251,11 @@
 
           <p>Wenn du dir bei einem Punkt unsicher bist: <a href="/baseflow">BaseFlow</a> kommt mit Beispiel-Workflows für jedes dieser Themen. Du wählst aus, Claude liest dein Theme und passt den Workflow auf deinen Code-Stand an.</p>
 
+          <figure class="post-figure">
+            <img src="/assets/images/blog/theme-split.webp" alt="Zwei vertikale Frames nebeneinander — links Lock-Icon, rechts Pencil-Icon — Live-Theme vs Theme-Duplicate" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Live-Theme bleibt unter Lock. Bearbeitung passiert immer auf dem Duplicate.</figcaption>
+          </figure>
+
           <h2 id="nicht">Was du wirklich nicht selbst machen solltest</h2>
           <p>Es gibt Bereiche, in denen ein Senior-Dev nicht ersetzbar ist. Wenn du in einem davon landest, hör auf zu basteln und hol jemanden.</p>
 
@@ -261,6 +270,11 @@
 
           <h2 id="workflow">Der sichere Workflow in drei Schritten</h2>
           <p>Egal ob du Code-Profi bist oder zum ersten Mal in eine Liquid-Datei schaust: dieser Workflow schützt dein Live-Theme. Wenn du ihn einhältst, kann praktisch nichts passieren, was sich nicht in fünf Minuten rückgängig machen ließe.</p>
+
+          <figure class="post-figure">
+            <img src="/assets/images/blog/theme-3step.webp" alt="Drei nummerierte Kreise in horizontaler Reihe mit Hairline-Pfeilen verbunden — drei Schritte des sicheren Theme-Workflows" width="1264" height="848" loading="lazy" decoding="async" />
+            <figcaption>Drei Schritte: Duplicate erstellen · Änderung beschreiben · Preview reviewen, manuell publishen.</figcaption>
+          </figure>
 
           <h3>Schritt 1: Theme-Duplicate erstellen</h3>
           <p>Im Shopify Admin: <code>Online Store → Themes → Live-Theme → Actions → Duplicate</code>. Du bekommst eine Kopie, sie heißt standardmäßig <code>Copy of [Theme-Name]</code>. Benenne sie um, damit du sie wiederfindest. Beispiel: <code>vorflows-edit-2026-05-10</code>.</p>
@@ -285,28 +299,66 @@
           </div>
 
           <h2 id="tools">Was du an Tools brauchst</h2>
-          <p>Die Liste ist kürzer, als du denkst.</p>
+          <p>Die Liste ist kürzer, als du denkst. Zur schnellen Orientierung:</p>
 
-          <h3>Pflicht</h3>
-          <ul>
-            <li><strong>Shopify Admin-Zugang</strong> mit Theme-Edit-Rechten</li>
-            <li><strong>Claude Code</strong> oder Claude Pro mit Code-Zugang</li>
-            <li><strong>Ein moderner Browser</strong> für Preview-Tests</li>
-          </ul>
-
-          <h3>Empfohlen</h3>
-          <ul>
-            <li><strong>Shopify CLI</strong> (für lokale Theme-Sync) — wenn du gleichzeitig in mehreren Files editieren willst</li>
-            <li><strong>VS Code mit Liquid-Extension</strong> — Syntax-Highlighting hilft, auch wenn Claude den Code schreibt</li>
-            <li><strong>BaseFlow-Setup-Datei</strong> — gibt Claude die Shopify-Skills, die im Standard-Stack fehlen. Setup in 20 bis 30 Minuten, danach kennt Claude dein Theme</li>
-          </ul>
-
-          <h3>Brauchst du nicht</h3>
-          <ul>
-            <li>Eine Theme-Builder-App (Online Store 2.0 reicht)</li>
-            <li>Eine separate Section-Editor-App</li>
-            <li>Einen Theme-Customizer als Subscription</li>
-          </ul>
+          <div class="post-table-wrap">
+            <table class="post-table">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Tool</th>
+                  <th>Wofür</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pflicht</strong></td>
+                  <td>Shopify Admin-Zugang</td>
+                  <td>Theme-Edit-Rechte, Theme-Duplicate, Publish</td>
+                </tr>
+                <tr>
+                  <td><strong>Pflicht</strong></td>
+                  <td>Claude Code</td>
+                  <td>Liest dein Theme, schreibt Liquid auf Duplicate</td>
+                </tr>
+                <tr>
+                  <td><strong>Pflicht</strong></td>
+                  <td>Moderner Browser</td>
+                  <td>Preview-Tests auf Desktop und Mobile</td>
+                </tr>
+                <tr>
+                  <td><strong>Empfohlen</strong></td>
+                  <td><a href="https://shopify.dev/docs/api/shopify-cli" rel="noopener" target="_blank">Shopify CLI</a></td>
+                  <td>Lokale Theme-Sync wenn du in mehreren Files parallel editierst</td>
+                </tr>
+                <tr>
+                  <td><strong>Empfohlen</strong></td>
+                  <td>VS Code + Liquid-Extension</td>
+                  <td>Syntax-Highlighting, auch wenn Claude den Code schreibt</td>
+                </tr>
+                <tr>
+                  <td><strong>Empfohlen</strong></td>
+                  <td><a href="/baseflow">BaseFlow-Setup-Datei</a></td>
+                  <td>Gibt Claude die Shopify-Skills, die im Standard-Stack fehlen. Setup 20–30 Min</td>
+                </tr>
+                <tr>
+                  <td><strong>Skip</strong></td>
+                  <td>Theme-Builder-App</td>
+                  <td>Online Store 2.0 reicht — Sections und Blocks sind nativ</td>
+                </tr>
+                <tr>
+                  <td><strong>Skip</strong></td>
+                  <td>Section-Editor-App</td>
+                  <td>Doppelt zu Online Store 2.0, zusätzliche Subscription</td>
+                </tr>
+                <tr>
+                  <td><strong>Skip</strong></td>
+                  <td>Theme-Customizer-Subscription</td>
+                  <td>Settings-Schema kann das alles ohne Abo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <h2 id="fehler">Häufige Fehler und wie du sie vermeidest</h2>
 
@@ -324,7 +376,7 @@
           <p>Wenn dein Shop mehrsprachig ist und du einen neuen String in der Section hardcodest, fliegt dir das beim nächsten Locale-Switch um die Ohren. Nutze <code>{{ 'general.shipping_bar.text' | t }}</code>-Pattern und füge die Strings in <code>locales/de.default.json</code> hinzu.</p>
 
           <h3>JS ohne Defer laden</h3>
-          <p>Custom-Scripts, die im <code>&lt;head&gt;</code> ohne <code>defer</code> oder <code>async</code> hängen, killen den LCP. Pack sie ans Ende, oder nutze ein <code>type="module"</code>-Pattern.</p>
+          <p>Custom-Scripts, die im <code>&lt;head&gt;</code> ohne <a href="https://developer.mozilla.org/de/docs/Web/HTML/Element/script#defer" rel="noopener" target="_blank"><code>defer</code></a> oder <code>async</code> hängen, killen den <a href="https://web.dev/articles/lcp" rel="noopener" target="_blank">LCP</a>. Pack sie ans Ende, oder nutze ein <code>type="module"</code>-Pattern.</p>
 
           <div class="product-cta">
             <div>
@@ -372,6 +424,17 @@
             <summary>Was, wenn Claude eine Änderung vorschlägt, die ich nicht verstehe?</summary>
             <p>Dann fragst du nach. Claude erklärt jede Zeile in deutscher Sprache, mit Begründung. Wenn du am Ende immer noch nicht sicher bist, ist das ein Hinweis: das war vielleicht doch ein Dev-Job. Aber das ist selten.</p>
           </details>
+
+          <aside class="author-bio" aria-label="Über den Autor">
+            <img class="author-bio-photo" src="/shop-ki-founder.webp" alt="Alexander Dück, Founder von vorflows" width="88" height="88" loading="lazy" decoding="async" />
+            <div class="author-bio-text">
+              <span class="author-bio-label">Über den Autor</span>
+              <h3 class="author-bio-name">Alexander Dück</h3>
+              <p class="author-bio-role">Founder, vorflows · Shopify-Theme-Workflow mit Claude Code</p>
+              <p>Baut vorflows als Drei-Modul-System (BaseFlow, SEOFlow, ClarityFlow) für Shopify-Stores, die ohne Agentur und ohne App-Stack arbeiten.</p>
+              <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" class="author-bio-link" rel="me noopener" target="_blank">LinkedIn ↗</a>
+            </div>
+          </aside>
 
           <section class="related" aria-label="Verwandte Artikel">
             <span class="related-label">Weiterlesen</span>
