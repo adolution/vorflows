@@ -159,7 +159,7 @@
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
             <p>Die meisten Shopify-Stores zahlen 200–500 € pro Monat für Apps, die rein im Theme-Code wären. Shipping-Bar, Sticky-ATC, Bundle-Builder, Countdown, Page-Builder, Cart-Upsell, Reviews-Anzeige, Lead-Forms: alle ersetzbar.</p>
-            <p>Behalten solltest du Apps, die echte Daten halten oder externe Logik fahren: Klaviyo, Recharge, ShipStation, Judge.me oder Loox für das Sammeln (nicht das Anzeigen) von Reviews.</p>
+            <p>Behalten solltest du Apps, die echte Daten halten oder externer Logik folgen: Klaviyo, Recharge, ShipStation, Judge.me oder Loox für das Sammeln (nicht das Anzeigen) von Reviews.</p>
             <p><strong>Sparpotenzial im Median: 5.232 € pro Jahr.</strong> Aufwand: ein Wochenende, wenn du Claude Code mit einer Setup-Datei nutzt.</p>
           </aside>
 
@@ -193,7 +193,7 @@
           </div>
 
           <h2 id="tabelle">Vergleichstabelle: 9 Apps, was sie kosten, was sie ersetzt</h2>
-          <p>Die Preise sind die offiziellen Listenpreise typischer DACH-Mid-Market-Stores (Stand 2026). Komplexität ist die Anzahl Stunden, die ein erfahrener Theme-Editor (oder Claude Code mit <a href="/baseflow">BaseFlow</a>) für die Replikation braucht.</p>
+          <p>Die Preise sind die offiziellen Listenpreise typischer DACH-Mid-Market-Stores (Stand 2026). Komplexität ist die Anzahl der Stunden, die ein erfahrener Theme-Editor (oder Claude Code mit <a href="/baseflow">BaseFlow</a>) für die Replikation braucht.</p>
 
           <div class="post-table-wrap">
             <table class="post-table">
@@ -264,7 +264,7 @@
             </table>
           </div>
 
-          <p>Summe der ersetzbaren Apps: rund <strong>236 € pro Monat</strong>, also 2.832 € pro Jahr. Wenn dein Shop noch Trust-Badges, Color-Swatches und einen Wishlist-Button per App macht, landest du schnell bei den 5.232 €, die wir im Median sehen.</p>
+          <p>Summe der ersetzbaren Apps: rund <strong>236 € pro Monat</strong>, also 2.832 € pro Jahr. Wenn dein Shop noch Trust-Badges, Color-Swatches und einen Wishlist-Button per App umsetzt, landest du schnell bei den 5.232 €, die wir im Median sehen.</p>
 
           <h2 id="shipping">Shipping-Bar: 80 Zeilen Liquid statt 19 € im Monat</h2>
           <p>Die Shipping-Bar ist das Schulbeispiel. Eine Bar oben auf der Seite zeigt: <em>"Noch 12 € bis zum kostenlosen Versand."</em> Das ist eine Zeile Mathe und ein bisschen Live-Update beim Cart-Change.</p>
@@ -290,8 +290,8 @@
 
           <h2 id="cart">Cart-Upsell und Cart-Drawer</h2>
           <p>Cart-Upsell-Apps versprechen dir mehr AOV durch eingeblendete Produktempfehlungen im Drawer. Die Logik dahinter ist simpel: <em>"Wenn Produkt X im Cart, zeig Produkt Y als Add-on an."</em></p>
-          <p>Im Theme wird das ein Cart-Drawer-Snippet, das auf den aktuellen Cart-Inhalt reagiert. Du brauchst eine Section mit Settings für Trigger-Tags und Empfehlungs-Tags. Claude liest dein Theme und baut den Drawer in 2 bis 3 Stunden, inklusive Mobile-Optimierung und Klick-Tracking.</p>
-          <p>Was du dabei mitnimmst: voller Stylesheet-Zugriff. Keine "Anpassbar nur im Pro-Plan"-Limits, keine fremde JS-Library, die mit deinem Cart-Counter kollidiert.</p>
+          <p>Im Theme wird daraus ein Cart-Drawer-Snippet, das auf den aktuellen Cart-Inhalt reagiert. Du brauchst eine Section mit Settings für Trigger-Tags und Empfehlungs-Tags. Claude liest dein Theme und baut den Drawer in zwei bis drei Stunden, inklusive Mobile-Optimierung und Klick-Tracking.</p>
+          <p>Was du dabei gewinnst: vollen Stylesheet-Zugriff. Keine "Anpassbar nur im Pro-Plan"-Limits, keine fremde JS-Library, die mit deinem Cart-Counter kollidiert.</p>
 
           <h2 id="bundle">Bundle-Builder</h2>
           <p>Bundle-Apps sind teurer, weil sie versuchen, den ganzen Funnel zu verkaufen. Realität: ein Bundle ist ein Custom-Variant-Picker plus ein Discount-Code, der per JavaScript angewendet wird. Plus ein paar Edge-Cases für Inventory.</p>
@@ -299,7 +299,7 @@
 
           <div class="callout callout--accent">
             <span class="callout-label">Quick-Win</span>
-            <p>Wenn du nur eine App in diesem Monat ersetzen willst: nimm den Bundle-Builder. Höchster Subscription-Cost, niedrigste Umstellungs-Komplexität, weil du den Bundle-Output sowieso schon hast.</p>
+            <p>Wenn du diesen Monat nur eine App ersetzen willst: nimm den Bundle-Builder. Höchster Subscription-Cost, niedrigste Umstellungs-Komplexität, weil dein Bundle-Output ohnehin schon im Shop steht.</p>
           </div>
 
           <h2 id="page">Page-Builder (PageFly, GemPages)</h2>
@@ -321,11 +321,11 @@
 
           <h2 id="leads">Lead-Forms und Email-Capture</h2>
           <p>Eine Lead-Form ist ein Input und ein Submit-Button. Shopify selbst stellt das Customer-Account-Form-System. Was du dazubaust, ist die Verbindung zu deinem ESP (Klaviyo, Brevo, Mailchimp).</p>
-          <p>Die meisten ESPs haben einen direkten Liquid-Snippet-Endpunkt für Embed-Forms. Du kopierst ihn einmal in dein Theme, stylesst ihn nach deinem Design, fertig. App nicht nötig.</p>
+          <p>Die meisten ESPs haben einen direkten Liquid-Snippet-Endpunkt für Embed-Forms. Du kopierst ihn einmal in dein Theme, passt das Styling an dein Design an, fertig. App nicht nötig.</p>
 
           <h2 id="reviews">Reviews-Anzeige (das Sammeln bleibt extern)</h2>
           <p>Reviews sind die wichtigste Differenzierung in diesem Artikel. Das <em>Sammeln</em> von Reviews ist ein eigenes Produkt: E-Mail-Sequenzen nach Kauf, Foto-Uploads, Moderations-UI, Verified-Buyer-Logik. Das willst du nicht selbst bauen.</p>
-          <p>Die <em>Anzeige</em> der Reviews ist Theme-Code. Du holst die Reviews per API oder JSON-Feed (jede Review-App bietet das an), formattierst sie in Liquid, fügst Schema.org-Markup hinzu für Sterne in den SERPs. Das ist eine Sache von zwei Stunden.</p>
+          <p>Die <em>Anzeige</em> der Reviews ist Theme-Code. Du holst die Reviews per API oder JSON-Feed (jede Review-App bietet das an), formatierst sie in Liquid und fügst Schema.org-Markup hinzu, damit du Sterne in den SERPs bekommst. Das ist eine Sache von zwei Stunden.</p>
           <p>Resultat: du behältst Judge.me oder Loox für die Sammlung (5–15 € pro Monat), aber sparst dir den "Display-Plan", der bei vielen Anbietern dazukommt.</p>
 
           <h2 id="behalten">Apps, die du behalten solltest</h2>
@@ -350,7 +350,7 @@
           </div>
 
           <h2 id="start">Wie du anfängst, ohne den Shop kaputt zu machen</h2>
-          <p>Drei Regeln. Wenn du sie befolgst, kann nichts passieren, was nicht in fünf Minuten rückgängig wäre.</p>
+          <p>Drei Regeln. Wenn du sie befolgst, kann nichts passieren, was sich nicht in fünf Minuten rückgängig machen ließe.</p>
 
           <h3>1. Immer auf einem Theme-Duplicate</h3>
           <p>Shopify Admin → Themes → Actions → Duplicate. Du arbeitest auf der Kopie, dein Live-Theme bleibt unangetastet. Erst wenn der Diff im Preview gut aussieht, publishst du. Niemals Auto-Deploy.</p>
@@ -383,7 +383,7 @@
           </details>
           <details class="post-faq">
             <summary>Was, wenn die ersetzte Funktion langsamer lädt als die App?</summary>
-            <p>Sie lädt in den meisten Fällen schneller, weil App-Code zusätzliche Scripts und externe Calls einbringt. Theme-Code wird mit der Seite ausgeliefert, nichts wird nachgeladen.</p>
+            <p>Sie lädt in den meisten Fällen schneller, weil App-Code zusätzliche Scripts und externe Calls nachlädt. Theme-Code wird mit der Seite ausgeliefert, nichts kommt extra.</p>
           </details>
 
           <section class="related" aria-label="Verwandte Artikel">

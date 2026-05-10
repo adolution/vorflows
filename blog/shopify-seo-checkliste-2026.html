@@ -161,7 +161,7 @@
             <span class="tldr-label">Kurz und ehrlich</span>
             <p>23 Punkte, in vier Blöcken: Technical (Punkte 1–8), On-Page (9–12), Content und AI-Suche (13–18), Monitoring (19–23).</p>
             <p>Wenn du wenig Zeit hast und nur drei Sachen heute machen willst: Punkt 1 (HTTPS und Canonical), Punkt 7 (Schema.org), Punkt 17 (AI-Citation-readable Passagen). Diese drei verbessern Ranking, Rich-Snippets und AI-Sichtbarkeit gleichzeitig.</p>
-            <p><strong>Die Reihenfolge ist gemeint:</strong> Technical zuerst, weil Content auf einer kaputten Basis nichts bringt.</p>
+            <p><strong>Die Reihenfolge ist nicht zufällig:</strong> Technical zuerst, weil Content auf einer kaputten Basis nichts bringt.</p>
           </aside>
 
           <nav class="toc" aria-label="Inhaltsverzeichnis">
@@ -179,11 +179,11 @@
 
           <h2 id="was-anders">Was 2026 anders ist als 2022</h2>
           <p>Drei Verschiebungen, die das ganze Spiel verändert haben.</p>
-          <p><strong>AI Overviews und KI-Suche.</strong> Google AI Overviews zeigen direkte Antworten oberhalb der Top 10. ChatGPT, Perplexity und Bing Copilot ziehen einen wachsenden Teil der Recherche-Suchen aus den klassischen SERPs raus. Wenn dein Shop dort nicht zitierfähig ist, wirst du unsichtbar in genau den Suchen, die früher dein bester Traffic waren.</p>
+          <p><strong>AI Overviews und KI-Suche.</strong> Google AI Overviews zeigen direkte Antworten oberhalb der Top 10. ChatGPT, Perplexity und Bing Copilot ziehen einen wachsenden Teil der Recherche-Suchen aus den klassischen SERPs ab. Wenn dein Shop dort nicht zitierfähig ist, tauchst du in genau den Suchen nicht mehr auf, die dir früher den besten Traffic gebracht haben.</p>
           <p><strong>Strukturierte Daten als Pflicht.</strong> 2022 waren Schema.org-Annotationen ein Nice-to-have. 2026 sind sie die Eintrittskarte für AI-Citations und Rich-Snippets. Ohne Schema bist du nicht mehr Teil des Spiels.</p>
           <p><strong>Core Web Vitals strenger.</strong> INP (Interaction to Next Paint) hat 2024 FID abgelöst. INP misst echte Interaktionen, nicht nur den ersten Click. Shopify-Themes mit zu viel App-Stack-JS scheitern hier reihenweise.</p>
 
-          <p class="pull-quote">Wenn dein Shop in AI-Antworten nicht zitierfähig ist, wirst du unsichtbar in genau den Suchen, die früher dein bester Traffic waren.</p>
+          <p class="pull-quote">Wenn dein Shop in AI-Antworten nicht zitierfähig ist, tauchst du in genau den Suchen nicht mehr auf, die dir früher den besten Traffic gebracht haben.</p>
 
           <h2 id="technical">Technical SEO (Punkte 1–8)</h2>
 
@@ -195,7 +195,7 @@
             </li>
             <li>
               <strong>robots.txt freigegeben</strong>
-              Keine accidental <code>Disallow: /</code>-Regel. Wichtige Pages explizit erlaubt. Sitemap-Verweis enthalten. AI-Crawler (GPTBot, ClaudeBot, PerplexityBot) sollten erlaubt sein, wenn du in AI-Antworten erscheinen willst.
+              Keine versehentliche <code>Disallow: /</code>-Regel. Wichtige Pages explizit erlaubt. Sitemap-Verweis enthalten. AI-Crawler (GPTBot, ClaudeBot, PerplexityBot) sollten erlaubt sein, wenn du in AI-Antworten erscheinen willst.
               <em>Quick-Check: <code>https://deindomain.com/robots.txt</code> aufrufen, lesen.</em>
             </li>
             <li>
@@ -215,12 +215,12 @@
             </li>
             <li>
               <strong>Core Web Vitals: LCP, INP, CLS</strong>
-              LCP unter 2,5 s, INP unter 200 ms, CLS unter 0,1. Häufige Shopify-Killer: zu viele Apps mit blocking JS, ungelazyte Hero-Images, Custom-Webfonts ohne Swap.
+              LCP unter 2,5 s, INP unter 200 ms, CLS unter 0,1. Häufige Shopify-Killer: zu viele Apps mit blockierendem JS, Bilder ohne Lazy-Loading, Custom-Webfonts ohne Swap.
               <em>Quick-Check: PageSpeed Insights "Field Data" für deine Domain.</em>
             </li>
             <li>
               <strong>Schema.org: Product, Organization, Breadcrumb</strong>
-              JSON-LD im Theme, dynamisch befüllt. Pflicht-Typen: Organization (Homepage), Product (PDP), BreadcrumbList (alle nicht-Root-Pages), Offer mit <code>priceValidUntil</code> und <code>availability</code>.
+              JSON-LD im Theme, dynamisch befüllt. Pflicht-Typen: Organization (Homepage), Product (PDP), BreadcrumbList (alle Seiten unterhalb der Startseite), Offer mit <code>priceValidUntil</code> und <code>availability</code>.
               <em>Quick-Check: Rich-Results-Test mit deiner Produkt-URL.</em>
             </li>
             <li>
@@ -277,7 +277,7 @@
             </li>
             <li>
               <strong>Zitierfähige Passagen für GEO</strong>
-              Jeder Artikel hat zwei bis drei eigenständige Absätze, die als Quote stehen können. Konkrete Zahlen, klare Aussagen. AI-Tools zitieren das, was zitierfähig ist.
+              Jeder Artikel hat zwei bis drei eigenständige Absätze, die sich als Zitat eignen. Konkrete Zahlen, klare Aussagen. AI-Tools zitieren das, was sich zitieren lässt.
             </li>
             <li>
               <strong>llms.txt im Root</strong>
@@ -304,15 +304,15 @@
             </li>
             <li>
               <strong>Alerts auf Position-Drops</strong>
-              Wenn ein Top-10-Keyword auf Pos 12 fällt, willst du das wissen, ohne es zufällig zu entdecken. Wöchentlicher Alert auf Drops größer 5 Plätze.
+              Wenn ein Top-10-Keyword auf Pos 12 fällt, willst du das früh erfahren und nicht zufällig entdecken. Wöchentlicher Alert auf Drops größer 5 Plätze.
             </li>
             <li>
               <strong>404-Monitoring auf wichtigen Pages</strong>
-              Tote interne Links und externe Links auf deinen Shop, die ins Leere gehen. Schauen sich monatlich anschauen lohnt.
+              Tote interne Links und externe Links auf deinen Shop, die ins Leere zeigen. Monatlich draufschauen lohnt sich.
             </li>
             <li>
               <strong>Schema-Validation in der Pipeline</strong>
-              Nach jedem Theme-Deploy wird Schema.org auf den Top-5-Templates geprüft. Falls etwas kaputtgeht, willst du es sofort wissen, nicht in zwei Wochen aus einer Search-Performance-Diff.
+              Nach jedem Theme-Deploy wird Schema.org auf den Top-5-Templates geprüft. Falls etwas kaputtgeht, fällt es sofort auf, nicht erst zwei Wochen später beim Search-Performance-Diff.
             </li>
           </ol>
 

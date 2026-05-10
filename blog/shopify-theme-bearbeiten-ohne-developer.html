@@ -253,14 +253,14 @@
           <div class="callout">
             <span class="callout-label">Stop-Schilder</span>
             <p><strong>Headless-Migration.</strong> Hydrogen, eigene Frontend-App auf Vercel, Storefront-API-Architektur. Das ist Software-Engineering, kein Theme-Editing.</p>
-            <p><strong>Custom-Checkout (Shopify Plus).</strong> Checkout-Extensions, Shop-Pay-Customization, Steuerlogik. Compliance-relevant, fehler-teuer.</p>
+            <p><strong>Custom-Checkout (Shopify Plus).</strong> Checkout-Extensions, Shop-Pay-Customization, Steuerlogik. Compliance-relevant, Fehler kosten hier viel.</p>
             <p><strong>Eigene Apps.</strong> Wenn du Funktionalität brauchst, die nicht im Theme lebt (Webhooks, externe APIs, eigener Datenbank-Layer), brauchst du eine App, und Apps brauchen einen Dev.</p>
             <p><strong>Multi-Store-Architektur.</strong> Mehrere Stores mit Cross-Domain-Sync, Inventory-Bridges, gemeinsamem Customer-Pool. Da hängt zu viel dran.</p>
-            <p><strong>Performance-Surgery.</strong> Wenn du LCP unter 1,8 s ziehen willst und die letzten 300 ms nicht aus Theme-Optimierung kommen können, brauchst du jemanden, der mit dem CDN, mit Image-Pipelines und mit Caching-Strategien umgehen kann.</p>
+            <p><strong>Performance-Surgery.</strong> Wenn du LCP unter 1,8 s ziehen willst und sich die letzten 300 ms nicht mehr aus Theme-Optimierung herausholen lassen, brauchst du jemanden, der mit CDN, Image-Pipelines und Caching-Strategien umgehen kann.</p>
           </div>
 
           <h2 id="workflow">Der sichere Workflow in drei Schritten</h2>
-          <p>Egal ob du Code-Profi bist oder zum ersten Mal in eine Liquid-Datei schaust: dieser Workflow schützt dein Live-Theme. Wenn du ihn einhältst, kann praktisch nichts passieren, was du nicht in fünf Minuten rückgängig machst.</p>
+          <p>Egal ob du Code-Profi bist oder zum ersten Mal in eine Liquid-Datei schaust: dieser Workflow schützt dein Live-Theme. Wenn du ihn einhältst, kann praktisch nichts passieren, was sich nicht in fünf Minuten rückgängig machen ließe.</p>
 
           <h3>Schritt 1: Theme-Duplicate erstellen</h3>
           <p>Im Shopify Admin: <code>Online Store → Themes → Live-Theme → Actions → Duplicate</code>. Du bekommst eine Kopie, sie heißt standardmäßig <code>Copy of [Theme-Name]</code>. Benenne sie um, damit du sie wiederfindest. Beispiel: <code>vorflows-edit-2026-05-10</code>.</p>
@@ -277,11 +277,11 @@
 
           <h3>Schritt 3: Im Preview reviewen, manuell publishen</h3>
           <p>Shopify gibt dir für jedes Theme einen Preview-Link. Öffne ihn auf Desktop und Mobile. Klicke dich durch die wichtigsten Pages: Home, Collection, Produktseite, Cart, Checkout. Jeder Bereich, der von der Änderung betroffen sein könnte.</p>
-          <p>Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Das Live-Theme wechselt erst in dieser Sekunde. Wenn dir nach dem Publish etwas auffällt: <code>Actions → Publish</code> auf das alte Theme, das jetzt als <em>Previously published</em> markiert ist. Rollback in zehn Sekunden.</p>
+          <p>Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Das Live-Theme wechselt erst in dieser Sekunde. Fällt dir nach dem Publish etwas auf, drückst du beim alten Theme (jetzt als <em>Previously published</em> markiert) auf <code>Actions → Publish</code>. Rollback in zehn Sekunden.</p>
 
           <div class="callout callout--accent">
             <span class="callout-label">Ehrlich</span>
-            <p>Ich habe in den letzten zwei Jahren keinen einzigen Founder gesehen, der mit diesem Workflow seinen Live-Shop kaputt gemacht hat. Die wenigen, die einen Schreckmoment hatten, waren immer in den Pattern: <em>direkt am Live-Theme</em>, oder <em>per Auto-Sync ohne Review</em>. Beides vermeidbar.</p>
+            <p>Ich habe in den letzten zwei Jahren keinen einzigen Founder gesehen, der mit diesem Workflow seinen Live-Shop kaputt gemacht hat. Die wenigen, die einen Schreckmoment hatten, folgten immer demselben Muster: <em>direkt am Live-Theme</em> oder <em>per Auto-Sync ohne Review</em>. Beides vermeidbar.</p>
           </div>
 
           <h2 id="tools">Was du an Tools brauchst</h2>
@@ -298,7 +298,7 @@
           <ul>
             <li><strong>Shopify CLI</strong> (für lokale Theme-Sync) — wenn du gleichzeitig in mehreren Files editieren willst</li>
             <li><strong>VS Code mit Liquid-Extension</strong> — Syntax-Highlighting hilft, auch wenn Claude den Code schreibt</li>
-            <li><strong>BaseFlow-Setup-Datei</strong> — gibt Claude die Shopify-Skills, die nicht im Standard-Stack drin sind. Setup in 20 bis 30 Minuten, danach kennt Claude dein Theme</li>
+            <li><strong>BaseFlow-Setup-Datei</strong> — gibt Claude die Shopify-Skills, die im Standard-Stack fehlen. Setup in 20 bis 30 Minuten, danach kennt Claude dein Theme</li>
           </ul>
 
           <h3>Brauchst du nicht</h3>
@@ -311,14 +311,14 @@
           <h2 id="fehler">Häufige Fehler und wie du sie vermeidest</h2>
 
           <h3>Direkt am Live-Theme arbeiten, "kurz mal"</h3>
-          <p>Der häufigste und teuerste Fehler. Du machst eine "schnelle Anpassung" am Live-Theme, weil dir Duplicate-Erstellen nervt. Dann kommt eine Kollision mit einer App, oder ein Liquid-Tippfehler, und der Shop ist zehn Minuten down. Ist mir selbst passiert. Einmal.</p>
+          <p>Der häufigste und teuerste Fehler. Du machst eine "schnelle Anpassung" am Live-Theme, weil dich das Duplicate-Erstellen nervt. Dann kommt eine Kollision mit einer App, oder ein Liquid-Tippfehler, und der Shop ist zehn Minuten down. Ist mir selbst passiert. Einmal.</p>
           <p>Die Lektion: Duplicate ist nicht Overhead, Duplicate ist die Versicherung.</p>
 
           <h3>Auto-Deploy aktivieren</h3>
-          <p>Manche Tools bieten an, Theme-Änderungen automatisch zu publishen. Lass das aus. Du willst den Moment <em>"Live geht es"</em> immer manuell auslösen, mit dem Preview im Tab daneben.</p>
+          <p>Manche Tools bieten an, Theme-Änderungen automatisch zu publishen. Lass das aus. Du willst den Moment des Live-Schaltens immer manuell auslösen, mit dem Preview im Tab daneben.</p>
 
           <h3>Settings-Schema vergessen</h3>
-          <p>Du baust eine schöne Section, hardcodest aber Texte und Farben. Beim nächsten Update ist alles wieder weg. Lös das, indem du Settings im Schema definierst. Das ist 5 Minuten Mehrarbeit und spart dir Stunden später.</p>
+          <p>Du baust eine schöne Section, schreibst aber Texte und Farben fest in den Code. Beim nächsten Update ist alles wieder weg. Lös das, indem du Settings im Schema definierst. Das sind fünf Minuten Mehrarbeit und spart dir später Stunden.</p>
 
           <h3>Translations vergessen</h3>
           <p>Wenn dein Shop mehrsprachig ist und du einen neuen String in der Section hardcodest, fliegt dir das beim nächsten Locale-Switch um die Ohren. Nutze <code>{{ 'general.shipping_bar.text' | t }}</code>-Pattern und füge die Strings in <code>locales/de.default.json</code> hinzu.</p>
@@ -338,13 +338,13 @@
           <h2 id="dev">Wann du trotzdem einen Dev hinzuziehst</h2>
           <p>Es gibt Momente, in denen ich Foundern empfehle, einen Profi zu holen. Hier sind die Signale, die dir helfen zu entscheiden.</p>
           <ul>
-            <li><strong>Du brauchst eine eigene App.</strong> Webhooks, externe APIs, eigener Backend-Service. Das ist nicht Theme.</li>
-            <li><strong>Compliance-Themen.</strong> DSGVO-spezifische Tracking-Setups, BAFA-Datenexporte, Steuer-Logik bei Cross-Border. Holt euch jemanden mit Erfahrung.</li>
+            <li><strong>Du brauchst eine eigene App.</strong> Webhooks, externe APIs, eigener Backend-Service. Das gehört nicht ins Theme.</li>
+            <li><strong>Compliance-Themen.</strong> DSGVO-spezifische Tracking-Setups, BAFA-Datenexporte, Steuer-Logik bei Cross-Border. Hol dir jemanden mit Erfahrung.</li>
             <li><strong>Multi-Store-Sync.</strong> Drei Stores, geteilte Customer-Base, geteiltes Inventar. Architektur-Arbeit.</li>
             <li><strong>Performance-Limit erreicht.</strong> Wenn du in PageSpeed unter 80 nicht mehr runterkommst trotz Theme-Optimierung, liegt der Engpass woanders.</li>
-            <li><strong>Du baust etwas, das du in einem Jahr verstehen musst.</strong> Wenn du jemand anderem das übergibst, der nicht mit Claude arbeitet, willst du sauber dokumentierten Code, nicht KI-Output.</li>
+            <li><strong>Du baust etwas, das du in einem Jahr verstehen musst.</strong> Wenn du das später an jemanden übergibst, der nicht mit Claude arbeitet, willst du sauber dokumentierten Code, nicht KI-Output.</li>
           </ul>
-          <p>In allen anderen Fällen lohnt sich der Dev nicht mehr. Du bezahlst nicht für Code-Output, sondern für Wartezeit, Briefing-Zeit und Stundensatz auf eine Aufgabe, die in einem Bruchteil der Zeit selbst gelaufen wäre.</p>
+          <p>In allen anderen Fällen lohnt sich der Dev nicht mehr. Du bezahlst nicht für Code-Output, sondern für Wartezeit, Briefing-Zeit und Stundensatz auf eine Aufgabe, die du in einem Bruchteil der Zeit selbst erledigt hättest.</p>
 
           <h2 id="faq">FAQ</h2>
 
