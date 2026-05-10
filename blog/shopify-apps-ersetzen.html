@@ -50,7 +50,7 @@
           "image": "https://vorflows.com/brand_assets/og-image.jpg",
           "datePublished": "2026-05-10T08:00:00+02:00",
           "dateModified": "2026-05-10T08:00:00+02:00",
-          "wordCount": 1887,
+          "wordCount": 1974,
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
           "author": {
@@ -162,9 +162,9 @@
 
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
-            <p>Die meisten Shopify-Stores zahlen 200–500 € pro Monat für Apps, die rein im Theme-Code wären. Shipping-Bar, Sticky-ATC, Bundle-Builder, Countdown, Page-Builder, Cart-Upsell, Reviews-Anzeige, Lead-Forms: alle ersetzbar.</p>
-            <p>Behalten solltest du Apps, die echte Daten halten oder externer Logik folgen: Klaviyo, Recharge, ShipStation, Judge.me oder Loox für das Sammeln (nicht das Anzeigen) von Reviews.</p>
-            <p><strong>Sparpotenzial im Median: 5.232 € pro Jahr.</strong> Aufwand: ein Wochenende, wenn du Claude Code mit einer Setup-Datei nutzt.</p>
+            <p>Die meisten Shopify-Stores zahlen 200 bis 500 € pro Monat für Apps, deren Funktionen im Theme-Code wenige Stunden Arbeit wären. Versandkosten-Bar oben auf der Seite, klebender "In den Warenkorb"-Button, Bundle-Wähler, Countdown, Seiten-Builder, Empfehlungen im Warenkorb-Drawer, Bewertungs-Anzeige, einfache Lead-Formulare. Alles ersetzbar.</p>
+            <p>Behalten solltest du Apps, die echte Daten verwalten oder eigener Logik folgen. Dein E-Mail-Tool (Klaviyo, Brevo), dein Abo-Tool (Recharge), dein Versand-Tool (ShipStation, Sendcloud), das Bewertungs-Tool fürs Einsammeln (Judge.me oder Loox; nur das Anzeigen baust du selbst).</p>
+            <p><strong>Sparpotenzial im Mittel: rund 5.232 € pro Jahr.</strong> Aufwand: ein Wochenende, wenn du Claude Code mit einer fertigen Setup-Datei nutzt.</p>
           </aside>
 
           <nav class="toc" aria-label="Inhaltsverzeichnis">
@@ -187,13 +187,13 @@
           </nav>
 
           <h2 id="warum">Warum der Shopify-App-Stack so teuer geworden ist</h2>
-          <p>Apps haben Shopify groß gemacht. Das war 2015 die richtige Antwort: Theme-Code war Spezialwissen, Apps waren der Workaround. Du installiertest etwas, klicktest dich durch, fertig.</p>
-          <p>2026 ist die Welt eine andere. Theme-Architektur ist standardisiert (<a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a>, Sections, Blocks, Settings). <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> lässt sich von einer KI lesen wie eine Konfigurationsdatei. Was früher zwei Tage Arbeit eines Senior-Devs war, ist heute ein Satz an Claude.</p>
-          <p>Was geblieben ist, sind die Subscriptions. App-Anbieter haben kein Interesse an einem Markt, in dem du das Gleiche selbst hinbekommst. Also schreiben sie weiter Marketing-Texte über "advanced features", die in Wirklichkeit drei <code>{% if %}</code>-Statements und ein bisschen CSS sind.</p>
+          <p>Apps haben Shopify groß gemacht. 2015 war das die richtige Antwort: Theme-Code war Spezialwissen, Apps waren der Umweg drumherum. Du installierst etwas, klickst dich durch, fertig.</p>
+          <p>2026 sieht das anders aus. Die Theme-Architektur ist standardisiert (<a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a> mit austauschbaren Bausteinen: Sections, Blocks, Einstellungen). Shopifys Vorlagen-Sprache <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> ist gut dokumentiert und für KI-Tools gut lesbar. Was früher zwei Tage Senior-Dev-Arbeit war, ist heute ein Satz an Claude.</p>
+          <p>Geblieben sind die Monats-Abos. App-Anbieter haben kein Interesse daran, dass du dasselbe selbst hinbekommst. Also schreiben sie weiter Marketing-Texte über "Advanced Features", die in Wirklichkeit aus drei Wenn-dann-Bedingungen und ein bisschen CSS bestehen.</p>
 
           <div class="callout">
             <span class="callout-label">Aus der Praxis</span>
-            <p>Ein typischer DACH-Shopify-Store, den wir in der Beta gesehen haben: 11 Apps, davon 9 reine UI-Layer. Monatliche Summe: 487 € netto. Davon ersetzbar: 412 €. Bedeutet 4.944 € pro Jahr, die direkt in die Marge fließen können.</p>
+            <p>Ein typischer DACH-Shopify-Store aus unserer Beta-Gruppe: 11 Apps, davon 9 reine Anzeige-Hilfen ohne eigene Daten. Summe: 487 € pro Monat netto. Davon ersetzbar: 412 €. Macht 4.944 € pro Jahr, die direkt in die Marge fließen.</p>
           </div>
 
           <h2 id="tabelle">Vergleichstabelle: 9 Apps, was sie kosten, was sie ersetzt</h2>
@@ -297,45 +297,45 @@
 
           <p class="pull-quote">Was bei der App 19 € pro Monat kostet, lebt jetzt im Theme und wird nie wieder gewartet.</p>
 
-          <h2 id="cart">Cart-Upsell und Cart-Drawer</h2>
-          <p>Cart-Upsell-Apps versprechen dir mehr AOV durch eingeblendete Produktempfehlungen im Drawer. Die Logik dahinter ist simpel: <em>"Wenn Produkt X im Cart, zeig Produkt Y als Add-on an."</em></p>
-          <p>Im Theme wird daraus ein Cart-Drawer-Snippet, das auf den aktuellen Cart-Inhalt reagiert. Du brauchst eine Section mit Settings für Trigger-Tags und Empfehlungs-Tags. Claude liest dein Theme und baut den Drawer in zwei bis drei Stunden, inklusive Mobile-Optimierung und Klick-Tracking.</p>
-          <p>Was du dabei gewinnst: vollen Stylesheet-Zugriff. Keine "Anpassbar nur im Pro-Plan"-Limits, keine fremde JS-Library, die mit deinem Cart-Counter kollidiert.</p>
+          <h2 id="cart">Empfehlungen im Warenkorb (Cart-Upsell)</h2>
+          <p>Cart-Upsell-Apps versprechen mehr durchschnittlichen Bestellwert (AOV — <em>Average Order Value</em>) durch Produktempfehlungen, die im Warenkorb-Drawer eingeblendet werden. Die Logik dahinter ist simpel: <em>"Wenn Produkt X im Warenkorb liegt, zeig Produkt Y als Zusatz."</em></p>
+          <p>Im Theme wird daraus ein kleiner Code-Baustein (Snippet), der auf den aktuellen Warenkorb-Inhalt reagiert. Eine Section mit Einstellungen für Auslöser-Produkte und Empfehlungs-Produkte reicht. Claude liest dein Theme und baut den Drawer in zwei bis drei Stunden, inklusive Mobile-Optimierung und Klick-Tracking.</p>
+          <p>Was du gewinnst: vollen Zugriff auf das Aussehen. Keine "geht nur im Pro-Plan"-Limits, keine fremde JavaScript-Bibliothek, die mit deinem Warenkorb-Zähler in Konflikt gerät.</p>
 
           <h2 id="bundle">Bundle-Builder</h2>
-          <p>Bundle-Apps sind teurer, weil sie versuchen, den ganzen Funnel zu verkaufen. Realität: ein Bundle ist ein Custom-Variant-Picker plus ein Discount-Code, der per JavaScript angewendet wird. Plus ein paar Edge-Cases für Inventory.</p>
-          <p>In Claude-Sprache: <em>"Bau mir eine Bundle-Section auf der Produktseite, drei Slots für Variant-Picker, Auto-Discount bei drei Items, fall back zu Single-Add-to-Cart."</em> Das wird ein Section-File mit JS-Modul. 4 bis 6 Stunden. Einmal.</p>
+          <p>Bundle-Apps sind teurer, weil sie den kompletten Verkaufs-Trichter abdecken wollen. In Wirklichkeit ist ein Bundle eine erweiterte Varianten-Auswahl plus ein Rabatt-Code, der per JavaScript angewendet wird. Plus ein paar Sonderfälle für Lagerbestand.</p>
+          <p>In Claude-Sprache: <em>"Bau mir eine Bundle-Section auf der Produktseite, drei Slots für Varianten-Auswahl, automatischer Rabatt ab drei Artikeln, sonst Standard-Add-to-Cart."</em> Das ergibt eine Section-Datei plus ein JavaScript-Modul. 4 bis 6 Stunden Arbeit. Einmal.</p>
 
           <div class="callout callout--accent">
             <span class="callout-label">Quick-Win</span>
-            <p>Wenn du diesen Monat nur eine App ersetzen willst: nimm den Bundle-Builder. Höchster Subscription-Cost, niedrigste Umstellungs-Komplexität, weil dein Bundle-Output ohnehin schon im Shop steht.</p>
+            <p>Wenn du diesen Monat nur eine App ersetzen willst: nimm den Bundle-Builder. Höchste monatliche Kosten, niedrigste Umstellungs-Komplexität — denn deine Bundle-Logik existiert ohnehin schon im Shop.</p>
           </div>
 
-          <h2 id="page">Page-Builder (PageFly, GemPages)</h2>
-          <p>Page-Builder sind die App-Kategorie, die ich am meisten missverstanden sehe. Sie wurden gebraucht, als Themes noch Monolith-Layouts hatten. Online Store 2.0 hat das Problem strukturell gelöst.</p>
-          <p>Eine Section-Library mit zehn bis fünfzehn flexiblen Sections (Hero, Feature-Grid, Testimonial-Strip, Image-Text-Split, Pricing-Block, FAQ, Logo-Bar, CTA-Band, Spacer, Image-Gallery) deckt 95 % aller Landing-Pages ab. Du baust sie einmal und nutzt sie überall.</p>
-          <p>Das ist ein Tag Arbeit, nicht ein laufendes Abo. <a href="/baseflow">BaseFlow</a> kommt mit einer Section-Library als Beispiel-Setup, du kannst sie ab Tag eins benutzen.</p>
+          <h2 id="page">Seiten-Builder (PageFly, GemPages)</h2>
+          <p>Seiten-Builder sind die meist-missverstandene App-Kategorie. Sie waren nötig, als Themes noch starre Layouts hatten. Online Store 2.0 hat das Problem strukturell gelöst — heute ist jede Seite aus austauschbaren Bausteinen aufgebaut.</p>
+          <p>Eine Bibliothek mit 10 bis 15 flexiblen Sections (Hero-Bild, Feature-Raster, Kunden-Streifen, Bild-mit-Text, Preisblock, FAQ, Logo-Reihe, Aufruf-zum-Handeln, Abstandshalter, Galerie) deckt 95 Prozent aller Landing-Pages ab. Einmal bauen, überall einsetzen.</p>
+          <p>Das ist ein Tag Arbeit, kein Dauer-Abo. <a href="/baseflow">BaseFlow</a> liefert eine fertige Section-Bibliothek mit, ab Tag eins einsetzbar.</p>
 
-          <h2 id="sticky">Countdown, Sticky-ATC, Trust-Badges</h2>
-          <p>Drei Apps, die ich zusammenfasse, weil sie alle dieselbe Struktur haben: ein UI-Element, das auf der Seite klebt, mit einem winzigen Stück Logik dahinter.</p>
-          <p><strong>Countdown.</strong> Ein <code>setInterval</code>, das bei null aufhört, plus eine Settings-Variable für das End-Datum. Zwanzig Minuten, inklusive End-Zustand-Handling.</p>
-          <p><strong>Sticky-ATC.</strong> Ein Section-Element mit <a href="https://developer.mozilla.org/de/docs/Web/CSS/position#sticky_positioning" rel="noopener" target="_blank"><code>position: sticky</code></a>, das oberhalb eines bestimmten Scroll-Punktes erscheint. CSS und ein <a href="https://developer.mozilla.org/de/docs/Web/API/Intersection_Observer_API" rel="noopener" target="_blank"><code>IntersectionObserver</code></a>. Eine halbe Stunde.</p>
-          <p><strong>Trust-Badges.</strong> Drei oder vier SVG-Icons mit Text, in einer Section unter dem Add-to-Cart. Fünfzehn Minuten. Apps verlangen dafür 12 € pro Monat.</p>
+          <h2 id="sticky">Countdown, klebender ATC-Button, Vertrauens-Symbole</h2>
+          <p>Drei Apps, die ich zusammenfasse, weil sie alle dieselbe Bauweise haben: ein UI-Element, das auf der Seite klebt, plus ein winziges Stück Logik dahinter.</p>
+          <p><strong>Countdown.</strong> Ein JavaScript-Timer, der bei null stoppt, plus eine Einstellung für das End-Datum. Zwanzig Minuten, inklusive Verhalten nach Ablauf.</p>
+          <p><strong>Klebender "In den Warenkorb"-Button (Sticky ATC).</strong> Eine Section mit dem CSS-Befehl <a href="https://developer.mozilla.org/de/docs/Web/CSS/position#sticky_positioning" rel="noopener" target="_blank"><code>position: sticky</code></a>, die ab einem bestimmten Scroll-Punkt am Bildschirmrand erscheint. CSS plus ein <a href="https://developer.mozilla.org/de/docs/Web/API/Intersection_Observer_API" rel="noopener" target="_blank">IntersectionObserver</a> (eine Browser-Funktion, die merkt, wann ein Element sichtbar wird). Eine halbe Stunde.</p>
+          <p><strong>Vertrauens-Symbole.</strong> Drei oder vier SVG-Icons mit Text, in einer Section unter dem "In den Warenkorb"-Button. Fünfzehn Minuten. Apps verlangen dafür 12 € pro Monat.</p>
 
           <h2 id="seo">SEO-Suite-Apps</h2>
-          <p>SEO-Apps verkaufen dir drei Dinge: Meta-Title-Templates, Schema.org-Output und einen Audit-Report. Alle drei gehören ins Theme, nicht in eine externe App.</p>
-          <p><strong>Meta-Templates.</strong> Eine Liquid-Snippet-Datei pro Template-Type (Product, Collection, Page, Article). Sie generiert <code>&lt;title&gt;</code> und <code>meta description</code> auf Basis von Produkt-Attributen.</p>
-          <p><strong>Schema.</strong> JSON-LD im Theme, dynamisch befüllt aus den Liquid-Variablen. Validierst du einmal mit dem <a href="https://search.google.com/test/rich-results" rel="noopener" target="_blank">Rich-Results-Test</a>, dann läuft es jahrelang. Die offizielle Typ-Liste steht auf <a href="https://schema.org/" rel="noopener" target="_blank">schema.org</a>.</p>
-          <p><strong>Audits.</strong> Hier hört der App-Vorteil auf. Audits sind ein Snapshot, kein laufender Wert. <a href="/seoflow">SEOFlow</a> macht das auf Knopfdruck mit echten Such-Daten und schreibt Code, statt nur Probleme aufzulisten.</p>
+          <p>SEO-Apps verkaufen drei Dinge: Vorlagen für Seitentitel, Schema-Etiketten im HTML und einen Audit-Report. Alle drei gehören ins Theme, nicht in eine externe App.</p>
+          <p><strong>Titel-Vorlagen.</strong> Pro Seitentyp (Produkt, Kategorie, Seite, Artikel) eine kleine Liquid-Datei. Sie erzeugt automatisch den Seitentitel und die Meta-Description aus den Produkt-Attributen.</p>
+          <p><strong>Schema-Etiketten.</strong> Maschinenlesbare Daten in deinem HTML, die Google als Sterne und Preise im Suchergebnis anzeigen kann. Format: JSON-LD. Befülle es dynamisch aus den Liquid-Variablen, validiere einmal mit dem <a href="https://search.google.com/test/rich-results" rel="noopener" target="_blank">Rich-Results-Test</a>, dann läuft es jahrelang. Die offizielle Typ-Liste steht auf <a href="https://schema.org/" rel="noopener" target="_blank">schema.org</a>.</p>
+          <p><strong>Audits.</strong> Hier hört der App-Vorteil auf. Audits sind ein Schnappschuss, keine laufende Optimierung. <a href="/seoflow">SEOFlow</a> macht das auf Knopfdruck mit echten Such-Daten und schreibt Code, statt nur Listen mit Problemen.</p>
 
-          <h2 id="leads">Lead-Forms und Email-Capture</h2>
-          <p>Eine Lead-Form ist ein Input und ein Submit-Button. Shopify selbst stellt das Customer-Account-Form-System. Was du dazubaust, ist die Verbindung zu deinem ESP (Klaviyo, Brevo, Mailchimp).</p>
-          <p>Die meisten ESPs haben einen direkten Liquid-Snippet-Endpunkt für Embed-Forms. Du kopierst ihn einmal in dein Theme, passt das Styling an dein Design an, fertig. App nicht nötig.</p>
+          <h2 id="leads">Lead-Formulare und E-Mail-Sammlung</h2>
+          <p>Ein Lead-Formular ist ein Eingabefeld plus ein Absenden-Button. Shopify selbst hat ein Customer-Account-Form-System. Was du anbinden musst, ist dein E-Mail-Tool — auf Englisch <em>ESP (Email Service Provider)</em>: Klaviyo, Brevo, Mailchimp etc.</p>
+          <p>Die meisten ESPs bieten direkt einen einbettbaren Liquid-Snippet für Formulare an. Einmal kopieren, Styling anpassen, fertig. Eine separate Lead-App ist nicht nötig.</p>
 
-          <h2 id="reviews">Reviews-Anzeige (das Sammeln bleibt extern)</h2>
-          <p>Reviews sind die wichtigste Differenzierung in diesem Artikel. Das <em>Sammeln</em> von Reviews ist ein eigenes Produkt: E-Mail-Sequenzen nach Kauf, Foto-Uploads, Moderations-UI, Verified-Buyer-Logik. Das willst du nicht selbst bauen.</p>
-          <p>Die <em>Anzeige</em> der Reviews ist Theme-Code. Du holst die Reviews per API oder JSON-Feed (jede Review-App bietet das an), formatierst sie in Liquid und fügst Schema.org-Markup hinzu, damit du Sterne in den SERPs bekommst. Das ist eine Sache von zwei Stunden.</p>
-          <p>Resultat: du behältst Judge.me oder Loox für die Sammlung (5–15 € pro Monat), aber sparst dir den "Display-Plan", der bei vielen Anbietern dazukommt.</p>
+          <h2 id="reviews">Bewertungs-Anzeige (das Sammeln bleibt extern)</h2>
+          <p>Bewertungen sind der wichtigste Spezialfall in diesem Artikel. Das <em>Sammeln</em> von Bewertungen ist ein eigenständiges Produkt: E-Mail-Sequenzen nach Kauf, Foto-Uploads, Moderation, Verifizierter-Käufer-Logik. Das willst du nicht selbst bauen.</p>
+          <p>Die <em>Anzeige</em> der Bewertungen ist hingegen reiner Theme-Code. Du holst die Bewertungs-Daten per Schnittstelle (API) oder als JSON-Feed (jedes Bewertungs-Tool bietet das an), formatierst sie in Liquid und ergänzt Schema-Etiketten, damit du Sterne in den Google-Suchergebnissen bekommst. Zwei Stunden Arbeit.</p>
+          <p>Ergebnis: du behältst Judge.me oder Loox für die Sammlung (5 bis 15 € pro Monat), sparst dir aber den zusätzlichen "Display-Plan", den viele Anbieter obendrauf packen.</p>
 
           <figure class="post-figure">
             <img src="/assets/images/blog/apps-grid.webp" alt="3-mal-3-Grid mit neun outlined Tiles — fünf Tiles diagonal durchgestrichen — als minimales Linien-Diagramm" width="1264" height="848" loading="lazy" decoding="async" />
@@ -345,12 +345,12 @@
           <h2 id="behalten">Apps, die du behalten solltest</h2>
           <p>Hier ist die ehrliche Liste der Apps, die ich nie zum Selber-Bauen empfehlen würde. Sie haben echte Logik oder echte Daten dahinter, und der Aufwand für eine eigene Lösung übersteigt den Subscription-Vorteil deutlich.</p>
           <ul>
-            <li><strong>Klaviyo, Brevo, Mailchimp</strong> — E-Mail-Lifecycle, Segmente, Flows. Bau das nicht selbst.</li>
-            <li><strong>Recharge, Bold Subscriptions</strong> — Subscription-Logik, Recurring-Billing, Cancel-Flows. Compliance-relevant.</li>
-            <li><strong>ShipStation, Sendcloud</strong> — Multi-Carrier-Versand, Label-Print, Tracking. Eigene Welt.</li>
-            <li><strong>Judge.me, Loox, Yotpo</strong> — die <em>Sammlung</em> von Reviews. Display kannst du selbst.</li>
-            <li><strong>Buchhaltungs-Bridges</strong> (Shopify ↔ DATEV/Lexware) — Fehler hier kosten mehr als jedes Abo.</li>
-            <li><strong>Inventory-Sync für Multi-Channel</strong> (Amazon, eBay, Etsy) — externe API-Komplexität.</li>
+            <li><strong>E-Mail-Tools (Klaviyo, Brevo, Mailchimp).</strong> Lifecycle-Mails, Segmente, automatisierte Flows. Bau das nicht selbst.</li>
+            <li><strong>Abo-Tools (Recharge, Bold Subscriptions).</strong> Wiederkehrende Abrechnung, Kündigungs-Flows. Rechtlich heikel — Profi-Werkzeug nutzen.</li>
+            <li><strong>Versand-Tools (ShipStation, Sendcloud).</strong> Multi-Anbieter-Versand, Label-Druck, Tracking. Eigene Welt.</li>
+            <li><strong>Bewertungs-Sammlung (Judge.me, Loox, Yotpo).</strong> Das Einsammeln behalten — die Anzeige machst du selbst.</li>
+            <li><strong>Buchhaltungs-Brücken</strong> (Shopify ↔ DATEV/Lexware). Fehler hier kosten mehr als jedes Monats-Abo.</li>
+            <li><strong>Lager-Sync für Multi-Channel</strong> (Amazon, eBay, Etsy). Externe API-Komplexität — überlass das einer Spezial-App.</li>
           </ul>
           <p>Faustregel: behält die App ihre Daten? Hat sie Compliance-Touchpoints? Lebt sie außerhalb deines Stores? Dann lass sie laufen.</p>
 

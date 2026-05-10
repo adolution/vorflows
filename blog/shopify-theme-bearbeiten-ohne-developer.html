@@ -50,7 +50,7 @@
           "image": "https://vorflows.com/brand_assets/og-image.jpg",
           "datePublished": "2026-05-10T08:00:00+02:00",
           "dateModified": "2026-05-10T08:00:00+02:00",
-          "wordCount": 1713,
+          "wordCount": 2149,
           "inLanguage": "de-DE",
           "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
           "author": {
@@ -178,9 +178,9 @@
 
           <aside class="tldr">
             <span class="tldr-label">Kurz und ehrlich</span>
-            <p>Du kannst heute selbst: neue Sections bauen, Layout ändern, CTAs platzieren, Farben und Schrift austauschen, Schema und Meta-Tags pflegen, Cart-Drawer und Sticky-ATC umsetzen.</p>
-            <p>Du brauchst noch einen Dev für: Headless-Migration, eigene Apps, Custom-Checkout (Plus-only), tiefe Multi-Store-Architektur, kritische Performance-Eingriffe unterhalb der Theme-Ebene.</p>
-            <p><strong>Die zwei Regeln, die alles retten:</strong> Arbeite immer auf einem Theme-Duplicate. Publishe manuell. Mit Claude Code und der <a href="/baseflow">BaseFlow</a>-Setup-Datei läuft beides automatisch.</p>
+            <p>Was du heute selbst hinkriegst: neue Bausteine (Sections) auf deinen Seiten anlegen, Layouts umbauen, Buttons platzieren, Farben und Schrift tauschen, SEO-Etiketten pflegen, einen Warenkorb-Drawer und einen klebenden "In den Warenkorb"-Button auf der Produktseite umsetzen.</p>
+            <p>Was du noch einem Profi überlassen solltest: Wechsel auf eine Headless-Architektur (eigenes Frontend statt Shopify-Theme), eigene Apps mit Backend-Logik, Anpassungen am Checkout (nur auf Shopify Plus möglich), komplexe Mehr-Shop-Setups, Performance-Eingriffe unterhalb der Theme-Ebene.</p>
+            <p><strong>Zwei Regeln, die alles retten:</strong> Arbeite immer auf einer Kopie deines Themes (einem Theme-Duplicate), nie direkt am Live-Shop. Schalte Änderungen immer manuell live, niemals automatisch. Mit Claude Code und der <a href="/baseflow">BaseFlow</a>-Setup-Datei passiert beides automatisch richtig.</p>
           </aside>
 
           <nav class="toc" aria-label="Inhaltsverzeichnis">
@@ -198,55 +198,55 @@
           </nav>
 
           <h2 id="wandel">Was sich seit 2020 verändert hat</h2>
-          <p>Drei Dinge sind passiert, die das Theme-Bearbeiten komplett verändert haben.</p>
-          <p><strong><a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a>.</strong> Shopify hat 2021 die Theme-Architektur umgestellt. Sections und Blocks sind jetzt überall, nicht nur auf der Homepage. Settings-Schemas erlauben Konfiguration ohne Code. Was vorher pro Page hardcoded war, ist heute strukturiert.</p>
-          <p><strong>Dawn als Referenz.</strong> Shopify pflegt mit <a href="https://github.com/Shopify/dawn" rel="noopener" target="_blank">Dawn</a> ein Open-Source-Theme, das alle aktuellen Best-Practices zeigt. Du kannst Patterns daraus kopieren, ohne ein Premium-Theme zu kaufen.</p>
-          <p><strong>KI-gestützte Code-Werkzeuge.</strong> Tools wie Claude Code lesen <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> wie eine Spezifikation. Du beschreibst die Änderung in deutschem Klartext, das Tool schreibt den Code. Das ist der Punkt, an dem viele Founder zum ersten Mal merken: <em>Ich brauche keinen Dev mehr für das hier.</em></p>
+          <p>Theme-Bearbeiten heute hat mit Theme-Bearbeiten 2020 nicht mehr viel zu tun. Drei Verschiebungen sind dafür verantwortlich.</p>
+          <p><strong>Online Store 2.0.</strong> Shopify hat 2021 die Theme-Architektur umgebaut (offiziell <a href="https://shopify.dev/docs/storefronts/themes/architecture" rel="noopener" target="_blank">Online Store 2.0</a>). Seitdem ist eine Shopify-Seite aus austauschbaren Bausteinen aufgebaut: <em>Sections</em> sind ganze Bereiche (zum Beispiel das Hero-Bild oben), <em>Blocks</em> sind kleinere Elemente innerhalb einer Section. Das gilt jetzt überall, nicht nur auf der Startseite. Was früher fest im Code stand, lässt sich heute per Einstellung anpassen, ohne Code anzufassen.</p>
+          <p><strong>Dawn als Vorlage.</strong> Shopify pflegt mit <a href="https://github.com/Shopify/dawn" rel="noopener" target="_blank">Dawn</a> ein offizielles, kostenloses Theme. Es zeigt aktuelle Best-Practices und ist offen einsehbar. Du kannst dir Lösungen daraus abgucken, ohne ein Premium-Theme zu kaufen.</p>
+          <p><strong>KI-Werkzeuge fürs Code-Schreiben.</strong> Shopify-Themes sind in <em>Liquid</em> geschrieben. Das ist Shopifys eigene Vorlagen-Sprache, die Daten (zum Beispiel Produktnamen oder Preise) in HTML einfügt. <a href="https://shopify.dev/docs/api/liquid" rel="noopener" target="_blank">Liquid</a> ist gut dokumentiert und für KI-Tools wie Claude Code gut lesbar. Du beschreibst die gewünschte Änderung in deutschem Klartext, das Tool schreibt den Code. Das ist der Punkt, an dem viele Founder zum ersten Mal merken: <em>Ich brauche keinen Dev mehr für das hier.</em></p>
 
           <p class="pull-quote">Was vorher zwei Tage Senior-Dev-Arbeit war, ist heute ein Satz an Claude.</p>
 
           <h2 id="kannst">Was du heute selbst kannst</h2>
           <p>Eine ehrliche Liste, sortiert von einfach nach mittelschwer.</p>
 
-          <h3>Layout und Komposition</h3>
+          <h3>Layout und Aufbau</h3>
           <ul>
-            <li>Sections neu anordnen (per Theme-Editor, ohne Code)</li>
-            <li>Neue Sections bauen (Hero, FAQ-Block, Trust-Strip, Testimonial-Karussell)</li>
-            <li>Page-Templates hinzufügen (Landing-Page, Promo-Page, Bundle-Page)</li>
-            <li>Padding, Spacing, Container-Breiten anpassen</li>
+            <li>Sections (die Seiten-Bausteine) neu anordnen — funktioniert direkt im Shopify-Editor, ohne Code</li>
+            <li>Neue Sections bauen (Hero-Bild, FAQ-Block, Trust-Streifen mit Versprechen, Kunden-Karussell)</li>
+            <li>Eigene Seiten-Vorlagen hinzufügen (Landing-Page, Aktions-Seite, Bundle-Seite)</li>
+            <li>Innenabstände, Außenabstände und Container-Breiten anpassen</li>
           </ul>
 
-          <h3>Typografie und Farben</h3>
+          <h3>Schrift und Farben</h3>
           <ul>
-            <li>Brand-Farben in <code>settings_data.json</code> oder Theme-Settings</li>
-            <li>Custom-Fonts einbinden (woff2, mit <a href="https://web.dev/articles/font-display" rel="noopener" target="_blank"><code>font-display: swap</code></a>)</li>
-            <li>Heading-Hierarchie überarbeiten (H1, H2, H3 Sizes und Line-Heights)</li>
-            <li>Body-Type, Lesbarkeit, Antialiasing</li>
+            <li>Marken-Farben in den Theme-Einstellungen ändern (oder direkt in der Konfigurationsdatei <code>settings_data.json</code>)</li>
+            <li>Eigene Schriften einbinden (im modernen Format <em>woff2</em>, mit dem CSS-Befehl <a href="https://web.dev/articles/font-display" rel="noopener" target="_blank"><code>font-display: swap</code></a>, damit Text sofort lesbar ist, auch wenn die Schrift noch lädt)</li>
+            <li>Überschriften-Hierarchie überarbeiten (Größen und Zeilenhöhen für H1, H2, H3)</li>
+            <li>Fließtext-Schrift, Lesbarkeit und Schriftglättung (Antialiasing)</li>
           </ul>
 
-          <h3>Conversion-relevante Komponenten</h3>
+          <h3>Conversion-relevante Bausteine</h3>
           <ul>
-            <li>Sticky Add-to-Cart auf der Produktseite</li>
-            <li>Cart-Drawer mit Empfehlungen</li>
-            <li>Bundle-Selektor mit Auto-Discount</li>
-            <li>Shipping-Bar mit Live-Schwellenwert</li>
-            <li>Trust-Badges, Reviews-Snippet, Garantie-Blöcke</li>
+            <li>Klebender "In den Warenkorb"-Button (auf englisch <em>Sticky Add-to-Cart</em>) auf der Produktseite — bleibt beim Scrollen sichtbar</li>
+            <li>Warenkorb-Drawer mit Produktempfehlungen, der von der Seite einfährt</li>
+            <li>Bundle-Auswahl mit automatischem Rabatt</li>
+            <li>Versandkosten-Bar oben auf der Seite (<em>"Noch 12 € bis zum kostenlosen Versand"</em>) — aktualisiert sich live mit dem Warenkorb</li>
+            <li>Vertrauens-Symbole, Bewertungs-Anzeigen, Garantie-Hinweise</li>
           </ul>
 
           <h3>SEO und Metadaten</h3>
           <ul>
             <li>Title- und Description-Templates pro Page-Type</li>
             <li>Schema.org JSON-LD (Product, Organization, Breadcrumb, FAQ)</li>
-            <li>Hreflang für DACH-Stores</li>
-            <li>Bild-Alt-Texte automatisiert generieren</li>
-            <li>Sitemap-Hygiene</li>
+            <li>Hreflang-Tags für Mehr-Länder-Shops (Hinweis im HTML, welche Seite die deutsche, österreichische oder Schweizer Version ist)</li>
+            <li>Alternativtexte für Bilder automatisiert generieren (alt-Text — wichtig für Suche und Barrierefreiheit)</li>
+            <li>Sitemap pflegen (Liste aller Seiten, die Google indexieren soll)</li>
           </ul>
 
-          <h3>Translations</h3>
+          <h3>Übersetzungen</h3>
           <ul>
-            <li>Eigene Translations-Keys hinzufügen</li>
-            <li>Bestehende Strings überschreiben</li>
-            <li>Locale-spezifische Logik (z. B. AT-Versandkosten anders als DE)</li>
+            <li>Eigene Übersetzungs-Bausteine anlegen (in Shopify nennt sich das Translation-Keys — Platzhalter, die je nach Sprache anders gefüllt werden)</li>
+            <li>Bestehende Texte überschreiben, ohne ins Theme-Code-File zu greifen</li>
+            <li>Sprach-spezifische Logik (zum Beispiel andere Versandkosten in Österreich als in Deutschland)</li>
           </ul>
 
           <p>Wenn du dir bei einem Punkt unsicher bist: <a href="/baseflow">BaseFlow</a> kommt mit Beispiel-Workflows für jedes dieser Themen. Du wählst aus, Claude liest dein Theme und passt den Workflow auf deinen Code-Stand an.</p>
@@ -261,11 +261,11 @@
 
           <div class="callout">
             <span class="callout-label">Stop-Schilder</span>
-            <p><strong>Headless-Migration.</strong> Hydrogen, eigene Frontend-App auf Vercel, Storefront-API-Architektur. Das ist Software-Engineering, kein Theme-Editing.</p>
-            <p><strong>Custom-Checkout (Shopify Plus).</strong> Checkout-Extensions, Shop-Pay-Customization, Steuerlogik. Compliance-relevant, Fehler kosten hier viel.</p>
-            <p><strong>Eigene Apps.</strong> Wenn du Funktionalität brauchst, die nicht im Theme lebt (Webhooks, externe APIs, eigener Datenbank-Layer), brauchst du eine App, und Apps brauchen einen Dev.</p>
-            <p><strong>Multi-Store-Architektur.</strong> Mehrere Stores mit Cross-Domain-Sync, Inventory-Bridges, gemeinsamem Customer-Pool. Da hängt zu viel dran.</p>
-            <p><strong>Performance-Surgery.</strong> Wenn du LCP unter 1,8 s ziehen willst und sich die letzten 300 ms nicht mehr aus Theme-Optimierung herausholen lassen, brauchst du jemanden, der mit CDN, Image-Pipelines und Caching-Strategien umgehen kann.</p>
+            <p><strong>Wechsel auf Headless.</strong> Bei einem Headless-Setup baust du dein eigenes Frontend (zum Beispiel mit Shopifys Hydrogen-Framework) und nutzt Shopify nur noch als Backend. Das ist Software-Engineering, nicht mehr Theme-Editieren — und braucht einen Entwickler.</p>
+            <p><strong>Anpassungen am Checkout (nur Shopify Plus).</strong> Checkout-Erweiterungen, Anpassungen an Shop Pay, eigene Steuer-Logik. Das ist rechtlich relevant — Fehler kosten hier viel mehr als Entwickler-Stunden.</p>
+            <p><strong>Eigene Apps bauen.</strong> Wenn du Funktionen brauchst, die außerhalb deines Themes leben — also automatische Benachrichtigungen an externe Systeme (Webhooks), Anbindung an externe Schnittstellen (APIs) oder eine eigene Datenbank — dann brauchst du eine eigene App. Und Apps brauchen einen Entwickler.</p>
+            <p><strong>Mehrere Shops koordinieren.</strong> Wenn du mehrere Shops betreibst und Bestände, Kundenkonten oder Bestellungen zwischen ihnen synchronisieren willst, ist das ein Architektur-Projekt — nichts, was im Theme allein lösbar ist.</p>
+            <p><strong>Tiefe Performance-Optimierung.</strong> Wenn du LCP (den Geschwindigkeits-Wert für den größten sichtbaren Inhalt) unter 1,8 Sekunden drücken willst und die Theme-Optimierung am Limit ist, brauchst du jemanden, der mit Content-Delivery-Netzwerken (CDN), Bild-Pipelines und Caching-Strategien arbeiten kann.</p>
           </div>
 
           <h2 id="workflow">Der sichere Workflow in drei Schritten</h2>
@@ -276,22 +276,22 @@
             <figcaption>Drei Schritte: Duplicate erstellen · Änderung beschreiben · Preview reviewen, manuell publishen.</figcaption>
           </figure>
 
-          <h3>Schritt 1: Theme-Duplicate erstellen</h3>
-          <p>Im Shopify Admin: <code>Online Store → Themes → Live-Theme → Actions → Duplicate</code>. Du bekommst eine Kopie, sie heißt standardmäßig <code>Copy of [Theme-Name]</code>. Benenne sie um, damit du sie wiederfindest. Beispiel: <code>vorflows-edit-2026-05-10</code>.</p>
-          <p>Diese Kopie ist dein Arbeitstheme. Jede Änderung passiert hier, niemals direkt am Live.</p>
+          <h3>Schritt 1: Eine Kopie deines Themes anlegen</h3>
+          <p>Im Shopify Admin gehst du auf <code>Online Store → Themes</code>. Bei deinem aktiven Theme klickst du auf <code>Actions → Duplicate</code>. Du bekommst eine identische Kopie — Shopify nennt sie automatisch <code>Copy of [Theme-Name]</code>. Benenne sie um, damit du später weißt, woran du gearbeitet hast. Beispiel: <code>vorflows-edit-2026-05-10</code>.</p>
+          <p>Diese Kopie ist ab jetzt dein Arbeitstheme. Alle Änderungen passieren hier — dein Live-Theme im Shop bleibt unangetastet.</p>
 
-          <h3>Schritt 2: Änderung beschreiben und ausführen</h3>
-          <p>Wenn du Claude Code mit der BaseFlow-Setup-Datei nutzt, läuft das so ab:</p>
+          <h3>Schritt 2: Änderung beschreiben und ausführen lassen</h3>
+          <p>Mit Claude Code und der BaseFlow-Setup-Datei läuft das so ab:</p>
           <ol>
-            <li>Du verbindest Claude mit dem Theme-Duplicate (einmal pro Sitzung)</li>
-            <li>Du beschreibst die Änderung in einem Satz: <em>"Bau eine Sticky Add-to-Cart Section mit Produkt-Image, Variant-Picker und Quantity-Stepper."</em></li>
-            <li>Claude liest das Theme, schreibt die Liquid-Files, gibt dir den Diff zurück</li>
+            <li>Du verbindest Claude mit der Theme-Kopie (einmal pro Sitzung)</li>
+            <li>Du beschreibst die Änderung in einem Satz: <em>"Bau eine klebende 'In den Warenkorb'-Leiste mit Produktbild, Varianten-Auswahl und Mengenwahl."</em></li>
+            <li>Claude liest das Theme, schreibt die nötigen Code-Dateien und zeigt dir die Änderungen als Vergleich (englisch <em>Diff</em>) — du siehst genau, was hinzukommt, was sich ändert, was wegfällt</li>
           </ol>
-          <p>Wenn du ohne Claude arbeitest, machst du dasselbe manuell: Section-File schreiben, Settings-Schema definieren, im Theme-Editor einbinden. Das dauert deutlich länger und braucht echtes Liquid-Verständnis.</p>
+          <p>Ohne Claude machst du dasselbe von Hand: Section-Datei schreiben, Einstellungs-Schema definieren, im Theme-Editor einbinden. Dauert deutlich länger und setzt voraus, dass du Liquid lesen und schreiben kannst.</p>
 
-          <h3>Schritt 3: Im Preview reviewen, manuell publishen</h3>
-          <p>Shopify gibt dir für jedes Theme einen Preview-Link. Öffne ihn auf Desktop und Mobile. Klicke dich durch die wichtigsten Pages: Home, Collection, Produktseite, Cart, Checkout. Jeder Bereich, der von der Änderung betroffen sein könnte.</p>
-          <p>Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Das Live-Theme wechselt erst in dieser Sekunde. Fällt dir nach dem Publish etwas auf, drückst du beim alten Theme (jetzt als <em>Previously published</em> markiert) auf <code>Actions → Publish</code>. Rollback in zehn Sekunden.</p>
+          <h3>Schritt 3: Vorschau prüfen und manuell live schalten</h3>
+          <p>Shopify gibt dir für jedes Theme einen Vorschau-Link (Preview). Öffne ihn auf Desktop und Mobile. Klicke dich durch die wichtigsten Seiten: Startseite, Kategorie, Produktseite, Warenkorb, Checkout. Alles, was von deiner Änderung betroffen sein könnte.</p>
+          <p>Erst wenn die Vorschau okay aussieht, gehst du auf <code>Actions → Publish</code>. Das Live-Theme wechselt in dieser Sekunde. Fällt dir nach dem Live-Schalten doch etwas auf, klickst du beim alten Theme (jetzt als <em>"Previously published"</em> markiert) erneut auf <code>Actions → Publish</code> — Rückkehr in 10 Sekunden.</p>
 
           <div class="callout callout--accent">
             <span class="callout-label">Ehrlich</span>
@@ -362,21 +362,21 @@
 
           <h2 id="fehler">Häufige Fehler und wie du sie vermeidest</h2>
 
-          <h3>Direkt am Live-Theme arbeiten, "kurz mal"</h3>
-          <p>Der häufigste und teuerste Fehler. Du machst eine "schnelle Anpassung" am Live-Theme, weil dich das Duplicate-Erstellen nervt. Dann kommt eine Kollision mit einer App, oder ein Liquid-Tippfehler, und der Shop ist zehn Minuten down. Ist mir selbst passiert. Einmal.</p>
-          <p>Die Lektion: Duplicate ist nicht Overhead, Duplicate ist die Versicherung.</p>
+          <h3>Direkt am Live-Theme arbeiten, "schnell mal"</h3>
+          <p>Der häufigste und teuerste Fehler. Du machst eine "schnelle Anpassung" direkt am Live-Theme, weil dich das Kopieren nervt. Dann kollidiert ein Liquid-Tippfehler mit einer App, und der Shop ist zehn Minuten nicht erreichbar. Ist mir selbst passiert. Einmal.</p>
+          <p>Die Lektion: Eine Theme-Kopie ist kein zusätzlicher Aufwand — sie ist deine Versicherung.</p>
 
-          <h3>Auto-Deploy aktivieren</h3>
-          <p>Manche Tools bieten an, Theme-Änderungen automatisch zu publishen. Lass das aus. Du willst den Moment des Live-Schaltens immer manuell auslösen, mit dem Preview im Tab daneben.</p>
+          <h3>Automatisches Live-Schalten aktivieren</h3>
+          <p>Manche Tools bieten an, Theme-Änderungen automatisch live zu schieben (Auto-Deploy). Lass das aus. Du willst den Moment des Live-Schaltens immer manuell auslösen — mit der Vorschau im Browser-Tab daneben.</p>
 
-          <h3>Settings-Schema vergessen</h3>
-          <p>Du baust eine schöne Section, schreibst aber Texte und Farben fest in den Code. Beim nächsten Update ist alles wieder weg. Lös das, indem du Settings im Schema definierst. Das sind fünf Minuten Mehrarbeit und spart dir später Stunden.</p>
+          <h3>Einstellungs-Schema vergessen</h3>
+          <p>Du baust eine schöne neue Section, schreibst aber Texte und Farben fest in den Code. Beim nächsten Theme-Update ist alles wieder weg. Lösung: Texte und Farben über das Einstellungs-Schema (<em>Settings-Schema</em>) anbieten — dann bleiben deine Werte erhalten, und du kannst sie später im Shopify-Editor ändern, ohne ins Code-File zu gehen. Fünf Minuten Mehrarbeit, später Stunden gespart.</p>
 
-          <h3>Translations vergessen</h3>
-          <p>Wenn dein Shop mehrsprachig ist und du einen neuen String in der Section hardcodest, fliegt dir das beim nächsten Locale-Switch um die Ohren. Nutze <code>{{ 'general.shipping_bar.text' | t }}</code>-Pattern und füge die Strings in <code>locales/de.default.json</code> hinzu.</p>
+          <h3>Übersetzungen vergessen</h3>
+          <p>Wenn dein Shop mehrsprachig ist und du einen neuen Text fest in eine Section schreibst (statt einen Übersetzungs-Platzhalter zu verwenden), bricht beim nächsten Sprachwechsel die Anzeige. Nutze stattdessen das Translation-Pattern <code>{{ 'general.shipping_bar.text' | t }}</code> und legst die Texte je Sprache in der jeweiligen Locale-Datei (z. B. <code>locales/de.default.json</code>) ab.</p>
 
-          <h3>JS ohne Defer laden</h3>
-          <p>Custom-Scripts, die im <code>&lt;head&gt;</code> ohne <a href="https://developer.mozilla.org/de/docs/Web/HTML/Element/script#defer" rel="noopener" target="_blank"><code>defer</code></a> oder <code>async</code> hängen, killen den <a href="https://web.dev/articles/lcp" rel="noopener" target="_blank">LCP</a>. Pack sie ans Ende, oder nutze ein <code>type="module"</code>-Pattern.</p>
+          <h3>JavaScript ohne "defer" laden</h3>
+          <p>Eigene Scripts im <code>&lt;head&gt;</code> ohne den Hinweis <a href="https://developer.mozilla.org/de/docs/Web/HTML/Element/script#defer" rel="noopener" target="_blank"><code>defer</code></a> oder <code>async</code> blockieren das Laden der Seite und ruinieren den Geschwindigkeits-Wert <a href="https://web.dev/articles/lcp" rel="noopener" target="_blank">LCP</a>. Lösung: <code>defer</code> setzen (Script lädt parallel und führt erst aus, wenn die Seite fertig geladen ist) — oder das Script ans Ende der Seite packen.</p>
 
           <div class="product-cta">
             <div>
@@ -390,11 +390,11 @@
           <h2 id="dev">Wann du trotzdem einen Dev hinzuziehst</h2>
           <p>Es gibt Momente, in denen ich Foundern empfehle, einen Profi zu holen. Hier sind die Signale, die dir helfen zu entscheiden.</p>
           <ul>
-            <li><strong>Du brauchst eine eigene App.</strong> Webhooks, externe APIs, eigener Backend-Service. Das gehört nicht ins Theme.</li>
-            <li><strong>Compliance-Themen.</strong> DSGVO-spezifische Tracking-Setups, BAFA-Datenexporte, Steuer-Logik bei Cross-Border. Hol dir jemanden mit Erfahrung.</li>
-            <li><strong>Multi-Store-Sync.</strong> Drei Stores, geteilte Customer-Base, geteiltes Inventar. Architektur-Arbeit.</li>
-            <li><strong>Performance-Limit erreicht.</strong> Wenn du in PageSpeed unter 80 nicht mehr runterkommst trotz Theme-Optimierung, liegt der Engpass woanders.</li>
-            <li><strong>Du baust etwas, das du in einem Jahr verstehen musst.</strong> Wenn du das später an jemanden übergibst, der nicht mit Claude arbeitet, willst du sauber dokumentierten Code, nicht KI-Output.</li>
+            <li><strong>Du brauchst eine eigene App.</strong> Funktionen, die außerhalb des Themes leben — automatisierte Benachrichtigungen an externe Systeme (Webhooks), Anbindung an externe Schnittstellen (APIs), eigene Datenbanken. Das gehört nicht ins Theme.</li>
+            <li><strong>Rechtliche Themen.</strong> DSGVO-Tracking-Setups, automatisierte Datenexporte, Steuer-Logik bei Cross-Border-Verkäufen. Hol jemanden mit Erfahrung.</li>
+            <li><strong>Mehrere Shops koordinieren.</strong> Wenn du drei Shops betreibst und Kundenkonten oder Bestände zwischen ihnen synchronisieren willst, ist das ein Architektur-Projekt.</li>
+            <li><strong>Geschwindigkeits-Limit erreicht.</strong> Wenn dein PageSpeed-Wert trotz Theme-Optimierung unter 80 bleibt, liegt der Engpass tiefer (Bilder, CDN, Server-Antwortzeit).</li>
+            <li><strong>Du baust etwas, das langfristig dokumentiert sein muss.</strong> Wenn du den Code in einem Jahr an jemanden übergibst, der nicht mit Claude arbeitet, brauchst du sauber kommentierten Code — nicht reinen KI-Output.</li>
           </ul>
           <p>In allen anderen Fällen lohnt sich der Dev nicht mehr. Du bezahlst nicht für Code-Output, sondern für Wartezeit, Briefing-Zeit und Stundensatz auf eine Aufgabe, die du in einem Bruchteil der Zeit selbst erledigt hättest.</p>
 
