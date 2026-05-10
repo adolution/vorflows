@@ -2,9 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://vorflows.com/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/" />
@@ -24,4 +25,65 @@
       <image:title>vorflows Wordmark Logo</image:title>
     </image:image>
   </url>
+
+  <url>
+    <loc>https://vorflows.com/baseflow</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/baseflow" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/baseflow" />
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/boxes/base-tonal-1x1-transparent.webp</image:loc>
+      <image:title>BaseFlow — Shopify-Theme bearbeiten mit Claude Code</image:title>
+      <image:caption>BaseFlow Modul-Box: Theme-Optimization-Workflow für Shopify mit Claude Code</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://vorflows.com/seoflow</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/seoflow" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/seoflow" />
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/boxes/seo-tonal-1x1-transparent.webp</image:loc>
+      <image:title>SEOFlow — Shopify-SEO mit Google Search Console</image:title>
+      <image:caption>SEOFlow Modul-Box: Search-Console-verknüpfter SEO-Optimierungs-Loop für Shopify</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://vorflows.com/clarityflow</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/clarityflow" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/clarityflow" />
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/boxes/clarity-tonal-1x1-transparent.webp</image:loc>
+      <image:title>ClarityFlow — Shopify-Conversion mit Microsoft Clarity</image:title>
+      <image:caption>ClarityFlow Modul-Box: Verhaltensdaten-Loop mit Microsoft Clarity für Shopify</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://vorflows.com/impressum</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/impressum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/impressum" />
+  </url>
+
+  <url>
+    <loc>https://vorflows.com/datenschutz</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/datenschutz" />
+  </url>
+
 </urlset>

@@ -93,4 +93,3 @@ Allow: /
 
 # Resource hints for crawlers
 Sitemap: https://vorflows.com/sitemap.xml
-Host: https://vorflows.com

@@ -2,7 +2,7 @@
 
 > System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
 
-vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, vier Pakete: BaseFlow (397 €), BaseFlow + SEOFlow (497 €), BaseFlow + ClarityFlow (497 €), Bundle alle drei Module (597 €, 100 € Ersparnis). Zielmarkt: DACH, Sprache Deutsch.
+vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, Bundle aus drei Modulen: BaseFlow + SEOFlow + ClarityFlow. Launch-Preis 297 € statt 597 € (100 € Launch-Rabatt). Alternativ 6 Raten à 49,50 € via Digistore24. Zielmarkt: DACH, Sprache Deutsch.
 
 Anbieter: AMD Media GmbH (Deutschland). Founder: Alexander Dück.
 
@@ -16,11 +16,17 @@ vorflows ist ein reproduzierbarer File-Workflow, kein CLI-Magie-Tool. Drei Schri
 
 Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich Struktur. Funktioniert mit jedem Shopify-Theme (Dawn, Custom, Premium).
 
-## Module
+## Module (alle drei im Bundle enthalten)
 
-- **BaseFlow** (Pflicht-Modul, 397 €): Theme-Optimization-Workflow. Setup 20–30 Minuten, erste Section am selben Tag.
-- **SEOFlow** (Add-On, +100 € im Bundle): Search-Console-verknüpfter Optimierungs-Loop. Setup 30–40 Minuten.
-- **ClarityFlow** (Add-On, +100 € im Bundle): Verhaltensdaten-Loop (Microsoft Clarity). Setup 15 Minuten.
+- **BaseFlow** — Theme-Optimization-Workflow. Setup 20–30 Minuten, erste Section am selben Tag. Detailseite: https://vorflows.com/baseflow
+- **SEOFlow** — Search-Console-verknüpfter Optimierungs-Loop. Setup 30–40 Minuten. Detailseite: https://vorflows.com/seoflow
+- **ClarityFlow** — Verhaltensdaten-Loop (Microsoft Clarity). Setup 15 Minuten. Detailseite: https://vorflows.com/clarityflow
+
+## Pricing
+
+- **Bundle (alle drei Module)**: 297 € einmalig (statt 597 €) oder 6 × 49,50 € via Digistore24.
+- Kein Abo, kein Vendor-Lock-in, lebenslange Updates inklusive.
+- 14 Tage Geld-zurück-Garantie über Digistore24.
 
 ## Differenzierung
 
@@ -39,15 +45,19 @@ Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich S
 
 ## Garantie
 
-Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurück.
+Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurück (14 Tage über Digistore24).
 
 ## Pages
 
 - [Homepage](https://vorflows.com/): Mechanik, Module, Pricing, FAQ
+- [BaseFlow](https://vorflows.com/baseflow): Theme-Optimization-Workflow
+- [SEOFlow](https://vorflows.com/seoflow): SEO-Workflow mit Search Console
+- [ClarityFlow](https://vorflows.com/clarityflow): Verhaltensdaten-Loop mit Microsoft Clarity
 - [Impressum](https://vorflows.com/impressum): Anbieterkennzeichnung gemäß § 5 TMG
 - [Datenschutzerklärung](https://vorflows.com/datenschutz): DSGVO-Informationen
 
 ## Kontakt
 
 - Instagram: https://www.instagram.com/vorflows/
+- E-Mail: alex@adolution.de
 - Anbieter: AMD Media GmbH, Deutschland

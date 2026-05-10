@@ -26,23 +26,26 @@ const VIEWER_CHROME_HIDE = `
   .frame { background: transparent !important; background-image: none !important; outline: 0 !important; }
   .frame-wrap { background: transparent !important; border: 0 !important; padding: 0 !important; }
   .frame-meta, .frame-actions, .viewer-head { display: none !important; }
+  .frame-wrap[data-family="1"] .frame { transform: none !important; margin-bottom: 0 !important; }
 `;
 
 async function captureFrame({ id, format = 'png', scale = 2.4, kind = 'white' }) {
   const browser = await getBrowser();
   const page = await browser.newPage();
   try {
-    await page.setViewport({ width: 800, height: 800, deviceScaleFactor: scale });
-    await page.goto(`http://localhost:${PORT}/carousels/boxes/`, { waitUntil: 'networkidle0' });
+    const isFamily = /^family/.test(id);
+    const vw = isFamily ? 1400 : 800;
+    await page.setViewport({ width: vw, height: vw, deviceScaleFactor: scale });
+    await page.goto(`http://localhost:${PORT}/carousels/boxes/`, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.evaluateHandle('document.fonts.ready');
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1500));
     await page.addStyleTag({ content: VIEWER_CHROME_HIDE });
     await page.evaluate((fid) => {
       const el = document.querySelector(`[data-export-id="${fid}"]`);
       if (!el) throw new Error('frame not found: ' + fid);
       el.scrollIntoView({ block: 'center', inline: 'center' });
     }, id);
-    await new Promise(r => setTimeout(r, 250));
+    await new Promise(r => setTimeout(r, 400));
     const handle = await page.$(`[data-export-id="${id}"]`);
     if (!handle) throw new Error('frame not found: ' + id);
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'boxes-'));
@@ -50,7 +53,6 @@ async function captureFrame({ id, format = 'png', scale = 2.4, kind = 'white' })
     await handle.screenshot({
       path: pngPath,
       omitBackground: kind === 'transparent',
-      captureBeyondViewport: false,
     });
     let outPath = pngPath;
     let mime = 'image/png';
