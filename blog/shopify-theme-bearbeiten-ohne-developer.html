@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shopify-Theme bearbeiten ohne Developer: Leitfaden 2026 | vorflows</title>
+    <meta name="description" content="Was du am Shopify-Theme heute selbst änderst, wann du wirklich einen Developer brauchst, und der Schritt-für-Schritt-Workflow, der dein Live-Theme nicht zerstört." />
+    <meta name="author" content="Alexander Dück" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <meta http-equiv="content-language" content="de-DE" />
+    <meta name="language" content="German" />
+    <meta name="geo.region" content="DE" />
+    <link rel="canonical" href="https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer" />
+    <link rel="alternate" hreflang="de-DE" href="https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer" />
+    <link rel="alternate" hreflang="x-default" href="https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="vorflows" />
+    <meta property="og:url" content="https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer" />
+    <meta property="og:title" content="Shopify-Theme bearbeiten ohne Developer: Leitfaden 2026" />
+    <meta property="og:description" content="Was du heute selbst kannst, wann du wirklich einen Dev brauchst, und der Workflow, der dein Live-Theme schützt." />
+    <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="article:published_time" content="2026-05-10T08:00:00+02:00" />
+    <meta property="article:modified_time" content="2026-05-10T08:00:00+02:00" />
+    <meta property="article:author" content="Alexander Dück" />
+    <meta property="article:section" content="Shopify Theme" />
+    <meta property="article:tag" content="Shopify Theme, Liquid, Claude Code, DIY, Theme-Editor" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shopify-Theme bearbeiten ohne Developer: Leitfaden 2026" />
+    <meta name="twitter:description" content="Was du heute selbst kannst und wann du wirklich einen Dev brauchst." />
+    <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer#article",
+          "headline": "Shopify-Theme bearbeiten ohne Developer: Leitfaden 2026",
+          "alternativeHeadline": "Was du selbst änderst, wann du einen Dev brauchst, und wie du dein Live-Theme schützt",
+          "description": "Was du am Shopify-Theme heute selbst änderst, wann du wirklich einen Developer brauchst, und der Schritt-für-Schritt-Workflow.",
+          "url": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer",
+          "mainEntityOfPage": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer",
+          "image": "https://vorflows.com/brand_assets/og-image.jpg",
+          "datePublished": "2026-05-10T08:00:00+02:00",
+          "dateModified": "2026-05-10T08:00:00+02:00",
+          "wordCount": 2500,
+          "inLanguage": "de-DE",
+          "isPartOf": { "@id": "https://vorflows.com/blog#blog" },
+          "author": {
+            "@type": "Person",
+            "@id": "https://vorflows.com/#founder",
+            "name": "Alexander Dück",
+            "url": "https://vorflows.com/",
+            "jobTitle": "Founder",
+            "worksFor": { "@id": "https://vorflows.com/#organization" }
+          },
+          "publisher": { "@id": "https://vorflows.com/#organization" },
+          "about": [
+            { "@type": "Thing", "name": "Shopify Theme" },
+            { "@type": "Thing", "name": "Liquid" },
+            { "@type": "Thing", "name": "Claude Code" }
+          ],
+          "keywords": "Shopify Theme bearbeiten, ohne Developer, Liquid, Theme-Editor, Claude Code, Shopify DIY"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://vorflows.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vorflows.com/blog" },
+            { "@type": "ListItem", "position": 3, "name": "Shopify-Theme bearbeiten ohne Developer", "item": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer" }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://vorflows.com/#organization",
+          "name": "vorflows",
+          "url": "https://vorflows.com/",
+          "logo": "https://vorflows.com/brand_assets/logos/10d.1-wordmark.png"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://vorflows.com/#founder",
+          "name": "Alexander Dück"
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer#howto",
+          "name": "Shopify-Theme sicher selbst bearbeiten",
+          "description": "Drei-Schritt-Workflow, der dein Live-Theme schützt, während du Änderungen testest.",
+          "totalTime": "PT30M",
+          "tool": [
+            { "@type": "HowToTool", "name": "Shopify Admin" },
+            { "@type": "HowToTool", "name": "Claude Code" }
+          ],
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Theme duplizieren", "text": "Im Shopify Admin Themes → Actions → Duplicate auswählen. Auf der Kopie arbeiten, das Live-Theme bleibt unangetastet." },
+            { "@type": "HowToStep", "position": 2, "name": "Änderung beschreiben und durchführen", "text": "Mit Claude Code in natürlicher Sprache die gewünschte Änderung beschreiben. Claude liest das Theme und schreibt die Liquid-Files auf der Kopie." },
+            { "@type": "HowToStep", "position": 3, "name": "Im Preview reviewen und manuell publishen", "text": "Im Shopify-Preview den Diff prüfen. Erst wenn alles passt, manuell publishen. Niemals Auto-Deploy." }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer#faq",
+          "inLanguage": "de-DE",
+          "isPartOf": { "@id": "https://vorflows.com/blog/shopify-theme-bearbeiten-ohne-developer#article" },
+          "mainEntity": [
+            { "@type": "Question", "name": "Was kann ich am Shopify-Theme selbst ändern, ohne Developer?", "acceptedAnswer": { "@type": "Answer", "text": "Layout-Änderungen, neue Sections, Section-Reihenfolge, CTAs, Typografie, Farben, Liquid-Logik in bestehenden Sections, Schema.org-Markup, Meta-Tags, neue Snippets und einfache JavaScript-Komponenten. Mit Claude Code und einer Setup-Datei deckt das die meisten realen Anpassungs-Wünsche ab." } },
+            { "@type": "Question", "name": "Wann brauche ich für mein Shopify-Theme noch einen Developer?", "acceptedAnswer": { "@type": "Answer", "text": "Bei tiefen Architektur-Eingriffen (Headless-Commerce-Migration, Custom-Checkout-Logik bei Shopify Plus, eigene Apps), bei Multi-Store-Setups mit komplexer Hreflang-Struktur, oder bei Performance-Optimierungen unterhalb der Theme-Ebene." } },
+            { "@type": "Question", "name": "Wie verhindere ich, dass ich mein Live-Theme zerstöre?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Theme-Duplicate, niemals direkt auf dem Live-Theme. Du publishst manuell, niemals per Auto-Deploy. Diese zwei Regeln allein lösen 95 Prozent aller Theme-Unfälle." } },
+            { "@type": "Question", "name": "Kann ich ein Premium-Theme (Impulse, Prestige, Stiletto) genauso bearbeiten?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Premium-Themes nutzen den gleichen Liquid-Standard wie Dawn. Manche haben mehr Settings und mehr Sections, das macht die Editierung sogar einfacher. Claude Code mit BaseFlow-Setup liest jedes Theme ein und passt sich an." } }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/blog-page.css" />
+  </head>
+  <body>
+
+    <nav class="nav" id="nav">
+      <div class="container nav-inner">
+        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
+        <div class="nav-links">
+          <a href="/blog" class="nav-link">Blog</a>
+          <a href="/baseflow" class="nav-link">BaseFlow</a>
+          <a href="/seoflow" class="nav-link">SEOFlow</a>
+          <a href="/clarityflow" class="nav-link">ClarityFlow</a>
+          <a href="/#bundle" class="nav-cta">Bundle 297 €</a>
+        </div>
+      </div>
+    </nav>
+
+    <article>
+      <header class="post-head">
+        <div class="container-prose">
+          <nav class="post-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Start</a>
+            <span class="post-breadcrumb-sep">/</span>
+            <a href="/blog">Blog</a>
+            <span class="post-breadcrumb-sep">/</span>
+            <span>Shopify-Theme bearbeiten ohne Developer</span>
+          </nav>
+          <h1 class="post-h1">Shopify-Theme bearbeiten <em>ohne</em> Developer: Leitfaden 2026.</h1>
+          <p class="post-deck">Vier von fünf Theme-Anpassungen, für die Stores 2022 noch jemanden bezahlt haben, kannst du heute selbst machen. Hier sind die Grenzen, der sichere Workflow und die Tools, die du wirklich brauchst.</p>
+          <div class="post-byline">
+            <span>Von <strong>Alexander Dück</strong></span>
+            <span class="post-byline-sep">·</span>
+            <span>10. Mai 2026</span>
+            <span class="post-byline-sep">·</span>
+            <span>12 Min Lesezeit</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="post-body">
+        <div class="container-prose">
+
+          <aside class="tldr">
+            <span class="tldr-label">Kurz und ehrlich</span>
+            <p>Du kannst heute selbst: neue Sections bauen, Layout ändern, CTAs platzieren, Farben und Schrift austauschen, Schema und Meta-Tags pflegen, Cart-Drawer und Sticky-ATC umsetzen.</p>
+            <p>Du brauchst noch einen Dev für: Headless-Migration, eigene Apps, Custom-Checkout (Plus-only), tiefe Multi-Store-Architektur, kritische Performance-Eingriffe unterhalb der Theme-Ebene.</p>
+            <p><strong>Die zwei Regeln, die alles retten:</strong> Arbeite immer auf einem Theme-Duplicate. Publishe manuell. Mit Claude Code und der <a href="/baseflow">BaseFlow</a>-Setup-Datei läuft beides automatisch.</p>
+          </aside>
+
+          <nav class="toc" aria-label="Inhaltsverzeichnis">
+            <span class="toc-label">Inhalt</span>
+            <ol>
+              <li><a href="#wandel">Was sich seit 2020 verändert hat</a></li>
+              <li><a href="#kannst">Was du heute selbst kannst</a></li>
+              <li><a href="#nicht">Was du wirklich nicht selbst machen solltest</a></li>
+              <li><a href="#workflow">Der sichere Workflow in drei Schritten</a></li>
+              <li><a href="#tools">Was du an Tools brauchst</a></li>
+              <li><a href="#fehler">Häufige Fehler und wie du sie vermeidest</a></li>
+              <li><a href="#dev">Wann du trotzdem einen Dev hinzuziehst</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ol>
+          </nav>
+
+          <h2 id="wandel">Was sich seit 2020 verändert hat</h2>
+          <p>Drei Dinge sind passiert, die das Theme-Bearbeiten komplett verändert haben.</p>
+          <p><strong>Online Store 2.0.</strong> Shopify hat 2021 die Theme-Architektur umgestellt. Sections und Blocks sind jetzt überall, nicht nur auf der Homepage. Settings-Schemas erlauben Konfiguration ohne Code. Was vorher pro Page hardcoded war, ist heute strukturiert.</p>
+          <p><strong>Dawn als Referenz.</strong> Shopify pflegt mit Dawn ein Open-Source-Theme, das alle aktuellen Best-Practices zeigt. Du kannst Patterns daraus kopieren, ohne ein Premium-Theme zu kaufen.</p>
+          <p><strong>KI-gestützte Code-Werkzeuge.</strong> Tools wie Claude Code lesen Liquid wie eine Spezifikation. Du beschreibst die Änderung in deutschem Klartext, das Tool schreibt den Code. Das ist der Punkt, an dem viele Founder zum ersten Mal merken: <em>Ich brauche keinen Dev mehr für das hier.</em></p>
+
+          <p class="pull-quote">Was vorher zwei Tage Senior-Dev-Arbeit war, ist heute ein Satz an Claude.</p>
+
+          <h2 id="kannst">Was du heute selbst kannst</h2>
+          <p>Eine ehrliche Liste, sortiert von einfach nach mittelschwer.</p>
+
+          <h3>Layout und Komposition</h3>
+          <ul>
+            <li>Sections neu anordnen (per Theme-Editor, ohne Code)</li>
+            <li>Neue Sections bauen (Hero, FAQ-Block, Trust-Strip, Testimonial-Karussell)</li>
+            <li>Page-Templates hinzufügen (Landing-Page, Promo-Page, Bundle-Page)</li>
+            <li>Padding, Spacing, Container-Breiten anpassen</li>
+          </ul>
+
+          <h3>Typografie und Farben</h3>
+          <ul>
+            <li>Brand-Farben in <code>settings_data.json</code> oder Theme-Settings</li>
+            <li>Custom-Fonts einbinden (woff2, mit <code>font-display: swap</code>)</li>
+            <li>Heading-Hierarchie überarbeiten (H1, H2, H3 Sizes und Line-Heights)</li>
+            <li>Body-Type, Lesbarkeit, Antialiasing</li>
+          </ul>
+
+          <h3>Conversion-relevante Komponenten</h3>
+          <ul>
+            <li>Sticky Add-to-Cart auf der Produktseite</li>
+            <li>Cart-Drawer mit Empfehlungen</li>
+            <li>Bundle-Selektor mit Auto-Discount</li>
+            <li>Shipping-Bar mit Live-Schwellenwert</li>
+            <li>Trust-Badges, Reviews-Snippet, Garantie-Blöcke</li>
+          </ul>
+
+          <h3>SEO und Metadaten</h3>
+          <ul>
+            <li>Title- und Description-Templates pro Page-Type</li>
+            <li>Schema.org JSON-LD (Product, Organization, Breadcrumb, FAQ)</li>
+            <li>Hreflang für DACH-Stores</li>
+            <li>Bild-Alt-Texte automatisiert generieren</li>
+            <li>Sitemap-Hygiene</li>
+          </ul>
+
+          <h3>Translations</h3>
+          <ul>
+            <li>Eigene Translations-Keys hinzufügen</li>
+            <li>Bestehende Strings überschreiben</li>
+            <li>Locale-spezifische Logik (z. B. AT-Versandkosten anders als DE)</li>
+          </ul>
+
+          <p>Wenn du dir bei einem Punkt unsicher bist: <a href="/baseflow">BaseFlow</a> kommt mit Beispiel-Workflows für jedes dieser Themen. Du wählst aus, Claude liest dein Theme und passt den Workflow auf deinen Code-Stand an.</p>
+
+          <h2 id="nicht">Was du wirklich nicht selbst machen solltest</h2>
+          <p>Es gibt Bereiche, in denen ein Senior-Dev nicht ersetzbar ist. Wenn du in einem davon landest, hör auf zu basteln und hol jemanden.</p>
+
+          <div class="callout">
+            <span class="callout-label">Stop-Schilder</span>
+            <p><strong>Headless-Migration.</strong> Hydrogen, eigene Frontend-App auf Vercel, Storefront-API-Architektur. Das ist Software-Engineering, kein Theme-Editing.</p>
+            <p><strong>Custom-Checkout (Shopify Plus).</strong> Checkout-Extensions, Shop-Pay-Customization, Steuerlogik. Compliance-relevant, fehler-teuer.</p>
+            <p><strong>Eigene Apps.</strong> Wenn du Funktionalität brauchst, die nicht im Theme lebt (Webhooks, externe APIs, eigener Datenbank-Layer), brauchst du eine App, und Apps brauchen einen Dev.</p>
+            <p><strong>Multi-Store-Architektur.</strong> Mehrere Stores mit Cross-Domain-Sync, Inventory-Bridges, gemeinsamem Customer-Pool. Da hängt zu viel dran.</p>
+            <p><strong>Performance-Surgery.</strong> Wenn du LCP unter 1,8 s ziehen willst und die letzten 300 ms nicht aus Theme-Optimierung kommen können, brauchst du jemanden, der mit dem CDN, mit Image-Pipelines und mit Caching-Strategien umgehen kann.</p>
+          </div>
+
+          <h2 id="workflow">Der sichere Workflow in drei Schritten</h2>
+          <p>Egal ob du Code-Profi bist oder zum ersten Mal in eine Liquid-Datei schaust: dieser Workflow schützt dein Live-Theme. Wenn du ihn einhältst, kann praktisch nichts passieren, was du nicht in fünf Minuten rückgängig machst.</p>
+
+          <h3>Schritt 1: Theme-Duplicate erstellen</h3>
+          <p>Im Shopify Admin: <code>Online Store → Themes → Live-Theme → Actions → Duplicate</code>. Du bekommst eine Kopie, sie heißt standardmäßig <code>Copy of [Theme-Name]</code>. Benenne sie um, damit du sie wiederfindest. Beispiel: <code>vorflows-edit-2026-05-10</code>.</p>
+          <p>Diese Kopie ist dein Arbeitstheme. Jede Änderung passiert hier, niemals direkt am Live.</p>
+
+          <h3>Schritt 2: Änderung beschreiben und ausführen</h3>
+          <p>Wenn du Claude Code mit der BaseFlow-Setup-Datei nutzt, läuft das so ab:</p>
+          <ol>
+            <li>Du verbindest Claude mit dem Theme-Duplicate (einmal pro Sitzung)</li>
+            <li>Du beschreibst die Änderung in einem Satz: <em>"Bau eine Sticky Add-to-Cart Section mit Produkt-Image, Variant-Picker und Quantity-Stepper."</em></li>
+            <li>Claude liest das Theme, schreibt die Liquid-Files, gibt dir den Diff zurück</li>
+          </ol>
+          <p>Wenn du ohne Claude arbeitest, machst du dasselbe manuell: Section-File schreiben, Settings-Schema definieren, im Theme-Editor einbinden. Das dauert deutlich länger und braucht echtes Liquid-Verständnis.</p>
+
+          <h3>Schritt 3: Im Preview reviewen, manuell publishen</h3>
+          <p>Shopify gibt dir für jedes Theme einen Preview-Link. Öffne ihn auf Desktop und Mobile. Klicke dich durch die wichtigsten Pages: Home, Collection, Produktseite, Cart, Checkout. Jeder Bereich, der von der Änderung betroffen sein könnte.</p>
+          <p>Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Das Live-Theme wechselt erst in dieser Sekunde. Wenn dir nach dem Publish etwas auffällt: <code>Actions → Publish</code> auf das alte Theme, das jetzt als <em>Previously published</em> markiert ist. Rollback in zehn Sekunden.</p>
+
+          <div class="callout callout--accent">
+            <span class="callout-label">Ehrlich</span>
+            <p>Ich habe in den letzten zwei Jahren keinen einzigen Founder gesehen, der mit diesem Workflow seinen Live-Shop kaputt gemacht hat. Die wenigen, die einen Schreckmoment hatten, waren immer in den Pattern: <em>direkt am Live-Theme</em>, oder <em>per Auto-Sync ohne Review</em>. Beides vermeidbar.</p>
+          </div>
+
+          <h2 id="tools">Was du an Tools brauchst</h2>
+          <p>Die Liste ist kürzer, als du denkst.</p>
+
+          <h3>Pflicht</h3>
+          <ul>
+            <li><strong>Shopify Admin-Zugang</strong> mit Theme-Edit-Rechten</li>
+            <li><strong>Claude Code</strong> oder Claude Pro mit Code-Zugang</li>
+            <li><strong>Ein moderner Browser</strong> für Preview-Tests</li>
+          </ul>
+
+          <h3>Empfohlen</h3>
+          <ul>
+            <li><strong>Shopify CLI</strong> (für lokale Theme-Sync) — wenn du gleichzeitig in mehreren Files editieren willst</li>
+            <li><strong>VS Code mit Liquid-Extension</strong> — Syntax-Highlighting hilft, auch wenn Claude den Code schreibt</li>
+            <li><strong>BaseFlow-Setup-Datei</strong> — gibt Claude die Shopify-Skills, die nicht im Standard-Stack drin sind. Setup in 20 bis 30 Minuten, danach kennt Claude dein Theme</li>
+          </ul>
+
+          <h3>Brauchst du nicht</h3>
+          <ul>
+            <li>Eine Theme-Builder-App (Online Store 2.0 reicht)</li>
+            <li>Eine separate Section-Editor-App</li>
+            <li>Einen Theme-Customizer als Subscription</li>
+          </ul>
+
+          <h2 id="fehler">Häufige Fehler und wie du sie vermeidest</h2>
+
+          <h3>Direkt am Live-Theme arbeiten, "kurz mal"</h3>
+          <p>Der häufigste und teuerste Fehler. Du machst eine "schnelle Anpassung" am Live-Theme, weil dir Duplicate-Erstellen nervt. Dann kommt eine Kollision mit einer App, oder ein Liquid-Tippfehler, und der Shop ist zehn Minuten down. Ist mir selbst passiert. Einmal.</p>
+          <p>Die Lektion: Duplicate ist nicht Overhead, Duplicate ist die Versicherung.</p>
+
+          <h3>Auto-Deploy aktivieren</h3>
+          <p>Manche Tools bieten an, Theme-Änderungen automatisch zu publishen. Lass das aus. Du willst den Moment <em>"Live geht es"</em> immer manuell auslösen, mit dem Preview im Tab daneben.</p>
+
+          <h3>Settings-Schema vergessen</h3>
+          <p>Du baust eine schöne Section, hardcodest aber Texte und Farben. Beim nächsten Update ist alles wieder weg. Lös das, indem du Settings im Schema definierst. Das ist 5 Minuten Mehrarbeit und spart dir Stunden später.</p>
+
+          <h3>Translations vergessen</h3>
+          <p>Wenn dein Shop mehrsprachig ist und du einen neuen String in der Section hardcodest, fliegt dir das beim nächsten Locale-Switch um die Ohren. Nutze <code>{{ 'general.shipping_bar.text' | t }}</code>-Pattern und füge die Strings in <code>locales/de.default.json</code> hinzu.</p>
+
+          <h3>JS ohne Defer laden</h3>
+          <p>Custom-Scripts, die im <code>&lt;head&gt;</code> ohne <code>defer</code> oder <code>async</code> hängen, killen den LCP. Pack sie ans Ende, oder nutze ein <code>type="module"</code>-Pattern.</p>
+
+          <div class="product-cta">
+            <div>
+              <span class="product-cta-label">Wenn du anfangen willst</span>
+              <p class="product-cta-title">BaseFlow gibt dir den kompletten Workflow.</p>
+              <p class="product-cta-body">Setup-Datei, Skill-Stack, Section-Library, Installations-Videos. Du arbeitest ab Tag eins auf Senior-Dev-Niveau, ohne den Senior-Dev.</p>
+            </div>
+            <a href="/#bundle" class="product-cta-btn">Im Bundle ab 297 €</a>
+          </div>
+
+          <h2 id="dev">Wann du trotzdem einen Dev hinzuziehst</h2>
+          <p>Es gibt Momente, in denen ich Foundern empfehle, einen Profi zu holen. Hier sind die Signale, die dir helfen zu entscheiden.</p>
+          <ul>
+            <li><strong>Du brauchst eine eigene App.</strong> Webhooks, externe APIs, eigener Backend-Service. Das ist nicht Theme.</li>
+            <li><strong>Compliance-Themen.</strong> DSGVO-spezifische Tracking-Setups, BAFA-Datenexporte, Steuer-Logik bei Cross-Border. Holt euch jemanden mit Erfahrung.</li>
+            <li><strong>Multi-Store-Sync.</strong> Drei Stores, geteilte Customer-Base, geteiltes Inventar. Architektur-Arbeit.</li>
+            <li><strong>Performance-Limit erreicht.</strong> Wenn du in PageSpeed unter 80 nicht mehr runterkommst trotz Theme-Optimierung, liegt der Engpass woanders.</li>
+            <li><strong>Du baust etwas, das du in einem Jahr verstehen musst.</strong> Wenn du jemand anderem das übergibst, der nicht mit Claude arbeitet, willst du sauber dokumentierten Code, nicht KI-Output.</li>
+          </ul>
+          <p>In allen anderen Fällen lohnt sich der Dev nicht mehr. Du bezahlst nicht für Code-Output, sondern für Wartezeit, Briefing-Zeit und Stundensatz auf eine Aufgabe, die in einem Bruchteil der Zeit selbst gelaufen wäre.</p>
+
+          <h2 id="faq">FAQ</h2>
+
+          <details class="post-faq">
+            <summary>Was kann ich am Shopify-Theme selbst ändern?</summary>
+            <p>Layout, neue Sections, Section-Reihenfolge, CTAs, Typografie, Farben, Liquid-Logik in bestehenden Sections, Schema, Meta-Tags, Snippets und einfache JS-Komponenten. Mit Claude Code und einer Setup-Datei deckst du damit den Großteil aller realen Anpassungs-Wünsche ab.</p>
+          </details>
+          <details class="post-faq">
+            <summary>Wann brauche ich noch einen Developer?</summary>
+            <p>Bei Headless-Architektur, Custom-Apps, Plus-Checkout-Extensions, Multi-Store-Setups oder Performance-Eingriffen unterhalb der Theme-Ebene. Die <a href="#dev">Stop-Schilder</a> oben in diesem Artikel listen die typischen Signale.</p>
+          </details>
+          <details class="post-faq">
+            <summary>Wie verhindere ich, dass ich mein Live-Theme zerstöre?</summary>
+            <p>Zwei Regeln: Arbeite immer auf einem Theme-Duplicate, niemals direkt am Live. Publishe manuell, niemals per Auto-Deploy. Diese zwei Regeln allein lösen 95 Prozent aller Theme-Unfälle.</p>
+          </details>
+          <details class="post-faq">
+            <summary>Funktioniert das auch mit Premium-Themes wie Impulse oder Prestige?</summary>
+            <p>Ja. Premium-Themes nutzen den gleichen Liquid-Standard wie Dawn. Mehr Settings und mehr Sections machen die Editierung sogar einfacher. Claude Code mit der <a href="/baseflow">BaseFlow</a>-Setup-Datei liest jedes Theme ein und passt sich dem Code-Stand an.</p>
+          </details>
+          <details class="post-faq">
+            <summary>Wie lange dauert es, bis ich produktiv bin?</summary>
+            <p>Setup mit BaseFlow ist 20 bis 30 Minuten. Erste reale Section am gleichen Tag. Komfortable, eigene Arbeitsweise nach ein bis zwei Wochen, in denen du drei bis fünf typische Aufgaben durchgespielt hast.</p>
+          </details>
+          <details class="post-faq">
+            <summary>Was, wenn Claude eine Änderung vorschlägt, die ich nicht verstehe?</summary>
+            <p>Dann fragst du nach. Claude erklärt jede Zeile in deutscher Sprache, mit Begründung. Wenn du am Ende immer noch nicht sicher bist, ist das ein Hinweis: das war vielleicht doch ein Dev-Job. Aber das ist selten.</p>
+          </details>
+
+          <section class="related" aria-label="Verwandte Artikel">
+            <span class="related-label">Weiterlesen</span>
+            <div class="related-grid">
+              <a href="/blog/shopify-apps-ersetzen" class="related-card">
+                <h3 class="related-card-title">Shopify Apps ersetzen: die ehrliche Liste 2026</h3>
+                <p class="related-card-body">Welche Apps du durch Theme-Code ersetzt, welche du behältst, und wie viel du sparst.</p>
+              </a>
+              <a href="/blog/shopify-seo-checkliste-2026" class="related-card">
+                <h3 class="related-card-title">Shopify SEO Checkliste 2026</h3>
+                <p class="related-card-body">23 Punkte, die du heute prüfen solltest. Inklusive AI Overviews und Core Web Vitals.</p>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
+              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Module</h4>
+            <ul>
+              <li><a href="/baseflow">BaseFlow</a></li>
+              <li><a href="/seoflow">SEOFlow</a></li>
+              <li><a href="/clarityflow">ClarityFlow</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/#workflow">Workflow</a></li>
+              <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/impressum">Impressum</a></li>
+              <li><a href="/datenschutz">Datenschutz</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 vorflows</span>
+          <span>built with claude code</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      const onScroll = () => {
+        if (window.scrollY > 8) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    </script>
+  </body>
+</html>
