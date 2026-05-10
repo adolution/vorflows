@@ -1074,6 +1074,69 @@
         line-height: 1.6;
       }
 
+      /* Reibungspunkte als <details> — Desktop bleibt offen + Layout flach, Mobile = Akkordeon */
+      .problem-item--d { display: block; padding: 0; border-top: 1px solid var(--border); }
+      .problem-item--d:first-child { border-top: 0; }
+      .problem-item--d > summary {
+        display: grid;
+        grid-template-columns: 88px 1fr auto;
+        gap: 28px;
+        align-items: baseline;
+        padding: 28px 0;
+        cursor: default;
+        list-style: none;
+      }
+      .problem-item--d > summary::-webkit-details-marker { display: none; }
+      .problem-item--d > summary::marker { display: none; content: ''; }
+      .problem-item--d:first-child > summary { padding-top: 0; }
+      .problem-item--d > .problem-body {
+        margin: 0 0 28px 116px;
+      }
+      .problem-item--d[open] > summary { padding-bottom: 8px; }
+      .problem-marker { display: none; }
+      /* Desktop: alle Reibungspunkte offen anzeigen, Marker aus, Padding wie alte Liste */
+      @media (min-width: 881px) {
+        .problem-item--d > summary { pointer-events: none; }
+        .problem-item--d > .problem-body { display: block !important; }
+        .problem-item--d:not([open]) > summary { padding-bottom: 0; }
+        .problem-item--d:not([open]) > .problem-body { margin-top: -10px; }
+      }
+      @media (max-width: 880px) {
+        .problem-item--d > summary {
+          grid-template-columns: 56px 1fr 24px;
+          gap: 14px;
+          padding: 22px 0;
+          cursor: pointer;
+        }
+        .problem-item--d:first-child > summary { padding-top: 4px; }
+        .problem-item--d > .problem-body {
+          margin: 0 0 22px 70px;
+          font-size: 15.5px;
+        }
+        .problem-marker {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          border: 1px solid var(--border-strong, var(--border));
+          border-radius: 999px;
+          position: relative;
+          align-self: center;
+          transition: transform 200ms ease;
+        }
+        .problem-marker::before,
+        .problem-marker::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          margin: auto;
+          background: currentColor;
+        }
+        .problem-marker::before { width: 10px; height: 1.5px; }
+        .problem-marker::after { width: 1.5px; height: 10px; transition: transform 200ms ease; }
+        .problem-item--d[open] > summary .problem-marker::after { transform: rotate(90deg); opacity: 0; }
+        .problem-item--d > summary .problem-title { font-size: 19px; }
+      }
+
       /* Solution Reveal */
       .reveal {
         text-align: center;
@@ -2569,6 +2632,10 @@
         color: var(--text-secondary);
         text-align: center;
       }
+      /* HI1b: Drei-Dateien-Video auf Mobile entfernen — redundant zu Workflow-Code-Steps, spart Scroll bis Pricing */
+      @media (max-width: 720px) {
+        .demo-video-figure { display: none !important; }
+      }
 
       .security-strip {
         margin: 32px auto 0;
@@ -2740,6 +2807,35 @@
           padding: 12px 0;
         }
         .skill-flat-meta { display: none; }
+      }
+      /* Skill-Stack Mobile-Toggle: Desktop zeigt alle Extras inline (kein details-UI), Mobile = Akkordeon */
+      .skill-flat-more { margin-top: 0; }
+      .skill-flat-more > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        border-top: 1px solid var(--border);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .skill-flat-more > summary::-webkit-details-marker { display: none; }
+      .skill-flat-more > summary::marker { content: ''; }
+      .skill-flat-more .sfm-label { font-weight: 600; color: var(--ink, var(--text-primary)); }
+      .skill-flat-more .sfm-meta { color: var(--accent); margin-left: auto; }
+      .skill-flat-more .sfm-chev { transition: transform 200ms ease; color: var(--accent); }
+      .skill-flat-more[open] .sfm-chev { transform: rotate(180deg); }
+      .skill-flat-list--extra { border-top: 1px solid var(--border); margin-top: 0; }
+      .skill-flat-list--extra li:first-child { border-top: 0; }
+      @media (min-width: 721px) {
+        .skill-flat-more > summary { display: none; }
+        .skill-flat-list--extra { display: grid; border-top: 0; }
+        .skill-flat-list--extra li:first-child { border-top: 1px solid var(--border); padding-top: 14px; }
       }
       .skill-rail-label {
         margin: 36px auto -24px;
@@ -4911,7 +5007,7 @@
             <span class="hv-play-btn">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z"/></svg>
             </span>
-            <span class="hv-play-label">Vorflows schnell erklärt</span>
+            <span class="hv-play-label">App in 5 Min ersetzt</span>
           </button>
           <div class="hv-controls" aria-label="Video-Einstellungen">
             <span class="hv-controls-label">Speed</span>
@@ -5037,34 +5133,38 @@
             <span class="problem-head-tag">4 Reibungspunkte</span>
           </div>
           <div class="problem-list" data-reveal-stagger>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">01</div>
-              <div>
-                <p class="problem-title">Theme-Limits.</p>
-                <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">02</div>
-              <div>
-                <p class="problem-title">App-Stack.</p>
-                <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">03</div>
-              <div>
-                <p class="problem-title">Agentur-Loop.</p>
-                <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">04</div>
-              <div>
-                <p class="problem-title">Liegen gelassenes Potential.</p>
-                <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
-              </div>
-            </div>
+            <details class="problem-item problem-item--d" data-reveal="up" open>
+              <summary>
+                <span class="problem-num">01</span>
+                <span class="problem-title">Theme-Limits.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">02</span>
+                <span class="problem-title">App-Stack.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">03</span>
+                <span class="problem-title">Agentur-Loop.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">04</span>
+                <span class="problem-title">Liegen gelassenes Potential.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
+            </details>
           </div>
         </div>
         <div class="inline-cta-row mobile-only" data-reveal="up">
@@ -5382,12 +5482,21 @@
           </div>
           <ul class="skill-flat-list">
             <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shop-architecture</span><span class="skill-flat-desc">Scannt dein Theme einmal komplett, merkt sich alles.</span></li>
-            <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shopify-senior-dev</span><span class="skill-flat-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</span></li>
             <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">opportunity-detection</span><span class="skill-flat-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</span></li>
-            <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">weekly-report</span><span class="skill-flat-desc">Wöchentlicher Performance-Report mit Fix-Vorschlägen.</span></li>
             <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">click-behavior</span><span class="skill-flat-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</span></li>
-            <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">scroll-depth</span><span class="skill-flat-desc">Holt verkaufsentscheidende Module nach oben.</span></li>
           </ul>
+          <details class="skill-flat-more">
+            <summary>
+              <span class="sfm-label">Alle Skills ansehen</span>
+              <span class="sfm-meta">+3 weitere</span>
+              <span class="sfm-chev" aria-hidden="true">▾</span>
+            </summary>
+            <ul class="skill-flat-list skill-flat-list--extra">
+              <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shopify-senior-dev</span><span class="skill-flat-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</span></li>
+              <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">weekly-report</span><span class="skill-flat-desc">Wöchentlicher Performance-Report mit Fix-Vorschlägen.</span></li>
+              <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">scroll-depth</span><span class="skill-flat-desc">Holt verkaufsentscheidende Module nach oben.</span></li>
+            </ul>
+          </details>
         </div>
       </div>
     </section>
@@ -5571,6 +5680,10 @@
             <div class="faq-body">Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
+            <summary>Wie wird das Produkt geliefert?</summary>
+            <div class="faq-body">vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien.</div>
+          </details>
+          <details class="faq-item" data-animate data-reveal="up">
             <summary>Funktioniert das mit jedem Theme: Dawn, Custom, Premium?</summary>
             <div class="faq-body">Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert.</div>
           </details>
@@ -5593,10 +5706,6 @@
           <details class="faq-item" data-animate data-reveal="up">
             <summary>Wie funktioniert die Rückgabe?</summary>
             <div class="faq-body">Du hast 14 Tage Rückgaberecht ab Kaufdatum. Kurze formlose E-Mail an <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder direkt über Digistore24 reicht. Du erhältst den vollen Betrag erstattet.</div>
-          </details>
-          <details class="faq-item" data-animate data-reveal="up">
-            <summary>Wie wird das Produkt geliefert?</summary>
-            <div class="faq-body">vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien.</div>
           </details>
         </div>
       </div>
@@ -5744,6 +5853,48 @@
           document.addEventListener('DOMContentLoaded', apply, { once: true });
         } else {
           apply();
+        }
+      })();
+
+      // ── Reibungspunkte: Desktop alle offen, Mobile = Akkordeon ─────────────
+      (() => {
+        const mq = window.matchMedia('(min-width: 881px)');
+        const items = () => document.querySelectorAll('.problem-item--d');
+        const sync = () => {
+          if (mq.matches) {
+            items().forEach(d => { d.open = true; });
+          } else {
+            items().forEach((d, i) => { d.open = (i === 0); });
+          }
+        };
+        const init = () => { sync(); mq.addEventListener?.('change', sync); };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          init();
+        }
+      })();
+
+      // ── Skill-Stack Extras: Desktop offen, Mobile zugeklappt ───────────────
+      (() => {
+        const mq = window.matchMedia('(min-width: 721px)');
+        const items = () => document.querySelectorAll('.skill-flat-more');
+        let userToggled = new WeakSet();
+        const sync = () => {
+          items().forEach(d => {
+            if (userToggled.has(d)) return;
+            d.open = mq.matches;
+          });
+        };
+        const init = () => {
+          sync();
+          mq.addEventListener?.('change', sync);
+          items().forEach(d => d.addEventListener('toggle', () => { if (!mq.matches) userToggled.add(d); }));
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          init();
         }
       })();
 
