@@ -6014,6 +6014,7 @@
         const variant = getCookie('vf_ab') || 'A';
         const sendTag = () => {
           window.clarity?.('set', 'experiment', variant);
+          window.clarity?.('event', 'ab_' + variant);
           window.fbq?.('trackCustom', 'ExperimentAssigned', { variant });
         };
         if (window.clarity || window.fbq) sendTag();
