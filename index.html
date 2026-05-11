@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Mark JS available before paint so motion CSS can hide pre-reveal state without blocking non-JS readers -->
-    <script>document.documentElement.classList.add('js');</script>
-    <!-- Meta Pixel loader, invoked only after consent (DSGVO) -->
+    <!-- Head init: js-class marker + consent-gated tracker loaders (Meta Pixel, Microsoft Clarity, DSGVO) -->
     <script>
+      document.documentElement.classList.add('js');
+
       function _loadFbPixelSdk() {
         if (window.fbq) return;
         !function(f,b,e,v,n,t,s)
@@ -19,9 +19,7 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
       }
-    </script>
-    <!-- Microsoft Clarity loader, invoked only after consent (DSGVO) -->
-    <script>
+
       function _loadClaritySdk() {
         if (window.clarity && window.clarity.q !== undefined && document.querySelector('script[src*="clarity.ms/tag/"]')) return;
         (function(c,l,a,r,i,t,y){
@@ -251,10 +249,6 @@
           "sku": "vf-bundle",
           "mpn": "vf-bundle",
           "inLanguage": "de-DE",
-          "audience": {
-            "@type": "BusinessAudience",
-            "audienceType": "Shopify Store Founder"
-          },
           "additionalProperty": [
             { "@type": "PropertyValue", "name": "Lieferform", "value": "Digital Download" },
             { "@type": "PropertyValue", "name": "Plattform", "value": "Shopify" },
@@ -359,36 +353,33 @@
               "@type": "ListItem",
               "position": 1,
               "item": {
-                "@type": "Product",
+                "@type": "Thing",
+                "@id": "https://vorflows.com/#baseflow-module",
                 "name": "BaseFlow",
                 "description": "Theme-Optimization-Workflow für Shopify mit Claude Code. Setup 20–30 Minuten, erste Section am selben Tag.",
-                "image": "https://vorflows.com/brand_assets/boxes/base-tonal-1x1-transparent.webp",
-                "brand": { "@id": "https://vorflows.com/#organization" },
-                "category": "Digital Goods > Shopify Theme Workflow"
+                "image": "https://vorflows.com/brand_assets/boxes/base-tonal-1x1-transparent.webp"
               }
             },
             {
               "@type": "ListItem",
               "position": 2,
               "item": {
-                "@type": "Product",
+                "@type": "Thing",
+                "@id": "https://vorflows.com/#seoflow-module",
                 "name": "SEOFlow",
                 "description": "Search-Console-verknüpfter SEO-Optimierungs-Loop für Shopify. Setup 30–40 Minuten.",
-                "image": "https://vorflows.com/brand_assets/boxes/seo-tonal-1x1-transparent.webp",
-                "brand": { "@id": "https://vorflows.com/#organization" },
-                "category": "Digital Goods > Shopify SEO Workflow"
+                "image": "https://vorflows.com/brand_assets/boxes/seo-tonal-1x1-transparent.webp"
               }
             },
             {
               "@type": "ListItem",
               "position": 3,
               "item": {
-                "@type": "Product",
+                "@type": "Thing",
+                "@id": "https://vorflows.com/#clarityflow-module",
                 "name": "ClarityFlow",
                 "description": "Verhaltensdaten-Loop (Microsoft Clarity) für Shopify-Stores. Setup 15 Minuten.",
-                "image": "https://vorflows.com/brand_assets/boxes/clarity-tonal-1x1-transparent.webp",
-                "brand": { "@id": "https://vorflows.com/#organization" },
-                "category": "Digital Goods > Shopify Behavior-Data Workflow"
+                "image": "https://vorflows.com/brand_assets/boxes/clarity-tonal-1x1-transparent.webp"
               }
             }
           ]
@@ -402,7 +393,7 @@
             "https://vorflows.com/assets/video/ki-im-shop-poster.webp",
             "https://vorflows.com/brand_assets/og-image.jpg"
           ],
-          "uploadDate": "2026-05-07",
+          "uploadDate": "2026-05-07T10:00:00+02:00",
           "duration": "PT5M",
           "contentUrl": "https://vorflows.com/assets/video/ki-im-shop-1080.mp4",
           "embedUrl": "https://vorflows.com/#hero",
