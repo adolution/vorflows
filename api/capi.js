@@ -71,9 +71,12 @@ export default async function handler(req, res) {
     client_user_agent: ua,
   };
 
-  // First-party cookies
-  if (cookies._fbp) user_data.fbp = cookies._fbp;
-  if (cookies._fbc) user_data.fbc = cookies._fbc;
+  // First-party cookies — Body wins (Client liest die echten document.cookie-Werte),
+  // Cookie-Header als Fallback (z.B. wenn fetch ohne credentials läuft)
+  const fbp = ud_in.fbp || cookies._fbp;
+  const fbc = ud_in.fbc || cookies._fbc;
+  if (fbp) user_data.fbp = fbp;
+  if (fbc) user_data.fbc = fbc;
 
   // Hashed PII (Meta expects arrays for em/ph, scalar for the rest)
   const em = sha256(ud_in.email);

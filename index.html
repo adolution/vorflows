@@ -5525,6 +5525,30 @@
         return { ...am, ...extra };
       };
 
+      // Meta Standard-Events (alles andere → trackCustom)
+      const META_STANDARD_EVENTS = new Set([
+        'PageView','ViewContent','AddToCart','AddPaymentInfo','AddToWishlist',
+        'CompleteRegistration','Contact','CustomizeProduct','Donate','FindLocation',
+        'InitiateCheckout','Lead','Purchase','Schedule','Search','StartTrial',
+        'SubmitApplication','Subscribe',
+      ]);
+
+      const getCookie = (n) => {
+        const m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      };
+
+      // _fbp manuell setzen falls Pixel-SDK noch nicht geladen — CAPI braucht fbp ab erstem Event
+      const ensureFbp = () => {
+        let fbp = getCookie('_fbp');
+        if (!fbp) {
+          const rand = Math.floor(Math.random() * 2147483647);
+          fbp = `fb.1.${Date.now()}.${rand}`;
+          document.cookie = `_fbp=${fbp}; path=/; max-age=7776000; SameSite=Lax`;
+        }
+        return fbp;
+      };
+
       function initTracking() {
         if (trackingInitialized) return;
         trackingInitialized = true;
@@ -5537,6 +5561,9 @@
               `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax`;
           }
         } catch {}
+
+        // _fbp jetzt setzen damit erstes PageView+CAPI gleich fbp hat
+        try { ensureFbp(); } catch {}
 
         // Persistent External ID
         try {
@@ -5569,6 +5596,7 @@
         const eventId = uuid();
         const email = userData.email || knownEmail || null;
         const firstName = userData.first_name || knownFirstName || null;
+        const isStandard = META_STANDARD_EVENTS.has(name);
 
         if (window.fbq) {
           const newSignal = (email && email !== knownEmail) || (firstName && firstName !== knownFirstName);
@@ -5578,8 +5606,14 @@
             if (firstName) am.fn = firstName;
             fbq('init', META_PIXEL_ID, am);
           }
-          fbq('track', name, customData, { eventID: eventId });
+          // Custom-Events via trackCustom — sonst landet eventID nicht zuverlässig bei Meta
+          const method = isStandard ? 'track' : 'trackCustom';
+          fbq(method, name, customData, { eventID: eventId });
         }
+
+        // fbp/fbc aus Cookies lesen + an CAPI mitschicken (Fallback falls Cookie-Header fehlt)
+        const fbp = getCookie('_fbp') || null;
+        const fbc = getCookie('_fbc') || null;
 
         try {
           fetch('/api/capi', {
@@ -5593,6 +5627,8 @@
               user_data: {
                 external_id: extId,
                 country: 'de',
+                fbp,
+                fbc,
                 ...userData,
                 ...(email ? { email } : {}),
                 ...(firstName ? { first_name: firstName } : {}),
