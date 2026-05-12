@@ -30,6 +30,19 @@
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "wnn5d5ehwn");
       }
+
+      // Google Ads gtag.js — consent-gated load, mirrors Clarity/Meta pattern
+      function _loadGtagSdk() {
+        if (window.gtag && document.querySelector('script[src*="googletagmanager.com/gtag/js?id=AW-18158480775"]')) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', 'AW-18158480775');
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18158480775';
+        document.head.appendChild(s);
+      }
     </script>
     <title>vorflows — Shopify-Store wie Senior Dev mit Claude Code</title>
     <meta name="description" content="vorflows: das System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack." />
@@ -5770,7 +5783,7 @@
     <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
       <p class="cookie-title" id="cookieTitle">Cookies & Tracking</p>
       <p class="cookie-text" id="cookieText">
-        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
+        Wir nutzen Cookies und ähnliche Technologien (u. a. Meta Pixel & Conversions API, Microsoft Clarity, Google Ads Conversion-Tracking) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
       </p>
       <div class="cookie-actions">
         <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
@@ -5785,6 +5798,20 @@
         'pricing-bundle': 297,
       };
       const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
+
+      // ── Google Ads conversion config ────────────────────────────────────
+      const GADS_ID = 'AW-18158480775';
+      const GADS_CONVERSIONS = {
+        pricing_view:    '',
+        begin_checkout:  '',
+        purchase:        '',
+      };
+      const gAdsConvert = (key, params = {}) => {
+        if (!window.gtag) return;
+        const label = GADS_CONVERSIONS[key];
+        if (!label) return;
+        gtag('event', 'conversion', { send_to: `${GADS_ID}/${label}`, ...params });
+      };
 
       // ── Launch sale window — date-bound, no fake scarcity ──────────────
       // To change the deadline, edit LAUNCH_END below and sync the
@@ -5921,6 +5948,14 @@
           }
         } catch {}
 
+        // Capture gclid → vf_gclid cookie (90 days) für Digistore-Forwarding
+        try {
+          const gclid = new URLSearchParams(location.search).get('gclid');
+          if (gclid) {
+            document.cookie = `vf_gclid=${encodeURIComponent(gclid)}; path=/; max-age=7776000; SameSite=Lax`;
+          }
+        } catch {}
+
         // _fbp jetzt setzen damit erstes PageView+CAPI gleich fbp hat
         try { ensureFbp(); } catch {}
 
@@ -5945,6 +5980,9 @@
 
         // Load Microsoft Clarity (heatmaps + session recordings)
         if (typeof _loadClaritySdk === 'function') _loadClaritySdk();
+
+        // Load Google Ads gtag (Conversions + Remarketing)
+        if (typeof _loadGtagSdk === 'function') _loadGtagSdk();
 
         trackFb('PageView');
       }
@@ -6060,6 +6098,7 @@
         const cEvent = (name, props = {}) => {
           window.clarity?.('event', name);
           if (typeof trackFb === 'function') trackFb(name, { ...props, variant });
+          window.gtag?.('event', name, { ...props, variant });
         };
 
         const bundleEl = document.getElementById('bundle');
@@ -6068,6 +6107,7 @@
             entries.forEach((e) => {
               if (e.isIntersecting) {
                 cEvent('pricing_view', { content_name: 'bundle' });
+                gAdsConvert('pricing_view');
                 obs.unobserve(e.target);
               }
             });
@@ -6080,8 +6120,16 @@
           if (!a) return;
           const href = a.getAttribute('href') || '';
           if (href.includes('digistore24.com')) {
+            try {
+              const gclid = getCookie('vf_gclid');
+              if (gclid && !/[?&]ds24sub=/.test(href)) {
+                const sep = href.includes('?') ? '&' : '?';
+                a.setAttribute('href', `${href}${sep}ds24sub=${encodeURIComponent(gclid)}`);
+              }
+            } catch {}
             cEvent('digistore_redirect', { dest: href });
             window.fbq?.('track', 'InitiateCheckout', { content_name: 'bundle', variant });
+            gAdsConvert('begin_checkout', { value: 297.0, currency: 'EUR' });
             return;
           }
           if (href !== '#bundle') return;
