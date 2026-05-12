@@ -5488,9 +5488,9 @@
       // (Format: "AbCdEFghIJ-kLmnOpQ"). Hier eintragen, sonst feuert nichts.
       const GADS_ID = 'AW-18158480775';
       const GADS_CONVERSIONS = {
-        pricing_view:    '',  // Custom: User sieht Bundle (Intent-Signal)
-        begin_checkout:  '',  // Custom: Klick auf Digistore-CTA
-        purchase:        '',  // Main: feuert von Digistore24 Thank-You-Page
+        pricing_view:    '',                       // Custom: User sieht Bundle (Intent-Signal)
+        begin_checkout:  '',                       // Custom: Klick auf Digistore-CTA
+        purchase:        'VDg2CKiF_ascEIfb0dJD',   // Main: feuert von Digistore24 Thank-You-Page
       };
       const gAdsConvert = (key, params = {}) => {
         if (!window.gtag) return;
@@ -5769,12 +5769,12 @@
           const href = a.getAttribute('href') || '';
           // Digistore-Redirect (Checkout-Initiation)
           if (href.includes('digistore24.com')) {
-            // GCLID an Digistore weiterreichen via ds24sub (für TYP-Attribution)
+            // GCLID an Digistore weiterreichen via custom-Param (→ __custom__ auf TYP)
             try {
               const gclid = getCookie('vf_gclid');
-              if (gclid && !/[?&]ds24sub=/.test(href)) {
+              if (gclid && !/[?&]custom=/.test(href)) {
                 const sep = href.includes('?') ? '&' : '?';
-                a.setAttribute('href', `${href}${sep}ds24sub=${encodeURIComponent(gclid)}`);
+                a.setAttribute('href', `${href}${sep}custom=${encodeURIComponent(gclid)}`);
               }
             } catch {}
             cEvent('digistore_redirect', { dest: href });

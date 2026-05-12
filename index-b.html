@@ -5804,7 +5804,7 @@
       const GADS_CONVERSIONS = {
         pricing_view:    '',
         begin_checkout:  '',
-        purchase:        '',
+        purchase:        'VDg2CKiF_ascEIfb0dJD',
       };
       const gAdsConvert = (key, params = {}) => {
         if (!window.gtag) return;
@@ -6122,9 +6122,9 @@
           if (href.includes('digistore24.com')) {
             try {
               const gclid = getCookie('vf_gclid');
-              if (gclid && !/[?&]ds24sub=/.test(href)) {
+              if (gclid && !/[?&]custom=/.test(href)) {
                 const sep = href.includes('?') ? '&' : '?';
-                a.setAttribute('href', `${href}${sep}ds24sub=${encodeURIComponent(gclid)}`);
+                a.setAttribute('href', `${href}${sep}custom=${encodeURIComponent(gclid)}`);
               }
             } catch {}
             cEvent('digistore_redirect', { dest: href });
