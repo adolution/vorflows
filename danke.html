@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kauf bestätigt — vorflows</title>
+    <meta name="description" content="Danke für deinen Kauf. Dein Zugang zu vorflows ist unterwegs." />
+    <!-- Thank-you page: never index -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+
+    <!-- Google Ads — purchase conversion fires from this page.
+         danke.html lives on vorflows.com, so gtag reads the _gcl_aw cookie
+         set when the visitor first landed with a gclid → click is attributed
+         automatically, no offline import needed. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'AW-18158480775');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18158480775"></script>
+
+    <style>
+      :root {
+        --bg: #FAFAF7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #5C5C5C;
+        --border: #E5E3DD;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { margin: 0; }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
+          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wordmark img { height: 26px; width: auto; display: block; }
+
+      .stamp {
+        margin-top: clamp(2.5rem, 8vw, 4.5rem);
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow:
+          0 1px 2px rgba(200, 99, 62, 0.25),
+          0 12px 28px -10px rgba(200, 99, 62, 0.5);
+        display: grid;
+        place-items: center;
+        animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) both;
+      }
+      .stamp svg { width: 26px; height: 26px; }
+      .stamp path {
+        stroke-dasharray: 30;
+        stroke-dashoffset: 30;
+        animation: draw 0.45s 0.28s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      }
+
+      .eyebrow {
+        margin: 1.5rem 0 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+
+      h1 {
+        margin: 0.5rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2.1rem, 7vw, 3.1rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .lead {
+        margin: 1rem 0 0;
+        max-width: 32rem;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+      }
+
+      .steps {
+        margin: clamp(2rem, 6vw, 3rem) 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .steps li {
+        counter-increment: step;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        align-items: start;
+      }
+      .steps li::before {
+        content: counter(step);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+        margin-top: 0.15rem;
+      }
+      .steps h2 {
+        margin: 0;
+        font-size: 1.02rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -0.01em;
+      }
+      .steps p {
+        margin: 0.2rem 0 0;
+        color: var(--text-secondary);
+        font-size: 0.97rem;
+      }
+
+      .divider {
+        margin: clamp(2rem, 6vw, 3rem) 0 0;
+        border: 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .foot {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        align-items: center;
+      }
+
+      a.home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.55rem 0.9rem;
+        margin-left: -0.9rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.16s ease, transform 0.16s ease;
+      }
+      a.home:hover { background: var(--accent-soft); transform: translateX(2px); }
+      a.home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      a.home:active { transform: translateX(0); }
+
+      .support {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+      .support a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .support a:hover { text-decoration: underline; }
+      .support a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+      @keyframes pop {
+        from { transform: scale(0.7); opacity: 0; }
+        to   { transform: scale(1);   opacity: 1; }
+      }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+
+      @media (prefers-reduced-motion: reduce) {
+        .stamp, .stamp path { animation: none; }
+        .stamp path { stroke-dashoffset: 0; }
+        a.home { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="wordmark">
+        <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+      </div>
+
+      <div class="stamp" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12.5 L10 17.5 L19 6.5" stroke="#FAFAF7" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <p class="eyebrow">Kauf bestätigt</p>
+      <h1>Willkommen bei&nbsp;vorflows.</h1>
+      <p class="lead">
+        Deine Zahlung ist eingegangen. Den Zugang zu allen Inhalten bekommst du
+        per E-Mail von Digistore24 — meist innerhalb weniger Minuten.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <div>
+            <h2>E-Mail von Digistore24</h2>
+            <p>Bestätigung und Rechnung landen in deinem Postfach. Findest du nichts, prüf den Spam-Ordner.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h2>Download-Link öffnen</h2>
+            <p>Sofort-Zugang zu Setup-Datei, Skill-Stack, den BaseFlow-, SEOFlow- und ClarityFlow-Workflows, Anleitungen und Videos.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h2>In Claude Code loslegen</h2>
+            <p>Setup-Datei laden, ersten Workflow starten — deinen Shopify-Store wie ein Senior Dev umbauen.</p>
+          </div>
+        </li>
+      </ol>
+
+      <hr class="divider" />
+
+      <div class="foot">
+        <a class="home" href="/">
+          <span aria-hidden="true">←</span> Zurück zur Startseite
+        </a>
+        <p class="support">
+          Frage zur Bestellung? <a href="mailto:alex@adolution.de">alex@adolution.de</a> · 14 Tage Rückgaberecht.
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Google Ads purchase conversion. transaction_id (falls Digistore die
+      // Bestell-ID an die Thank-You-URL hängt) dedupliziert Reloads.
+      (function () {
+        var p = new URLSearchParams(location.search);
+        var orderId = p.get('order') || p.get('orderid') || p.get('oid') || p.get('order_id') || '';
+        var data = { send_to: 'AW-18158480775/VDg2CKiF_ascEIfb0dJD', value: 297.0, currency: 'EUR' };
+        if (orderId) data.transaction_id = orderId;
+        if (window.gtag) gtag('event', 'conversion', data);
+      })();
+    </script>
+  </body>
+</html>
