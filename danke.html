@@ -180,6 +180,67 @@
         border-top: 1px solid var(--border);
       }
 
+      .tutorial { margin: clamp(2.25rem, 6vw, 3.25rem) 0 0; }
+      .tutorial h2 {
+        margin: 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.45rem, 4.5vw, 1.95rem);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+      }
+
+      .videos {
+        margin: 1.5rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+      .video .label {
+        display: flex;
+        align-items: baseline;
+        gap: 0.65rem;
+        margin-bottom: 0.6rem;
+      }
+      .video .num {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .video .title {
+        font-weight: 600;
+        font-size: 0.99rem;
+        letter-spacing: -0.01em;
+      }
+      .video .frame {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #EFECE5;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.05),
+          0 18px 36px -20px rgba(200, 99, 62, 0.32);
+      }
+      .video .frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .setup-steps { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
+      .setup-steps p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.99rem;
+      }
+      .setup-steps p + p { margin-top: 0.7rem; }
+      .setup-steps strong { color: var(--text-primary); font-weight: 600; }
+
       .foot {
         margin-top: 1.5rem;
         display: flex;
@@ -270,6 +331,52 @@
           </div>
         </li>
       </ol>
+
+      <hr class="divider" />
+
+      <section class="tutorial">
+        <h2>Schau zuerst das Tutorial</h2>
+
+        <div class="videos">
+          <div class="video">
+            <div class="label">
+              <span class="num">01</span>
+              <span class="title">BaseFlow aufsetzen</span>
+            </div>
+            <div class="frame">
+              <iframe src="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647"
+                      loading="lazy" allowfullscreen title="BaseFlow aufsetzen"></iframe>
+            </div>
+          </div>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">02</span>
+              <span class="title">Erste Section bauen</span>
+            </div>
+            <div class="frame">
+              <iframe src="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217"
+                      loading="lazy" allowfullscreen title="Erste Section bauen"></iframe>
+            </div>
+          </div>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">03</span>
+              <span class="title">Suchdaten &amp; Klickdaten verbinden</span>
+            </div>
+            <div class="frame">
+              <iframe src="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4"
+                      loading="lazy" allowfullscreen title="Suchdaten und Klickdaten verbinden"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-steps">
+          <p>Starte mit der Installation von <strong>Base</strong>, führe dann <strong>SEO</strong> und <strong>Clarity</strong> aus.</p>
+          <p>Lade das Produkt herunter und entzippe den Ordner. Öffne ihn in Claude Code und bitte Claude, die Setup-Datei auszuführen. Bestätige die Anfragen zum Installieren der Plugins.</p>
+        </div>
+      </section>
 
       <hr class="divider" />
 
