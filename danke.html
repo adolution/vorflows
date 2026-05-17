@@ -86,7 +86,7 @@
       .wordmark img { height: 26px; width: auto; display: block; }
 
       .stamp {
-        margin-top: clamp(2.5rem, 8vw, 4.5rem);
+        margin-top: clamp(1.75rem, 6vw, 3rem);
         width: 56px;
         height: 56px;
         border-radius: 999px;
@@ -126,52 +126,9 @@
 
       .lead {
         margin: 1rem 0 0;
-        max-width: 32rem;
+        max-width: 34rem;
         color: var(--text-secondary);
         font-size: 1.05rem;
-      }
-
-      .steps {
-        margin: clamp(2rem, 6vw, 3rem) 0 0;
-        padding: 0;
-        list-style: none;
-        counter-reset: step;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .steps li {
-        counter-increment: step;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 1rem;
-        align-items: start;
-      }
-      .steps li::before {
-        content: counter(step);
-        width: 2rem;
-        height: 2rem;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.85rem;
-        font-weight: 600;
-        display: grid;
-        place-items: center;
-        margin-top: 0.15rem;
-      }
-      .steps h2 {
-        margin: 0;
-        font-size: 1.02rem;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        letter-spacing: -0.01em;
-      }
-      .steps p {
-        margin: 0.2rem 0 0;
-        color: var(--text-secondary);
-        font-size: 0.97rem;
       }
 
       .divider {
@@ -180,21 +137,46 @@
         border-top: 1px solid var(--border);
       }
 
-      .tutorial { margin: clamp(2.25rem, 6vw, 3.25rem) 0 0; }
-      .tutorial h2 {
+      /* Tutorial — highlighted callout, sits high so it can't be missed */
+      .tutorial {
+        margin: clamp(1.75rem, 5vw, 2.5rem) 0 0;
+        padding: clamp(1.4rem, 5vw, 2.25rem);
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 99, 62, 0.2);
+        border-radius: 1rem;
+      }
+      .tutorial-eyebrow {
         margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .tutorial-eyebrow::before {
+        content: "";
+        width: 1.6rem;
+        height: 1px;
+        background: var(--accent);
+      }
+      .tutorial h2 {
+        margin: 0.55rem 0 0;
         font-family: 'Fraunces', Georgia, serif;
         font-weight: 400;
-        font-size: clamp(1.45rem, 4.5vw, 1.95rem);
-        line-height: 1.15;
+        font-size: clamp(1.5rem, 5vw, 2.1rem);
+        line-height: 1.12;
         letter-spacing: -0.025em;
       }
 
       .videos {
-        margin: 1.5rem 0 0;
+        margin: 1.4rem 0 0;
         display: flex;
         flex-direction: column;
-        gap: 1.75rem;
+        gap: 1.5rem;
       }
       .video .label {
         display: flex;
@@ -240,6 +222,49 @@
       }
       .setup-steps p + p { margin-top: 0.7rem; }
       .setup-steps strong { color: var(--text-primary); font-weight: 600; }
+
+      /* What lands in the inbox — compact, three-up */
+      .next { margin: clamp(2rem, 6vw, 2.75rem) 0 0; }
+      .next-eyebrow {
+        margin: 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .next-list {
+        margin: 1.1rem 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: n;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(1rem, 3vw, 1.6rem);
+      }
+      .next-list li { counter-increment: n; }
+      .next-list .n {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .next-list h3 {
+        margin: 0.4rem 0 0;
+        font-size: 0.96rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .next-list p {
+        margin: 0.3rem 0 0;
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      @media (max-width: 32rem) {
+        .next-list { grid-template-columns: 1fr; gap: 1rem; }
+      }
 
       .foot {
         margin-top: 1.5rem;
@@ -307,35 +332,13 @@
       <p class="eyebrow">Kauf bestätigt</p>
       <h1>Willkommen bei&nbsp;vorflows.</h1>
       <p class="lead">
-        Deine Zahlung ist eingegangen. Den Zugang zu allen Inhalten bekommst du
-        per E-Mail von Digistore24 — meist innerhalb weniger Minuten.
+        Deine Zahlung ist eingegangen — den Download-Link bekommst du gleich
+        per E-Mail von Digistore24.
       </p>
 
-      <ol class="steps">
-        <li>
-          <div>
-            <h2>E-Mail von Digistore24</h2>
-            <p>Bestätigung und Rechnung landen in deinem Postfach. Findest du nichts, prüf den Spam-Ordner.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h2>Download-Link öffnen</h2>
-            <p>Sofort-Zugang zu Setup-Datei, Skill-Stack, den BaseFlow-, SEOFlow- und ClarityFlow-Workflows, Anleitungen und Videos.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h2>In Claude Code loslegen</h2>
-            <p>Setup-Datei laden, ersten Workflow starten — deinen Shopify-Store wie ein Senior Dev umbauen.</p>
-          </div>
-        </li>
-      </ol>
-
-      <hr class="divider" />
-
       <section class="tutorial">
-        <h2>Schau zuerst das Tutorial</h2>
+        <p class="tutorial-eyebrow">Bevor du loslegst</p>
+        <h2>Schau dir zuerst die 3 Tutorials an</h2>
 
         <div class="videos">
           <div class="video">
@@ -376,6 +379,27 @@
           <p>Starte mit der Installation von <strong>Base</strong>, führe dann <strong>SEO</strong> und <strong>Clarity</strong> aus.</p>
           <p>Lade das Produkt herunter und entzippe den Ordner. Öffne ihn in Claude Code und bitte Claude, die Setup-Datei auszuführen. Bestätige die Anfragen zum Installieren der Plugins.</p>
         </div>
+      </section>
+
+      <section class="next">
+        <p class="next-eyebrow">Dein Zugang</p>
+        <ol class="next-list">
+          <li>
+            <span class="n">01</span>
+            <h3>E-Mail von Digistore24</h3>
+            <p>Mit Download-Link. Findest du nichts, prüf den Spam-Ordner.</p>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <h3>Ordner entzippen</h3>
+            <p>Setup-Datei, Skill-Stack, alle Workflows, Anleitungen, Videos.</p>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <h3>In Claude Code öffnen</h3>
+            <p>Setup-Datei ausführen lassen, Plugin-Installation bestätigen.</p>
+          </li>
+        </ol>
       </section>
 
       <hr class="divider" />
