@@ -6127,6 +6127,7 @@
             entries.forEach((e) => {
               if (e.isIntersecting) {
                 cEvent('pricing_view', { content_name: 'bundle' });
+                trackFb('AddToCart', { content_name: 'bundle', content_category: 'pricing', value: 297.0, currency: 'EUR' });
                 gAdsConvert('pricing_view');
                 obs.unobserve(e.target);
               }
