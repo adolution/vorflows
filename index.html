@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Head init: js-class marker + consent-gated tracker loaders (Meta Pixel, Microsoft Clarity, DSGVO) -->
+    <!-- Mark JS available before paint so motion CSS can hide pre-reveal state without blocking non-JS readers -->
+    <script>document.documentElement.classList.add('js');</script>
+    <!-- Meta Pixel loader, invoked only after consent (DSGVO) -->
     <script>
-      document.documentElement.classList.add('js');
-
       function _loadFbPixelSdk() {
         if (window.fbq) return;
         !function(f,b,e,v,n,t,s)
@@ -19,7 +19,9 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
       }
-
+    </script>
+    <!-- Microsoft Clarity loader, invoked only after consent (DSGVO) -->
+    <script>
       function _loadClaritySdk() {
         if (window.clarity && window.clarity.q !== undefined && document.querySelector('script[src*="clarity.ms/tag/"]')) return;
         (function(c,l,a,r,i,t,y){
@@ -279,36 +281,36 @@
               "@type": "SoftwareApplication",
               "@id": "https://vorflows.com/#baseflow",
               "name": "BaseFlow",
-              "description": "Workflow-Modul für sichere Shopify-Theme-Optimierungen mit Claude Code.",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
               "url": "https://vorflows.com/baseflow",
               "mainEntityOfPage": "https://vorflows.com/baseflow",
               "sameAs": "https://vorflows.com/baseflow#software",
+              "description": "Workflow-Modul für sichere Shopify-Theme-Optimierungen mit Claude Code.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
               "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
             },
             {
               "@type": "SoftwareApplication",
               "@id": "https://vorflows.com/#seoflow",
               "name": "SEOFlow",
-              "description": "Workflow-Modul zur Nutzung von Google-Search-Console-Daten für Shopify-SEO-Optimierungen.",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
               "url": "https://vorflows.com/seoflow",
               "mainEntityOfPage": "https://vorflows.com/seoflow",
               "sameAs": "https://vorflows.com/seoflow#software",
+              "description": "Workflow-Modul zur Nutzung von Google-Search-Console-Daten für Shopify-SEO-Optimierungen.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
               "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
             },
             {
               "@type": "SoftwareApplication",
               "@id": "https://vorflows.com/#clarityflow",
               "name": "ClarityFlow",
-              "description": "Workflow-Modul zur Nutzung von Microsoft-Clarity-Verhaltensdaten für Conversion-Optimierungen.",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
               "url": "https://vorflows.com/clarityflow",
               "mainEntityOfPage": "https://vorflows.com/clarityflow",
               "sameAs": "https://vorflows.com/clarityflow#software",
+              "description": "Workflow-Modul zur Nutzung von Microsoft-Clarity-Verhaltensdaten für Conversion-Optimierungen.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
               "isPartOf": { "@id": "https://vorflows.com/#product-bundle" }
             }
           ],
@@ -1089,6 +1091,69 @@
         font-size: 16.5px;
         max-width: 56ch;
         line-height: 1.6;
+      }
+
+      /* Reibungspunkte als <details> — Desktop bleibt offen + Layout flach, Mobile = Akkordeon */
+      .problem-item--d { display: block; padding: 0; border-top: 1px solid var(--border); }
+      .problem-item--d:first-child { border-top: 0; }
+      .problem-item--d > summary {
+        display: grid;
+        grid-template-columns: 88px 1fr auto;
+        gap: 28px;
+        align-items: baseline;
+        padding: 28px 0;
+        cursor: default;
+        list-style: none;
+      }
+      .problem-item--d > summary::-webkit-details-marker { display: none; }
+      .problem-item--d > summary::marker { display: none; content: ''; }
+      .problem-item--d:first-child > summary { padding-top: 0; }
+      .problem-item--d > .problem-body {
+        margin: 0 0 28px 116px;
+      }
+      .problem-item--d[open] > summary { padding-bottom: 8px; }
+      .problem-marker { display: none; }
+      /* Desktop: alle Reibungspunkte offen anzeigen, Marker aus, Padding wie alte Liste */
+      @media (min-width: 881px) {
+        .problem-item--d > summary { pointer-events: none; }
+        .problem-item--d > .problem-body { display: block !important; }
+        .problem-item--d:not([open]) > summary { padding-bottom: 0; }
+        .problem-item--d:not([open]) > .problem-body { margin-top: -10px; }
+      }
+      @media (max-width: 880px) {
+        .problem-item--d > summary {
+          grid-template-columns: 56px 1fr 24px;
+          gap: 14px;
+          padding: 22px 0;
+          cursor: pointer;
+        }
+        .problem-item--d:first-child > summary { padding-top: 4px; }
+        .problem-item--d > .problem-body {
+          margin: 0 0 22px 70px;
+          font-size: 15.5px;
+        }
+        .problem-marker {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          border: 1px solid var(--border-strong, var(--border));
+          border-radius: 999px;
+          position: relative;
+          align-self: center;
+          transition: transform 200ms ease;
+        }
+        .problem-marker::before,
+        .problem-marker::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          margin: auto;
+          background: currentColor;
+        }
+        .problem-marker::before { width: 10px; height: 1.5px; }
+        .problem-marker::after { width: 1.5px; height: 10px; transition: transform 200ms ease; }
+        .problem-item--d[open] > summary .problem-marker::after { transform: rotate(90deg); opacity: 0; }
+        .problem-item--d > summary .problem-title { font-size: 19px; }
       }
 
       /* Solution Reveal */
@@ -1938,38 +2003,57 @@
       .compare-table col.col-vorflows { width: 44%; }
       .compare-table thead th.num { white-space: normal; }
       @media (max-width: 600px) {
-        /* On narrow screens the 3-column table cramps and hyphenates badly
-           ("Countdown-Ti-mer-App"). Stack each row as a card: app name +
-           price on top, arrow + vorflows solution underneath. */
-        .compare-table { display: block; font-size: 15px; margin-top: 32px; }
+        /* B-Variant Mobile-CRO: Compare-Table als echte Cards mit Surface,
+           Schatten, Abstand. App-Name groß, Preis als Pill rechts,
+           Solution-Zeile darunter. Subtotals & Sum als hervorgehobene
+           Summary-Cards. */
+        .compare-table { display: block; font-size: 15px; margin-top: 32px; background: transparent; }
         .compare-table colgroup, .compare-table thead { display: none; }
         .compare-table tbody, .compare-table tr { display: block; width: 100%; }
         .compare-table td { display: block; padding: 0; border: 0; overflow-wrap: normal; word-break: normal; hyphens: manual; }
         .compare-table tbody tr {
-          padding: 14px 14px 16px;
-          border-bottom: 1px solid var(--border);
+          padding: 0;
+          border-bottom: 0;
         }
         .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) {
           display: grid;
           grid-template-columns: 1fr auto;
-          row-gap: 4px;
+          row-gap: 8px;
           column-gap: 12px;
-          align-items: baseline;
+          align-items: center;
+          padding: 16px 16px 16px !important;
+          margin: 0 0 8px !important;
+          background: #FFFEFB !important;
+          border: 1px solid var(--border) !important;
+          border-radius: 12px !important;
+          box-shadow: 0 1px 2px rgba(20, 18, 14, 0.04);
         }
         .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:first-child {
-          font-weight: 500;
+          font-family: 'Inter', sans-serif;
+          font-weight: 600;
+          font-size: 16px;
           color: var(--text-primary);
+          letter-spacing: -0.005em;
         }
         .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td.num {
           text-align: right !important;
+          font-family: 'JetBrains Mono', monospace;
           font-size: 14px;
           color: var(--text-primary);
+          padding: 5px 10px;
+          background: rgba(200, 99, 62, 0.1);
+          border-radius: 999px;
+          line-height: 1;
+          font-weight: 500;
         }
         .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:last-child {
           grid-column: 1 / -1;
           font-size: 13.5px;
           color: var(--text-secondary);
-          line-height: 1.5;
+          line-height: 1.45;
+          padding-top: 4px;
+          border-top: 1px dashed var(--border);
+          margin-top: 2px;
         }
         .compare-table tbody tr:not(.group-row):not(.subtotal-row):not(.sum-row) td:last-child::before {
           content: "→ ";
@@ -1977,35 +2061,55 @@
           font-family: 'Fraunces', serif;
           font-style: italic;
           margin-right: 4px;
+          font-weight: 500;
         }
         .compare-table .group-row td {
-          padding: 22px 14px 8px;
+          padding: 24px 4px 10px;
           font-size: 11px;
           letter-spacing: 0.16em;
         }
         .compare-table .group-row .group-mapping { display: block; margin-top: 4px; }
+        .compare-table tbody tr.group-row:first-child td { padding-top: 8px; }
         .compare-table .subtotal-row {
           display: grid !important;
           grid-template-columns: 1fr auto;
-          gap: 4px 12px;
-          padding: 12px 14px 14px;
-          background: rgba(200, 99, 62, 0.04);
+          gap: 6px 12px;
+          padding: 14px 16px !important;
+          margin: 0 0 12px !important;
+          background: rgba(200, 99, 62, 0.06) !important;
+          border: 1px solid rgba(200, 99, 62, 0.2) !important;
+          border-radius: 10px !important;
         }
-        .compare-table .subtotal-row td { font-size: 13.5px; padding: 0; border: 0; }
-        .compare-table .subtotal-row td.num { text-align: right !important; font-size: 14.5px; }
-        .compare-table .subtotal-row td.subtotal-arrow { grid-column: 1 / -1; font-size: 13px; }
+        .compare-table .subtotal-row td { font-size: 13.5px !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
+        .compare-table .subtotal-row td.num { text-align: right !important; font-size: 15px !important; font-weight: 600 !important; }
+        .compare-table .subtotal-row td.subtotal-arrow {
+          grid-column: 1 / -1;
+          font-size: 12.5px !important;
+          color: var(--accent) !important;
+          font-family: 'Fraunces', serif !important;
+          font-style: italic !important;
+        }
         .compare-table .sum-row {
           display: grid !important;
           grid-template-columns: 1fr auto;
-          gap: 6px 12px;
-          padding: 18px 14px;
-          border-top: 2px solid var(--text-primary);
-          background: transparent;
+          gap: 8px 12px;
+          padding: 20px 18px !important;
+          margin: 16px 0 0 !important;
+          border-top: 0 !important;
+          background: var(--text-primary) !important;
+          border-radius: 14px !important;
         }
-        .compare-table .sum-row td { padding: 0; border: 0; }
-        .compare-table .sum-row td:first-child { font-size: 15px; font-weight: 600; }
-        .compare-table .sum-row td.num { text-align: right !important; font-size: 18px; }
-        .compare-table .sum-row td:last-child { grid-column: 1 / -1; font-size: 13.5px; color: var(--text-secondary); font-weight: 400; }
+        .compare-table .sum-row td { padding: 0 !important; border: 0 !important; color: var(--bg-light) !important; }
+        .compare-table .sum-row td:first-child { font-size: 15px !important; font-weight: 600 !important; }
+        .compare-table .sum-row td.num { text-align: right !important; font-size: 22px !important; font-weight: 600 !important; color: #FFFEFB !important; }
+        .compare-table .sum-row td:last-child {
+          grid-column: 1 / -1;
+          font-size: 13.5px !important;
+          color: rgba(255, 254, 251, 0.72) !important;
+          font-weight: 400 !important;
+          font-family: 'Fraunces', serif !important;
+          font-style: italic !important;
+        }
       }
       .compare-table thead th {
         font-family: 'Inter', sans-serif;
@@ -2586,6 +2690,10 @@
         color: var(--text-secondary);
         text-align: center;
       }
+      /* HI1b: Drei-Dateien-Video auf Mobile entfernen — redundant zu Workflow-Code-Steps, spart Scroll bis Pricing */
+      @media (max-width: 720px) {
+        .demo-video-figure { display: none !important; }
+      }
 
       .security-strip {
         margin: 32px auto 0;
@@ -2757,6 +2865,35 @@
           padding: 12px 0;
         }
         .skill-flat-meta { display: none; }
+      }
+      /* Skill-Stack Mobile-Toggle: Desktop zeigt alle Extras inline (kein details-UI), Mobile = Akkordeon */
+      .skill-flat-more { margin-top: 0; }
+      .skill-flat-more > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        border-top: 1px solid var(--border);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .skill-flat-more > summary::-webkit-details-marker { display: none; }
+      .skill-flat-more > summary::marker { content: ''; }
+      .skill-flat-more .sfm-label { font-weight: 600; color: var(--ink, var(--text-primary)); }
+      .skill-flat-more .sfm-meta { color: var(--accent); margin-left: auto; }
+      .skill-flat-more .sfm-chev { transition: transform 200ms ease; color: var(--accent); }
+      .skill-flat-more[open] .sfm-chev { transform: rotate(180deg); }
+      .skill-flat-list--extra { border-top: 1px solid var(--border); margin-top: 0; }
+      .skill-flat-list--extra li:first-child { border-top: 0; }
+      @media (min-width: 721px) {
+        .skill-flat-more > summary { display: none; }
+        .skill-flat-list--extra { display: grid; border-top: 0; }
+        .skill-flat-list--extra li:first-child { border-top: 1px solid var(--border); padding-top: 14px; }
       }
       .skill-rail-label {
         margin: 36px auto -24px;
@@ -3376,16 +3513,20 @@
           margin: 0 0 22px;
           max-width: 100%;
         }
+        /* Mobile-Anchor-Flip (B-Variant CRO): Raten zuerst-prominent,
+           Einmalig sekundär. column-reverse rendert die Raten-bp-row oben,
+           Divider mittig, Einmalig-bp-row unten. */
         .bundle-hero-price-block {
-          gap: 10px;
+          flex-direction: column-reverse;
+          gap: 12px;
           margin: 0 0 18px;
         }
-        .bundle-hero-price { font-size: 64px; letter-spacing: -0.03em; }
-        .bundle-hero-strike { font-size: 19px; }
+        .bundle-hero-price { font-size: 34px; letter-spacing: -0.025em; }
+        .bundle-hero-strike { font-size: 15px; }
         .bundle-hero-suffix { font-size: 11px; }
         .bp-divider { font-size: 9.5px; gap: 10px; }
-        .bp-alt-price { font-size: 28px; }
-        .bp-alt-unit { font-size: 0.5em; }
+        .bp-alt-price { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+        .bp-alt-unit { font-size: 0.36em; }
         .bundle-math {
           margin: 12px 0 24px;
           padding: 14px 16px;
@@ -4129,6 +4270,72 @@
         .code-annotation .ca-arrow { width: 42px; height: 36px; }
       }
 
+      /* Mobile-only Code-Collapse (B-Variant CRO):
+         Auf Mobile defaults closed mit Toggle-Button.
+         Auf Desktop: Summary versteckt, <pre> via !important sichtbar trotz
+         fehlendem [open]-Attribut (override der UA-Detail-Display-Regel). */
+      .code-collapse { display: block; }
+      .code-collapse > summary {
+        display: none;
+        list-style: none;
+      }
+      .code-collapse > summary::-webkit-details-marker { display: none; }
+      @media (min-width: 601px) {
+        .code-collapse:not([open]) > .codeblock { display: block !important; }
+      }
+      @media (max-width: 600px) {
+        .code-collapse > summary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 12px;
+          padding: 10px 16px;
+          background: rgba(200, 99, 62, 0.14);
+          border: 1px solid rgba(200, 99, 62, 0.32);
+          border-radius: 8px;
+          color: var(--accent);
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          cursor: pointer;
+          user-select: none;
+          transition: background 150ms;
+        }
+        .code-collapse > summary:hover { background: rgba(200, 99, 62, 0.2); }
+        .code-collapse > summary:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 2px;
+        }
+        .code-collapse > summary .ct-icon {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          position: relative;
+        }
+        .code-collapse > summary .ct-icon::before,
+        .code-collapse > summary .ct-icon::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          background: currentColor;
+          transition: transform 200ms;
+        }
+        .code-collapse > summary .ct-icon::before {
+          width: 12px;
+          height: 1.5px;
+          transform: translate(-50%, -50%);
+        }
+        .code-collapse > summary .ct-icon::after {
+          width: 1.5px;
+          height: 12px;
+          transform: translate(-50%, -50%);
+        }
+        .code-collapse[open] > summary .ct-icon::after { transform: translate(-50%, -50%) scaleY(0); }
+        .code-collapse[open] > summary { margin-bottom: 12px; }
+      }
+
       /* Hero stack: centered single column with video as centerpiece */
       .hero-stack {
         display: flex;
@@ -4652,6 +4859,108 @@
         .cookie-actions { flex-direction: column-reverse; }
         .cookie-btn { width: 100%; }
       }
+      /* === VARIANT B: #produkt mobile pin-scroll DEAKTIVIERT ===
+         Original: 600vh scroll-runway mit sticky pin → 6 viewport-tall
+         scroll-burden für Mobile-User. Variant B: Cards relative-stack als
+         normale vertikale Liste. Trio-Box statisch oben. Spart ~5 viewport-
+         Längen Scroll bis Pricing-Section. */
+      @media (max-width: 880px) {
+        .product-reveal { --pr-p: 1 !important; padding-bottom: 24px; }
+        .pr-track { min-height: 0 !important; }
+        .pr-pin {
+          position: static !important;
+          height: auto !important;
+          padding: 16px 0 24px !important;
+          overflow: visible !important;
+        }
+        .pr-stage {
+          display: block !important;
+          grid-template-rows: none !important;
+          min-height: 0 !important;
+          height: auto !important;
+        }
+        /* Trio = 3 Modul-Boxen als Family: SEO links, BaseFlow center (lead),
+           ClarityFlow rechts. Statisch ohne pin-scroll-animation. */
+        .pr-trio {
+          height: auto !important;
+          margin: 0 0 24px !important;
+          position: relative !important;
+          display: flex !important;
+          align-items: flex-end !important;
+          justify-content: center !important;
+          gap: clamp(8px, 2vw, 16px) !important;
+          padding: 12px 4vw 0 !important;
+        }
+        .pr-trio .pr-box {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          right: auto !important;
+          bottom: auto !important;
+          width: auto !important;
+          height: auto !important;
+          max-width: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          transform: none !important;
+          opacity: 1 !important;
+          transition: none !important;
+          flex: none !important;
+          z-index: auto !important;
+        }
+        .pr-trio .pr-box img {
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+        }
+        .pr-trio .pr-box--lead {
+          width: clamp(150px, 38vw, 210px) !important;
+          z-index: 3 !important;
+        }
+        .pr-trio .pr-box--side {
+          width: clamp(100px, 26vw, 150px) !important;
+          z-index: 1 !important;
+          padding-bottom: 8% !important;
+        }
+        .pr-trio .pr-box--seo,
+        .pr-trio .pr-box--clarity {
+          display: block !important;
+        }
+        .pr-cards {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 14px !important;
+          height: auto !important;
+          padding: 0 4vw !important;
+        }
+        /* Display-Order matched to applyMobileNumbering() JS-mapping
+           (card01=01, card02=02, card04=03, card05=04, card03=05, card06=06)
+           damit visuelle Sequence sequentiell 01→06 ist. */
+        .pr-card[data-cell="card01"] { order: 1 !important; }
+        .pr-card[data-cell="card02"] { order: 2 !important; }
+        .pr-card[data-cell="card04"] { order: 3 !important; }
+        .pr-card[data-cell="card05"] { order: 4 !important; }
+        .pr-card[data-cell="card03"] { order: 5 !important; }
+        .pr-card[data-cell="card06"] { order: 6 !important; }
+        .pr-card {
+          position: relative !important;
+          left: auto !important;
+          right: auto !important;
+          bottom: auto !important;
+          top: auto !important;
+          height: auto !important;
+          min-height: unset !important;
+          max-width: none !important;
+          width: auto !important;
+          margin: 0 !important;
+          padding: 18px 20px 16px !important;
+          transform: none !important;
+          opacity: 1 !important;
+          overflow: visible !important;
+        }
+        .pr-card-body { -webkit-line-clamp: unset; line-clamp: unset; max-height: none; }
+        .pr-mobile-counter { display: none !important; }
+      }
     </style>
   </head>
   <body>
@@ -4716,7 +5025,7 @@
             <span class="hv-play-btn">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z"/></svg>
             </span>
-            <span class="hv-play-label">Vorflows schnell erklärt</span>
+            <span class="hv-play-label">App in 5 Min ersetzt</span>
           </button>
           <div class="hv-controls" aria-label="Video-Einstellungen">
             <span class="hv-controls-label">Speed</span>
@@ -4842,34 +5151,38 @@
             <span class="problem-head-tag">4 Reibungspunkte</span>
           </div>
           <div class="problem-list" data-reveal-stagger>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">01</div>
-              <div>
-                <p class="problem-title">Theme-Limits.</p>
-                <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">02</div>
-              <div>
-                <p class="problem-title">App-Stack.</p>
-                <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">03</div>
-              <div>
-                <p class="problem-title">Agentur-Loop.</p>
-                <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
-              </div>
-            </div>
-            <div class="problem-item" data-reveal="up">
-              <div class="problem-num">04</div>
-              <div>
-                <p class="problem-title">Liegen gelassenes Potential.</p>
-                <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
-              </div>
-            </div>
+            <details class="problem-item problem-item--d" data-reveal="up" open>
+              <summary>
+                <span class="problem-num">01</span>
+                <span class="problem-title">Theme-Limits.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Du willst eine <span class="gloss" tabindex="0" role="note" data-tip="Section = ein einzelner Baustein in deinem Shopify-Theme (z.B. Hero, Trust-Strip, Bundle). Du musst nicht wissen, wie das technisch heißt — Claude baut es für dich.">Section</span>, die dein Theme nicht hat. Also lebst du mit Workarounds, die du eigentlich nie wolltest.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">02</span>
+                <span class="problem-title">App-Stack.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Jeden Monat zieht jemand Geld von deinem Konto für Apps, die du längst selbst hosten könntest.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">03</span>
+                <span class="problem-title">Agentur-Loop.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">Du beschreibst, was du willst. Sie bauen, was sie verstanden haben. Drei Loops später bist du genervt. Und hast Geld ausgegeben, das du auch in Marketing hättest investieren können.</p>
+            </details>
+            <details class="problem-item problem-item--d" data-reveal="up">
+              <summary>
+                <span class="problem-num">04</span>
+                <span class="problem-title">Liegen gelassenes Potential.</span>
+                <span class="problem-marker" aria-hidden="true"></span>
+              </summary>
+              <p class="problem-body">KI baut in Minuten, wofür Agenturen Tage brauchen. Im deutschsprachigen Raum nutzt das fast niemand. Wer jetzt umstellt, holt sich einen echten Vorsprung.</p>
+            </details>
           </div>
         </div>
         <div class="inline-cta-row mobile-only" data-reveal="up">
@@ -4916,7 +5229,9 @@
             <div>
               <p class="wf-title">Claude bearbeitet</p>
               <div class="codeblock-wrap codeblock-annotated">
-                <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
+                <details class="code-collapse">
+                  <summary><span class="ct-icon" aria-hidden="true"></span><span class="ct-label">Liquid-Code anzeigen</span></summary>
+                  <pre class="codeblock"><span class="prompt">›</span> Ersetze meine Shipping-Bar-App durch eine native Section.
 <span class="comment">  Threshold konfigurierbar via Theme-Editor. Position: Cart-Drawer.</span>
 
 <span class="file">sections/free-shipping-bar.liquid</span>
@@ -4924,6 +5239,7 @@
 <span class="add">+ {%- assign remaining = threshold | minus: cart.items_subtotal_price -%}</span>
 <span class="add">+ &lt;div class="shipping-bar" data-threshold="{{ threshold }}"&gt;</span>
 <span class="comment">      …</span></pre>
+                </details>
                 <div class="code-annotation" aria-hidden="true">
                   <span class="ca-text">Claude schreibt das für dich</span>
                   <svg class="ca-arrow" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5184,12 +5500,21 @@
           </div>
           <ul class="skill-flat-list">
             <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shop-architecture</span><span class="skill-flat-desc">Scannt dein Theme einmal komplett, merkt sich alles.</span></li>
-            <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shopify-senior-dev</span><span class="skill-flat-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</span></li>
             <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">opportunity-detection</span><span class="skill-flat-desc">Findet Quick-Wins: hohe Impressions, niedrige CTR, Position&nbsp;11–20.</span></li>
-            <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">weekly-report</span><span class="skill-flat-desc">Wöchentlicher Performance-Report mit Fix-Vorschlägen.</span></li>
             <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">click-behavior</span><span class="skill-flat-desc">Findet Dead- und Rage-Clicks, macht sie klickbar.</span></li>
-            <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">scroll-depth</span><span class="skill-flat-desc">Holt verkaufsentscheidende Module nach oben.</span></li>
           </ul>
+          <details class="skill-flat-more">
+            <summary>
+              <span class="sfm-label">Alle Skills ansehen</span>
+              <span class="sfm-meta">+3 weitere</span>
+              <span class="sfm-chev" aria-hidden="true">▾</span>
+            </summary>
+            <ul class="skill-flat-list skill-flat-list--extra">
+              <li><span class="skill-flat-cat">Engineering</span><span class="skill-flat-name">shopify-senior-dev</span><span class="skill-flat-desc">Erzwingt Shopify-Doku-Standards vor jeder Code-Änderung.</span></li>
+              <li><span class="skill-flat-cat">SEO</span><span class="skill-flat-name">weekly-report</span><span class="skill-flat-desc">Wöchentlicher Performance-Report mit Fix-Vorschlägen.</span></li>
+              <li><span class="skill-flat-cat">CRO</span><span class="skill-flat-name">scroll-depth</span><span class="skill-flat-desc">Holt verkaufsentscheidende Module nach oben.</span></li>
+            </ul>
+          </details>
         </div>
       </div>
     </section>
@@ -5504,13 +5829,11 @@
       const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
 
       // ── Google Ads conversion config ────────────────────────────────────
-      // Labels werden in Google Ads → Tools → Conversions je Action generiert
-      // (Format: "AbCdEFghIJ-kLmnOpQ"). Hier eintragen, sonst feuert nichts.
       const GADS_ID = 'AW-18158480775';
       const GADS_CONVERSIONS = {
-        pricing_view:    '',                       // Custom: User sieht Bundle (Intent-Signal)
-        begin_checkout:  '2ARKCLvj864cEIfb0dJD',   // Sekundär: Klick auf Digistore-CTA
-        purchase:        'VDg2CKiF_ascEIfb0dJD',   // Main: feuert von Digistore24 Thank-You-Page
+        pricing_view:    '',
+        begin_checkout:  '2ARKCLvj864cEIfb0dJD',
+        purchase:        'VDg2CKiF_ascEIfb0dJD',
       };
       const gAdsConvert = (key, params = {}) => {
         if (!window.gtag) return;
@@ -5546,6 +5869,48 @@
           document.addEventListener('DOMContentLoaded', apply, { once: true });
         } else {
           apply();
+        }
+      })();
+
+      // ── Reibungspunkte: Desktop alle offen, Mobile = Akkordeon ─────────────
+      (() => {
+        const mq = window.matchMedia('(min-width: 881px)');
+        const items = () => document.querySelectorAll('.problem-item--d');
+        const sync = () => {
+          if (mq.matches) {
+            items().forEach(d => { d.open = true; });
+          } else {
+            items().forEach((d, i) => { d.open = (i === 0); });
+          }
+        };
+        const init = () => { sync(); mq.addEventListener?.('change', sync); };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          init();
+        }
+      })();
+
+      // ── Skill-Stack Extras: Desktop offen, Mobile zugeklappt ───────────────
+      (() => {
+        const mq = window.matchMedia('(min-width: 721px)');
+        const items = () => document.querySelectorAll('.skill-flat-more');
+        let userToggled = new WeakSet();
+        const sync = () => {
+          items().forEach(d => {
+            if (userToggled.has(d)) return;
+            d.open = mq.matches;
+          });
+        };
+        const init = () => {
+          sync();
+          mq.addEventListener?.('change', sync);
+          items().forEach(d => d.addEventListener('toggle', () => { if (!mq.matches) userToggled.add(d); }));
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          init();
         }
       })();
 
@@ -5756,18 +6121,15 @@
           window.clarity?.('event', 'ab_' + variant);
           window.fbq?.('trackCustom', 'ExperimentAssigned', { variant });
         };
-        // Tag setzen sobald Tracker geladen
         if (window.clarity || window.fbq) sendTag();
         else setTimeout(sendTag, 1500);
 
         const cEvent = (name, props = {}) => {
           window.clarity?.('event', name);
           if (typeof trackFb === 'function') trackFb(name, { ...props, variant });
-          // Generic GA/Ads event (für Audiences + Debug); echte Conversions via gAdsConvert separat
           window.gtag?.('event', name, { ...props, variant });
         };
 
-        // Pricing-View: #bundle 60% in viewport, einmal
         const bundleEl = document.getElementById('bundle');
         if (bundleEl && 'IntersectionObserver' in window) {
           const io = new IntersectionObserver((entries, obs) => {
@@ -5783,14 +6145,11 @@
           io.observe(bundleEl);
         }
 
-        // CTA-Klicks (delegated): differenziere hero / sticky / inline
         document.addEventListener('click', (ev) => {
           const a = ev.target.closest('a[href]');
           if (!a) return;
           const href = a.getAttribute('href') || '';
-          // Digistore-Redirect (Checkout-Initiation)
           if (href.includes('digistore24.com')) {
-            // GCLID an Digistore weiterreichen via custom-Param (→ __custom__ auf TYP)
             try {
               const gclid = getCookie('vf_gclid');
               if (gclid && !/[?&]custom=/.test(href)) {
@@ -5811,14 +6170,12 @@
           cEvent('cta_click_' + loc, { loc });
         }, { passive: true });
 
-        // FAQ-Open
         document.querySelectorAll('details').forEach((d) => {
           d.addEventListener('toggle', () => {
             if (d.open) cEvent('faq_open', { q: (d.querySelector('summary')?.textContent || '').trim().slice(0, 80) });
           });
         });
 
-        // Video-Play (Hero-Video)
         document.querySelectorAll('video').forEach((v) => {
           v.addEventListener('play', () => cEvent('video_play'), { once: true });
         });
