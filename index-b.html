@@ -6170,6 +6170,95 @@
         document.querySelectorAll('video').forEach((v) => {
           v.addEventListener('play', () => cEvent('video_play'), { once: true });
         });
+
+        // Hero-Video-Watchtime pro Variante (A/B-Test).
+        // Misst kumulierte Wiedergabezeit (pausen-bereinigt), feuert
+        // Milestone-Events (25/50/75/100%) + Bucket-Events bei Pause/End/Tab-Wechsel.
+        // Clarity Custom-Tags (filterbar im Dashboard) + GA numerischer value für Auswertung.
+        document.querySelectorAll('[data-hero-video] video').forEach((v, idx) => {
+          let watchedMs = 0;
+          let lastT = 0;
+          let isPlaying = false;
+          let lastReportedSec = -1;
+          const milestones = { 25: false, 50: false, 75: false, 100: false };
+          const slot = idx === 0 ? 'primary' : 'alt';
+
+          const accumulate = () => {
+            if (!isPlaying) return;
+            const now = performance.now();
+            watchedMs += now - lastT;
+            lastT = now;
+          };
+
+          const bucket = (sec) => {
+            if (sec < 5) return 'lt5s';
+            if (sec < 15) return '5to15s';
+            if (sec < 30) return '15to30s';
+            if (sec < 60) return '30to60s';
+            if (sec < 120) return '60to120s';
+            return 'gt120s';
+          };
+
+          const flush = (reason) => {
+            accumulate();
+            const sec = Math.round(watchedMs / 1000);
+            if (sec < 1 || sec === lastReportedSec) return;
+            lastReportedSec = sec;
+            const b = bucket(sec);
+            // Clarity Custom-Tags: ermöglichen Segment-Filter im Dashboard.
+            window.clarity?.('set', 'hero_video_watchtime', b);
+            window.clarity?.('set', 'hero_video_watchtime_' + variant, b);
+            // Clarity Custom-Event: zählbar via MCP smartEvents-Filter.
+            cEvent('hero_video_watch_' + b, { sec, bucket: b, slot, reason });
+            // GA numerischer value: erlaubt avg(watchtime) per Variante.
+            window.gtag?.('event', 'hero_video_watchtime', {
+              value: sec,
+              variant,
+              slot,
+              reason,
+              event_category: 'engagement',
+            });
+            // Meta Pixel: zusätzliche Attribution.
+            if (typeof trackFb === 'function') {
+              trackFb('HeroVideoWatch', { duration: sec, bucket: b, slot, variant });
+            }
+          };
+
+          v.addEventListener('play', () => {
+            isPlaying = true;
+            lastT = performance.now();
+          });
+          v.addEventListener('playing', () => {
+            isPlaying = true;
+            lastT = performance.now();
+          });
+          v.addEventListener('pause', () => {
+            accumulate();
+            isPlaying = false;
+            flush('pause');
+          });
+          v.addEventListener('ended', () => {
+            accumulate();
+            isPlaying = false;
+            flush('ended');
+          });
+          v.addEventListener('timeupdate', () => {
+            accumulate();
+            if (!v.duration || !isFinite(v.duration)) return;
+            const pct = (v.currentTime / v.duration) * 100;
+            [25, 50, 75, 100].forEach((m) => {
+              if (!milestones[m] && pct >= m) {
+                milestones[m] = true;
+                cEvent('hero_video_pct_' + m, { milestone: m, slot });
+              }
+            });
+          });
+
+          window.addEventListener('pagehide', () => flush('pagehide'));
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') flush('visibility');
+          });
+        });
       })();
 
       // Nav border on scroll
@@ -6825,22 +6914,39 @@
           video.load();
         };
 
+        // State-Klassen:
+        //   is-activated = User hat Audio einmal entsperrt (persistent bis ended)
+        //   is-playing   = Wiedergabe läuft gerade (toggelt mit play/pause)
+        // Play-Overlay (.hv-play) ist nur via .is-playing versteckt, also taucht
+        // beim Pause wieder auf — User sieht Play-Button und kann fortsetzen.
         playBtn.addEventListener('click', () => {
           loadAndPlay();
-          swapToAudioSrc();
-          wrap.classList.add('is-playing');
-          video.muted = false;
-          video.loop = false;
-          video.currentTime = 0;
-          if (speedSelect) video.playbackRate = parseFloat(speedSelect.value);
+          if (!wrap.classList.contains('is-activated')) {
+            swapToAudioSrc();
+            wrap.classList.add('is-activated');
+            video.muted = false;
+            video.loop = false;
+            video.currentTime = 0;
+            if (speedSelect) video.playbackRate = parseFloat(speedSelect.value);
+          }
           video.play().catch(() => {});
           showControls();
         });
 
         video.addEventListener('click', () => {
           showControls();
-          if (!wrap.classList.contains('is-playing')) return;
+          if (!wrap.classList.contains('is-activated')) return;
           if (video.paused) video.play().catch(() => {}); else video.pause();
+        });
+
+        // is-playing nur während Audio-Modus syncen — Background-Loop bleibt unmarkiert.
+        ['play', 'playing'].forEach((ev) => {
+          video.addEventListener(ev, () => {
+            if (wrap.classList.contains('is-activated')) wrap.classList.add('is-playing');
+          });
+        });
+        video.addEventListener('pause', () => {
+          if (wrap.classList.contains('is-activated')) wrap.classList.remove('is-playing');
         });
 
         controls?.addEventListener('pointerdown', (e) => { e.stopPropagation(); showControls(); });
@@ -6870,6 +6976,7 @@
 
         video.addEventListener('ended', () => {
           wrap.classList.remove('is-playing');
+          wrap.classList.remove('is-activated');
           video.muted = true;
           video.loop = true;
           video.currentTime = 0;
