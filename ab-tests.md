@@ -165,6 +165,49 @@ bleibt für nächsten Test stehen.
 
 ---
 
+### Test #2 · hero-headline-cold-traffic · live
+
+**Laufzeit:** 2026-05-20 → offen
+**Scope:** Mobile only · 50/50 · sticky cookie
+**Geänderte Datei:** index.html (A) + index-b.html (B) — **beide** Headlines neu (kein erhaltener Original-Control). Begründung: bestehende Headline ("In 5 Minuten mit KI: Apps, SEO, CRO") featurelastig, keine Outcome-Spezifität, kein Risk-Reversal sichtbar — wurde als unzureichend für Cold Traffic eingestuft und in beiden Varianten ersetzt.
+**Commit-Refs:** _(beim Launch nachtragen)_
+
+**Hypothese:**
+Cold-Traffic-Besucher springen ab, wenn Hero-H1 nur Feature-Schlagworte zeigt ("Apps, SEO, CRO") ohne Outcome, Mechanism oder Risk-Reversal. Wenn wir die H1 outcome-fokussiert und video-pull-orientiert formulieren, steigen Scroll-Tiefe (bis #bundle) und Hero-Video-Watchtime — weil Besucher schneller verstehen, was zu sehen ist und warum es sich lohnt.
+
+**Variante A (Demonstration-Pull, First-Person, Mechanism-Reveal):**
+- Eyebrow: `Live demonstriert · 5 Min Video unten`
+- H1: `Wie ich Shopify-Shops mit KI ranke, baue und auf Conversion trimme — ohne eine Zeile Code.`
+- Logik: First-Person ("wie ich"), drei Outcomes (ranken/bauen/CRO), Effort-Reduction-Hook ("ohne eine Zeile Code"), Video-Pull im Eyebrow (Länge + Position).
+
+**Variante B (Hormozi-Offer-Stack: Specificity + Replace + Risk-Reversal):**
+- Eyebrow: `Closed Beta abgeschlossen · Erfolgsgarantie`
+- H1: `Ersetze 9 Shopify-Apps, deine Agentur und deinen Dev — mit einer KI, in 5 Minuten pro Aufgabe.`
+- Logik: Specificity ("9 Apps" matched zur Compare-Table = 5.232 €/Jahr), drei Replacements (Apps/Agentur/Dev), Time-Compression ("5 Minuten pro Aufgabe"), Eyebrow trägt Likelihood ("Closed Beta") + Risk-Reversal ("Erfolgsgarantie").
+
+**Primary Metric:** Hero-Video-Watchtime (Bucket-Verteilung + Avg-Sekunden) pro Variante
+**Secondary Metrics:** Scroll-Tiefe bis `#bundle` (`pricing_view`-Rate), Hero-CTA-Klicks (`cta_click_hero`), `hero_video_pct_25/50/75/100`-Completion-Funnel, Digistore-Conversion-Rate
+**Tertiary:** Bounce-Rate, Session-Duration
+
+**Sample-Size-Ziel:** mind. 300 Mobile-Sessions pro Variante für Watchtime-Trend, 100 Conversions pro Variante für Conversion-Lift
+**Stop-Kriterium:** klarer Trend (>20% Delta) bei Watchtime + Pricing-Reach ODER 100 Conversions/Variante ODER Stagnation nach 4 Wochen
+
+**Warnung · Setup-Risiko:**
+- Beide Varianten enthalten **neue** Copy → kein Vergleich gegen Original-Headline möglich. Test misst nur A vs B, nicht "neu vs alt". Wenn beide schlechter performen als die alte Headline, fällt das im A/B-Vergleich nicht auf — separater Vorher/Nachher-Check über Clarity-Trend (Tage vor 2026-05-20 vs danach) nötig.
+- "9 Apps"-Claim in B ist an Compare-Table gebunden. Wenn Table-Apps-Anzahl ändert, B-Headline mit-aktualisieren.
+
+**Ergebnis:**
+- Sessions A: ... | B: ...
+- Avg Watchtime A: ... s | B: ... s
+- Pricing-View-Rate A: ... | B: ...
+- Conversion A: ... | B: ...
+- Lift: ±X%
+
+**Decision:** _(nach Stop)_
+**Learnings:** _(nach Stop)_
+
+---
+
 ## Backlog · Test-Ideen (priorisiert)
 
 Hier Hypothesen sammeln, die noch nicht getestet wurden. Beim Start eines
