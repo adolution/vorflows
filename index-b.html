@@ -734,16 +734,17 @@
       .transform-to strong { color: var(--accent); font-weight: 600; }
       @media (max-width: 700px) {
         .transform-item { grid-template-columns: 1fr; }
-        .transform-side { padding: 20px 22px; }
-        .transform-arrow {
-          padding: 4px 22px;
-          border: 0;
-          border-top: 1px solid var(--border);
-          justify-content: flex-start;
-          font-size: 18px;
-          opacity: .7;
+        .transform-side { padding: 18px 22px 20px; }
+        .transform-side + .transform-arrow + .transform-side { border-top: 1px solid var(--border); }
+        .section--dark .transform-side + .transform-arrow + .transform-side { border-top-color: var(--border-dark); }
+        .transform-arrow { display: none; }
+        .transform-side:last-child .meta::before {
+          content: "→ ";
+          color: var(--accent);
+          font-weight: 600;
+          letter-spacing: 0;
+          margin-right: 4px;
         }
-        .section--dark .transform-arrow { border-top-color: var(--border-dark); }
       }
 
       /* ── OFFER CARD ──────────────────────────────────────────────── */
@@ -1062,47 +1063,83 @@
 
       /* ── RESPONSIVE ──────────────────────────────────────────────── */
       @media (max-width: 720px) {
-        .container { padding: 0 20px; }
-        .hero { padding: 32px 0 28px; }
-        .hero-eyebrow { font-size: 11px; letter-spacing: 0.06em; }
+        .container { padding: 0 24px; }
+        .hero {
+          padding: 28px 0 32px;
+          text-align: center;
+        }
+        .hero > [data-reveal-stagger] {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .hero-eyebrow { font-size: 11px; letter-spacing: 0.08em; }
         .hero-h1 {
-          font-size: clamp(24px, 6.4vw, 30px);
-          line-height: 1.12;
-          margin: 14px 0 12px;
-          max-width: 18ch;
+          font-size: clamp(24px, 6.6vw, 30px);
+          line-height: 1.14;
+          margin: 14px auto 12px;
+          max-width: 17ch;
           text-wrap: balance;
         }
         .hero-sub {
           font-size: 15px;
-          line-height: 1.5;
-          margin: 0 0 22px;
-          max-width: 38ch;
+          line-height: 1.55;
+          margin: 0 auto 18px;
+          max-width: 32ch;
         }
-        .hero-video { margin-top: 22px; border-radius: 14px; }
+        .hero-video { margin: 22px auto 0; border-radius: 14px; width: 100%; }
         .hero-ctas {
           flex-direction: column;
-          align-items: stretch;
+          align-items: center;
           gap: 14px;
           margin-top: 22px;
+          width: 100%;
         }
         .hero-ctas .btn-primary {
-          width: 100%;
+          width: auto;
+          max-width: 100%;
           justify-content: center;
-          padding: 16px 18px;
+          padding: 15px 22px;
           font-size: 15px;
           letter-spacing: -0.005em;
         }
         .hero-ctas .btn-text {
-          align-self: center;
           padding: 6px 0;
         }
-        .section { padding: 56px 0; }
-        .section-h2 { font-size: clamp(26px, 7vw, 34px); }
-        .section-lead { font-size: 15px; }
-        .offer-card { padding: 28px 20px 26px; }
+        .section { padding: 56px 0 60px; }
+        .section-h2 {
+          font-size: clamp(24px, 6.8vw, 32px);
+          line-height: 1.16;
+          margin: 10px 0 14px;
+          text-wrap: balance;
+        }
+        .section-lead {
+          font-size: 15px;
+          line-height: 1.55;
+          margin: 0 0 28px;
+          max-width: 32ch;
+          text-wrap: pretty;
+        }
+        .transform-list { gap: 12px; }
+        .transform-side .meta { font-size: 10.5px; letter-spacing: 0.09em; margin-bottom: 4px; }
+        .transform-from, .transform-to { font-size: 15.5px; line-height: 1.5; }
+        .offer-card { padding: 28px 22px 26px; }
+        .offer-name { font-size: clamp(28px, 7vw, 34px); }
+        .offer-tag { font-size: 14px; }
         .offer-price-now { font-size: 38px; }
-        .final-cta { padding: 64px 0; }
+        .offer-cta { padding: 16px 20px; font-size: 15px; }
+        .proof-strip { margin-top: 22px; }
+        .safety { padding: 40px 0; }
+        .safety h2 { font-size: clamp(22px, 6.2vw, 28px); }
+        .safety p { font-size: 15px; line-height: 1.55; }
+        .safety-meta { font-size: 11px; letter-spacing: 0.08em; }
+        details.faq summary { padding: 18px 20px; font-size: 15.5px; }
+        details.faq .faq-a { padding: 0 20px 20px; font-size: 14.5px; }
+        .final-cta { padding: 60px 0 68px; }
         .final-cta .display { font-size: clamp(24px, 6.4vw, 32px); }
+        .final-cta p { font-size: 15px; }
+        footer .container { flex-direction: column; align-items: flex-start; gap: 14px; }
+        footer nav { gap: 14px 18px; }
         .hv-play-label { font-size: 14px; padding: 5px 12px; }
         .hv-play-btn { width: 60px; height: 60px; }
         .hv-play-btn svg { width: 22px; height: 22px; }
