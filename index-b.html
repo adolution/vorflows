@@ -577,6 +577,7 @@
         font-size: clamp(36px, 5.6vw, 64px);
         margin: 18px 0 18px;
         max-width: 18ch;
+        text-wrap: balance;
       }
       .hero-sub {
         font-size: clamp(17px, 1.6vw, 19px);
@@ -584,6 +585,7 @@
         margin: 0 0 32px;
         max-width: 56ch;
         line-height: 1.55;
+        text-wrap: pretty;
       }
       .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin-top: 28px; }
       .btn-primary {
@@ -1060,12 +1062,47 @@
 
       /* ── RESPONSIVE ──────────────────────────────────────────────── */
       @media (max-width: 720px) {
-        .hero { padding: 40px 0 36px; }
-        .hero-h1 { font-size: clamp(32px, 8vw, 44px); }
-        .section { padding: 64px 0; }
-        .offer-card { padding: 30px 22px 28px; }
+        .container { padding: 0 20px; }
+        .hero { padding: 32px 0 28px; }
+        .hero-eyebrow { font-size: 11px; letter-spacing: 0.06em; }
+        .hero-h1 {
+          font-size: clamp(24px, 6.4vw, 30px);
+          line-height: 1.12;
+          margin: 14px 0 12px;
+          max-width: 18ch;
+          text-wrap: balance;
+        }
+        .hero-sub {
+          font-size: 15px;
+          line-height: 1.5;
+          margin: 0 0 22px;
+          max-width: 38ch;
+        }
+        .hero-video { margin-top: 22px; border-radius: 14px; }
+        .hero-ctas {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+          margin-top: 22px;
+        }
+        .hero-ctas .btn-primary {
+          width: 100%;
+          justify-content: center;
+          padding: 16px 18px;
+          font-size: 15px;
+          letter-spacing: -0.005em;
+        }
+        .hero-ctas .btn-text {
+          align-self: center;
+          padding: 6px 0;
+        }
+        .section { padding: 56px 0; }
+        .section-h2 { font-size: clamp(26px, 7vw, 34px); }
+        .section-lead { font-size: 15px; }
+        .offer-card { padding: 28px 20px 26px; }
         .offer-price-now { font-size: 38px; }
-        .final-cta { padding: 72px 0; }
+        .final-cta { padding: 64px 0; }
+        .final-cta .display { font-size: clamp(24px, 6.4vw, 32px); }
         .hv-play-label { font-size: 14px; padding: 5px 12px; }
         .hv-play-btn { width: 60px; height: 60px; }
         .hv-play-btn svg { width: 22px; height: 22px; }
