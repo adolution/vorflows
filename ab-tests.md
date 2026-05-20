@@ -165,12 +165,24 @@ bleibt für nächsten Test stehen.
 
 ---
 
-### Test #2 · hero-headline-cold-traffic · live
+### Test #2 · hero-headline-cold-traffic · cancelled (never ran)
 
-**Laufzeit:** 2026-05-20 → offen
+**Laufzeit:** 2026-05-20 → 2026-05-20 (abgebrochen vor Datensammlung)
 **Scope:** Mobile only · 50/50 · sticky cookie
 **Geänderte Datei:** index.html (A) + index-b.html (B) — **beide** Headlines neu (kein erhaltener Original-Control). Begründung: bestehende Headline ("In 5 Minuten mit KI: Apps, SEO, CRO") featurelastig, keine Outcome-Spezifität, kein Risk-Reversal sichtbar — wurde als unzureichend für Cold Traffic eingestuft und in beiden Varianten ersetzt.
-**Commit-Refs:** _(beim Launch nachtragen)_
+**Commit-Refs:** Launch `8d8d906` → Cancel `<beim Push nachtragen>`
+
+**Abbruch-Grund (2026-05-20):**
+Setup-Risiko (kein erhaltener Original-Control) war zu schwerwiegend: A vs B
+hätte nur "neu#5 vs neu#1" gemessen, ohne Sanity-Check "schlägt überhaupt eines
+die alte Headline". User-Decision: Test stoppen, beide Varianten auf #5 setzen,
+neue Headline ohne A/B als sitewide Live-Version übernehmen. Nächster Test wird
+mit echter Control-Architektur aufgesetzt (Holdout-Bucket oder 3-Way-Split, s.
+Backlog).
+
+**Was sitewide übernommen wurde (auf A UND B, ab 2026-05-20):**
+- Eyebrow: `Live demonstriert · 5 Min Video unten`
+- H1: `Wie ich Shopify-Shops mit KI ranke, baue und auf Conversion trimme — ohne eine Zeile Code.`
 
 **Hypothese:**
 Cold-Traffic-Besucher springen ab, wenn Hero-H1 nur Feature-Schlagworte zeigt ("Apps, SEO, CRO") ohne Outcome, Mechanism oder Risk-Reversal. Wenn wir die H1 outcome-fokussiert und video-pull-orientiert formulieren, steigen Scroll-Tiefe (bis #bundle) und Hero-Video-Watchtime — weil Besucher schneller verstehen, was zu sehen ist und warum es sich lohnt.
@@ -213,7 +225,7 @@ Cold-Traffic-Besucher springen ab, wenn Hero-H1 nur Feature-Schlagworte zeigt ("
 Hier Hypothesen sammeln, die noch nicht getestet wurden. Beim Start eines
 neuen Tests Eintrag von hier nach "Tests" hochziehen.
 
-- _(noch leer — User briefed nächsten Test)_
+- **Hero-Headline #5 vs #1 mit echtem Control** — Test #2 wurde gestoppt wegen fehlendem Control. Setup für sauberen Re-Test: entweder (a) Holdout-Bucket-Architektur 45/45/10 mit `index-c.html` = alte Headline, oder (b) sequential test #5 (aktuell live) vs #1, sobald aktueller Sitewide-Roll-out Baseline-Daten in Clarity erzeugt hat. Prioritäts-Frage: ist #1 (Hormozi-Replace-Stack) überhaupt noch im Rennen oder gewinnt #5 sitewide-Roll-out das Argument schon ohne Test?
 
 ## Verbrannte Hypothesen · NICHT erneut testen
 
