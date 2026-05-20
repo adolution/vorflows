@@ -220,6 +220,47 @@ Cold-Traffic-Besucher springen ab, wenn Hero-H1 nur Feature-Schlagworte zeigt ("
 
 ---
 
+### Test #3 · radically-reduced-lp · live
+
+**Laufzeit:** 2026-05-20 → offen
+**Scope:** Mobile only · 50/50 · sticky cookie (middleware unchanged from #1)
+**Geänderte Datei:** index-b.html (komplett-Refactor, von 7006 → ~1700 Zeilen)
+**Commit-Refs:** `<launch hash beim Push nachtragen>`
+
+**Hypothese:**
+Die aktuelle A-Variante hat viel Traffic, aber null Sales. Hypothese: Cognitive Load + Section-Anzahl + Detail-Tiefe verbrennen den Conversion-Pfad. Wenn wir B auf das Nötigste reduzieren (Hero · 4-Probleme-Transform · Safety-USP · Offer · 5-FAQ · Final-CTA), Outcome-First statt Feature-Tiefe, dann steigt Mobile-Conversion-Rate weil Besucher schneller zum Pricing kommen und weniger Reibung sehen.
+
+**Variante A (Kontrolle):** index.html · ~25 Sektionen · Produkt-Reveal-Scroll-Scrub · Workflow-Diagramm · Module-Detail · Compare-Table · Skill-Stack · 12 FAQ · Footer. Feature-tiefe Editorial-Architektur.
+
+**Variante B (Test):** index-b.html · 7 Sektionen total:
+- Nav (slim, 1 CTA)
+- Hero (Video bleibt, Outcome-H1, ein primärer CTA)
+- Transformation-Sektion (4 Probleme · App-Stack, Agentur, Ranking-Daten, Profit-Bauchgefühl)
+- Safety-USP (neu in #3: nur vorflows arbeitet auf Theme-Duplicate ohne Live-Shop-Zugriff)
+- Offer-Card (Single-Pricing, 5 Module-Bullets, Ratenzahlung, Garantien)
+- FAQ (5 Fragen, akkordeon)
+- Final-CTA + Footer
+- Alle Em-Dashes raus, Humanizer-Pass über Body
+- "Microsoft Clarity" + "Search Console" als Tool-Namen aus Body entfernt → Framing "echte Nutzerverhaltensdaten" + "echte Such-/Ranking-Daten"
+
+**Primary Metric:** Digistore-Conversion-Rate (Mobile)
+**Secondary Metrics:** `pricing_view`-Rate, Hero-CTA-Klicks, Scroll-bis-Bundle, Bounce-Rate, Hero-Video-Watchtime (Bucket-Verteilung)
+**Tertiary:** FAQ-Open-Rate (sollte bei B niedriger sein, weil weniger FAQs), Session-Duration (B niedriger erwartet, aber Conversion höher)
+
+**Sample-Size-Ziel:** mind. 500 Mobile-Sessions pro Variante für Conversion-Signal
+**Stop-Kriterium:** klarer Conversion-Trend (>30% Delta) ODER 50 Conversions/Variante ODER 6 Wochen Laufzeit
+
+**Ergebnis:**
+- Sessions A: ... | B: ...
+- Pricing-View-Rate A: ... | B: ...
+- Conversion A: ... | B: ...
+- Lift: ±X%
+
+**Decision:** _(nach Stop)_
+**Learnings:** _(nach Stop)_
+
+---
+
 ## Backlog · Test-Ideen (priorisiert)
 
 Hier Hypothesen sammeln, die noch nicht getestet wurden. Beim Start eines
