@@ -222,26 +222,31 @@ Cold-Traffic-Besucher springen ab, wenn Hero-H1 nur Feature-Schlagworte zeigt ("
 
 ### Test #3 · radically-reduced-lp · live
 
-**Laufzeit:** 2026-05-20 → offen
-**Scope:** Mobile only · 50/50 · sticky cookie (middleware unchanged from #1)
-**Geänderte Datei:** index-b.html (komplett-Refactor, von 7006 → ~1700 Zeilen)
-**Commit-Refs:** `<launch hash beim Push nachtragen>`
+**Start:** 2026-05-20 · 19:00 Uhr (Europe/Berlin)
+**Laufzeit:** 2026-05-20 19:00 → offen
+**Scope:** Mobile only · 50/50 · sticky cookie 90 Tage (middleware unverändert seit Test #1)
+**Geänderte Datei:** index-b.html (Komplett-Refactor, 7006 → ~1700 Zeilen)
+**Commit-Refs:** Launch `0d7f7d9` · Mobile-Hero-Fix `7a15ec0`
+
+**Was ist das für ein Test (Kurzfassung):**
+Die A-Variante (`index.html`) hat viel Traffic, aber null Sales. Test #3 prüft, ob eine **radikal reduzierte Landing Page mit Outcome-First-Messaging und Safety-USP** auf Mobile besser konvertiert als die Feature-tiefe Editorial-Architektur von A. Mobile-Besucher werden seit 2026-05-20 19:00 Uhr 50/50 auf A oder B gesplittet (Sticky Cookie `vf_ab`). Desktop und Bots bleiben deterministisch auf A.
 
 **Hypothese:**
-Die aktuelle A-Variante hat viel Traffic, aber null Sales. Hypothese: Cognitive Load + Section-Anzahl + Detail-Tiefe verbrennen den Conversion-Pfad. Wenn wir B auf das Nötigste reduzieren (Hero · 4-Probleme-Transform · Safety-USP · Offer · 5-FAQ · Final-CTA), Outcome-First statt Feature-Tiefe, dann steigt Mobile-Conversion-Rate weil Besucher schneller zum Pricing kommen und weniger Reibung sehen.
+A hat hohe Cognitive Load (~25 Sektionen, Scroll-Scrub-Reveals, viele Feature-Details) und keine sichtbare Safety-Differenzierung gegenüber Shopify-Apps/Agenturen. Wenn wir B auf das Nötigste reduzieren (Hero · 4-Probleme-Transform · Safety-USP · Offer · 5-FAQ · Final-CTA), Outcome-First statt Feature-Tiefe formulieren und den Theme-Duplicate-Workflow als USP positionieren, steigt die Mobile-Conversion-Rate, weil Besucher schneller zum Pricing kommen, weniger Reibung sehen und ein klares Sicherheits-Argument bekommen, das kein Konkurrent bietet.
 
-**Variante A (Kontrolle):** index.html · ~25 Sektionen · Produkt-Reveal-Scroll-Scrub · Workflow-Diagramm · Module-Detail · Compare-Table · Skill-Stack · 12 FAQ · Footer. Feature-tiefe Editorial-Architektur.
+**Variante A (Kontrolle):** `index.html` · ~25 Sektionen · Produkt-Reveal-Scroll-Scrub · Workflow-Diagramm · Module-Detail · Compare-Table · Skill-Stack · 12 FAQ · Footer. Feature-tiefe Editorial-Architektur.
 
-**Variante B (Test):** index-b.html · 7 Sektionen total:
+**Variante B (Test):** `index-b.html` · 7 Sektionen total:
 - Nav (slim, 1 CTA)
-- Hero (Video bleibt, Outcome-H1, ein primärer CTA)
-- Transformation-Sektion (4 Probleme · App-Stack, Agentur, Ranking-Daten, Profit-Bauchgefühl)
-- Safety-USP (neu in #3: nur vorflows arbeitet auf Theme-Duplicate ohne Live-Shop-Zugriff)
-- Offer-Card (Single-Pricing, 5 Module-Bullets, Ratenzahlung, Garantien)
-- FAQ (5 Fragen, akkordeon)
+- Hero (Video bleibt, Outcome-H1, ein primärer CTA, Mobile-Hero an A-Rhythmus angeglichen via `7a15ec0`)
+- Transformation-Sektion (4 Probleme · App-Stack-Kosten, Agentur-Wartezeit, Ranking-Daten-Lücke, Profit-Bauchgefühl/CRO)
+- **Safety-USP (neu in #3, einziger Punkt ohne A-Pendant):** "Du arbeitest am Shop, ohne ihn anzufassen." Theme-Duplicate-Workflow vs. Vollzugriff-Apps/Agenturen
+- Offer-Card (Single-Pricing 297 €, 5 Modul-Bullets, Raten 6 × 49,50 €, Garantien)
+- FAQ (5 Fragen, Akkordeon)
 - Final-CTA + Footer
-- Alle Em-Dashes raus, Humanizer-Pass über Body
-- "Microsoft Clarity" + "Search Console" als Tool-Namen aus Body entfernt → Framing "echte Nutzerverhaltensdaten" + "echte Such-/Ranking-Daten"
+- Alle Em-Dashes aus Body raus
+- Humanizer-Pass: Negative-Parallelisms, rule-of-three und SaaS-Bro-Phrasen entfernt
+- "Microsoft Clarity" + "Search Console" als Tool-Namen aus Body raus → Framing: "echte Nutzerverhaltensdaten" + "echte Such-/Ranking-Daten"
 
 **Primary Metric:** Digistore-Conversion-Rate (Mobile)
 **Secondary Metrics:** `pricing_view`-Rate, Hero-CTA-Klicks, Scroll-bis-Bundle, Bounce-Rate, Hero-Video-Watchtime (Bucket-Verteilung)
