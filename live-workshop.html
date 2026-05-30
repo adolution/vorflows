@@ -550,5 +550,84 @@
       els.forEach(function(e){ io.observe(e); });
     })();
   </script>
+
+  <!-- ===================== A/B-TRACKING (lw_ scoped · identisch auf A + B) ===================== -->
+  <script>
+    (function vfLiveWorkshopAB(){
+      var getCookie = function(n){ return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+      // Eigener Cookie (getrennt vom Homepage-Test vf_ab). Default A.
+      var variant = getCookie('vf_ab_lw') || 'A';
+
+      // Microsoft Clarity laden (gleiche Property wie Homepage). A/B-Modus: kein Consent-Gate.
+      (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r); t.async=1; t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "wnn5d5ehwn");
+
+      var cEvent = function(name, props){
+        props = props || {}; props.variant = variant;
+        if(window.clarity) window.clarity('event', name);
+        if(window.gtag) window.gtag('event', name, props);
+        if(window.fbq) window.fbq('trackCustom', name, props);
+      };
+
+      // Variant-Tag (filterbar im Clarity-Dashboard + zählbar via smartEvents)
+      var tagged = false;
+      var sendTag = function(){
+        if(tagged) return; tagged = true;
+        if(window.clarity){ window.clarity('set', 'lw_experiment', variant); window.clarity('event', 'lw_' + variant); }
+      };
+      if(window.clarity) sendTag(); else setTimeout(sendTag, 1500);
+
+      // ── Signup-Klicks (Primärziel) ──────────────────────────────
+      document.querySelectorAll('[data-webinar-cta]').forEach(function(b){
+        b.addEventListener('click', function(){
+          var loc = 'inline';
+          if(b.closest('.nav')) loc = 'nav';
+          else if(b.closest('.lw-hero, .hero')) loc = 'hero';
+          else if(b.closest('.lw-final, .closeband')) loc = 'final';
+          cEvent('lw_signup_click', { loc: loc });
+        });
+      });
+
+      // ── Scroll-Tiefe (25/50/75/100, je einmal) ──────────────────
+      var marks = [25,50,75,100], fired = {};
+      var onScrollDepth = function(){
+        var d = document.documentElement, sc = d.scrollTop || document.body.scrollTop;
+        var h = d.scrollHeight - d.clientHeight; if(h <= 0) return;
+        var pct = sc / h * 100;
+        marks.forEach(function(m){ if(!fired[m] && pct >= m){ fired[m] = true; cEvent('lw_scroll_' + m, { pct: m }); } });
+      };
+      window.addEventListener('scroll', onScrollDepth, {passive:true}); onScrollDepth();
+
+      // ── Verweilzeit (sichtbarkeitsbereinigt, pausen-bereinigt) ───
+      var engagedMs = 0;
+      var lastStart = (document.visibilityState === 'visible') ? performance.now() : null;
+      var lastBucket = null;
+      var bucket = function(s){ return s<5?'lt5s':s<15?'5to15s':s<30?'15to30s':s<60?'30to60s':s<120?'60to120s':'gt120s'; };
+      var accumulate = function(){ if(lastStart != null){ engagedMs += performance.now() - lastStart; lastStart = null; } };
+      var flushDwell = function(reason){
+        accumulate();
+        var sec = Math.round(engagedMs / 1000);
+        if(document.visibilityState === 'visible') lastStart = performance.now(); // weiterzählen erlauben
+        if(sec < 1) return;
+        var b = bucket(sec);
+        if(window.clarity){ window.clarity('set', 'lw_dwell', b); window.clarity('set', 'lw_dwell_' + variant, b); }
+        if(b !== lastBucket){ lastBucket = b; cEvent('lw_dwell', { sec: sec, bucket: b, reason: reason }); }
+      };
+      document.addEventListener('visibilitychange', function(){
+        if(document.visibilityState === 'visible'){ if(lastStart == null) lastStart = performance.now(); }
+        else { flushDwell('hidden'); }
+      });
+      window.addEventListener('pagehide', function(){ flushDwell('pagehide'); });
+
+      // ── FAQ-Engagement ──────────────────────────────────────────
+      document.querySelectorAll('details').forEach(function(d){
+        d.addEventListener('toggle', function(){
+          if(d.open){ var s = d.querySelector('summary'); cEvent('lw_faq_open', { q: (s ? s.textContent : '').trim().slice(0,80) }); }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,14 +1,26 @@
 export const config = {
-  matcher: ['/', '/index.html'],
+  matcher: ['/', '/index.html', '/live-workshop'],
 };
 
 const MOBILE_UA = /Mobi|Android|iPhone|iPad|iPod/i;
 const BOT_UA = /googlebot|bingbot|duckduckbot|yandex|baiduspider|slurp|applebot|gptbot|chatgpt-user|oai-searchbot|perplexitybot|claudebot|claude-web|anthropic-ai|google-extended|ccbot|bytespider|facebookexternalhit|meta-externalagent|twitterbot|linkedinbot|petalbot|semrushbot|ahrefsbot|mj12bot/i;
-const MIDDLEWARE_VERSION = 'v5-2026-05-10-bot-pin';
+const MIDDLEWARE_VERSION = 'v6-2026-05-30-live-workshop';
+
+// Per-Pfad-Testkonfiguration. Jeder Test hat eigenen Cookie + eigenes
+// B-Rewrite-Target → Tests laufen unabhängig, keine Bucket-Vermischung.
+function testConfig(pathname) {
+  if (pathname === '/live-workshop') {
+    return { cookie: 'vf_ab_lw', bTarget: '/live-workshop-b' };
+  }
+  // '/' + '/index.html' → bestehender Homepage-Test (unverändert).
+  return { cookie: 'vf_ab', bTarget: '/index-b' };
+}
 
 export default function middleware(req) {
   const url = new URL(req.url);
   console.log(`[ab-middleware ${MIDDLEWARE_VERSION}] ${url.pathname}${url.search}`);
+
+  const { cookie: COOKIE, bTarget: B_TARGET } = testConfig(url.pathname);
 
   const ua = req.headers.get('user-agent') || '';
   const isMobile = MOBILE_UA.test(ua);
@@ -17,12 +29,13 @@ export default function middleware(req) {
   const override = url.searchParams.get('ab');
 
   let bucket = (override === 'A' || override === 'B') ? override : null;
-  if (!bucket) bucket = (cookieHeader.match(/(?:^|; )vf_ab=([AB])/) || [])[1] || null;
+  if (!bucket) bucket = (cookieHeader.match(new RegExp(`(?:^|; )${COOKIE}=([AB])`)) || [])[1] || null;
   let source = bucket ? (override ? 'override' : 'cookie') : null;
 
   const headers = new Headers({
     'cache-control': 'private, no-store, max-age=0, must-revalidate',
     'x-ab-mw-version': MIDDLEWARE_VERSION,
+    'x-ab-test': COOKIE,
     'x-ab-mobile': isMobile ? '1' : '0',
     'x-ab-bot': isBot ? '1' : '0',
   });
@@ -52,18 +65,18 @@ export default function middleware(req) {
   headers.set('x-ab-bucket', bucket);
   headers.set('x-ab-source', source || 'unknown');
 
-  // cleanUrls: true → rewrite-Target ohne .html für /index-b.
-  // index.html als Root bleibt special — pass through.
+  // cleanUrls: true → rewrite-Target ohne .html.
+  // A bleibt pass-through (canonical-Datei: index.html bzw. live-workshop.html).
   if (bucket === 'B') {
-    headers.set('x-middleware-rewrite', new URL('/index-b', url).toString());
+    headers.set('x-middleware-rewrite', new URL(B_TARGET, url).toString());
   } else {
     headers.set('x-middleware-next', '1');
   }
 
-  if (!cookieHeader.includes('vf_ab=')) {
+  if (!cookieHeader.includes(`${COOKIE}=`)) {
     headers.append(
       'set-cookie',
-      `vf_ab=${bucket}; Path=/; Max-Age=${60 * 60 * 24 * 90}; SameSite=Lax; Secure`
+      `${COOKIE}=${bucket}; Path=/; Max-Age=${60 * 60 * 24 * 90}; SameSite=Lax; Secure`
     );
   }
 

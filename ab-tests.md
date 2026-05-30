@@ -266,6 +266,66 @@ A hat hohe Cognitive Load (~25 Sektionen, Scroll-Scrub-Reveals, viele Feature-De
 
 ---
 
+### Test #4 · live-workshop-design · live
+
+**Start:** 2026-05-30
+**Laufzeit:** 2026-05-30 → offen
+**Scope:** Mobile only · 50/50 · sticky cookie 90 Tage · **eigener Cookie `vf_ab_lw`** (getrennt vom Homepage-Test `vf_ab`)
+**URL:** `/live-workshop` (nicht Root). Eigene Test-Achse, läuft parallel zu Test #3.
+**Geänderte/neue Dateien:** `live-workshop-b.html` (neu, B) · `live-workshop.html` (A, nur Tracking nachgerüstet) · `middleware.js` (Matcher + Pfad-Branch) · `vercel.json` unverändert (cleanUrls deckt `/live-workshop-b` ab)
+**Commit-Refs:** Launch `<beim Push nachtragen>`
+
+**Was ist das für ein Test (Kurzfassung):**
+Reiner **Design-Test** der Workshop-Anmeldeseite. A = dunkles Glass-Slide-Design
+(Instrument Serif + Barlow, #000). B = Homepage-Editorial-Sprache 1:1
+(Creme #FAFAF7 + Dark-Sections, Fraunces + Inter + JetBrains Mono, Terracotta).
+**Copy und alle 10 Sections sind identisch** — getestet wird ausschließlich der
+Look. Künftige Copy-/Section-Änderungen immer gleichzeitig auf A UND B.
+
+**Hypothese:**
+Wenn die Workshop-LP in der vertrauten, editorial-premium Designsprache der
+Hauptseite erscheint (statt eigenständigem Dark-Slide-Look), steigt die
+Marken-Kohärenz und Lesbarkeit auf Mobile — Besucher scrollen tiefer, bleiben
+länger und klicken häufiger auf den Anmelde-Button, weil der Auftritt
+seriöser/konsistenter wirkt.
+
+**Variante A (Kontrolle):** `live-workshop.html` · dunkles Glass-Slide-Design.
+**Variante B (Test):** `live-workshop-b.html` · Homepage-Editorial, gleiche Copy/Sections.
+
+**Primary Metric:** Signup-Button-Klickrate (`lw_signup_click`, alle Positionen) pro Variante
+**Secondary Metrics:** Scroll-Tiefe (`lw_scroll_25/50/75/100`), Verweilzeit
+(`lw_dwell` Bucket + Clarity-Session-Time), FAQ-Open-Rate (`lw_faq_open`), Bounce-Rate
+**Tertiary:** Signup-Klicks nach Position (`loc`: nav/hero/final)
+
+**Tracking (beide Seiten identisch, scoped `lw_`):**
+- Variant-Tag aus `vf_ab_lw` → Clarity `lw_experiment` + Event `lw_A`/`lw_B`
+- `lw_signup_click` {loc} bei jedem `[data-webinar-cta]`
+- `lw_scroll_25/50/75/100` (je Schwelle einmal)
+- `lw_dwell` {sec, bucket} sichtbarkeits-/pausenbereinigt, on visibilitychange+pagehide
+- `lw_faq_open`. Clarity-Property = `wnn5d5ehwn` (wie Homepage). Kein Consent-Gate (A/B-Modus).
+
+**Auswertung (Clarity MCP):** `smartEvents: ["lw_A"]` vs `["lw_B"]`.
+`lw_signup_click`-Anteil = Primär-KPI. Scroll-Reach via `lw_scroll_*`-Anteile.
+Dwell via `lw_dwell_A`/`lw_dwell_B` Bucket-Tags + native Session-Time.
+
+**Sample-Size-Ziel:** mind. 300 Mobile-Sessions pro Variante für Klick-/Scroll-Trend
+**Stop-Kriterium:** klarer Klick-/Scroll-Trend (>20% Delta) ODER 4 Wochen Laufzeit
+
+**SEO-Hygiene:** A canonical/indexed/in-Sitemap (unverändert). B `noindex, follow`,
+canonical→A, nicht in Sitemap. Variant-Marker im Head.
+
+**Ergebnis:**
+- Sessions A: ... | B: ...
+- Signup-Klickrate A: ... | B: ...
+- Scroll-Reach (75%) A: ... | B: ...
+- Avg-Dwell A: ... | B: ...
+- Lift: ±X%
+
+**Decision:** _(nach Stop)_
+**Learnings:** _(nach Stop)_
+
+---
+
 ## Backlog · Test-Ideen (priorisiert)
 
 Hier Hypothesen sammeln, die noch nicht getestet wurden. Beim Start eines

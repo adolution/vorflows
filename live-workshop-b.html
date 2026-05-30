@@ -1,0 +1,609 @@
+<!doctype html>
+<!-- ab-test-active variant=B · live-workshop · build=2026-05-30 -->
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um. — vorflows</title>
+  <meta name="description" content="Kostenloser Live-Workshop für Shopify-Founder. In 90 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
+  <meta name="author" content="vorflows" />
+  <!-- B = Experiment-Variante: aus dem Index halten, canonical zeigt auf A -->
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#C8633E" />
+  <meta name="color-scheme" content="light" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="canonical" href="https://vorflows.com/live-workshop" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+  <!-- Open Graph (gleich wie A) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="vorflows" />
+  <meta property="og:url" content="https://vorflows.com/live-workshop" />
+  <meta property="og:title" content="Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um." />
+  <meta property="og:description" content="In 90 Minuten baue ich mit KI live einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
+  <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Live-Workshop: Shopify-Shop mit KI umbauen" />
+  <meta name="twitter:description" content="In 90 Minuten live: Apps ersetzen, ranken, Conversion heben. Kostenlos, ohne eine Zeile Code." />
+  <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
+
+  <!-- Self-hosted Fonts (identisch zur Homepage) -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+
+  <style>
+    /* ============================================================
+       vorflows · Live-Workshop-Anmeldung (Variante B · Homepage-Editorial)
+       Designsprache 1:1 von vorflows.com: Creme #FAFAF7 + Dark-Sections,
+       Fraunces (Display) + Inter (Body) + JetBrains Mono (Labels),
+       Terracotta #C8633E als einziger Akzent. Copy identisch zu A.
+       ============================================================ */
+    :root{
+      --bg-light:#FAFAF7; --bg-dark:#0F0F0F;
+      --text-primary:#1A1A1A; --text-inverse:#EAEAE5;
+      --text-secondary:#5C5C5C; --text-secondary-dark:#8A8A82;
+      --border:#E5E3DD; --border-strong:#C7C4BB; --border-dark:#2A2A2A;
+      --accent:#C8633E; --accent-hover:#B05530; --accent-soft:rgba(200,99,62,.08);
+      --ease-out-expo:cubic-bezier(.16,1,.3,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+    html,body{overflow-x:clip}
+    body{margin:0;background:var(--bg-light);color:var(--text-primary);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;font-size:17px;line-height:1.6;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11"}
+
+    .display{font-family:'Fraunces',Georgia,serif;font-feature-settings:"ss01";letter-spacing:-.02em;line-height:1.05}
+    .display-italic{font-family:'Fraunces',Georgia,serif;font-style:italic;font-feature-settings:"ss01"}
+    .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-feature-settings:"calt"}
+    .meta{font-family:'Inter',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+    .accent{color:var(--accent)}
+    em{font-style:italic}
+    a{color:inherit;text-decoration:none}
+
+    .container{max-width:1200px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+    .section{padding-block:clamp(72px,10vw,160px)}
+    .section-tight{padding-block:clamp(48px,6vw,96px)}
+    .section-dark{background:var(--bg-dark);color:var(--text-inverse)}
+    @media(max-width:600px){.section{padding-block:56px}.section-tight{padding-block:40px}}
+
+    .eyebrow{color:var(--accent);margin-bottom:20px}
+    .h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(28px,4.5vw,48px);
+      letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
+    .h2 em{font-style:italic;font-weight:400}
+    .lead{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--text-secondary);max-width:46ch;margin-top:20px}
+    .section-dark .lead{color:var(--text-secondary-dark)}
+    .sec-head{max-width:54ch}
+
+    /* ---------- Buttons (Homepage) ---------- */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:6px;
+      font-family:'Inter',sans-serif;font-weight:500;font-size:15px;cursor:pointer;border:1px solid transparent;
+      transition:background-color 150ms ease-out,transform 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out}
+    .btn-primary{background:var(--accent);color:var(--bg-light)}
+    .btn-primary:hover{background:var(--accent-hover)}
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-primary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .btn-outline{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
+    .btn-outline:hover{border-color:var(--text-primary)}
+    .section-dark .btn-outline{color:var(--text-inverse);border-color:rgba(255,255,255,.28)}
+    .section-dark .btn-outline:hover{border-color:var(--text-inverse)}
+    .btn-lg{padding:16px 28px;font-size:16px}
+    .cta-sub{margin-top:12px;font-size:13.5px;color:var(--text-secondary)}
+    .section-dark .cta-sub{color:var(--text-secondary-dark)}
+
+    /* ---------- Pills ---------- */
+    .pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+      border:1px solid var(--border-strong);font-family:'JetBrains Mono',monospace;font-size:12px;
+      letter-spacing:.02em;color:var(--text-secondary);white-space:nowrap}
+    .section-dark .pill{border-color:rgba(255,255,255,.2);color:var(--text-secondary-dark)}
+    .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+
+    /* ---------- Nav ---------- */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.96);
+      backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+      border-bottom:1px solid transparent;transition:border-color 200ms ease-out;padding-top:env(safe-area-inset-top)}
+    .nav.scrolled{border-bottom-color:var(--border)}
+    .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .wordmark{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;letter-spacing:-.02em;
+      font-feature-settings:"ss01";color:var(--text-primary)}
+    .wordmark .flows{font-style:italic;font-weight:500;color:var(--accent)}
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav .pill{display:none}
+    .nav .btn{padding:9px 16px;font-size:14px}
+
+    /* ---------- Scroll progress ---------- */
+    .scroll-progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--accent);z-index:70;
+      transition:width 80ms linear;pointer-events:none}
+
+    /* ---------- Hero ---------- */
+    .lw-hero{position:relative;overflow:hidden}
+    .lw-hero .vbg{position:absolute;inset:0;z-index:0}
+    .lw-hero .vbg img{width:100%;height:100%;object-fit:cover;opacity:.20;filter:grayscale(.2) contrast(1.02)}
+    .lw-hero .vbg::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(15,15,15,.55) 0%,rgba(15,15,15,.82) 60%,var(--bg-dark) 100%)}
+    .lw-hero .container{position:relative;z-index:2}
+    .lw-hero h1{font-size:clamp(38px,8vw,84px);margin:18px 0 0;text-wrap:balance}
+    .lw-hero .lead{max-width:36ch}
+    .lw-hero .pills{margin-top:26px}
+    .lw-hero .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+    @media(min-width:600px){.lw-hero .cta-sub{margin-top:0}}
+
+    /* ---------- Numbered editorial steps ---------- */
+    .steps{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--border)}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--border);align-items:start}
+    .step .n{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(40px,5vw,64px);line-height:.8;
+      color:var(--accent);min-width:1.4ch}
+    .step .label{color:var(--text-secondary);margin-bottom:8px;display:block}
+    .step h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(20px,2.4vw,26px);
+      letter-spacing:-.01em;line-height:1.15;margin:0}
+    .step p{margin:10px 0 0;color:var(--text-secondary);max-width:60ch;font-size:clamp(15px,1.4vw,17px)}
+    @media(min-width:768px){.step{grid-template-columns:auto 1fr;gap:40px;padding:34px 0}}
+
+    /* ---------- Objections (auf dunkel) ---------- */
+    .objs{margin-top:clamp(36px,4vw,56px);display:grid;gap:1px;background:var(--border-dark);
+      border:1px solid var(--border-dark);border-radius:10px;overflow:hidden}
+    @media(min-width:768px){.objs{grid-template-columns:repeat(3,1fr)}}
+    .obj{background:var(--bg-dark);padding:28px 26px}
+    .obj .myth{color:var(--text-secondary-dark);font-size:13px}
+    .obj .myth::before{content:"„ "}.obj .myth::after{content:" “"}
+    .obj h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(19px,2vw,23px);
+      letter-spacing:-.01em;line-height:1.15;margin:10px 0 0;color:var(--text-inverse)}
+    .obj p{margin:10px 0 0;color:var(--text-secondary-dark);font-size:15px;line-height:1.55}
+
+    /* ---------- Two-column ---------- */
+    .twocol{display:grid;gap:clamp(36px,5vw,72px)}
+    @media(min-width:880px){.twocol{grid-template-columns:1fr 1fr;align-items:center}}
+
+    /* ---------- Kosten ---------- */
+    .costline{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(24px,3.4vw,38px);
+      line-height:1.18;letter-spacing:-.02em;color:var(--text-primary);max-width:18ch}
+    .costline .big{color:var(--accent);font-style:italic}
+    .cost-card{border:1px solid var(--border);border-radius:12px;padding:clamp(24px,3vw,34px);background:#fff}
+    .cost-card .meta{color:var(--text-secondary);display:block;margin-bottom:18px}
+    .applist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+    .applist li{position:relative;padding-left:22px;font-size:15.5px;color:var(--text-secondary);line-height:1.5}
+    .applist li::before{content:"";position:absolute;left:0;top:.7em;width:11px;height:1px;background:var(--border-strong)}
+    .applist .tot{color:var(--text-primary);font-weight:500;padding-top:14px;margin-top:6px;border-top:1px solid var(--border)}
+    .applist .tot::before{display:none}
+
+    /* ---------- Credibility ---------- */
+    .cred{display:grid;gap:clamp(28px,4vw,56px)}
+    @media(min-width:768px){.cred{grid-template-columns:1fr 1.2fr;align-items:center}}
+    .cred .photo{border-radius:12px;overflow:hidden;aspect-ratio:4/5;background:#ECEAE3;border:1px solid var(--border)}
+    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+
+    /* ---------- Listen ---------- */
+    ul.checks,ul.no{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+    ul.checks li{position:relative;padding-left:34px;font-size:16.5px;color:var(--text-primary);line-height:1.45}
+    .section-dark ul.checks li{color:var(--text-inverse)}
+    ul.checks li::before{content:"";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;
+      background:var(--accent-soft);border:1px solid var(--accent)}
+    ul.checks li::after{content:"";position:absolute;left:7px;top:8px;width:8px;height:4px;
+      border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+    ul.no li{position:relative;padding-left:26px;font-size:15.5px;color:var(--text-secondary);line-height:1.5}
+    ul.no li::before{content:"";position:absolute;left:2px;top:.72em;width:13px;height:2px;background:var(--border-strong)}
+
+    .qual{display:grid;gap:clamp(36px,5vw,64px)}
+    @media(min-width:768px){.qual{grid-template-columns:1fr 1fr}}
+    .qual h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);
+      letter-spacing:-.02em;line-height:1.12;margin:14px 0 0}
+
+    /* ---------- Final CTA ---------- */
+    .lw-final{position:relative;overflow:hidden;text-align:center}
+    .lw-final .vbg{position:absolute;inset:0;z-index:0}
+    .lw-final .vbg img{width:100%;height:100%;object-fit:cover;opacity:.16}
+    .lw-final .vbg::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,var(--bg-dark) 0%,rgba(15,15,15,.78) 50%,var(--bg-dark) 100%)}
+    .lw-final .container{position:relative;z-index:2;max-width:680px}
+    .lw-final h2{margin-top:14px}
+    .lw-final .lead{margin:18px auto 0;text-align:center;max-width:38ch}
+    .lw-final .pills{justify-content:center;margin:24px 0 28px}
+    .lw-final .btn{margin:0 auto}
+    .lw-final .cta-sub{margin-top:14px}
+    #reg-note{margin:22px auto 0;max-width:460px;padding:16px 18px;border-radius:8px;
+      background:rgba(200,99,62,.14);border:1px solid rgba(200,99,62,.4);color:var(--text-inverse);
+      font-size:14px;line-height:1.55}
+    #reg-note[hidden]{display:none}
+    #reg-note a{color:var(--accent);font-weight:500}
+    #reg-note a:hover{text-decoration:underline}
+
+    /* ---------- FAQ (Homepage) ---------- */
+    .faq{margin-top:clamp(32px,4vw,48px)}
+    .faq-item{border-top:1px solid var(--border)}
+    .faq-item:last-child{border-bottom:1px solid var(--border)}
+    .faq-item summary{list-style:none;cursor:pointer;padding:22px 0;display:grid;grid-template-columns:1fr 24px;
+      gap:16px;align-items:center;font-family:'Inter',sans-serif;font-weight:500;font-size:17px;transition:color 200ms ease}
+    .faq-item summary:hover{color:var(--accent)}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:"+";font-family:'JetBrains Mono',monospace;font-size:22px;line-height:1;
+      color:var(--accent);transition:transform 320ms var(--ease-out-expo)}
+    .faq-item[open] summary::after{transform:rotate(45deg)}
+    .faq-body{padding:0 0 24px;color:var(--text-secondary);font-size:16px;line-height:1.65;max-width:60ch}
+
+    /* ---------- Footer ---------- */
+    footer{background:var(--bg-dark);color:var(--text-inverse);padding:48px 0 calc(40px + env(safe-area-inset-bottom))}
+    .foot-in{display:flex;flex-direction:column;gap:18px}
+    .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+    .foot-links a{color:var(--text-secondary-dark)}
+    .foot-links a:hover{color:var(--text-inverse)}
+    .foot-copy{font-size:12px;color:var(--text-secondary-dark);letter-spacing:.02em}
+
+    .hr{border:0;height:1px;background:var(--border);margin:0}
+
+    /* ---------- Reveal ---------- */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo)}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none;transition:none}
+      html{scroll-behavior:auto}
+      .btn,.faq-item summary::after{transition:none}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="wordmark" aria-label="vorflows Startseite">vor<span class="flows">flows</span></a>
+        <div class="nav-right">
+          <span class="pill"><span class="dot"></span>Kostenlos · Live-Workshop</span>
+          <button class="btn btn-primary" type="button" data-webinar-cta>Platz sichern</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="lw-hero section section-dark">
+    <div class="vbg"><img src="/brand_assets/webinar/hero-key.webp" alt="" aria-hidden="true" /></div>
+    <div class="container">
+      <p class="meta eyebrow">vorflows · Live-Workshop · Kostenlos</p>
+      <h1 class="display">Ich baue mit KI vor deinen Augen einen <span class="accent display-italic">Shopify-Shop</span> um.</h1>
+      <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
+      <div class="pills">
+        <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
+        <span class="pill">90 Minuten</span>
+        <span class="pill">Kostenlos</span>
+        <span class="pill">Mit Live-Q&amp;A</span>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <span class="cta-sub">90 Minuten. Live. Mit Fragerunde am Ende.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WAS DU LIVE SIEHST ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="sec-head">
+        <p class="meta eyebrow">Kein Theorie-Vortrag</p>
+        <h2 class="h2">Drei Dinge, <em>live</em>.</h2>
+        <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen. Du schaust mir über die Schulter und siehst jeden Schritt.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="n">1</div>
+          <div>
+            <span class="meta label">Apps ersetzen</span>
+            <h3>Teure Apps durch sauberen Code.</h3>
+            <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="n">2</div>
+          <div>
+            <span class="meta label">Live ranken</span>
+            <h3>KI an einer echten Produktseite.</h3>
+            <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, und baut technisches SEO und Schema direkt ins Theme.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="n">3</div>
+          <div>
+            <span class="meta label">Conversion</span>
+            <h3>Aus echtem Klick- und Scroll-Verhalten.</h3>
+            <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion hebt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EINWÄNDE (dunkel) ===================== -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="sec-head">
+        <p class="meta eyebrow">Was die meisten zurückhält</p>
+        <h2 class="h2">Du brauchst keinen <em>Entwickler</em> dafür.</h2>
+        <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
+      </div>
+      <div class="objs">
+        <div class="obj reveal">
+          <span class="myth mono">Ich kann nicht coden</span>
+          <h3>Musst du nicht.</h3>
+          <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
+        </div>
+        <div class="obj reveal">
+          <span class="myth mono">Zu riskant am Live-Shop</span>
+          <h3>Dein Shop bleibt sicher.</h3>
+          <p>Gearbeitet wird am duplizierten Theme. Nichts geht automatisch live. Keine Bestellung wird angefasst. Du publishst selbst.</p>
+        </div>
+        <div class="obj reveal">
+          <span class="myth mono">KI ist nicht auf Profi-Niveau</span>
+          <h3>Mit der richtigen Führung doch.</h3>
+          <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KOSTEN ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="twocol">
+        <div class="reveal">
+          <p class="meta eyebrow">Rechne mit</p>
+          <p class="costline">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
+          <p class="lead" style="max-width:34ch">Im Workshop zeige ich dir, wie viel davon Code einmalig ersetzt. Du rechnest live mit.</p>
+        </div>
+        <div class="cost-card reveal">
+          <span class="meta">436 Euro im Monat</span>
+          <ul class="applist">
+            <li>Shipping-Bar, Cart-Upsell, Sticky-ATC</li>
+            <li>Bundle-Builder, Page-Builder, Countdown-Timer</li>
+            <li>Lead-Form-Builder</li>
+            <li>SEO-Suite</li>
+            <li>Analytics-Add-on</li>
+            <li class="tot">Neun Apps. Solange dein Shop läuft.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr container" />
+
+  <!-- ===================== CREDIBILITY ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="cred">
+        <div class="photo reveal"><img src="/shop-ki-founder.webp" alt="Alex von vorflows" loading="lazy" /></div>
+        <div class="reveal">
+          <p class="meta eyebrow">Wer das macht</p>
+          <h2 class="h2">8 Jahre <em>Online-Marketing</em>.</h2>
+          <p class="lead">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
+          <ul class="checks">
+            <li>Arbeit mit 404, Atlas und Quiver, teils Silicon Valley</li>
+            <li>Einer der ersten GPT-Kurse für Fotografen, plus Vorträge</li>
+            <li>Programm mit Paddy, Beratung von Marken aus Höhle der Löwen</li>
+            <li>Berater für einen der größten Lebensmittel-Hersteller im Land</li>
+          </ul>
+          <p class="cta-sub" style="margin-top:20px">Vertrauen kommt im Workshop über die Live-Demo, nicht über Eigenwerbung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUALIFIER ===================== -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="qual">
+        <div class="reveal">
+          <p class="meta eyebrow">Für dich, wenn</p>
+          <h3>Du einen laufenden Shop hast.</h3>
+          <ul class="checks">
+            <li>Du einen laufenden Shopify-Shop führst</li>
+            <li>Du bereit bist, KI-Tools selbst zu nutzen</li>
+            <li>Du kein Techniker bist, aber sagen kannst, was du willst</li>
+            <li>Du den App-Stack satt hast und die Kontrolle zurück willst</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <p class="meta eyebrow">Nicht für dich, wenn</p>
+          <h3>Du nur zuschauen willst.</h3>
+          <ul class="no">
+            <li>Du noch keinen Shop hast und nur stöbern willst</li>
+            <li>Du eine Ein-Klick-App suchst, die alles allein macht</li>
+            <li>Du nicht bereit bist, 90 Minuten konzentriert dabei zu sein</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA (dunkel) ===================== -->
+  <section class="lw-final section section-dark">
+    <div class="vbg"><img src="/brand_assets/webinar/appstack.webp" alt="" aria-hidden="true" /></div>
+    <div class="container">
+      <p class="meta eyebrow">Jetzt anmelden</p>
+      <h2 class="h2">Sei <em>live</em> dabei.</h2>
+      <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, wie du es selbst machst.</p>
+      <div class="pills">
+        <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
+        <span class="pill">90 Minuten</span>
+        <span class="pill">Kostenlos</span>
+      </div>
+      <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+      <p class="cta-sub">90 Minuten. Live. Mit Fragerunde am Ende.</p>
+      <p id="reg-note" role="status" aria-live="polite" hidden>
+        Die Anmeldung wird gerade scharfgeschaltet. Schreib mir kurz an
+        <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>,
+        ich setze dich sofort auf die Liste.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section">
+    <div class="container" style="max-width:820px">
+      <p class="meta eyebrow">Häufige Fragen</p>
+      <h2 class="h2">Kurz geklärt.</h2>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>Kostet der Workshop etwas?</summary>
+          <div class="faq-body">Nein. Der Live-Workshop ist kostenlos. Du brauchst 90 Minuten und einen Platz, den du dir oben sicherst.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Brauche ich Vorkenntnisse im Coden?</summary>
+          <div class="faq-body">Nein. Du musst kein Techniker sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Gibt es eine Aufzeichnung?</summary>
+          <div class="faq-body">Plane fest mit dem Live-Termin. Dort siehst du jeden Schritt in Echtzeit und kannst direkt Fragen stellen. Den vollen Wert hast du nur live.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Für welchen Shop ist das gedacht?</summary>
+          <div class="faq-body">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion heben.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie lange dauert es?</summary>
+          <div class="faq-body">90 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="foot-in">
+        <a href="/" class="wordmark" style="color:var(--text-inverse)">vor<span class="flows">flows</span></a>
+        <nav class="foot-links">
+          <a href="/">Startseite</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">Kontakt</a>
+        </nav>
+        <span class="foot-copy">© 2026 vorflows</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Termin zentral pflegen (eine Stelle, identisch zu A) ----
+    var WEBINAR_DATE = 'Donnerstag, 10:00 Uhr'; // TODO: echten Termin hier setzen
+    document.querySelectorAll('[data-webinar-date]').forEach(function(e){ e.textContent = WEBINAR_DATE; });
+
+    // ---- Sign-up CTA: Übergangszustand bis Popup-Formular hinterlegt ----
+    function openWebinarForm(){
+      var n = document.getElementById('reg-note');
+      if(n){ n.hidden = false; n.scrollIntoView({behavior:'smooth', block:'center'}); }
+    }
+    document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); });
+
+    // ---- Nav border on scroll + scroll-progress ----
+    (function(){
+      var nav = document.getElementById('nav');
+      var bar = document.getElementById('scrollProgress');
+      var onScroll = function(){
+        var d = document.documentElement, sc = d.scrollTop || document.body.scrollTop;
+        if(nav) nav.classList.toggle('scrolled', sc > 4);
+        var h = d.scrollHeight - d.clientHeight;
+        if(bar) bar.style.width = (h > 0 ? (sc / h * 100) : 0) + '%';
+      };
+      window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    })();
+
+    // ---- Reveal on scroll ----
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+      },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
+
+  <!-- ===================== A/B-TRACKING (lw_ scoped · identisch auf A + B) ===================== -->
+  <script>
+    (function vfLiveWorkshopAB(){
+      var getCookie = function(n){ return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+      // Eigener Cookie (getrennt vom Homepage-Test vf_ab). Default A.
+      var variant = getCookie('vf_ab_lw') || 'A';
+
+      // Microsoft Clarity laden (gleiche Property wie Homepage). A/B-Modus: kein Consent-Gate.
+      (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r); t.async=1; t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "wnn5d5ehwn");
+
+      var cEvent = function(name, props){
+        props = props || {}; props.variant = variant;
+        if(window.clarity) window.clarity('event', name);
+        if(window.gtag) window.gtag('event', name, props);
+        if(window.fbq) window.fbq('trackCustom', name, props);
+      };
+
+      // Variant-Tag (filterbar im Clarity-Dashboard + zählbar via smartEvents)
+      var tagged = false;
+      var sendTag = function(){
+        if(tagged) return; tagged = true;
+        if(window.clarity){ window.clarity('set', 'lw_experiment', variant); window.clarity('event', 'lw_' + variant); }
+      };
+      if(window.clarity) sendTag(); else setTimeout(sendTag, 1500);
+
+      // ── Signup-Klicks (Primärziel) ──────────────────────────────
+      document.querySelectorAll('[data-webinar-cta]').forEach(function(b){
+        b.addEventListener('click', function(){
+          var loc = 'inline';
+          if(b.closest('.nav')) loc = 'nav';
+          else if(b.closest('.lw-hero, .hero')) loc = 'hero';
+          else if(b.closest('.lw-final, .closeband')) loc = 'final';
+          cEvent('lw_signup_click', { loc: loc });
+        });
+      });
+
+      // ── Scroll-Tiefe (25/50/75/100, je einmal) ──────────────────
+      var marks = [25,50,75,100], fired = {};
+      var onScrollDepth = function(){
+        var d = document.documentElement, sc = d.scrollTop || document.body.scrollTop;
+        var h = d.scrollHeight - d.clientHeight; if(h <= 0) return;
+        var pct = sc / h * 100;
+        marks.forEach(function(m){ if(!fired[m] && pct >= m){ fired[m] = true; cEvent('lw_scroll_' + m, { pct: m }); } });
+      };
+      window.addEventListener('scroll', onScrollDepth, {passive:true}); onScrollDepth();
+
+      // ── Verweilzeit (sichtbarkeitsbereinigt, pausen-bereinigt) ───
+      var engagedMs = 0;
+      var lastStart = (document.visibilityState === 'visible') ? performance.now() : null;
+      var lastBucket = null;
+      var bucket = function(s){ return s<5?'lt5s':s<15?'5to15s':s<30?'15to30s':s<60?'30to60s':s<120?'60to120s':'gt120s'; };
+      var accumulate = function(){ if(lastStart != null){ engagedMs += performance.now() - lastStart; lastStart = null; } };
+      var flushDwell = function(reason){
+        accumulate();
+        var sec = Math.round(engagedMs / 1000);
+        if(document.visibilityState === 'visible') lastStart = performance.now(); // weiterzählen erlauben
+        if(sec < 1) return;
+        var b = bucket(sec);
+        if(window.clarity){ window.clarity('set', 'lw_dwell', b); window.clarity('set', 'lw_dwell_' + variant, b); }
+        if(b !== lastBucket){ lastBucket = b; cEvent('lw_dwell', { sec: sec, bucket: b, reason: reason }); }
+      };
+      document.addEventListener('visibilitychange', function(){
+        if(document.visibilityState === 'visible'){ if(lastStart == null) lastStart = performance.now(); }
+        else { flushDwell('hidden'); }
+      });
+      window.addEventListener('pagehide', function(){ flushDwell('pagehide'); });
+
+      // ── FAQ-Engagement ──────────────────────────────────────────
+      document.querySelectorAll('details').forEach(function(d){
+        d.addEventListener('toggle', function(){
+          if(d.open){ var s = d.querySelector('summary'); cEvent('lw_faq_open', { q: (s ? s.textContent : '').trim().slice(0,80) }); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
