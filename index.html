@@ -5558,6 +5558,48 @@
       </div>
     </section>
 
+    <!-- 11b SOCIAL PROOF — decision-point testimonial -->
+    <style>
+      .vf-quote-section { background: #EDE9DC; }
+      .vf-quote { position: relative; margin: 0; padding: 6px 0 0; max-width: 760px; }
+      .vf-quote-mark {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: clamp(80px, 12vw, 140px);
+        line-height: .7; color: var(--accent);
+        display: block; height: .42em; opacity: .92; font-weight: 400;
+      }
+      .vf-quote-text {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(24px, 3.4vw, 38px);
+        line-height: 1.32; letter-spacing: -0.02em;
+        color: var(--text-primary); margin: 0 0 28px;
+      }
+      .vf-quote-cite {
+        display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 13px; letter-spacing: .01em;
+      }
+      .vf-quote-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+      .vf-quote-name { color: var(--text-primary); font-weight: 500; }
+      .vf-quote-co { color: var(--text-secondary); }
+      .vf-quote-co::before { content: "— "; color: var(--border-strong); }
+      @media (max-width: 600px) { .vf-quote-mark { height: .4em; } }
+    </style>
+    <section class="section vf-quote-section" aria-label="Kundenstimme">
+      <div class="container-prose">
+        <figure class="vf-quote" data-reveal="up">
+          <span class="vf-quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="vf-quote-text">Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
+          <figcaption class="vf-quote-cite">
+            <span class="vf-quote-dot" aria-hidden="true"></span>
+            <span class="vf-quote-name">Stefan Kisker</span>
+            <span class="vf-quote-co">Prometheus Performance GmbH</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- 12 PRICING: Bundle-first -->
     <section class="section section--squeeze-top" id="pricing" style="background: #F4F2EC;">
       <div class="container">
