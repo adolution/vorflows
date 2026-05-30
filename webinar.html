@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Live-Webinar: Ich baue mit KI vor deinen Augen einen Shopify-Shop um. — vorflows</title>
-  <meta name="description" content="Kostenloses Live-Webinar für Shopify-Founder. Ich baue in 90 Minuten mit KI live einen Shop um: höhere Rankings, mehr Umsatz, 5.232 Euro im Jahr an Apps gespart. Ohne eine Zeile Code." />
+  <meta name="description" content="Kostenloses Live-Webinar für Shopify-Founder. In 90 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
   <meta name="author" content="vorflows" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="theme-color" content="#C8633E" />
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="vorflows" />
   <meta property="og:url" content="https://vorflows.com/webinar" />
   <meta property="og:title" content="Live-Webinar: Ich baue mit KI vor deinen Augen einen Shopify-Shop um." />
-  <meta property="og:description" content="Kostenloses Live-Webinar. In 90 Minuten baue ich mit KI live einen Shopify-Shop um. Höhere Rankings, mehr Umsatz, 5.232 Euro im Jahr an Apps gespart. Ohne eine Zeile Code." />
+  <meta property="og:description" content="In 90 Minuten baue ich mit KI live einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
   <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
@@ -32,7 +32,7 @@
   <meta property="og:image:alt" content="vorflows Live-Webinar für Shopify-Founder" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Live-Webinar: Shopify-Shop mit KI umbauen" />
-  <meta name="twitter:description" content="In 90 Minuten live: Apps ersetzen, ranken, Conversion heben. Ohne eine Zeile Code." />
+  <meta name="twitter:description" content="In 90 Minuten live: Apps ersetzen, ranken, Conversion heben. Kostenlos, ohne eine Zeile Code." />
   <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,188 +41,245 @@
 
   <style>
     /* ============================================================
-       vorflows · Webinar-Anmeldung · startupads.de Design-System
-       Pures #000, monochrome Glass, Instrument Serif + Barlow,
-       Terracotta #C8633E als einziger Akzent, Viz-Tiefenschärfe.
-       Responsive scrollende Landingpage (kein fixes Canvas).
+       vorflows · Webinar-Anmeldung (Variante A · startupads-Slide-Design)
+       Mobile-first. Pures #000, monochrome Glass, Instrument Serif +
+       Barlow, Terracotta #C8633E als einziger Akzent, Viz-Tiefenschärfe.
        ============================================================ */
     :root{
       --font-heading:'Instrument Serif','Times New Roman',serif;
       --font-body:'Barlow',system-ui,-apple-system,sans-serif;
       --bg:#000;
-      --surface-1:rgba(255,255,255,.035); --surface-2:rgba(255,255,255,.07);
-      --text-1:#fff; --text-2:rgba(255,255,255,.75); --text-3:rgba(255,255,255,.50); --text-4:rgba(255,255,255,.40);
-      --line-subtle:rgba(255,255,255,.06); --line-medium:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.15);
-      --acc:#C8633E; --acc-soft:rgba(200,99,62,.16); --acc-line:rgba(200,99,62,.40);
+      --surface-1:rgba(255,255,255,.04); --surface-2:rgba(255,255,255,.07);
+      --text-1:#fff; --text-2:rgba(255,255,255,.76); --text-3:rgba(255,255,255,.52); --text-4:rgba(255,255,255,.40);
+      --line-subtle:rgba(255,255,255,.07); --line-medium:rgba(255,255,255,.12); --line-strong:rgba(255,255,255,.16);
+      --acc:#C8633E; --acc-soft:rgba(200,99,62,.16); --acc-line:rgba(200,99,62,.42);
       --glass-inner:inset 0 1px 1px rgba(255,255,255,.12);
       --ease:cubic-bezier(0.16,1,0.3,1);
-      --r-card:24px; --r-sm:14px; --r-pill:9999px;
-      --maxw:1200px;
+      --r-card:20px; --r-sm:14px; --r-pill:9999px;
+      --maxw:1180px;
+      --gut:20px;            /* mobile gutter */
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text-2);font-family:var(--font-body);font-weight:300;line-height:1.7;
-      -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{background:var(--bg);color:var(--text-2);font-family:var(--font-body);font-weight:300;line-height:1.65;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;font-size:16px}
 
-    /* grain + ambient, fix über alles */
-    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;mix-blend-mode:screen;
-      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      background-size:240px 240px}
+    /* grain + ambient (fix, dezent; auf Mobile leichter) */
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.42;mix-blend-mode:screen;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.03 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-size:220px 220px}
     body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:radial-gradient(ellipse 60% 45% at 50% 0%, rgba(255,255,255,.05) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 35% at 12% 88%, rgba(200,99,62,.05) 0%, transparent 60%)}
+      background:radial-gradient(120% 60% at 50% -5%, rgba(255,255,255,.05) 0%, transparent 60%),
+        radial-gradient(80% 50% at 10% 100%, rgba(200,99,62,.05) 0%, transparent 60%)}
 
-    .wrap{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    .wrap{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
 
     a{color:inherit}
     strong{font-weight:500;color:var(--text-1)}
     .acc{color:var(--acc)}
     em{font-style:italic}
 
-    /* ---------- Typo ---------- */
-    .kicker{font-family:var(--font-body);font-weight:500;font-size:clamp(13px,1.6vw,15px);letter-spacing:.22em;
-      text-transform:uppercase;color:var(--text-3);display:inline-flex;align-items:center;gap:14px}
-    .kicker::before{content:"";width:30px;height:2px;background:var(--acc);opacity:.85}
-    .kicker.c{justify-content:center}
-    h1,h2,h3{font-family:var(--font-heading);font-style:italic;font-weight:400;color:#fff;letter-spacing:-.035em;line-height:1}
-    h1{font-size:clamp(40px,7.2vw,92px);line-height:.96}
-    h2{font-size:clamp(32px,5vw,64px)}
-    h3{font-size:clamp(22px,2.4vw,30px);letter-spacing:-.02em}
-    .lead{font-family:var(--font-body);font-weight:300;font-size:clamp(17px,2.2vw,24px);line-height:1.5;color:var(--text-2);max-width:680px}
-    .small{font-size:clamp(13px,1.6vw,15px);letter-spacing:.04em;color:var(--text-3)}
+    /* ---------- Typo (mobile-first, dann scale-up) ---------- */
+    .kicker{font-family:var(--font-body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--text-3);display:inline-flex;align-items:center;gap:12px;line-height:1.3}
+    .kicker::before{content:"";width:24px;height:2px;background:var(--acc);opacity:.9;flex:0 0 auto}
+    h1,h2,h3{font-family:var(--font-heading);font-style:italic;font-weight:400;color:#fff;letter-spacing:-.03em;line-height:1.02}
+    h1{font-size:clamp(34px,9vw,86px);line-height:1}
+    h2{font-size:clamp(28px,6.4vw,56px)}
+    h3{font-size:clamp(20px,4.6vw,28px);letter-spacing:-.02em}
+    .lead{font-family:var(--font-body);font-weight:300;font-size:clamp(16px,4.4vw,22px);line-height:1.5;color:var(--text-2)}
+    .small{font-size:13px;letter-spacing:.03em;color:var(--text-3);line-height:1.5}
     .dim{color:var(--text-3)}
 
-    /* ---------- Sections ---------- */
-    section{position:relative;z-index:2;padding:clamp(64px,9vw,128px) 0}
-    .sec-head{max-width:760px;margin:0 auto clamp(36px,5vw,64px);text-align:center}
-    .sec-head.left{margin-left:0;text-align:left}
-    .sec-head .kicker{margin-bottom:22px}
-    .sec-head .lead{margin:24px auto 0}
-    .hr{border:0;height:1px;background:var(--line-medium)}
+    /* ---------- Section rhythm ---------- */
+    section{position:relative;z-index:2;padding:56px 0}
+    .sec-head{max-width:42ch}
+    .sec-head .kicker{margin-bottom:16px}
+    .sec-head .lead{margin-top:16px}
+    .hr{border:0;height:1px;background:var(--line-subtle);max-width:var(--maxw);margin:0 auto}
 
     /* ---------- Glass card ---------- */
-    .card{position:relative;border-radius:var(--r-card);padding:clamp(28px,3vw,42px);background:var(--surface-1);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--glass-inner);overflow:hidden;height:100%}
-    .card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.4px;
-      background:linear-gradient(180deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.14) 22%,rgba(255,255,255,0) 42%,
-        rgba(255,255,255,0) 60%,rgba(255,255,255,.14) 80%,rgba(255,255,255,.42) 100%);
+    .card{position:relative;border-radius:var(--r-card);padding:24px;background:var(--surface-1);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--glass-inner);overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.2px;
+      background:linear-gradient(180deg,rgba(255,255,255,.4) 0%,rgba(255,255,255,.12) 24%,rgba(255,255,255,0) 44%,
+        rgba(255,255,255,0) 58%,rgba(255,255,255,.12) 80%,rgba(255,255,255,.4) 100%);
       -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-    .card .num{font-family:var(--font-heading);font-style:italic;font-size:clamp(40px,4vw,58px);line-height:1;color:var(--acc);margin-bottom:16px}
-    .card .label{font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
-    .card h3{margin:6px 0 0}
-    .card p{font-size:clamp(15px,1.8vw,18px);line-height:1.55;color:var(--text-2);margin-top:14px}
-
-    .grid{display:grid;gap:24px}
-    .g3{grid-template-columns:repeat(3,1fr)}
-    .g2{grid-template-columns:repeat(2,1fr)}
-    @media(max-width:880px){.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
 
     /* ---------- Depth backgrounds ---------- */
     .depth{position:relative;overflow:hidden}
     .vbg{position:absolute;inset:0;z-index:0;overflow:hidden}
     .vbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-      filter:blur(5px) brightness(.40) saturate(.95);transform:scale(1.08)}
+      filter:blur(6px) brightness(.36) saturate(.95);transform:scale(1.1)}
     .vbg::after{content:"";position:absolute;inset:0;background:
-      radial-gradient(120% 90% at 50% 40%, transparent 28%, rgba(0,0,0,.62) 100%),
-      linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.30) 45%, rgba(0,0,0,.78) 100%)}
+      radial-gradient(130% 90% at 50% 35%, transparent 24%, rgba(0,0,0,.7) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.32) 42%, rgba(0,0,0,.82) 100%)}
     .depth > .wrap{position:relative;z-index:2}
 
-    /* ---------- Pills / meta ---------- */
-    .pills{display:flex;flex-wrap:wrap;gap:12px}
-    .pill{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:var(--r-pill);
-      font-weight:500;font-size:clamp(13px,1.7vw,16px);letter-spacing:.02em;color:var(--text-1);
+    /* ---------- Pills ---------- */
+    .pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:var(--r-pill);
+      font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--text-1);
       background:var(--surface-1);box-shadow:var(--glass-inner);backdrop-filter:blur(6px);white-space:nowrap}
-    .pill .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc)}
-    .pill.live .dot{animation:pulse 1.8s var(--ease) infinite}
-    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 12px var(--acc)}50%{opacity:.45;box-shadow:0 0 4px var(--acc)}}
+    .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px rgba(200,99,62,.7);flex:0 0 auto}
 
     /* ---------- CTA ---------- */
-    .cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 38px;border-radius:var(--r-pill);
-      background:var(--acc);color:#fff;font-family:var(--font-body);font-weight:600;font-size:clamp(16px,2vw,21px);
-      letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;
-      box-shadow:0 0 40px rgba(200,99,62,.30),inset 0 1px 1px rgba(255,255,255,.25);
-      transition:transform .18s var(--ease),box-shadow .18s ease}
-    .cta:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(200,99,62,.48)}
+    .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:15px 30px;border-radius:var(--r-pill);
+      background:var(--acc);color:#fff;font-family:var(--font-body);font-weight:600;font-size:17px;
+      letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;width:100%;max-width:380px;
+      box-shadow:0 0 36px rgba(200,99,62,.28),inset 0 1px 1px rgba(255,255,255,.25);
+      transition:transform .16s var(--ease),box-shadow .16s ease}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 0 52px rgba(200,99,62,.44)}
     .cta:active{transform:translateY(0)}
     .cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
-    .cta.lg{padding:22px 52px;font-size:clamp(18px,2.4vw,24px)}
-    .cta-sub{margin-top:14px;font-size:14px;letter-spacing:.04em;color:var(--text-3)}
+    .cta-sub{margin-top:12px;font-size:13px;letter-spacing:.02em;color:var(--text-3)}
 
     /* ---------- Nav ---------- */
-    .nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-      background:rgba(0,0,0,.55);border-bottom:1px solid var(--line-subtle)}
-    .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .nav .mark{height:24px;width:auto;display:block}
-    .nav-right{display:flex;align-items:center;gap:18px}
-    .nav .cta{padding:12px 26px;font-size:15px;box-shadow:0 0 26px rgba(200,99,62,.28),inset 0 1px 1px rgba(255,255,255,.25)}
-    @media(max-width:560px){.nav .pill{display:none}}
+    .nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      background:rgba(0,0,0,.62);border-bottom:1px solid var(--line-subtle);padding-top:env(safe-area-inset-top)}
+    .nav-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .nav .mark{height:22px;width:auto;display:block}
+    .nav .cta{width:auto;min-height:42px;padding:10px 18px;font-size:14px;
+      box-shadow:0 0 22px rgba(200,99,62,.26),inset 0 1px 1px rgba(255,255,255,.25)}
+    .nav .pill{display:none}
 
     /* ---------- Hero ---------- */
-    .hero{padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(64px,9vw,120px)}
-    .hero .kicker{margin-bottom:26px}
-    .hero h1{max-width:15ch}
-    .hero .lead{margin-top:28px}
-    .hero .pills{margin-top:36px}
-    .hero .cta-row{margin-top:40px;display:flex;flex-direction:column;align-items:flex-start;gap:0}
+    .hero{padding:40px 0 52px}
+    .hero .kicker{margin-bottom:18px}
+    .hero h1{margin-bottom:18px}
+    .hero .lead{max-width:32ch}
+    .hero .pills{margin-top:22px}
+    .hero .cta-row{margin-top:26px}
 
-    /* ---------- Checklist ---------- */
-    ul.checks{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:8px}
-    ul.checks li{position:relative;padding-left:42px;font-size:clamp(16px,1.9vw,20px);color:var(--text-1);font-weight:300;line-height:1.45}
-    ul.checks li::before{content:"";position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;
+    /* ---------- Editorial numbered list (ersetzt 1. identisches Grid) ---------- */
+    .steps{display:flex;flex-direction:column;gap:0;margin-top:28px;border-top:1px solid var(--line-subtle)}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:24px 0;border-bottom:1px solid var(--line-subtle);align-items:start}
+    .step .n{font-family:var(--font-heading);font-style:italic;font-size:40px;line-height:.8;color:var(--acc);min-width:1.4ch}
+    .step .label{font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
+    .step h3{margin:4px 0 0}
+    .step p{font-size:16px;line-height:1.5;color:var(--text-2);margin-top:10px;max-width:60ch}
+
+    /* ---------- Einwände (2. Grid ersetzt: gestapelte Zeilen) ---------- */
+    .objs{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+    .obj{position:relative;padding:20px 22px;border-radius:var(--r-card);background:var(--surface-1);
+      box-shadow:var(--glass-inner);overflow:hidden}
+    .obj::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.2px;
+      background:linear-gradient(120deg,rgba(255,255,255,.34),rgba(255,255,255,0) 55%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+    .obj .myth{font-weight:400;font-size:13px;letter-spacing:.02em;color:var(--text-3)}
+    .obj .myth::before{content:"„";color:var(--text-4)}
+    .obj .myth::after{content:"“";color:var(--text-4)}
+    .obj h3{margin:6px 0 0}
+    .obj p{font-size:15px;line-height:1.5;color:var(--text-2);margin-top:8px}
+
+    /* ---------- Stat-Band (integriert, kein Riesen-Metric-Template) ---------- */
+    .costline{font-family:var(--font-body);font-weight:300;font-size:clamp(18px,5vw,26px);line-height:1.45;color:var(--text-1);max-width:24ch}
+    .costline .big{font-family:var(--font-heading);font-style:italic;color:var(--acc);font-size:1.5em;letter-spacing:-.03em}
+    .applist{margin-top:22px;display:flex;flex-direction:column;gap:9px}
+    .applist li{list-style:none;position:relative;padding-left:20px;font-size:15px;color:var(--text-2);line-height:1.5}
+    .applist li::before{content:"";position:absolute;left:2px;top:.72em;width:9px;height:1px;background:var(--text-4)}
+    .applist .tot{color:var(--text-1);font-weight:500}
+
+    /* ---------- Checklists ---------- */
+    ul.checks{list-style:none;display:flex;flex-direction:column;gap:13px;margin-top:6px}
+    ul.checks li{position:relative;padding-left:36px;font-size:16px;color:var(--text-1);font-weight:300;line-height:1.4}
+    ul.checks li::before{content:"";position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:50%;
       background:var(--acc-soft);border:1px solid var(--acc-line)}
-    ul.checks li::after{content:"";position:absolute;left:9px;top:9px;width:9px;height:5px;
+    ul.checks li::after{content:"";position:absolute;left:8px;top:8px;width:8px;height:4px;
       border-left:2px solid var(--acc);border-bottom:2px solid var(--acc);transform:rotate(-45deg)}
-    ul.no{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:8px}
-    ul.no li{position:relative;padding-left:30px;font-size:clamp(15px,1.8vw,18px);color:var(--text-3);font-weight:300}
-    ul.no li::before{content:"";position:absolute;left:4px;top:.7em;width:14px;height:2px;background:var(--text-4)}
-
-    /* ---------- Stat ---------- */
-    .stat{font-family:var(--font-heading);font-style:italic;letter-spacing:-.045em;line-height:.9;color:#fff;
-      font-size:clamp(72px,13vw,168px)}
-    .stat .unit{font-size:.22em;color:var(--text-3);font-style:normal;font-family:var(--font-body);letter-spacing:0;margin-left:8px}
+    ul.no{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:6px}
+    ul.no li{position:relative;padding-left:26px;font-size:15px;color:var(--text-3);font-weight:300;line-height:1.45}
+    ul.no li::before{content:"";position:absolute;left:2px;top:.7em;width:13px;height:2px;background:var(--text-4)}
 
     /* ---------- Credibility ---------- */
-    .cred{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:center}
-    @media(max-width:880px){.cred{grid-template-columns:1fr}}
-    .cred .photo{position:relative;border-radius:var(--r-card);overflow:hidden;aspect-ratio:4/5;background:#0c0c0c;
-      box-shadow:var(--glass-inner)}
-    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.95) contrast(1.02)}
-    .cred .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55) 100%)}
+    .cred{display:flex;flex-direction:column;gap:24px}
+    .cred .photo{position:relative;border-radius:var(--r-card);overflow:hidden;aspect-ratio:16/11;background:#0c0c0c;box-shadow:var(--glass-inner)}
+    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:saturate(.96) contrast(1.02)}
+    .cred .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5) 100%)}
+
+    /* ---------- Qualifier ---------- */
+    .qual{display:flex;flex-direction:column;gap:36px}
+
+    /* ---------- Final CTA ---------- */
+    .closeband .card{text-align:center;padding:30px 22px}
+    .closeband .kicker{justify-content:center}
+    .closeband .pills{justify-content:center;margin:18px 0 24px}
+    .closeband .cta{margin:0 auto}
+    .closeband h2{margin-top:12px}
+    .closeband .lead{margin:14px auto 0;max-width:34ch}
+    #reg-note{margin:18px auto 0;max-width:440px;padding:16px 18px;border-radius:var(--r-sm);
+      background:var(--acc-soft);border:1px solid var(--acc-line);color:var(--text-1);font-size:14px;line-height:1.55;text-align:center}
+    #reg-note[hidden]{display:none}
+    #reg-note a{color:var(--acc);font-weight:500;text-decoration:none}
+    #reg-note a:hover{text-decoration:underline}
 
     /* ---------- FAQ ---------- */
-    .faq{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:0}
-    details{border-bottom:1px solid var(--line-subtle);padding:22px 4px}
-    details summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;
-      font-family:var(--font-heading);font-style:italic;font-size:clamp(19px,2.3vw,26px);color:#fff;letter-spacing:-.02em}
+    .faq{display:flex;flex-direction:column}
+    details{border-bottom:1px solid var(--line-subtle);padding:18px 2px}
+    details summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+      font-family:var(--font-heading);font-style:italic;font-size:clamp(18px,4.6vw,24px);color:#fff;letter-spacing:-.02em;line-height:1.15}
     details summary::-webkit-details-marker{display:none}
-    details summary .plus{flex:0 0 auto;width:24px;height:24px;position:relative;transition:transform .2s var(--ease)}
+    details summary .plus{flex:0 0 auto;width:22px;height:22px;position:relative;margin-top:3px;transition:transform .2s var(--ease)}
     details summary .plus::before,details summary .plus::after{content:"";position:absolute;background:var(--acc);left:50%;top:50%}
-    details summary .plus::before{width:14px;height:2px;transform:translate(-50%,-50%)}
-    details summary .plus::after{width:2px;height:14px;transform:translate(-50%,-50%)}
+    details summary .plus::before{width:13px;height:2px;transform:translate(-50%,-50%)}
+    details summary .plus::after{width:2px;height:13px;transform:translate(-50%,-50%)}
     details[open] summary .plus{transform:rotate(45deg)}
-    details p{margin-top:14px;font-size:clamp(15px,1.8vw,18px);color:var(--text-2);line-height:1.6;max-width:70ch}
-
-    /* ---------- Final CTA band ---------- */
-    .closeband{text-align:center}
-    .closeband .card{max-width:860px;margin:0 auto;text-align:center;padding:clamp(36px,5vw,64px)}
-    .closeband .pills{justify-content:center;margin:28px 0 36px}
-    .closeband .cta{margin:0 auto}
+    details p{margin-top:12px;font-size:15px;color:var(--text-2);line-height:1.6}
 
     /* ---------- Footer ---------- */
-    footer{position:relative;z-index:2;border-top:1px solid var(--line-subtle);padding:44px 0}
-    .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;align-items:center;
-      justify-content:space-between;gap:18px}
-    .foot-in .mark{height:20px;width:auto;opacity:.8}
-    .foot-links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;letter-spacing:.03em}
+    footer{position:relative;z-index:2;border-top:1px solid var(--line-subtle);padding:32px 0 calc(32px + env(safe-area-inset-bottom))}
+    .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);display:flex;flex-direction:column;gap:18px}
+    .foot-in .mark{height:18px;width:auto;opacity:.8}
+    .foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
     .foot-links a{color:var(--text-3);text-decoration:none}
     .foot-links a:hover{color:var(--text-1)}
-    .foot-copy{font-size:13px;color:var(--text-4);letter-spacing:.04em}
+    .foot-copy{font-size:12px;color:var(--text-4);letter-spacing:.03em}
 
     /* ---------- reveal ---------- */
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
     .reveal.in{opacity:1;transform:none}
-    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pill.live .dot{animation:none}html{scroll-behavior:auto}}
+
+    /* ============================================================
+       Tablet / Desktop scale-up
+       ============================================================ */
+    @media(min-width:600px){
+      :root{--gut:32px}
+      .nav .pill{display:inline-flex}
+      .pill{padding:10px 17px;font-size:14px}
+      .cta{width:auto}
+      .hero .cta-row{display:flex;align-items:center;gap:20px}
+      .hero .cta-sub{margin-top:0}
+    }
+    @media(min-width:768px){
+      body{font-size:17px}
+      section{padding:84px 0}
+      .hero{padding:56px 0 80px}
+      .step{grid-template-columns:auto 1fr;gap:28px;padding:30px 0}
+      .step .n{font-size:60px}
+      .step p{font-size:18px}
+      .objs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+      .card{padding:34px}
+      .obj{padding:26px 28px}
+      .cred{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+      .cred .photo{aspect-ratio:4/5}
+      .qual{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+      ul.checks li,ul.no li{font-size:17px}
+      .closeband .card{padding:56px 48px}
+      details p{font-size:17px}
+    }
+    @media(min-width:1024px){
+      :root{--gut:40px}
+      section{padding:104px 0}
+      .twocol{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none;transition:none}
+      html{scroll-behavior:auto}
+      .cta{transition:none}
+    }
   </style>
 </head>
 <body>
@@ -230,9 +287,9 @@
   <!-- ===================== NAV ===================== -->
   <header class="nav">
     <div class="nav-in">
-      <a href="/" aria-label="vorflows Startseite"><img class="mark" src="/brand_assets/logos/10d.1-wordmark-dark.svg" alt="vorflows" width="120" height="24" /></a>
-      <div class="nav-right">
-        <span class="pill live"><span class="dot"></span>Live-Webinar · Kostenlos</span>
+      <a href="/" aria-label="vorflows Startseite"><img class="mark" src="/brand_assets/logos/10d.1-wordmark-dark.svg" alt="vorflows" width="110" height="22" /></a>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="pill"><span class="dot"></span>Kostenlos · Live-Webinar</span>
         <button class="cta" type="button" data-webinar-cta>Platz sichern</button>
       </div>
     </div>
@@ -244,100 +301,109 @@
     <div class="wrap">
       <div class="kicker">vorflows · Live-Webinar · Kostenlos</div>
       <h1>Ich baue mit KI vor deinen Augen einen <span class="acc">Shopify-Shop</span> um.</h1>
-      <p class="lead">Höhere Rankings, mehr Umsatz, 5.232 Euro im Jahr an Apps gespart. Live in 90 Minuten, ohne dass du eine Zeile Code schreibst.</p>
+      <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
       <div class="pills">
         <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
         <span class="pill">90 Minuten</span>
-        <span class="pill">Live, kein Replay-Geschwätz</span>
         <span class="pill">Kostenlos</span>
+        <span class="pill">Mit Live-Q&amp;A</span>
       </div>
       <div class="cta-row">
-        <button class="cta lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <span class="cta-sub">Begrenzte Plätze. Wer bis zum Schluss bleibt, bekommt etwas, das ich sonst keinem zeige.</span>
+        <button class="cta" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <span class="cta-sub">90 Minuten. Live. Mit Fragerunde am Ende.</span>
       </div>
     </div>
   </section>
 
   <hr class="hr" />
 
-  <!-- ===================== WAS DU LIVE SIEHST ===================== -->
+  <!-- ===================== WAS DU LIVE SIEHST (numbered editorial) ===================== -->
   <section>
     <div class="wrap">
       <div class="sec-head">
-        <div class="kicker c">Kein Theorie-Vortrag</div>
+        <div class="kicker">Kein Theorie-Vortrag</div>
         <h2>Drei Dinge, live.</h2>
         <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen. Du schaust mir über die Schulter und siehst jeden Schritt.</p>
       </div>
-      <div class="grid g3">
-        <div class="card reveal">
-          <div class="num">1</div>
-          <span class="label">Apps ersetzen</span>
-          <h3>Teure Apps durch sauberen Code.</h3>
-          <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="n">1</div>
+          <div>
+            <span class="label">Apps ersetzen</span>
+            <h3>Teure Apps durch sauberen Code.</h3>
+            <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
+          </div>
         </div>
-        <div class="card reveal">
-          <div class="num">2</div>
-          <span class="label">Live ranken</span>
-          <h3>KI an einer echten Produktseite.</h3>
-          <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, baut technisches SEO und Schema direkt ins Theme.</p>
+        <div class="step reveal">
+          <div class="n">2</div>
+          <div>
+            <span class="label">Live ranken</span>
+            <h3>KI an einer echten Produktseite.</h3>
+            <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, und baut technisches SEO und Schema direkt ins Theme.</p>
+          </div>
         </div>
-        <div class="card reveal">
-          <div class="num">3</div>
-          <span class="label">Conversion</span>
-          <h3>Aus echtem Klick- und Scroll-Verhalten.</h3>
-          <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion hebt.</p>
+        <div class="step reveal">
+          <div class="n">3</div>
+          <div>
+            <span class="label">Conversion</span>
+            <h3>Aus echtem Klick- und Scroll-Verhalten.</h3>
+            <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion hebt.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== BELIEF / EINWÄNDE ===================== -->
+  <!-- ===================== EINWÄNDE (gestapelt, kein identisches Grid) ===================== -->
   <section class="depth">
     <div class="vbg"><img src="/brand_assets/webinar/storefront.webp" alt="" aria-hidden="true" /></div>
     <div class="wrap">
-      <div class="sec-head">
-        <div class="kicker c">Was die meisten zurückhält</div>
-        <h2>Du brauchst keinen Entwickler dafür.</h2>
-      </div>
-      <div class="grid g3">
-        <div class="card reveal">
-          <span class="label">Ich kann nicht coden</span>
-          <h3>Musst du nicht.</h3>
-          <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
+      <div class="twocol">
+        <div class="sec-head reveal">
+          <div class="kicker">Was die meisten zurückhält</div>
+          <h2>Du brauchst keinen Entwickler dafür.</h2>
+          <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
         </div>
-        <div class="card reveal">
-          <span class="label">Zu riskant am Live-Shop</span>
-          <h3>Dein Live-Shop bleibt sicher.</h3>
-          <p>Gearbeitet wird an einem duplizierten Theme. Nichts geht automatisch live. Keine Bestellung wird angefasst. Du publishst selbst.</p>
-        </div>
-        <div class="card reveal">
-          <span class="label">KI ist nicht auf Profi-Niveau</span>
-          <h3>Doch, wenn man sie richtig führt.</h3>
-          <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
+        <div class="objs">
+          <div class="obj reveal">
+            <span class="myth">Ich kann nicht coden</span>
+            <h3>Musst du nicht.</h3>
+            <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
+          </div>
+          <div class="obj reveal">
+            <span class="myth">Zu riskant am Live-Shop</span>
+            <h3>Dein Shop bleibt sicher.</h3>
+            <p>Gearbeitet wird am duplizierten Theme. Nichts geht automatisch live. Keine Bestellung wird angefasst. Du publishst selbst.</p>
+          </div>
+          <div class="obj reveal">
+            <span class="myth">KI ist nicht auf Profi-Niveau</span>
+            <h3>Mit der richtigen Führung doch.</h3>
+            <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== STAT / NEUGIER ===================== -->
+  <!-- ===================== KOSTEN / NEUGIER (integrierte Zahl) ===================== -->
   <section>
     <div class="wrap">
-      <div class="grid g2" style="align-items:center;gap:clamp(32px,5vw,72px)">
+      <div class="twocol">
         <div class="reveal">
           <div class="kicker">Rechne mit</div>
-          <div class="stat">5.232<span class="unit">Euro / Jahr</span></div>
-          <p class="lead" style="margin-top:24px">Ein typischer Shopify-App-Stack kostet 436 Euro im Monat. Neun Apps, Jahr für Jahr. Im Webinar zeige ich dir, wie viel davon Code einmalig ersetzt. Du rechnest live mit.</p>
+          <p class="costline" style="margin-top:18px">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
+          <p class="lead" style="margin-top:18px;max-width:34ch">Im Webinar zeige ich dir, wie viel davon Code einmalig ersetzt. Du rechnest live mit.</p>
         </div>
         <div class="card reveal">
-          <span class="label">Was 436 Euro im Monat füttert</span>
-          <ul class="no" style="margin-top:18px">
+          <span class="kicker" style="margin-bottom:4px">436 Euro im Monat</span>
+          <ul class="applist" style="margin-top:16px">
             <li>Shipping-Bar, Cart-Upsell, Sticky-ATC</li>
             <li>Bundle-Builder, Page-Builder, Countdown-Timer</li>
             <li>Lead-Form-Builder</li>
             <li>SEO-Suite</li>
             <li>Analytics-Add-on</li>
+            <li class="tot">Neun Apps. Solange dein Shop läuft.</li>
           </ul>
-          <p class="small" style="margin-top:22px">Neun Abos. Jeden Monat. Solange dein Shop läuft.</p>
         </div>
       </div>
     </div>
@@ -349,33 +415,31 @@
   <section>
     <div class="wrap">
       <div class="cred">
-        <div class="photo reveal">
-          <img src="/shop-ki-founder.webp" alt="Alex, vorflows" loading="lazy" />
-        </div>
+        <div class="photo reveal"><img src="/shop-ki-founder.webp" alt="Alex von vorflows" loading="lazy" /></div>
         <div class="reveal">
           <div class="kicker">Wer das macht</div>
-          <h2 style="margin-top:18px">8 Jahre Online-Marketing.</h2>
-          <p class="lead" style="margin-top:22px">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
-          <ul class="checks" style="margin-top:28px">
+          <h2 style="margin-top:14px">8 Jahre Online-Marketing.</h2>
+          <p class="lead" style="margin-top:16px">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
+          <ul class="checks" style="margin-top:22px">
             <li>Arbeit mit 404, Atlas und Quiver, teils Silicon Valley</li>
             <li>Einer der ersten GPT-Kurse für Fotografen, plus Vorträge</li>
             <li>Programm mit Paddy, Beratung von Marken aus Höhle der Löwen</li>
             <li>Berater für einen der größten Lebensmittel-Hersteller im Land</li>
           </ul>
-          <p class="small" style="margin-top:24px">Vertrauen kommt im Webinar über die Live-Demo, nicht über Eigenwerbung.</p>
+          <p class="small" style="margin-top:20px">Vertrauen kommt im Webinar über die Live-Demo, nicht über Eigenwerbung.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FÜR WEN ===================== -->
+  <!-- ===================== QUALIFIER ===================== -->
   <section>
     <div class="wrap">
-      <div class="grid g2" style="gap:clamp(32px,5vw,72px)">
+      <div class="qual">
         <div class="reveal">
           <div class="kicker">Für dich, wenn</div>
-          <h2 style="margin-top:18px">Du einen laufenden Shop hast.</h2>
-          <ul class="checks" style="margin-top:28px">
+          <h2 style="margin-top:14px">Du einen laufenden Shop hast.</h2>
+          <ul class="checks" style="margin-top:22px">
             <li>Du einen laufenden Shopify-Shop führst</li>
             <li>Du bereit bist, KI-Tools selbst zu nutzen</li>
             <li>Du kein Techniker bist, aber sagen kannst, was du willst</li>
@@ -384,8 +448,8 @@
         </div>
         <div class="reveal">
           <div class="kicker">Nicht für dich, wenn</div>
-          <h2 style="margin-top:18px">Du nur zuschauen willst.</h2>
-          <ul class="no" style="margin-top:28px">
+          <h2 style="margin-top:14px">Du nur zuschauen willst.</h2>
+          <ul class="no" style="margin-top:22px">
             <li>Du noch keinen Shop hast und nur stöbern willst</li>
             <li>Du eine Ein-Klick-App suchst, die alles allein macht</li>
             <li>Du nicht bereit bist, 90 Minuten konzentriert dabei zu sein</li>
@@ -400,16 +464,21 @@
     <div class="vbg"><img src="/brand_assets/webinar/appstack.webp" alt="" aria-hidden="true" /></div>
     <div class="wrap">
       <div class="card reveal">
-        <div class="kicker c">Jetzt anmelden</div>
-        <h2 style="margin-top:18px">Sei live dabei.</h2>
-        <p class="lead" style="margin:22px auto 0">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, wie du es selbst machst.</p>
+        <div class="kicker">Jetzt anmelden</div>
+        <h2>Sei live dabei.</h2>
+        <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, wie du es selbst machst.</p>
         <div class="pills">
-          <span class="pill live"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
+          <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
           <span class="pill">90 Minuten</span>
           <span class="pill">Kostenlos</span>
         </div>
-        <button class="cta lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="cta-sub">Begrenzte Plätze. Wer bis zum Schluss bleibt, bekommt etwas, das ich sonst keinem zeige.</p>
+        <button class="cta" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <p class="cta-sub">90 Minuten. Live. Mit Fragerunde am Ende.</p>
+        <p id="reg-note" role="status" aria-live="polite" hidden>
+          Die Anmeldung wird gerade scharfgeschaltet. Schreib mir kurz an
+          <a href="mailto:alex@adolution.de?subject=Webinar-Platz">alex@adolution.de</a>,
+          ich setze dich sofort auf die Liste.
+        </p>
       </div>
     </div>
   </section>
@@ -417,11 +486,11 @@
   <!-- ===================== FAQ ===================== -->
   <section>
     <div class="wrap">
-      <div class="sec-head"><div class="kicker c">Häufige Fragen</div><h2>Kurz geklärt.</h2></div>
+      <div class="sec-head" style="margin-bottom:24px"><div class="kicker">Häufige Fragen</div><h2>Kurz geklärt.</h2></div>
       <div class="faq">
         <details open>
           <summary>Kostet das Webinar etwas?<span class="plus" aria-hidden="true"></span></summary>
-          <p>Nein. Das Live-Webinar ist kostenlos. Du brauchst nur 90 Minuten und einen Platz, den du dir oben sicherst.</p>
+          <p>Nein. Das Live-Webinar ist kostenlos. Du brauchst 90 Minuten und einen Platz, den du dir oben sicherst.</p>
         </details>
         <details>
           <summary>Brauche ich Vorkenntnisse im Coden?<span class="plus" aria-hidden="true"></span></summary>
@@ -429,7 +498,7 @@
         </details>
         <details>
           <summary>Gibt es eine Aufzeichnung?<span class="plus" aria-hidden="true"></span></summary>
-          <p>Der Wert steckt im Live-Dabeisein: du stellst Fragen und siehst jeden Schritt in Echtzeit. Sei live dabei.</p>
+          <p>Plane fest mit dem Live-Termin. Dort siehst du jeden Schritt in Echtzeit und kannst direkt Fragen stellen. Den vollen Wert hast du nur live.</p>
         </details>
         <details>
           <summary>Für welchen Shop ist das gedacht?<span class="plus" aria-hidden="true"></span></summary>
@@ -437,7 +506,7 @@
         </details>
         <details>
           <summary>Wie lange dauert es?<span class="plus" aria-hidden="true"></span></summary>
-          <p>90 Minuten. Vormittags, damit dein Kopf frei ist. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</p>
+          <p>90 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</p>
         </details>
       </div>
     </div>
@@ -458,16 +527,18 @@
   </footer>
 
   <script>
-    // ---- Webinar-Anmeldung: Popup-Formular-Hook ----
-    // Alle CTA-Buttons tragen data-webinar-cta. Das Formular (WebinarJam / Digistore)
-    // ist noch nicht hinterlegt. Sobald die Einbettung steht, hier öffnen:
-    //   z. B. window.open(REG_URL) oder Popup-Embed triggern.
+    // ---- Termin zentral pflegen (eine Stelle) ----
+    var WEBINAR_DATE = 'Donnerstag, 10:00 Uhr'; // TODO: echten Termin hier setzen
+    document.querySelectorAll('[data-webinar-date]').forEach(function(e){ e.textContent = WEBINAR_DATE; });
+
+    // ---- Sign-up CTA: Übergangszustand, bis das Popup-Formular hinterlegt ist ----
+    // Alle CTA tragen data-webinar-cta. Sobald das Formular (WebinarJam/Digistore)
+    // steht, hier öffnen statt den Hinweis zu zeigen.
     function openWebinarForm(){
-      // TODO: Popup-Formular hier anbinden (noch kein Link hinterlegt).
+      var n = document.getElementById('reg-note');
+      if(n){ n.hidden = false; n.scrollIntoView({behavior:'smooth', block:'center'}); }
     }
-    document.querySelectorAll('[data-webinar-cta]').forEach(function(b){
-      b.addEventListener('click', openWebinarForm);
-    });
+    document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); });
 
     // ---- Reveal on scroll ----
     (function(){
@@ -475,7 +546,7 @@
       if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-      },{rootMargin:'0px 0px -10% 0px',threshold:.12});
+      },{rootMargin:'0px 0px -8% 0px',threshold:.1});
       els.forEach(function(e){ io.observe(e); });
     })();
   </script>
