@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Datenschutz — vorflows</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#FAFAF7" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+  <style>
+    /* vorflows · Rechtstext (Variante B · Homepage-Editorial, ohne Home-Navigation) */
+    :root{
+      --bg-light:#FAFAF7;--bg-dark:#0F0F0F;--text-primary:#1A1A1A;--text-inverse:#EAEAE5;
+      --text-secondary:#5C5C5C;--text-secondary-dark:#8A8A82;--border:#E5E3DD;--border-strong:#C7C4BB;
+      --accent:#C8633E;--accent-hover:#B05530;--ease-out-expo:cubic-bezier(.16,1,.3,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    html,body{overflow-x:clip}
+    body{margin:0;background:var(--bg-light);color:var(--text-primary);font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11"}
+    a{color:inherit}
+    em{font-style:italic}
+    .container{max-width:1200px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+
+    .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.96);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top)}
+    .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .wordmark{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;letter-spacing:-.02em;font-feature-settings:"ss01";color:var(--text-primary);text-decoration:none}
+    .wordmark .flows{font-style:italic;font-weight:500;color:var(--accent)}
+    .nav-back{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color 150ms ease}
+    .nav-back:hover{color:var(--text-primary)}
+    .nav-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+    .legal-hero{padding:64px 0 32px;border-bottom:1px solid var(--border)}
+    .container-prose{max-width:760px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+    .legal-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .legal-h1{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.05;color:var(--text-primary);font-size:clamp(34px,7vw,60px)}
+    .legal-h1 em{font-style:italic;font-weight:400}
+    .legal-lead{font-size:clamp(16px,2.4vw,19px);line-height:1.6;color:var(--text-secondary);margin-top:16px;max-width:56ch}
+    .legal-body{padding:8px 0 72px}
+    .legal-section{padding:32px 0;border-bottom:1px solid var(--border)}
+    .legal-section h2{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.01em;font-size:clamp(20px,3.4vw,26px);color:var(--text-primary);margin-bottom:14px}
+    .legal-section .body{color:var(--text-secondary);font-size:16px;line-height:1.75}
+    .legal-section .body p{margin:0 0 12px}
+    .legal-section .body p:last-child{margin-bottom:0}
+    .legal-section .body strong{display:block;color:var(--text-primary);font-weight:600;margin-bottom:6px}
+    .legal-section .body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(200,99,62,.4)}
+    .legal-section .body a:hover{color:var(--accent-hover)}
+    .id-row{display:inline-block;font-family:'JetBrains Mono',monospace;color:var(--text-primary);background:#fff;border:1px solid var(--border-strong);border-radius:8px;padding:8px 14px;letter-spacing:.04em;margin-top:4px}
+
+    footer{background:var(--bg-dark);color:var(--text-inverse);padding:48px 0 calc(40px + env(safe-area-inset-bottom))}
+    .foot-in{display:flex;flex-direction:column;gap:18px}
+    .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+    .foot-links a{color:var(--text-secondary-dark);text-decoration:none}
+    .foot-links a:hover{color:var(--text-inverse)}
+    .foot-copy{font-size:12px;color:var(--text-secondary-dark);letter-spacing:.02em}
+
+    /* ---------- Cookie-Banner (zentriert, Backdrop-Blur · wie Homepage) ---------- */
+    .cookie-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:460px;text-align:center;background:#FFFFFF;border:1px solid #E5E3DD;border-radius:14px;box-shadow:0 18px 48px rgba(15,15,15,.18),0 2px 8px rgba(15,15,15,.08);padding:22px 22px 20px;z-index:1100;font-family:'Inter',system-ui,sans-serif;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
+    @keyframes cookieRise{from{transform:translate(-50%,calc(-50% + 12px));opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+    .cookie-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.32);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1099;animation:cookieFade 220ms ease-out}
+    .cookie-backdrop[hidden]{display:none}
+    @keyframes cookieFade{from{opacity:0}to{opacity:1}}
+    .cookie-banner[hidden]{display:none}
+    .cookie-title{font-size:14.5px;font-weight:600;margin:0 0 6px;color:#1A1A1A;letter-spacing:-.005em}
+    .cookie-text{font-size:13px;line-height:1.55;color:#5C5C5C;margin:0 0 14px}
+    .cookie-text a{color:#C8633E;border-bottom:1px solid currentColor;text-decoration:none}
+    .cookie-text a:hover{color:#B05530}
+    .cookie-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    .cookie-btn{padding:9px 14px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}
+    .cookie-btn:focus-visible{outline:2px solid #C8633E;outline-offset:2px}
+    .cookie-btn-ghost{background:transparent;color:#5C5C5C;border:1px solid #C7C4BB}
+    .cookie-btn-ghost:hover{color:#1A1A1A;border-color:#1A1A1A}
+    .cookie-btn-primary{background:#C8633E;color:#FFFFFF;border:1px solid #C8633E}
+    .cookie-btn-primary:hover{background:#B05530;border-color:#B05530}
+    @media (max-width:480px){.cookie-banner{width:calc(100% - 24px);padding:18px 16px 16px}.cookie-actions{flex-direction:column-reverse}.cookie-btn{width:100%}}
+  </style>
+</head>
+<body>
+
+  <!-- NAV · kein Home-Link · Wordmark statisch, Back führt nur zum Workshop -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <span class="wordmark">vor<span class="flows">flows</span></span>
+        <a class="nav-back" href="/live-workshop-b" aria-label="Zurück zum Live-Workshop">&larr;&nbsp;Zum Workshop</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+  <header class="legal-hero">
+      <div class="container-prose">
+        <div class="meta legal-eyebrow">Rechtliches</div>
+        <h1 class="legal-h1">Datenschutz&shy;erklärung.</h1>
+        <p class="legal-stamp">Stand: April 2026</p>
+        <p class="legal-lead">Informationen zur Verarbeitung personenbezogener Daten beim Besuch von vorflows.com gemäß Art. 13, 14 DSGVO.</p>
+
+        <nav class="toc" aria-label="Inhaltsverzeichnis">
+          <p class="toc-head">// Inhalt</p>
+          <ol class="toc-list">
+            <li><a href="#sec-1"><span class="num">01</span>Verantwortlicher</a></li>
+            <li><a href="#sec-2"><span class="num">02</span>Allgemeines</a></li>
+            <li><a href="#sec-3"><span class="num">03</span>Hosting & Server-Logs</a></li>
+            <li><a href="#sec-4"><span class="num">04</span>Waitlist-Formular & EmailJS</a></li>
+            <li><a href="#sec-5"><span class="num">05</span>Meta Pixel & Conversions API</a></li>
+            <li><a href="#sec-6"><span class="num">06</span>Microsoft Clarity</a></li>
+            <li><a href="#sec-7"><span class="num">07</span>Google Ads Conversion-Tracking</a></li>
+            <li><a href="#sec-8"><span class="num">08</span>Cookies & lokaler Speicher</a></li>
+            <li><a href="#sec-9"><span class="num">09</span>Ihre Rechte</a></li>
+            <li><a href="#sec-10"><span class="num">10</span>Aktualität</a></li>
+          </ol>
+        </nav>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <main class="legal-body">
+      <div class="container-prose">
+
+        <section class="ds-section" id="sec-1">
+          <h2><span class="num">// 01</span>Verantwortlicher</h2>
+          <p>
+            AMD Media GmbH<br>
+            c/o Pioneers Club, Ritterstraße 8, 33602 Bielefeld<br>
+            E-Mail: <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+          </p>
+          <p class="muted">
+            Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze sowie sonstiger datenschutzrechtlicher Bestimmungen ist die oben genannte Gesellschaft.
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-2">
+          <h2><span class="num">// 02</span>Allgemeines zur Datenverarbeitung</h2>
+          <p>
+            Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen Gründen nicht möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.
+          </p>
+          <h3>Rechtsgrundlagen</h3>
+          <ul>
+            <li>Art. 6 Abs. 1 lit. a DSGVO — Einwilligung</li>
+            <li>Art. 6 Abs. 1 lit. b DSGVO — Vertragserfüllung / vorvertragliche Maßnahmen</li>
+            <li>Art. 6 Abs. 1 lit. f DSGVO — berechtigte Interessen</li>
+          </ul>
+          <h3>Datenlöschung und Speicherdauer</h3>
+          <p>
+            Die personenbezogenen Daten der betroffenen Person werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt. Eine darüber hinausgehende Speicherung kann erfolgen, wenn dies durch europäische oder nationale Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder sonstigen Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde (z. B. steuerliche Aufbewahrungsfristen).
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-3">
+          <h2><span class="num">// 03</span>Hosting & Server-Log-Dateien</h2>
+          <p>
+            Der Anbieter der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:
+          </p>
+          <ul>
+            <li>Browsertyp und Browserversion</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Referrer URL</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>Uhrzeit der Serveranfrage</li>
+            <li>IP-Adresse (anonymisiert)</li>
+          </ul>
+          <p>
+            Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website).
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-4">
+          <h2><span class="num">// 04</span>Waitlist-Formular & EmailJS</h2>
+          <p>
+            Wenn Sie sich über das Waitlist-Formular auf unserer Website eintragen, verarbeiten wir die folgenden, von Ihnen eingegebenen Daten zum Zweck der Aufnahme in unsere Vorab-Registrierungsliste und zur späteren Kontaktaufnahme zum Produkt-Launch:
+          </p>
+          <ul>
+            <li>Vorname</li>
+            <li>E-Mail-Adresse</li>
+            <li>Ausgewählter Plan / Auslöser des Formulars (z. B. „pricing-bundle", „hero-primary")</li>
+            <li>URL der aufgerufenen Seite zum Zeitpunkt der Übermittlung</li>
+            <li>Zeitstempel der Übermittlung</li>
+          </ul>
+          <p>
+            Die Übermittlung erfolgt über den Dienstleister <strong>EmailJS</strong> (EmailJS Inc., 27 Sand Pebble Lane, Bristol, RI 02809, USA), der die Daten an unser internes Postfach weiterleitet. EmailJS verarbeitet die Daten auf Servern in den USA. Die Übertragung in ein Drittland erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework (Beschluss vom 10.07.2023). Ergänzend werden Standardvertragsklauseln der EU-Kommission abgeschlossen.
+          </p>
+          <p>
+            Die Daten werden ausschließlich zur Beantwortung Ihrer Waitlist-Eintragung sowie zur Information über den Produkt-Launch verwendet und nicht an unbeteiligte Dritte weitergegeben. Eine Speicherung erfolgt bis zum Launch und maximal 24 Monate, sofern Sie Ihre Eintragung nicht zuvor widerrufen.
+          </p>
+          <p>
+            <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage) sowie Art. 6 Abs. 1 lit. a DSGVO (Einwilligung in die Aufnahme in die Waitlist).
+          </p>
+          <div class="source-line">
+            Datenschutzerklärung EmailJS: <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">emailjs.com/legal/privacy-policy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-5">
+          <h2><span class="num">// 05</span>Meta Pixel & Meta Conversions API</h2>
+          <p>
+            Auf Grundlage Ihrer ausdrücklichen Einwilligung nutzen wir den <strong>Meta Pixel</strong> sowie die <strong>Meta Conversions API</strong> der Meta Platforms Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland („Meta"). Beide Werkzeuge dienen der Messung des Werbeerfolgs unserer Kampagnen sowie der Auslieferung anzeigenrelevanter Inhalte.
+          </p>
+
+          <h3>Zweck der Verarbeitung</h3>
+          <ul>
+            <li>Messung der Wirksamkeit unserer Werbeanzeigen auf Facebook und Instagram</li>
+            <li>Bildung von Zielgruppen (Custom Audiences, Lookalike Audiences) zur Auslieferung passgenauer Werbung</li>
+            <li>Optimierung von Kampagnen durch Conversion-Tracking (z. B. Waitlist-Eintragung)</li>
+          </ul>
+
+          <h3>Meta Pixel (clientseitig)</h3>
+          <p>
+            Der Meta Pixel ist ein JavaScript-Code, der in Ihrem Browser ausgeführt wird und Cookies setzt (siehe Abschnitt 07). Erfasst werden Seitenaufrufe sowie von Ihnen ausgelöste Ereignisse (z. B. Scroll-Tiefe, Klick auf einen Call-to-Action, erfolgreiche Formularabsendung).
+          </p>
+
+          <h3>Meta Conversions API (serverseitig)</h3>
+          <p>
+            Ergänzend übermitteln wir Conversion-Ereignisse direkt von unserem Server (Hosting bei Vercel) an Meta. Dies dient der Verbesserung der Datenqualität, insbesondere wenn Browser-Tracking durch Adblocker, Browsereinstellungen oder iOS-Restriktionen eingeschränkt ist. Browser- und Server-Ereignisse werden über eine eindeutige Event-ID dedupliziert, sodass Ereignisse nicht doppelt gezählt werden.
+          </p>
+
+          <h3>Verarbeitete Daten und Datenfelder</h3>
+          <p>An Meta werden folgende Daten übermittelt:</p>
+          <ul>
+            <li>Ereignisname (z. B. „PageView", „ViewContent", „AddToCart", „Lead")</li>
+            <li>Zeitstempel und URL der aufgerufenen Seite</li>
+            <li>IP-Adresse</li>
+            <li>User-Agent (Browser- und Geräteinformationen)</li>
+            <li>Pixel-Cookies (<code>_fbp</code>, <code>_fbc</code>) zur Wiedererkennung</li>
+            <li>Meta-Klick-ID (<code>fbclid</code>) bei Aufruf über eine Meta-Werbeanzeige</li>
+            <li>Pseudonyme Geräte-Kennung (<code>external_id</code>, vor Übertragung gehasht via SHA-256)</li>
+            <li>Geo-Informationen (Land, Region, Stadt, Postleitzahl) abgeleitet aus der IP-Adresse, vor Übertragung gehasht</li>
+            <li>Bei einer Waitlist-Eintragung zusätzlich: Vorname und E-Mail-Adresse, beide vor Übertragung mit SHA-256 gehasht</li>
+            <li>Conversion-Wert und Währung (z. B. zu welchem ausgewählten Plan ein Lead erfolgte)</li>
+          </ul>
+          <p>
+            E-Mail-Adresse, Vorname, Geräte-Kennung sowie Geo-Daten werden vor Übertragung an Meta auf unserem Server mittels SHA-256 irreversibel gehasht. Eine direkte Identifizierung Ihrer Person durch Meta auf Grundlage dieser gehashten Werte ist nicht möglich; Meta kann jedoch durch Abgleich mit eigenen Datensätzen eine Zuordnung zu einem Meta-Konto vornehmen, sofern eines existiert.
+          </p>
+
+          <h3>Datenübertragung in Drittländer (USA)</h3>
+          <p>
+            Meta Platforms, Inc. mit Sitz in den USA hat Zugriff auf die Daten. Die Übertragung erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework vom 10.07.2023. Meta Platforms, Inc. ist unter dem Data Privacy Framework zertifiziert. Ergänzend kommen Standardvertragsklauseln der EU-Kommission zur Anwendung.
+          </p>
+
+          <h3>Gemeinsame Verantwortlichkeit</h3>
+          <p>
+            Für den Einsatz des Meta Pixels und der Conversions API sind wir und Meta gemeinsam Verantwortliche im Sinne des Art. 26 DSGVO, soweit es um die Erhebung und Übermittlung der Daten an Meta geht. Eine entsprechende Vereinbarung haben wir mit Meta abgeschlossen: <a href="https://www.facebook.com/legal/controller_addendum" target="_blank" rel="noopener">facebook.com/legal/controller_addendum</a>. Die nachgelagerte Verarbeitung der Daten durch Meta zu eigenen Zwecken erfolgt in alleiniger Verantwortung von Meta.
+          </p>
+
+          <h3>Speicherdauer</h3>
+          <p>
+            Cookies des Meta Pixels werden bis zu 90 Tage in Ihrem Browser gespeichert. Auf Server-Seite werden Ereignisse direkt nach erfolgreicher Übermittlung an Meta verworfen — wir betreiben kein eigenes Tracking-Archiv. Die Speicherdauer bei Meta richtet sich nach den dortigen Datenschutzbestimmungen.
+          </p>
+
+          <h3>Rechtsgrundlage</h3>
+          <p>
+            Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG (Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz, ehemals TTDSG) für das Setzen und Auslesen von Cookies und ähnlichen Technologien.
+          </p>
+
+          <h3>Widerruf der Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Klicken Sie hierzu im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> und wählen Sie „Nur notwendige". Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+          </p>
+          <p>
+            Zusätzlich können Sie der personalisierten Werbung in Ihrem Meta-Konto widersprechen: <a href="https://accountscenter.facebook.com/ad_preferences" target="_blank" rel="noopener">accountscenter.facebook.com/ad_preferences</a>.
+          </p>
+
+          <div class="source-line">
+            Datenschutzerklärung Meta: <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy/policy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-6">
+          <h2><span class="num">// 06</span>Microsoft Clarity</h2>
+          <p>
+            Auf Grundlage Ihrer ausdrücklichen Einwilligung nutzen wir <strong>Microsoft Clarity</strong> der Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, D18 P521, Irland („Microsoft"). Clarity ist ein Tool zur Analyse des Nutzerverhaltens auf unserer Website (Heatmaps, Session-Aufzeichnungen, Klick- und Scroll-Verhalten).
+          </p>
+
+          <h3>Zweck der Verarbeitung</h3>
+          <ul>
+            <li>Analyse des Nutzerverhaltens (Klicks, Scroll-Tiefe, Maus-Bewegungen) zur Verbesserung der Website-Usability</li>
+            <li>Erkennung und Behebung technischer Fehler im Frontend (z. B. „Rage Clicks", abgebrochene Interaktionen)</li>
+            <li>Erstellung aggregierter Heatmaps und anonymisierter Session-Aufzeichnungen zur Optimierung von Layout, Conversion-Pfaden und Inhalten</li>
+          </ul>
+
+          <h3>Verarbeitete Daten</h3>
+          <ul>
+            <li>Geräteinformationen (Bildschirmauflösung, Browser, Betriebssystem)</li>
+            <li>Gekürzte/anonymisierte IP-Adresse</li>
+            <li>Referrer-URL und besuchte Seiten innerhalb von vorflows.com</li>
+            <li>Mausbewegungen, Klicks, Scroll-Verhalten, Tastatur-Interaktionen (ohne erfasste Eingabewerte — Formularinhalte werden vor der Aufzeichnung maskiert)</li>
+            <li>Pseudonyme Session- und User-IDs in Cookies (siehe Abschnitt 07)</li>
+            <li>Ungefährer geografischer Standort (Land/Region) abgeleitet aus der IP-Adresse</li>
+          </ul>
+          <p>
+            Texte, die Sie in Formularfelder eingeben, werden von Clarity standardmäßig maskiert und nicht in Aufzeichnungen sichtbar. Es findet keine Aufzeichnung von Passwörtern oder Zahlungsdaten statt.
+          </p>
+
+          <h3>Datenübertragung in Drittländer (USA)</h3>
+          <p>
+            Microsoft Corporation mit Sitz in den USA hat Zugriff auf die Daten. Die Übertragung erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework vom 10.07.2023. Microsoft Corporation ist unter dem Data Privacy Framework zertifiziert. Ergänzend kommen Standardvertragsklauseln der EU-Kommission zur Anwendung.
+          </p>
+
+          <h3>Speicherdauer</h3>
+          <p>
+            Clarity speichert Sitzungsdaten standardmäßig für bis zu <strong>13 Monate</strong>. Die Cookies in Ihrem Browser haben eine Lebensdauer von wenigen Tagen bis zu einem Jahr (siehe Abschnitt 07).
+          </p>
+
+          <h3>Rechtsgrundlage</h3>
+          <p>
+            Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG.
+          </p>
+
+          <h3>Widerruf der Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Klicken Sie hierzu im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> und wählen Sie „Nur notwendige". Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+          </p>
+
+          <div class="source-line">
+            Datenschutzerklärung Microsoft: <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener">privacy.microsoft.com/de-de/privacystatement</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-7">
+          <h2><span class="num">// 07</span>Google Ads Conversion-Tracking</h2>
+          <p>
+            Auf Grundlage Ihrer ausdrücklichen Einwilligung nutzen wir das <strong>Google Ads Conversion-Tracking</strong> sowie <strong>Google Ads Remarketing</strong> der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google"). Conversion-Tracking dient der Messung des Werbeerfolgs unserer Google-Ads-Kampagnen.
+          </p>
+
+          <h3>Zweck der Verarbeitung</h3>
+          <ul>
+            <li>Messung der Wirksamkeit unserer Werbeanzeigen im Google-Werbenetzwerk (Suche, Display, YouTube)</li>
+            <li>Optimierung von Kampagnen anhand von Conversion-Ereignissen (z. B. Klick auf Bundle-CTA, Kaufabschluss)</li>
+            <li>Bildung pseudonymer Zielgruppen (Remarketing) zur Wiederansprache von Website-Besuchern</li>
+          </ul>
+
+          <h3>Funktionsweise</h3>
+          <p>
+            Beim Klick auf eine Google-Ads-Anzeige speichert Google die <strong>Google-Klick-ID (GCLID)</strong> als URL-Parameter. Beim Aufruf unserer Website wird über das <code>gtag.js</code>-Skript ein Cookie (<code>_gcl_aw</code>) gesetzt, das die GCLID für die spätere Conversion-Zuordnung speichert. Wenn Sie auf unseren Bundle-CTA klicken oder einen Kauf über unseren Zahlungsabwickler Digistore24 abschließen, wird ein Conversion-Ereignis ausgelöst und an Google übermittelt.
+          </p>
+
+          <h3>Verarbeitete Daten</h3>
+          <ul>
+            <li>Google-Klick-ID (<code>gclid</code>) bei Aufruf über eine Google-Ads-Anzeige</li>
+            <li>Conversion-Ereignisname (z. B. „pricing_view", „begin_checkout", „purchase")</li>
+            <li>Conversion-Wert und Währung (z. B. 297 EUR bei Kaufabschluss)</li>
+            <li>Pseudonyme Transaktions-ID bei Kaufabschluss (zur Vermeidung von Doppelzählungen)</li>
+            <li>IP-Adresse, User-Agent und Geräteinformationen</li>
+            <li>Cookies <code>_gcl_aw</code>, <code>_gcl_au</code> zur Wiedererkennung des Klicks (siehe Abschnitt 08)</li>
+          </ul>
+
+          <h3>Cross-Domain-Attribution via Digistore24</h3>
+          <p>
+            Da die Kaufabwicklung und Bestellbestätigung über unseren Zahlungsabwickler Digistore24 erfolgt (eigene Domain), übergeben wir die Google-Klick-ID (GCLID) als URL-Parameter an Digistore24 weiter. Auf der Bestätigungsseite löst ein von Digistore24 eingebundener Conversion-Pixel mit der pseudonymen Bestellnummer (<code>order_id</code>), dem Bestellwert und der Währung das Kauf-Conversion-Ereignis bei Google aus. Es werden ausschließlich pseudonyme Transaktionsdaten übertragen — keine Klarnamen, E-Mail-Adressen oder Zahlungsinformationen.
+          </p>
+
+          <h3>Datenübertragung in Drittländer (USA)</h3>
+          <p>
+            Google LLC mit Sitz in den USA hat Zugriff auf die Daten. Die Übertragung erfolgt auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-U.S. Data Privacy Framework vom 10.07.2023. Google LLC ist unter dem Data Privacy Framework zertifiziert. Ergänzend kommen Standardvertragsklauseln der EU-Kommission zur Anwendung.
+          </p>
+
+          <h3>Speicherdauer</h3>
+          <p>
+            Conversion-Cookies haben eine Lebensdauer von bis zu <strong>90 Tagen</strong>. Aggregierte Conversion-Daten werden in unserem Google-Ads-Konto bis zu 25 Monate gespeichert.
+          </p>
+
+          <h3>Rechtsgrundlage</h3>
+          <p>
+            Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG.
+          </p>
+
+          <h3>Widerruf der Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Klicken Sie hierzu im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> und wählen Sie „Nur notwendige". Zusätzlich können Sie der personalisierten Werbung in Ihrem Google-Konto widersprechen: <a href="https://adssettings.google.com/" target="_blank" rel="noopener">adssettings.google.com</a>.
+          </p>
+
+          <div class="source-line">
+            Datenschutzerklärung Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="sec-8">
+          <h2><span class="num">// 08</span>Cookies & lokaler Speicher</h2>
+          <p>
+            Wir verwenden Cookies sowie den lokalen Speicher Ihres Browsers (Local Storage). Diese sind kleine Datenmengen, die auf Ihrem Endgerät gespeichert werden. Rechtsgrundlage für nicht-notwendige Cookies und Local-Storage-Einträge ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TDDDG.
+          </p>
+
+          <h3>Technisch notwendige Speicherzugriffe</h3>
+          <p>
+            Diese sind für den Betrieb der Website erforderlich und werden ohne Einwilligung gesetzt (§ 25 Abs. 2 Nr. 2 TDDDG):
+          </p>
+          <ul>
+            <li><code>vf_consent</code> (Local Storage) — speichert Ihre Cookie-Entscheidung („granted" oder „denied"), damit der Banner nicht erneut angezeigt wird. Speicherdauer: bis zum Löschen durch Sie oder bis Sie die Auswahl widerrufen.</li>
+          </ul>
+
+          <h3>Marketing- und Analyse-Cookies und ähnliche Technologien (nur mit Einwilligung)</h3>
+          <p>
+            Diese werden ausschließlich nach Ihrer ausdrücklichen Einwilligung gesetzt. Details siehe Abschnitte 05 und 06:
+          </p>
+          <ul>
+            <li><code>_fbp</code> (Cookie, Meta Pixel) — pseudonyme Browserkennung. Speicherdauer: 90 Tage.</li>
+            <li><code>_fbc</code> (Cookie, Meta Pixel) — Klick-ID einer Meta-Werbeanzeige. Speicherdauer: 90 Tage. Wird nur gesetzt, wenn Sie unsere Seite über eine Meta-Anzeige aufrufen.</li>
+            <li><code>vf_ext_id</code> (Local Storage) — pseudonyme, sitzungsübergreifende Kennung zur Verbesserung der Conversion-Zuordnung. Speicherdauer: bis zum Löschen oder Widerruf.</li>
+            <li><code>vf_known_email</code> / <code>vf_known_first_name</code> (Local Storage) — speichern Vorname und E-Mail-Adresse einer erfolgreichen Waitlist-Eintragung lokal in Ihrem Browser, um diese bei Folgebesuchen erneut (gehasht) an Meta zu übermitteln und so die Zuordnung zu verbessern. Speicherdauer: bis zum Löschen oder Widerruf.</li>
+            <li><code>_clck</code> (Cookie, Microsoft Clarity) — pseudonyme User-ID. Speicherdauer: 1 Jahr.</li>
+            <li><code>_clsk</code> (Cookie, Microsoft Clarity) — verknüpft mehrere Seitenaufrufe einer Sitzung. Speicherdauer: 1 Tag.</li>
+            <li><code>CLID</code>, <code>ANONCHK</code>, <code>MR</code>, <code>MUID</code>, <code>SM</code> (Cookies, Microsoft) — von Clarity gesetzte Kennungen für Sitzungs- und Telemetriezwecke. Speicherdauer: 1 Tag bis 1 Jahr.</li>
+            <li><code>_gcl_aw</code> (Cookie, Google Ads) — speichert die Google-Klick-ID (GCLID) zur Conversion-Zuordnung. Speicherdauer: 90 Tage. Wird nur gesetzt, wenn Sie unsere Seite über eine Google-Ads-Anzeige aufrufen.</li>
+            <li><code>_gcl_au</code> (Cookie, Google) — pseudonyme Klick-Kennung für Conversion-Messung im Display-Netzwerk. Speicherdauer: 90 Tage.</li>
+            <li><code>vf_gclid</code> (Cookie, vorflows) — speichert die Google-Klick-ID zur Weitergabe an unseren Zahlungsabwickler Digistore24 für die Kauf-Conversion. Speicherdauer: 90 Tage.</li>
+          </ul>
+
+          <h3>Verwaltung Ihrer Einwilligung</h3>
+          <p>
+            Sie können Ihre Einwilligung jederzeit widerrufen oder anpassen, indem Sie im Footer auf <a href="#" data-cookie-reopen>„Cookie-Einstellungen"</a> klicken. Bei Widerruf werden keine neuen Marketing-Cookies oder Local-Storage-Einträge mehr gesetzt. Bereits gesetzte Marketing-Cookies bleiben technisch bestehen, bis sie ablaufen oder Sie sie über Ihre Browser-Einstellungen löschen.
+          </p>
+          <p>
+            Über die Einstellungen Ihres Browsers können Sie Cookies generell blockieren oder löschen. Eine Anleitung finden Sie in der Hilfe Ihres Browsers. Beachten Sie, dass das vollständige Blockieren bestimmter Cookies die Funktionalität der Website einschränken kann.
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-9">
+          <h2><span class="num">// 09</span>Ihre Rechte</h2>
+          <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+          <ul>
+            <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO)</li>
+            <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO)</li>
+            <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO)</li>
+            <li><strong>Recht auf Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+            <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+            <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO)</li>
+            <li><strong>Recht auf Widerruf einer Einwilligung</strong> (Art. 7 Abs. 3 DSGVO)</li>
+          </ul>
+          <p>
+            Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+          </p>
+          <p>
+            Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Die zuständige Aufsichtsbehörde für Nordrhein-Westfalen ist die Landesbeauftragte für Datenschutz und Informationsfreiheit NRW: <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">ldi.nrw.de</a>
+          </p>
+        </section>
+
+        <section class="ds-section" id="sec-10">
+          <h2><span class="num">// 10</span>Aktualität dieser Datenschutzerklärung</h2>
+          <p>
+            Diese Datenschutzerklärung hat den Stand April 2026. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.
+          </p>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- FOOTER · ohne Startseite-Link -->
+  <footer>
+    <div class="container">
+      <div class="foot-in">
+        <span class="wordmark" style="color:var(--text-inverse)">vor<span class="flows">flows</span></span>
+        <nav class="foot-links">
+          <a href="/impressum-lw-b">Impressum</a>
+          <a href="/datenschutz-lw-b">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">Kontakt</a>
+        </nav>
+        <span class="foot-copy">© 2026 vorflows</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== COOKIE-BANNER (Test-Modus) ===================== -->
+  <div class="cookie-backdrop" id="cookieBackdrop" hidden></div>
+  <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+    <p class="cookie-title" id="cookieTitle">Cookies &amp; Tracking</p>
+    <p class="cookie-text" id="cookieText">
+      Wir nutzen Cookies und ähnliche Technologien (u.&nbsp;a. Meta Pixel &amp; Conversions API, Microsoft Clarity, Google Ads Conversion-Tracking) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz-lw-b">Datenschutzerklärung</a>.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
+      <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAccept">Alle akzeptieren</button>
+    </div>
+  </div>
+
+  <script>
+    /* Cookie-Banner · TEST-MODUS: beide Buttons schliessen nur das Banner.
+       Es wird kein Tracking geladen und nichts geblockt. */
+    (function(){
+      var KEY = 'vf_lw_cookie';
+      var banner = document.getElementById('cookieBanner');
+      var backdrop = document.getElementById('cookieBackdrop');
+      if(!banner || !backdrop) return;
+      var seen = null; try { seen = localStorage.getItem(KEY); } catch(e) {}
+      if(!seen){ banner.hidden = false; backdrop.hidden = false; }
+      function dismiss(){
+        banner.hidden = true; backdrop.hidden = true;
+        try { localStorage.setItem(KEY, '1'); } catch(e) {}
+      }
+      var a = document.getElementById('cookieAccept'); if(a) a.addEventListener('click', dismiss);
+      var d = document.getElementById('cookieDecline'); if(d) d.addEventListener('click', dismiss);
+    })();
+  </script>
+</body>
+</html>

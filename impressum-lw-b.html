@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Impressum — vorflows</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#FAFAF7" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+  <style>
+    /* vorflows · Rechtstext (Variante B · Homepage-Editorial, ohne Home-Navigation) */
+    :root{
+      --bg-light:#FAFAF7;--bg-dark:#0F0F0F;--text-primary:#1A1A1A;--text-inverse:#EAEAE5;
+      --text-secondary:#5C5C5C;--text-secondary-dark:#8A8A82;--border:#E5E3DD;--border-strong:#C7C4BB;
+      --accent:#C8633E;--accent-hover:#B05530;--ease-out-expo:cubic-bezier(.16,1,.3,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    html,body{overflow-x:clip}
+    body{margin:0;background:var(--bg-light);color:var(--text-primary);font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11"}
+    a{color:inherit}
+    em{font-style:italic}
+    .container{max-width:1200px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+
+    .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.96);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top)}
+    .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .wordmark{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;letter-spacing:-.02em;font-feature-settings:"ss01";color:var(--text-primary);text-decoration:none}
+    .wordmark .flows{font-style:italic;font-weight:500;color:var(--accent)}
+    .nav-back{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color 150ms ease}
+    .nav-back:hover{color:var(--text-primary)}
+    .nav-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+    .legal-hero{padding:64px 0 32px;border-bottom:1px solid var(--border)}
+    .container-prose{max-width:760px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+    .legal-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .legal-h1{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.05;color:var(--text-primary);font-size:clamp(34px,7vw,60px)}
+    .legal-h1 em{font-style:italic;font-weight:400}
+    .legal-lead{font-size:clamp(16px,2.4vw,19px);line-height:1.6;color:var(--text-secondary);margin-top:16px;max-width:56ch}
+    .legal-body{padding:8px 0 72px}
+    .legal-section{padding:32px 0;border-bottom:1px solid var(--border)}
+    .legal-section h2{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.01em;font-size:clamp(20px,3.4vw,26px);color:var(--text-primary);margin-bottom:14px}
+    .legal-section .body{color:var(--text-secondary);font-size:16px;line-height:1.75}
+    .legal-section .body p{margin:0 0 12px}
+    .legal-section .body p:last-child{margin-bottom:0}
+    .legal-section .body strong{display:block;color:var(--text-primary);font-weight:600;margin-bottom:6px}
+    .legal-section .body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(200,99,62,.4)}
+    .legal-section .body a:hover{color:var(--accent-hover)}
+    .id-row{display:inline-block;font-family:'JetBrains Mono',monospace;color:var(--text-primary);background:#fff;border:1px solid var(--border-strong);border-radius:8px;padding:8px 14px;letter-spacing:.04em;margin-top:4px}
+
+    footer{background:var(--bg-dark);color:var(--text-inverse);padding:48px 0 calc(40px + env(safe-area-inset-bottom))}
+    .foot-in{display:flex;flex-direction:column;gap:18px}
+    .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+    .foot-links a{color:var(--text-secondary-dark);text-decoration:none}
+    .foot-links a:hover{color:var(--text-inverse)}
+    .foot-copy{font-size:12px;color:var(--text-secondary-dark);letter-spacing:.02em}
+
+    /* ---------- Cookie-Banner (zentriert, Backdrop-Blur · wie Homepage) ---------- */
+    .cookie-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:460px;text-align:center;background:#FFFFFF;border:1px solid #E5E3DD;border-radius:14px;box-shadow:0 18px 48px rgba(15,15,15,.18),0 2px 8px rgba(15,15,15,.08);padding:22px 22px 20px;z-index:1100;font-family:'Inter',system-ui,sans-serif;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
+    @keyframes cookieRise{from{transform:translate(-50%,calc(-50% + 12px));opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+    .cookie-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.32);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1099;animation:cookieFade 220ms ease-out}
+    .cookie-backdrop[hidden]{display:none}
+    @keyframes cookieFade{from{opacity:0}to{opacity:1}}
+    .cookie-banner[hidden]{display:none}
+    .cookie-title{font-size:14.5px;font-weight:600;margin:0 0 6px;color:#1A1A1A;letter-spacing:-.005em}
+    .cookie-text{font-size:13px;line-height:1.55;color:#5C5C5C;margin:0 0 14px}
+    .cookie-text a{color:#C8633E;border-bottom:1px solid currentColor;text-decoration:none}
+    .cookie-text a:hover{color:#B05530}
+    .cookie-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    .cookie-btn{padding:9px 14px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}
+    .cookie-btn:focus-visible{outline:2px solid #C8633E;outline-offset:2px}
+    .cookie-btn-ghost{background:transparent;color:#5C5C5C;border:1px solid #C7C4BB}
+    .cookie-btn-ghost:hover{color:#1A1A1A;border-color:#1A1A1A}
+    .cookie-btn-primary{background:#C8633E;color:#FFFFFF;border:1px solid #C8633E}
+    .cookie-btn-primary:hover{background:#B05530;border-color:#B05530}
+    @media (max-width:480px){.cookie-banner{width:calc(100% - 24px);padding:18px 16px 16px}.cookie-actions{flex-direction:column-reverse}.cookie-btn{width:100%}}
+  </style>
+</head>
+<body>
+
+  <!-- NAV · kein Home-Link · Wordmark statisch, Back führt nur zum Workshop -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <span class="wordmark">vor<span class="flows">flows</span></span>
+        <a class="nav-back" href="/live-workshop-b" aria-label="Zurück zum Live-Workshop">&larr;&nbsp;Zum Workshop</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+  <header class="legal-hero">
+      <div class="container-prose">
+        <div class="meta legal-eyebrow">Rechtliches</div>
+        <h1 class="legal-h1">Impressum.</h1>
+        <p class="legal-lead">Anbieterkennzeichnung gemäß § 5 TMG. Verantwortlich für den Inhalt von vorflows.</p>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <main class="legal-body">
+      <div class="container-prose">
+
+        <section class="legal-section">
+          <h2>§ 5 TMG</h2>
+          <div class="body">
+            <strong>AMD Media GmbH</strong>
+            <p>
+              c/o Pioneers Club<br>
+              Ritterstraße 8<br>
+              33602 Bielefeld<br>
+              Deutschland
+            </p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Umsatzsteuer-ID</h2>
+          <div class="body">
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:</p>
+            <div class="id-row">DE455571717</div>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Kontakt</h2>
+          <div class="body">
+            <p>E-Mail: <a href="mailto:alex@adolution.de">alex@adolution.de</a></p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Verantwortlich i.S.d. § 18 Abs. 2 MStV</h2>
+          <div class="body">
+            <p>
+              Alexander Maja Undalex<br>
+              c/o AMD Media GmbH, Ritterstraße 8, 33602 Bielefeld
+            </p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>EU-Streitschlichtung</h2>
+          <div class="body">
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+              <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.
+              Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
+            <p>
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Haftung für Inhalte</h2>
+          <div class="body">
+            <p>
+              Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+            </p>
+            <p>
+              Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+            </p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Haftung für Links</h2>
+          <div class="body">
+            <p>
+              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+            </p>
+            <p>
+              Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+            </p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Urheberrecht</h2>
+          <div class="body">
+            <p>
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- FOOTER · ohne Startseite-Link -->
+  <footer>
+    <div class="container">
+      <div class="foot-in">
+        <span class="wordmark" style="color:var(--text-inverse)">vor<span class="flows">flows</span></span>
+        <nav class="foot-links">
+          <a href="/impressum-lw-b">Impressum</a>
+          <a href="/datenschutz-lw-b">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">Kontakt</a>
+        </nav>
+        <span class="foot-copy">© 2026 vorflows</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== COOKIE-BANNER (Test-Modus) ===================== -->
+  <div class="cookie-backdrop" id="cookieBackdrop" hidden></div>
+  <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+    <p class="cookie-title" id="cookieTitle">Cookies &amp; Tracking</p>
+    <p class="cookie-text" id="cookieText">
+      Wir nutzen Cookies und ähnliche Technologien (u.&nbsp;a. Meta Pixel &amp; Conversions API, Microsoft Clarity, Google Ads Conversion-Tracking) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz-lw-b">Datenschutzerklärung</a>.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
+      <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAccept">Alle akzeptieren</button>
+    </div>
+  </div>
+
+  <script>
+    /* Cookie-Banner · TEST-MODUS: beide Buttons schliessen nur das Banner.
+       Es wird kein Tracking geladen und nichts geblockt. */
+    (function(){
+      var KEY = 'vf_lw_cookie';
+      var banner = document.getElementById('cookieBanner');
+      var backdrop = document.getElementById('cookieBackdrop');
+      if(!banner || !backdrop) return;
+      var seen = null; try { seen = localStorage.getItem(KEY); } catch(e) {}
+      if(!seen){ banner.hidden = false; backdrop.hidden = false; }
+      function dismiss(){
+        banner.hidden = true; backdrop.hidden = true;
+        try { localStorage.setItem(KEY, '1'); } catch(e) {}
+      }
+      var a = document.getElementById('cookieAccept'); if(a) a.addEventListener('click', dismiss);
+      var d = document.getElementById('cookieDecline'); if(d) d.addEventListener('click', dismiss);
+    })();
+  </script>
+</body>
+</html>

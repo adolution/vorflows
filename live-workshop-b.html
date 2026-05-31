@@ -279,9 +279,28 @@
       html{scroll-behavior:auto}
       .btn,.faq-item summary::after{transition:none}
     }
+    /* ---------- Cookie-Banner (zentriert, Backdrop-Blur · wie Homepage · Test-Modus) ---------- */
+    .cookie-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:460px;text-align:center;background:#FFFFFF;border:1px solid #E5E3DD;border-radius:14px;box-shadow:0 18px 48px rgba(15,15,15,.18),0 2px 8px rgba(15,15,15,.08);padding:22px 22px 20px;z-index:1100;font-family:'Inter',system-ui,sans-serif;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
+    @keyframes cookieRise{from{transform:translate(-50%,calc(-50% + 12px));opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+    .cookie-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.32);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1099;animation:cookieFade 220ms ease-out}
+    .cookie-backdrop[hidden]{display:none}
+    @keyframes cookieFade{from{opacity:0}to{opacity:1}}
+    .cookie-banner[hidden]{display:none}
+    .cookie-title{font-size:14.5px;font-weight:600;margin:0 0 6px;color:#1A1A1A;letter-spacing:-.005em}
+    .cookie-text{font-size:13px;line-height:1.55;color:#5C5C5C;margin:0 0 14px}
+    .cookie-text a{color:#C8633E;border-bottom:1px solid currentColor;text-decoration:none}
+    .cookie-text a:hover{color:#B05530}
+    .cookie-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    .cookie-btn{padding:9px 14px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}
+    .cookie-btn:focus-visible{outline:2px solid #C8633E;outline-offset:2px}
+    .cookie-btn-ghost{background:transparent;color:#5C5C5C;border:1px solid #C7C4BB}
+    .cookie-btn-ghost:hover{color:#1A1A1A;border-color:#1A1A1A}
+    .cookie-btn-primary{background:#C8633E;color:#FFFFFF;border:1px solid #C8633E}
+    .cookie-btn-primary:hover{background:#B05530;border-color:#B05530}
+    @media (max-width:480px){.cookie-banner{width:calc(100% - 24px);padding:18px 16px 16px}.cookie-actions{flex-direction:column-reverse}.cookie-btn{width:100%}}
   </style>
 </head>
-<body>
+<body id="top">
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -289,7 +308,7 @@
   <header class="nav" id="nav">
     <div class="container">
       <div class="nav-inner">
-        <a href="/" class="wordmark" aria-label="vorflows Startseite">vor<span class="flows">flows</span></a>
+        <a href="#top" class="wordmark" aria-label="Nach oben">vor<span class="flows">flows</span></a>
         <div class="nav-right">
           <span class="pill"><span class="dot"></span>Kostenlos · Live-Workshop</span>
           <button class="btn btn-primary" type="button" data-webinar-cta>Platz sichern</button>
@@ -518,17 +537,44 @@
   <footer>
     <div class="container">
       <div class="foot-in">
-        <a href="/" class="wordmark" style="color:var(--text-inverse)">vor<span class="flows">flows</span></a>
+        <a href="#top" class="wordmark" style="color:var(--text-inverse)" aria-label="Nach oben">vor<span class="flows">flows</span></a>
         <nav class="foot-links">
-          <a href="/">Startseite</a>
-          <a href="/impressum">Impressum</a>
-          <a href="/datenschutz">Datenschutz</a>
+          <a href="/impressum-lw-b">Impressum</a>
+          <a href="/datenschutz-lw-b">Datenschutz</a>
           <a href="mailto:alex@adolution.de">Kontakt</a>
         </nav>
         <span class="foot-copy">© 2026 vorflows</span>
       </div>
     </div>
   </footer>
+
+  <!-- ===================== COOKIE-BANNER (Test-Modus) ===================== -->
+  <div class="cookie-backdrop" id="cookieBackdrop" hidden></div>
+  <div class="cookie-banner" id="cookieBanner" hidden role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+    <p class="cookie-title" id="cookieTitle">Cookies &amp; Tracking</p>
+    <p class="cookie-text" id="cookieText">
+      Wir nutzen Cookies und ähnliche Technologien (u.&nbsp;a. Meta Pixel &amp; Conversions API, Microsoft Clarity, Google Ads Conversion-Tracking) für Reichweitenmessung, Verhaltensanalyse und um relevante Anzeigen auszuspielen. Einwilligung jederzeit widerrufbar. Details in der <a href="/datenschutz-lw-b">Datenschutzerklärung</a>.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn cookie-btn-ghost" id="cookieDecline">Nur notwendige</button>
+      <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAccept">Alle akzeptieren</button>
+    </div>
+  </div>
+
+  <script>
+    /* Cookie-Banner · TEST-MODUS: beide Buttons schliessen nur. Kein Tracking, kein Blocking. */
+    (function(){
+      var KEY='vf_lw_cookie';
+      var banner=document.getElementById('cookieBanner');
+      var backdrop=document.getElementById('cookieBackdrop');
+      if(!banner||!backdrop) return;
+      var seen=null; try{ seen=localStorage.getItem(KEY); }catch(e){}
+      if(!seen){ banner.hidden=false; backdrop.hidden=false; }
+      function dismiss(){ banner.hidden=true; backdrop.hidden=true; try{ localStorage.setItem(KEY,'1'); }catch(e){} }
+      var a=document.getElementById('cookieAccept'); if(a) a.addEventListener('click',dismiss);
+      var d=document.getElementById('cookieDecline'); if(d) d.addEventListener('click',dismiss);
+    })();
+  </script>
 
   <script>
     // ---- Termin zentral pflegen (eine Stelle, identisch zu A) ----
