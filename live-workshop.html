@@ -152,17 +152,36 @@
       background:rgba(0,0,0,.62);border-bottom:1px solid var(--line-subtle);padding-top:env(safe-area-inset-top)}
     .nav-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:12px}
     .nav .mark{height:22px;width:auto;display:block}
-    .nav .cta{width:auto;min-height:42px;padding:10px 18px;font-size:14px;
+    .nav .cta{width:auto;min-height:44px;padding:11px 18px;font-size:14px;
       box-shadow:0 0 22px rgba(200,99,62,.26),inset 0 1px 1px rgba(255,255,255,.25)}
     .nav .pill{display:none}
+
+    /* ---------- Sticky Mobile-CTA (nur Mobile · fängt Klicks bei jeder Scrolltiefe) ---------- */
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+      padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));
+      background:rgba(0,0,0,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-top:1px solid var(--line-medium);
+      transform:translateY(110%);transition:transform 320ms var(--ease)}
+    .sticky-cta.show{transform:translateY(0)}
+    .sticky-cta .cta{width:100%;max-width:none;min-height:52px;margin:0}
+    @media(max-width:599px){.sticky-cta{display:block}}
 
     /* ---------- Hero ---------- */
     .hero{padding:40px 0 52px}
     .hero .kicker{margin-bottom:18px}
     .hero h1{margin-bottom:18px}
     .hero .lead{max-width:32ch}
+    .hero .datebar{margin-top:24px}
     .hero .pills{margin-top:22px}
     .hero .cta-row{margin-top:26px}
+    @media(max-width:599px){
+      .hero{padding:32px 0 44px}
+      .hero .kicker{margin-bottom:14px}
+      .hero h1{margin-bottom:14px}
+      .hero .datebar{margin-top:18px}
+      .hero .pills{margin-top:16px}
+      .hero .cta-row{margin-top:22px}
+    }
 
     /* ---------- Editorial numbered list (ersetzt 1. identisches Grid) ---------- */
     .steps{display:flex;flex-direction:column;gap:0;margin-top:28px;border-top:1px solid var(--line-subtle)}
@@ -291,6 +310,7 @@
       html{scroll-behavior:auto}
       .cta{transition:none}
       .datebar .ldot::after{animation:none}
+      .sticky-cta{transition:none}
     }
   </style>
 </head>
@@ -314,7 +334,7 @@
       <div class="kicker">vorflows · Live-Workshop · Kostenlos</div>
       <h1>Ich baue mit KI vor deinen Augen einen <span class="acc">Shopify-Shop</span> um.</h1>
       <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
-      <div class="datebar" style="margin-top:24px"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
+      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
       <div class="pills">
         <span class="pill">90 Minuten</span>
         <span class="pill">Kostenlos</span>
@@ -524,6 +544,11 @@
     </div>
   </section>
 
+  <!-- ===================== STICKY MOBILE-CTA ===================== -->
+  <div class="sticky-cta" id="stickyCta" aria-hidden="true">
+    <button class="cta" type="button" data-webinar-cta>Kostenlos anmelden &middot; Gratis</button>
+  </div>
+
   <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="foot-in">
@@ -561,6 +586,20 @@
       },{rootMargin:'0px 0px -8% 0px',threshold:.1});
       els.forEach(function(e){ io.observe(e); });
     })();
+
+    // ---- Sticky Mobile-CTA: erscheint nach Hero, versteckt sich am Final-CTA ----
+    (function(){
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var fin = document.querySelector('.closeband');
+      if(!bar || !hero) return;
+      var pastHero = false, atFinal = false;
+      var sync = function(){ var show = pastHero && !atFinal; bar.classList.toggle('show', show); bar.setAttribute('aria-hidden', show ? 'false' : 'true'); };
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(e){ pastHero = !e[0].isIntersecting; sync(); },{rootMargin:'-40% 0px 0px 0px'}).observe(hero);
+        if(fin) new IntersectionObserver(function(e){ atFinal = e[0].isIntersecting; sync(); },{rootMargin:'0px 0px -10% 0px'}).observe(fin);
+      }
+    })();
   </script>
 
   <!-- ===================== A/B-TRACKING (lw_ scoped · identisch auf A + B) ===================== -->
@@ -595,7 +634,8 @@
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){
         b.addEventListener('click', function(){
           var loc = 'inline';
-          if(b.closest('.nav')) loc = 'nav';
+          if(b.closest('.sticky-cta')) loc = 'sticky';
+          else if(b.closest('.nav')) loc = 'nav';
           else if(b.closest('.lw-hero, .hero')) loc = 'hero';
           else if(b.closest('.lw-final, .closeband')) loc = 'final';
           cEvent('lw_signup_click', { loc: loc });

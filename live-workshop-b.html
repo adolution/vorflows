@@ -105,6 +105,17 @@
     .section-dark .pill{border-color:rgba(255,255,255,.2);color:var(--text-secondary-dark)}
     .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
 
+    /* ---------- Prominenter Live-Termin-Block (pulsierender roter Punkt · Parität zu A) ---------- */
+    .datebar{display:inline-flex;align-items:center;gap:11px;padding:12px 18px;border-radius:999px;
+      background:rgba(229,72,77,.12);border:1px solid rgba(229,72,77,.42);max-width:100%}
+    .datebar .ldot{width:11px;height:11px;border-radius:50%;background:#E5484D;position:relative;flex:0 0 auto}
+    .datebar .ldot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#E5484D;
+      animation:lpulse 1.7s var(--ease-out-expo) infinite}
+    .datebar .lbl{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.12em;
+      text-transform:uppercase;color:#E5484D;flex:0 0 auto}
+    .datebar .dt{font-weight:600;font-size:clamp(15px,4.2vw,19px);color:var(--text-inverse);line-height:1.12;letter-spacing:.01em}
+    @keyframes lpulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
+
     /* ---------- Nav ---------- */
     .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.96);
       backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
@@ -116,7 +127,18 @@
     .wordmark .flows{font-style:italic;font-weight:500;color:var(--accent)}
     .nav-right{display:flex;align-items:center;gap:16px}
     .nav .pill{display:none}
-    .nav .btn{padding:9px 16px;font-size:14px}
+    .nav .btn{padding:10px 16px;font-size:14px;min-height:44px}
+
+    /* ---------- Sticky Mobile-CTA (nur Mobile · fängt Klicks bei jeder Scrolltiefe) ---------- */
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+      padding:10px clamp(16px,4vw,20px) calc(10px + env(safe-area-inset-bottom));
+      background:rgba(250,250,247,.92);backdrop-filter:saturate(180%) blur(14px);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);border-top:1px solid var(--border);
+      transform:translateY(110%);transition:transform 320ms var(--ease-out-expo)}
+    .sticky-cta.show{transform:translateY(0)}
+    .sticky-cta .btn{width:100%;min-height:50px;font-size:16px}
+    @media(max-width:599px){.sticky-cta{display:block}}
+    @media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}.datebar .ldot::after{animation:none}}
 
     /* ---------- Scroll progress ---------- */
     .scroll-progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--accent);z-index:70;
@@ -131,9 +153,20 @@
     .lw-hero .container{position:relative;z-index:2}
     .lw-hero h1{font-size:clamp(38px,8vw,84px);margin:18px 0 0;text-wrap:balance}
     .lw-hero .lead{max-width:36ch}
-    .lw-hero .pills{margin-top:26px}
-    .lw-hero .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+    .lw-hero .datebar{margin-top:24px}
+    .lw-hero .pills{margin-top:20px}
+    .lw-hero .cta-row{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
     @media(min-width:600px){.lw-hero .cta-sub{margin-top:0}}
+    @media(max-width:599px){
+      .lw-hero.section{padding-top:36px;padding-bottom:48px}
+      .lw-hero h1{margin-top:14px}
+      .lw-hero .datebar{margin-top:18px}
+      .lw-hero .pills{margin-top:16px}
+      .lw-hero .cta-row{margin-top:22px;flex-direction:column;align-items:stretch;gap:12px}
+      .lw-hero .cta-row .btn-primary{width:100%}
+      .lw-hero .cta-sub{margin-top:0;text-align:left}
+      .lw-final .btn-primary{width:100%;max-width:360px}
+    }
 
     /* ---------- Numbered editorial steps ---------- */
     .steps{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--border)}
@@ -204,7 +237,8 @@
     .lw-final .container{position:relative;z-index:2;max-width:680px}
     .lw-final h2{margin-top:14px}
     .lw-final .lead{margin:18px auto 0;text-align:center;max-width:38ch}
-    .lw-final .pills{justify-content:center;margin:24px 0 28px}
+    .lw-final .datebar{margin-top:24px}
+    .lw-final .pills{justify-content:center;margin:20px 0 26px}
     .lw-final .btn{margin:0 auto}
     .lw-final .cta-sub{margin-top:14px}
     #reg-note{margin:22px auto 0;max-width:460px;padding:16px 18px;border-radius:8px;
@@ -271,8 +305,8 @@
       <p class="meta eyebrow">vorflows · Live-Workshop · Kostenlos</p>
       <h1 class="display">Ich baue mit KI vor deinen Augen einen <span class="accent display-italic">Shopify-Shop</span> um.</h1>
       <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
+      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
       <div class="pills">
-        <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
         <span class="pill">90 Minuten</span>
         <span class="pill">Kostenlos</span>
         <span class="pill">Mit Live-Q&amp;A</span>
@@ -430,8 +464,8 @@
       <p class="meta eyebrow">Jetzt anmelden</p>
       <h2 class="h2">Sei <em>live</em> dabei.</h2>
       <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, wie du es selbst machst.</p>
+      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
       <div class="pills">
-        <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
         <span class="pill">90 Minuten</span>
         <span class="pill">Kostenlos</span>
       </div>
@@ -474,6 +508,11 @@
       </div>
     </div>
   </section>
+
+  <!-- ===================== STICKY MOBILE-CTA ===================== -->
+  <div class="sticky-cta" id="stickyCta" aria-hidden="true">
+    <button class="btn btn-primary" type="button" data-webinar-cta>Kostenlos anmelden &middot; Gratis</button>
+  </div>
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
@@ -525,6 +564,20 @@
       },{rootMargin:'0px 0px -8% 0px',threshold:.12});
       els.forEach(function(e){ io.observe(e); });
     })();
+
+    // ---- Sticky Mobile-CTA: erscheint nach Hero, versteckt sich am Final-CTA ----
+    (function(){
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.lw-hero');
+      var fin = document.querySelector('.lw-final');
+      if(!bar || !hero) return;
+      var pastHero = false, atFinal = false;
+      var sync = function(){ var show = pastHero && !atFinal; bar.classList.toggle('show', show); bar.setAttribute('aria-hidden', show ? 'false' : 'true'); };
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(e){ pastHero = !e[0].isIntersecting; sync(); },{rootMargin:'-40% 0px 0px 0px'}).observe(hero);
+        if(fin) new IntersectionObserver(function(e){ atFinal = e[0].isIntersecting; sync(); },{rootMargin:'0px 0px -10% 0px'}).observe(fin);
+      }
+    })();
   </script>
 
   <!-- ===================== A/B-TRACKING (lw_ scoped · identisch auf A + B) ===================== -->
@@ -559,7 +612,8 @@
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){
         b.addEventListener('click', function(){
           var loc = 'inline';
-          if(b.closest('.nav')) loc = 'nav';
+          if(b.closest('.sticky-cta')) loc = 'sticky';
+          else if(b.closest('.nav')) loc = 'nav';
           else if(b.closest('.lw-hero, .hero')) loc = 'hero';
           else if(b.closest('.lw-final, .closeband')) loc = 'final';
           cEvent('lw_signup_click', { loc: loc });
