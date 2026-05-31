@@ -124,6 +124,17 @@
       background:var(--surface-1);box-shadow:var(--glass-inner);backdrop-filter:blur(6px);white-space:nowrap}
     .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px rgba(200,99,62,.7);flex:0 0 auto}
 
+    /* ---------- Prominenter Live-Termin-Block (pulsierender roter Punkt) ---------- */
+    .datebar{display:inline-flex;align-items:center;gap:12px;padding:13px 22px;border-radius:var(--r-pill);
+      background:rgba(229,72,77,.10);border:1px solid rgba(229,72,77,.40);box-shadow:var(--glass-inner);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:100%}
+    .datebar .ldot{width:12px;height:12px;border-radius:50%;background:#E5484D;flex:0 0 auto;position:relative}
+    .datebar .ldot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#E5484D;
+      animation:lpulse 1.7s var(--ease) infinite}
+    .datebar .lbl{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E5484D;flex:0 0 auto}
+    .datebar .dt{font-weight:600;font-size:clamp(15px,4.4vw,20px);color:var(--text-1);letter-spacing:.01em;line-height:1.12}
+    @keyframes lpulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
+
     /* ---------- CTA ---------- */
     .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;
       min-height:54px;padding:15px 30px;border-radius:var(--r-pill);
@@ -279,6 +290,7 @@
       .reveal{opacity:1;transform:none;transition:none}
       html{scroll-behavior:auto}
       .cta{transition:none}
+      .datebar .ldot::after{animation:none}
     }
   </style>
 </head>
@@ -302,8 +314,8 @@
       <div class="kicker">vorflows · Live-Workshop · Kostenlos</div>
       <h1>Ich baue mit KI vor deinen Augen einen <span class="acc">Shopify-Shop</span> um.</h1>
       <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
+      <div class="datebar" style="margin-top:24px"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
       <div class="pills">
-        <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
         <span class="pill">90 Minuten</span>
         <span class="pill">Kostenlos</span>
         <span class="pill">Mit Live-Q&amp;A</span>
@@ -467,8 +479,8 @@
         <div class="kicker">Jetzt anmelden</div>
         <h2>Sei live dabei.</h2>
         <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, wie du es selbst machst.</p>
+        <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
         <div class="pills">
-          <span class="pill"><span class="dot"></span><span data-webinar-date>Donnerstag, 10:00 Uhr</span></span>
           <span class="pill">90 Minuten</span>
           <span class="pill">Kostenlos</span>
         </div>
