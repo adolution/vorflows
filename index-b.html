@@ -91,7 +91,7 @@
     <meta property="product:brand" content="vorflows" />
     <meta property="product:availability" content="instock" />
     <meta property="product:condition" content="new" />
-    <meta property="product:price:amount" content="297.00" />
+    <meta property="product:price:amount" content="597.00" />
     <meta property="product:price:currency" content="EUR" />
     <meta property="product:retailer_item_id" content="vf-bundle" />
     <meta property="product:category" content="Shopify Optimization System" />
@@ -309,9 +309,9 @@
             "@type": "Offer",
             "@id": "https://vorflows.com/#offer-bundle",
             "sku": "vf-bundle",
-            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow) — Launch-Preis",
-            "description": "Einmalkauf 297 € statt 597 € · 100 € Launch-Rabatt · oder 6 Raten à 49,50 € via Digistore24.",
-            "price": "297",
+            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow)",
+            "description": "Einmalkauf 597 € · oder 6 Raten à 100 € via Digistore24.",
+            "price": "597",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition",
@@ -321,23 +321,13 @@
             "seller": { "@id": "https://vorflows.com/#organization" },
             "areaServed": ["DE", "AT", "CH"],
             "eligibleRegion": ["DE", "AT", "CH"],
-            "priceSpecification": [
-              {
-                "@type": "UnitPriceSpecification",
-                "priceType": "https://schema.org/SalePrice",
-                "price": "297",
-                "priceCurrency": "EUR",
-                "valueAddedTaxIncluded": true,
-                "validThrough": "2026-12-31"
-              },
-              {
-                "@type": "UnitPriceSpecification",
-                "priceType": "https://schema.org/ListPrice",
-                "price": "597",
-                "priceCurrency": "EUR",
-                "valueAddedTaxIncluded": true
-              }
-            ],
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceType": "https://schema.org/ListPrice",
+              "price": "597",
+              "priceCurrency": "EUR",
+              "valueAddedTaxIncluded": true
+            },
             "hasMerchantReturnPolicy": {
               "@type": "MerchantReturnPolicy",
               "applicableCountry": ["DE", "AT", "CH"],
@@ -469,7 +459,7 @@
             { "@type": "Question", "name": "Was, wenn ich mein Theme zerschieße?", "acceptedAnswer": { "@type": "Answer", "text": "Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du publishst. Kein Auto-Deploy." } },
             { "@type": "Question", "name": "Funktioniert das mit jedem Theme: Dawn, Custom, Premium?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Solange es ein Shopify-Theme ist. Die Setup-Datei von vorflows liest dein komplettes Theme, kategorisiert es und merkt sich, wie es funktioniert." } },
             { "@type": "Question", "name": "Wie lange dauert das Onboarding?", "acceptedAnswer": { "@type": "Answer", "text": "Base: 20 bis 30 Minuten Setup, erste Section am selben Tag. ClarityFlow: 15 Minuten Setup. SEOFlow: 30 bis 40 Minuten Setup." } },
-            { "@type": "Question", "name": "Kann ich nur ein Modul (z. B. nur SEOFlow) kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Auf der Seite verkaufen wir nur das Bundle zum Launch-Preis. Wenn du ausschließlich ein Einzel-Modul willst, schreib uns kurz an alex@adolution.de. Dann finden wir gemeinsam was Passendes." } },
+            { "@type": "Question", "name": "Kann ich nur ein Modul (z. B. nur SEOFlow) kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Auf der Seite verkaufen wir nur das Bundle. Wenn du ausschließlich ein Einzel-Modul willst, schreib uns kurz an alex@adolution.de. Dann finden wir gemeinsam was Passendes." } },
             { "@type": "Question", "name": "Wie funktioniert die Rückgabe?", "acceptedAnswer": { "@type": "Answer", "text": "Du hast 14 Tage Rückgaberecht ab Kaufdatum. Kurze formlose E-Mail an alex@adolution.de oder direkt über Digistore24 reicht. Du erhältst den vollen Betrag erstattet." } },
             { "@type": "Question", "name": "Wie wird das Produkt geliefert?", "acceptedAnswer": { "@type": "Answer", "text": "vorflows ist ein digitales Produkt. Sofort nach Zahlungseingang erhältst du von Digistore24 eine E-Mail mit Download-Link zu allen Inhalten: Setup-Datei für Claude Code, Skill-Stack, BaseFlow + SEOFlow + ClarityFlow Workflows, Anleitungen und Videos. Kein Versand, keine physischen Materialien." } }
           ]
@@ -1162,8 +1152,7 @@
     <!-- STICKY CTA (mobile) -->
     <aside class="sticky-cta-bar" id="stickyCtaBar" aria-label="Bundle reservieren">
       <div class="sticky-cta-text">
-        <span class="sticky-cta-label">Launch · spar 300&nbsp;€</span>
-        <span class="sticky-cta-price">Bundle <strong>297&nbsp;€</strong></span>
+        <span class="sticky-cta-price">Bundle <strong>597&nbsp;€</strong></span>
       </div>
       <a href="#bundle" class="sticky-cta-btn">Bundle sichern →</a>
     </aside>
@@ -1210,7 +1199,7 @@
           </div>
         </div>
         <div class="hero-ctas">
-          <a href="#bundle" class="btn-primary">Bundle sichern · 297&nbsp;€ statt 597&nbsp;€</a>
+          <a href="#bundle" class="btn-primary">Bundle sichern · 597&nbsp;€</a>
           <a href="#how" class="btn-text">Was du bekommst ↓</a>
         </div>
       </div>
@@ -1233,7 +1222,7 @@
             <div class="transform-arrow" aria-hidden="true">→</div>
             <div class="transform-side">
               <span class="meta">Mit vorflows</span>
-              <span class="transform-to">App-Stack <strong>ersetzt</strong>. Einmal 297&nbsp;€. Native Sections im eigenen Theme.</span>
+              <span class="transform-to">App-Stack <strong>ersetzt</strong>. Einmal 597&nbsp;€. Native Sections im eigenen Theme.</span>
             </div>
           </li>
           <li class="transform-item">
@@ -1338,9 +1327,6 @@
       </div>
       <div class="offer-wrap">
         <article class="offer-card" id="bundle" aria-labelledby="bundle-name">
-          <div class="offer-meta">
-            <span class="offer-meta-pill">Launch-Preis · spar 300&nbsp;€</span>
-          </div>
           <h3 class="offer-name" id="bundle-name">vorflows Bundle</h3>
           <p class="offer-tag">BaseFlow, SEOFlow, ClarityFlow. Drei Module, ein Setup.</p>
 
@@ -1368,13 +1354,12 @@
           </ul>
 
           <div class="offer-pricing">
-            <span class="offer-price-now">297&nbsp;€</span>
-            <span class="offer-price-was">597&nbsp;€</span>
+            <span class="offer-price-now">597&nbsp;€</span>
           </div>
-          <p class="offer-pricing-note">Einmalkauf · oder <strong>6&nbsp;× 49,50&nbsp;€/Monat</strong> über Digistore24.</p>
+          <p class="offer-pricing-note">Einmalkauf · oder <strong>6&nbsp;× 100&nbsp;€/Monat</strong> über Digistore24.</p>
 
-          <a href="https://www.digistore24.com/product/688983?voucher=launchsale&ds24tr=vf_ab_B" class="offer-cta" target="_blank" rel="noopener">
-            Bundle sichern · 297&nbsp;€ →
+          <a href="https://www.digistore24.com/product/688983?ds24tr=vf_ab_B" class="offer-cta" target="_blank" rel="noopener">
+            Bundle sichern · 597&nbsp;€ →
           </a>
 
           <div class="offer-guarantees">
@@ -1432,7 +1417,7 @@
       <div class="container">
         <h2 class="display">Wenn dein Shop Traffic bekommt, aber nicht verkauft, liegt es nicht am Traffic.</h2>
         <p>Es liegt am Setup. Genau da setzt vorflows an.</p>
-        <a href="#bundle" class="btn-primary">Bundle sichern · 297&nbsp;€</a>
+        <a href="#bundle" class="btn-primary">Bundle sichern · 597&nbsp;€</a>
       </div>
     </section>
 
@@ -1464,9 +1449,9 @@
       // ── Meta tracking: Pixel + CAPI with Advanced Matching ──────────────
       const META_PIXEL_ID = '2002118703756086';
       const PLAN_VALUE = {
-        'pricing-bundle': 297,
+        'pricing-bundle': 597,
       };
-      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 297);
+      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 597);
 
       // ── Google Ads conversion config ────────────────────────────────────
       const GADS_ID = 'AW-18158480775';
@@ -1481,36 +1466,6 @@
         if (!label) return;
         gtag('event', 'conversion', { send_to: `${GADS_ID}/${label}`, ...params });
       };
-
-      // ── Launch sale window — date-bound, no fake scarcity ──────────────
-      // To change the deadline, edit LAUNCH_END below and sync the
-      // priceValidUntil field in the Product JSON-LD at the top of <head>.
-      const LAUNCH_START = new Date('2026-05-06T00:00:00+02:00');
-      const LAUNCH_END   = new Date('2026-05-31T23:59:00+02:00');
-      (function applyLaunchCountdown() {
-        const now = new Date();
-        const total = LAUNCH_END - LAUNCH_START;
-        const remainingMs = LAUNCH_END - now;
-        const remaining = Math.max(0, Math.min(total, remainingMs));
-        const days = Math.max(0, Math.ceil(remainingMs / 86400000));
-        const fillPct = total > 0 ? (remaining / total) * 100 : 0;
-        const dateFmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long' }).format(LAUNCH_END);
-        const apply = () => {
-          document.querySelectorAll('[data-launch-days]').forEach((el) => { el.textContent = days; });
-          document.querySelectorAll('[data-launch-until]').forEach((el) => { el.textContent = dateFmt; });
-          document.querySelectorAll('[data-launch-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
-          document.querySelectorAll('[data-launch-days-wrap]').forEach((el) => { el.hidden = false; });
-          if (remainingMs <= 0) {
-            document.querySelectorAll('[data-launch-expired]').forEach((el) => { el.hidden = false; });
-            document.querySelectorAll('[data-launch-active]').forEach((el) => { el.hidden = true; });
-          }
-        };
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', apply, { once: true });
-        } else {
-          apply();
-        }
-      })();
 
       // ── Reibungspunkte: Desktop alle offen, Mobile = Akkordeon ─────────────
       (() => {
@@ -1776,7 +1731,7 @@
             entries.forEach((e) => {
               if (e.isIntersecting) {
                 cEvent('pricing_view', { content_name: 'bundle' });
-                trackFb('AddToCart', { content_name: 'bundle', content_category: 'pricing', value: 297.0, currency: 'EUR' });
+                trackFb('AddToCart', { content_name: 'bundle', content_category: 'pricing', value: 597.0, currency: 'EUR' });
                 gAdsConvert('pricing_view');
                 obs.unobserve(e.target);
               }
@@ -1799,7 +1754,7 @@
             } catch {}
             cEvent('digistore_redirect', { dest: href });
             window.fbq?.('track', 'InitiateCheckout', { content_name: 'bundle', variant });
-            gAdsConvert('begin_checkout', { value: 297.0, currency: 'EUR' });
+            gAdsConvert('begin_checkout', { value: 597.0, currency: 'EUR' });
             return;
           }
           if (href !== '#bundle') return;
