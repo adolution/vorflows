@@ -319,7 +319,7 @@
             "@id": "https://vorflows.com/#offer-bundle",
             "sku": "vf-bundle",
             "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow)",
-            "description": "Einmalkauf 597 € · oder 6 Raten à 100 € via Digistore24.",
+            "description": "Einmalkauf 597 € · Ratenzahlung möglich via Digistore24.",
             "price": "597",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
@@ -3359,6 +3359,14 @@
         text-transform: uppercase;
         color: var(--text-secondary);
       }
+      .bundle-hero-rate {
+        margin: 12px 0 0;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
       .bp-divider {
         display: flex;
         align-items: center;
@@ -3502,11 +3510,8 @@
           margin: 0 0 22px;
           max-width: 100%;
         }
-        /* Mobile-Anchor-Flip (B-Variant CRO): Raten zuerst-prominent,
-           Einmalig sekundär. column-reverse rendert die Raten-bp-row oben,
-           Divider mittig, Einmalig-bp-row unten. */
         .bundle-hero-price-block {
-          flex-direction: column-reverse;
+          flex-direction: column;
           gap: 12px;
           margin: 0 0 18px;
         }
@@ -5633,11 +5638,7 @@
                   <span class="bundle-hero-price">597&nbsp;€</span>
                   <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
                 </div>
-                <div class="bp-divider" aria-hidden="true"><span>oder</span></div>
-                <div class="bp-row">
-                  <span class="bp-alt-price">100&nbsp;€<span class="bp-alt-unit">/Monat</span></span>
-                  <span class="bundle-hero-suffix">6 Raten · über Digistore24</span>
-                </div>
+                <p class="bundle-hero-rate">Ratenzahlung möglich · über Digistore24</p>
               </div>
               <blockquote class="bundle-hero-quote">
                 „Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt."
