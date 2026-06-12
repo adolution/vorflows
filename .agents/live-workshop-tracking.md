@@ -94,17 +94,19 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 | **`CompleteRegistration`** (Standard) | `lw_signup_complete` | 1× pro Browser bei Pageload (Guard `vf_lw_reg_fired`). **= Primär-Conversion Anmeldung.** |
 | `LW_Survey_Revenue` `{answer}` | `lw_q_revenue_<answer>` | Frage 1 beantwortet. Antworten: `kein_shop / lt5k / 5to20k / gt20k` |
 | `LW_Survey_Apps` `{answer}` | `lw_q_apps_<answer>` | Frage 2. Antworten: `lt50 / 50to150 / 150to400 / gt400` |
-| `LW_Survey_Focus` `{answer}` | `lw_q_focus_<answer>` | Frage 3. Antworten: `apps_ersetzen / seo / conversion` |
-| `LW_Phone_Optin` / `LW_Phone_Skip` | `lw_phone_optin` / `lw_phone_skip` | Frage 4 (WhatsApp-Unterlagen → Telefonnummer) |
+| `LW_Survey_Builder` `{answer}` | `lw_q_builder_<answer>` | Frage 3 "Wer macht Änderungen am Shop?". Antworten: `selbst / team / agentur / niemand` |
+| `LW_Survey_Focus` `{answer}` | `lw_q_focus_<answer>` | Frage 4. Antworten: `apps_ersetzen / seo / conversion` |
+| `LW_Phone_Optin` / `LW_Phone_Skip` | `lw_phone_optin` / `lw_phone_skip` | Frage 5 (WhatsApp-Unterlagen → Telefonnummer) |
 | `LW_Survey_Complete` `{score, qualified, …}` | `lw_survey_complete` | Survey abgeschlossen |
 | **`QualifiedLead`** `{score, revenue, apps, focus}` | `lw_qualified` | Nur wenn qualifiziert. **= Optimierungs-Event für Ads (CPQL).** |
+| `LW_OpenInbox` | `lw_open_inbox` | Klick "Postfach öffnen" (Double-Opt-in-Hilfe, Provider aus E-Mail-Domain erkannt) |
 | `LW_AddToCalendar` `{type}` | `lw_calendar_google` / `lw_calendar_ics` | Kalender-Klick (Show-Up-Commitment) |
 
 Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
-`lw_focus`, `lw_qualified`, `lw_utm_campaign`, `lw_utm_content`.
+`lw_builder`, `lw_focus`, `lw_qualified`, `lw_utm_campaign`, `lw_utm_content`.
 
 **Qualifizierungs-Logik (eine Stelle: `finishSurvey()` in danke-live-workshop.html):**
-- Score 0–7 = Umsatz (kein_shop 0 · lt5k 1 · 5to20k 2 · gt20k 3) + App-Kosten (lt50 0 · 50to150 1 · 150to400 2 · gt400 3) + Telefon +1.
+- Score 0–9 = Umsatz (kein_shop 0 · lt5k 1 · 5to20k 2 · gt20k 3) + App-Kosten (lt50 0 · 50to150 1 · 150to400 2 · gt400 3) + Selbermacher (selbst 2 · team/agentur 1 · niemand 0) + Telefon +1.
 - **QualifiedLead = Umsatz-Tier ≥ 5.000 €/Monat** (laufender Shop im ICP). Score dient der Feinauswertung im Lead-Sheet/Clarity.
 
 ---
@@ -124,8 +126,11 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    konfigurieren!): `https://vorflows.com/danke-live-workshop`. WebinarJam hängt
    Lead-Daten an die URL (`wj_lead_email`, `wj_lead_first_name`), die Seite liest
    sie defensiv aus und speichert sie als `vf_known_email`/`vf_known_first_name`.
-7. Danke-Seite: `CompleteRegistration` + Survey (4 Fragen) + `QualifiedLead` +
-   Kalender. Attribution kommt aus `vf_lw_attr` —
+7. Danke-Seite: **Double-Opt-in zuerst** (Hero: 50%-Balken "Schritt 1 von 2",
+   Aufforderung Bestätigungs-Link im Postfach zu klicken, "Postfach öffnen"-Button)
+   + `CompleteRegistration` + Survey (5 Fragen) + `QualifiedLead` + Kalender.
+   WebinarJam-Double-Opt-in muss in WebinarJam aktiviert sein; der Teilnahme-Link
+   geht erst nach Bestätigung raus. Attribution kommt aus `vf_lw_attr` —
    **funktioniert unabhängig vom WebinarJam-Popup**, weil nie URL-Parameter
    durch WebinarJam durchgereicht werden müssen.
 - Termin-Datum zentral: `var WEBINAR_DATE` (LP) bzw. `WEBINAR_DATE_TEXT` +
@@ -178,13 +183,13 @@ Meta füllt `{{…}}` automatisch (Dynamic URL Parameters). `utm_content` = Anze
 ## 8. Google-Sheet-Webhook einrichten (einmalig, ~5 Min)
 
 1. Neues Google Sheet "LW Leads". Kopfzeile = Feldnamen aus `api/lw-survey.js`
-   (`submitted_at, email, first_name, phone, revenue, app_costs, focus,
+   (`submitted_at, email, first_name, phone, revenue, app_costs, builder, focus,
    phone_optin, score, qualified, variant, utm_source, utm_medium,
    utm_campaign, utm_content, utm_term, fbclid, landed_at`).
 2. Erweiterungen → Apps Script, einfügen:
 
 ```js
-const HEADERS = ['submitted_at','email','first_name','phone','revenue','app_costs','focus',
+const HEADERS = ['submitted_at','email','first_name','phone','revenue','app_costs','builder','focus',
   'phone_optin','score','qualified','variant','utm_source','utm_medium',
   'utm_campaign','utm_content','utm_term','fbclid','landed_at'];
 function doPost(e) {

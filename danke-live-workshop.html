@@ -84,25 +84,70 @@
       }
       .wordmark .flows { font-style: italic; color: var(--accent); }
 
-      .stamp {
+      /* ---------- Double-Opt-in-Status (statt Häkchen) ---------- */
+      .optin {
         margin-top: clamp(1.5rem, 5vw, 2.5rem);
-        width: 52px;
-        height: 52px;
+        max-width: 24rem;
+      }
+      .optin .row {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .optin .bar {
+        flex: 1;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--border);
+        overflow: hidden;
+      }
+      .optin .fill {
+        display: block;
+        height: 100%;
+        width: 0;
         border-radius: 999px;
         background: var(--accent);
-        box-shadow:
-          0 1px 2px rgba(200, 99, 62, 0.25),
-          0 12px 28px -10px rgba(200, 99, 62, 0.5);
-        display: grid;
-        place-items: center;
-        animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) both;
+        animation: halfway 0.9s 0.25s var(--ease-out-expo) forwards;
       }
-      .stamp svg { width: 24px; height: 24px; }
-      .stamp path {
-        stroke-dasharray: 30;
-        stroke-dashoffset: 30;
-        animation: draw 0.45s 0.28s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      .optin .num {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--accent);
       }
+      .optin .steps {
+        margin: 0.5rem 0 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      @keyframes halfway { to { width: 50%; } }
+
+      .confirm-box {
+        margin: 1.4rem 0 0;
+        padding: 1.1rem 1.2rem;
+        border-radius: 0.8rem;
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 99, 62, 0.35);
+      }
+      .confirm-box .ct {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.02rem;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+      }
+      .confirm-box .cs {
+        margin: 0.45rem 0 0;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--text-secondary);
+      }
+      .confirm-box .btn { margin-top: 0.85rem; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.2rem; }
+      .confirm-box .btn[hidden] { display: none; }
 
       .eyebrow {
         margin: 1.3rem 0 0;
@@ -380,15 +425,12 @@
       .foot a:hover { color: var(--text-primary); }
       .foot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
-      @keyframes pop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-      @keyframes draw { to { stroke-dashoffset: 0; } }
-
       .fade-in { animation: fadeUp 320ms var(--ease-out-expo) both; }
       @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
       @media (prefers-reduced-motion: reduce) {
-        .stamp, .stamp path, .fade-in { animation: none; }
-        .stamp path { stroke-dashoffset: 0; }
+        .fade-in { animation: none; }
+        .optin .fill { animation: none; width: 50%; }
         .datebar .ldot::after { animation: none; }
         .progress .fill, .btn, .q-opt { transition: none; }
       }
@@ -398,19 +440,28 @@
     <main class="wrap">
       <a class="wordmark" href="/live-workshop">vor<span class="flows">flows</span></a>
 
-      <div class="stamp" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M5 12.5 L10 17.5 L19 6.5" stroke="#FAFAF7" stroke-width="2.6"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+      <div class="optin" aria-hidden="true">
+        <div class="row">
+          <span class="bar"><span class="fill"></span></span>
+          <span class="num">50&nbsp;%</span>
+        </div>
+        <p class="steps">Schritt 1 von 2 erledigt</p>
       </div>
 
-      <p class="eyebrow">Anmeldung bestätigt</p>
-      <h1>Dein Platz ist <em>reserviert</em><span id="helloName"></span>.</h1>
+      <p class="eyebrow">Dein Platz ist reserviert</p>
+      <h1>Ein Klick fehlt <em>noch</em><span id="helloName"></span>.</h1>
       <p class="lead">
-        Die Bestätigung mit deinem persönlichen Teilnahme-Link ist unterwegs in dein Postfach.
-        Eine Sache noch, dann bist du startklar.
+        Du hast gerade eine E-Mail von uns bekommen. Klick dort auf den
+        Bestätigungs-Link, erst dann ist deine Anmeldung bestätigt und ich kann
+        dir den Teilnahme-Link zum Workshop schicken.
       </p>
+
+      <div class="confirm-box">
+        <p class="ct">Öffne jetzt dein Postfach und bestätige deine Anmeldung.</p>
+        <p class="cs">Keine Mail zu sehen? Schau in den Spam- oder Werbung-Ordner und zieh sie in den Posteingang.</p>
+        <a class="btn btn-primary" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
+      </div>
+
       <div class="datebar">
         <span class="ldot"></span>
         <span class="lbl">Live-Termin</span>
@@ -421,12 +472,12 @@
       <section class="survey" id="surveyCard" aria-label="Kurze Fragen zu deinem Shop">
         <div class="progress" aria-hidden="true">
           <span class="bar"><span class="fill" id="progressFill"></span></span>
-          <span class="pct" id="progressPct">1 / 4</span>
+          <span class="pct" id="progressPct">1 / 5</span>
         </div>
 
         <!-- Q1: Umsatz -->
         <div class="q-step" data-q="1">
-          <p class="q-eyebrow">Letzter Schritt · Frage 1 von 4</p>
+          <p class="q-eyebrow">Während du im Postfach bist · Frage 1 von 5</p>
           <h2 class="q-title">Wie viel Umsatz macht dein Shop aktuell pro Monat?</h2>
           <p class="q-sub">Ich passe die Live-Beispiele im Workshop an die Shops an, die dabei sind.</p>
           <div class="q-options">
@@ -439,7 +490,7 @@
 
         <!-- Q2: App-Kosten -->
         <div class="q-step" data-q="2" hidden>
-          <p class="q-eyebrow">Frage 2 von 4</p>
+          <p class="q-eyebrow">Frage 2 von 5</p>
           <h2 class="q-title">Wie viel zahlst du monatlich für Shopify-Apps?</h2>
           <p class="q-sub">Grob geschätzt reicht völlig.</p>
           <div class="q-options">
@@ -451,9 +502,23 @@
           <button class="q-back" type="button" data-back>← Zurück</button>
         </div>
 
-        <!-- Q3: Fokus -->
+        <!-- Q3: Wer baut am Shop (Selbermacher-Signal = Kern-ICP) -->
         <div class="q-step" data-q="3" hidden>
-          <p class="q-eyebrow">Frage 3 von 4</p>
+          <p class="q-eyebrow">Frage 3 von 5</p>
+          <h2 class="q-title">Wer macht aktuell Änderungen an deinem Shop?</h2>
+          <p class="q-sub">Theme, Texte, Sections — wer fasst das bei dir an?</p>
+          <div class="q-options">
+            <button class="q-opt" type="button" data-answer="selbst">Ich selbst</button>
+            <button class="q-opt" type="button" data-answer="team">Jemand aus meinem Team</button>
+            <button class="q-opt" type="button" data-answer="agentur">Agentur oder Freelancer</button>
+            <button class="q-opt" type="button" data-answer="niemand">Gerade niemand</button>
+          </div>
+          <button class="q-back" type="button" data-back>← Zurück</button>
+        </div>
+
+        <!-- Q4: Fokus -->
+        <div class="q-step" data-q="4" hidden>
+          <p class="q-eyebrow">Frage 4 von 5</p>
           <h2 class="q-title">Was soll ich im Workshop auf jeden Fall live zeigen?</h2>
           <div class="q-options">
             <button class="q-opt" type="button" data-answer="apps_ersetzen">Teure Apps durch Code ersetzen</button>
@@ -463,9 +528,9 @@
           <button class="q-back" type="button" data-back>← Zurück</button>
         </div>
 
-        <!-- Q4: WhatsApp / Telefon -->
-        <div class="q-step" data-q="4" hidden>
-          <p class="q-eyebrow">Frage 4 von 4</p>
+        <!-- Q5: WhatsApp / Telefon -->
+        <div class="q-step" data-q="5" hidden>
+          <p class="q-eyebrow">Frage 5 von 5</p>
           <h2 class="q-title">Soll ich dir die Workshop-Unterlagen danach per WhatsApp schicken?</h2>
           <p class="q-sub">Du bekommst die Zusammenfassung mit allen gezeigten Schritten direkt aufs Handy — plus eine kurze Erinnerung vor dem Start.</p>
           <div class="phone-row">
@@ -481,7 +546,7 @@
 
       <!-- ============ SUCCESS ============ -->
       <section class="done" id="doneCard" hidden>
-        <h2>Perfekt — du bist startklar.</h2>
+        <h2>Danke — fehlt nur noch der Klick im Postfach.</h2>
         <p class="q-sub" style="margin-top:.6rem">
           Trag dir den Termin direkt in den Kalender ein. Wer den Termin im Kalender hat, ist
           erfahrungsgemäß auch wirklich dabei — und nur live siehst du jeden Schritt.
@@ -492,9 +557,9 @@
         </div>
 
         <p class="inbox-note">
-          <strong>Wichtig:</strong> Check kurz dein Postfach (auch Spam) — dort liegt die Bestätigung
-          mit deinem persönlichen Teilnahme-Link. Verschieb die Mail am besten in den Posteingang,
-          damit die Erinnerungen ankommen.
+          <strong>Wichtig:</strong> Schon den Bestätigungs-Link in der E-Mail geklickt? Ohne den
+          Klick ist die Anmeldung nicht bestätigt und der Teilnahme-Link kann nicht raus.
+          Mail nicht da? Schau im Spam-Ordner und zieh sie in den Posteingang.
         </p>
       </section>
 
@@ -561,6 +626,30 @@
           var hn = document.getElementById('helloName');
           if (hn) hn.textContent = ', ' + leadFirstName;
         }
+
+        // ── "Postfach öffnen"-Button: Provider aus E-Mail-Domain erkennen ──
+        var INBOX = {
+          'gmail.com': 'https://mail.google.com/', 'googlemail.com': 'https://mail.google.com/',
+          'outlook.com': 'https://outlook.live.com/mail/', 'outlook.de': 'https://outlook.live.com/mail/',
+          'hotmail.com': 'https://outlook.live.com/mail/', 'hotmail.de': 'https://outlook.live.com/mail/',
+          'live.com': 'https://outlook.live.com/mail/', 'live.de': 'https://outlook.live.com/mail/',
+          'gmx.de': 'https://www.gmx.net/', 'gmx.net': 'https://www.gmx.net/', 'gmx.at': 'https://www.gmx.at/',
+          'web.de': 'https://web.de/', 't-online.de': 'https://email.t-online.de/',
+          'yahoo.com': 'https://mail.yahoo.com/', 'yahoo.de': 'https://mail.yahoo.com/',
+          'icloud.com': 'https://www.icloud.com/mail/', 'me.com': 'https://www.icloud.com/mail/',
+          'freenet.de': 'https://webmail.freenet.de/', 'posteo.de': 'https://posteo.de/webmail',
+          'mailbox.org': 'https://login.mailbox.org/', 'aol.com': 'https://mail.aol.com/'
+        };
+        (function () {
+          var btn = document.getElementById('inboxBtn');
+          if (!btn || !leadEmail || leadEmail.indexOf('@') < 0) return;
+          var domain = leadEmail.split('@')[1].toLowerCase();
+          var url = INBOX[domain];
+          if (!url) return;
+          btn.href = url;
+          btn.hidden = false;
+          btn.addEventListener('click', function () { lwTrack('LW_OpenInbox', {}, 'lw_open_inbox'); });
+        })();
 
         // External ID (gleiche Konvention wie Homepage → Cross-Page-Matching)
         var extId = ls.get('vf_ext_id');
@@ -648,15 +737,15 @@
         var steps = card.querySelectorAll('.q-step');
         var fill = document.getElementById('progressFill');
         var pct = document.getElementById('progressPct');
-        var answers = { revenue: null, apps: null, focus: null, phone_optin: null };
-        var QKEYS = ['revenue', 'apps', 'focus'];
+        var answers = { revenue: null, apps: null, builder: null, focus: null, phone_optin: null };
+        var QKEYS = ['revenue', 'apps', 'builder', 'focus'];
         var current = 1;
 
         function showStep(n) {
           current = n;
           steps.forEach(function (s) { s.hidden = (s.getAttribute('data-q') !== String(n)); });
-          fill.style.width = (n * 25) + '%';
-          pct.textContent = n + ' / 4';
+          fill.style.width = (n * 20) + '%';
+          pct.textContent = n + ' / 5';
           var el = card.querySelector('.q-step[data-q="' + n + '"]');
           if (el) el.classList.add('fade-in');
         }
@@ -683,19 +772,22 @@
 
         // ── Scoring & Qualifizierung ─────────────────────────────────
         // QualifiedLead = laufender Shop mit ≥ 5.000 € Monatsumsatz (ICP).
-        // Score (0–7) für Feinauswertung: Umsatz 0–3, App-Pain 0–3, Telefon +1.
+        // Score (0–9) für Feinauswertung: Umsatz 0–3, App-Pain 0–3,
+        // Selbermacher 0–2 (vorflows = Self-Service-Produkt), Telefon +1.
         var REV_SCORE = { kein_shop: 0, lt5k: 1, '5to20k': 2, gt20k: 3 };
         var APP_SCORE = { lt50: 0, '50to150': 1, '150to400': 2, gt400: 3 };
+        var BUILDER_SCORE = { selbst: 2, team: 1, agentur: 1, niemand: 0 };
 
         function finishSurvey() {
           var revScore = REV_SCORE[answers.revenue] || 0;
           var appScore = APP_SCORE[answers.apps] || 0;
-          var score = revScore + appScore + (answers.phone_optin ? 1 : 0);
+          var builderScore = BUILDER_SCORE[answers.builder] || 0;
+          var score = revScore + appScore + builderScore + (answers.phone_optin ? 1 : 0);
           var qualified = revScore >= 2;
 
           lwTrack('LW_Survey_Complete', {
             score: score, qualified: qualified,
-            revenue: answers.revenue, apps: answers.apps, focus: answers.focus,
+            revenue: answers.revenue, apps: answers.apps, builder: answers.builder, focus: answers.focus,
             phone_optin: !!answers.phone_optin
           }, 'lw_survey_complete');
 
@@ -703,7 +795,7 @@
             // Das Event, auf das Meta-Kampagnen reporten/optimieren:
             // Custom Conversion "QualifiedLead" im Events Manager anlegen.
             lwTrack('QualifiedLead', {
-              score: score, revenue: answers.revenue, apps: answers.apps, focus: answers.focus
+              score: score, revenue: answers.revenue, apps: answers.apps, builder: answers.builder, focus: answers.focus
             }, 'lw_qualified');
           }
           if (window.clarity) window.clarity('set', 'lw_qualified', qualified ? 'yes' : 'no');

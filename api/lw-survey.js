@@ -39,6 +39,7 @@ export default async function handler(req, res) {
     phone: clean(body.phone, 32) || '',
     revenue: clean(answers.revenue, 32) || '',
     app_costs: clean(answers.apps, 32) || '',
+    builder: clean(answers.builder, 32) || '',
     focus: clean(answers.focus, 32) || '',
     phone_optin: !!answers.phone_optin,
     score: Number(body.score) || 0,
