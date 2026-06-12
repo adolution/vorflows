@@ -506,9 +506,9 @@
           <h2 class="h2">8 Jahre <em>Online-Marketing</em>.</h2>
           <p class="lead">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
           <ul class="checks">
-            <li>Arbeit mit 404, Atlas und Quiver (8,3 Mio. € Funding)</li>
+            <li>Arbeit mit KI Startups wie 404, Atlas und Quiver (8,3 Mio. € Funding)</li>
             <li>Mit einem der ersten KI-Kurse zahlreiche Vorträge für Unternehmen</li>
-            <li>Programm mit Paddy, Beratung von Marken aus Höhle der Löwen</li>
+            <li>Marketing-Beratung für Unternehmen aus Höhle der Löwen</li>
             <li>Berater für einen der größten Lebensmittel-Hersteller im Land</li>
           </ul>
           <div class="cred-stats">
@@ -714,6 +714,22 @@
         lastFocused = null;
       };
       var track = function(name){ if(window.clarity) window.clarity('event', name); if(window.gtag) window.gtag('event', name); if(window.fbq) window.fbq('trackCustom', name); };
+      // ---- WJ-Popup-Diagnose: geht das Registrierungs-Popup nach Shopify-Ja wirklich auf? ----
+      var wjProbed = false;
+      var armWjProbe = function(){
+        if(wjProbed) return; wjProbed = true;
+        var done = false, tries = 0;
+        var check = function(){
+          if(done) return true;
+          var ifr = document.querySelector('iframe[src*="webinarjam"]');
+          if(ifr){ var r = ifr.getBoundingClientRect(); if(r.width > 50 && r.height > 50){ done = true; track('lw_wj_open'); return true; } }
+          return false;
+        };
+        var iv = setInterval(function(){ tries++; if(check() || tries >= 20){ clearInterval(iv); if(!done) track('lw_wj_noopen'); } }, 150);
+        check();
+      };
+      var rnBtn = document.querySelector('#reg-note .wj-embed-button');
+      if(rnBtn) rnBtn.addEventListener('click', function(){ track('lw_wj_fallback_click'); });
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', open); });
       document.getElementById('lwqClose').addEventListener('click', close);
       bd.addEventListener('click', close);
@@ -728,7 +744,7 @@
       modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
       modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
         b.addEventListener('click', function(){
-          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); close(); openWebinarForm(); }
+          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); armWjProbe(); close(); openWebinarForm(); }
           else { track('lw_qualify_no'); show('reject'); }
         });
       });

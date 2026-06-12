@@ -82,8 +82,11 @@ Es gibt zwei Funktionen, die Events feuern. Inkonsistenz bewusst kennen:
 | `lw_A` / `lw_B` | sendTag (Clarity) | 1× pro Pageview, Variant-Tag | — |
 | **`lw_signup_click`** | cEvent | **Primärziel.** Klick auf jeden `[data-webinar-cta]` | `loc`: hero / sticky / nav / final / inline |
 | `lw_commit_date` | track | Modal Schritt 1 "Termin bestätigen" | — (kein variant!) |
-| `lw_qualify_yes` | track | Modal: "Shop bei Shopify? Ja" → öffnet Form | — |
+| `lw_qualify_yes` | track | Modal: "Shop bei Shopify? Ja" → öffnet WJ-Popup direkt | — |
 | `lw_qualify_no` | track | Modal: "Nein" → Reject-Screen | — |
+| **`lw_wj_open`** | track | WJ-Registrierungs-Popup-Iframe nach Shopify-Ja erkannt (Polling 3s, sichtbares `iframe[src*=webinarjam]`). **= Direkt-Öffnen hat geklappt.** | — |
+| **`lw_wj_noopen`** | track | 3s nach Shopify-Ja **kein** WJ-Iframe → Popup ging nicht auf. **= Diese User landen im Fallback.** | — |
+| `lw_wj_fallback_click` | track | Klick auf den sichtbaren `#reg-note`-Fallback-Button | — |
 | `lw_scroll_25/50/75/100` | cEvent | Scroll-Tiefe, je 1× | `pct` |
 | `lw_dwell` | cEvent | Verweilzeit (sichtbarkeits-/pausenbereinigt), bei Bucket-Wechsel | `sec`, `bucket`, `reason` |
 | `lw_faq_open` | cEvent | `<details>` aufgeklappt | `q` (Fragetext, 80 Zeichen) |
