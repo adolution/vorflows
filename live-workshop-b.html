@@ -279,6 +279,40 @@
       html{scroll-behavior:auto}
       .btn,.faq-item summary::after{transition:none}
     }
+    /* ---------- Live-Quote (Beta-Stimme) ---------- */
+    .lw-quote{margin:clamp(36px,5vw,56px) 0 0;max-width:760px}
+    .lw-quote blockquote{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(22px,3vw,32px);
+      line-height:1.34;letter-spacing:-.02em;margin:0 0 22px}
+    .lw-quote blockquote::before{content:"\201C";color:var(--accent)}
+    .lw-quote blockquote::after{content:"\201D";color:var(--accent)}
+    .lw-quote figcaption{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+      font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.01em}
+    .lw-quote-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+    .lw-quote-name{font-weight:500}
+    .lw-quote-co{color:var(--text-secondary-dark)}
+    .lw-quote-co::before{content:"— ";color:var(--border-strong)}
+
+    /* ---------- Commitment-Ladder Modal ---------- */
+    .lwq-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.5);backdrop-filter:blur(3px);
+      -webkit-backdrop-filter:blur(3px);z-index:1199;animation:cookieFade 220ms ease-out}
+    .lwq-backdrop[hidden]{display:none}
+    .lwq{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:480px;
+      background:var(--bg-light);color:var(--text-primary);border:1px solid var(--border);border-radius:16px;
+      box-shadow:0 24px 60px rgba(15,15,15,.28),0 4px 12px rgba(15,15,15,.1);padding:clamp(26px,4vw,38px);
+      z-index:1200;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
+    .lwq[hidden]{display:none}
+    .lwq-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:26px;line-height:1;
+      color:var(--text-secondary);cursor:pointer;padding:4px;border-radius:6px;transition:color 150ms ease}
+    .lwq-close:hover{color:var(--text-primary)}
+    .lwq-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .lwq-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(22px,3vw,28px);
+      letter-spacing:-.02em;line-height:1.18;margin:10px 0 0}
+    .lwq-sub{color:var(--text-secondary);font-size:15px;line-height:1.55;margin:12px 0 0}
+    .lwq-step>.btn{margin-top:22px}
+    .lwq-choices{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+    .lwq-choices .btn{width:100%}
+    @media(prefers-reduced-motion:reduce){.lwq,.lwq-backdrop{animation:none}}
+
     /* ---------- Cookie-Banner (zentriert, Backdrop-Blur · wie Homepage · Test-Modus) ---------- */
     .cookie-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:460px;text-align:center;background:#FFFFFF;border:1px solid #E5E3DD;border-radius:14px;box-shadow:0 18px 48px rgba(15,15,15,.18),0 2px 8px rgba(15,15,15,.08);padding:22px 22px 20px;z-index:1100;font-family:'Inter',system-ui,sans-serif;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
     @keyframes cookieRise{from{transform:translate(-50%,calc(-50% + 12px));opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
@@ -321,9 +355,9 @@
   <section class="lw-hero section section-dark">
     <div class="vbg"><img src="/brand_assets/webinar/hero-key.webp" alt="" aria-hidden="true" /></div>
     <div class="container">
-      <h1 class="display">Ich baue mit KI vor deinen Augen einen <span class="accent display-italic">Shopify-Shop</span> um.</h1>
-      <p class="lead">Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Du schreibst keine Zeile Code. Kostenlos, mit Q&amp;A.</p>
-      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
+      <h1 class="display">Du zahlst für Apps, die KI <span class="accent display-italic">gratis ersetzt</span>. Und für Rankings, die du selbst holen könntest.</h1>
+      <p class="lead">Live in 90 Minuten bau ich mit KI einen echten Shopify-Shop um. Du siehst, wie er mehr verkauft und sich die 5.232 € App-Kosten im Jahr spart. Kein Code.</p>
+      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span></div>
       <div class="cta-row">
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
       </div>
@@ -367,6 +401,33 @@
     </div>
   </section>
 
+  <!-- ===================== ABLAUF (Goal-Gradient) ===================== -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="sec-head">
+        <p class="meta eyebrow">Schnell am Punkt</p>
+        <h2 class="h2">Kein langes <em>Vorgeplänkel</em>.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="n">10</div>
+          <div>
+            <span class="meta label">Nach den ersten 10 Minuten</span>
+            <h3>Du verstehst, was KI in deinem Shop leisten kann — und was nicht.</h3>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="n">20</div>
+          <div>
+            <span class="meta label">Nach 20 Minuten</span>
+            <h3>Du siehst es live in Aktion an einem echten Shop.</h3>
+          </div>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:28px">Ich bin selbst Founder. Ich weiß, dass niemand seine Zeit verschwenden will — deshalb halte ich den Workshop kompakt. So schnell wie möglich an genau die Infos, für die du gekommen bist.</p>
+    </div>
+  </section>
+
   <!-- ===================== EINWÄNDE (dunkel) ===================== -->
   <section class="section section-dark">
     <div class="container">
@@ -402,7 +463,7 @@
         <div class="reveal">
           <p class="meta eyebrow">Rechne mit</p>
           <p class="costline">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
-          <p class="lead" style="max-width:34ch">Im Workshop zeige ich dir, wie viel davon Code einmalig ersetzt. Du rechnest live mit.</p>
+          <p class="lead" style="max-width:34ch">Im Workshop rechnest du live mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
         </div>
         <div class="cost-card reveal">
           <span class="meta">436 Euro im Monat</span>
@@ -431,7 +492,7 @@
           <h2 class="h2">8 Jahre <em>Online-Marketing</em>.</h2>
           <p class="lead">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
           <ul class="checks">
-            <li>Arbeit mit 404, Atlas und Quiver, teils Silicon Valley</li>
+            <li>Arbeit mit 404, Atlas und Quiver (8,3 Mio. € Funding)</li>
             <li>Einer der ersten GPT-Kurse für Fotografen, plus Vorträge</li>
             <li>Programm mit Paddy, Beratung von Marken aus Höhle der Löwen</li>
             <li>Berater für einen der größten Lebensmittel-Hersteller im Land</li>
@@ -469,6 +530,23 @@
     </div>
   </section>
 
+  <!-- ===================== WARUM JETZT (Closed-Beta · Scarcity) ===================== -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="sec-head">
+        <p class="meta eyebrow">Warum gerade jetzt</p>
+        <h2 class="h2">Bis heute lief das nur in <em>geschlossener Beta</em>.</h2>
+        <p class="lead">In diesem Workshop zeige ich das System zum ersten Mal öffentlich und live. Den Zugang für alle anderen öffne ich an genau diesem Tag zum ersten Mal — weil die Founder aus der Beta gesagt haben: Das darf nicht hinter verschlossenen Türen bleiben.</p>
+        <p class="lead">Dazu kommt: KI ist gerade massiv unterbewertet. Du bekommst heute ein Vielfaches an Leistung für das, was du zahlst — und keiner weiß, wie lange noch. Die Modelle waren nie günstiger als jetzt und werden es kaum je wieder sein. Wer früh lernt, sie zu führen, sichert sich den Vorsprung, solange er fast nichts kostet.</p>
+      </div>
+      <figure class="lw-quote reveal">
+        <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
+        <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Stefan Kisker</span><span class="lw-quote-co">Prometheus Performance GmbH</span></figcaption>
+      </figure>
+      <p class="cta-sub" style="margin-top:30px">Live oder verpasst — es gibt keine Aufzeichnung. Nur wer dabei ist, sieht jeden Schritt in Echtzeit.</p>
+    </div>
+  </section>
+
   <!-- ===================== FINAL CTA (dunkel) ===================== -->
   <section class="lw-final section section-dark">
     <div class="vbg"><img src="/brand_assets/webinar/appstack.webp" alt="" aria-hidden="true" /></div>
@@ -476,9 +554,9 @@
       <p class="meta eyebrow">Jetzt anmelden</p>
       <h2 class="h2">Sei <em>live</em> dabei.</h2>
       <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
-      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10:00 Uhr</span></div>
+      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span></div>
       <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-      <p class="cta-sub">Live mit Fragerunde am Ende</p>
+      <p class="cta-sub">Live mit Fragerunde am Ende · keine Aufzeichnung</p>
       <p id="reg-note" role="status" aria-live="polite" hidden>
         Die Anmeldung wird gerade scharfgeschaltet. Schreib mir kurz an
         <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>,
@@ -520,6 +598,30 @@
   <!-- ===================== STICKY MOBILE-CTA ===================== -->
   <div class="sticky-cta" id="stickyCta" aria-hidden="true">
     <button class="btn btn-primary" type="button" data-webinar-cta>Kostenlos anmelden &middot; Gratis</button>
+  </div>
+
+  <!-- ===================== COMMITMENT-LADDER (Qualify-Modal) ===================== -->
+  <div class="lwq-backdrop" id="lwqBackdrop" hidden></div>
+  <div class="lwq" id="lwqModal" hidden role="dialog" aria-modal="true" aria-labelledby="lwqTitle">
+    <button class="lwq-close" id="lwqClose" type="button" aria-label="Schließen">&times;</button>
+    <div class="lwq-step" data-step="1">
+      <p class="meta eyebrow">Schritt 1 von 2</p>
+      <p class="lwq-title" id="lwqTitle">Donnerstag, 25. Juni · 11:00 Uhr. Bist du live dabei?</p>
+      <p class="lwq-sub">90 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
+      <button class="btn btn-primary btn-lg" type="button" data-lwq-next>Ja, ich bin dabei</button>
+    </div>
+    <div class="lwq-step" data-step="2" hidden>
+      <p class="meta eyebrow">Schritt 2 von 2</p>
+      <p class="lwq-title">Läuft dein Shop auf Shopify?</p>
+      <div class="lwq-choices">
+        <button class="btn btn-primary btn-lg" type="button" data-lwq-shopify="yes">Ja, ich nutze Shopify</button>
+        <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, kein Shopify</button>
+      </div>
+    </div>
+    <div class="lwq-step" data-step="reject" hidden>
+      <p class="lwq-title">Dann passt dieser Workshop leider nicht für dich.</p>
+      <p class="lwq-sub">Alles, was ich zeige, läuft direkt im Shopify-Theme. Ohne Shopify hättest du nichts davon — und deine Zeit ist mir zu schade dafür.</p>
+    </div>
   </div>
 
   <!-- ===================== FOOTER ===================== -->
@@ -567,15 +669,36 @@
 
   <script>
     // ---- Termin zentral pflegen (eine Stelle, identisch zu A) ----
-    var WEBINAR_DATE = 'Donnerstag, 10:00 Uhr'; // TODO: echten Termin hier setzen
+    var WEBINAR_DATE = 'Donnerstag, 25. Juni · 11:00 Uhr'; // Live-Termin (eine Stelle, identisch zu A/B)
     document.querySelectorAll('[data-webinar-date]').forEach(function(e){ e.textContent = WEBINAR_DATE; });
 
-    // ---- Sign-up CTA: Übergangszustand bis Popup-Formular hinterlegt ----
+    // ---- Sign-up CTA → übergibt an Formular (später WebinarJam-Embed) ----
     function openWebinarForm(){
       var n = document.getElementById('reg-note');
       if(n){ n.hidden = false; n.scrollIntoView({behavior:'smooth', block:'center'}); }
     }
-    document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); });
+
+    // ---- Commitment-Ladder: Termin bestätigen → Shopify-Qualifier → Formular ----
+    (function(){
+      var modal = document.getElementById('lwqModal'), bd = document.getElementById('lwqBackdrop');
+      if(!modal || !bd){ document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); }); return; }
+      var steps = modal.querySelectorAll('.lwq-step');
+      var show = function(step){ steps.forEach(function(s){ s.hidden = (s.getAttribute('data-step') !== String(step)); }); };
+      var open = function(){ show(1); modal.hidden = false; bd.hidden = false; };
+      var close = function(){ modal.hidden = true; bd.hidden = true; };
+      var track = function(name){ if(window.clarity) window.clarity('event', name); if(window.gtag) window.gtag('event', name); if(window.fbq) window.fbq('trackCustom', name); };
+      document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', open); });
+      document.getElementById('lwqClose').addEventListener('click', close);
+      bd.addEventListener('click', close);
+      modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
+      modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
+        b.addEventListener('click', function(){
+          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); close(); openWebinarForm(); }
+          else { track('lw_qualify_no'); show('reject'); }
+        });
+      });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
+    })();
 
     // ---- Nav border on scroll + scroll-progress ----
     (function(){
