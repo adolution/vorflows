@@ -185,6 +185,7 @@
       border:1px solid var(--border-dark);border-radius:10px;overflow:hidden}
     @media(min-width:768px){.objs{grid-template-columns:repeat(3,1fr)}}
     .obj{background:var(--bg-dark);padding:28px 26px}
+    @media(max-width:767px){.obj{padding:22px 20px}}
     .obj .myth{color:var(--text-secondary-dark);font-size:15px}
     .obj .myth::before{content:"„ "}.obj .myth::after{content:" “"}
     .obj h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(19px,2vw,23px);
@@ -210,8 +211,8 @@
     /* ---------- Credibility (dunkel · Portrait auf Schwarz) ---------- */
     .cred{display:grid;gap:clamp(28px,4vw,56px)}
     @media(min-width:768px){.cred{grid-template-columns:1fr 1.2fr;align-items:center}}
-    .cred .photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:#000;border:1px solid var(--border-dark)}
-    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+    .cred .photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:#000;border:1px solid var(--border-dark)}
+    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
     .cred .photo::after{content:"";position:absolute;inset:0;pointer-events:none;
       background:radial-gradient(120% 70% at 50% 108%,rgba(200,99,62,.26) 0%,transparent 62%)}
     .cred .ptag{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;
@@ -223,6 +224,12 @@
     .cred-stat .v{display:block;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
       font-size:clamp(32px,4.5vw,52px);line-height:1;letter-spacing:-.02em;color:var(--accent)}
     .cred-stat .l{display:block;margin-top:8px;font-size:14px;line-height:1.5;color:var(--text-secondary-dark)}
+    @media(max-width:767px){
+      .cred{gap:24px}
+      .cred .photo{max-width:440px}
+      .cred-stats{gap:14px;margin-top:24px;padding-top:20px}
+      .cred-stat .l{font-size:13px;margin-top:6px}
+    }
 
     /* ---------- Listen ---------- */
     ul.checks,ul.no{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
@@ -493,7 +500,7 @@
     <div class="container">
       <div class="cred">
         <div class="photo reveal">
-          <img src="/shop-ki-founder.webp" alt="Alex von vorflows" loading="lazy" />
+          <img src="/shop-ki-founder-square.webp" alt="Alex von vorflows" loading="lazy" />
           <span class="ptag mono"><span class="dot" aria-hidden="true"></span>Alex · Founder vorflows</span>
         </div>
         <div class="reveal">
