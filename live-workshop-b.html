@@ -97,6 +97,19 @@
     .cta-sub{margin-top:12px;font-size:13.5px;color:var(--text-secondary)}
     .section-dark .cta-sub{color:var(--text-secondary-dark)}
 
+    /* ---------- Inline-CTA (wiederkehrender Anmelde-Anker zwischen Sections) ---------- */
+    .inline-cta{margin-top:clamp(40px,5.5vw,60px);padding-top:clamp(32px,4vw,44px);
+      border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
+    .section-dark .inline-cta{border-top-color:rgba(255,255,255,.12)}
+    .inline-cta .ic-line{font-family:'Fraunces',Georgia,serif;font-feature-settings:"ss01";
+      font-size:clamp(21px,2.8vw,27px);letter-spacing:-.015em;line-height:1.18;color:var(--text-primary);max-width:22ch}
+    .inline-cta .ic-line em{font-style:italic;color:var(--accent)}
+    .section-dark .inline-cta .ic-line{color:var(--text-inverse)}
+    .inline-cta .btn{min-height:54px}
+    .inline-cta .ic-note{font-size:13px;color:var(--text-secondary);letter-spacing:.01em}
+    .section-dark .inline-cta .ic-note{color:var(--text-secondary-dark)}
+    @media(max-width:599px){.inline-cta{gap:13px}.inline-cta .btn{width:100%;max-width:360px}}
+
     /* ---------- Pills ---------- */
     .pills{display:flex;flex-wrap:wrap;gap:8px}
     .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
@@ -433,6 +446,11 @@
           </div>
         </div>
       </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Genau das baue ich <em>live</em> vor deinen Augen.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · 60 Min · mit Q&amp;A</p>
+      </div>
     </div>
   </section>
 
@@ -484,6 +502,11 @@
           <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
         </div>
       </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Kein Code, kein Risiko. Nur <em>60 Minuten</em>.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Platz sichern</button>
+        <p class="ic-note">Kostenlos · live · keine Aufzeichnung</p>
+      </div>
     </div>
   </section>
 
@@ -506,6 +529,11 @@
             <li class="tot">Neun Apps. Solange dein Shop läuft.</li>
           </ul>
         </div>
+      </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Rechne live mit, was <em>weg</em> kann.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <p class="ic-note">Kein Verkaufsgespräch · nur die Mechanik</p>
       </div>
     </div>
   </section>
@@ -532,6 +560,11 @@
             <div class="cred-stat"><span class="v">1.000+</span><span class="l">Kursteilnehmer (SEO, Ads, etc.)</span></div>
           </div>
         </div>
+      </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Lern es von jemandem, der es <em>täglich</em> macht.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · kostenlos</p>
       </div>
     </div>
   </section>
@@ -622,6 +655,11 @@
           <summary>Wie lange dauert es?</summary>
           <div class="faq-body">60 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</div>
         </details>
+      </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Noch Fragen? Stell sie mir <em>live</em>.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        <p class="ic-note">Offene Fragerunde am Ende · kostenlos</p>
       </div>
     </div>
   </section>
