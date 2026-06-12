@@ -28,7 +28,7 @@
   <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Live-Workshop: Shopify-Shop mit KI umbauen" />
-  <meta name="twitter:description" content="In 60 Minuten live: Apps ersetzen, ranken, Conversion heben. Kostenlos, ohne eine Zeile Code." />
+  <meta name="twitter:description" content="In 60 Minuten live: Apps ersetzen, ranken, Conversion-Rate verbessern. Kostenlos, ohne eine Zeile Code." />
   <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
   <!-- Self-hosted Fonts (identisch zur Homepage) -->
@@ -109,6 +109,8 @@
     .inline-cta .ic-note{font-size:13px;color:var(--text-secondary);letter-spacing:.01em}
     .section-dark .inline-cta .ic-note{color:var(--text-secondary-dark)}
     @media(max-width:599px){.inline-cta{gap:13px}.inline-cta .btn{width:100%;max-width:360px}}
+    /* Steps enden bereits mit Border — Inline-CTA direkt danach ohne zweiten Trennstrich */
+    .steps + .inline-cta{border-top:0;padding-top:0}
 
     /* ---------- Pills ---------- */
     .pills{display:flex;flex-wrap:wrap;gap:8px}
@@ -238,10 +240,18 @@
     .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
     .cred .photo::after{content:"";position:absolute;inset:0;pointer-events:none;
       background:radial-gradient(120% 70% at 50% 108%,rgba(200,99,62,.26) 0%,transparent 62%)}
-    .cred .ptag{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;
+    .cred .ptag,.stagephoto .ptag{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;
       padding:7px 13px;border-radius:999px;background:rgba(15,15,15,.72);border:1px solid rgba(255,255,255,.18);
       backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:.04em;color:var(--text-inverse)}
-    .cred .ptag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+    .cred .ptag .dot,.stagephoto .ptag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+
+    /* ---------- Stage-Foto (Warum jetzt · echte Live-Situation) ---------- */
+    .stagephoto{position:relative;margin-top:clamp(32px,4.5vw,52px);border-radius:14px;overflow:hidden;
+      aspect-ratio:16/9;background:#000;border:1px solid var(--border-dark);max-width:760px}
+    .stagephoto img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .stagephoto::after{content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(180deg,rgba(15,15,15,0) 50%,rgba(15,15,15,.5) 100%)}
+    @media(max-width:599px){.stagephoto{aspect-ratio:4/3}}
     .cred-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px);
       margin-top:30px;padding-top:26px;border-top:1px solid var(--border-dark)}
     .cred-stat .v{display:block;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
@@ -403,7 +413,7 @@
     <div class="vbg"><img src="/assets/images/alex-workshop-square.jpg" alt="" aria-hidden="true" /></div>
     <div class="container">
       <h1 class="display">Du zahlst für Apps, die KI <span class="accent display-italic">gratis ersetzt</span>. Und für Rankings, die du selbst holen könntest.</h1>
-      <p class="lead">Live in 60 Minuten: sieh, wie KI Apps ersetzt, Rankings holt und Conversion hebt — ohne Code.</p>
+      <p class="lead">Live in 60 Minuten: sieh, wie KI Apps ersetzt, Rankings holt und die Conversion-Rate verbessert — ohne Code.</p>
       <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span></div>
       <div class="cta-row">
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
@@ -415,7 +425,7 @@
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <h2 class="h2">Drei Dinge, <em>live</em>.</h2>
+        <h2 class="h2">Das baue ich <em>live</em> in den Shop.</h2>
         <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen.</p>
       </div>
       <div class="steps">
@@ -437,12 +447,12 @@
           <div class="n">3</div>
           <div>
             <h3>CRO aus echtem Klick- und Scrollverhalten.</h3>
-            <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion hebt.</p>
+            <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion-Rate verbessert.</p>
           </div>
         </div>
       </div>
       <div class="inline-cta reveal">
-        <p class="ic-line">Genau das baue ich <em>live</em> vor deinen Augen.</p>
+        <p class="ic-line">Genau das siehst du <em>live</em>.</p>
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
         <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · 60 Min · mit Q&amp;A</p>
       </div>
@@ -475,39 +485,7 @@
       <div class="inline-cta reveal">
         <p class="ic-line">Lern es von jemandem, der es <em>täglich</em> macht.</p>
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · kostenlos</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== EINWÄNDE (dunkel) ===================== -->
-  <section class="section section-dark">
-    <div class="container">
-      <div class="sec-head">
-        <h2 class="h2">Du brauchst keinen <em>Entwickler</em> dafür.</h2>
-        <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
-      </div>
-      <div class="objs">
-        <div class="obj reveal">
-          <span class="myth mono">Ich kann nicht coden</span>
-          <h3>Musst du nicht.</h3>
-          <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
-        </div>
-        <div class="obj reveal">
-          <span class="myth mono">Zu riskant am Live-Shop</span>
-          <h3>Dein Shop bleibt sicher.</h3>
-          <p>Gearbeitet wird am duplizierten Theme. Nichts geht live ohne dein Zutun.</p>
-        </div>
-        <div class="obj reveal">
-          <span class="myth mono">KI ist nicht auf Profi-Niveau</span>
-          <h3>Doch, mit der richtigen Führung.</h3>
-          <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
-        </div>
-      </div>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Kein Code, kein Risiko. Nur <em>60 Minuten</em>.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Platz sichern</button>
-        <p class="ic-note">Kostenlos · live · keine Aufzeichnung</p>
+        <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · ohne Vorkenntnisse</p>
       </div>
     </div>
   </section>
@@ -535,7 +513,39 @@
       <div class="inline-cta reveal">
         <p class="ic-line">Rechne live mit, was <em>weg</em> kann.</p>
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note">Kein Verkaufsgespräch · nur die Mechanik</p>
+        <p class="ic-note"><span data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span> · live</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EINWÄNDE (dunkel) ===================== -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="h2">Du brauchst keinen <em>Entwickler</em> dafür.</h2>
+        <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
+      </div>
+      <div class="objs">
+        <div class="obj reveal">
+          <span class="myth mono">Ich kann nicht coden</span>
+          <h3>Musst du nicht.</h3>
+          <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
+        </div>
+        <div class="obj reveal">
+          <span class="myth mono">Zu riskant am Live-Shop</span>
+          <h3>Dein Shop bleibt sicher.</h3>
+          <p>Gearbeitet wird am duplizierten Theme. Nichts geht live ohne dein Zutun.</p>
+        </div>
+        <div class="obj reveal">
+          <span class="myth mono">KI ist nicht auf Profi-Niveau</span>
+          <h3>Doch, mit der richtigen Führung.</h3>
+          <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Workflow.</p>
+        </div>
+      </div>
+      <div class="inline-cta reveal">
+        <p class="ic-line">Kein Code, kein Risiko. Nur <em>60 Minuten</em>.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Platz sichern</button>
+        <p class="ic-note">Kostenlos · live · keine Aufzeichnung</p>
       </div>
     </div>
   </section>
@@ -550,7 +560,7 @@
           <ul class="checks">
             <li>Du einen laufenden Shopify-Shop führst</li>
             <li>Du bereit bist, KI-Tools selbst zu nutzen</li>
-            <li>Du kein Techniker bist, aber sagen kannst, was du willst</li>
+            <li>Du kein Entwickler bist, aber sagen kannst, was du willst</li>
             <li>Du den App-Stack satt hast und die Kontrolle zurück willst</li>
           </ul>
         </div>
@@ -575,11 +585,43 @@
         <p class="lead">Zum ersten Mal zeige ich das System öffentlich — weil die Beta-Resultate es rechtfertigen.</p>
         <p class="lead">Wer das jetzt nutzt, baut einen echten Vorsprung auf. Was heute wenige tun, machen in zwei Jahren alle.</p>
       </div>
+      <div class="stagephoto reveal">
+        <img src="/assets/images/alex-workshop-square.jpg" alt="Alex live auf der Bühne vor Publikum" loading="lazy" />
+      </div>
       <figure class="lw-quote reveal">
         <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Stefan Kisker</span><span class="lw-quote-co">Prometheus Performance GmbH</span></figcaption>
       </figure>
       <p class="cta-sub" style="margin-top:30px">Keine Aufzeichnung. Nur wer live dabei ist, sieht jeden Schritt.</p>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section">
+    <div class="container" style="max-width:820px">
+      <h2 class="h2">Häufige Fragen.</h2>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>Kostet der Workshop etwas?</summary>
+          <div class="faq-body">Nein, der Live-Workshop ist komplett kostenlos.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Brauche ich Vorkenntnisse im Coden?</summary>
+          <div class="faq-body">Nein. Du musst kein Entwickler sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Gibt es eine Aufzeichnung?</summary>
+          <div class="faq-body">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Für welchen Shop ist das gedacht?</summary>
+          <div class="faq-body">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion-Rate verbessern.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie lange dauert es?</summary>
+          <div class="faq-body">Circa 60 Minuten. Je nach Menge der Fragen kann es auch bis zu 90 Minuten dauern. Plane dir also etwas Zeit ein.</div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -597,40 +639,6 @@
         <button class="btn btn-primary wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
         <p class="reg-fallback">Oder schreib an
           <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAQ ===================== -->
-  <section class="section">
-    <div class="container" style="max-width:820px">
-      <h2 class="h2">Häufige Fragen.</h2>
-      <div class="faq">
-        <details class="faq-item" open>
-          <summary>Kostet der Workshop etwas?</summary>
-          <div class="faq-body">Nein. Der Live-Workshop ist kostenlos. Du brauchst 60 Minuten und einen Platz, den du dir oben sicherst.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Brauche ich Vorkenntnisse im Coden?</summary>
-          <div class="faq-body">Nein. Du musst kein Techniker sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Gibt es eine Aufzeichnung?</summary>
-          <div class="faq-body">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Für welchen Shop ist das gedacht?</summary>
-          <div class="faq-body">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion heben.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Wie lange dauert es?</summary>
-          <div class="faq-body">60 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</div>
-        </details>
-      </div>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Noch Fragen? Stell sie mir <em>live</em>.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note">Offene Fragerunde am Ende · kostenlos</p>
       </div>
     </div>
   </section>
