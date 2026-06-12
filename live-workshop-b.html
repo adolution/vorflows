@@ -724,15 +724,32 @@
       var wjProbed = false;
       var armWjProbe = function(){
         if(wjProbed) return; wjProbed = true;
-        var done = false, tries = 0;
-        var check = function(){
-          if(done) return true;
-          var ifr = document.querySelector('iframe[src*="webinarjam"]');
-          if(ifr){ var r = ifr.getBoundingClientRect(); if(r.width > 50 && r.height > 50){ done = true; track('lw_wj_open'); return true; } }
+        var opened = false, cardShown = false, ticks = 0;
+        var rn = document.getElementById('reg-note');
+        var popupOpen = function(){
+          var els = document.querySelectorAll('iframe');
+          for(var i = 0; i < els.length; i++){
+            var el = els[i], r = el.getBoundingClientRect(), src = el.getAttribute('src') || '';
+            if(r.width > 300 && r.height > 300) return true;                        // grosses Overlay-Iframe = Popup (Domain egal)
+            if(/webinarjam|genndi/i.test(src) && r.width > 50 && r.height > 50) return true;
+          }
           return false;
         };
-        var iv = setInterval(function(){ tries++; if(check() || tries >= 20){ clearInterval(iv); if(!done){ track('lw_wj_noopen'); var rn = document.getElementById('reg-note'); if(rn) rn.hidden = false; } } }, 150);
-        check();
+        var iv = setInterval(function(){
+          ticks++;
+          if(!opened && popupOpen()){
+            opened = true; track('lw_wj_open');
+            if(cardShown && rn){ rn.hidden = true; cardShown = false; }             // verfrueht gezeigte Karte wieder weg
+          }
+          if(!opened && !cardShown && ticks >= 27){                                 // ~4s: noch kein Popup -> Karte zeigen
+            cardShown = true; track('lw_wj_fallback_shown');
+            if(rn) rn.hidden = false;
+          }
+          if(opened || ticks >= 53){                                                // ~8s Ende
+            clearInterval(iv);
+            if(!opened) track('lw_wj_noopen');                                      // echtes Scheitern (nie aufgegangen)
+          }
+        }, 150);
       };
       var rnBtn = document.querySelector('#reg-note .wj-embed-button');
       if(rnBtn) rnBtn.addEventListener('click', function(){ track('lw_wj_fallback_click'); });

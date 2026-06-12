@@ -84,9 +84,10 @@ Es gibt zwei Funktionen, die Events feuern. Inkonsistenz bewusst kennen:
 | `lw_commit_date` | track | Modal Schritt 1 "Termin bestätigen" | — (kein variant!) |
 | `lw_qualify_yes` | track | Modal: "Shop bei Shopify? Ja" → öffnet WJ-Popup direkt | — |
 | `lw_qualify_no` | track | Modal: "Nein" → Reject-Screen | — |
-| **`lw_wj_open`** | track | WJ-Registrierungs-Popup-Iframe nach Shopify-Ja erkannt (Polling 3s, sichtbares `iframe[src*=webinarjam]`). **= Direkt-Öffnen hat geklappt.** | — |
-| **`lw_wj_noopen`** | track | 3s nach Shopify-Ja **kein** WJ-Iframe → Popup ging nicht auf. **= Diese User landen im Fallback.** | — |
-| `lw_wj_fallback_click` | track | Klick auf den sichtbaren `#reg-note`-Fallback-Button | — |
+| **`lw_wj_open`** | track | Popup-Overlay-Iframe nach Shopify-Ja erkannt (`armWjProbe` pollt ~8s; **jedes** Iframe >300×300px ODER `src` mit `webinarjam`/`genndi`). **= Öffnen hat geklappt** (auch spät). | — |
+| **`lw_wj_noopen`** | track | Nach ~8s **nie** ein Popup-Iframe → ging echt nicht auf. **= true fail.** | — |
+| `lw_wj_fallback_shown` | track | ~4s kein Popup → Fallback-Karte (`#reg-note`) eingeblendet. Superset (enthält auch Spät-Öffner); kommt ein Popup danach, wird die Karte wieder versteckt + `lw_wj_open`. | — |
+| `lw_wj_fallback_click` | track | Klick auf den `#reg-note`-Fallback-Button | — |
 | `lw_scroll_25/50/75/100` | cEvent | Scroll-Tiefe, je 1× | `pct` |
 | `lw_dwell` | cEvent | Verweilzeit (sichtbarkeits-/pausenbereinigt), bei Bucket-Wechsel | `sec`, `bucket`, `reason` |
 | `lw_faq_open` | cEvent | `<details>` aufgeklappt | `q` (Fragetext, 80 Zeichen) |
@@ -152,8 +153,26 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    neue `formColor`-Zahl in beide Script-Tags übernehmen.
 6. WebinarJam-Registrierung → **Custom Thank You Page** (in WebinarJam
    konfigurieren!): `https://vorflows.com/danke-live-workshop`. WebinarJam hängt
-   Lead-Daten an die URL (`wj_lead_email`, `wj_lead_first_name`), die Seite liest
-   sie defensiv aus und speichert sie als `vf_known_email`/`vf_known_first_name`.
+   Lead-Daten an die URL — verifiziert per Test-Anmeldung (2026-06-12):
+   `wj_lead_email`, `wj_lead_first_name`, `wj_lead_last_name`,
+   `wj_lead_phone_country_code`+`wj_lead_phone_number`, `wj_room_password`,
+   **`wj_lead_unique_link_live_room`** (persönlicher Live-Room-Link),
+   `wj_event_ts`/`wj_event_tz`/`wj_next_event_*`. Die Seite liest alles defensiv
+   aus, speichert in localStorage (`vf_known_email/_first_name/_last_name/_phone`,
+   `vf_lw_live_link`) und macht dann **`history.replaceState` → Query-Params weg**,
+   BEVOR Clarity/Pixel laden (sonst PII + persönlicher Link in Recordings/Logs).
+   - **Live-Link-Validierung:** nur Links, die exakt auf
+     `https://event.webinarjam.com/<hash>/go/live/<hash>` matchen, werden
+     akzeptiert — sonst Kalender-Fallback („Link in der Bestätigungs-Mail").
+     Validierter Link wandert in Google-Kalender-`details`+`location` und
+     ICS-`LOCATION`/`DESCRIPTION` (Show-Up-Hebel: 1 Klick vom Kalender in den Raum).
+   - **Advanced Matching:** `fbq('init')` bekommt `em`, `fn`, `ln`, `ph`
+     (Pixel hasht selbst per SHA-256); CAPI-Mirror bekommt email/first/last/phone
+     und hasht in `api/capi.js`. Telefon wird dort E.164-normalisiert
+     (führende `0` → `49`, `00` gestrippt) — sonst matcht Meta deutsche Nummern nicht.
+   - **Inbox-Button** zeigt Provider-Namen im Label („Gmail öffnen", „GMX öffnen" …),
+     erkannt über E-Mail-Domain; unbekannte Domain → Button bleibt versteckt.
+   - Scratch-Test: `node test-wj-params.mjs` (Server auf :3001 nötig).
 7. Danke-Seite: **Double-Opt-in zuerst** (Hero: 50%-Balken "Schritt 1 von 2",
    Aufforderung Bestätigungs-Link im Postfach zu klicken, "Postfach öffnen"-Button)
    + `CompleteRegistration` + Survey (5 Fragen) + `QualifiedLead` + Kalender.
@@ -169,6 +188,12 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
 1. ~~Registrierungs-Popup-Code einsetzen~~ ✅ erledigt (Step `ready` im Modal + `#reg-note`-Fallback, WJ-Loader vor `</body>`, beide Files).
 2. Thank You Page → "Custom page" → `https://vorflows.com/danke-live-workshop`.
 3. Test-Anmeldung mit `?utm_campaign=test&utm_content=testad` durchklicken und im Meta Events Manager (Test-Events) + Clarity prüfen.
+4. **WJ-Tracking-Felder** (Integrations → 3rd Party Tracking): Registration/Form/
+   Thank-You-Felder **leer lassen** (eigener Funnel trackt besser, Custom-TY-Seite
+   umgeht WJ-TY ohnehin). Nur **Live Room** + **Replay** befüllen: Pixel-Base-Code
+   + `fbq('trackCustom','LW_Attend')` bzw. `'LW_Replay'` — einzige Stellen ohne
+   eigenen Code-Zugriff (Show-Up-Audiences). Match dort schwächer (Fremddomain,
+   kein `em`) — perfekte Stufe wäre später Attendance-Import via WJ-API → CAPI.
 
 ### Ad-URL-Template (Meta, in jede Anzeige)
 ```
