@@ -80,7 +80,7 @@ Es gibt zwei Funktionen, die Events feuern. Inkonsistenz bewusst kennen:
 | Event | Gefeuert von | Wann / wo | Props |
 |---|---|---|---|
 | `lw_A` / `lw_B` | sendTag (Clarity) | 1× pro Pageview, Variant-Tag | — |
-| **`lw_signup_click`** | cEvent | **Primärziel.** Klick auf jeden `[data-webinar-cta]` | `loc`: hero / sticky / nav / final / inline |
+| **`lw_signup_click`** | cEvent | **Primärziel.** Klick auf jeden `[data-webinar-cta]` | `loc`: hero / nav / final / inline (**`sticky` entfällt** — Sticky-Bottom-CTA mobil deaktiviert, Nav-CTA „Platz sichern" bleibt sticky sichtbar; kein Doppel-CTA. Markup/JS bleiben, nur `display:none`) |
 | `lw_commit_date` | track | Modal Schritt 1 "Termin bestätigen" | — (kein variant!) |
 | `lw_qualify_yes` | track | Modal: "Shop bei Shopify? Ja" → öffnet WJ-Popup direkt | — |
 | `lw_qualify_no` | track | Modal: "Nein" → Reject-Screen | — |
