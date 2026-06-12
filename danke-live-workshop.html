@@ -630,8 +630,34 @@
         var params = new URLSearchParams(location.search);
         var leadEmail = params.get('wj_lead_email') || params.get('email') || ls.get('vf_known_email') || null;
         var leadFirstName = params.get('wj_lead_first_name') || params.get('first_name') || ls.get('vf_known_first_name') || null;
+        var leadLastName = params.get('wj_lead_last_name') || ls.get('vf_known_last_name') || null;
+        // WJ liefert Ländervorwahl + Nummer getrennt (beide leer, solange das
+        // WJ-Formular kein Telefonfeld hat) — defensiv zusammensetzen.
+        var leadPhone = (function () {
+          var cc = params.get('wj_lead_phone_country_code') || '';
+          var nr = params.get('wj_lead_phone_number') || '';
+          var full = nr ? (cc + nr) : '';
+          return full || ls.get('vf_known_phone') || null;
+        })();
+        // Persönlicher Live-Room-Link: nur akzeptieren, wenn er eindeutig wie
+        // ein WebinarJam-Event-Link aussieht — sonst lieber KEIN Link im
+        // Kalender als ein falscher.
+        var liveLink = (function () {
+          var raw = params.get('wj_lead_unique_link_live_room') || ls.get('vf_lw_live_link') || '';
+          return /^https:\/\/event\.webinarjam\.com\/[\w-]+\/go\/live\/[\w-]+$/.test(raw) ? raw : null;
+        })();
         if (leadEmail) ls.set('vf_known_email', leadEmail);
         if (leadFirstName) ls.set('vf_known_first_name', leadFirstName);
+        if (leadLastName) ls.set('vf_known_last_name', leadLastName);
+        if (leadPhone) ls.set('vf_known_phone', leadPhone);
+        if (liveLink) ls.set('vf_lw_live_link', liveLink);
+
+        // ── URL-Cleanup: PII (E-Mail, persönlicher Live-Link, Passwort) aus
+        // der Adresszeile entfernen, BEVOR Clarity lädt — sonst landet alles
+        // in Recordings und Logs. Daten sind oben in localStorage gesichert.
+        if (location.search) {
+          try { history.replaceState(null, '', location.pathname); } catch (e) {}
+        }
         if (leadFirstName) {
           var hn = document.getElementById('helloName');
           if (hn) hn.textContent = ', ' + leadFirstName;
@@ -639,24 +665,25 @@
 
         // ── "Postfach öffnen"-Button: Provider aus E-Mail-Domain erkennen ──
         var INBOX = {
-          'gmail.com': 'https://mail.google.com/', 'googlemail.com': 'https://mail.google.com/',
-          'outlook.com': 'https://outlook.live.com/mail/', 'outlook.de': 'https://outlook.live.com/mail/',
-          'hotmail.com': 'https://outlook.live.com/mail/', 'hotmail.de': 'https://outlook.live.com/mail/',
-          'live.com': 'https://outlook.live.com/mail/', 'live.de': 'https://outlook.live.com/mail/',
-          'gmx.de': 'https://www.gmx.net/', 'gmx.net': 'https://www.gmx.net/', 'gmx.at': 'https://www.gmx.at/',
-          'web.de': 'https://web.de/', 't-online.de': 'https://email.t-online.de/',
-          'yahoo.com': 'https://mail.yahoo.com/', 'yahoo.de': 'https://mail.yahoo.com/',
-          'icloud.com': 'https://www.icloud.com/mail/', 'me.com': 'https://www.icloud.com/mail/',
-          'freenet.de': 'https://webmail.freenet.de/', 'posteo.de': 'https://posteo.de/webmail',
-          'mailbox.org': 'https://login.mailbox.org/', 'aol.com': 'https://mail.aol.com/'
+          'gmail.com': ['https://mail.google.com/', 'Gmail'], 'googlemail.com': ['https://mail.google.com/', 'Gmail'],
+          'outlook.com': ['https://outlook.live.com/mail/', 'Outlook'], 'outlook.de': ['https://outlook.live.com/mail/', 'Outlook'],
+          'hotmail.com': ['https://outlook.live.com/mail/', 'Outlook'], 'hotmail.de': ['https://outlook.live.com/mail/', 'Outlook'],
+          'live.com': ['https://outlook.live.com/mail/', 'Outlook'], 'live.de': ['https://outlook.live.com/mail/', 'Outlook'],
+          'gmx.de': ['https://www.gmx.net/', 'GMX'], 'gmx.net': ['https://www.gmx.net/', 'GMX'], 'gmx.at': ['https://www.gmx.at/', 'GMX'],
+          'web.de': ['https://web.de/', 'WEB.DE'], 't-online.de': ['https://email.t-online.de/', 'T-Online'],
+          'yahoo.com': ['https://mail.yahoo.com/', 'Yahoo Mail'], 'yahoo.de': ['https://mail.yahoo.com/', 'Yahoo Mail'],
+          'icloud.com': ['https://www.icloud.com/mail/', 'iCloud Mail'], 'me.com': ['https://www.icloud.com/mail/', 'iCloud Mail'],
+          'freenet.de': ['https://webmail.freenet.de/', 'freenet Mail'], 'posteo.de': ['https://posteo.de/webmail', 'Posteo'],
+          'mailbox.org': ['https://login.mailbox.org/', 'mailbox.org'], 'aol.com': ['https://mail.aol.com/', 'AOL Mail']
         };
         (function () {
           var btn = document.getElementById('inboxBtn');
           if (!btn || !leadEmail || leadEmail.indexOf('@') < 0) return;
           var domain = leadEmail.split('@')[1].toLowerCase();
-          var url = INBOX[domain];
-          if (!url) return;
-          btn.href = url;
+          var entry = INBOX[domain];
+          if (!entry) return;
+          btn.href = entry[0];
+          btn.textContent = entry[1] + ' öffnen';
           btn.hidden = false;
           btn.addEventListener('click', function () { lwTrack('LW_OpenInbox', {}, 'lw_open_inbox'); });
         })();
@@ -686,6 +713,13 @@
         var am = { external_id: extId, country: 'de' };
         if (leadEmail) am.em = leadEmail;
         if (leadFirstName) am.fn = leadFirstName;
+        if (leadLastName) am.ln = leadLastName;
+        if (leadPhone) {
+          var phDigits = leadPhone.replace(/\D/g, '');
+          if (phDigits.indexOf('00') === 0) phDigits = phDigits.slice(2);
+          else if (phDigits.indexOf('0') === 0) phDigits = '49' + phDigits.slice(1);
+          if (phDigits.length >= 8) am.ph = phDigits;
+        }
         fbq('init', META_PIXEL_ID, am);
         fbq('track', 'PageView');
 
@@ -722,7 +756,8 @@
                   fbc: getCookie('_fbc') || null,
                   email: leadEmail || undefined,
                   first_name: leadFirstName || undefined,
-                  phone: phoneGiven || undefined
+                  last_name: leadLastName || undefined,
+                  phone: phoneGiven || leadPhone || undefined
                 }
               }),
               keepalive: true
@@ -861,12 +896,16 @@
         }
 
         // ── Kalender-Links (Show-Up-Commitment) ──────────────────────
-        var desc = 'Live in 60 Minuten: Apps ersetzen, Rankings holen, Conversion heben. Dein Teilnahme-Link steht in der Bestätigungs-Mail.';
+        // Mit validiertem persönlichem WJ-Link: Link direkt in den Termin →
+        // ein Klick aus dem Kalender in den Raum. Ohne: Verweis auf die Mail.
+        var desc = 'Live in 60 Minuten: Apps ersetzen, Rankings holen, Conversion heben. '
+          + (liveLink ? 'Dein persönlicher Teilnahme-Link: ' + liveLink : 'Dein Teilnahme-Link steht in der Bestätigungs-Mail.');
+        var calLocation = liveLink || 'Online (Link in der Bestätigungs-Mail)';
         var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
           + '&text=' + encodeURIComponent(WEBINAR_TITLE)
           + '&dates=' + WEBINAR_START_UTC + '/' + WEBINAR_END_UTC
           + '&details=' + encodeURIComponent(desc)
-          + '&location=' + encodeURIComponent('Online (Link in der Bestätigungs-Mail)');
+          + '&location=' + encodeURIComponent(calLocation);
         document.getElementById('calGoogle').href = gcal;
         document.getElementById('calGoogle').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'google' }, 'lw_calendar_google'); });
 
@@ -879,7 +918,7 @@
           'DTEND:' + WEBINAR_END_UTC,
           'SUMMARY:' + WEBINAR_TITLE.replace(/,/g, '\\,'),
           'DESCRIPTION:' + desc.replace(/,/g, '\\,'),
-          'LOCATION:Online',
+          'LOCATION:' + (liveLink ? liveLink.replace(/,/g, '\\,') : 'Online'),
           'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Live-Workshop startet in 30 Minuten', 'END:VALARM',
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n');

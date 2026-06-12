@@ -7,8 +7,13 @@ const sha256 = (v) => {
 
 const hashPhone = (phone) => {
   if (!phone) return null;
-  const digits = String(phone).replace(/\D/g, '');
+  let digits = String(phone).replace(/\D/g, '');
   if (!digits) return null;
+  // Meta erwartet Ländercode ohne führende Nullen ("4915..."), deutsches
+  // Publikum tippt aber meist "015..." oder "0049...".
+  if (digits.startsWith('00')) digits = digits.slice(2);
+  else if (digits.startsWith('0')) digits = '49' + digits.slice(1);
+  if (digits.length < 8) return null;
   return crypto.createHash('sha256').update(digits).digest('hex');
 };
 
