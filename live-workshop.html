@@ -590,7 +590,7 @@
         </details>
         <details class="faq-item">
           <summary>Gibt es eine Aufzeichnung?</summary>
-          <div class="faq-body">Plane fest mit dem Live-Termin. Dort siehst du jeden Schritt in Echtzeit und kannst direkt Fragen stellen. Den vollen Wert hast du nur live.</div>
+          <div class="faq-body">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
         </details>
         <details class="faq-item">
           <summary>Für welchen Shop ist das gedacht?</summary>
@@ -606,7 +606,7 @@
 
   <!-- ===================== STICKY MOBILE-CTA ===================== -->
   <div class="sticky-cta" id="stickyCta" aria-hidden="true">
-    <button class="btn btn-primary" type="button" data-webinar-cta>Kostenlos anmelden &middot; Gratis</button>
+    <button class="btn btn-primary" type="button" data-webinar-cta>Kostenlos anmelden</button>
   </div>
 
   <!-- ===================== COMMITMENT-LADDER (Qualify-Modal) ===================== -->
@@ -630,6 +630,7 @@
     <div class="lwq-step" data-step="reject" hidden>
       <p class="lwq-title">Dann passt dieser Workshop leider nicht für dich.</p>
       <p class="lwq-sub">Alles, was ich zeige, läuft direkt im Shopify-Theme. Ohne Shopify hättest du nichts davon, und deine Zeit ist mir zu schade dafür.</p>
+      <button class="btn btn-outline" type="button" data-lwq-done>Alles klar</button>
     </div>
   </div>
 
@@ -692,13 +693,33 @@
       var modal = document.getElementById('lwqModal'), bd = document.getElementById('lwqBackdrop');
       if(!modal || !bd){ document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); }); return; }
       var steps = modal.querySelectorAll('.lwq-step');
-      var show = function(step){ steps.forEach(function(s){ s.hidden = (s.getAttribute('data-step') !== String(step)); }); };
-      var open = function(){ show(1); modal.hidden = false; bd.hidden = false; };
-      var close = function(){ modal.hidden = true; bd.hidden = true; };
+      var lastFocused = null;
+      var visibleButtons = function(){
+        return Array.prototype.filter.call(modal.querySelectorAll('button'), function(el){ return !el.closest('[hidden]'); });
+      };
+      var show = function(step){
+        steps.forEach(function(s){ s.hidden = (s.getAttribute('data-step') !== String(step)); });
+        var first = modal.querySelector('.lwq-step[data-step="' + step + '"] .btn');
+        if(first) first.focus();
+      };
+      var open = function(){ lastFocused = document.activeElement; modal.hidden = false; bd.hidden = false; show(1); };
+      var close = function(){
+        modal.hidden = true; bd.hidden = true;
+        if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus({preventScroll:true});
+        lastFocused = null;
+      };
       var track = function(name){ if(window.clarity) window.clarity('event', name); if(window.gtag) window.gtag('event', name); if(window.fbq) window.fbq('trackCustom', name); };
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', open); });
       document.getElementById('lwqClose').addEventListener('click', close);
       bd.addEventListener('click', close);
+      modal.querySelectorAll('[data-lwq-done]').forEach(function(b){ b.addEventListener('click', close); });
+      modal.addEventListener('keydown', function(e){
+        if(e.key !== 'Tab') return;
+        var f = visibleButtons(); if(!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      });
       modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
       modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
         b.addEventListener('click', function(){
