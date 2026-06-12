@@ -397,18 +397,35 @@
         gap: 0.6rem;
       }
       .cal-row .btn { font-size: 0.92rem; padding: 0.7rem 1.05rem; text-decoration: none; }
+      /* Beide Kalender-Optionen gleichwertig: dünne Akzent-Outline */
+      .btn-cal { background: transparent; color: var(--text-primary); border: 1px solid var(--accent); }
+      .btn-cal:hover { background: var(--accent-soft); }
+      .btn-cal:active { transform: translateY(1px); }
+      .btn-cal:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-      .inbox-note {
-        margin: 1.5rem 0 0;
-        padding: 0.95rem 1.1rem;
-        border-radius: 0.65rem;
-        background: var(--accent-soft);
-        border: 1px solid rgba(200, 99, 62, 0.2);
-        font-size: 0.92rem;
-        line-height: 1.55;
-        color: var(--text-primary);
+      .ty-quote { margin: clamp(1.6rem, 5vw, 2.2rem) 0 0; max-width: 34rem; }
+      .ty-quote blockquote {
+        margin: 0 0 0.8rem;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.05rem, 3.4vw, 1.25rem);
+        line-height: 1.45;
+        letter-spacing: -0.015em;
       }
-      .inbox-note strong { font-weight: 600; }
+      .ty-quote blockquote::before { content: "\201C"; color: var(--accent); }
+      .ty-quote blockquote::after { content: "\201D"; color: var(--accent); }
+      .ty-quote figcaption {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+      }
+      .ty-quote-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+      .ty-quote-name { font-weight: 600; }
+      .ty-quote-co { color: var(--text-secondary); }
+      .ty-quote-co::before { content: "— "; color: var(--border-strong); }
 
       .foot {
         margin-top: clamp(2.25rem, 7vw, 3.5rem);
@@ -448,16 +465,10 @@
         <p class="steps">Schritt 1 von 2 erledigt</p>
       </div>
 
-      <p class="eyebrow">Dein Platz ist reserviert</p>
-      <h1>Ein Klick fehlt <em>noch</em><span id="helloName"></span>.</h1>
-      <p class="lead">
-        Du hast gerade eine E-Mail von uns bekommen. Klick dort auf den
-        Bestätigungs-Link, erst dann ist deine Anmeldung bestätigt und ich kann
-        dir den Teilnahme-Link zum Workshop schicken.
-      </p>
+      <h1 style="margin-top:1.3rem">Ein Klick fehlt <em>noch</em><span id="helloName"></span>.</h1>
 
       <div class="confirm-box">
-        <p class="ct">Öffne jetzt dein Postfach und bestätige deine Anmeldung.</p>
+        <p class="ct">Öffne jetzt dein Postfach und bestätige deine Anmeldung. Nur so kann ich dir dein Ticket senden.</p>
         <p class="cs">Keine Mail zu sehen? Schau in den Spam- oder Werbung-Ordner und zieh sie in den Posteingang.</p>
         <a class="btn btn-primary" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
       </div>
@@ -546,21 +557,20 @@
 
       <!-- ============ SUCCESS ============ -->
       <section class="done" id="doneCard" hidden>
-        <h2>Danke — fehlt nur noch der Klick im Postfach.</h2>
+        <h2>Danke. Trag dir den Termin ein.</h2>
         <p class="q-sub" style="margin-top:.6rem">
-          Trag dir den Termin direkt in den Kalender ein. Wer den Termin im Kalender hat, ist
-          erfahrungsgemäß auch wirklich dabei — und nur live siehst du jeden Schritt.
+          Wer den Termin im Kalender hat, ist erfahrungsgemäß auch wirklich dabei —
+          und nur live siehst du jeden Schritt.
         </p>
         <div class="cal-row">
-          <a class="btn btn-primary" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
-          <a class="btn btn-ghost" id="calIcs" href="#" download="vorflows-live-workshop.ics">Apple / Outlook (.ics)</a>
+          <a class="btn btn-cal" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
+          <a class="btn btn-cal" id="calIcs" href="#" download="vorflows-live-workshop.ics">Apple / Outlook (.ics)</a>
         </div>
 
-        <p class="inbox-note">
-          <strong>Wichtig:</strong> Schon den Bestätigungs-Link in der E-Mail geklickt? Ohne den
-          Klick ist die Anmeldung nicht bestätigt und der Teilnahme-Link kann nicht raus.
-          Mail nicht da? Schau im Spam-Ordner und zieh sie in den Posteingang.
-        </p>
+        <figure class="ty-quote">
+          <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
+          <figcaption><span class="ty-quote-dot" aria-hidden="true"></span><span class="ty-quote-name">Stefan Kisker</span><span class="ty-quote-co">Prometheus Performance GmbH</span></figcaption>
+        </figure>
       </section>
 
       <div class="foot">
