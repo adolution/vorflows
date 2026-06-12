@@ -260,10 +260,15 @@
     .lw-final .pills{justify-content:center;margin:20px 0 26px}
     .lw-final .btn{margin:0 auto}
     .lw-final .cta-sub{margin-top:14px}
-    #reg-note{margin:22px auto 0;display:flex;flex-direction:column;align-items:center;gap:10px}
+    #reg-note{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:80;
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+      background:var(--bg-light);border:1px solid var(--border);border-radius:14px;
+      padding:20px 24px;box-shadow:0 18px 50px -12px rgba(18,18,18,.4);
+      max-width:340px;width:calc(100% - 32px)}
     #reg-note[hidden]{display:none}
+    #reg-note .reg-head{font-size:15px;font-weight:600;color:var(--text-primary);margin:0}
     #reg-note .wj-embed-button{margin:0 auto}
-    #reg-note .reg-fallback{font-size:13px;line-height:1.55;color:var(--text-inverse);opacity:.7}
+    #reg-note .reg-fallback{font-size:13px;line-height:1.5;color:var(--text-secondary);text-align:center;margin:0}
     #reg-note .reg-fallback a{color:var(--accent);font-weight:500}
 
     /* ---------- FAQ (Homepage) ---------- */
@@ -573,8 +578,9 @@
       <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
       <p class="cta-sub">Live mit Fragerunde am Ende · keine Aufzeichnung</p>
       <div id="reg-note" role="status" aria-live="polite" hidden>
-        <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
-        <p class="reg-fallback">Geht etwas schief? Schreib an
+        <p class="reg-head">Kein Fenster aufgegangen?</p>
+        <button class="btn btn-primary wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
+        <p class="reg-fallback">Oder schreib an
           <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>.</p>
       </div>
     </div>
@@ -690,7 +696,7 @@
     // ---- Sign-up CTA → übergibt an Formular (später WebinarJam-Embed) ----
     function openWebinarForm(){
       var n = document.getElementById('reg-note');
-      if(n){ n.hidden = false; n.scrollIntoView({behavior:'smooth', block:'center'}); }
+      if(n){ n.hidden = false; }
     }
 
     // ---- Commitment-Ladder: Termin bestätigen → Shopify-Qualifier → Formular ----
@@ -725,7 +731,7 @@
           if(ifr){ var r = ifr.getBoundingClientRect(); if(r.width > 50 && r.height > 50){ done = true; track('lw_wj_open'); return true; } }
           return false;
         };
-        var iv = setInterval(function(){ tries++; if(check() || tries >= 20){ clearInterval(iv); if(!done) track('lw_wj_noopen'); } }, 150);
+        var iv = setInterval(function(){ tries++; if(check() || tries >= 20){ clearInterval(iv); if(!done){ track('lw_wj_noopen'); var rn = document.getElementById('reg-note'); if(rn) rn.hidden = false; } } }, 150);
         check();
       };
       var rnBtn = document.querySelector('#reg-note .wj-embed-button');
@@ -744,7 +750,7 @@
       modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
       modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
         b.addEventListener('click', function(){
-          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); armWjProbe(); close(); openWebinarForm(); }
+          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); armWjProbe(); close(); }
           else { track('lw_qualify_no'); show('reject'); }
         });
       });

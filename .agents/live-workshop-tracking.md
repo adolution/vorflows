@@ -134,11 +134,16 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
 4. Schritt 2 "Shopify? Ja" → `lw_qualify_yes`. **Der "Ja, ich nutze Shopify"-Button
    IST der WebinarJam-Trigger** (`.wj-embed-button` + `data-webinarHash="0qgn9gag"`):
    der echte Klick öffnet das WJ-Registrierungs-Popup direkt (kein Zwischenschritt) und
-   schliesst gleichzeitig unser Qualifier-Modal (`close(); openWebinarForm();`).
-5. **WebinarJam-Embed ist live.** WJ-Popup öffnet aus dem Shopify-Ja-Klick. `openWebinarForm()`
-   blendet zusätzlich `#reg-note` (gleicher `.wj-embed-button`) als sichtbares Fallback ein
-   — liegt hinter dem Popup, greift nur falls WJ nicht öffnet (Script geblockt o.ä.).
-   **Kein `ready`-Zwischenscreen mehr.** WJ-Loader-Script `embed-button` liegt einmal vor
+   schliesst gleichzeitig unser Qualifier-Modal (Handler: `track('lw_qualify_yes');
+   armWjProbe(); close();` — **kein** `openWebinarForm()` mehr, also **kein Scroll**).
+5. **WebinarJam-Embed ist live.** WJ-Popup öffnet aus dem Shopify-Ja-Klick.
+   **Fallback nur bei echtem Fehlschlag:** `armWjProbe()` pollt 3s auf ein sichtbares
+   WJ-Iframe. Geht keins auf (`lw_wj_noopen`), blendet es `#reg-note` ein — eine
+   **fixierte, zentrierte Karte** (`position:fixed`, raus aus dem Footer-Flow, eigener
+   Anmelde-Button + "Kein Fenster aufgegangen?"-Text). Kein Scroll, kein Doppel-CTA.
+   Geht das Popup auf (`lw_wj_open`), bleibt `#reg-note` versteckt. `openWebinarForm()`
+   existiert nur noch für den No-Modal-Fallback (blendet `#reg-note` ohne Scroll ein).
+   **Kein `ready`-Zwischenscreen.** WJ-Loader-Script `embed-button` liegt einmal vor
    `</body>` (beide LP-Files). **Akzentfarbe des Popups:** WJ-Iframe ist
    cross-origin → nicht per CSS stylebar. Einziger Hebel sind die Script-URL-Presets
    `formTemplate=2` (Layout) + `formColor=4` (Farb-Swatch, fixe WJ-Palette, KEIN freies
