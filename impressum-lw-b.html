@@ -232,14 +232,14 @@
       var banner = document.getElementById('cookieBanner');
       var backdrop = document.getElementById('cookieBackdrop');
       if(!banner || !backdrop) return;
-      var seen = null; try { seen = localStorage.getItem(KEY); } catch(e) {}
+      var seen = null; try { seen = localStorage.getItem(KEY) || localStorage.getItem('vf_consent'); } catch(e) {}
       if(!seen){ banner.hidden = false; backdrop.hidden = false; }
-      function dismiss(){
+      function dismiss(consent){
         banner.hidden = true; backdrop.hidden = true;
-        try { localStorage.setItem(KEY, '1'); } catch(e) {}
+        try { localStorage.setItem(KEY, '1'); localStorage.setItem('vf_consent', consent); } catch(e) {}
       }
-      var a = document.getElementById('cookieAccept'); if(a) a.addEventListener('click', dismiss);
-      var d = document.getElementById('cookieDecline'); if(d) d.addEventListener('click', dismiss);
+      var a = document.getElementById('cookieAccept'); if(a) a.addEventListener('click', function(){ dismiss('granted'); });
+      var d = document.getElementById('cookieDecline'); if(d) d.addEventListener('click', function(){ dismiss('denied'); });
     })();
   </script>
 </body>

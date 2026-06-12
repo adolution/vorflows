@@ -43,6 +43,15 @@ nichts davon vorab auf der Danke-Seite.
 | **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). Empfohlen: Google-Sheets-Apps-Script (Setup unten). **Kein Klaviyo** — Alex nutzt hierfür kein Klaviyo. |
 | Google gtag (GA4/Ads) | **NICHT installiert** | Code feuert `window.gtag(...)` nur `if(window.gtag)` → No-Op. Bei Bedarf Lade-Snippet in `<head>`, dann feuern alle Events automatisch mit. |
 
+**Cookie-Consent (zwei Keys, gebrückt):** Homepage-Funnel nutzt `vf_consent`
+(`granted`/`denied`), LW-Funnel (Test-Modus, kein echtes Gating) nutzt `vf_lw_cookie='1'`.
+Damit der Banner pro Browser **nur einmal site-weit** erscheint, prüfen alle LW-Banner
+(`live-workshop*.html`, `impressum-lw-*`, `datenschutz-lw-*`) **beide** Keys
+(`vf_lw_cookie || vf_consent`) und schreiben beim Schliessen **beide** (`vf_lw_cookie='1'`
++ `vf_consent='granted'|'denied'`). So unterdrückt ein Klick auf einem der beiden Funnel
+den Banner auch im anderen. Homepage-Legal-Pages (`impressum.html`/`datenschutz.html`)
+lesen `vf_consent` → bleiben dadurch ebenfalls still.
+
 ---
 
 ## 3. Event-Helfer (ZWEI verschiedene — wichtig!)
@@ -119,13 +128,15 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    Pixel-PageView + CAPI-Mirror.
 2. Klick `[data-webinar-cta]` → `lw_signup_click` (cEvent) **+** öffnet Qualifier-Modal.
 3. Modal Schritt 1 → `lw_commit_date` → Schritt 2.
-4. Schritt 2 "Shopify? Ja" → `lw_qualify_yes` → `openWebinarForm()`.
-5. **WebinarJam-Embed ist live.** Nach `lw_qualify_yes` zeigt das Qualifier-Modal
-   einen 3. Step `data-step="ready"` mit dem WebinarJam-Button (`.wj-embed-button`,
-   `data-webinarHash="0qgn9gag"`). Klick darauf öffnet das WJ-Registrierungs-Popup
-   (eigenes Overlay) und schliesst unser Modal. Fallback ohne Modal: `openWebinarForm()`
-   blendet `#reg-note` (gleicher Button) ein. WJ-Loader-Script `embed-button` liegt
-   einmal vor `</body>` (beide LP-Files). **Akzentfarbe des Popups:** WJ-Iframe ist
+4. Schritt 2 "Shopify? Ja" → `lw_qualify_yes`. **Der "Ja, ich nutze Shopify"-Button
+   IST der WebinarJam-Trigger** (`.wj-embed-button` + `data-webinarHash="0qgn9gag"`):
+   der echte Klick öffnet das WJ-Registrierungs-Popup direkt (kein Zwischenschritt) und
+   schliesst gleichzeitig unser Qualifier-Modal (`close(); openWebinarForm();`).
+5. **WebinarJam-Embed ist live.** WJ-Popup öffnet aus dem Shopify-Ja-Klick. `openWebinarForm()`
+   blendet zusätzlich `#reg-note` (gleicher `.wj-embed-button`) als sichtbares Fallback ein
+   — liegt hinter dem Popup, greift nur falls WJ nicht öffnet (Script geblockt o.ä.).
+   **Kein `ready`-Zwischenscreen mehr.** WJ-Loader-Script `embed-button` liegt einmal vor
+   `</body>` (beide LP-Files). **Akzentfarbe des Popups:** WJ-Iframe ist
    cross-origin → nicht per CSS stylebar. Einziger Hebel sind die Script-URL-Presets
    `formTemplate=2` (Layout) + `formColor=4` (Farb-Swatch, fixe WJ-Palette, KEIN freies
    Hex). Button selbst trägt Site-Klassen → exakt Terracotta `#C8633E`. Will man die

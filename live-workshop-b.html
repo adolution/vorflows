@@ -628,7 +628,7 @@
       <p class="meta eyebrow">Schritt 2 von 2</p>
       <p class="lwq-title">Läuft dein Shop auf Shopify?</p>
       <div class="lwq-choices">
-        <button class="btn btn-primary btn-lg" type="button" data-lwq-shopify="yes">Ja, ich nutze Shopify</button>
+        <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-lwq-shopify="yes" data-webinarHash="0qgn9gag">Ja, ich nutze Shopify</button>
         <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, kein Shopify</button>
       </div>
     </div>
@@ -636,12 +636,6 @@
       <p class="lwq-title">Dann passt dieser Workshop leider nicht für dich.</p>
       <p class="lwq-sub">Alles, was ich zeige, läuft direkt im Shopify-Theme. Ohne Shopify hättest du nichts davon, und deine Zeit ist mir zu schade dafür.</p>
       <button class="btn btn-outline" type="button" data-lwq-done>Alles klar</button>
-    </div>
-    <div class="lwq-step" data-step="ready" hidden>
-      <p class="meta eyebrow">Fast geschafft</p>
-      <p class="lwq-title">Sichere dir jetzt deinen Platz.</p>
-      <p class="lwq-sub">Daten eintragen, Bestätigungs-Mail kommt sofort. Dauert 30&nbsp;Sekunden.</p>
-      <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
     </div>
   </div>
 
@@ -680,11 +674,11 @@
       var banner=document.getElementById('cookieBanner');
       var backdrop=document.getElementById('cookieBackdrop');
       if(!banner||!backdrop) return;
-      var seen=null; try{ seen=localStorage.getItem(KEY); }catch(e){}
+      var seen=null; try{ seen=localStorage.getItem(KEY)||localStorage.getItem('vf_consent'); }catch(e){}
       if(!seen){ banner.hidden=false; backdrop.hidden=false; }
-      function dismiss(){ banner.hidden=true; backdrop.hidden=true; try{ localStorage.setItem(KEY,'1'); }catch(e){} }
-      var a=document.getElementById('cookieAccept'); if(a) a.addEventListener('click',dismiss);
-      var d=document.getElementById('cookieDecline'); if(d) d.addEventListener('click',dismiss);
+      function dismiss(consent){ banner.hidden=true; backdrop.hidden=true; try{ localStorage.setItem(KEY,'1'); localStorage.setItem('vf_consent',consent); }catch(e){} }
+      var a=document.getElementById('cookieAccept'); if(a) a.addEventListener('click',function(){ dismiss('granted'); });
+      var d=document.getElementById('cookieDecline'); if(d) d.addEventListener('click',function(){ dismiss('denied'); });
     })();
   </script>
 
@@ -734,12 +728,10 @@
       modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
       modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
         b.addEventListener('click', function(){
-          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); show('ready'); }
+          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); close(); openWebinarForm(); }
           else { track('lw_qualify_no'); show('reject'); }
         });
       });
-      // WebinarJam-Popup öffnet sich über sein eigenes Click-Handler; unser Qualifier-Modal schliessen wir dabei.
-      modal.querySelectorAll('.wj-embed-button').forEach(function(b){ b.addEventListener('click', function(){ close(); }); });
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
     })();
 
