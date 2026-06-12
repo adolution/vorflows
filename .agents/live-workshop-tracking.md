@@ -40,7 +40,7 @@ nichts davon vorab auf der Danke-Seite.
 | **Microsoft Clarity** | **AKTIV** | Property `wnn5d5ehwn` (gleiche wie Homepage). Im A/B-Modus **ohne Consent-Gate** geladen (sealed Funnel, eigene Cookie-/Legal-Pages). Snippet inline im AB-Block. Auch auf der Danke-Seite. |
 | **Meta Pixel (fbq)** | **AKTIV** | Pixel `2002118703756086` (gleiches wie Homepage). Block „META PIXEL + AD-ATTRIBUTION“ in beiden LP-Files + Danke-Seite. A/B-Test-Modus: unconditional, vor Public-Launch Consent-Gate reaktivieren. Alle bestehenden `cEvent`/`track`-Aufrufe feuern jetzt real zu Meta. |
 | **Meta CAPI** | **AKTIV** | `/api/capi` (Vercel-Function, env `META_PIXEL_ID` + `META_CAPI_TOKEN`). Browser-Events werden mit identischer `event_id` gespiegelt → Meta dedupliziert. `external_id` = `vf_ext_id` (localStorage, gleiche Konvention wie Homepage). |
-| **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). Empfohlen: Google-Sheets-Apps-Script (Setup unten). **Kein Klaviyo** — Alex nutzt hierfür kein Klaviyo. |
+| **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). **EINGERICHTET + GETESTET 2026-06-12**: Google Sheet "LW Leads — Workshop" (ID `1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI`), Apps-Script-Projekt in `.agents/lw-sheet/` (clasp). Kein Klaviyo. |
 | Google gtag (GA4/Ads) | **NICHT installiert** | Code feuert `window.gtag(...)` nur `if(window.gtag)` → No-Op. Bei Bedarf Lade-Snippet in `<head>`, dann feuern alle Events automatisch mit. |
 
 **Cookie-Consent (zwei Keys, gebrückt):** Homepage-Funnel nutzt `vf_consent`
@@ -233,7 +233,13 @@ Meta füllt `{{…}}` automatisch (Dynamic URL Parameters). `utm_content` = Anze
 
 ---
 
-## 8. Google-Sheet-Webhook einrichten (einmalig, ~5 Min)
+## 8. Google-Sheet-Webhook — EINGERICHTET (2026-06-12)
+
+Live: Sheet "LW Leads — Workshop" → https://docs.google.com/spreadsheets/d/1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI
+Script-Quellcode + clasp-Config: `.agents/lw-sheet/` (Deploy: `cd .agents/lw-sheet && npx @google/clasp push -f && npx @google/clasp deploy -i <deploymentId>` — Deployment-ID in Vercel-Env `LW_SURVEY_WEBHOOK`).
+WhatsApp-Workflow: Sheet nach `phone_optin = TRUE` filtern → Name, Nummer, Antworten, Ad (`utm_content`).
+
+Ursprüngliche manuelle Anleitung (Referenz):
 
 1. Neues Google Sheet "LW Leads". Kopfzeile = Feldnamen aus `api/lw-survey.js`
    (`submitted_at, email, first_name, phone, revenue, app_costs, builder, focus,
