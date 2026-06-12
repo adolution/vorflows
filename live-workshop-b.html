@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um. — vorflows</title>
-  <meta name="description" content="Kostenloser Live-Workshop für Shopify-Founder. In 90 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
+  <meta name="description" content="Kostenloser Live-Workshop für Shopify-Founder. In 60 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
   <meta name="author" content="vorflows" />
   <!-- B = Experiment-Variante: aus dem Index halten, canonical zeigt auf A -->
   <meta name="robots" content="noindex, follow" />
@@ -24,11 +24,11 @@
   <meta property="og:site_name" content="vorflows" />
   <meta property="og:url" content="https://vorflows.com/live-workshop" />
   <meta property="og:title" content="Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um." />
-  <meta property="og:description" content="In 90 Minuten baue ich mit KI live einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
+  <meta property="og:description" content="In 60 Minuten baue ich mit KI live einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
   <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Live-Workshop: Shopify-Shop mit KI umbauen" />
-  <meta name="twitter:description" content="In 90 Minuten live: Apps ersetzen, ranken, Conversion heben. Kostenlos, ohne eine Zeile Code." />
+  <meta name="twitter:description" content="In 60 Minuten live: Apps ersetzen, ranken, Conversion heben. Kostenlos, ohne eine Zeile Code." />
   <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
   <!-- Self-hosted Fonts (identisch zur Homepage) -->
@@ -173,7 +173,8 @@
     .step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--border);align-items:start}
     .step .n{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(40px,5vw,64px);line-height:.8;
       color:var(--accent);min-width:1.4ch}
-    .step .label{color:var(--text-secondary);margin-bottom:8px;display:block}
+    .step .n .u{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:12px;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);margin-top:8px}
     .step h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(20px,2.4vw,26px);
       letter-spacing:-.01em;line-height:1.15;margin:0}
     .step p{margin:10px 0 0;color:var(--text-secondary);max-width:60ch;font-size:clamp(15px,1.4vw,17px)}
@@ -184,7 +185,7 @@
       border:1px solid var(--border-dark);border-radius:10px;overflow:hidden}
     @media(min-width:768px){.objs{grid-template-columns:repeat(3,1fr)}}
     .obj{background:var(--bg-dark);padding:28px 26px}
-    .obj .myth{color:var(--text-secondary-dark);font-size:13px}
+    .obj .myth{color:var(--text-secondary-dark);font-size:15px}
     .obj .myth::before{content:"„ "}.obj .myth::after{content:" “"}
     .obj h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(19px,2vw,23px);
       letter-spacing:-.01em;line-height:1.15;margin:10px 0 0;color:var(--text-inverse)}
@@ -206,11 +207,22 @@
     .applist .tot{color:var(--text-primary);font-weight:500;padding-top:14px;margin-top:6px;border-top:1px solid var(--border)}
     .applist .tot::before{display:none}
 
-    /* ---------- Credibility ---------- */
+    /* ---------- Credibility (dunkel · Portrait auf Schwarz) ---------- */
     .cred{display:grid;gap:clamp(28px,4vw,56px)}
     @media(min-width:768px){.cred{grid-template-columns:1fr 1.2fr;align-items:center}}
-    .cred .photo{border-radius:12px;overflow:hidden;aspect-ratio:4/5;background:#ECEAE3;border:1px solid var(--border)}
+    .cred .photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:#000;border:1px solid var(--border-dark)}
     .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+    .cred .photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(120% 70% at 50% 108%,rgba(200,99,62,.26) 0%,transparent 62%)}
+    .cred .ptag{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;
+      padding:7px 13px;border-radius:999px;background:rgba(15,15,15,.72);border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:.04em;color:var(--text-inverse)}
+    .cred .ptag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+    .cred-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px);
+      margin-top:30px;padding-top:26px;border-top:1px solid var(--border-dark)}
+    .cred-stat .v{display:block;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
+      font-size:clamp(32px,4.5vw,52px);line-height:1;letter-spacing:-.02em;color:var(--accent)}
+    .cred-stat .l{display:block;margin-top:8px;font-size:14px;line-height:1.5;color:var(--text-secondary-dark)}
 
     /* ---------- Listen ---------- */
     ul.checks,ul.no{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
@@ -237,7 +249,7 @@
     .lw-final .container{position:relative;z-index:2;max-width:680px}
     .lw-final h2{margin-top:14px}
     .lw-final .lead{margin:18px auto 0;text-align:center;max-width:38ch}
-    .lw-final .datebar{margin-top:24px}
+    .lw-final .datebar{margin:24px 0 28px}
     .lw-final .pills{justify-content:center;margin:20px 0 26px}
     .lw-final .btn{margin:0 auto}
     .lw-final .cta-sub{margin-top:14px}
@@ -356,7 +368,7 @@
     <div class="vbg"><img src="/brand_assets/webinar/hero-key.webp" alt="" aria-hidden="true" /></div>
     <div class="container">
       <h1 class="display">Du zahlst für Apps, die KI <span class="accent display-italic">gratis ersetzt</span>. Und für Rankings, die du selbst holen könntest.</h1>
-      <p class="lead">Live in 90 Minuten bau ich mit KI einen echten Shopify-Shop um. Du siehst, wie er mehr verkauft und sich die 5.232 € App-Kosten im Jahr spart. Kein Code.</p>
+      <p class="lead">Live in 60 Minuten bau ich mit KI einen echten Shopify-Shop um. Du siehst, wie er mehr verkauft und sich die 5.232 € App-Kosten im Jahr spart. Kein Code.</p>
       <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span></div>
       <div class="cta-row">
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
@@ -373,7 +385,6 @@
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <p class="meta eyebrow">Kein Theorie-Vortrag</p>
         <h2 class="h2">Drei Dinge, <em>live</em>.</h2>
         <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen. Du schaust mir über die Schulter und siehst jeden Schritt.</p>
       </div>
@@ -381,24 +392,21 @@
         <div class="step reveal">
           <div class="n">1</div>
           <div>
-            <span class="meta label">Apps ersetzen</span>
-            <h3>Teure Apps durch sauberen Code.</h3>
+            <h3>Teure Apps durch sauberen Code ersetzen.</h3>
             <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
           </div>
         </div>
         <div class="step reveal">
           <div class="n">2</div>
           <div>
-            <span class="meta label">Live ranken</span>
-            <h3>KI an einer echten Produktseite.</h3>
+            <h3>Rankingoptimierung mit KI an einer echten Produktseite.</h3>
             <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, und baut technisches SEO und Schema direkt ins Theme.</p>
           </div>
         </div>
         <div class="step reveal">
           <div class="n">3</div>
           <div>
-            <span class="meta label">Conversion</span>
-            <h3>Aus echtem Klick- und Scroll-Verhalten.</h3>
+            <h3>CRO aus echtem Klick- und Scrollverhalten.</h3>
             <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion hebt.</p>
           </div>
         </div>
@@ -410,26 +418,23 @@
   <section class="section section-tight">
     <div class="container">
       <div class="sec-head">
-        <p class="meta eyebrow">Schnell am Punkt</p>
         <h2 class="h2">Kein langes <em>Vorgeplänkel</em>.</h2>
       </div>
       <div class="steps">
         <div class="step reveal">
-          <div class="n">10</div>
+          <div class="n">10<span class="u">Min.</span></div>
           <div>
-            <span class="meta label">Nach den ersten 10 Minuten</span>
             <h3>Du verstehst, was KI in deinem Shop leisten kann, und was nicht.</h3>
           </div>
         </div>
         <div class="step reveal">
-          <div class="n">20</div>
+          <div class="n">20<span class="u">Min.</span></div>
           <div>
-            <span class="meta label">Nach 20 Minuten</span>
             <h3>Du siehst es live in Aktion an einem echten Shop.</h3>
           </div>
         </div>
       </div>
-      <p class="lead" style="margin-top:28px">Ich bin selbst Founder. Ich weiß, dass niemand seine Zeit verschwenden will. Deshalb halte ich den Workshop kompakt. So schnell wie möglich an genau die Infos, für die du gekommen bist.</p>
+      <p class="lead" style="margin-top:28px">Ich bin selbst Founder. Ich weiß, dass niemand seine Zeit verschwenden will. Deshalb halte ich den Workshop kompakt. Ich komme so schnell wie möglich zu den Infos, für die du dich anmeldest.</p>
     </div>
   </section>
 
@@ -437,7 +442,6 @@
   <section class="section section-dark">
     <div class="container">
       <div class="sec-head">
-        <p class="meta eyebrow">Was die meisten zurückhält</p>
         <h2 class="h2">Du brauchst keinen <em>Entwickler</em> dafür.</h2>
         <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
       </div>
@@ -454,7 +458,7 @@
         </div>
         <div class="obj reveal">
           <span class="myth mono">KI ist nicht auf Profi-Niveau</span>
-          <h3>Mit der richtigen Führung doch.</h3>
+          <h3>Doch, mit der richtigen Führung.</h3>
           <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Senior-Dev-Workflow.</p>
         </div>
       </div>
@@ -466,7 +470,6 @@
     <div class="container">
       <div class="twocol">
         <div class="reveal">
-          <p class="meta eyebrow">Rechne mit</p>
           <p class="costline">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
           <p class="lead" style="max-width:34ch">Im Workshop rechnest du live mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
         </div>
@@ -485,24 +488,27 @@
     </div>
   </section>
 
-  <hr class="hr container" />
-
-  <!-- ===================== CREDIBILITY ===================== -->
-  <section class="section">
+  <!-- ===================== CREDIBILITY (dunkel) ===================== -->
+  <section class="section section-dark">
     <div class="container">
       <div class="cred">
-        <div class="photo reveal"><img src="/shop-ki-founder.webp" alt="Alex von vorflows" loading="lazy" /></div>
+        <div class="photo reveal">
+          <img src="/shop-ki-founder.webp" alt="Alex von vorflows" loading="lazy" />
+          <span class="ptag mono"><span class="dot" aria-hidden="true"></span>Alex · Founder vorflows</span>
+        </div>
         <div class="reveal">
-          <p class="meta eyebrow">Wer das macht</p>
           <h2 class="h2">8 Jahre <em>Online-Marketing</em>.</h2>
           <p class="lead">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
           <ul class="checks">
             <li>Arbeit mit 404, Atlas und Quiver (8,3 Mio. € Funding)</li>
-            <li>Einer der ersten GPT-Kurse für Fotografen, plus Vorträge</li>
+            <li>Mit einem der ersten KI-Kurse zahlreiche Vorträge für Unternehmen</li>
             <li>Programm mit Paddy, Beratung von Marken aus Höhle der Löwen</li>
             <li>Berater für einen der größten Lebensmittel-Hersteller im Land</li>
           </ul>
-          <p class="cta-sub" style="margin-top:20px">Vertrauen kommt im Workshop über die Live-Demo, nicht über Eigenwerbung.</p>
+          <div class="cred-stats">
+            <div class="cred-stat"><span class="v">20.000+</span><span class="l">Orders · zwei eigene Online-Shops erfolgreich skaliert</span></div>
+            <div class="cred-stat"><span class="v">1.000+</span><span class="l">Kursteilnehmer (SEO, Ads, etc.)</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -528,7 +534,7 @@
           <ul class="no">
             <li>Du noch keinen Shop hast und nur stöbern willst</li>
             <li>Du eine Ein-Klick-App suchst, die alles allein macht</li>
-            <li>Du nicht bereit bist, 90 Minuten konzentriert dabei zu sein</li>
+            <li>Du nicht bereit bist, 60 Minuten konzentriert dabei zu sein</li>
           </ul>
         </div>
       </div>
@@ -539,10 +545,9 @@
   <section class="section section-dark">
     <div class="container">
       <div class="sec-head">
-        <p class="meta eyebrow">Warum gerade jetzt</p>
         <h2 class="h2">Bis heute lief das nur in <em>geschlossener Beta</em>.</h2>
-        <p class="lead">In diesem Workshop zeige ich das System zum ersten Mal öffentlich und live. Den Zugang für alle anderen öffne ich an genau diesem Tag zum ersten Mal, weil die Founder aus der Beta gesagt haben: Das darf nicht hinter verschlossenen Türen bleiben.</p>
-        <p class="lead">Dazu kommt: KI ist gerade massiv unterbewertet. Du bekommst heute ein Vielfaches an Leistung für das, was du zahlst. Und keiner weiß, wie lange noch. Die Modelle waren nie günstiger als jetzt und werden es kaum je wieder sein. Wer früh lernt, sie zu führen, sichert sich den Vorsprung, solange er fast nichts kostet.</p>
+        <p class="lead">In diesem Workshop zeige ich das System zum ersten Mal öffentlich und live. Den Zugang für alle anderen öffne ich jetzt, weil die Founder aus der Beta so gute Resultate erzielen konnten.</p>
+        <p class="lead">Dazu kommt: KI ist gerade massiv unterbewertet, du bekommst ein Vielfaches an Leistung für das, was du zahlst. Und wer das jetzt nutzt, erarbeitet sich einen echten Vorsprung. Was im E-Commerce heute gut funktioniert, machen in ein bis zwei Jahren alle. Das jetzt zu machen ist wie Facebook Ads 2010 zu schalten.</p>
       </div>
       <figure class="lw-quote reveal">
         <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
@@ -556,9 +561,8 @@
   <section class="lw-final section section-dark">
     <div class="vbg"><img src="/brand_assets/webinar/appstack.webp" alt="" aria-hidden="true" /></div>
     <div class="container">
-      <p class="meta eyebrow">Jetzt anmelden</p>
       <h2 class="h2">Sei <em>live</em> dabei.</h2>
-      <p class="lead">In 90 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
+      <p class="lead">In 60 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
       <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span></div>
       <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
       <p class="cta-sub">Live mit Fragerunde am Ende · keine Aufzeichnung</p>
@@ -573,12 +577,11 @@
   <!-- ===================== FAQ ===================== -->
   <section class="section">
     <div class="container" style="max-width:820px">
-      <p class="meta eyebrow">Häufige Fragen</p>
-      <h2 class="h2">Kurz geklärt.</h2>
+      <h2 class="h2">Häufige Fragen.</h2>
       <div class="faq">
         <details class="faq-item" open>
           <summary>Kostet der Workshop etwas?</summary>
-          <div class="faq-body">Nein. Der Live-Workshop ist kostenlos. Du brauchst 90 Minuten und einen Platz, den du dir oben sicherst.</div>
+          <div class="faq-body">Nein. Der Live-Workshop ist kostenlos. Du brauchst 60 Minuten und einen Platz, den du dir oben sicherst.</div>
         </details>
         <details class="faq-item">
           <summary>Brauche ich Vorkenntnisse im Coden?</summary>
@@ -594,7 +597,7 @@
         </details>
         <details class="faq-item">
           <summary>Wie lange dauert es?</summary>
-          <div class="faq-body">90 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</div>
+          <div class="faq-body">60 Minuten, vormittags. Danach weißt du, wie du deinen Shop mit KI selbst umbaust.</div>
         </details>
       </div>
     </div>
@@ -612,7 +615,7 @@
     <div class="lwq-step" data-step="1">
       <p class="meta eyebrow">Schritt 1 von 2</p>
       <p class="lwq-title" id="lwqTitle">Donnerstag, 25. Juni · 11:00 Uhr. Bist du live dabei?</p>
-      <p class="lwq-sub">90 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
+      <p class="lwq-sub">60 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
       <button class="btn btn-primary btn-lg" type="button" data-lwq-next>Ja, ich bin dabei</button>
     </div>
     <div class="lwq-step" data-step="2" hidden>
