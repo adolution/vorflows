@@ -9,8 +9,10 @@ Betrifft: `live-workshop.html` (= Variante A, canonical, indexierbar),
 und `https://vorflows.com/danke-live-workshop`.
 
 Strategie-Basis der Danke-Seite: FULLSTACK-Playbook Learning #3 (Survey auf der
-Dankesseite), #4 (WhatsApp/Telefon), #29 (Warm-Up-Video) —
+Dankesseite) + #4 (WhatsApp/Telefon) —
 `.agents/vorflows-ads/webinar/playbook-01-traffic-showup.md`.
+Bewusst KEIN Warm-Up-Video (Learning #29): Alex zeigt die Inhalte live,
+nichts davon vorab auf der Danke-Seite.
 
 ---
 
@@ -97,7 +99,6 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 | `LW_Survey_Complete` `{score, qualified, …}` | `lw_survey_complete` | Survey abgeschlossen |
 | **`QualifiedLead`** `{score, revenue, apps, focus}` | `lw_qualified` | Nur wenn qualifiziert. **= Optimierungs-Event für Ads (CPQL).** |
 | `LW_AddToCalendar` `{type}` | `lw_calendar_google` / `lw_calendar_ics` | Kalender-Klick (Show-Up-Commitment) |
-| `LW_WarmupVideo_Play` | `lw_warmup_play` | Warm-Up-Video gestartet |
 
 Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
 `lw_focus`, `lw_qualified`, `lw_utm_campaign`, `lw_utm_content`.
@@ -124,7 +125,7 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    Lead-Daten an die URL (`wj_lead_email`, `wj_lead_first_name`), die Seite liest
    sie defensiv aus und speichert sie als `vf_known_email`/`vf_known_first_name`.
 7. Danke-Seite: `CompleteRegistration` + Survey (4 Fragen) + `QualifiedLead` +
-   Kalender + Warm-Up-Video. Attribution kommt aus `vf_lw_attr` —
+   Kalender. Attribution kommt aus `vf_lw_attr` —
    **funktioniert unabhängig vom WebinarJam-Popup**, weil nie URL-Parameter
    durch WebinarJam durchgereicht werden müssen.
 - Termin-Datum zentral: `var WEBINAR_DATE` (LP) bzw. `WEBINAR_DATE_TEXT` +

@@ -353,40 +353,6 @@
       }
       .cal-row .btn { font-size: 0.92rem; padding: 0.7rem 1.05rem; text-decoration: none; }
 
-      .video-block { margin-top: clamp(1.75rem, 5vw, 2.4rem); }
-      .video-eyebrow {
-        margin: 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      .video-eyebrow::before { content: ""; width: 1.6rem; height: 1px; background: var(--accent); }
-      .video-block h3 {
-        margin: 0.5rem 0 0;
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 500;
-        font-size: clamp(1.2rem, 4vw, 1.5rem);
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-      }
-      .video-block video {
-        margin-top: 0.9rem;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 0.7rem;
-        border: 1px solid var(--border);
-        background: #0F0F0F;
-        box-shadow: 0 1px 2px rgba(26, 26, 26, 0.05), 0 18px 36px -20px rgba(200, 99, 62, 0.32);
-        display: block;
-        object-fit: cover;
-      }
-
       .inbox-note {
         margin: 1.5rem 0 0;
         padding: 0.95rem 1.1rem;
@@ -523,12 +489,6 @@
         <div class="cal-row">
           <a class="btn btn-primary" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
           <a class="btn btn-ghost" id="calIcs" href="#" download="vorflows-live-workshop.ics">Apple / Outlook (.ics)</a>
-        </div>
-
-        <div class="video-block">
-          <p class="video-eyebrow">Bis zum Workshop</p>
-          <h3>2 Minuten Vorgeschmack: KI arbeitet live im Shop.</h3>
-          <video src="/assets/video/ki-im-shop-1080.mp4" poster="/assets/video/ki-im-shop-poster.webp" controls preload="metadata" playsinline></video>
         </div>
 
         <p class="inbox-note">
@@ -823,10 +783,6 @@
         ].join('\r\n');
         document.getElementById('calIcs').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
         document.getElementById('calIcs').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
-
-        // Warm-Up-Video-Engagement
-        var vid = document.querySelector('.video-block video');
-        if (vid) vid.addEventListener('play', function () { lwTrack('LW_WarmupVideo_Play', {}, 'lw_warmup_play'); }, { once: true });
       })();
     </script>
   </body>
