@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Platz reserviert — vorflows Live-Workshop</title>
+    <meta name="description" content="Deine Anmeldung zum Live-Workshop ist bestätigt." />
+    <!-- Thank-you page: never index -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+
+    <style>
+      :root {
+        --bg: #FAFAF7;
+        --bg-dark: #0F0F0F;
+        --text-primary: #1A1A1A;
+        --text-secondary: #5C5C5C;
+        --border: #E5E3DD;
+        --border-strong: #C7C4BB;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+        --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
+          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: clamp(1.75rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wordmark {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -.02em;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .wordmark .flows { font-style: italic; color: var(--accent); }
+
+      .stamp {
+        margin-top: clamp(1.5rem, 5vw, 2.5rem);
+        width: 52px;
+        height: 52px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow:
+          0 1px 2px rgba(200, 99, 62, 0.25),
+          0 12px 28px -10px rgba(200, 99, 62, 0.5);
+        display: grid;
+        place-items: center;
+        animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) both;
+      }
+      .stamp svg { width: 24px; height: 24px; }
+      .stamp path {
+        stroke-dasharray: 30;
+        stroke-dashoffset: 30;
+        animation: draw 0.45s 0.28s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      }
+
+      .eyebrow {
+        margin: 1.3rem 0 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+
+      h1 {
+        margin: 0.45rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.9rem, 6.5vw, 2.8rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+      }
+      h1 em { font-style: italic; color: var(--accent); }
+
+      .lead {
+        margin: 0.9rem 0 0;
+        max-width: 36rem;
+        color: var(--text-secondary);
+        font-size: 1.02rem;
+      }
+
+      .datebar {
+        margin-top: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        padding: 11px 17px;
+        border-radius: 999px;
+        background: rgba(229, 72, 77, .08);
+        border: 1px solid rgba(229, 72, 77, .35);
+        max-width: 100%;
+      }
+      .datebar .ldot { width: 10px; height: 10px; border-radius: 50%; background: #E5484D; position: relative; flex: 0 0 auto; }
+      .datebar .ldot::after {
+        content: ""; position: absolute; inset: 0; border-radius: 50%; background: #E5484D;
+        animation: lpulse 1.7s var(--ease-out-expo) infinite;
+      }
+      .datebar .lbl {
+        font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px;
+        letter-spacing: .12em; text-transform: uppercase; color: #E5484D; flex: 0 0 auto;
+      }
+      .datebar .dt { font-weight: 600; font-size: clamp(14px, 4vw, 17px); line-height: 1.15; }
+      @keyframes lpulse { 0% { transform: scale(1); opacity: .7 } 70%, 100% { transform: scale(2.4); opacity: 0 } }
+
+      /* ---------- Survey card ---------- */
+      .survey {
+        margin: clamp(1.9rem, 5vw, 2.75rem) 0 0;
+        background: #FFFFFF;
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.04),
+          0 20px 44px -24px rgba(200, 99, 62, 0.3);
+        padding: clamp(1.4rem, 5vw, 2.25rem);
+      }
+
+      .progress {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .progress .bar {
+        flex: 1;
+        height: 5px;
+        border-radius: 999px;
+        background: var(--border);
+        overflow: hidden;
+      }
+      .progress .fill {
+        display: block;
+        height: 100%;
+        width: 25%;
+        border-radius: 999px;
+        background: var(--accent);
+        transform-origin: left;
+        transition: width 380ms var(--ease-out-expo);
+      }
+      .progress .pct {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        color: var(--accent);
+        min-width: 6.5ch;
+        text-align: right;
+      }
+
+      .q-step { margin-top: 1.4rem; }
+      .q-step[hidden] { display: none; }
+
+      .q-eyebrow {
+        margin: 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .q-title {
+        margin: 0.5rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.3rem, 4.4vw, 1.7rem);
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+      }
+      .q-sub {
+        margin: 0.55rem 0 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+
+      .q-options {
+        margin-top: 1.15rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .q-opt {
+        appearance: none;
+        width: 100%;
+        text-align: left;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        background: var(--bg);
+        border: 1px solid var(--border-strong);
+        border-radius: 0.65rem;
+        padding: 0.85rem 1.05rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: border-color 150ms ease-out, background-color 150ms ease-out, transform 150ms ease-out;
+      }
+      .q-opt::before {
+        content: "";
+        width: 17px;
+        height: 17px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        border: 1.5px solid var(--border-strong);
+        background: #fff;
+        transition: border-color 150ms ease-out, background-color 150ms ease-out, box-shadow 150ms ease-out;
+      }
+      .q-opt:hover { border-color: var(--accent); background: var(--accent-soft); }
+      .q-opt:hover::before { border-color: var(--accent); }
+      .q-opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .q-opt:active { transform: translateY(1px); }
+      .q-opt.selected { border-color: var(--accent); background: var(--accent-soft); }
+      .q-opt.selected::before {
+        border-color: var(--accent);
+        background: var(--accent);
+        box-shadow: inset 0 0 0 3px #fff;
+      }
+
+      .q-back {
+        margin-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: none;
+        border: 0;
+        padding: 0.35rem 0.5rem;
+        margin-left: -0.5rem;
+        border-radius: 0.4rem;
+        font-family: inherit;
+        font-size: 0.86rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: color 150ms ease-out, background-color 150ms ease-out;
+      }
+      .q-back:hover { color: var(--text-primary); background: var(--accent-soft); }
+      .q-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      /* phone step */
+      .phone-row { margin-top: 1.15rem; display: flex; flex-direction: column; gap: 0.6rem; }
+      .phone-row input[type="tel"] {
+        width: 100%;
+        font-family: inherit;
+        font-size: 1.02rem;
+        padding: 0.85rem 1.05rem;
+        border: 1px solid var(--border-strong);
+        border-radius: 0.65rem;
+        background: var(--bg);
+        color: var(--text-primary);
+        transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+      }
+      .phone-row input[type="tel"]:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      .phone-hint { margin: 0.15rem 0 0; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+
+      .btn {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0.9rem 1.4rem;
+        border-radius: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: background-color 150ms ease-out, transform 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;
+      }
+      .btn-primary { background: var(--accent); color: var(--bg); }
+      .btn-primary:hover { background: var(--accent-hover); }
+      .btn-primary:active { transform: translateY(1px); }
+      .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .btn-ghost { background: transparent; color: var(--text-secondary); border-color: var(--border-strong); }
+      .btn-ghost:hover { color: var(--text-primary); border-color: var(--text-primary); }
+      .btn-ghost:active { transform: translateY(1px); }
+      .btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      /* ---------- Success state ---------- */
+      .done[hidden] { display: none; }
+      .done h2 {
+        margin: 1.4rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.35rem, 4.5vw, 1.8rem);
+        letter-spacing: -0.02em;
+        line-height: 1.18;
+      }
+      .done .q-sub { max-width: 32rem; }
+
+      .cal-row {
+        margin-top: 1.2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .cal-row .btn { font-size: 0.92rem; padding: 0.7rem 1.05rem; text-decoration: none; }
+
+      .video-block { margin-top: clamp(1.75rem, 5vw, 2.4rem); }
+      .video-eyebrow {
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .video-eyebrow::before { content: ""; width: 1.6rem; height: 1px; background: var(--accent); }
+      .video-block h3 {
+        margin: 0.5rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .video-block video {
+        margin-top: 0.9rem;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.7rem;
+        border: 1px solid var(--border);
+        background: #0F0F0F;
+        box-shadow: 0 1px 2px rgba(26, 26, 26, 0.05), 0 18px 36px -20px rgba(200, 99, 62, 0.32);
+        display: block;
+        object-fit: cover;
+      }
+
+      .inbox-note {
+        margin: 1.5rem 0 0;
+        padding: 0.95rem 1.1rem;
+        border-radius: 0.65rem;
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 99, 62, 0.2);
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .inbox-note strong { font-weight: 600; }
+
+      .foot {
+        margin-top: clamp(2.25rem, 7vw, 3.5rem);
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.4rem;
+        align-items: center;
+        font-size: 0.86rem;
+        color: var(--text-secondary);
+      }
+      .foot a { color: var(--text-secondary); text-decoration: none; }
+      .foot a:hover { color: var(--text-primary); }
+      .foot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+      @keyframes pop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+
+      .fade-in { animation: fadeUp 320ms var(--ease-out-expo) both; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+      @media (prefers-reduced-motion: reduce) {
+        .stamp, .stamp path, .fade-in { animation: none; }
+        .stamp path { stroke-dashoffset: 0; }
+        .datebar .ldot::after { animation: none; }
+        .progress .fill, .btn, .q-opt { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="wordmark" href="/live-workshop">vor<span class="flows">flows</span></a>
+
+      <div class="stamp" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12.5 L10 17.5 L19 6.5" stroke="#FAFAF7" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <p class="eyebrow">Anmeldung bestätigt</p>
+      <h1>Dein Platz ist <em>reserviert</em><span id="helloName"></span>.</h1>
+      <p class="lead">
+        Die Bestätigung mit deinem persönlichen Teilnahme-Link ist unterwegs in dein Postfach.
+        Eine Sache noch, dann bist du startklar.
+      </p>
+      <div class="datebar">
+        <span class="ldot"></span>
+        <span class="lbl">Live-Termin</span>
+        <span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span>
+      </div>
+
+      <!-- ============ SURVEY (Schritt 2 der Anmeldung) ============ -->
+      <section class="survey" id="surveyCard" aria-label="Kurze Fragen zu deinem Shop">
+        <div class="progress" aria-hidden="true">
+          <span class="bar"><span class="fill" id="progressFill"></span></span>
+          <span class="pct" id="progressPct">1 / 4</span>
+        </div>
+
+        <!-- Q1: Umsatz -->
+        <div class="q-step" data-q="1">
+          <p class="q-eyebrow">Letzter Schritt · Frage 1 von 4</p>
+          <h2 class="q-title">Wie viel Umsatz macht dein Shop aktuell pro Monat?</h2>
+          <p class="q-sub">Ich passe die Live-Beispiele im Workshop an die Shops an, die dabei sind.</p>
+          <div class="q-options">
+            <button class="q-opt" type="button" data-answer="kein_shop">Mein Shop ist noch nicht live</button>
+            <button class="q-opt" type="button" data-answer="lt5k">Unter 5.000&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="5to20k">5.000 – 20.000&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="gt20k">Über 20.000&nbsp;€</button>
+          </div>
+        </div>
+
+        <!-- Q2: App-Kosten -->
+        <div class="q-step" data-q="2" hidden>
+          <p class="q-eyebrow">Frage 2 von 4</p>
+          <h2 class="q-title">Wie viel zahlst du monatlich für Shopify-Apps?</h2>
+          <p class="q-sub">Grob geschätzt reicht völlig.</p>
+          <div class="q-options">
+            <button class="q-opt" type="button" data-answer="lt50">Unter 50&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="50to150">50 – 150&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="150to400">150 – 400&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="gt400">Über 400&nbsp;€</button>
+          </div>
+          <button class="q-back" type="button" data-back>← Zurück</button>
+        </div>
+
+        <!-- Q3: Fokus -->
+        <div class="q-step" data-q="3" hidden>
+          <p class="q-eyebrow">Frage 3 von 4</p>
+          <h2 class="q-title">Was soll ich im Workshop auf jeden Fall live zeigen?</h2>
+          <div class="q-options">
+            <button class="q-opt" type="button" data-answer="apps_ersetzen">Teure Apps durch Code ersetzen</button>
+            <button class="q-opt" type="button" data-answer="seo">Bessere Google-Rankings</button>
+            <button class="q-opt" type="button" data-answer="conversion">Mehr Conversion &amp; Umsatz</button>
+          </div>
+          <button class="q-back" type="button" data-back>← Zurück</button>
+        </div>
+
+        <!-- Q4: WhatsApp / Telefon -->
+        <div class="q-step" data-q="4" hidden>
+          <p class="q-eyebrow">Frage 4 von 4</p>
+          <h2 class="q-title">Soll ich dir die Workshop-Unterlagen danach per WhatsApp schicken?</h2>
+          <p class="q-sub">Du bekommst die Zusammenfassung mit allen gezeigten Schritten direkt aufs Handy — plus eine kurze Erinnerung vor dem Start.</p>
+          <div class="phone-row">
+            <input type="tel" id="phoneInput" inputmode="tel" autocomplete="tel"
+                   placeholder="+49 170 1234567" aria-label="Deine Handynummer" />
+            <button class="btn btn-primary" type="button" id="phoneYes">Ja, schick mir die Unterlagen</button>
+            <button class="btn btn-ghost" type="button" id="phoneNo">Nein danke, nur per E-Mail</button>
+            <p class="phone-hint">Nur für Unterlagen und die Termin-Erinnerung. Kein Spam, keine Werbung, jederzeit abbestellbar.</p>
+          </div>
+          <button class="q-back" type="button" data-back>← Zurück</button>
+        </div>
+      </section>
+
+      <!-- ============ SUCCESS ============ -->
+      <section class="done" id="doneCard" hidden>
+        <h2>Perfekt — du bist startklar.</h2>
+        <p class="q-sub" style="margin-top:.6rem">
+          Trag dir den Termin direkt in den Kalender ein. Wer den Termin im Kalender hat, ist
+          erfahrungsgemäß auch wirklich dabei — und nur live siehst du jeden Schritt.
+        </p>
+        <div class="cal-row">
+          <a class="btn btn-primary" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
+          <a class="btn btn-ghost" id="calIcs" href="#" download="vorflows-live-workshop.ics">Apple / Outlook (.ics)</a>
+        </div>
+
+        <div class="video-block">
+          <p class="video-eyebrow">Bis zum Workshop</p>
+          <h3>2 Minuten Vorgeschmack: KI arbeitet live im Shop.</h3>
+          <video src="/assets/video/ki-im-shop-web.mp4" controls preload="metadata" playsinline></video>
+        </div>
+
+        <p class="inbox-note">
+          <strong>Wichtig:</strong> Check kurz dein Postfach (auch Spam) — dort liegt die Bestätigung
+          mit deinem persönlichen Teilnahme-Link. Verschieb die Mail am besten in den Posteingang,
+          damit die Erinnerungen ankommen.
+        </p>
+      </section>
+
+      <div class="foot">
+        <a href="/impressum-lw-b">Impressum</a>
+        <a href="/datenschutz-lw-b">Datenschutz</a>
+        <span>Fragen? <a href="mailto:alex@adolution.de" style="color:var(--accent)">alex@adolution.de</a></span>
+      </div>
+    </main>
+
+    <script>
+      /* ================================================================
+         vorflows · Live-Workshop Danke-Seite
+         Funnel-Logik nach Survey-Strategie (Full-Stack-Framework):
+         Danke-Seite = Survey-Seite. Lead ist am höchsten Punkt der
+         Aufmerksamkeit → Qualifizierung + Show-Up-Commitment + Telefon.
+         Tracking: Clarity (lw_*) + Meta Pixel/CAPI (Event-ID-Dedup).
+         Doku: .agents/live-workshop-tracking.md — bei Änderungen pflegen!
+         ================================================================ */
+      (function () {
+        'use strict';
+
+        // ── Zentrale Termin-Konstanten (eine Stelle) ──────────────────
+        var WEBINAR_DATE_TEXT = 'Donnerstag, 25. Juni · 11:00 Uhr';
+        var WEBINAR_TITLE = 'Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um';
+        var WEBINAR_START_UTC = '20260625T090000Z'; // 11:00 Europe/Berlin (CEST)
+        var WEBINAR_END_UTC   = '20260625T100000Z';
+        var META_PIXEL_ID = '2002118703756086';
+
+        document.querySelectorAll('[data-webinar-date]').forEach(function (e) { e.textContent = WEBINAR_DATE_TEXT; });
+
+        // ── Helpers ───────────────────────────────────────────────────
+        var getCookie = function (n) { return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+        var ls = {
+          get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+          set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        };
+        var uuid = function () {
+          try { return crypto.randomUUID(); } catch (e) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+              var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+          }
+        };
+
+        // ── A/B-Variante (Cookie überlebt Navigation von der LP) ──────
+        var variant = getCookie('vf_ab_lw') || 'A';
+
+        // ── Attribution aus First-Party-Cookie der LP lesen ───────────
+        // vf_lw_attr wird auf der LP gesetzt (UTM + fbclid, letzter Paid-Touch).
+        // Überlebt das WebinarJam-Popup, weil es nie durch WebinarJam muss.
+        var attr = {};
+        try { attr = JSON.parse(decodeURIComponent(getCookie('vf_lw_attr') || '')) || {}; } catch (e) {}
+        if (!attr.utm_source) { try { attr = JSON.parse(ls.get('vf_lw_attr') || '{}'); } catch (e) { attr = {}; } }
+
+        // ── Lead-Identität: WebinarJam hängt Lead-Daten an die TY-URL ──
+        // (WebinarJam Custom Thank You Page → wj_lead_email etc.)
+        var params = new URLSearchParams(location.search);
+        var leadEmail = params.get('wj_lead_email') || params.get('email') || ls.get('vf_known_email') || null;
+        var leadFirstName = params.get('wj_lead_first_name') || params.get('first_name') || ls.get('vf_known_first_name') || null;
+        if (leadEmail) ls.set('vf_known_email', leadEmail);
+        if (leadFirstName) ls.set('vf_known_first_name', leadFirstName);
+        if (leadFirstName) {
+          var hn = document.getElementById('helloName');
+          if (hn) hn.textContent = ', ' + leadFirstName;
+        }
+
+        // External ID (gleiche Konvention wie Homepage → Cross-Page-Matching)
+        var extId = ls.get('vf_ext_id');
+        if (!extId) { extId = uuid(); ls.set('vf_ext_id', extId); }
+
+        // ── Microsoft Clarity (gleiche Property, kein Consent-Gate im A/B-Modus) ──
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+          t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', 'wnn5d5ehwn');
+
+        // ── Meta Pixel (A/B-Test-Modus: unconditional · vor Public-Launch Consent-Gate reaktivieren) ──
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = !0; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        try {
+          if (!getCookie('_fbp')) document.cookie = '_fbp=fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 2147483647) + '; path=/; max-age=7776000; SameSite=Lax';
+        } catch (e) {}
+        var am = { external_id: extId, country: 'de' };
+        if (leadEmail) am.em = leadEmail;
+        if (leadFirstName) am.fn = leadFirstName;
+        fbq('init', META_PIXEL_ID, am);
+        fbq('track', 'PageView');
+
+        // ── Event-Helfer: Clarity + Pixel + CAPI (Event-ID-Dedup) ─────
+        var META_STANDARD = { CompleteRegistration: 1, Lead: 1, Contact: 1, Schedule: 1 };
+        var phoneGiven = null; // wird in Q4 gesetzt, geht ab dann in user_data
+
+        function lwTrack(name, props, clarityName) {
+          props = props || {};
+          props.variant = variant;
+          if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
+          if (attr.utm_content) props.utm_content = attr.utm_content;
+
+          var eventId = uuid();
+
+          if (window.clarity) window.clarity('event', clarityName || name);
+          if (window.gtag) window.gtag('event', clarityName || name, props);
+          if (window.fbq) fbq(META_STANDARD[name] ? 'track' : 'trackCustom', name, props, { eventID: eventId });
+
+          // CAPI-Mirror (Server-Event, gleiche event_id → Meta dedupliziert)
+          try {
+            fetch('/api/capi', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event_name: name,
+                event_id: eventId,
+                event_source_url: location.href,
+                custom_data: props,
+                user_data: {
+                  external_id: extId,
+                  country: 'de',
+                  fbp: getCookie('_fbp') || null,
+                  fbc: getCookie('_fbc') || null,
+                  email: leadEmail || undefined,
+                  first_name: leadFirstName || undefined,
+                  phone: phoneGiven || undefined
+                }
+              }),
+              keepalive: true
+            }).catch(function () {});
+          } catch (e) {}
+        }
+
+        // ── Variant-Tag + Conversion (1× pro Browser, Reload-sicher) ──
+        if (window.clarity) {
+          window.clarity('set', 'lw_experiment', variant);
+          if (attr.utm_campaign) window.clarity('set', 'lw_utm_campaign', String(attr.utm_campaign).slice(0, 250));
+          if (attr.utm_content) window.clarity('set', 'lw_utm_content', String(attr.utm_content).slice(0, 250));
+        }
+        if (!ls.get('vf_lw_reg_fired')) {
+          ls.set('vf_lw_reg_fired', '1');
+          lwTrack('CompleteRegistration', { content_name: 'live-workshop' }, 'lw_signup_complete');
+        }
+
+        // ── Survey-Stepper ────────────────────────────────────────────
+        var card = document.getElementById('surveyCard');
+        var doneCard = document.getElementById('doneCard');
+        var steps = card.querySelectorAll('.q-step');
+        var fill = document.getElementById('progressFill');
+        var pct = document.getElementById('progressPct');
+        var answers = { revenue: null, apps: null, focus: null, phone_optin: null };
+        var QKEYS = ['revenue', 'apps', 'focus'];
+        var current = 1;
+
+        function showStep(n) {
+          current = n;
+          steps.forEach(function (s) { s.hidden = (s.getAttribute('data-q') !== String(n)); });
+          fill.style.width = (n * 25) + '%';
+          pct.textContent = n + ' / 4';
+          var el = card.querySelector('.q-step[data-q="' + n + '"]');
+          if (el) el.classList.add('fade-in');
+        }
+
+        // Antwort-Buttons Q1–Q3
+        steps.forEach(function (step) {
+          var q = parseInt(step.getAttribute('data-q'), 10);
+          step.querySelectorAll('.q-opt').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              step.querySelectorAll('.q-opt').forEach(function (b) { b.classList.remove('selected'); });
+              btn.classList.add('selected');
+              var key = QKEYS[q - 1];
+              var val = btn.getAttribute('data-answer');
+              answers[key] = val;
+              // Pro Frage: Meta-Custom-Event mit Antwort-Prop + Clarity-Event mit Antwort im Namen
+              lwTrack('LW_Survey_' + key.charAt(0).toUpperCase() + key.slice(1), { answer: val }, 'lw_q_' + key + '_' + val);
+              if (window.clarity) window.clarity('set', 'lw_' + key, val);
+              setTimeout(function () { showStep(q + 1); }, 220);
+            });
+          });
+          var back = step.querySelector('[data-back]');
+          if (back) back.addEventListener('click', function () { showStep(q - 1); });
+        });
+
+        // ── Scoring & Qualifizierung ─────────────────────────────────
+        // QualifiedLead = laufender Shop mit ≥ 5.000 € Monatsumsatz (ICP).
+        // Score (0–7) für Feinauswertung: Umsatz 0–3, App-Pain 0–3, Telefon +1.
+        var REV_SCORE = { kein_shop: 0, lt5k: 1, '5to20k': 2, gt20k: 3 };
+        var APP_SCORE = { lt50: 0, '50to150': 1, '150to400': 2, gt400: 3 };
+
+        function finishSurvey() {
+          var revScore = REV_SCORE[answers.revenue] || 0;
+          var appScore = APP_SCORE[answers.apps] || 0;
+          var score = revScore + appScore + (answers.phone_optin ? 1 : 0);
+          var qualified = revScore >= 2;
+
+          lwTrack('LW_Survey_Complete', {
+            score: score, qualified: qualified,
+            revenue: answers.revenue, apps: answers.apps, focus: answers.focus,
+            phone_optin: !!answers.phone_optin
+          }, 'lw_survey_complete');
+
+          if (qualified) {
+            // Das Event, auf das Meta-Kampagnen reporten/optimieren:
+            // Custom Conversion "QualifiedLead" im Events Manager anlegen.
+            lwTrack('QualifiedLead', {
+              score: score, revenue: answers.revenue, apps: answers.apps, focus: answers.focus
+            }, 'lw_qualified');
+          }
+          if (window.clarity) window.clarity('set', 'lw_qualified', qualified ? 'yes' : 'no');
+
+          // Rohdaten + Attribution serverseitig sichern (/api/lw-survey → Sheet-Webhook)
+          try {
+            fetch('/api/lw-survey', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: leadEmail, first_name: leadFirstName, phone: phoneGiven,
+                answers: answers, score: score, qualified: qualified,
+                variant: variant, attribution: attr,
+                page: location.pathname
+              }),
+              keepalive: true
+            }).catch(function () {});
+          } catch (e) {}
+
+          ls.set('vf_lw_survey', JSON.stringify(answers));
+          card.hidden = true;
+          doneCard.hidden = false;
+          doneCard.classList.add('fade-in');
+        }
+
+        // Q4: Telefon
+        document.getElementById('phoneYes').addEventListener('click', function () {
+          var input = document.getElementById('phoneInput');
+          var val = (input.value || '').replace(/[^\d+]/g, '');
+          if (val.replace(/\D/g, '').length < 8) {
+            input.focus();
+            input.setAttribute('aria-invalid', 'true');
+            input.style.borderColor = '#E5484D';
+            return;
+          }
+          phoneGiven = val;
+          answers.phone_optin = true;
+          lwTrack('LW_Phone_Optin', {}, 'lw_phone_optin');
+          finishSurvey();
+        });
+        document.getElementById('phoneNo').addEventListener('click', function () {
+          answers.phone_optin = false;
+          lwTrack('LW_Phone_Skip', {}, 'lw_phone_skip');
+          finishSurvey();
+        });
+
+        // Survey schon ausgefüllt (Reload) → direkt Success-State
+        if (ls.get('vf_lw_survey')) {
+          card.hidden = true;
+          doneCard.hidden = false;
+        } else {
+          showStep(1);
+        }
+
+        // ── Kalender-Links (Show-Up-Commitment) ──────────────────────
+        var desc = 'Live in 60 Minuten: Apps ersetzen, Rankings holen, Conversion heben. Dein Teilnahme-Link steht in der Bestätigungs-Mail.';
+        var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+          + '&text=' + encodeURIComponent(WEBINAR_TITLE)
+          + '&dates=' + WEBINAR_START_UTC + '/' + WEBINAR_END_UTC
+          + '&details=' + encodeURIComponent(desc)
+          + '&location=' + encodeURIComponent('Online (Link in der Bestätigungs-Mail)');
+        document.getElementById('calGoogle').href = gcal;
+        document.getElementById('calGoogle').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'google' }, 'lw_calendar_google'); });
+
+        var ics = [
+          'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//vorflows//live-workshop//DE',
+          'BEGIN:VEVENT',
+          'UID:lw-2026-06-25@vorflows.com',
+          'DTSTAMP:' + WEBINAR_START_UTC,
+          'DTSTART:' + WEBINAR_START_UTC,
+          'DTEND:' + WEBINAR_END_UTC,
+          'SUMMARY:' + WEBINAR_TITLE.replace(/,/g, '\\,'),
+          'DESCRIPTION:' + desc.replace(/,/g, '\\,'),
+          'LOCATION:Online',
+          'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Live-Workshop startet in 30 Minuten', 'END:VALARM',
+          'END:VEVENT', 'END:VCALENDAR'
+        ].join('\r\n');
+        document.getElementById('calIcs').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+        document.getElementById('calIcs').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
+
+        // Warm-Up-Video-Engagement
+        var vid = document.querySelector('.video-block video');
+        if (vid) vid.addEventListener('play', function () { lwTrack('LW_WarmupVideo_Play', {}, 'lw_warmup_play'); }, { once: true });
+      })();
+    </script>
+  </body>
+</html>

@@ -5,3 +5,6 @@ temporary screenshots/
 .env
 .env.local
 .claude/settings.local.json
+
+# Interne Ads-/Webinar-Playbooks (lokale Arbeitskopie, nicht deployen/pushen)
+.agents/vorflows-ads/

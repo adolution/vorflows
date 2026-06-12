@@ -774,6 +774,68 @@
     })();
   </script>
 
+  <!-- ===================== META PIXEL + AD-ATTRIBUTION (identisch auf A + B) =====================
+       UTM/fbclid des letzten Paid-Touch landen im First-Party-Cookie vf_lw_attr.
+       Die Danke-Seite (/danke-live-workshop) liest den Cookie → Ad-Zuordnung
+       überlebt das WebinarJam-Popup, durch das keine URL-Parameter laufen.
+       Doku: .agents/live-workshop-tracking.md -->
+  <script>
+    (function vfLwPixelAttr(){
+      var META_PIXEL_ID = '2002118703756086';
+      var getCookie = function(n){ return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+      var ls = { get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+                 set:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
+      var uuid = function(){ try{ return crypto.randomUUID(); }catch(e){ return Date.now() + '-' + Math.random().toString(16).slice(2); } };
+      var params = new URLSearchParams(location.search);
+
+      // fbclid → _fbc · _fbp sicherstellen (Meta First-Party-IDs, 90 Tage)
+      try {
+        var fbclid = params.get('fbclid');
+        if (fbclid && !getCookie('_fbc')) document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid + '; path=/; max-age=7776000; SameSite=Lax';
+        if (!getCookie('_fbp')) document.cookie = '_fbp=fb.1.' + Date.now() + '.' + Math.floor(Math.random()*2147483647) + '; path=/; max-age=7776000; SameSite=Lax';
+      } catch(e){}
+      // gclid sichern (falls später Google Ads auf den Workshop laufen)
+      try {
+        var gclid = params.get('gclid');
+        if (gclid) document.cookie = 'vf_gclid=' + encodeURIComponent(gclid) + '; path=/; max-age=7776000; SameSite=Lax';
+      } catch(e){}
+
+      // UTM-Attribution: letzter Paid-Touch gewinnt → Cookie + LocalStorage-Mirror
+      try {
+        var KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+        var hasUtm = KEYS.some(function(k){ return params.get(k); });
+        if (hasUtm || params.get('fbclid')) {
+          var attr = { landed_at: new Date().toISOString(), landing: location.pathname };
+          KEYS.forEach(function(k){ var v = params.get(k); if (v) attr[k] = v.slice(0,250); });
+          if (params.get('fbclid')) attr.fbclid = '1';
+          document.cookie = 'vf_lw_attr=' + encodeURIComponent(JSON.stringify(attr)) + '; path=/; max-age=7776000; SameSite=Lax';
+          ls.set('vf_lw_attr', JSON.stringify(attr));
+        }
+      } catch(e){}
+
+      // External ID (gleiche Konvention wie Homepage → Cross-Page-Matching)
+      var extId = ls.get('vf_ext_id'); if(!extId){ extId = uuid(); ls.set('vf_ext_id', extId); }
+
+      // Meta Pixel laden (A/B-Test-Modus: unconditional · vor Public-Launch Consent-Gate reaktivieren)
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      var am = { external_id: extId, country: 'de' };
+      var knownEmail = ls.get('vf_known_email'); if (knownEmail) am.em = knownEmail;
+      fbq('init', META_PIXEL_ID, am);
+
+      // PageView: Pixel + CAPI-Mirror mit gleicher event_id (Meta dedupliziert)
+      var evId = uuid();
+      fbq('track', 'PageView', {}, { eventID: evId });
+      try {
+        fetch('/api/capi', { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ event_name:'PageView', event_id:evId, event_source_url:location.href,
+            custom_data:{}, user_data:{ external_id:extId, country:'de',
+              fbp:getCookie('_fbp')||null, fbc:getCookie('_fbc')||null,
+              email: knownEmail || undefined } }),
+          keepalive:true }).catch(function(){});
+      } catch(e){}
+    })();
+  </script>
+
   <!-- ===================== A/B-TRACKING (lw_ scoped · identisch auf A + B) ===================== -->
   <script>
     (function vfLiveWorkshopAB(){
