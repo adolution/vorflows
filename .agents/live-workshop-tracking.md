@@ -120,8 +120,17 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
 2. Klick `[data-webinar-cta]` → `lw_signup_click` (cEvent) **+** öffnet Qualifier-Modal.
 3. Modal Schritt 1 → `lw_commit_date` → Schritt 2.
 4. Schritt 2 "Shopify? Ja" → `lw_qualify_yes` → `openWebinarForm()`.
-5. **`openWebinarForm()` zeigt noch den Platzhalter `#reg-note`. Hier kommt das
-   WebinarJam-Popup-Embed rein** (Button-/Popup-Code aus WebinarJam einfügen).
+5. **WebinarJam-Embed ist live.** Nach `lw_qualify_yes` zeigt das Qualifier-Modal
+   einen 3. Step `data-step="ready"` mit dem WebinarJam-Button (`.wj-embed-button`,
+   `data-webinarHash="0qgn9gag"`). Klick darauf öffnet das WJ-Registrierungs-Popup
+   (eigenes Overlay) und schliesst unser Modal. Fallback ohne Modal: `openWebinarForm()`
+   blendet `#reg-note` (gleicher Button) ein. WJ-Loader-Script `embed-button` liegt
+   einmal vor `</body>` (beide LP-Files). **Akzentfarbe des Popups:** WJ-Iframe ist
+   cross-origin → nicht per CSS stylebar. Einziger Hebel sind die Script-URL-Presets
+   `formTemplate=2` (Layout) + `formColor=4` (Farb-Swatch, fixe WJ-Palette, KEIN freies
+   Hex). Button selbst trägt Site-Klassen → exakt Terracotta `#C8633E`. Will man die
+   Popup-Farbe näher an Terracotta: im WJ-Generator den orangenen Swatch wählen und die
+   neue `formColor`-Zahl in beide Script-Tags übernehmen.
 6. WebinarJam-Registrierung → **Custom Thank You Page** (in WebinarJam
    konfigurieren!): `https://vorflows.com/danke-live-workshop`. WebinarJam hängt
    Lead-Daten an die URL (`wj_lead_email`, `wj_lead_first_name`), die Seite liest
@@ -138,7 +147,7 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
   **Bei Terminänderung: beide LP-Files + Danke-Seite!**
 
 ### WebinarJam-Checkliste (einmalig konfigurieren)
-1. Registrierungs-Popup-Code in `openWebinarForm()` beider LP-Files einsetzen (ersetzt `#reg-note`).
+1. ~~Registrierungs-Popup-Code einsetzen~~ ✅ erledigt (Step `ready` im Modal + `#reg-note`-Fallback, WJ-Loader vor `</body>`, beide Files).
 2. Thank You Page → "Custom page" → `https://vorflows.com/danke-live-workshop`.
 3. Test-Anmeldung mit `?utm_campaign=test&utm_content=testad` durchklicken und im Meta Events Manager (Test-Events) + Clarity prüfen.
 
