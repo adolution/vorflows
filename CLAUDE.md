@@ -54,3 +54,6 @@
 
 ## Setup
 - New project on this template? Read `SETUP.md` first. It covers GitHub repo init, Vercel deploy, and brand asset workflow.
+
+## Live-Workshop Tracking & A/B-Test
+- Bei Arbeit am Webinar / Live-Workshop (`live-workshop.html`, `live-workshop-b.html`), am Tracking, Funnel, Formular oder einer Danke-Seite: **zuerst `.agents/live-workshop-tracking.md` lesen.** Das ist die Single Source of Truth für A/B-Setup (`middleware.js`, Cookie `vf_ab_lw`), Clarity-Events (`lw_*`), aktive Sinks und wo neue Events andocken. Doku bei jeder Tracking-Änderung mitpflegen.

@@ -1,7 +1,12 @@
 # Live-Workshop A/B-Test (Test #4) — Design Spec
 
+> ⚠️ **SUPERSEDED (2026-06-12).** Dieser Design-Test wurde verworfen, bevor er Daten
+> lieferte. Test #4 ist seit 2026-06-12 ein **Hero-Copy-Test** (A=B design-identisch).
+> Aktueller Stand: `ab-tests.md` → Test #4 + `.agents/live-workshop-tracking.md`.
+> Dieses Dokument bleibt nur als historischer Spec-Record.
+
 **Datum:** 2026-05-30
-**Status:** approved (User-Freigabe: voll Homepage-Look + eigener Cookie/Events)
+**Status:** ~~approved~~ → superseded 2026-06-12 (siehe Banner oben)
 
 ## Ziel
 

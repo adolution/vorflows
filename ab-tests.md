@@ -7,9 +7,13 @@ Stop (Ergebnis + Decision + Learnings).
 
 ## Infrastruktur
 
-- **Routing:** `middleware.js` (Vercel Edge) splittet **nur Mobile-UA** 50/50.
-  Desktop bleibt deterministisch auf A. Bots immer auf A. Sticky Cookie
-  `vf_ab` (90 Tage). Override per `?ab=A|B` für QA.
+- **Routing:** `middleware.js` (Vercel Edge), **pro Pfad konfiguriert** via `testConfig()`:
+  - Homepage `/` + `/index.html` → Cookie `vf_ab`, B-Target `/index-b`, `splitDesktop:false`
+    → **nur Mobile** 50/50, Desktop deterministisch auf A.
+  - `/live-workshop` → Cookie `vf_ab_lw`, B-Target `/live-workshop-b`, `splitDesktop:true`
+    → **Desktop UND Mobile** je 50/50 (seit Test #4-Setup).
+  - Beide: Bots immer auf A, Sticky Cookie 90 Tage, Override `?ab=A|B` (nur clean-URL).
+  - Live-Workshop-Details: siehe **`.agents/live-workshop-tracking.md`** (Single Source of Truth).
 - **Tracking:** Microsoft Clarity Custom-Events `ab_A` / `ab_B` +
   Meta Pixel `ExperimentAssigned`. Conversions via Digistore24 mit
   `ds24tr=vf_ab_A` / `ds24tr=vf_ab_B` Param.
@@ -241,7 +245,7 @@ A hat hohe Cognitive Load (~25 Sektionen, Scroll-Scrub-Reveals, viele Feature-De
 - Hero (Video bleibt, Outcome-H1, ein primärer CTA, Mobile-Hero an A-Rhythmus angeglichen via `7a15ec0`)
 - Transformation-Sektion (4 Probleme · App-Stack-Kosten, Agentur-Wartezeit, Ranking-Daten-Lücke, Profit-Bauchgefühl/CRO)
 - **Safety-USP (neu in #3, einziger Punkt ohne A-Pendant):** "Du arbeitest am Shop, ohne ihn anzufassen." Theme-Duplicate-Workflow vs. Vollzugriff-Apps/Agenturen
-- Offer-Card (Single-Pricing 297 €, 5 Modul-Bullets, Raten 6 × 49,50 €, Garantien)
+- Offer-Card (Bundle regulär **597 €**, 5 Modul-Bullets, Raten 6 × 49,50 €, Garantien). _Hinweis 2026-06-02: ursprünglich Launch-Sale 297 € — Sale/Strike/Countdown komplett entfernt, jetzt regulär 597 € überall (A+B+Module)._
 - FAQ (5 Fragen, Akkordeon)
 - Final-CTA + Footer
 - Alle Em-Dashes aus Body raus
@@ -266,59 +270,60 @@ A hat hohe Cognitive Load (~25 Sektionen, Scroll-Scrub-Reveals, viele Feature-De
 
 ---
 
-### Test #4 · live-workshop-design · live
+### Test #4 · live-workshop-hero-copy · live
 
-**Start:** 2026-05-30
-**Laufzeit:** 2026-05-30 → offen
-**Scope:** Mobile only · 50/50 · sticky cookie 90 Tage · **eigener Cookie `vf_ab_lw`** (getrennt vom Homepage-Test `vf_ab`)
+**Volle Doku:** `.agents/live-workshop-tracking.md` (Tracking/Funnel/Sinks). Hier nur Test-Log.
+
+**Scope:** **Desktop UND Mobile** 50/50 · sticky cookie 90 Tage · **eigener Cookie `vf_ab_lw`** (getrennt vom Homepage-Test `vf_ab`)
 **URL:** `/live-workshop` (nicht Root). Eigene Test-Achse, läuft parallel zu Test #3.
-**Geänderte/neue Dateien:** `live-workshop-b.html` (neu, B) · `live-workshop.html` (A, nur Tracking nachgerüstet) · `middleware.js` (Matcher + Pfad-Branch) · `vercel.json` unverändert (cleanUrls deckt `/live-workshop-b` ab)
-**Commit-Refs:** Launch `<beim Push nachtragen>`
+**Dateien:** `live-workshop.html` (A, canonical/indexierbar) · `live-workshop-b.html` (B, `noindex`) · `middleware.js` (`splitDesktop:true`)
 
-**Was ist das für ein Test (Kurzfassung):**
-Reiner **Design-Test** der Workshop-Anmeldeseite. A = dunkles Glass-Slide-Design
-(Instrument Serif + Barlow, #000). B = Homepage-Editorial-Sprache 1:1
-(Creme #FAFAF7 + Dark-Sections, Fraunces + Inter + JetBrains Mono, Terracotta).
-**Copy und alle 10 Sections sind identisch** — getestet wird ausschließlich der
-Look. Künftige Copy-/Section-Änderungen immer gleichzeitig auf A UND B.
+**Phase 1 — Design-Test (2026-05-30 → 2026-06-12, beendet/verworfen):**
+Ursprünglich A=dunkles Glass-Slide-Design vs B=Homepage-Editorial (hell), Copy identisch.
+Am 2026-06-12 verworfen, bevor signifikante Daten entstanden: A wurde **design-identisch
+zu B gezogen** (beide helles Homepage-Editorial), um stattdessen einen **Hero-Copy-Test**
+zu fahren. Grund: Copy ist der stärkere Hebel; Design-Parität isoliert die Copy sauber.
+
+**Phase 2 — Hero-Copy-Test (live seit 2026-06-12):**
+A und B sind **design-identisch** (helles Homepage-Editorial, Fraunces+Inter+Mono,
+Terracotta). **Einzige Variable = Hero-Copy (H1 + Lead).** Rest des Bodys identisch.
+Künftige Nicht-Hero-Änderungen immer gleichzeitig auf A UND B.
 
 **Hypothese:**
-Wenn die Workshop-LP in der vertrauten, editorial-premium Designsprache der
-Hauptseite erscheint (statt eigenständigem Dark-Slide-Look), steigt die
-Marken-Kohärenz und Lesbarkeit auf Mobile — Besucher scrollen tiefer, bleiben
-länger und klicken häufiger auf den Anmelde-Button, weil der Auftritt
-seriöser/konsistenter wirkt.
+Die alte H1 ("Ich baue … Shop um") ist prozess-/neugier-getrieben und vergräbt die
+Outcomes (Umsatz/Rankings/App-Kosten) in der Lead. Eine reibungs-/loss-getriebene H1,
+die das Geld-Argument (Apps + Rankings) direkt anspricht, hebt die Signup-Klickrate,
+weil Founder die Relevanz schneller erfassen.
 
-**Variante A (Kontrolle):** `live-workshop.html` · dunkles Glass-Slide-Design.
-**Variante B (Test):** `live-workshop-b.html` · Homepage-Editorial, gleiche Copy/Sections.
+**Variante A (Kontrolle):**
+- H1: "Ich baue mit KI vor deinen Augen einen Shopify-Shop um."
+- Lead: "Live in 90 Minuten: mehr Umsatz, höhere Rankings, 5.232 € im Jahr an App-Kosten gespart …"
+
+**Variante B (Challenger · Reibung/Loss):**
+- H1: "Du zahlst für Apps, die KI gratis ersetzt. Und für Rankings, die du selbst holen könntest."
+- Lead: "Live in 90 Minuten bau ich mit KI einen echten Shopify-Shop um. Du siehst, wie er mehr verkauft und sich die 5.232 € App-Kosten im Jahr spart. Kein Code."
+
+**Beide (identisch, keine Test-Variable):**
+- Trust-Row unter Hero-CTA: `Echte Suchdaten · Klick- & Scroll-Verhalten · App-Code statt Abos`
+  (macht die 3 Säulen SEO/CRO/Apps above-the-fold sichtbar)
+- Hero-Eyebrow + Hero-Pills + CTA-Sub entfernt; Humanizer-Pass (Prosa-Em-Dashes raus)
 
 **Primary Metric:** Signup-Button-Klickrate (`lw_signup_click`, alle Positionen) pro Variante
-**Secondary Metrics:** Scroll-Tiefe (`lw_scroll_25/50/75/100`), Verweilzeit
-(`lw_dwell` Bucket + Clarity-Session-Time), FAQ-Open-Rate (`lw_faq_open`), Bounce-Rate
-**Tertiary:** Signup-Klicks nach Position (`loc`: nav/hero/final)
+**Secondary Metrics:** Scroll-Tiefe (`lw_scroll_*`), Verweilzeit (`lw_dwell`), FAQ-Open (`lw_faq_open`)
+**Tertiary:** Signup-Klicks nach Position (`loc`: nav/hero/sticky/final/inline)
 
-**Tracking (beide Seiten identisch, scoped `lw_`):**
-- Variant-Tag aus `vf_ab_lw` → Clarity `lw_experiment` + Event `lw_A`/`lw_B`
-- `lw_signup_click` {loc} bei jedem `[data-webinar-cta]`
-- `lw_scroll_25/50/75/100` (je Schwelle einmal)
-- `lw_dwell` {sec, bucket} sichtbarkeits-/pausenbereinigt, on visibilitychange+pagehide
-- `lw_faq_open`. Clarity-Property = `wnn5d5ehwn` (wie Homepage). Kein Consent-Gate (A/B-Modus).
+**Achtung Funnel:** `lw_signup_click` öffnet aktuell nur Qualifier-Modal → `#reg-note`-Platzhalter.
+**Kein echtes Formular / keine Danke-Seite** → Click ist Proxy-Conversion bis Formular steht.
+Nur Clarity aktiv (gtag/fbq verdrahtet, aber kein Snippet geladen).
 
-**Auswertung (Clarity MCP):** `smartEvents: ["lw_A"]` vs `["lw_B"]`.
-`lw_signup_click`-Anteil = Primär-KPI. Scroll-Reach via `lw_scroll_*`-Anteile.
-Dwell via `lw_dwell_A`/`lw_dwell_B` Bucket-Tags + native Session-Time.
+**Sample-Size-Ziel:** mind. 300 Sessions pro Variante für Klick-Trend
+**Stop-Kriterium:** klarer Klick-Trend (>20% Delta) ODER 4 Wochen Laufzeit
 
-**Sample-Size-Ziel:** mind. 300 Mobile-Sessions pro Variante für Klick-/Scroll-Trend
-**Stop-Kriterium:** klarer Klick-/Scroll-Trend (>20% Delta) ODER 4 Wochen Laufzeit
-
-**SEO-Hygiene:** A canonical/indexed/in-Sitemap (unverändert). B `noindex, follow`,
-canonical→A, nicht in Sitemap. Variant-Marker im Head.
+**SEO-Hygiene:** A canonical/indexed/in-Sitemap. B `noindex, follow`, canonical→A, nicht in Sitemap.
 
 **Ergebnis:**
 - Sessions A: ... | B: ...
 - Signup-Klickrate A: ... | B: ...
-- Scroll-Reach (75%) A: ... | B: ...
-- Avg-Dwell A: ... | B: ...
 - Lift: ±X%
 
 **Decision:** _(nach Stop)_
