@@ -177,28 +177,6 @@
         font-size: 1.02rem;
       }
 
-      .datebar {
-        margin-top: 1.4rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 11px;
-        padding: 11px 17px;
-        border-radius: 999px;
-        background: rgba(229, 72, 77, .08);
-        border: 1px solid rgba(229, 72, 77, .35);
-        max-width: 100%;
-      }
-      .datebar .ldot { width: 10px; height: 10px; border-radius: 50%; background: #E5484D; position: relative; flex: 0 0 auto; }
-      .datebar .ldot::after {
-        content: ""; position: absolute; inset: 0; border-radius: 50%; background: #E5484D;
-        animation: lpulse 1.7s var(--ease-out-expo) infinite;
-      }
-      .datebar .lbl {
-        font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px;
-        letter-spacing: .12em; text-transform: uppercase; color: #E5484D; flex: 0 0 auto;
-      }
-      .datebar .dt { font-weight: 600; font-size: clamp(14px, 4vw, 17px); line-height: 1.15; }
-      @keyframes lpulse { 0% { transform: scale(1); opacity: .7 } 70%, 100% { transform: scale(2.4); opacity: 0 } }
 
       /* ---------- Show-Up-Video (Subline + 9:16-Clip) ---------- */
       .ty-video { margin-top: 1.4rem; }
@@ -209,6 +187,13 @@
         line-height: 1.4;
         letter-spacing: -0.01em;
         color: var(--text-primary);
+      }
+      .cue-date {
+        text-decoration: underline;
+        text-decoration-color: var(--accent);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        white-space: nowrap;
       }
       .ty-video-el {
         display: block;
@@ -509,15 +494,9 @@
         <a class="btn btn-primary" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
       </div>
 
-      <div class="datebar">
-        <span class="ldot"></span>
-        <span class="lbl">Live-Termin</span>
-        <span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span>
-      </div>
-
       <!-- ============ SHOW-UP-VIDEO (Subline exakt über Video-Breite) ============ -->
       <div class="ty-video">
-        <p class="ty-video-cue">Damit du am 25.06. sicher dabei bist, schau dir dieses Video an:</p>
+        <p class="ty-video-cue">Damit du am <span class="cue-date">25.06. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
         <video class="ty-video-el" id="tyVideo" controls playsinline preload="metadata"
                poster="/assets/video/lw-danke-poster.webp">
           <source src="/assets/video/lw-danke-1080.mp4" type="video/mp4" />
