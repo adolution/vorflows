@@ -212,6 +212,15 @@
         padding: clamp(1.4rem, 5vw, 2.25rem);
       }
 
+      .survey-head {
+        margin: 0 0 1.15rem;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.15rem, 4vw, 1.45rem);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+      }
+
       .progress {
         display: flex;
         align-items: center;
@@ -485,6 +494,7 @@
 
       <!-- ============ SURVEY (Schritt 2 der Anmeldung) ============ -->
       <section class="survey" id="surveyCard" aria-label="Kurze Fragen zu deinem Shop">
+        <h2 class="survey-head">Hilf mir, das Webinar besser auf dich zuzuschneiden.</h2>
         <div class="progress" aria-hidden="true">
           <span class="bar"><span class="fill" id="progressFill"></span></span>
           <span class="pct" id="progressPct">1 / 6</span>
@@ -492,7 +502,7 @@
 
         <!-- Q1: Umsatz -->
         <div class="q-step" data-q="1">
-          <p class="q-eyebrow">Während du im Postfach bist · Frage 1 von 6</p>
+          <p class="q-eyebrow">Frage 1 von 6</p>
           <h2 class="q-title">Wie viel Umsatz macht dein Shop aktuell pro Monat?</h2>
           <p class="q-sub">Ich passe die Live-Beispiele im Workshop an die Shops an, die dabei sind.</p>
           <div class="q-options">
