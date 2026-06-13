@@ -241,8 +241,9 @@ Live: Sheet "LW Leads — Workshop" → https://docs.google.com/spreadsheets/d/1
 Script-Quellcode + clasp-Config: `.agents/lw-sheet/` (Deploy: `cd .agents/lw-sheet && npx @google/clasp push -f && npx @google/clasp deploy -i <deploymentId>` — Deployment-ID in Vercel-Env `LW_SURVEY_WEBHOOK`).
 WhatsApp-Workflow: Sheet nach `phone_optin = TRUE` filtern → Name, Nummer, Antworten, Ad (`utm_content`), Shop (`shop`).
 
-**Schema seit 2026-06-13 (Upsert + Partial):** `Code.js` macht jetzt **Upsert per `survey_id`** statt blind `appendRow`, mit `LockService` gegen Races schneller Teil-Pushes. `submitted_at` = Erst-Kontakt (bleibt bei Updates erhalten), `last_update` = letzter Push. Neue Spalten **nur ans Ende angehängt** (`survey_id, status, shop, last_update`) → Altdaten-Positionen unverändert; `ensureHeaders()` rüstet die Kopfzeile beim ersten Lead automatisch nach. `status`: `partial` (mind. 1 Antwort, noch nicht fertig) / `complete`.
-⚠️ **Deploy-Reihenfolge:** Erst Apps-Script neu deployen (Upsert), DANN Site pushen. Das alte Script ohne Upsert würde sonst pro Teil-Push eine eigene Zeile anlegen (Duplikate je Lead), bis es aktualisiert ist.
+**Schema seit 2026-06-13 (Upsert + Partial):** `Code.js` macht jetzt **Upsert per `survey_id`** statt blind `appendRow`, mit `LockService` gegen Races schneller Teil-Pushes. `submitted_at` = Erst-Kontakt (bleibt bei Updates erhalten), `last_update` = letzter Push. Neue Spalten **nur ans Ende angehängt** (`survey_id, status, shop, last_update`) → Altdaten-Positionen unverändert; `ensureHeaders()` rüstet die Kopfzeile beim ersten Lead automatisch nach. `status`: `partial` (mind. 1 Antwort, noch nicht fertig) / `complete`. **Blank-Schutz:** beim Update wird eine bereits gefüllte Zelle nie mit leer überschrieben (Zweit-Gerät ohne Attribution-Cookie löscht so kein UTM).
+✅ **DEPLOYED 2026-06-13 als `@5`** auf die bestehende Webhook-Deployment-ID `AKfycbwwLOLa…KZn43G8sy` (`clasp deploy -i <id>`) → `/exec`-URL unverändert, kein Vercel-Env-Change. Upsert + Partial + Blank-Schutz sind live.
+⚠️ **Deploy-Reihenfolge (für künftige Änderungen):** Erst Apps-Script neu deployen (Upsert), DANN Site pushen. Das alte Script ohne Upsert würde sonst pro Teil-Push eine eigene Zeile anlegen (Duplikate je Lead), bis es aktualisiert ist.
 
 Ursprüngliche manuelle Anleitung (Referenz):
 
