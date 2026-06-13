@@ -34,9 +34,12 @@ export default async function handler(req, res) {
 
   const record = {
     submitted_at: new Date().toISOString(),
+    survey_id: clean(body.survey_id, 64) || '',
+    status: clean(body.status, 16) || 'complete',
     email: clean(body.email) || '',
     first_name: clean(body.first_name) || '',
     phone: clean(body.phone, 32) || '',
+    shop: clean(body.shop, 250) || '',
     revenue: clean(answers.revenue, 32) || '',
     app_costs: clean(answers.apps, 32) || '',
     builder: clean(answers.builder, 32) || '',

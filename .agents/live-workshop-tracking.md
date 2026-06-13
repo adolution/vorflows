@@ -40,7 +40,7 @@ nichts davon vorab auf der Danke-Seite.
 | **Microsoft Clarity** | **AKTIV** | Property `wnn5d5ehwn` (gleiche wie Homepage). Im A/B-Modus **ohne Consent-Gate** geladen (sealed Funnel, eigene Cookie-/Legal-Pages). Snippet inline im AB-Block. Auch auf der Danke-Seite. |
 | **Meta Pixel (fbq)** | **AKTIV** | Pixel `2002118703756086` (gleiches wie Homepage). Block „META PIXEL + AD-ATTRIBUTION“ in beiden LP-Files + Danke-Seite. A/B-Test-Modus: unconditional, vor Public-Launch Consent-Gate reaktivieren. Alle bestehenden `cEvent`/`track`-Aufrufe feuern jetzt real zu Meta. |
 | **Meta CAPI** | **AKTIV** | `/api/capi` (Vercel-Function, env `META_PIXEL_ID` + `META_CAPI_TOKEN`). Browser-Events werden mit identischer `event_id` gespiegelt → Meta dedupliziert. `external_id` = `vf_ext_id` (localStorage, gleiche Konvention wie Homepage). |
-| **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). **EINGERICHTET + GETESTET 2026-06-12**: Google Sheet "LW Leads — Workshop" (ID `1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI`), Apps-Script-Projekt in `.agents/lw-sheet/` (clasp). Kein Klaviyo. |
+| **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). **EINGERICHTET + GETESTET 2026-06-12**: Google Sheet "LW Leads — Workshop" (ID `1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI`), Apps-Script-Projekt in `.agents/lw-sheet/` (clasp). Kein Klaviyo. **Seit 2026-06-13: Partial-Capture** — jede Frage feuert sofort einen Teil-Datensatz (`status=partial`) + ein `pagehide`/`visibilitychange`-Beacon; das Sheet macht **Upsert per `survey_id`** (eine Zeile/Person, wird beim Weiterklicken aktualisiert, endet `complete`). Abspringer landen also IM Sheet statt zu verschwinden. |
 | Google gtag (GA4/Ads) | **NICHT installiert** | Code feuert `window.gtag(...)` nur `if(window.gtag)` → No-Op. Bei Bedarf Lade-Snippet in `<head>`, dann feuern alle Events automatisch mit. |
 
 **Cookie-Consent (zwei Keys, gebrückt):** Homepage-Funnel nutzt `vf_consent`
@@ -109,7 +109,9 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 | `LW_Survey_Apps` `{answer}` | `lw_q_apps_<answer>` | Frage 2. Antworten: `lt50 / 50to150 / 150to400 / gt400` |
 | `LW_Survey_Builder` `{answer}` | `lw_q_builder_<answer>` | Frage 3 "Wer macht Änderungen am Shop?". Antworten: `selbst / team / agentur / niemand` |
 | `LW_Survey_Focus` `{answer}` | `lw_q_focus_<answer>` | Frage 4. Antworten: `apps_ersetzen / seo / conversion` |
-| `LW_Phone_Optin` / `LW_Phone_Skip` | `lw_phone_optin` / `lw_phone_skip` | Frage 5 (WhatsApp-Unterlagen → Telefonnummer) |
+| `LW_Phone_Optin` / `LW_Phone_Skip` | `lw_phone_optin` / `lw_phone_skip` | **Frage 6** (WhatsApp-Unterlagen → Telefonnummer). Versand der Unterlagen passiert NICHT automatisch — manuell aus dem Sheet. |
+
+Seit 2026-06-13: Survey hat **6 Steps**. **Q5 = eigener Step „Welcher Shop ist deiner?"** (optionales Freitext-Feld Shop-Name/URL, „Weiter"-Button, kein eigenes Event) **direkt VOR** dem WhatsApp-Step (Q6). Wert → Spalte `shop` im Sheet, wird beim „Weiter" als Teil-Antwort gepusht.
 | `LW_Survey_Complete` `{score, qualified, …}` | `lw_survey_complete` | Survey abgeschlossen |
 | **`QualifiedLead`** `{score, revenue, apps, focus}` | `lw_qualified` | Nur wenn qualifiziert. **= Optimierungs-Event für Ads (CPQL).** |
 | `LW_OpenInbox` | `lw_open_inbox` | Klick "Postfach öffnen" (Double-Opt-in-Hilfe, Provider aus E-Mail-Domain erkannt) |
@@ -237,14 +239,19 @@ Meta füllt `{{…}}` automatisch (Dynamic URL Parameters). `utm_content` = Anze
 
 Live: Sheet "LW Leads — Workshop" → https://docs.google.com/spreadsheets/d/1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI
 Script-Quellcode + clasp-Config: `.agents/lw-sheet/` (Deploy: `cd .agents/lw-sheet && npx @google/clasp push -f && npx @google/clasp deploy -i <deploymentId>` — Deployment-ID in Vercel-Env `LW_SURVEY_WEBHOOK`).
-WhatsApp-Workflow: Sheet nach `phone_optin = TRUE` filtern → Name, Nummer, Antworten, Ad (`utm_content`).
+WhatsApp-Workflow: Sheet nach `phone_optin = TRUE` filtern → Name, Nummer, Antworten, Ad (`utm_content`), Shop (`shop`).
+
+**Schema seit 2026-06-13 (Upsert + Partial):** `Code.js` macht jetzt **Upsert per `survey_id`** statt blind `appendRow`, mit `LockService` gegen Races schneller Teil-Pushes. `submitted_at` = Erst-Kontakt (bleibt bei Updates erhalten), `last_update` = letzter Push. Neue Spalten **nur ans Ende angehängt** (`survey_id, status, shop, last_update`) → Altdaten-Positionen unverändert; `ensureHeaders()` rüstet die Kopfzeile beim ersten Lead automatisch nach. `status`: `partial` (mind. 1 Antwort, noch nicht fertig) / `complete`.
+⚠️ **Deploy-Reihenfolge:** Erst Apps-Script neu deployen (Upsert), DANN Site pushen. Das alte Script ohne Upsert würde sonst pro Teil-Push eine eigene Zeile anlegen (Duplikate je Lead), bis es aktualisiert ist.
 
 Ursprüngliche manuelle Anleitung (Referenz):
 
 1. Neues Google Sheet "LW Leads". Kopfzeile = Feldnamen aus `api/lw-survey.js`
    (`submitted_at, email, first_name, phone, revenue, app_costs, builder, focus,
    phone_optin, score, qualified, variant, utm_source, utm_medium,
-   utm_campaign, utm_content, utm_term, fbclid, landed_at`).
+   utm_campaign, utm_content, utm_term, fbclid, landed_at` + ans Ende angehängt
+   `survey_id, status, shop, last_update`). `Code.js` (aktuelle Quelle) legt die
+   Kopfzeile via `ensureHeaders()` selbst an — Snippet unten ist nur historische Referenz.
 2. Erweiterungen → Apps Script, einfügen:
 
 ```js

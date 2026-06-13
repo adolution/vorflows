@@ -336,7 +336,8 @@
 
       /* phone step */
       .phone-row { margin-top: 1.15rem; display: flex; flex-direction: column; gap: 0.6rem; }
-      .phone-row input[type="tel"] {
+      .phone-row input[type="tel"],
+      .phone-row input[type="text"] {
         width: 100%;
         font-family: inherit;
         font-size: 1.02rem;
@@ -347,12 +348,15 @@
         color: var(--text-primary);
         transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
       }
-      .phone-row input[type="tel"]:focus {
+      .phone-row input[type="tel"]:focus,
+      .phone-row input[type="text"]:focus {
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 3px var(--accent-soft);
       }
       .phone-hint { margin: 0.15rem 0 0; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+      .shop-label { margin: 0.7rem 0 -0.1rem; font-size: 0.92rem; font-weight: 600; color: var(--text-primary); }
+      .shop-label .opt { font-weight: 400; color: var(--text-secondary); }
 
       .btn {
         appearance: none;
@@ -483,12 +487,12 @@
       <section class="survey" id="surveyCard" aria-label="Kurze Fragen zu deinem Shop">
         <div class="progress" aria-hidden="true">
           <span class="bar"><span class="fill" id="progressFill"></span></span>
-          <span class="pct" id="progressPct">1 / 5</span>
+          <span class="pct" id="progressPct">1 / 6</span>
         </div>
 
         <!-- Q1: Umsatz -->
         <div class="q-step" data-q="1">
-          <p class="q-eyebrow">Während du im Postfach bist · Frage 1 von 5</p>
+          <p class="q-eyebrow">Während du im Postfach bist · Frage 1 von 6</p>
           <h2 class="q-title">Wie viel Umsatz macht dein Shop aktuell pro Monat?</h2>
           <p class="q-sub">Ich passe die Live-Beispiele im Workshop an die Shops an, die dabei sind.</p>
           <div class="q-options">
@@ -501,7 +505,7 @@
 
         <!-- Q2: App-Kosten -->
         <div class="q-step" data-q="2" hidden>
-          <p class="q-eyebrow">Frage 2 von 5</p>
+          <p class="q-eyebrow">Frage 2 von 6</p>
           <h2 class="q-title">Wie viel zahlst du monatlich für Shopify-Apps?</h2>
           <p class="q-sub">Grob geschätzt reicht völlig.</p>
           <div class="q-options">
@@ -515,7 +519,7 @@
 
         <!-- Q3: Wer baut am Shop (Selbermacher-Signal = Kern-ICP) -->
         <div class="q-step" data-q="3" hidden>
-          <p class="q-eyebrow">Frage 3 von 5</p>
+          <p class="q-eyebrow">Frage 3 von 6</p>
           <h2 class="q-title">Wer macht aktuell Änderungen an deinem Shop?</h2>
           <p class="q-sub">Theme, Texte, Sections — wer fasst das bei dir an?</p>
           <div class="q-options">
@@ -529,7 +533,7 @@
 
         <!-- Q4: Fokus -->
         <div class="q-step" data-q="4" hidden>
-          <p class="q-eyebrow">Frage 4 von 5</p>
+          <p class="q-eyebrow">Frage 4 von 6</p>
           <h2 class="q-title">Was soll ich im Workshop auf jeden Fall live zeigen?</h2>
           <div class="q-options">
             <button class="q-opt" type="button" data-answer="apps_ersetzen">Teure Apps durch Code ersetzen</button>
@@ -539,9 +543,22 @@
           <button class="q-back" type="button" data-back>← Zurück</button>
         </div>
 
-        <!-- Q5: WhatsApp / Telefon -->
+        <!-- Q5: Shop-Name / URL (optional, eigener Step) -->
         <div class="q-step" data-q="5" hidden>
-          <p class="q-eyebrow">Frage 5 von 5</p>
+          <p class="q-eyebrow">Frage 5 von 6</p>
+          <h2 class="q-title">Welcher Shop ist deiner?</h2>
+          <p class="q-sub">Optional — hilft mir, im Workshop auf passende Beispiele einzugehen.</p>
+          <div class="phone-row">
+            <input type="text" id="shopInput" autocomplete="off"
+                   placeholder="Shop-Name oder URL" aria-label="Dein Shop-Name oder URL" />
+            <button class="btn btn-primary" type="button" id="shopNext">Weiter</button>
+          </div>
+          <button class="q-back" type="button" data-back>← Zurück</button>
+        </div>
+
+        <!-- Q6: WhatsApp / Telefon -->
+        <div class="q-step" data-q="6" hidden>
+          <p class="q-eyebrow">Frage 6 von 6</p>
           <h2 class="q-title">Soll ich dir die Workshop-Unterlagen danach per WhatsApp schicken?</h2>
           <p class="q-sub">Du bekommst die Zusammenfassung mit allen gezeigten Schritten direkt aufs Handy — plus eine kurze Erinnerung vor dem Start.</p>
           <div class="phone-row">
@@ -725,7 +742,8 @@
 
         // ── Event-Helfer: Clarity + Pixel + CAPI (Event-ID-Dedup) ─────
         var META_STANDARD = { CompleteRegistration: 1, Lead: 1, Contact: 1, Schedule: 1 };
-        var phoneGiven = null; // wird in Q4 gesetzt, geht ab dann in user_data
+        var phoneGiven = null; // wird in Q5 gesetzt, geht ab dann in user_data
+        var shopGiven = null;  // Freitext-Shop aus Q5 (optional)
 
         // Stabiler Hash (djb2) → deterministische event_id aus der E-Mail,
         // damit Meta dieselbe Anmeldung geräte-/reload-übergreifend dedupliziert.
@@ -801,11 +819,22 @@
         var QKEYS = ['revenue', 'apps', 'builder', 'focus'];
         var current = 1;
 
+        // ── Stabile Survey-ID → Upsert im Sheet (eine Zeile pro Person, wird beim
+        // Weiterklicken aktualisiert). Deterministisch aus E-Mail, damit dieselbe
+        // Person auch geräte-/reload-übergreifend dieselbe Zeile trifft; sonst uuid.
+        var surveyId = ls.get('vf_lw_survey_id');
+        if (!surveyId) {
+          surveyId = leadEmail ? 's_' + djb2(leadEmail.trim().toLowerCase()) : 's_' + uuid();
+          ls.set('vf_lw_survey_id', surveyId);
+        }
+        var surveyDone = false;
+        var lastPush = '';
+
         function showStep(n) {
           current = n;
           steps.forEach(function (s) { s.hidden = (s.getAttribute('data-q') !== String(n)); });
-          fill.style.width = (n * 20) + '%';
-          pct.textContent = n + ' / 5';
+          fill.style.width = (n * (100 / 6)) + '%';
+          pct.textContent = n + ' / 6';
           var el = card.querySelector('.q-step[data-q="' + n + '"]');
           if (el) el.classList.add('fade-in');
         }
@@ -823,6 +852,7 @@
               // Pro Frage: Meta-Custom-Event mit Antwort-Prop + Clarity-Event mit Antwort im Namen
               lwTrack('LW_Survey_' + key.charAt(0).toUpperCase() + key.slice(1), { answer: val }, 'lw_q_' + key + '_' + val);
               if (window.clarity) window.clarity('set', 'lw_' + key, val);
+              pushSurvey(false); // Teil-Antwort sofort sichern (Abspringer landen im Sheet)
               setTimeout(function () { showStep(q + 1); }, 220);
             });
           });
@@ -838,12 +868,59 @@
         var APP_SCORE = { lt50: 0, '50to150': 1, '150to400': 2, gt400: 3 };
         var BUILDER_SCORE = { selbst: 2, team: 1, agentur: 1, niemand: 0 };
 
-        function finishSurvey() {
+        function scoreNow() {
           var revScore = REV_SCORE[answers.revenue] || 0;
           var appScore = APP_SCORE[answers.apps] || 0;
           var builderScore = BUILDER_SCORE[answers.builder] || 0;
-          var score = revScore + appScore + builderScore + (answers.phone_optin ? 1 : 0);
-          var qualified = revScore >= 2;
+          return {
+            score: revScore + appScore + builderScore + (answers.phone_optin ? 1 : 0),
+            qualified: revScore >= 2
+          };
+        }
+
+        function hasAnyAnswer() {
+          return !!(answers.revenue || answers.apps || answers.builder || answers.focus || phoneGiven || shopGiven);
+        }
+
+        // Rohdaten serverseitig sichern (/api/lw-survey → Sheet-Upsert per survey_id).
+        // complete=false bei Teil-Antworten (jede Frage + pagehide), =true am Ende.
+        // beacon=true für den pagehide-Flush (sendBeacon überlebt Tab-Schliessen).
+        function pushSurvey(complete, beacon) {
+          if (!complete && !hasAnyAnswer()) return;
+          var s = scoreNow();
+          var payload = JSON.stringify({
+            survey_id: surveyId,
+            status: complete ? 'complete' : 'partial',
+            email: leadEmail, first_name: leadFirstName, phone: phoneGiven, shop: shopGiven,
+            answers: answers, score: s.score, qualified: s.qualified,
+            variant: variant, attribution: attr, page: location.pathname
+          });
+          // Identische Teil-Pushes nicht doppelt senden.
+          if (!complete && payload === lastPush) return;
+          lastPush = payload;
+          try {
+            if (beacon && navigator.sendBeacon) {
+              navigator.sendBeacon('/api/lw-survey', new Blob([payload], { type: 'application/json' }));
+            } else {
+              fetch('/api/lw-survey', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: payload, keepalive: true
+              }).catch(function () {});
+            }
+          } catch (e) {}
+        }
+
+        // Teil-Antworten flushen, wenn der Tab geschlossen/verlassen wird.
+        function flushPartial() { if (!surveyDone) pushSurvey(false, true); }
+        window.addEventListener('pagehide', flushPartial);
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'hidden') flushPartial();
+        });
+
+        function finishSurvey() {
+          surveyDone = true;
+          var s = scoreNow();
+          var score = s.score, qualified = s.qualified;
 
           lwTrack('LW_Survey_Complete', {
             score: score, qualified: qualified,
@@ -860,20 +937,8 @@
           }
           if (window.clarity) window.clarity('set', 'lw_qualified', qualified ? 'yes' : 'no');
 
-          // Rohdaten + Attribution serverseitig sichern (/api/lw-survey → Sheet-Webhook)
-          try {
-            fetch('/api/lw-survey', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: leadEmail, first_name: leadFirstName, phone: phoneGiven,
-                answers: answers, score: score, qualified: qualified,
-                variant: variant, attribution: attr,
-                page: location.pathname
-              }),
-              keepalive: true
-            }).catch(function () {});
-          } catch (e) {}
+          // Finaler Datensatz (status=complete) → überschreibt die Teil-Zeile im Sheet.
+          pushSurvey(true);
 
           ls.set('vf_lw_survey', JSON.stringify(answers));
           card.hidden = true;
@@ -881,7 +946,19 @@
           doneCard.classList.add('fade-in');
         }
 
-        // Q4: Telefon
+        // Q5: optionaler Shop-Freitext (eigener Step) → Q6
+        function readShop() {
+          var si = document.getElementById('shopInput');
+          var v = si ? (si.value || '').trim().slice(0, 250) : '';
+          shopGiven = v || null;
+        }
+        document.getElementById('shopNext').addEventListener('click', function () {
+          readShop();
+          pushSurvey(false); // Shop (oder leer) als Teil-Antwort sichern
+          showStep(6);
+        });
+
+        // Q6: Telefon
         document.getElementById('phoneYes').addEventListener('click', function () {
           var input = document.getElementById('phoneInput');
           var val = (input.value || '').replace(/[^\d+]/g, '');
@@ -893,11 +970,13 @@
           }
           phoneGiven = val;
           answers.phone_optin = true;
+          readShop();
           lwTrack('LW_Phone_Optin', {}, 'lw_phone_optin');
           finishSurvey();
         });
         document.getElementById('phoneNo').addEventListener('click', function () {
           answers.phone_optin = false;
+          readShop();
           lwTrack('LW_Phone_Skip', {}, 'lw_phone_skip');
           finishSurvey();
         });
