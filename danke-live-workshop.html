@@ -200,6 +200,29 @@
       .datebar .dt { font-weight: 600; font-size: clamp(14px, 4vw, 17px); line-height: 1.15; }
       @keyframes lpulse { 0% { transform: scale(1); opacity: .7 } 70%, 100% { transform: scale(2.4); opacity: 0 } }
 
+      /* ---------- Show-Up-Video (Subline + 9:16-Clip) ---------- */
+      .ty-video { margin-top: 1.4rem; max-width: 20rem; }
+      .ty-video-cue {
+        margin: 0 0 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+      }
+      .ty-video-el {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        border-radius: 0.9rem;
+        background: #000;
+        border: 1px solid var(--border);
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.05),
+          0 22px 48px -26px rgba(200, 99, 62, 0.34);
+      }
+
       /* ---------- Survey card ---------- */
       .survey {
         margin: clamp(1.9rem, 5vw, 2.75rem) 0 0;
@@ -490,6 +513,15 @@
         <span class="ldot"></span>
         <span class="lbl">Live-Termin</span>
         <span class="dt" data-webinar-date>Donnerstag, 25. Juni · 11:00 Uhr</span>
+      </div>
+
+      <!-- ============ SHOW-UP-VIDEO (Subline exakt über Video-Breite) ============ -->
+      <div class="ty-video">
+        <p class="ty-video-cue">Damit du am 25.06. sicher dabei bist, schau dir dieses Video an:</p>
+        <video class="ty-video-el" id="tyVideo" controls playsinline preload="metadata"
+               poster="/assets/video/lw-danke-poster.webp">
+          <source src="/assets/video/lw-danke-1080.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <!-- ============ SURVEY (Schritt 2 der Anmeldung) ============ -->
@@ -1028,6 +1060,17 @@
         ].join('\r\n');
         document.getElementById('calIcs').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
         document.getElementById('calIcs').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
+
+        // ── Show-Up-Video: erstes Play = Show-Up-Signal (1× pro Browser) ──
+        (function () {
+          var v = document.getElementById('tyVideo');
+          if (!v) return;
+          var fired = false;
+          v.addEventListener('play', function () {
+            if (fired) return; fired = true;
+            lwTrack('LW_Danke_Video_Play', {}, 'lw_danke_video_play');
+          });
+        })();
       })();
     </script>
   </body>

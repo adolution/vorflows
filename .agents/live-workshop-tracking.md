@@ -11,8 +11,14 @@ und `https://vorflows.com/danke-live-workshop`.
 Strategie-Basis der Danke-Seite: FULLSTACK-Playbook Learning #3 (Survey auf der
 Dankesseite) + #4 (WhatsApp/Telefon) —
 `.agents/vorflows-ads/webinar/playbook-01-traffic-showup.md`.
-Bewusst KEIN Warm-Up-Video (Learning #29): Alex zeigt die Inhalte live,
-nichts davon vorab auf der Danke-Seite.
+KEIN **Content-/Warm-Up-Video** (Learning #29): Alex zeigt die Inhalte live,
+nichts davon vorab auf der Danke-Seite. **ABER** seit 2026-06-13 läuft ein
+**Show-Up-Video** (40s, 9:16, Alex) zwischen Datebar und Survey — es verrät
+keinen Workshop-Inhalt, sondern treibt nur die nächste Aktion (Mail bestätigen
+→ Fragen → Kalender). Subline darüber: „Damit du am 25.06. sicher dabei bist,
+schau dir dieses Video an:". Assets: `assets/video/lw-danke-1080.mp4` (H.264,
+1080×1920, ~6,9 MB, faststart) + `lw-danke-poster.webp`. Erstes Play feuert
+`LW_Danke_Video_Play` / `lw_danke_video_play` (1× pro Browser, Show-Up-Signal).
 
 ---
 
@@ -115,6 +121,7 @@ Seit 2026-06-13: Survey hat **6 Steps**. **Q5 = eigener Step „Welcher Shop ist
 | `LW_Survey_Complete` `{score, qualified, …}` | `lw_survey_complete` | Survey abgeschlossen |
 | **`QualifiedLead`** `{score, revenue, apps, focus}` | `lw_qualified` | Nur wenn qualifiziert. **= Optimierungs-Event für Ads (CPQL).** |
 | `LW_OpenInbox` | `lw_open_inbox` | Klick "Postfach öffnen" (Double-Opt-in-Hilfe, Provider aus E-Mail-Domain erkannt) |
+| `LW_Danke_Video_Play` | `lw_danke_video_play` | Erstes Play des Show-Up-Videos (zwischen Datebar + Survey). 1× pro Browser. Show-Up-Signal. |
 | `LW_AddToCalendar` `{type}` | `lw_calendar_google` / `lw_calendar_ics` | Kalender-Klick (Show-Up-Commitment) |
 
 Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
