@@ -727,13 +727,21 @@
         var META_STANDARD = { CompleteRegistration: 1, Lead: 1, Contact: 1, Schedule: 1 };
         var phoneGiven = null; // wird in Q4 gesetzt, geht ab dann in user_data
 
-        function lwTrack(name, props, clarityName) {
+        // Stabiler Hash (djb2) → deterministische event_id aus der E-Mail,
+        // damit Meta dieselbe Anmeldung geräte-/reload-übergreifend dedupliziert.
+        function djb2(str) {
+          var h = 5381;
+          for (var i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
+          return h.toString(36);
+        }
+
+        function lwTrack(name, props, clarityName, forcedEventId) {
           props = props || {};
           props.variant = variant;
           if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
           if (attr.utm_content) props.utm_content = attr.utm_content;
 
-          var eventId = uuid();
+          var eventId = forcedEventId || uuid();
 
           if (window.clarity) window.clarity('event', clarityName || name);
           if (window.gtag) window.gtag('event', clarityName || name, props);
@@ -771,9 +779,16 @@
           if (attr.utm_campaign) window.clarity('set', 'lw_utm_campaign', String(attr.utm_campaign).slice(0, 250));
           if (attr.utm_content) window.clarity('set', 'lw_utm_content', String(attr.utm_content).slice(0, 250));
         }
-        if (!ls.get('vf_lw_reg_fired')) {
+        // CompleteRegistration NUR bei echter WebinarJam-Anmeldung: WJ hängt
+        // wj_lead_* an die TY-URL (verifiziert 2026-06-12). Fehlt das, kommt der
+        // Besucher per Direktaufruf/Bookmark/Reload → KEINE Conversion feuern.
+        var arrivedFromWJ = !!(params.get('wj_lead_email') || params.get('wj_lead_unique_link_live_room'));
+        if (arrivedFromWJ && !ls.get('vf_lw_reg_fired')) {
           ls.set('vf_lw_reg_fired', '1');
-          lwTrack('CompleteRegistration', { content_name: 'live-workshop' }, 'lw_signup_complete');
+          // Deterministische event_id aus der E-Mail → selbe Anmeldung auf
+          // anderem Gerät / nach Double-Opt-in-Landing wird von Meta dedupliziert.
+          var regEventId = leadEmail ? 'cr_' + djb2(leadEmail.trim().toLowerCase()) : null;
+          lwTrack('CompleteRegistration', { content_name: 'live-workshop' }, 'lw_signup_complete', regEventId);
         }
 
         // ── Survey-Stepper ────────────────────────────────────────────

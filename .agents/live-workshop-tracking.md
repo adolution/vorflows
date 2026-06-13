@@ -104,7 +104,7 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 
 | Meta-Event | Clarity-Event | Wann |
 |---|---|---|
-| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | 1× pro Browser bei Pageload (Guard `vf_lw_reg_fired`). **= Primär-Conversion Anmeldung.** |
+| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | Feuert **nur bei echter WJ-Anmeldung** (`wj_lead_email`/`wj_lead_unique_link_live_room` in TY-URL vorhanden = `arrivedFromWJ`) **und** Guard `vf_lw_reg_fired` (1× pro Browser). Direktaufruf/Bookmark/Reload ohne WJ-Params → **kein** Fire. **event_id deterministisch aus E-Mail** (`'cr_'+djb2(email)`) → Meta dedupliziert dieselbe Anmeldung auch geräteübergreifend / nach Double-Opt-in-Landing. **= Primär-Conversion Anmeldung.** |
 | `LW_Survey_Revenue` `{answer}` | `lw_q_revenue_<answer>` | Frage 1 beantwortet. Antworten: `kein_shop / lt5k / 5to20k / gt20k` |
 | `LW_Survey_Apps` `{answer}` | `lw_q_apps_<answer>` | Frage 2. Antworten: `lt50 / 50to150 / 150to400 / gt400` |
 | `LW_Survey_Builder` `{answer}` | `lw_q_builder_<answer>` | Frage 3 "Wer macht Änderungen am Shop?". Antworten: `selbst / team / agentur / niemand` |
