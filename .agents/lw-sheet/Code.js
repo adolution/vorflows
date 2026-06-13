@@ -61,8 +61,15 @@ function doPost(e) {
 
     if (rowIdx) {
       // Update: submitted_at (Erst-Kontakt) erhalten, Rest überschreiben.
+      // Schutz: eine bereits gefüllte Zelle NIE mit leer überschreiben
+      // (z. B. Zweit-Gerät ohne Attribution-Cookie würde sonst UTM löschen).
       const orig = sheet.getRange(rowIdx, 1, 1, HEADERS.length).getValues()[0];
-      const row = HEADERS.map((h, i) => h === 'submitted_at' ? orig[i] : fmt(h));
+      const isBlank = (v) => v === '' || v === null || v === undefined;
+      const row = HEADERS.map((h, i) => {
+        if (h === 'submitted_at') return orig[i];
+        const v = fmt(h);
+        return isBlank(v) && !isBlank(orig[i]) ? orig[i] : v;
+      });
       sheet.getRange(rowIdx, 1, 1, HEADERS.length).setValues([row]);
     } else {
       sheet.appendRow(HEADERS.map(fmt));
