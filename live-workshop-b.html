@@ -654,17 +654,17 @@
     <button class="lwq-close" id="lwqClose" type="button" aria-label="Schließen">&times;</button>
     <div class="lwq-step" data-step="1">
       <p class="meta eyebrow">Schritt 1 von 2</p>
-      <p class="lwq-title" id="lwqTitle">Kannst du am Donnerstag, 25. Juni, 11:00 Uhr?</p>
-      <p class="lwq-sub">60 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
-      <button class="btn btn-primary btn-lg" type="button" data-lwq-next>Ja, der Termin passt</button>
+      <p class="lwq-title" id="lwqTitle">Hast du einen Shopify-Shop?</p>
+      <div class="lwq-choices">
+        <button class="btn btn-primary btn-lg" type="button" data-lwq-shopify="yes">Ja, hab ich</button>
+        <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, hab ich nicht</button>
+      </div>
     </div>
     <div class="lwq-step" data-step="2" hidden>
       <p class="meta eyebrow">Schritt 2 von 2</p>
-      <p class="lwq-title">Läuft dein Shop auf Shopify?</p>
-      <div class="lwq-choices">
-        <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-lwq-shopify="yes" data-webinarHash="0qgn9gag">Ja, ich nutze Shopify</button>
-        <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, kein Shopify</button>
-      </div>
+      <p class="lwq-title">Kannst du am Donnerstag, 25. Juni, 11:00 Uhr?</p>
+      <p class="lwq-sub">60 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
+      <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-lwq-confirm data-webinarHash="0qgn9gag">Ja, der Termin passt</button>
     </div>
     <div class="lwq-step" data-step="reject" hidden>
       <p class="lwq-title">Dann passt dieser Workshop leider nicht für dich.</p>
@@ -792,13 +792,13 @@
         if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
         else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
       });
-      modal.querySelectorAll('[data-lwq-next]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); show(2); }); });
       modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
         b.addEventListener('click', function(){
-          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); armWjProbe(); close(); }
+          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); show(2); }
           else { track('lw_qualify_no'); show('reject'); }
         });
       });
+      modal.querySelectorAll('[data-lwq-confirm]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); armWjProbe(); close(); }); });
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
     })();
 

@@ -89,10 +89,10 @@ Es gibt zwei Funktionen, die Events feuern. Inkonsistenz bewusst kennen:
 |---|---|---|---|
 | `lw_A` / `lw_B` | sendTag (Clarity) | 1× pro Pageview, Variant-Tag | — |
 | **`lw_signup_click`** | cEvent | **Primärziel.** Klick auf jeden `[data-webinar-cta]` | `loc`: hero / nav / final / inline (**`sticky` entfällt** — Sticky-Bottom-CTA mobil deaktiviert, Nav-CTA „Platz sichern" bleibt sticky sichtbar; kein Doppel-CTA. Markup/JS bleiben, nur `display:none`) |
-| `lw_commit_date` | track | Modal Schritt 1 "Termin bestätigen" | — (kein variant!) |
-| `lw_qualify_yes` | track | Modal: "Shop bei Shopify? Ja" → öffnet WJ-Popup direkt | — |
-| `lw_qualify_no` | track | Modal: "Nein" → Reject-Screen | — |
-| **`lw_wj_open`** | track | Popup-Overlay-Iframe nach Shopify-Ja erkannt (`armWjProbe` pollt ~8s; **jedes** Iframe >300×300px ODER `src` mit `webinarjam`/`genndi`). **= Öffnen hat geklappt** (auch spät). | — |
+| `lw_qualify_yes` | track | **Modal Schritt 1** "Hast du einen Shopify-Shop? → Ja" → weiter zu Termin-Step | — |
+| `lw_qualify_no` | track | Modal Schritt 1: "Nein, hab ich nicht" → Reject-Screen | — |
+| `lw_commit_date` | track | **Modal Schritt 2** "Ja, der Termin passt" → **IST jetzt der WJ-Trigger** (öffnet WJ-Popup direkt) | — (kein variant!) |
+| **`lw_wj_open`** | track | Popup-Overlay-Iframe nach Termin-Bestätigung erkannt (`armWjProbe` pollt ~8s; **jedes** Iframe >300×300px ODER `src` mit `webinarjam`/`genndi`). **= Öffnen hat geklappt** (auch spät). | — |
 | **`lw_wj_noopen`** | track | Nach ~8s **nie** ein Popup-Iframe → ging echt nicht auf. **= true fail.** | — |
 | `lw_wj_fallback_shown` | track | ~4s kein Popup → Fallback-Karte (`#reg-note`) eingeblendet. Superset (enthält auch Spät-Öffner); kommt ein Popup danach, wird die Karte wieder versteckt + `lw_wj_open`. | — |
 | `lw_wj_fallback_click` | track | Klick auf den `#reg-note`-Fallback-Button | — |
@@ -142,12 +142,19 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    gewinnt) + localStorage-Mirror. Außerdem: `_fbc`/`_fbp` setzen, `vf_ext_id`,
    Pixel-PageView + CAPI-Mirror.
 2. Klick `[data-webinar-cta]` → `lw_signup_click` (cEvent) **+** öffnet Qualifier-Modal.
-3. Modal Schritt 1 → `lw_commit_date` → Schritt 2.
-4. Schritt 2 "Shopify? Ja" → `lw_qualify_yes`. **Der "Ja, ich nutze Shopify"-Button
-   IST der WebinarJam-Trigger** (`.wj-embed-button` + `data-webinarHash="0qgn9gag"`):
-   der echte Klick öffnet das WJ-Registrierungs-Popup direkt (kein Zwischenschritt) und
-   schliesst gleichzeitig unser Qualifier-Modal (Handler: `track('lw_qualify_yes');
-   armWjProbe(); close();` — **kein** `openWebinarForm()` mehr, also **kein Scroll**).
+3. **Modal Schritt 1 = Shopify-Gate** „Hast du einen Shopify-Shop?" (Ja/Nein).
+   - „Nein, hab ich nicht" → `lw_qualify_no` → Reject-Screen (harter Filter: nur
+     echte Shop-Besitzer kommen durch; Werbe-Algo soll nicht auf Nicht-Besitzer
+     optimieren — Grund für den Umbau am 2026-06-15).
+   - „Ja, hab ich" → `lw_qualify_yes` → weiter zu Schritt 2 (`show(2)`, **kein** WJ,
+     **kein** Close).
+4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 25. Juni, 11:00 Uhr?" → der
+   **„Ja, der Termin passt"-Button IST jetzt der WebinarJam-Trigger**
+   (`.wj-embed-button` + `data-lwq-confirm` + `data-webinarHash="0qgn9gag"`): der echte
+   Klick feuert `lw_commit_date`, öffnet das WJ-Registrierungs-Popup direkt und schliesst
+   unser Qualifier-Modal (Handler: `track('lw_commit_date'); armWjProbe(); close();`).
+   **Reihenfolge bewusst gedreht (2026-06-15):** Shopify-Frage zuerst (Filter), Termin
+   zuletzt (= letzter Klick muss der WJ-Popup-Trigger sein, Browser-Popup-Regel).
 5. **WebinarJam-Embed ist live.** WJ-Popup öffnet aus dem Shopify-Ja-Klick.
    **Fallback nur bei echtem Fehlschlag:** `armWjProbe()` pollt 3s auf ein sichtbares
    WJ-Iframe. Geht keins auf (`lw_wj_noopen`), blendet es `#reg-note` ein — eine
