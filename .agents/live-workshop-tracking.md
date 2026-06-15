@@ -242,6 +242,33 @@ Meta füllt `{{…}}` automatisch (Dynamic URL Parameters). `utm_content` = Anze
 - Vergleich A vs B: Signup-Click-Rate (lw_signup_click / Pageview) pro Variant-Tag.
 - Sekundär: Scroll-Tiefe + Dwell-Buckets pro Variante (zeigt, ob B-Hero hält oder abschreckt).
 
+### ⚠️ Clarity-MCP kann den Test NICHT nach Variante trennen (Stand 2026-06-15)
+Über die Clarity-MCP-Tools (Claude) ist der A/B-Split **nicht** per Custom-Event/-Tag
+lesbar:
+- `query-analytics-dashboard` kennt nur Standard-Dimensionen (URL, Titel, Gerät,
+  Land, UTM, Engagement). Custom-Events/-Tags (`lw_A`/`lw_B`/`lw_experiment`) →
+  Query liefert **leer**.
+- `list-session-recordings` mit `smartEvents:["lw_A"]` vs `["lw_B"]` **filtert nicht**
+  — beide Aufrufe liefern denselben Session-Topf (verifiziert: 2× exakt 46
+  identische Sessions am 2026-06-15).
+- **Gespeicherte Clarity-Segmente** (UI) sind über MCP **nicht** ansprechbar
+  (kein `segmentId`-Parameter). Segment-Bauen bringt für die MCP-Auslesung nichts.
+
+**Konsequenz Rewrite + früher identischer Titel:** B lief per `x-middleware-rewrite`
+(Browser-URL bleibt `/live-workshop`) UND hatte denselben `<title>` wie A → B-Sessions
+waren in JEDER MCP-Dimension von A ununterscheidbar (sahen aus wie A).
+
+**FIX (2026-06-15): B hat eigenen `<title>`** → „…Du zahlst für Apps, die KI gratis
+ersetzt — vorflows (Variante B)". Damit ist der Split für Claude **MCP-lesbar**:
+`list-session-recordings` nur mit Datum-Filter (ohne smartEvents) holen, dann
+`displayTitle` parsen — A-Titel = „…Ich baue mit KI…", B-Titel = „…Du zahlst für
+Apps… (Variante B)". So zählbar: Sessions, Engagement, Scroll, Danke-Rate je Variante.
+(URL bleibt für beide `/live-workshop` wegen Rewrite — volle URL-Trennung ginge nur
+per Redirect, schlechter. Titel reicht.)
+**Regel:** Bei künftigen A/B-Tests B-File immer eigenen `<title>` geben, sonst ist
+der Test über MCP blind. Voller Funnel (Registrierungen je Variante) sonst über
+Lead-Sheet-Spalte `variant` oder Clarity-Web-UI (Tag `lw_experiment`).
+
 ---
 
 ## 8. Google-Sheet-Webhook — EINGERICHTET (2026-06-12)
