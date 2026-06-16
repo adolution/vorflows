@@ -91,6 +91,7 @@ Es gibt zwei Funktionen, die Events feuern. Inkonsistenz bewusst kennen:
 | **`lw_signup_click`** | cEvent | **Primärziel.** Klick auf jeden `[data-webinar-cta]` | `loc`: hero / nav / final / inline (**`sticky` entfällt** — Sticky-Bottom-CTA mobil deaktiviert, Nav-CTA „Platz sichern" bleibt sticky sichtbar; kein Doppel-CTA. Markup/JS bleiben, nur `display:none`) |
 | `lw_qualify_yes` | track | **Modal Schritt 1** "Hast du einen Shopify-Shop? → Ja" → weiter zu Termin-Step | — |
 | `lw_qualify_no` | track | Modal Schritt 1: "Nein, hab ich nicht" → Reject-Screen | — |
+| **`lw_no_shop_mailto`** | track | Reject-Screen: Klick auf "Passenderes Angebot anfragen" (mailto an alex@adolution.de, vorformulierter Body). **KEIN Lead-Event** — nur Interessens-Signal No-Shop. | — |
 | `lw_commit_date` | track | **Modal Schritt 2** "Ja, der Termin passt" → **IST jetzt der WJ-Trigger** (öffnet WJ-Popup direkt) | — (kein variant!) |
 | **`lw_wj_open`** | track | Popup-Overlay-Iframe nach Termin-Bestätigung erkannt (`armWjProbe` pollt ~8s; **jedes** Iframe >300×300px ODER `src` mit `webinarjam`/`genndi`). **= Öffnen hat geklappt** (auch spät). | — |
 | **`lw_wj_noopen`** | track | Nach ~8s **nie** ein Popup-Iframe → ging echt nicht auf. **= true fail.** | — |
@@ -146,6 +147,13 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    - „Nein, hab ich nicht" → `lw_qualify_no` → Reject-Screen (harter Filter: nur
      echte Shop-Besitzer kommen durch; Werbe-Algo soll nicht auf Nicht-Besitzer
      optimieren — Grund für den Umbau am 2026-06-15).
+     **Reject-Screen (2026-06-16):** glasklarer Ausschluss-Text ("Ohne Shop bringt
+     dir der Workshop gar nichts") + Primär-CTA `[data-lwq-mailto]` = mailto an
+     alex@adolution.de mit vorformuliertem Body ("Hallo, ich habe noch keinen Shop,
+     bin aber trotzdem interessiert am Thema KI + Shopify."). Klick feuert
+     `lw_no_shop_mailto` (**kein Lead**). Sekundär: "Nein danke, schließen"
+     (`data-lwq-done`). Step 1 hat zusätzlich eine Sub-Zeile, die den Shop-Zwang
+     vorab glasklar macht (Anti-Fake-Klick).
    - „Ja, hab ich" → `lw_qualify_yes` → weiter zu Schritt 2 (`show(2)`, **kein** WJ,
      **kein** Close).
 4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 25. Juni, 11:00 Uhr?" → der

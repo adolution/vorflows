@@ -659,6 +659,7 @@
     <div class="lwq-step" data-step="1">
       <p class="meta eyebrow">Schritt 1 von 2</p>
       <p class="lwq-title" id="lwqTitle">Hast du einen Shopify-Shop?</p>
+      <p class="lwq-sub">Dieser Live-Workshop ist <strong>nur für bestehende Shopify-Shops</strong>. Ohne eigenen Shop bringt er dir nichts — bitte hier ehrlich sein.</p>
       <div class="lwq-choices">
         <button class="btn btn-primary btn-lg" type="button" data-lwq-shopify="yes">Ja, hab ich</button>
         <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, hab ich nicht</button>
@@ -671,9 +672,10 @@
       <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-lwq-confirm data-webinarHash="0qgn9gag">Ja, der Termin passt</button>
     </div>
     <div class="lwq-step" data-step="reject" hidden>
-      <p class="lwq-title">Dann passt dieser Workshop leider nicht für dich.</p>
-      <p class="lwq-sub">Alles, was ich zeige, läuft direkt im Shopify-Theme. Ohne Shopify hättest du nichts davon, und deine Zeit ist mir zu schade dafür.</p>
-      <button class="btn btn-outline" type="button" data-lwq-done>Alles klar</button>
+      <p class="lwq-title">Ich habe ein passenderes Angebot für dich.</p>
+      <p class="lwq-sub">Wenn du keinen Shop hast, bringt dir der Live-Workshop leider <strong>gar nichts</strong> — alles, was ich zeige, läuft direkt im Shopify-Theme. Schreib mir stattdessen kurz, dann melde ich mich mit etwas, das wirklich zu dir passt.</p>
+      <a class="btn btn-primary btn-lg" data-lwq-mailto href="mailto:alex@adolution.de?subject=Interesse%3A%20KI%20%2B%20Shopify%20(noch%20kein%20Shop)&amp;body=Hallo%2C%0A%0Aich%20habe%20noch%20keinen%20Shop%2C%20bin%20aber%20trotzdem%20interessiert%20am%20Thema%20KI%20%2B%20Shopify.%0A%0AViele%20Gr%C3%BC%C3%9Fe%0A">Passenderes Angebot anfragen</a>
+      <button class="btn btn-outline" type="button" data-lwq-done>Nein danke, schließen</button>
     </div>
   </div>
 
@@ -803,6 +805,7 @@
         });
       });
       modal.querySelectorAll('[data-lwq-confirm]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); armWjProbe(); close(); }); });
+      modal.querySelectorAll('[data-lwq-mailto]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_no_shop_mailto'); }); }); // No-Shop schreibt Mail · KEIN Lead-Event
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
     })();
 
