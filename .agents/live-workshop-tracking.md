@@ -26,6 +26,26 @@ Survey — es verrät keinen Workshop-Inhalt, sondern treibt nur die nächste Ak
 
 ## 1. A/B-Test (Test #4)
 
+### ✅ ENTSCHIEDEN 2026-06-18 — Sieger: **Variante A**. B verloren.
+Test vorzeitig beendet (Webinar 25.06., kein Test-Runway mehr). **A geht auf 100 %** für den Webinar-Push.
+
+- **Was wurde getestet:** nur Hero-Copy (H1 + Lead), Design A=B identisch.
+  - **A (Sieger):** „Ich baue mit KI vor deinen Augen einen Shopify-Shop um." — Demo-/Neugier-Framing, positiv, konkret (Live-Vorführung, Alex tut es).
+  - **B (Verlierer):** „Du zahlst für Apps, die KI gratis ersetzt. Und für Rankings, die du selbst holen könntest." — Pain-/Kosten-Framing (Loss-Aversion-Hypothese).
+- **Hypothese hinter B:** Negativ-/Verlust-Framing („du verbrennst Geld") zieht härter als A's neutrale Demo-Ansage — Schmerz > Neugier. **Widerlegt.**
+- **Daten (Clarity, 15.–18.06., erst ab Titel-Fix trennbar):** A schlägt B auf JEDER Stufe.
+  | Metrik | A | B |
+  |---|---|---|
+  | Sessions | 104 | 83 |
+  | Ø Engagement-Zeit | 39,6s | 31,7s |
+  | Ø Scrolltiefe | 31,5% | 26,2% |
+  | Signup-Klick-Rate | 28,6% | 21,7% |
+  | Shopify-Ja (Gate) | 25,5% | 15,7% |
+  | „Termin passt" (WJ-Trigger, stärkstes Signal) | 24,5% | 15,7% |
+  | Klick→Commit-Rate | 86% | 72% |
+- **Warum B verlor:** Negativ-Framing schreckt eher ab als zieht — B hält 8s kürzer, scrollt flacher, klickt seltener UND committet im Modal schlechter. A's positives Demo-/Neugier-Framing zieht durchgängig besser.
+- **Caveat:** statistisch NICHT signifikant (~180 LP-Sessions, 3 Tage, z≈1,1–1,5, p≈0,14). Richtung aber eindeutig + konsistent über alle Metriken → bei Deadline klar genug, A zu nehmen. Echte WJ-Anmeldungen pro Variante nicht Clarity-trennbar (Danke-Titel generisch) → bei Bedarf Lead-Sheet-Spalte `variant`.
+
 - **Was wird getestet:** nur **Hero-Copy** (H1 + Lead). Design A=B identisch, sonst keine Variable.
   - A (Control): "Ich baue mit KI vor deinen Augen einen Shopify-Shop um."
   - B (Challenger): "Du zahlst für Apps, die KI gratis ersetzt. Und für Rankings, die du selbst holen könntest."

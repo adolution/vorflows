@@ -4,14 +4,16 @@ export const config = {
 
 const MOBILE_UA = /Mobi|Android|iPhone|iPad|iPod/i;
 const BOT_UA = /googlebot|bingbot|duckduckbot|yandex|baiduspider|slurp|applebot|gptbot|chatgpt-user|oai-searchbot|perplexitybot|claudebot|claude-web|anthropic-ai|google-extended|ccbot|bytespider|facebookexternalhit|meta-externalagent|twitterbot|linkedinbot|petalbot|semrushbot|ahrefsbot|mj12bot/i;
-const MIDDLEWARE_VERSION = 'v7-2026-05-31-lw-desktop-split';
+const MIDDLEWARE_VERSION = 'v8-2026-06-18-lw-forceA';
 
 // Per-Pfad-Testkonfiguration. Jeder Test hat eigenen Cookie + eigenes
 // B-Rewrite-Target → Tests laufen unabhängig, keine Bucket-Vermischung.
 // splitDesktop: true → Desktop wird 50/50 gebucket statt auf A gepinnt.
+// forceA: true → Test entschieden, alle auf A pinnen (Sieger). ?ab=B bleibt für QA/Preview offen.
 function testConfig(pathname) {
   if (pathname === '/live-workshop') {
-    return { cookie: 'vf_ab_lw', bTarget: '/live-workshop-b', splitDesktop: true };
+    // A/B-Test #4 entschieden 2026-06-18: A gewinnt → 100 % A für den Webinar-Push.
+    return { cookie: 'vf_ab_lw', bTarget: '/live-workshop-b', splitDesktop: true, forceA: true };
   }
   // '/' + '/index.html' → bestehender Homepage-Test (Desktop bleibt A).
   return { cookie: 'vf_ab', bTarget: '/index-b', splitDesktop: false };
@@ -21,7 +23,7 @@ export default function middleware(req) {
   const url = new URL(req.url);
   console.log(`[ab-middleware ${MIDDLEWARE_VERSION}] ${url.pathname}${url.search}`);
 
-  const { cookie: COOKIE, bTarget: B_TARGET, splitDesktop: SPLIT_DESKTOP } = testConfig(url.pathname);
+  const { cookie: COOKIE, bTarget: B_TARGET, splitDesktop: SPLIT_DESKTOP, forceA: FORCE_A } = testConfig(url.pathname);
 
   const ua = req.headers.get('user-agent') || '';
   const isMobile = MOBILE_UA.test(ua);
@@ -40,6 +42,14 @@ export default function middleware(req) {
     'x-ab-mobile': isMobile ? '1' : '0',
     'x-ab-bot': isBot ? '1' : '0',
   });
+
+  // Test entschieden (forceA) → alle auf A, auch Alt-Besucher mit B-Cookie. Nur ?ab=B (QA/Preview) kommt noch zu B durch.
+  if (FORCE_A && override !== 'B') {
+    headers.set('x-ab-bucket', 'A');
+    headers.set('x-ab-source', 'forced-A');
+    headers.set('x-middleware-next', '1');
+    return new Response(null, { headers });
+  }
 
   // Bots/Crawler ohne Override → immer A (canonical), kein Cookie, keine Split-Crawl-Inkonsistenz.
   if (isBot && !override) {
