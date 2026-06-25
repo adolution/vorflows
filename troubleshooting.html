@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Troubleshooting — vorflows</title>
+    <title>Hilfe bei Fehlern — vorflows</title>
     <meta name="description" content="Lösungen für die häufigsten Fehlermeldungen rund um vorflows." />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#C8633E" />
@@ -258,6 +258,21 @@
       }
       .tip strong { font-weight: 600; }
 
+      .helpbox {
+        margin: clamp(1.5rem, 5vw, 2rem) 0 0;
+        padding: 1.1rem 1.25rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.8rem;
+        font-size: 0.96rem;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .helpbox strong { font-weight: 600; }
+      .helpbox a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .helpbox a:hover { text-decoration: underline; }
+
       .divider {
         margin: clamp(2rem, 6vw, 3rem) 0 0;
         border: 0;
@@ -309,8 +324,8 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Hilfe · Fehler</p>
-      <h1>Troubleshooting</h1>
+      <p class="eyebrow">Support</p>
+      <h1>Hilfe bei Fehlern</h1>
       <p class="lead">
         Lösungen für die häufigsten Fehlermeldungen. Findest du dein Problem
         hier nicht, schreib mir kurz.
@@ -364,6 +379,12 @@
         </details>
         -->
 
+      </div>
+
+      <div class="helpbox">
+        <strong>Hilft dir diese Seite nicht weiter?</strong> Schreib mir direkt an
+        <a href="mailto:alex@adolution.de?subject=Hilfe%20bei%20Fehlern%20%E2%80%93%20vorflows">alex@adolution.de</a>
+        und beschreib kurz die Fehlermeldung, gern mit Screenshot. Ich helfe dir weiter.
       </div>
 
       <hr class="divider" />
