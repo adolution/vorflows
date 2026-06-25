@@ -528,6 +528,21 @@
       }
       .tip strong { font-weight: 600; }
 
+      .shot { margin: 1rem 0 0; }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+      }
+      .shot figcaption {
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
       @keyframes pop {
         from { transform: scale(0.7); opacity: 0; }
         to   { transform: scale(1);   opacity: 1; }
@@ -615,9 +630,13 @@
                   <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cmd-copy">Kopieren</button></div>
                   <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
                 </li>
-                <li><strong>Anmelden &amp; bestätigen.</strong> Tipp <code class="inline">claude</code> ins Terminal, Enter. Dein Browser öffnet sich zum Anmelden, mit deinem Konto einloggen, zurück ins Fenster. Claude zeigt einmal die Nutzungsbedingungen → mit Enter bestätigen. Fertig.</li>
+                <li><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="inline">claude</code> ins Terminal, Enter. Jetzt die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: zuerst ein Design mit den <strong>Pfeiltasten</strong> wählen (z.&nbsp;B. „Dark mode") und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten eine normale Eingabezeile erscheint (Claude ist dann bereit) — <strong>erst dann</strong> das Terminal schließen.</li>
               </ol>
-              <p class="tip">Im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht <strong>nicht</strong> — die Bestätigung muss in Claude Code selbst passieren (Schritt&nbsp;4). Mehr unter <a href="/troubleshooting">Hilfe bei Fehlern</a>.</p>
+              <figure class="shot">
+                <img src="/assets/help/claude-setup-theme-select.png" alt="Claude-Einrichtung im Terminal: Design auswählen und durchklicken" loading="lazy" width="1031" height="525" />
+                <figcaption>So sieht die Einrichtung aus: Design mit den Pfeiltasten wählen, mit Enter bestätigen und Schritt für Schritt weiterklicken (anmelden → Bedingungen bestätigen), bis Claude bereit ist.</figcaption>
+              </figure>
+              <p class="tip">Wichtig: Brichst du die Einrichtung ab oder schließt das Terminal zu früh, kommt dieselbe Meldung wieder. Und im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht <strong>nicht</strong> — es muss in Claude Code selbst passieren. Mehr unter <a href="/troubleshooting">Hilfe bei Fehlern</a>.</p>
             </div>
           </details>
 

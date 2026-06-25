@@ -258,6 +258,21 @@
       }
       .tip strong { font-weight: 600; }
 
+      .shot { margin: 1rem 0 0; }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+      }
+      .shot figcaption {
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
       .helpbox {
         margin: clamp(1.5rem, 5vw, 2rem) 0 0;
         padding: 1.1rem 1.25rem;
@@ -348,7 +363,7 @@
                 <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
               </li>
               <li><strong>Neues Terminal.</strong> Das alte Terminal schließen und neu öffnen. Erst dann wird <code class="inline">claude</code> erkannt.</li>
-              <li><strong>Anmelden &amp; bestätigen.</strong> Tipp <code class="inline">claude</code>, Enter. Dein Browser öffnet sich zum Anmelden, einloggen, zurück ins Fenster. Die Nutzungsbedingungen mit Enter bestätigen. Danach VS&nbsp;Code einmal neu starten, der Fehler ist weg.</li>
+              <li><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="inline">claude</code>, Enter. Die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: ein Design mit den Pfeiltasten wählen (z.&nbsp;B. „Dark mode") und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten die normale Eingabezeile erscheint — erst dann das Terminal schließen. Danach VS&nbsp;Code einmal neu starten, der Fehler ist weg. (Mehr dazu im letzten Punkt unten.)</li>
             </ol>
             <p class="tip"><strong>Wichtig:</strong> Im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht nicht. Die Bestätigung muss in Claude Code selbst passieren (Schritt&nbsp;4).</p>
           </div>
@@ -383,6 +398,29 @@
               <li><strong>Claude starten.</strong> Tipp <code class="inline">claude</code>, Enter → im Browser anmelden → die Nutzungsbedingungen mit Enter bestätigen. Fertig.</li>
             </ol>
             <p class="tip">Nur schnell testen, ohne den PATH zu ändern? Gib einmalig <code class="inline">&amp; "$env:USERPROFILE\.local\bin\claude.exe"</code> ein. Mit den drei Schritten oben läuft <code class="inline">claude</code> aber dauerhaft überall.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Einrichtung</span>
+            Plugin meldet weiter „You must run claude to review the updated terms"
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Diese Meldung (oft mit dem Button <strong>„Resolve in Terminal"</strong>) heißt: die einmalige Claude-Einrichtung im Terminal wurde noch nicht <strong>abgeschlossen</strong>. Häufigster Grund: Beim Auswählen des Designs wurde das Terminal zu früh geschlossen. Genau dieser Bildschirm muss komplett durchgeklickt werden:</p>
+            <figure class="shot">
+              <img src="/assets/help/claude-setup-theme-select.png" alt="Claude-Einrichtung im Terminal: Design auswählen und durchklicken" loading="lazy" width="1031" height="525" />
+              <figcaption>Beim Start von <code class="inline">claude</code> erscheint dieser Einrichtungs-Bildschirm. Nicht schließen, sondern Schritt für Schritt durchklicken:</figcaption>
+            </figure>
+            <ol class="steps">
+              <li><strong>Einrichtung starten.</strong> Klick auf den blauen Button <strong>„Resolve in Terminal"</strong> in der Meldung. Oder öffne ein Terminal (<strong>Terminal → Neues Terminal</strong>) und tipp <code class="inline">claude</code>, Enter.</li>
+              <li><strong>Design wählen.</strong> Beim Willkommensbildschirm mit den <strong>Pfeiltasten</strong> ein Design auswählen (z.&nbsp;B. „Dark mode") und <strong>Enter</strong>.</li>
+              <li><strong>Anmelden.</strong> Falls gefragt: der Browser öffnet sich → mit deinem Konto einloggen → zurück ins Terminal.</li>
+              <li><strong>Bedingungen bestätigen.</strong> Claude zeigt die aktualisierten Nutzungsbedingungen → mit <strong>Enter</strong> bestätigen.</li>
+              <li><strong>Fertig abwarten.</strong> Warte, bis unten eine normale Eingabezeile zum Tippen erscheint (Claude ist bereit). <strong>Erst dann</strong> das Terminal schließen und das Plugin wieder benutzen.</li>
+            </ol>
+            <p class="tip">Wer mitten in der Einrichtung abbricht oder das Terminal zu früh schließt, bekommt wieder dieselbe Meldung. Im Browser oder in der Desktop-App zu bestätigen zählt hier nicht — es muss in Claude Code im Terminal passieren.</p>
           </div>
         </details>
 
