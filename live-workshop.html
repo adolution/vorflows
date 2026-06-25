@@ -251,11 +251,11 @@
 
     /* ---------- Stage-Foto (Warum jetzt · echte Live-Situation) ---------- */
     .stagephoto{position:relative;margin-top:clamp(32px,4.5vw,52px);border-radius:14px;overflow:hidden;
-      aspect-ratio:16/9;background:#000;border:1px solid var(--border-dark);max-width:760px}
+      aspect-ratio:1/1;background:#000;border:1px solid var(--border-dark);max-width:560px}
     .stagephoto img{width:100%;height:100%;object-fit:cover;object-position:center top}
     .stagephoto::after{content:"";position:absolute;inset:0;pointer-events:none;
       background:linear-gradient(180deg,rgba(15,15,15,0) 50%,rgba(15,15,15,.5) 100%)}
-    @media(max-width:599px){.stagephoto{aspect-ratio:4/3}}
+    @media(max-width:599px){.stagephoto{aspect-ratio:1/1}}
     .cred-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px);
       margin-top:30px;padding-top:26px;border-top:1px solid var(--border-dark)}
     .cred-stat .v{display:block;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
