@@ -131,6 +131,51 @@
         font-size: 1.05rem;
       }
 
+      /* Post-purchase notice — elevated card, sits high under the welcome */
+      .notice {
+        margin: clamp(1.5rem, 5vw, 2rem) 0 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        padding: 1.1rem 1.25rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.9rem;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.04),
+          0 16px 32px -24px rgba(200, 99, 62, 0.45);
+      }
+      .notice-icon {
+        flex-shrink: 0;
+        width: 2.1rem;
+        height: 2.1rem;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .notice-icon svg { width: 1.1rem; height: 1.1rem; }
+      .notice-body { margin: 0; }
+      .notice-badge {
+        display: inline-block;
+        margin: 0 0 0.3rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .notice-text {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--text-primary);
+      }
+      .notice-text strong { font-weight: 600; }
+
       .divider {
         margin: clamp(2rem, 6vw, 3rem) 0 0;
         border: 0;
@@ -335,6 +380,19 @@
         Deine Zahlung ist eingegangen — den Download-Link bekommst du gleich
         per E-Mail von Digistore24.
       </p>
+
+      <aside class="notice" role="note">
+        <span class="notice-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l15-6v14L3 13z" />
+            <path d="M7 13v4a2 2 0 0 0 4 0v-1" />
+          </svg>
+        </span>
+        <div class="notice-body">
+          <span class="notice-badge">Bonus für alle Käufer</span>
+          <p class="notice-text">Das <strong>Meta-Ads-KI-System</strong> wird für alle Käufer in den nächsten <strong>14&nbsp;Tagen</strong> bereitgestellt.</p>
+        </div>
+      </aside>
 
       <section class="tutorial">
         <p class="tutorial-eyebrow">Bevor du loslegst</p>
