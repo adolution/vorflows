@@ -401,7 +401,7 @@
       .acc > summary::-webkit-details-marker { display: none; }
       .acc > summary:hover { color: var(--accent); }
       .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-      .acc .chev { margin-left: auto; flex-shrink: 0; color: var(--text-secondary); transition: transform 0.2s ease; }
+      .acc .chev { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; color: var(--text-secondary); transition: transform 0.2s ease; }
       .acc[open] .chev { transform: rotate(90deg); }
       .acc-tag {
         font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -421,6 +421,19 @@
       .acc-body strong { color: var(--text-primary); font-weight: 600; }
       .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
       .acc-body a:hover { text-decoration: underline; }
+      .acc-video {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+        margin: 0 0 1.1rem;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.05),
+          0 18px 36px -20px rgba(200, 99, 62, 0.32);
+      }
+      .acc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
       /* Numbered steps */
       .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
@@ -591,7 +604,11 @@
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
             </summary>
             <div class="acc-body">
-              <p>Das System läuft in <strong>VS&nbsp;Code</strong> zusammen mit <strong>Claude&nbsp;Code</strong>. Wenn du das noch nie installiert hast, schaffst du das hier in wenigen Minuten — du tippst fast nichts selbst.</p>
+              <p>Das System läuft in <strong>VS&nbsp;Code</strong> zusammen mit <strong>Claude&nbsp;Code</strong>. Wenn du das noch nie installiert hast, schaffst du das hier in wenigen Minuten — du tippst fast nichts selbst. Schau dir zuerst dieses kurze Video an:</p>
+              <div class="acc-video">
+                <iframe src="https://www.loom.com/embed/3e33bfc9979c4c71902ebf09f0198415"
+                        loading="lazy" allowfullscreen title="Claude Code installieren — Zusatz-Step für Erstnutzer"></iframe>
+              </div>
               <ol class="steps">
                 <li><strong>VS&nbsp;Code installieren.</strong> Geh auf <a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a>, lad die Version für dein Gerät, installier sie wie ein normales Programm und öffne sie.</li>
                 <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code oben im Menü auf <strong>Terminal → Neues Terminal</strong>. Unten erscheint ein Eingabefeld.</li>
