@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Troubleshooting — vorflows</title>
+    <meta name="description" content="Lösungen für die häufigsten Fehlermeldungen rund um vorflows." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+
+    <style>
+      :root {
+        --bg: #FAFAF7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #5C5C5C;
+        --border: #E5E3DD;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
+          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .wordmark img { height: 26px; width: auto; display: block; }
+      .topnav { display: flex; gap: 0.4rem; }
+      .topnav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.55rem;
+        border: 1px solid var(--border);
+        background: #fff;
+        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+      .topnav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
+      .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .topnav a svg { width: 0.95rem; height: 0.95rem; }
+      @media (max-width: 30rem) {
+        .topnav a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+      }
+
+      .eyebrow {
+        margin: clamp(1.75rem, 6vw, 3rem) 0 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+      h1 {
+        margin: 0.5rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2.1rem, 7vw, 3.1rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+      .lead {
+        margin: 1rem 0 0;
+        max-width: 34rem;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+      }
+
+      .acc-list { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
+
+      .acc {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 0.8rem;
+        overflow: hidden;
+      }
+      .acc + .acc { margin-top: 0.75rem; }
+      .acc > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 1rem 1.15rem;
+        font-weight: 600;
+        font-size: 0.98rem;
+        line-height: 1.4;
+        color: var(--text-primary);
+      }
+      .acc > summary::-webkit-details-marker { display: none; }
+      .acc > summary:hover { color: var(--accent); }
+      .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .acc .chev { margin-left: auto; flex-shrink: 0; color: var(--text-secondary); transition: transform 0.2s ease; }
+      .acc[open] .chev { transform: rotate(90deg); }
+      .acc-tag {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 0.2rem 0.45rem;
+        border-radius: 0.4rem;
+        flex-shrink: 0;
+      }
+      .acc-body { padding: 0 1.15rem 1.2rem; border-top: 1px solid var(--border); }
+      .acc-body > *:first-child { margin-top: 1rem; }
+      .acc-body p { margin: 0 0 0.8rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; }
+      .acc-body p:last-child { margin-bottom: 0; }
+      .acc-body strong { color: var(--text-primary); font-weight: 600; }
+      .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
+      .acc-body a:hover { text-decoration: underline; }
+
+      .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
+      .steps li {
+        counter-increment: s;
+        position: relative;
+        padding-left: 2.1rem;
+        margin: 0 0 0.9rem;
+        color: var(--text-secondary);
+        font-size: 0.96rem;
+        line-height: 1.6;
+      }
+      .steps li:last-child { margin-bottom: 0; }
+      .steps li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+      }
+      .steps li strong { color: var(--text-primary); font-weight: 600; }
+
+      .cmd {
+        margin: 0.6rem 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #1A1A1A;
+        color: #FAFAF7;
+        border-radius: 0.55rem;
+        padding: 0.7rem 0.8rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.82rem;
+        overflow-x: auto;
+      }
+      .cmd code { white-space: nowrap; }
+      .cmd .os {
+        flex-shrink: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.35rem;
+        padding: 0.1rem 0.4rem;
+      }
+      .cmd-copy {
+        margin-left: auto;
+        flex-shrink: 0;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        color: #FAFAF7;
+        border: 0;
+        border-radius: 0.4rem;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        font-family: 'Inter', system-ui, sans-serif;
+        transition: background 0.16s ease;
+      }
+      .cmd-copy:hover { background: rgba(255, 255, 255, 0.22); }
+      .cmd-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      code.inline {
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.85em;
+        padding: 0.05rem 0.3rem;
+        border-radius: 0.3rem;
+      }
+
+      .tip {
+        margin: 0.8rem 0 0;
+        padding: 0.85rem 1rem;
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .tip strong { font-weight: 600; }
+
+      .divider {
+        margin: clamp(2rem, 6vw, 3rem) 0 0;
+        border: 0;
+        border-top: 1px solid var(--border);
+      }
+      .foot {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        align-items: center;
+      }
+      a.home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.55rem 0.9rem;
+        margin-left: -0.9rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.16s ease, transform 0.16s ease;
+      }
+      a.home:hover { background: var(--accent-soft); transform: translateX(-2px); }
+      a.home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .support { font-size: 0.9rem; color: var(--text-secondary); }
+      .support a { color: var(--accent); text-decoration: none; font-weight: 500; }
+      .support a:hover { text-decoration: underline; }
+
+      @media (prefers-reduced-motion: reduce) {
+        a.home, .acc .chev { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="topbar">
+        <a class="wordmark" href="/" aria-label="vorflows Startseite">
+          <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+        </a>
+        <nav class="topnav" aria-label="Seiten">
+          <a href="/danke#tutorials">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+            Tutorials
+          </a>
+          <a href="/faqs">FAQs</a>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Hilfe · Fehler</p>
+      <h1>Troubleshooting</h1>
+      <p class="lead">
+        Lösungen für die häufigsten Fehlermeldungen. Findest du dein Problem
+        hier nicht, schreib mir kurz.
+      </p>
+
+      <div class="acc-list">
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Installation</span>
+            „claude is not recognized" oder „process exited with code 1"
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Beide Meldungen haben dieselbe Ursache: Claude Code ist noch nicht fertig eingerichtet — entweder ist der Befehl <code class="inline">claude</code> nicht installiert, oder die aktualisierten Nutzungsbedingungen wurden noch nicht bestätigt. Das passiert genau einmal und ist in wenigen Minuten erledigt.</p>
+            <ol class="steps">
+              <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code über das Menü <strong>Terminal → Neues Terminal</strong> (oder am PC: Windows-Taste drücken, <code class="inline">powershell</code> tippen, anklicken).</li>
+              <li><strong>Claude installieren.</strong> Kopier die Zeile für dein Gerät, ins Terminal einfügen, Enter.
+                <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
+              </li>
+              <li><strong>Neues Terminal.</strong> Das alte Terminal schließen (Mülleimer-Symbol) und ein neues öffnen — erst dann wird <code class="inline">claude</code> erkannt.</li>
+              <li><strong>Anmelden &amp; bestätigen.</strong> Tipp <code class="inline">claude</code>, Enter. Dein Browser öffnet sich zum Anmelden — einloggen, zurück ins Fenster. Die Nutzungsbedingungen mit Enter bestätigen. Danach VS&nbsp;Code einmal neu starten — der Fehler ist weg.</li>
+            </ol>
+            <p class="tip"><strong>Wichtig:</strong> Im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht nicht — die Bestätigung muss in Claude Code selbst passieren (Schritt&nbsp;4).</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Installation</span>
+            „claude" wird nach der Installation nicht erkannt
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Das Terminal kennt den neuen Befehl erst nach einem Neustart. Schließ das aktuelle Terminal komplett (Mülleimer-Symbol) und öffne ein neues über <strong>Terminal → Neues Terminal</strong>. Tipp <code class="inline">claude</code> erneut ein.</p>
+            <p>Hilft das nicht, schließ VS&nbsp;Code einmal ganz und öffne es neu. Danach wird der Befehl erkannt.</p>
+          </div>
+        </details>
+
+        <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block kopieren, Titel/Text anpassen.
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Kategorie</span>
+            Kurzer Titel des Problems
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Antwort hier.</p>
+          </div>
+        </details>
+        -->
+
+      </div>
+
+      <hr class="divider" />
+
+      <div class="foot">
+        <a class="home" href="/danke#tutorials">
+          <span aria-hidden="true">←</span> Zurück zu den Tutorials
+        </a>
+        <p class="support">
+          Problem nicht dabei? <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Copy-Buttons in den Befehl-Boxen
+      document.querySelectorAll('.cmd-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var code = btn.parentElement.querySelector('code');
+          if (!code || !navigator.clipboard) return;
+          navigator.clipboard.writeText(code.textContent.trim()).then(function () {
+            var prev = btn.textContent;
+            btn.textContent = 'Kopiert';
+            setTimeout(function () { btn.textContent = prev; }, 1400);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

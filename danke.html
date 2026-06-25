@@ -348,6 +348,173 @@
       .support a:hover { text-decoration: underline; }
       .support a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
+      /* Top bar with help navigation */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .topnav { display: flex; gap: 0.4rem; }
+      .topnav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.55rem;
+        border: 1px solid var(--border);
+        background: #fff;
+        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+      .topnav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
+      .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .topnav a svg { width: 0.95rem; height: 0.95rem; }
+      @media (max-width: 30rem) {
+        .topnav a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+      }
+
+      /* Accordion (details/summary) — shared with /troubleshooting and /faqs */
+      .acc {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 0.8rem;
+        overflow: hidden;
+      }
+      .acc + .acc { margin-top: 0.75rem; }
+      .acc > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 1rem 1.15rem;
+        font-weight: 600;
+        font-size: 0.98rem;
+        line-height: 1.4;
+        color: var(--text-primary);
+      }
+      .acc > summary::-webkit-details-marker { display: none; }
+      .acc > summary:hover { color: var(--accent); }
+      .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .acc .chev { margin-left: auto; flex-shrink: 0; color: var(--text-secondary); transition: transform 0.2s ease; }
+      .acc[open] .chev { transform: rotate(90deg); }
+      .acc-tag {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 0.2rem 0.45rem;
+        border-radius: 0.4rem;
+        flex-shrink: 0;
+      }
+      .acc-body { padding: 0 1.15rem 1.2rem; border-top: 1px solid var(--border); }
+      .acc-body > *:first-child { margin-top: 1rem; }
+      .acc-body p { margin: 0 0 0.8rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; }
+      .acc-body p:last-child { margin-bottom: 0; }
+      .acc-body strong { color: var(--text-primary); font-weight: 600; }
+      .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
+      .acc-body a:hover { text-decoration: underline; }
+
+      /* Numbered steps */
+      .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
+      .steps li {
+        counter-increment: s;
+        position: relative;
+        padding-left: 2.1rem;
+        margin: 0 0 0.9rem;
+        color: var(--text-secondary);
+        font-size: 0.96rem;
+        line-height: 1.6;
+      }
+      .steps li:last-child { margin-bottom: 0; }
+      .steps li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+      }
+      .steps li strong { color: var(--text-primary); font-weight: 600; }
+
+      /* Command box with copy button */
+      .cmd {
+        margin: 0.6rem 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #1A1A1A;
+        color: #FAFAF7;
+        border-radius: 0.55rem;
+        padding: 0.7rem 0.8rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.82rem;
+        overflow-x: auto;
+      }
+      .cmd code { white-space: nowrap; }
+      .cmd .os {
+        flex-shrink: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.35rem;
+        padding: 0.1rem 0.4rem;
+      }
+      .cmd-copy {
+        margin-left: auto;
+        flex-shrink: 0;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        color: #FAFAF7;
+        border: 0;
+        border-radius: 0.4rem;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        font-family: 'Inter', system-ui, sans-serif;
+        transition: background 0.16s ease;
+      }
+      .cmd-copy:hover { background: rgba(255, 255, 255, 0.22); }
+      .cmd-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      code.inline {
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.85em;
+        padding: 0.05rem 0.3rem;
+        border-radius: 0.3rem;
+      }
+
+      .tip {
+        margin: 0.8rem 0 0;
+        padding: 0.85rem 1rem;
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .tip strong { font-weight: 600; }
+
       @keyframes pop {
         from { transform: scale(0.7); opacity: 0; }
         to   { transform: scale(1);   opacity: 1; }
@@ -363,8 +530,14 @@
   </head>
   <body>
     <main class="wrap">
-      <div class="wordmark">
-        <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+      <div class="topbar">
+        <a class="wordmark" href="/" aria-label="vorflows Startseite">
+          <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+        </a>
+        <nav class="topnav" aria-label="Hilfe">
+          <a href="/troubleshooting">Troubleshooting</a>
+          <a href="/faqs">FAQs</a>
+        </nav>
       </div>
 
       <div class="stamp" aria-hidden="true">
@@ -394,7 +567,7 @@
         </div>
       </aside>
 
-      <section class="tutorial">
+      <section class="tutorial" id="tutorials">
         <p class="tutorial-eyebrow">Bevor du loslegst</p>
         <h2>Schau dir zuerst die 4 Tutorials an</h2>
 
@@ -409,6 +582,28 @@
                       loading="lazy" allowfullscreen title="BaseFlow aufsetzen"></iframe>
             </div>
           </div>
+
+          <!-- Einklapp-Hilfe für Erstnutzer: Claude in VS Code installieren -->
+          <details class="acc">
+            <summary>
+              <span class="acc-tag">Neu hier?</span>
+              Claude noch nie benutzt? So installierst du es
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </summary>
+            <div class="acc-body">
+              <p>Das System läuft in <strong>VS&nbsp;Code</strong> zusammen mit <strong>Claude&nbsp;Code</strong>. Wenn du das noch nie installiert hast, schaffst du das hier in wenigen Minuten — du tippst fast nichts selbst.</p>
+              <ol class="steps">
+                <li><strong>VS&nbsp;Code installieren.</strong> Geh auf <a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a>, lad die Version für dein Gerät, installier sie wie ein normales Programm und öffne sie.</li>
+                <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code oben im Menü auf <strong>Terminal → Neues Terminal</strong>. Unten erscheint ein Eingabefeld.</li>
+                <li><strong>Claude installieren.</strong> Kopier die Zeile für dein Gerät, klick ins Terminal, füg sie ein, drück Enter. Danach das Terminal einmal schließen (Mülleimer-Symbol) und ein neues öffnen.
+                  <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                  <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                </li>
+                <li><strong>Anmelden &amp; bestätigen.</strong> Tipp <code class="inline">claude</code> ins Terminal, Enter. Dein Browser öffnet sich zum Anmelden — mit deinem Konto einloggen, zurück ins Fenster. Claude zeigt einmal die Nutzungsbedingungen → mit Enter bestätigen. Fertig.</li>
+              </ol>
+              <p class="tip">Kommt <strong>„claude is not recognized"</strong> oder <strong>„You must run claude to review the updated terms"</strong>? Dann fehlt genau Schritt&nbsp;4 — einmal <code class="inline">claude</code> im Terminal starten und bestätigen. Mehr unter <a href="/troubleshooting">Troubleshooting</a>.</p>
+            </div>
+          </details>
 
           <div class="video">
             <div class="label">
@@ -500,5 +695,20 @@
          (Webinar-Attribution). Bei Pixel-Wechsel hier austauschen. Doku/Merker:
          memory project_wj_sale_pixel_danke.md -->
     <script src="https://event.webinarjam.com/t/sale/0qgn9gagi1/v2?price=0.00&currency=USD"></script>
+
+    <script>
+      // Copy-Buttons in den Befehl-Boxen (Installations-Hilfe)
+      document.querySelectorAll('.cmd-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var code = btn.parentElement.querySelector('code');
+          if (!code || !navigator.clipboard) return;
+          navigator.clipboard.writeText(code.textContent.trim()).then(function () {
+            var prev = btn.textContent;
+            btn.textContent = 'Kopiert';
+            setTimeout(function () { btn.textContent = prev; }, 1400);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
