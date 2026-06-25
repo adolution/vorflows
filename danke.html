@@ -206,12 +206,18 @@
           0 1px 2px rgba(26, 26, 26, 0.05),
           0 18px 36px -20px rgba(200, 99, 62, 0.32);
       }
-      .video .frame iframe {
+      .video .frame iframe,
+      .video .frame video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         border: 0;
+      }
+      /* Local tutorial recording isn't 16:9 — contain so nothing is cropped */
+      .video .frame video {
+        object-fit: contain;
+        cursor: pointer;
       }
 
       .setup-steps { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
@@ -338,7 +344,7 @@
 
       <section class="tutorial">
         <p class="tutorial-eyebrow">Bevor du loslegst</p>
-        <h2>Schau dir zuerst die 3 Tutorials an</h2>
+        <h2>Schau dir zuerst die 4 Tutorials an</h2>
 
         <div class="videos">
           <div class="video">
@@ -371,6 +377,20 @@
             <div class="frame">
               <iframe src="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4"
                       loading="lazy" allowfullscreen title="Suchdaten und Klickdaten verbinden"></iframe>
+            </div>
+          </div>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">04</span>
+              <span class="title">GitHub verbinden &amp; in Shopify einrichten</span>
+            </div>
+            <div class="frame">
+              <video controls preload="metadata" playsinline
+                     poster="/assets/video/upload-tut-poster.webp"
+                     title="GitHub verbinden und in Shopify einrichten">
+                <source src="/assets/video/upload-tut-1080.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>
