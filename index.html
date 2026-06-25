@@ -91,7 +91,7 @@
     <meta property="product:brand" content="vorflows" />
     <meta property="product:availability" content="instock" />
     <meta property="product:condition" content="new" />
-    <meta property="product:price:amount" content="597.00" />
+    <meta property="product:price:amount" content="397.00" />
     <meta property="product:price:currency" content="EUR" />
     <meta property="product:retailer_item_id" content="vf-bundle" />
     <meta property="product:category" content="Shopify Optimization System" />
@@ -318,25 +318,35 @@
             "@type": "Offer",
             "@id": "https://vorflows.com/#offer-bundle",
             "sku": "vf-bundle",
-            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow)",
-            "description": "Einmalkauf 597 € · Ratenzahlung möglich via Digistore24.",
-            "price": "597",
+            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow) — Launch-Preis",
+            "description": "Einmalkauf 397 € netto statt 900 € · befristete Aktion bis 28.06.2026 · Ratenzahlung möglich via Digistore24.",
+            "price": "397",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition",
             "url": "https://vorflows.com/#pricing",
-            "priceValidUntil": "2026-12-31",
+            "priceValidUntil": "2026-06-28",
             "validFrom": "2026-04-27",
             "seller": { "@id": "https://vorflows.com/#organization" },
             "areaServed": ["DE", "AT", "CH"],
             "eligibleRegion": ["DE", "AT", "CH"],
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "priceType": "https://schema.org/ListPrice",
-              "price": "597",
-              "priceCurrency": "EUR",
-              "valueAddedTaxIncluded": true
-            },
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "priceType": "https://schema.org/SalePrice",
+                "price": "397",
+                "priceCurrency": "EUR",
+                "valueAddedTaxIncluded": false,
+                "validThrough": "2026-06-28"
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "priceType": "https://schema.org/ListPrice",
+                "price": "900",
+                "priceCurrency": "EUR",
+                "valueAddedTaxIncluded": false
+              }
+            ],
             "hasMerchantReturnPolicy": {
               "@type": "MerchantReturnPolicy",
               "applicableCountry": ["DE", "AT", "CH"],
@@ -4991,7 +5001,8 @@
 
     <aside class="sticky-cta-bar" id="stickyCtaBar" aria-label="Bundle reservieren">
       <div class="sticky-cta-text">
-        <span class="sticky-cta-price">Bundle <strong>597&nbsp;€</strong></span>
+        <span class="sticky-cta-label">Launch-Preis · spar 503&nbsp;€</span>
+        <span class="sticky-cta-price">Bundle <strong>397&nbsp;€</strong></span>
       </div>
       <a href="#bundle" class="sticky-cta-btn">Bundle sichern →</a>
     </aside>
@@ -5038,7 +5049,7 @@
           vorflows ist das System für Shopify-Founder. Du sagst, was du willst. Eine <span class="gloss" tabindex="0" role="note" data-tip="Claude Code = KI von Anthropic, die Code wie ein Senior-Dev schreibt. Du gibst Anweisungen in Sprache, sie liefert die Dateien.">KI</span> baut, rankt, optimiert. App-Stack, Agentur und Dev-Team werden überflüssig.
         </p>
         <div class="hero-ctas">
-          <a href="#bundle" class="btn btn-primary" data-magnetic>Bundle sichern · 597&nbsp;€</a>
+          <a href="#bundle" class="btn btn-primary" data-magnetic>Bundle sichern · 397&nbsp;€ statt 900&nbsp;€</a>
           <a href="#workflow" class="btn btn-ghost">Wie es funktioniert ↓</a>
         </div>
       </div>
@@ -5182,7 +5193,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Vorsprung sichern</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">Bundle&nbsp;597&nbsp;€</span>
+            <span class="inline-cta-meta">Bundle&nbsp;397&nbsp;€</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5270,7 +5281,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Workflow starten</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">Bundle&nbsp;597&nbsp;€</span>
+            <span class="inline-cta-meta">Bundle&nbsp;397&nbsp;€</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5316,7 +5327,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Alle drei Module sichern</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">597&nbsp;€</span>
+            <span class="inline-cta-meta">397&nbsp;€</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5372,7 +5383,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Bundle ansehen</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">597&nbsp;€ einmalig</span>
+            <span class="inline-cta-meta">397&nbsp;€ einmalig</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5404,7 +5415,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Tag 1 starten</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">Bundle 597&nbsp;€</span>
+            <span class="inline-cta-meta">Bundle 397&nbsp;€</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5545,7 +5556,7 @@
           <a href="#bundle" class="inline-cta" data-magnetic>
             <span class="inline-cta-label">Bundle sichern</span>
             <span class="inline-cta-sep" aria-hidden="true">·</span>
-            <span class="inline-cta-meta">597&nbsp;€ · 14 Tage Rückgabe</span>
+            <span class="inline-cta-meta">397&nbsp;€ · 14 Tage Rückgabe</span>
             <span class="inline-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -5629,14 +5640,34 @@
         </div>
 
         <article class="bundle-hero" id="bundle" aria-labelledby="bundle-name" data-reveal="up-lg">
+          <!-- ─────────────────────────────────────────────────────────────
+               Launch-Sale window — date-bound. To change the deadline,
+               edit LAUNCH_END in the main <script> tag (search for
+               "Launch sale window") and sync priceValidUntil/validThrough
+               in the Product JSON-LD above.
+               ───────────────────────────────────────────────────────────── -->
+          <header class="bundle-hero-launch" data-launch-active>
+            <div class="bundle-hero-launch-row">
+              <span class="bundle-hero-launch-tag">Launch-Preis · spar 503&nbsp;€</span>
+              <span class="bundle-hero-launch-count">Aktion bis <span data-launch-until>28. Juni</span><span data-launch-days-wrap hidden> · noch <strong data-launch-days>—</strong> Tage</span></span>
+            </div>
+            <div class="bundle-hero-launch-track" aria-hidden="true">
+              <div class="bundle-hero-launch-fill" data-launch-bar style="width: 100%"></div>
+            </div>
+          </header>
+          <header class="bundle-hero-launch bundle-hero-launch--soldout" data-launch-expired hidden>
+            <span class="bundle-hero-launch-tag">Launch-Preis abgelaufen</span>
+            <span class="bundle-hero-launch-count">Bundle dauerhaft zu 597&nbsp;€</span>
+          </header>
           <div class="bundle-hero-grid">
             <div class="bundle-hero-pitch">
               <p class="bundle-hero-name" id="bundle-name">Bundle</p>
               <p class="bundle-hero-tagline">Mehr Umsatz. Weniger Ausgaben. Alles drin.</p>
               <div class="bundle-hero-price-block">
                 <div class="bp-row">
-                  <span class="bundle-hero-price">597&nbsp;€</span>
-                  <span class="bundle-hero-suffix">einmalig · dauerhaft besitzen</span>
+                  <span class="bundle-hero-price">397&nbsp;€</span>
+                  <span class="bundle-hero-strike">900&nbsp;€</span>
+                  <span class="bundle-hero-suffix">netto · einmalig · dauerhaft besitzen</span>
                 </div>
                 <p class="bundle-hero-rate">Ratenzahlung möglich · über Digistore24</p>
               </div>
@@ -5644,7 +5675,7 @@
                 „Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt."
                 <cite class="bundle-hero-quote-attr">Adrian · Founder, Skincare D2C</cite>
               </blockquote>
-              <a href="https://www.digistore24.com/product/688983?ds24tr=vf_ab_A" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 597&nbsp;€</a>
+              <a href="https://www.digistore24.com/product/688983?ds24tr=vf_ab_A" class="bundle-hero-cta" target="_blank" rel="noopener" data-magnetic>Bundle sichern · 397&nbsp;€</a>
               <p class="bundle-hero-guarantee">14 Tage Rückgaberecht.</p>
             </div>
             <div class="bundle-hero-features">
@@ -5762,7 +5793,7 @@
       <div class="container-prose" data-reveal-stagger>
         <h2 class="display" data-reveal="up">Apps kündigen. SEO und Conversion auf <em>Autopilot.</em></h2>
         <p data-reveal="up">Ausgaben sparen, Traffic und Revenue per User erhöhen. Starte heute und nutze einen Vorteil, der in einem Jahr Mainstream ist.</p>
-        <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Bundle sichern · 597&nbsp;€</a>
+        <a href="#bundle" class="btn btn-primary" data-magnetic data-reveal="up">Bundle sichern · 397&nbsp;€</a>
         <p class="final-cta-meta" data-reveal="up" style="margin-top: 8px; font-size: 14px; color: var(--text-secondary); letter-spacing: 0.02em;">14 Tage Rückgaberecht · sofortige digitale Lieferung</p>
         <p class="final-cta-closer" data-reveal="up">Bau dir endlich den Shop, den du eigentlich gemeint hast.</p>
       </div>
@@ -5836,9 +5867,39 @@
       // ── Meta tracking: Pixel + CAPI with Advanced Matching ──────────────
       const META_PIXEL_ID = '2002118703756086';
       const PLAN_VALUE = {
-        'pricing-bundle': 597,
+        'pricing-bundle': 397,
       };
-      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 597);
+      const planValue = (k) => (PLAN_VALUE[k] != null ? PLAN_VALUE[k] : 397);
+
+      // ── Launch sale window — date-bound, no fake scarcity ──────────────
+      // To change the deadline, edit LAUNCH_END below and sync the
+      // priceValidUntil/validThrough fields in the Product JSON-LD (head).
+      const LAUNCH_START = new Date('2026-06-25T00:00:00+02:00');
+      const LAUNCH_END   = new Date('2026-06-28T23:59:00+02:00');
+      (function applyLaunchCountdown() {
+        const now = new Date();
+        const total = LAUNCH_END - LAUNCH_START;
+        const remainingMs = LAUNCH_END - now;
+        const remaining = Math.max(0, Math.min(total, remainingMs));
+        const days = Math.max(0, Math.ceil(remainingMs / 86400000));
+        const fillPct = total > 0 ? (remaining / total) * 100 : 0;
+        const dateFmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long' }).format(LAUNCH_END);
+        const apply = () => {
+          document.querySelectorAll('[data-launch-days]').forEach((el) => { el.textContent = days; });
+          document.querySelectorAll('[data-launch-until]').forEach((el) => { el.textContent = dateFmt; });
+          document.querySelectorAll('[data-launch-bar]').forEach((el) => { el.style.width = fillPct + '%'; });
+          document.querySelectorAll('[data-launch-days-wrap]').forEach((el) => { el.hidden = false; });
+          if (remainingMs <= 0) {
+            document.querySelectorAll('[data-launch-expired]').forEach((el) => { el.hidden = false; });
+            document.querySelectorAll('[data-launch-active]').forEach((el) => { el.hidden = true; });
+          }
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', apply, { once: true });
+        } else {
+          apply();
+        }
+      })();
 
       // ── Google Ads conversion config ────────────────────────────────────
       const GADS_ID = 'AW-18158480775';
@@ -6118,7 +6179,7 @@
             entries.forEach((e) => {
               if (e.isIntersecting) {
                 cEvent('pricing_view', { content_name: 'bundle' });
-                trackFb('AddToCart', { content_name: 'bundle', content_category: 'pricing', value: 597.0, currency: 'EUR' });
+                trackFb('AddToCart', { content_name: 'bundle', content_category: 'pricing', value: 397.0, currency: 'EUR' });
                 gAdsConvert('pricing_view');
                 obs.unobserve(e.target);
               }
@@ -6141,7 +6202,7 @@
             } catch {}
             cEvent('digistore_redirect', { dest: href });
             window.fbq?.('track', 'InitiateCheckout', { content_name: 'bundle', variant });
-            gAdsConvert('begin_checkout', { value: 597.0, currency: 'EUR' });
+            gAdsConvert('begin_checkout', { value: 397.0, currency: 'EUR' });
             return;
           }
           if (href !== '#bundle') return;
