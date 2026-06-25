@@ -363,6 +363,26 @@
           <div class="acc-body">
             <p>Das Terminal kennt den neuen Befehl erst nach einem Neustart. Schließ das aktuelle Terminal komplett und öffne ein neues über <strong>Terminal → Neues Terminal</strong>. Tipp <code class="inline">claude</code> erneut ein.</p>
             <p>Hilft das nicht, schließ VS&nbsp;Code einmal ganz und öffne es neu. Danach wird der Befehl erkannt.</p>
+            <p>Stand beim Installieren ein gelber Hinweis zu „PATH"? Dann hilft der nächste Punkt.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Windows</span>
+            Windows: „claude" ist installiert, wird aber trotzdem nicht erkannt
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Lief die Installation mit <strong>„successfully installed"</strong> durch, steht darunter aber ein gelber Hinweis wie <strong>„… is not in your PATH"</strong>? Dann ist Claude korrekt installiert — Windows weiß nur noch nicht, in welchem Ordner das Programm liegt. Deshalb meldet <code class="inline">claude</code> „nicht erkannt". So behebst du es:</p>
+            <ol class="steps">
+              <li><strong>Diese Zeile einfügen.</strong> Kopier sie, klick ins selbe Terminal, füg sie ein, drück Enter. Es kommt keine Rückmeldung — das ist normal und richtig.
+                <div class="cmd"><span class="os">Windows</span><code>$p=[Environment]::GetEnvironmentVariable("Path","User"); [Environment]::SetEnvironmentVariable("Path", $p + ";$env:USERPROFILE\.local\bin", "User")</code><button type="button" class="cmd-copy">Kopieren</button></div>
+              </li>
+              <li><strong>Neues Terminal.</strong> Das aktuelle Terminal komplett schließen (Mülleimer-Symbol) und ein neues öffnen über <strong>Terminal → Neues Terminal</strong>.</li>
+              <li><strong>Claude starten.</strong> Tipp <code class="inline">claude</code>, Enter → im Browser anmelden → die Nutzungsbedingungen mit Enter bestätigen. Fertig.</li>
+            </ol>
+            <p class="tip">Nur schnell testen, ohne den PATH zu ändern? Gib einmalig <code class="inline">&amp; "$env:USERPROFILE\.local\bin\claude.exe"</code> ein. Mit den drei Schritten oben läuft <code class="inline">claude</code> aber dauerhaft überall.</p>
           </div>
         </details>
 
