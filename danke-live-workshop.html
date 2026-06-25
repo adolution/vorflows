@@ -631,10 +631,10 @@
         'use strict';
 
         // ── Zentrale Termin-Konstanten (eine Stelle) ──────────────────
-        var WEBINAR_DATE_TEXT = 'Donnerstag, 25. Juni · 11:00 Uhr';
+        var WEBINAR_DATE_TEXT = 'Donnerstag, 9. Juli · 11:00 Uhr';
         var WEBINAR_TITLE = 'Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um';
-        var WEBINAR_START_UTC = '20260625T090000Z'; // 11:00 Europe/Berlin (CEST)
-        var WEBINAR_END_UTC   = '20260625T100000Z';
+        var WEBINAR_START_UTC = '20260709T090000Z'; // 11:00 Europe/Berlin (CEST)
+        var WEBINAR_END_UTC   = '20260709T100000Z';
         var META_PIXEL_ID = '2002118703756086';
 
         document.querySelectorAll('[data-webinar-date]').forEach(function (e) { e.textContent = WEBINAR_DATE_TEXT; });
@@ -1027,7 +1027,7 @@
         var ics = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//vorflows//live-workshop//DE',
           'BEGIN:VEVENT',
-          'UID:lw-2026-06-25@vorflows.com',
+          'UID:lw-2026-07-09@vorflows.com',
           'DTSTAMP:' + WEBINAR_START_UTC,
           'DTSTART:' + WEBINAR_START_UTC,
           'DTEND:' + WEBINAR_END_UTC,
