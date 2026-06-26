@@ -424,6 +424,46 @@ Rote Meldung „exited with code 1" und „You must run claude in the terminal t
           </div>
         </details>
 
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Plugins</span>
+            Plugin lässt sich nicht hinzufügen: „/plugin" wird nicht erkannt
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p><code class="inline">/plugin</code>-Befehle gehören zu Claude Code selbst. Sie funktionieren nur <strong>in einer laufenden Claude-Sitzung im Terminal</strong> — nicht im leeren Terminal davor und nicht im Chatfenster des Plugins. Tippst du sie ins leere Terminal, kommt „<em>'/plugin' wurde nicht als Cmdlet … erkannt</em>"; im Plugin-Chat sinngemäß „<em>not supported in this environment</em>".</p>
+            <ol class="steps">
+              <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code: <strong>Terminal → Neues Terminal</strong>.</li>
+              <li><strong>Claude starten.</strong> Tipp <code class="inline">claude</code>, Enter. Warte, bis oben „Claude Code v2.x" steht und unten eine Eingabezeile mit „&gt;" erscheint.</li>
+              <li><strong>Erst jetzt den Plugin-Befehl eingeben</strong>, direkt in diese Claude-Eingabezeile, z.&nbsp;B.:
+                <div class="cmd"><code>/plugin marketplace add AgriciDaniel/claude-seo</code><button type="button" class="cmd-copy">Kopieren</button></div>
+              </li>
+            </ol>
+            <p class="tip">Kurz: zuerst <code class="inline">claude</code> starten, dann den <code class="inline">/plugin</code>-Befehl. Nicht andersherum.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Plugins</span>
+            Plugin-Installation: „Command 'git' not found or is in an unsafe location"
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Zum Installieren der Plugins lädt Claude die Daten per <strong>Git</strong>. Diese Meldung heißt: Git ist auf dem Rechner nicht installiert (oder nicht auffindbar). Git ist kostenlos und in zwei Minuten eingerichtet.</p>
+            <ol class="steps">
+              <li><strong>Git installieren.</strong> Zeile fürs Gerät ins Terminal einfügen, Enter:
+                <div class="cmd"><span class="os">Windows</span><code>winget install --id Git.Git -e --source winget</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                <div class="cmd"><span class="os">Mac</span><code>xcode-select --install</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                Windows alternativ: den Installer von <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com</a> laden und alle Vorgaben bestätigen.
+              </li>
+              <li><strong>Neu starten.</strong> Terminal schließen und ein neues öffnen (oder VS&nbsp;Code neu starten), damit <code class="inline">git</code> erkannt wird. Prüfen mit <code class="inline">git --version</code> — kommt eine Versionsnummer, passt es.</li>
+              <li><strong>Erneut versuchen.</strong> <code class="inline">claude</code> starten und den Plugin-Befehl nochmal eingeben (<code class="inline">/plugin marketplace add …</code>).</li>
+            </ol>
+            <p class="tip">Kommt die Meldung trotz installiertem Git und nennt „unsafe location"? Dann liegt das Projekt in einem Cloud-/Spezialordner (z.&nbsp;B. OneDrive). Verschieb es in einen normalen lokalen Ordner und versuch es erneut.</p>
+          </div>
+        </details>
+
         <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block kopieren, Titel/Text anpassen.
         <details class="acc">
           <summary>
