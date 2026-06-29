@@ -288,6 +288,37 @@
       .helpbox a { color: var(--accent); text-decoration: none; font-weight: 600; }
       .helpbox a:hover { text-decoration: underline; }
 
+      .guidebox {
+        margin: clamp(1.25rem, 4vw, 1.75rem) 0 0;
+        padding: 1.15rem 1.3rem;
+        background: var(--accent-soft);
+        border: 1px solid var(--accent);
+        border-radius: 0.9rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem 1.25rem;
+      }
+      .guidebox .gb-text { flex: 1 1 16rem; }
+      .guidebox .gb-text strong { display: block; font-size: 1.02rem; margin-bottom: 0.15rem; color: var(--text-primary); }
+      .guidebox .gb-text span { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; }
+      .dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.7rem 1.15rem;
+        border-radius: 0.6rem;
+        white-space: nowrap;
+        transition: filter 0.16s ease, transform 0.16s ease;
+      }
+      .dl-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+      .dl-btn:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
       .divider {
         margin: clamp(2rem, 6vw, 3rem) 0 0;
         border: 0;
@@ -346,6 +377,17 @@
         hier nicht, schreib mir kurz.
       </p>
 
+      <div class="guidebox">
+        <div class="gb-text">
+          <strong>Komplett neu? Claude Code noch nie installiert?</strong>
+          <span>Diese PDF richtet VS&nbsp;Code und Claude Code von null ein — Schritt für Schritt, mit allen Befehlen für Mac und Windows und dem kompletten ersten Setup. Lies sie, bevor du anfängst.</span>
+        </div>
+        <a class="dl-btn" href="/assets/help/Claude-Code-installieren.pdf" download>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+          Installations-Anleitung (PDF)
+        </a>
+      </div>
+
       <div class="acc-list">
 
         <details class="acc">
@@ -366,6 +408,7 @@
               <li><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="inline">claude</code>, Enter. Die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: ein Design mit den Pfeiltasten wählen (z.&nbsp;B. „Dark mode") und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten die normale Eingabezeile erscheint — erst dann das Terminal schließen. Danach VS&nbsp;Code einmal neu starten, der Fehler ist weg. (Mehr dazu im letzten Punkt unten.)</li>
             </ol>
             <p class="tip"><strong>Wichtig:</strong> Im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht nicht. Die Bestätigung muss in Claude Code selbst passieren (Schritt&nbsp;4).</p>
+            <p class="tip">Lieber bebildert von vorne? Die komplette Einrichtung Schritt für Schritt gibt's als <a href="/assets/help/Claude-Code-installieren.pdf" download>Installations-Anleitung (PDF)</a>.</p>
           </div>
         </details>
 
