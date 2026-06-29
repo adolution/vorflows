@@ -3,7 +3,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/webinar", "destination": "/live-workshop", "permanent": true }
+    { "source": "/webinar", "destination": "/live-workshop", "permanent": true },
+    { "source": "/", "destination": "/live-workshop", "permanent": false },
+    { "source": "/index.html", "destination": "/live-workshop", "permanent": false }
   ],
   "headers": [
     {
