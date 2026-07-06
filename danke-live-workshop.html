@@ -822,8 +822,17 @@
         // wj_lead_* an die TY-URL (verifiziert 2026-06-12). Fehlt das, kommt der
         // Besucher per Direktaufruf/Bookmark/Reload → KEINE Conversion feuern.
         var arrivedFromWJ = !!(params.get('wj_lead_email') || params.get('wj_lead_unique_link_live_room'));
-        if (arrivedFromWJ && !ls.get('vf_lw_reg_fired')) {
+        // Aber: WebinarJam-Mails (Double-Opt-in, Reminder) verlinken dieselbe
+        // TY-URL INKLUSIVE wj_lead_*-Params — oft in anderem Browser/Gerät
+        // (Mail-App statt Insta-In-App), wo der localStorage-Guard nicht greift.
+        // Frische Anmeldung erkennen: Commit-Cookie von der LP (45 min, gesetzt
+        // beim "Termin passt"-Klick) ODER Referrer = WebinarJam/eigene LP.
+        // Mail-Klicks haben weder noch → zählen nicht mehr.
+        var freshCommit = /(?:^|; )vf_lw_commit=/.test(document.cookie) ||
+          /webinarjam|\/live-workshop/.test(document.referrer);
+        if (arrivedFromWJ && freshCommit && !ls.get('vf_lw_reg_fired')) {
           ls.set('vf_lw_reg_fired', '1');
+          try { document.cookie = 'vf_lw_commit=; path=/; max-age=0; SameSite=Lax'; } catch (e) {}
           // Deterministische event_id aus der E-Mail → selbe Anmeldung auf
           // anderem Gerät / nach Double-Opt-in-Landing wird von Meta dedupliziert.
           var regEventId = leadEmail ? 'cr_' + djb2(leadEmail.trim().toLowerCase()) : null;

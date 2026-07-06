@@ -781,8 +781,11 @@
           }
         }, 150);
       };
+      // Commit-Cookie (45 min): Danke-Seite feuert CompleteRegistration nur mit
+      // diesem Cookie (oder WJ-Referrer) → Mail-Wiederkehr zählt nicht doppelt.
+      var setCommitCookie = function(){ try { document.cookie = 'vf_lw_commit=1; path=/; max-age=2700; SameSite=Lax'; } catch(e){} };
       var rnBtn = document.querySelector('#reg-note .wj-embed-button');
-      if(rnBtn) rnBtn.addEventListener('click', function(){ track('lw_wj_fallback_click'); });
+      if(rnBtn) rnBtn.addEventListener('click', function(){ setCommitCookie(); track('lw_wj_fallback_click'); });
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', open); });
       document.getElementById('lwqClose').addEventListener('click', close);
       bd.addEventListener('click', close);
@@ -800,7 +803,7 @@
           else { track('lw_qualify_no'); show('reject'); }
         });
       });
-      modal.querySelectorAll('[data-lwq-confirm]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_commit_date'); armWjProbe(); close(); }); });
+      modal.querySelectorAll('[data-lwq-confirm]').forEach(function(b){ b.addEventListener('click', function(){ setCommitCookie(); track('lw_commit_date'); armWjProbe(); close(); }); });
       modal.querySelectorAll('[data-lwq-mailto]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_no_shop_mailto'); }); }); // No-Shop schreibt Mail · KEIN Lead-Event
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
     })();

@@ -67,7 +67,7 @@ Test vorzeitig beendet (Webinar 25.06., kein Test-Runway mehr). **A geht auf 100
 |---|---|---|
 | **Microsoft Clarity** | **AKTIV** | Property `wnn5d5ehwn` (gleiche wie Homepage). Im A/B-Modus **ohne Consent-Gate** geladen (sealed Funnel, eigene Cookie-/Legal-Pages). Snippet inline im AB-Block. Auch auf der Danke-Seite. |
 | **Meta Pixel (fbq)** | **AKTIV** | Pixel `2002118703756086` (gleiches wie Homepage). Block „META PIXEL + AD-ATTRIBUTION“ in beiden LP-Files + Danke-Seite. A/B-Test-Modus: unconditional, vor Public-Launch Consent-Gate reaktivieren. Alle bestehenden `cEvent`/`track`-Aufrufe feuern jetzt real zu Meta. |
-| **Meta CAPI** | **AKTIV** | `/api/capi` (Vercel-Function, env `META_PIXEL_ID` + `META_CAPI_TOKEN`). Browser-Events werden mit identischer `event_id` gespiegelt → Meta dedupliziert. `external_id` = `vf_ext_id` (localStorage, gleiche Konvention wie Homepage). |
+| **Meta CAPI** | **AKTIV** | `/api/capi` (Vercel-Function, env `META_PIXEL_ID` + `META_CAPI_TOKEN`). Browser-Events werden mit identischer `event_id` gespiegelt → Meta dedupliziert. `external_id` = `vf_ext_id` (localStorage, gleiche Konvention wie Homepage). ⚠️ **OFFEN (entdeckt 2026-07-06):** Seit ~26.06. kommen bei Meta pro Browser-Event **exakt 2 Server-Events** an (vorher 1:1; betrifft ALLE gespiegelten Events, kein Site-Deploy als Ursache). Zählung im Ads Manager bleibt korrekt, solange event_id-Dedup greift — trotzdem klären: Vercel-Log `/api/capi` (1 Invocation pro Event?) + Events Manager → Event-Details → Dedup-Statistik. |
 | **Survey-Sink** | **AKTIV (Log) / optional (Sheet)** | `/api/lw-survey` loggt jeden Lead als JSON-Zeile ins Vercel-Log (Prefix `lw-survey`) und forwarded an env **`LW_SURVEY_WEBHOOK`** (beliebige URL, JSON-POST). **EINGERICHTET + GETESTET 2026-06-12**: Google Sheet "LW Leads — Workshop" (ID `1hxXiIMAhHMmjO9YyYxmQEdD6YM6vJjvImh_Kkrc3dTI`), Apps-Script-Projekt in `.agents/lw-sheet/` (clasp). Kein Klaviyo. **Seit 2026-06-13: Partial-Capture** — jede Frage feuert sofort einen Teil-Datensatz (`status=partial`) + ein `pagehide`/`visibilitychange`-Beacon; das Sheet macht **Upsert per `survey_id`** (eine Zeile/Person, wird beim Weiterklicken aktualisiert, endet `complete`). Abspringer landen also IM Sheet statt zu verschwinden. |
 | Google gtag (GA4/Ads) | **NICHT installiert** | Code feuert `window.gtag(...)` nur `if(window.gtag)` → No-Op. Bei Bedarf Lade-Snippet in `<head>`, dann feuern alle Events automatisch mit. |
 
@@ -133,7 +133,7 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 
 | Meta-Event | Clarity-Event | Wann |
 |---|---|---|
-| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | Feuert **nur bei echter WJ-Anmeldung** (`wj_lead_email`/`wj_lead_unique_link_live_room` in TY-URL vorhanden = `arrivedFromWJ`) **und** Guard `vf_lw_reg_fired` (1× pro Browser). Direktaufruf/Bookmark/Reload ohne WJ-Params → **kein** Fire. **event_id deterministisch aus E-Mail** (`'cr_'+djb2(email)`) → Meta dedupliziert dieselbe Anmeldung auch geräteübergreifend / nach Double-Opt-in-Landing. **= Primär-Conversion Anmeldung.** |
+| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | Feuert **nur bei echter WJ-Anmeldung**: (1) `wj_lead_email`/`wj_lead_unique_link_live_room` in TY-URL (= `arrivedFromWJ`), (2) **First-Only-Gate seit 2026-07-06**: Commit-Cookie **`vf_lw_commit`** (setzt die LP beim „Termin passt"-/Fallback-Klick, 45 min) ODER Referrer webinarjam/`/live-workshop`, (3) Guard `vf_lw_reg_fired` (1× pro Browser). Cookie wird nach dem Fire gelöscht. **Grund:** WJ-Mails (Double-Opt-in, Reminder) verlinken die TY-URL INKL. `wj_lead_*` — Klicks landeten in fremden Browser-Kontexten (Mail-App statt In-App-Browser), wo der localStorage-Guard nicht griff → Ads Manager zählte ~3× so viele „Registrierungen" wie WJ-Backend (diagnostiziert 2026-07-06: 10 Browser-Fires bei 3 echten Anmeldungen). Direktaufruf/Bookmark/Reload/Mail-Klick → **kein** Fire. **event_id deterministisch aus E-Mail** (`'cr_'+djb2(email)`). Test: `node test-cr-first-only.mjs`. **= Primär-Conversion Anmeldung.** |
 | `LW_Survey_Revenue` `{answer}` | `lw_q_revenue_<answer>` | Frage 1 beantwortet. Antworten: `kein_shop / lt5k / 5to20k / gt20k` |
 | `LW_Survey_Apps` `{answer}` | `lw_q_apps_<answer>` | Frage 2. Antworten: `lt50 / 50to150 / 150to400 / gt400` |
 | `LW_Survey_Builder` `{answer}` | `lw_q_builder_<answer>` | Frage 3 "Wer macht Änderungen am Shop?". Antworten: `selbst / team / agentur / niemand` |
@@ -183,6 +183,9 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    unser Qualifier-Modal (Handler: `track('lw_commit_date'); armWjProbe(); close();`).
    **Reihenfolge bewusst gedreht (2026-06-15):** Shopify-Frage zuerst (Filter), Termin
    zuletzt (= letzter Klick muss der WJ-Popup-Trigger sein, Browser-Popup-Regel).
+   **Seit 2026-07-06** setzt der „Termin passt"-Klick (und der `#reg-note`-Fallback-Button)
+   zusätzlich das Cookie **`vf_lw_commit`** (45 min, first-party) — das First-Only-Gate
+   der Danke-Seite (s. `CompleteRegistration` in §4). In BEIDEN LP-Files identisch.
 5. **WebinarJam-Embed ist live.** WJ-Popup öffnet aus dem Shopify-Ja-Klick.
    **Fallback nur bei echtem Fehlschlag:** `armWjProbe()` pollt 3s auf ein sichtbares
    WJ-Iframe. Geht keins auf (`lw_wj_noopen`), blendet es `#reg-note` ein — eine
