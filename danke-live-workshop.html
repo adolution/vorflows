@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Platz reserviert — vorflows Live-Workshop</title>
+    <title>Platz reserviert · vorflows Live-Workshop</title>
     <meta name="description" content="Deine Anmeldung zum Live-Workshop ist bestätigt." />
     <!-- Thank-you page: never index -->
     <meta name="robots" content="noindex, nofollow" />
@@ -477,7 +477,7 @@
       .ty-quote-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
       .ty-quote-name { font-weight: 600; }
       .ty-quote-co { color: var(--text-secondary); }
-      .ty-quote-co::before { content: "— "; color: var(--border-strong); }
+      .ty-quote-co::before { content: ""; }
 
       .foot {
         margin-top: clamp(2.25rem, 7vw, 3.5rem);
@@ -512,8 +512,8 @@
       <div class="confirm-alert">
         <p class="confirm-alert__step"><span class="confirm-alert__track"><i></i></span>Schritt 1 von 2 · fast geschafft</p>
         <h1>Deine Anmeldung ist noch <em>nicht bestätigt</em><span id="helloName"></span>.</h1>
-        <p class="confirm-alert__body">Öffne jetzt die E-Mail von mir und klick auf den Bestätigungs-Link. <strong>Ohne diesen Klick bist du nicht dabei</strong> — und ich kann dir dein Ticket nicht senden.</p>
-        <p class="confirm-alert__hint">Keine Mail im Posteingang? Sie kann 1–2&nbsp;Minuten brauchen — schau auch im <strong>Spam-</strong> oder <strong>Werbung-Ordner</strong> und zieh sie rüber.</p>
+        <p class="confirm-alert__body">Öffne jetzt die E-Mail von mir und klick auf den Bestätigungs-Link. <strong>Ohne diesen Klick bist du nicht dabei.</strong> Dein Ticket kann ich dir erst danach senden.</p>
+        <p class="confirm-alert__hint">Keine Mail im Posteingang? Sie kann ein bis zwei Minuten brauchen. Schau auch im <strong>Spam-</strong> oder <strong>Werbung-Ordner</strong> und zieh sie rüber.</p>
         <a class="confirm-alert__btn" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
       </div>
 
@@ -542,7 +542,7 @@
           <div class="q-options">
             <button class="q-opt" type="button" data-answer="kein_shop">Mein Shop ist noch nicht live</button>
             <button class="q-opt" type="button" data-answer="lt5k">Unter 5.000&nbsp;€</button>
-            <button class="q-opt" type="button" data-answer="5to20k">5.000 – 20.000&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="5to20k">5.000 bis 20.000&nbsp;€</button>
             <button class="q-opt" type="button" data-answer="gt20k">Über 20.000&nbsp;€</button>
           </div>
         </div>
@@ -554,8 +554,8 @@
           <p class="q-sub">Grob geschätzt reicht völlig.</p>
           <div class="q-options">
             <button class="q-opt" type="button" data-answer="lt50">Unter 50&nbsp;€</button>
-            <button class="q-opt" type="button" data-answer="50to150">50 – 150&nbsp;€</button>
-            <button class="q-opt" type="button" data-answer="150to400">150 – 400&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="50to150">50 bis 150&nbsp;€</button>
+            <button class="q-opt" type="button" data-answer="150to400">150 bis 400&nbsp;€</button>
             <button class="q-opt" type="button" data-answer="gt400">Über 400&nbsp;€</button>
           </div>
           <button class="q-back" type="button" data-back>← Zurück</button>
@@ -565,7 +565,7 @@
         <div class="q-step" data-q="3" hidden>
           <p class="q-eyebrow">Frage 3 von 6</p>
           <h2 class="q-title">Wer macht aktuell Änderungen an deinem Shop?</h2>
-          <p class="q-sub">Theme, Texte, Sections — wer fasst das bei dir an?</p>
+          <p class="q-sub">Theme, Texte, Sections: wer fasst das bei dir an?</p>
           <div class="q-options">
             <button class="q-opt" type="button" data-answer="selbst">Ich selbst</button>
             <button class="q-opt" type="button" data-answer="team">Jemand aus meinem Team</button>
@@ -591,7 +591,7 @@
         <div class="q-step" data-q="5" hidden>
           <p class="q-eyebrow">Frage 5 von 6</p>
           <h2 class="q-title">Welcher Shop ist deiner?</h2>
-          <p class="q-sub">Optional — hilft mir, im Workshop auf passende Beispiele einzugehen.</p>
+          <p class="q-sub">Optional. Hilft mir, im Workshop auf passende Beispiele einzugehen.</p>
           <div class="phone-row">
             <input type="text" id="shopInput" autocomplete="off"
                    placeholder="Shop-Name oder URL" aria-label="Dein Shop-Name oder URL" />
@@ -604,7 +604,7 @@
         <div class="q-step" data-q="6" hidden>
           <p class="q-eyebrow">Frage 6 von 6</p>
           <h2 class="q-title">Soll ich dir die Workshop-Unterlagen danach per WhatsApp schicken?</h2>
-          <p class="q-sub">Du bekommst die Zusammenfassung mit allen gezeigten Schritten direkt aufs Handy — plus eine kurze Erinnerung vor dem Start.</p>
+          <p class="q-sub">Du bekommst die Zusammenfassung mit allen gezeigten Schritten direkt aufs Handy, plus eine kurze Erinnerung vor dem Start.</p>
           <div class="phone-row">
             <input type="tel" id="phoneInput" inputmode="tel" autocomplete="tel"
                    placeholder="+49 170 1234567" aria-label="Deine Handynummer" />
@@ -620,8 +620,8 @@
       <section class="done" id="doneCard" hidden>
         <h2>Danke. Trag dir den Termin ein.</h2>
         <p class="q-sub" style="margin-top:.6rem">
-          Wer den Termin im Kalender hat, ist erfahrungsgemäß auch wirklich dabei —
-          und nur live siehst du jeden Schritt.
+          Wer den Termin im Kalender hat, ist erfahrungsgemäß auch wirklich dabei.
+          Und nur live siehst du jeden Schritt.
         </p>
         <div class="cal-row">
           <a class="btn btn-cal" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
