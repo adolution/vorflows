@@ -84,70 +84,101 @@
       }
       .wordmark .flows { font-style: italic; color: var(--accent); }
 
-      /* ---------- Double-Opt-in-Status (statt Häkchen) ---------- */
-      .optin {
-        margin-top: clamp(1.5rem, 5vw, 2.5rem);
-        max-width: 24rem;
+      /* ---------- Double-Opt-in-Alert (die EINE Botschaft ganz oben) ---------- */
+      .confirm-alert {
+        margin-top: clamp(1.4rem, 4.5vw, 2.2rem);
+        padding: clamp(1.4rem, 5vw, 2.1rem) clamp(1.3rem, 5vw, 2.1rem) clamp(1.5rem, 5vw, 2rem);
+        border-radius: 1.1rem;
+        /* tiefe Terracotta-Fläche → weißer Text besteht AA */
+        background:
+          radial-gradient(120% 140% at 8% 0%, #B85732 0%, #9E4525 55%, #8C3C20 100%);
+        color: #FFF3EC;
+        box-shadow:
+          0 18px 40px -14px rgba(140, 60, 32, 0.55),
+          0 3px 10px -2px rgba(140, 60, 32, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        opacity: 0;
+        transform: translateY(12px);
+        animation: alertIn 0.7s 0.05s var(--ease-out-expo) forwards;
       }
-      .optin .row {
+      @keyframes alertIn { to { opacity: 1; transform: none; } }
+
+      .confirm-alert__step {
         display: flex;
         align-items: center;
-        gap: 0.9rem;
+        gap: 0.6rem;
+        margin: 0 0 0.9rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 243, 236, 0.78);
       }
-      .optin .bar {
-        flex: 1;
-        height: 7px;
+      .confirm-alert__track {
+        flex: 0 0 3.4rem;
+        height: 5px;
         border-radius: 999px;
-        background: var(--border);
+        background: rgba(255, 255, 255, 0.22);
         overflow: hidden;
       }
-      .optin .fill {
+      .confirm-alert__track > i {
         display: block;
         height: 100%;
         width: 0;
         border-radius: 999px;
-        background: var(--accent);
-        animation: halfway 0.9s 0.25s var(--ease-out-expo) forwards;
-      }
-      .optin .num {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--accent);
-      }
-      .optin .steps {
-        margin: 0.5rem 0 0;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
+        background: #FFF3EC;
+        animation: halfway 0.9s 0.35s var(--ease-out-expo) forwards;
       }
       @keyframes halfway { to { width: 50%; } }
 
-      .confirm-box {
-        margin: 1.4rem 0 0;
-        padding: 1.1rem 1.2rem;
-        border-radius: 0.8rem;
-        background: var(--accent-soft);
-        border: 1px solid rgba(200, 99, 62, 0.35);
-      }
-      .confirm-box .ct {
+      /* h1 lebt jetzt IM Alert — warme Serif, cremeweiß, laut */
+      .confirm-alert h1 {
         margin: 0;
-        font-weight: 600;
-        font-size: 1.02rem;
-        line-height: 1.5;
-        letter-spacing: -0.01em;
+        color: #FFF7F1;
+        font-size: clamp(1.85rem, 6.4vw, 2.75rem);
+        line-height: 1.08;
       }
-      .confirm-box .cs {
-        margin: 0.45rem 0 0;
+      .confirm-alert h1 em { color: #FFF7F1; font-style: normal; text-decoration: underline; text-decoration-color: rgba(255,247,241,0.55); text-underline-offset: 4px; }
+
+      .confirm-alert__body {
+        margin: 0.9rem 0 0;
+        max-width: 34rem;
+        font-size: clamp(1.02rem, 2.6vw, 1.1rem);
+        line-height: 1.55;
+        color: rgba(255, 243, 236, 0.95);
+      }
+      .confirm-alert__hint {
+        margin: 0.7rem 0 0;
+        max-width: 34rem;
         font-size: 0.9rem;
         line-height: 1.55;
-        color: var(--text-secondary);
+        color: rgba(255, 243, 236, 0.82);
       }
-      .confirm-box .btn { margin-top: 0.85rem; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.2rem; }
-      .confirm-box .btn[hidden] { display: none; }
+      .confirm-alert__hint strong { color: #FFF7F1; font-weight: 700; }
+
+      .confirm-alert__btn {
+        display: inline-block;
+        margin-top: 1.15rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 0.7rem;
+        background: #FFF3EC;
+        color: var(--accent-hover);
+        font-weight: 700;
+        font-size: 0.98rem;
+        text-decoration: none;
+        transition: transform 0.18s var(--ease-out-expo), box-shadow 0.18s var(--ease-out-expo), background-color 0.18s;
+        box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.35);
+      }
+      .confirm-alert__btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.4); }
+      .confirm-alert__btn:active { transform: translateY(0); }
+      .confirm-alert__btn:focus-visible { outline: 3px solid #FFF7F1; outline-offset: 3px; }
+      .confirm-alert__btn[hidden] { display: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .confirm-alert { opacity: 1; transform: none; animation: none; }
+        .confirm-alert__track > i { width: 50%; animation: none; }
+      }
 
       .eyebrow {
         margin: 1.3rem 0 0;
@@ -478,20 +509,12 @@
     <main class="wrap">
       <a class="wordmark" href="/live-workshop">vor<span class="flows">flows</span></a>
 
-      <div class="optin" aria-hidden="true">
-        <div class="row">
-          <span class="bar"><span class="fill"></span></span>
-          <span class="num">50&nbsp;%</span>
-        </div>
-        <p class="steps">Schritt 1 von 2 erledigt</p>
-      </div>
-
-      <h1 style="margin-top:1.3rem">Ein Klick fehlt <em>noch</em><span id="helloName"></span>.</h1>
-
-      <div class="confirm-box">
-        <p class="ct">Öffne jetzt dein Postfach und bestätige deine Anmeldung. Nur so kann ich dir dein Ticket senden.</p>
-        <p class="cs">Die Mail kann bis zu 5 Minuten brauchen. Noch keine zu sehen? Schau im Spam- oder Werbung-Ordner und zieh sie in den Posteingang.</p>
-        <a class="btn btn-primary" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
+      <div class="confirm-alert">
+        <p class="confirm-alert__step"><span class="confirm-alert__track"><i></i></span>Schritt 1 von 2 · fast geschafft</p>
+        <h1>Deine Anmeldung ist noch <em>nicht bestätigt</em><span id="helloName"></span>.</h1>
+        <p class="confirm-alert__body">Öffne jetzt die E-Mail von mir und klick auf den Bestätigungs-Link. <strong>Ohne diesen Klick bist du nicht dabei</strong> — und ich kann dir dein Ticket nicht senden.</p>
+        <p class="confirm-alert__hint">Keine Mail im Posteingang? Sie kann 1–2&nbsp;Minuten brauchen — schau auch im <strong>Spam-</strong> oder <strong>Werbung-Ordner</strong> und zieh sie rüber.</p>
+        <a class="confirm-alert__btn" id="inboxBtn" href="#" target="_blank" rel="noopener" hidden>Postfach öffnen</a>
       </div>
 
       <!-- ============ SHOW-UP-VIDEO (Subline exakt über Video-Breite) ============ -->
@@ -499,7 +522,7 @@
         <p class="ty-video-cue">Damit du am <span class="cue-date">09.07. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
         <video class="ty-video-el" id="tyVideo" controls playsinline preload="metadata"
                poster="/assets/video/lw-danke-poster.webp">
-          <source src="/assets/video/lw-danke-1080.mp4" type="video/mp4" />
+          <source src="/assets/video/lw-danke-1080-v2.mp4" type="video/mp4" />
         </video>
       </div>
 

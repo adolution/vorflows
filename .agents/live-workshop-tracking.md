@@ -19,8 +19,16 @@ Survey — es verrät keinen Workshop-Inhalt, sondern treibt nur die nächste Ak
 11:00 Uhr** sicher dabei bist, schau dir dieses Video an:" (Datum/Zeit unterstrichen,
 `.cue-date`). Die alte Live-Termin-Pill (`.datebar`) wurde 2026-06-13 entfernt
 (Mobile-Umbruch + redundant, Termin steht jetzt in der Subline). Assets: `assets/video/lw-danke-1080.mp4` (H.264,
-1080×1920, ~6,9 MB, faststart) + `lw-danke-poster.webp`. Erstes Play feuert
+1920×1080 quer) + `lw-danke-poster.webp`. Erstes Play feuert
 `LW_Danke_Video_Play` / `lw_danke_video_play` (1× pro Browser, Show-Up-Signal).
+**2026-07-07:** Video neu geschnitten → `lw-danke-1080-v2.mp4` (37,3s statt 40,3s;
+endet nach „…es wird keine Aufzeichnung geben", das veraltete „Bis zum 25." raus).
+Assets sind 1 Jahr immutable gecached → neuer Dateiname `-v2` als Cache-Bust, Source
+im `<video>` entsprechend. Bei erneutem Schnitt: `-v3` etc.
+**Hero-Umbau 2026-07-07:** optin-Bar + H1 + confirm-box zu EINEM lauten Terracotta-Alert
+(`.confirm-alert`) konsolidiert — „Deine Anmeldung ist noch nicht bestätigt" ist die
+erste + einzige Botschaft ganz oben (Spam-/Werbung-Hinweis + Postfach-Button inklusive).
+Ziel: DOI-Bestätigungsrate hoch → schließt die Lücke Ads-Manager vs. WJ-Backend (s.u.).
 
 ---
 
@@ -133,7 +141,7 @@ mit `eventID`) und CAPI-Mirror (gleiche `event_id`). Props enthalten immer
 
 | Meta-Event | Clarity-Event | Wann |
 |---|---|---|
-| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | Feuert **nur bei echter WJ-Anmeldung**: (1) `wj_lead_email`/`wj_lead_unique_link_live_room` in TY-URL (= `arrivedFromWJ`), (2) **First-Only-Gate seit 2026-07-06**: Commit-Cookie **`vf_lw_commit`** (setzt die LP beim „Termin passt"-/Fallback-Klick, 45 min) ODER Referrer webinarjam/`/live-workshop`, (3) Guard `vf_lw_reg_fired` (1× pro Browser). Cookie wird nach dem Fire gelöscht. **Grund:** WJ-Mails (Double-Opt-in, Reminder) verlinken die TY-URL INKL. `wj_lead_*` — Klicks landeten in fremden Browser-Kontexten (Mail-App statt In-App-Browser), wo der localStorage-Guard nicht griff → Ads Manager zählte ~3× so viele „Registrierungen" wie WJ-Backend (diagnostiziert 2026-07-06: 10 Browser-Fires bei 3 echten Anmeldungen). Direktaufruf/Bookmark/Reload/Mail-Klick → **kein** Fire. **event_id deterministisch aus E-Mail** (`'cr_'+djb2(email)`). Test: `node test-cr-first-only.mjs`. **= Primär-Conversion Anmeldung.** |
+| **`CompleteRegistration`** (Standard) | `lw_signup_complete` | ⚠️ **WICHTIG (2026-07-07): CR feuert beim TY-Seiten-Landing = direkt nach dem WJ-Formular-Submit (Registrierung), NICHT nach dem Double-Opt-in.** WJ-Backend zählt aber nur **DOI-bestätigte** Leads → Ads Manager ≥ WJ-Backend **per Design** (Beispiel 07.07.: Meta 9 vs. WJ 5 = 4 Registrierte ohne DOI-Klick). Event_id ist deterministisch (`cr_+djb2(email)`) → Registrierungs-Landing UND spätere DOI-Landing derselben Person dedupen zu 1 Conversion; d.h. Meta zählt „unique Registrierte", nicht „Bestätigte". **Umbau auf „erst-nach-DOI" offen** — braucht einen Confirmation-Marker aus WJ (z.B. WJ-Confirm-Redirect → `/danke-live-workshop?doi=1`) oder WJ-API/Webhook → CAPI. Ohne Marker sind Registrierungs- und Bestätigungs-Landing nicht unterscheidbar (beide tragen `wj_lead_*`). Zwischenlösung live: prominenter Bestätigungs-Alert (s.o.) treibt die DOI-Rate. Details:<br>Feuert **nur bei echter WJ-Anmeldung**: (1) `wj_lead_email`/`wj_lead_unique_link_live_room` in TY-URL (= `arrivedFromWJ`), (2) **First-Only-Gate seit 2026-07-06**: Commit-Cookie **`vf_lw_commit`** (setzt die LP beim „Termin passt"-/Fallback-Klick, 45 min) ODER Referrer webinarjam/`/live-workshop`, (3) Guard `vf_lw_reg_fired` (1× pro Browser). Cookie wird nach dem Fire gelöscht. **Grund:** WJ-Mails (Double-Opt-in, Reminder) verlinken die TY-URL INKL. `wj_lead_*` — Klicks landeten in fremden Browser-Kontexten (Mail-App statt In-App-Browser), wo der localStorage-Guard nicht griff → Ads Manager zählte ~3× so viele „Registrierungen" wie WJ-Backend (diagnostiziert 2026-07-06: 10 Browser-Fires bei 3 echten Anmeldungen). Direktaufruf/Bookmark/Reload/Mail-Klick → **kein** Fire. **event_id deterministisch aus E-Mail** (`'cr_'+djb2(email)`). Test: `node test-cr-first-only.mjs`. **= Primär-Conversion Anmeldung.** |
 | `LW_Survey_Revenue` `{answer}` | `lw_q_revenue_<answer>` | Frage 1 beantwortet. Antworten: `kein_shop / lt5k / 5to20k / gt20k` |
 | `LW_Survey_Apps` `{answer}` | `lw_q_apps_<answer>` | Frage 2. Antworten: `lt50 / 50to150 / 150to400 / gt400` |
 | `LW_Survey_Builder` `{answer}` | `lw_q_builder_<answer>` | Frage 3 "Wer macht Änderungen am Shop?". Antworten: `selbst / team / agentur / niemand` |
