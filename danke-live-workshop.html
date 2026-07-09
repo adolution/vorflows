@@ -519,7 +519,7 @@
 
       <!-- ============ SHOW-UP-VIDEO (Subline exakt über Video-Breite) ============ -->
       <div class="ty-video">
-        <p class="ty-video-cue">Damit du am <span class="cue-date">09.07. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
+        <p class="ty-video-cue">Damit du am <span class="cue-date">30.07. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
         <video class="ty-video-el" id="tyVideo" controls playsinline preload="metadata"
                poster="/assets/video/lw-danke-poster.webp">
           <source src="/assets/video/lw-danke-1080-v2.mp4" type="video/mp4" />
@@ -654,10 +654,10 @@
         'use strict';
 
         // ── Zentrale Termin-Konstanten (eine Stelle) ──────────────────
-        var WEBINAR_DATE_TEXT = 'Donnerstag, 9. Juli · 11:00 Uhr';
+        var WEBINAR_DATE_TEXT = 'Donnerstag, 30. Juli · 11:00 Uhr';
         var WEBINAR_TITLE = 'Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um';
-        var WEBINAR_START_UTC = '20260709T090000Z'; // 11:00 Europe/Berlin (CEST)
-        var WEBINAR_END_UTC   = '20260709T100000Z';
+        var WEBINAR_START_UTC = '20260730T090000Z'; // 11:00 Europe/Berlin (CEST)
+        var WEBINAR_END_UTC   = '20260730T100000Z';
         var META_PIXEL_ID = '2002118703756086';
 
         document.querySelectorAll('[data-webinar-date]').forEach(function (e) { e.textContent = WEBINAR_DATE_TEXT; });
@@ -1059,7 +1059,7 @@
         var ics = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//vorflows//live-workshop//DE',
           'BEGIN:VEVENT',
-          'UID:lw-2026-07-09@vorflows.com',
+          'UID:lw-2026-07-30@vorflows.com',
           'DTSTAMP:' + WEBINAR_START_UTC,
           'DTSTART:' + WEBINAR_START_UTC,
           'DTEND:' + WEBINAR_END_UTC,

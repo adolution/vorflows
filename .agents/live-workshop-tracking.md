@@ -184,7 +184,7 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
      vorab glasklar macht (Anti-Fake-Klick).
    - „Ja, hab ich" → `lw_qualify_yes` → weiter zu Schritt 2 (`show(2)`, **kein** WJ,
      **kein** Close).
-4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 9. Juli, 11:00 Uhr?" → der
+4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 30. Juli, 11:00 Uhr?" → der
    **„Ja, der Termin passt"-Button IST jetzt der WebinarJam-Trigger**
    (`.wj-embed-button` + `data-lwq-confirm` + `data-webinarHash="0qgn9gag"`): der echte
    Klick feuert `lw_commit_date`, öffnet das WJ-Registrierungs-Popup direkt und schliesst
