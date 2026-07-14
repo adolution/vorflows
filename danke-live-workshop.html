@@ -84,6 +84,153 @@
       }
       .wordmark .flows { font-style: italic; color: var(--accent); }
 
+      /* ---------- Zugangslink-Karte (Hauptsache ganz oben, vor allem anderen) ---------- */
+      .joinbox {
+        margin-top: clamp(1.4rem, 4.5vw, 2.2rem);
+        padding: clamp(1.4rem, 5vw, 2rem) clamp(1.3rem, 5vw, 1.9rem) clamp(1.5rem, 5vw, 1.9rem);
+        border-radius: 20px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--accent);
+        box-shadow: 0 24px 48px -28px rgba(200, 99, 62, 0.35), 0 4px 12px -6px rgba(26, 26, 26, 0.08);
+      }
+      .joinbox__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: .75rem;
+      }
+      .joinbox__eyebrow i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+      .joinbox h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 600;
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        line-height: 1.16;
+        letter-spacing: -.02em;
+        margin: 0 0 .55rem;
+      }
+      .joinbox__sub {
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0 0 1.15rem;
+      }
+      .joinbox__sub strong { color: var(--text-primary); font-weight: 700; }
+
+      .joinbox__linkrow {
+        display: flex;
+        gap: .55rem;
+        align-items: stretch;
+      }
+      .joinbox__link {
+        flex: 1;
+        min-width: 0;
+        padding: .8rem .9rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-strong);
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.4;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: border-color .2s var(--ease-out-expo), background .2s var(--ease-out-expo);
+      }
+      .joinbox__link:hover { border-color: var(--accent); background: var(--accent-soft); }
+      .joinbox__link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+      .joinbox__copy {
+        flex: 0 0 auto;
+        padding: .8rem 1.05rem;
+        border-radius: 12px;
+        border: 1px solid var(--accent);
+        background: var(--accent);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform .2s var(--ease-out-expo), background .2s var(--ease-out-expo);
+      }
+      .joinbox__copy:hover { background: var(--accent-hover); transform: translateY(-1px); }
+      .joinbox__copy:active { transform: translateY(0); }
+      .joinbox__copy:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+      .joinbox__copy.is-done { background: #1A1A1A; border-color: #1A1A1A; }
+
+      .joinbox__save {
+        display: flex;
+        gap: .55rem;
+        align-items: flex-start;
+        margin: .9rem 0 0;
+        padding: .75rem .85rem;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .joinbox__save strong { font-weight: 700; }
+
+      .joinbox__caltitle {
+        margin: 1.35rem 0 .6rem;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .joinbox__cals {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .55rem;
+      }
+      @media (max-width: 30rem) {
+        .joinbox__cals { grid-template-columns: 1fr; }
+        .joinbox__linkrow { flex-direction: column; }
+      }
+      .joinbox__cal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .45rem;
+        padding: .8rem 1rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-strong);
+        background: #fff;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform .2s var(--ease-out-expo), border-color .2s var(--ease-out-expo), box-shadow .2s var(--ease-out-expo);
+      }
+      .joinbox__cal:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -12px rgba(200, 99, 62, 0.45);
+      }
+      .joinbox__cal:active { transform: translateY(0); }
+      .joinbox__cal:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+      .joinbox__calnote {
+        margin: .7rem 0 0;
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
       /* ---------- Double-Opt-in-Alert (die EINE Botschaft ganz oben) ---------- */
       .confirm-alert {
         margin-top: clamp(1.4rem, 4.5vw, 2.2rem);
@@ -509,6 +656,30 @@
     <main class="wrap">
       <a class="wordmark" href="/live-workshop">vor<span class="flows">flows</span></a>
 
+      <!-- ============ ZUGANGSLINK (das Wichtigste, ganz oben) ============ -->
+      <div class="joinbox">
+        <p class="joinbox__eyebrow"><i></i>Dein Zugang zum Live-Workshop</p>
+        <h1>Das ist dein Link in den Live-Raum.</h1>
+        <p class="joinbox__sub">Über diesen Link kommst du am <strong><span data-webinar-date>Donnerstag, 30. Juli · 11:00 Uhr</span></strong> in den Workshop. <strong>Speicher ihn dir jetzt ab.</strong></p>
+
+        <div class="joinbox__linkrow">
+          <a class="joinbox__link" id="joinLinkA" href="#" target="_blank" rel="noopener"></a>
+          <button class="joinbox__copy" type="button" id="joinCopy">Link kopieren</button>
+        </div>
+
+        <p class="joinbox__save">
+          <span aria-hidden="true">📌</span>
+          <span>Die Bestätigungs-Mail kommt bei manchen Anbietern verspätet oder gar nicht an. <strong>Mit diesem Link bist du unabhängig davon.</strong> Kopier ihn dir in Notizen, WhatsApp an dich selbst, oder trag ihn direkt in den Kalender ein.</span>
+        </p>
+
+        <p class="joinbox__caltitle">Direkt in den Kalender (Link ist im Termin drin):</p>
+        <div class="joinbox__cals">
+          <a class="joinbox__cal" id="calGoogleTop" href="#" target="_blank" rel="noopener">📅 Google Kalender</a>
+          <a class="joinbox__cal" id="calIcsTop" href="#" download="vorflows-live-workshop.ics">🗓️ Apple / Outlook (.ics)</a>
+        </div>
+        <p class="joinbox__calnote">Der Zugangslink landet automatisch in den Termin-Details, plus Erinnerung 30 Minuten vorher.</p>
+      </div>
+
       <div class="confirm-alert">
         <p class="confirm-alert__step"><span class="confirm-alert__track"><i></i></span>Schritt 1 von 2 · fast geschafft</p>
         <h1>Deine Anmeldung ist noch <em>nicht bestätigt</em><span id="helloName"></span>.</h1>
@@ -658,6 +829,11 @@
         var WEBINAR_TITLE = 'Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um';
         var WEBINAR_START_UTC = '20260730T090000Z'; // 11:00 Europe/Berlin (CEST)
         var WEBINAR_END_UTC   = '20260730T100000Z';
+        // Öffentlicher Live-Raum-Link (gilt für alle). Fallback, wenn WebinarJam
+        // keinen persönlichen Link in der TY-URL mitgibt — die Seite MUSS oben
+        // immer einen funktionierenden Zugangslink zeigen (Bestätigungs-Mails
+        // kommen bei manchen Providern nicht an).
+        var FALLBACK_LIVE_LINK = 'https://event.webinarjam.com/3g0480/go/live/0qgn9gagi1s7s2?webinar_id=2';
         var META_PIXEL_ID = '2002118703756086';
 
         document.querySelectorAll('[data-webinar-date]').forEach(function (e) { e.textContent = WEBINAR_DATE_TEXT; });
@@ -712,6 +888,9 @@
         if (leadLastName) ls.set('vf_known_last_name', leadLastName);
         if (leadPhone) ls.set('vf_known_phone', leadPhone);
         if (liveLink) ls.set('vf_lw_live_link', liveLink);
+        // Was oben angezeigt + in den Kalender geschrieben wird: persönlicher
+        // Link, wenn WJ einen liefert — sonst der öffentliche Raum-Link.
+        var joinLink = liveLink || FALLBACK_LIVE_LINK;
 
         // ── URL-Cleanup: PII (E-Mail, persönlicher Live-Link, Passwort) aus
         // der Adresszeile entfernen, BEVOR Clarity lädt — sonst landet alles
@@ -1042,19 +1221,52 @@
           showStep(1);
         }
 
+        // ── Zugangslink oben: anzeigen + kopierbar machen ────────────
+        (function () {
+          var a = document.getElementById('joinLinkA');
+          var btn = document.getElementById('joinCopy');
+          if (!a || !btn) return;
+          a.href = joinLink;
+          a.textContent = joinLink;
+          a.addEventListener('click', function () { lwTrack('LW_JoinLink_Click', {}, 'lw_join_link_click'); });
+
+          btn.addEventListener('click', function () {
+            var done = function () {
+              btn.textContent = 'Kopiert ✓';
+              btn.classList.add('is-done');
+              setTimeout(function () { btn.textContent = 'Link kopieren'; btn.classList.remove('is-done'); }, 2200);
+              lwTrack('LW_CopyLink', {}, 'lw_copy_link');
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(joinLink).then(done, fallbackCopy);
+            } else {
+              fallbackCopy();
+            }
+            function fallbackCopy() {
+              var t = document.createElement('textarea');
+              t.value = joinLink;
+              t.setAttribute('readonly', '');
+              t.style.position = 'fixed';
+              t.style.opacity = '0';
+              document.body.appendChild(t);
+              t.select();
+              try { document.execCommand('copy'); done(); } catch (e) {}
+              document.body.removeChild(t);
+            }
+          });
+        })();
+
         // ── Kalender-Links (Show-Up-Commitment) ──────────────────────
-        // Mit validiertem persönlichem WJ-Link: Link direkt in den Termin →
-        // ein Klick aus dem Kalender in den Raum. Ohne: Verweis auf die Mail.
+        // Der Zugangslink (persönlich, sonst öffentlicher Raum-Link) wandert
+        // immer in Details + Location → ein Klick aus dem Kalender in den Raum.
         var desc = 'Live in 60 Minuten: Apps ersetzen, Rankings holen, Conversion heben. '
-          + (liveLink ? 'Dein persönlicher Teilnahme-Link: ' + liveLink : 'Dein Teilnahme-Link steht in der Bestätigungs-Mail.');
-        var calLocation = liveLink || 'Online (Link in der Bestätigungs-Mail)';
+          + 'Dein Zugangslink: ' + joinLink;
+        var calLocation = joinLink;
         var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
           + '&text=' + encodeURIComponent(WEBINAR_TITLE)
           + '&dates=' + WEBINAR_START_UTC + '/' + WEBINAR_END_UTC
           + '&details=' + encodeURIComponent(desc)
           + '&location=' + encodeURIComponent(calLocation);
-        document.getElementById('calGoogle').href = gcal;
-        document.getElementById('calGoogle').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'google' }, 'lw_calendar_google'); });
 
         var ics = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//vorflows//live-workshop//DE',
@@ -1065,12 +1277,26 @@
           'DTEND:' + WEBINAR_END_UTC,
           'SUMMARY:' + WEBINAR_TITLE.replace(/,/g, '\\,'),
           'DESCRIPTION:' + desc.replace(/,/g, '\\,'),
-          'LOCATION:' + (liveLink ? liveLink.replace(/,/g, '\\,') : 'Online'),
+          'LOCATION:' + calLocation.replace(/,/g, '\\,'),
           'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Live-Workshop startet in 30 Minuten', 'END:VALARM',
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n');
-        document.getElementById('calIcs').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-        document.getElementById('calIcs').addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
+        var icsHref = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+
+        // Zwei Button-Paare: oben in der Zugangslink-Karte (vor der Umfrage)
+        // und unten in der Success-Karte. Beide identisch verdrahtet.
+        ['calGoogle', 'calGoogleTop'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.href = gcal;
+          el.addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'google' }, 'lw_calendar_google'); });
+        });
+        ['calIcs', 'calIcsTop'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.href = icsHref;
+          el.addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
+        });
 
         // ── Show-Up-Video: erstes Play = Show-Up-Signal (1× pro Browser) ──
         (function () {
