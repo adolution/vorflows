@@ -153,9 +153,9 @@ Seit 2026-06-13: Survey hat **6 Steps**. **Q5 = eigener Step „Welcher Shop ist
 | **`QualifiedLead`** `{score, revenue, apps, focus}` | `lw_qualified` | Nur wenn qualifiziert. **= Optimierungs-Event für Ads (CPQL).** |
 | `LW_OpenInbox` | `lw_open_inbox` | Klick "Postfach öffnen" (Double-Opt-in-Hilfe, Provider aus E-Mail-Domain erkannt) |
 | `LW_Danke_Video_Play` | `lw_danke_video_play` | Erstes Play des Show-Up-Videos (zwischen confirm-box + Survey). 1× pro Browser. Show-Up-Signal. |
-| `LW_AddToCalendar` `{type}` | `lw_calendar_google` / `lw_calendar_ics` | Kalender-Klick (Show-Up-Commitment). **Seit 2026-07-16 zwei Button-Paare in den beiden `.joinbox`-Karten** (unter dem Video + ganz unten), verdrahtet über `[data-cal="google"]` / `[data-cal="ics"]`. Gleiches Event aus beiden Karten. |
-| `LW_CopyLink` | `lw_copy_link` | Klick „Link kopieren" in einer Zugangslink-Karte (Clipboard-API, Fallback `execCommand`). |
-| `LW_JoinLink_Click` | `lw_join_link_click` | Klick direkt auf den Zugangslink in einer Zugangslink-Karte. |
+| `LW_AddToCalendar` `{type}` | `lw_calendar_google` / `lw_calendar_ics` | Kalender-Klick (Show-Up-Commitment). **Seit 2026-07-16 in der `.joinbox`-Karte ganz unten** (über dem Testimonial), verdrahtet über `[data-cal="google"]` / `[data-cal="ics"]`. |
+| `LW_CopyLink` | `lw_copy_link` | Klick „Link kopieren" in der Zugangslink-Karte (Clipboard-API, Fallback `execCommand`). |
+| `LW_JoinLink_Click` | `lw_join_link_click` | Klick direkt auf den Zugangslink in der Zugangslink-Karte. |
 
 Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
 `lw_builder`, `lw_focus`, `lw_qualified`, `lw_utm_campaign`, `lw_utm_content`.
@@ -232,17 +232,17 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
    - **Inbox-Button** zeigt Provider-Namen im Label („Gmail öffnen", „GMX öffnen" …),
      erkannt über E-Mail-Domain; unbekannte Domain → Button bleibt versteckt.
    - Scratch-Test: `node test-wj-params.mjs` (Server auf :3001 nötig).
-7a. **Zugangslink-Karten (`.joinbox`)** — seit 2026-07-16 **zwei kleine Hinweis-Karten**,
-   nicht mehr die dicke Karte ganz oben (Mail-Zustellung ist gefixt, die meisten
+7a. **Zugangslink-Karte (`.joinbox`)** — seit 2026-07-16 **eine kleine Hinweis-Karte ganz
+   unten**, nicht mehr die dicke Karte ganz oben (Mail-Zustellung ist gefixt, die meisten
    bekommen sie → oben startet wieder der DOI-Alert). Seiten-Reihenfolge:
-   DOI-Alert → Video → `.joinbox` → Umfrage/`doneCard` → `.joinbox` → Testimonial → Footer.
+   DOI-Alert → Video → Umfrage/`doneCard` → `.joinbox` → Testimonial → Footer.
    Testimonial (`.ty-quote`) steht jetzt außerhalb von `#doneCard`, also immer sichtbar;
-   die alte `cal-row` in der Success-Karte ist raus (die untere `.joinbox` ersetzt sie).
-   Inhalt je Karte: Zugangslink als Text (kopierbar, „Link kopieren"-Button, `LW_CopyLink`)
+   die alte `cal-row` in der Success-Karte ist raus (die `.joinbox` ersetzt sie).
+   Inhalt: Zugangslink als Text (kopierbar, „Link kopieren"-Button, `LW_CopyLink`)
    + beide Kalender-Buttons — Link steckt in Google-`details` + ICS-`DESCRIPTION`/`LOCATION`.
    Verdrahtung über Data-Attribute (`[data-join-link]`, `[data-join-copy]`,
-   `[data-cal="google"]`, `[data-cal="ics"]`), nicht über IDs → beide Karten automatisch
-   gleich verdrahtet, gleiche Events.
+   `[data-cal="google"]`, `[data-cal="ics"]`), nicht über IDs → weitere Karten wären
+   automatisch gleich verdrahtet.
    Link-Quelle: `joinLink = liveLink || FALLBACK_LIVE_LINK`.
    **`FALLBACK_LIVE_LINK`** = öffentlicher Raum-Link
    `https://event.webinarjam.com/3g0480/go/live/0qgn9gagi1s7s2?webinar_id=2` (greift,
