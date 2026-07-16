@@ -84,47 +84,46 @@
       }
       .wordmark .flows { font-style: italic; color: var(--accent); }
 
-      /* ---------- Zugangslink-Karte (Hauptsache ganz oben, vor allem anderen) ---------- */
+      /* ---------- Zugangslink-Karte (kleiner Hinweis, unter Video + ganz unten) ---------- */
       .joinbox {
-        margin-top: clamp(1.4rem, 4.5vw, 2.2rem);
-        padding: clamp(1.4rem, 5vw, 2rem) clamp(1.3rem, 5vw, 1.9rem) clamp(1.5rem, 5vw, 1.9rem);
-        border-radius: 20px;
+        margin-top: clamp(1.2rem, 4vw, 1.8rem);
+        padding: clamp(1.1rem, 4vw, 1.45rem) clamp(1.1rem, 4vw, 1.45rem) clamp(1.2rem, 4vw, 1.45rem);
+        border-radius: 16px;
         background: #fff;
         border: 1px solid var(--border);
-        border-top: 4px solid var(--accent);
-        box-shadow: 0 24px 48px -28px rgba(200, 99, 62, 0.35), 0 4px 12px -6px rgba(26, 26, 26, 0.08);
+        box-shadow: 0 12px 26px -20px rgba(200, 99, 62, 0.28), 0 2px 6px -4px rgba(26, 26, 26, 0.06);
       }
       .joinbox__eyebrow {
         display: inline-flex;
         align-items: center;
         gap: .5rem;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 700;
         letter-spacing: .09em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: .75rem;
+        margin-bottom: .5rem;
       }
       .joinbox__eyebrow i {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
         background: var(--accent);
-        box-shadow: 0 0 0 4px var(--accent-soft);
+        box-shadow: 0 0 0 3px var(--accent-soft);
       }
-      .joinbox h1 {
+      .joinbox__title {
         font-family: 'Fraunces', Georgia, serif;
         font-weight: 600;
-        font-size: clamp(1.5rem, 5vw, 2rem);
-        line-height: 1.16;
-        letter-spacing: -.02em;
-        margin: 0 0 .55rem;
+        font-size: clamp(1.05rem, 3.4vw, 1.25rem);
+        line-height: 1.25;
+        letter-spacing: -.015em;
+        margin: 0 0 .35rem;
       }
       .joinbox__sub {
-        font-size: 15px;
-        line-height: 1.65;
+        font-size: 13.5px;
+        line-height: 1.6;
         color: var(--text-secondary);
-        margin: 0 0 1.15rem;
+        margin: 0 0 .85rem;
       }
       .joinbox__sub strong { color: var(--text-primary); font-weight: 700; }
 
@@ -175,21 +174,21 @@
 
       .joinbox__save {
         display: flex;
-        gap: .55rem;
+        gap: .5rem;
         align-items: flex-start;
-        margin: .9rem 0 0;
-        padding: .75rem .85rem;
-        border-radius: 12px;
+        margin: .75rem 0 0;
+        padding: .6rem .75rem;
+        border-radius: 10px;
         background: var(--accent-soft);
-        font-size: 13.5px;
-        line-height: 1.55;
+        font-size: 12.5px;
+        line-height: 1.5;
         color: var(--text-primary);
       }
       .joinbox__save strong { font-weight: 700; }
 
       .joinbox__caltitle {
-        margin: 1.35rem 0 .6rem;
-        font-size: 14px;
+        margin: 1rem 0 .5rem;
+        font-size: 13px;
         font-weight: 700;
         color: var(--text-primary);
       }
@@ -589,18 +588,6 @@
       }
       .done .q-sub { max-width: 32rem; }
 
-      .cal-row {
-        margin-top: 1.2rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-      }
-      .cal-row .btn { font-size: 0.92rem; padding: 0.7rem 1.05rem; text-decoration: none; }
-      /* Beide Kalender-Optionen gleichwertig: dünne Akzent-Outline */
-      .btn-cal { background: transparent; color: var(--text-primary); border: 1px solid var(--accent); }
-      .btn-cal:hover { background: var(--accent-soft); }
-      .btn-cal:active { transform: translateY(1px); }
-      .btn-cal:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
       .ty-quote { margin: clamp(1.6rem, 5vw, 2.2rem) 0 0; max-width: 34rem; }
       .ty-quote blockquote {
@@ -656,30 +643,6 @@
     <main class="wrap">
       <a class="wordmark" href="/live-workshop">vor<span class="flows">flows</span></a>
 
-      <!-- ============ ZUGANGSLINK (das Wichtigste, ganz oben) ============ -->
-      <div class="joinbox">
-        <p class="joinbox__eyebrow"><i></i>Dein Zugang zum Live-Workshop</p>
-        <h1>Das ist dein Link in den Live-Raum.</h1>
-        <p class="joinbox__sub">Über diesen Link kommst du am <strong><span data-webinar-date>Donnerstag, 30. Juli · 11:00 Uhr</span></strong> in den Workshop. <strong>Speicher ihn dir jetzt ab.</strong></p>
-
-        <div class="joinbox__linkrow">
-          <a class="joinbox__link" id="joinLinkA" href="#" target="_blank" rel="noopener"></a>
-          <button class="joinbox__copy" type="button" id="joinCopy">Link kopieren</button>
-        </div>
-
-        <p class="joinbox__save">
-          <span aria-hidden="true">📌</span>
-          <span>Die Bestätigungs-Mail kommt bei manchen Anbietern verspätet oder gar nicht an. <strong>Mit diesem Link bist du unabhängig davon.</strong> Kopier ihn dir in Notizen, WhatsApp an dich selbst, oder trag ihn direkt in den Kalender ein.</span>
-        </p>
-
-        <p class="joinbox__caltitle">Direkt in den Kalender (Link ist im Termin drin):</p>
-        <div class="joinbox__cals">
-          <a class="joinbox__cal" id="calGoogleTop" href="#" target="_blank" rel="noopener">📅 Google Kalender</a>
-          <a class="joinbox__cal" id="calIcsTop" href="#" download="vorflows-live-workshop.ics">🗓️ Apple / Outlook (.ics)</a>
-        </div>
-        <p class="joinbox__calnote">Der Zugangslink landet automatisch in den Termin-Details, plus Erinnerung 30 Minuten vorher.</p>
-      </div>
-
       <div class="confirm-alert">
         <p class="confirm-alert__step"><span class="confirm-alert__track"><i></i></span>Schritt 1 von 2 · fast geschafft</p>
         <h1>Deine Anmeldung ist noch <em>nicht bestätigt</em><span id="helloName"></span>.</h1>
@@ -695,6 +658,30 @@
                poster="/assets/video/lw-danke-poster.webp">
           <source src="/assets/video/lw-danke-1080-v2.mp4" type="video/mp4" />
         </video>
+      </div>
+
+      <!-- ============ ZUGANGSLINK-HINWEIS (unter dem Video) ============ -->
+      <div class="joinbox">
+        <p class="joinbox__eyebrow"><i></i>Zur Sicherheit</p>
+        <p class="joinbox__title">Das ist dein Link in den Live-Raum.</p>
+        <p class="joinbox__sub">Damit kommst du am <strong><span data-webinar-date>Donnerstag, 30. Juli · 11:00 Uhr</span></strong> rein, auch wenn du die Mail gerade nicht findest.</p>
+
+        <div class="joinbox__linkrow">
+          <a class="joinbox__link" data-join-link href="#" target="_blank" rel="noopener"></a>
+          <button class="joinbox__copy" type="button" data-join-copy>Link kopieren</button>
+        </div>
+
+        <p class="joinbox__save">
+          <span aria-hidden="true">📌</span>
+          <span>Speicher ihn dir ab, oder trag ihn direkt in den Kalender ein.</span>
+        </p>
+
+        <p class="joinbox__caltitle">Termin eintragen (Link steckt im Kalendereintrag):</p>
+        <div class="joinbox__cals">
+          <a class="joinbox__cal" data-cal="google" href="#" target="_blank" rel="noopener">📅 Google Kalender</a>
+          <a class="joinbox__cal" data-cal="ics" href="#" download="vorflows-live-workshop.ics">🗓️ Apple / Outlook (.ics)</a>
+        </div>
+        <p class="joinbox__calnote">Plus Erinnerung 30 Minuten vorher.</p>
       </div>
 
       <!-- ============ SURVEY (Schritt 2 der Anmeldung) ============ -->
@@ -794,16 +781,36 @@
           Wer den Termin im Kalender hat, ist erfahrungsgemäß auch wirklich dabei.
           Und nur live siehst du jeden Schritt.
         </p>
-        <div class="cal-row">
-          <a class="btn btn-cal" id="calGoogle" href="#" target="_blank" rel="noopener">Google Kalender</a>
-          <a class="btn btn-cal" id="calIcs" href="#" download="vorflows-live-workshop.ics">Apple / Outlook (.ics)</a>
+      </section>
+
+      <!-- ============ ZUGANGSLINK + KALENDER (ganz unten, über dem Testimonial) ============ -->
+      <div class="joinbox">
+        <p class="joinbox__eyebrow"><i></i>Dein Zugang zum Live-Workshop</p>
+        <p class="joinbox__title">Link speichern, Termin eintragen.</p>
+        <p class="joinbox__sub">Am <strong><span data-webinar-date>Donnerstag, 30. Juli · 11:00 Uhr</span></strong> gehts los. Über diesen Link kommst du in den Raum.</p>
+
+        <div class="joinbox__linkrow">
+          <a class="joinbox__link" data-join-link href="#" target="_blank" rel="noopener"></a>
+          <button class="joinbox__copy" type="button" data-join-copy>Link kopieren</button>
         </div>
 
-        <figure class="ty-quote">
-          <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
-          <figcaption><span class="ty-quote-dot" aria-hidden="true"></span><span class="ty-quote-name">Stefan Kisker</span><span class="ty-quote-co">Prometheus Performance GmbH</span></figcaption>
-        </figure>
-      </section>
+        <p class="joinbox__save">
+          <span aria-hidden="true">📌</span>
+          <span>Wer den Termin im Kalender hat, ist erfahrungsgemäß auch wirklich dabei.</span>
+        </p>
+
+        <p class="joinbox__caltitle">Termin eintragen (Link steckt im Kalendereintrag):</p>
+        <div class="joinbox__cals">
+          <a class="joinbox__cal" data-cal="google" href="#" target="_blank" rel="noopener">📅 Google Kalender</a>
+          <a class="joinbox__cal" data-cal="ics" href="#" download="vorflows-live-workshop.ics">🗓️ Apple / Outlook (.ics)</a>
+        </div>
+        <p class="joinbox__calnote">Plus Erinnerung 30 Minuten vorher.</p>
+      </div>
+
+      <figure class="ty-quote">
+        <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
+        <figcaption><span class="ty-quote-dot" aria-hidden="true"></span><span class="ty-quote-name">Stefan Kisker</span><span class="ty-quote-co">Prometheus Performance GmbH</span></figcaption>
+      </figure>
 
       <div class="foot">
         <a href="/impressum-lw-b">Impressum</a>
@@ -1221,15 +1228,15 @@
           showStep(1);
         }
 
-        // ── Zugangslink oben: anzeigen + kopierbar machen ────────────
-        (function () {
-          var a = document.getElementById('joinLinkA');
-          var btn = document.getElementById('joinCopy');
-          if (!a || !btn) return;
+        // ── Zugangslink-Karten: anzeigen + kopierbar machen ──────────
+        // Zwei Karten (unter dem Video und ganz unten), identisch verdrahtet.
+        Array.prototype.forEach.call(document.querySelectorAll('[data-join-link]'), function (a) {
           a.href = joinLink;
           a.textContent = joinLink;
           a.addEventListener('click', function () { lwTrack('LW_JoinLink_Click', {}, 'lw_join_link_click'); });
+        });
 
+        Array.prototype.forEach.call(document.querySelectorAll('[data-join-copy]'), function (btn) {
           btn.addEventListener('click', function () {
             var done = function () {
               btn.textContent = 'Kopiert ✓';
@@ -1254,7 +1261,7 @@
               document.body.removeChild(t);
             }
           });
-        })();
+        });
 
         // ── Kalender-Links (Show-Up-Commitment) ──────────────────────
         // Der Zugangslink (persönlich, sonst öffentlicher Raum-Link) wandert
@@ -1283,17 +1290,12 @@
         ].join('\r\n');
         var icsHref = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
 
-        // Zwei Button-Paare: oben in der Zugangslink-Karte (vor der Umfrage)
-        // und unten in der Success-Karte. Beide identisch verdrahtet.
-        ['calGoogle', 'calGoogleTop'].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (!el) return;
+        // Kalender-Buttons in beiden Zugangslink-Karten, identisch verdrahtet.
+        Array.prototype.forEach.call(document.querySelectorAll('[data-cal="google"]'), function (el) {
           el.href = gcal;
           el.addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'google' }, 'lw_calendar_google'); });
         });
-        ['calIcs', 'calIcsTop'].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (!el) return;
+        Array.prototype.forEach.call(document.querySelectorAll('[data-cal="ics"]'), function (el) {
           el.href = icsHref;
           el.addEventListener('click', function () { lwTrack('LW_AddToCalendar', { type: 'ics' }, 'lw_calendar_ics'); });
         });
