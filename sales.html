@@ -456,6 +456,7 @@
           "about": { "@id": "https://vorflows.com/#product-bundle" },
           "mainEntity": [
             { "@type": "Question", "name": "Brauche ich Programmier-Erfahrung?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten." } },
+            { "@type": "Question", "name": "Was bekomme ich am Webinar-Tag zusätzlich?", "acceptedAnswer": { "@type": "Answer", "text": "Wer am Webinar-Tag kauft, bekommt zusätzlich eine maßgeschneiderte Live-Schulung von zwei bis drei Stunden plus einen gemeinsamen Setup-Call, 1:1. Die Schulung richtet sich nach deinem Level: Einsteiger bekommen alle Basics inklusive der wichtigsten Grundlagen zu Claude Code, Fortgeschrittene gehen in fortgeschrittene Themen und Hacks. Eine Video-Anleitung zum Selbermachen ist ohnehin dabei. Im Setup-Call prüfen wir dein Setup gemeinsam, korrigieren Fehler und richten Ausstehendes ein, bis alles perfekt auf deinen Store zugeschnitten ist. Damit die Konzentration voll da bleibt, sollte nur eine Person im Call sein, Owner oder Mitarbeiter." } },
             { "@type": "Question", "name": "Welches Claude-Abo brauche ich?", "acceptedAnswer": { "@type": "Answer", "text": "Es reicht jedes Claude-Abo, mit dem du Claude Code nutzen kannst. Wenn du wirklich viel bauen willst, lohnt sich Claude Max. Du kannst Max auch erst dann buchen, wenn du gerade aktiv viel umsetzt, und nach einem Monat wieder kündigen, sobald du das meiste aufgebaut hast. Das genaue Setup zeigen wir Schritt für Schritt im Video." } },
             { "@type": "Question", "name": "Auf welcher Infrastruktur läuft Claude bei eurem Setup?", "acceptedAnswer": { "@type": "Answer", "text": "Claude arbeitet ausschließlich an Code-Dateien, die du dir lokal auf deinen Rechner lädst. Die KI greift nicht online auf deinen Shop zu, sie sieht keine Bestellungen, keine Kundendaten und kein Backend. Gelesen werden nur die heruntergeladenen Theme-Dateien, also der Code, aus dem deine Landingpages bestehen. Genau deshalb ist das Thema Datenschutz hier deutlich entspannter als bei klassischen Shop-Apps. vorflows selbst hostet nichts. Alles läuft über deinen eigenen Claude-Account." } },
             { "@type": "Question", "name": "Ist die Nutzung DSGVO-konform?", "acceptedAnswer": { "@type": "Answer", "text": "Bestelldaten und Kundendaten aus deinem Shop werden zu keinem Zeitpunkt geteilt. Du teilst lediglich die Theme-Dateien, also den Code, aus dem deine Landingpages bestehen. In diesen Theme-Dateien können je nach Setup auch Produktinformationen enthalten sein. Wenn du vorflows für Kundenshops einsetzt, sprich das vorher kurz mit dem jeweiligen Shop-Besitzer ab. Du kannst die KI natürlich auch bitten, einen Tracking-Code einzubauen, ohne ihn im Cookie-Banner zu blockieren. Wenn du das tust, geschieht es auf eigene Verantwortung. Die Konfiguration deines Cookie-Banners prüfst du am Ende immer selbst." } },
@@ -3595,6 +3596,102 @@
         line-height: 1.5;
         color: var(--text-secondary);
       }
+      /* Bonus row highlighted inside the feature checklist */
+      .bundle-hero-features li.feat-bonus .check { color: var(--accent); }
+      .bundle-hero-features li.feat-bonus strong { color: var(--accent); }
+
+      /* ── Webinar-day live bonus: Schulung + Setup-Call ── */
+      .webinar-bonus {
+        position: relative;
+        margin: 20px 0 0;
+        padding: 40px 44px;
+        border-radius: 16px;
+        border: 1px solid rgba(200, 99, 62, 0.28);
+        background:
+          radial-gradient(130% 150% at 0% 0%, rgba(200, 99, 62, 0.11), transparent 56%),
+          linear-gradient(180deg, rgba(200, 99, 62, 0.055), rgba(255, 255, 255, 0.42));
+        overflow: hidden;
+      }
+      .webinar-bonus::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 3px;
+        background: var(--accent);
+      }
+      .webinar-bonus-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .webinar-bonus-tag::before {
+        content: "";
+        width: 7px; height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(200, 99, 62, 0.16);
+      }
+      .webinar-bonus-title {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: clamp(23px, 2.6vw, 30px);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--text-primary);
+        margin: 14px 0 8px;
+      }
+      .webinar-bonus-lead {
+        font-family: 'Inter', sans-serif;
+        font-size: 15.5px;
+        line-height: 1.62;
+        color: var(--text-secondary);
+        max-width: 62ch;
+        margin: 0 0 28px;
+      }
+      .webinar-bonus-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .webinar-bonus-item {
+        padding-top: 18px;
+        border-top: 1px solid rgba(200, 99, 62, 0.22);
+      }
+      .webinar-bonus-item-k {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+        margin-bottom: 11px;
+      }
+      .webinar-bonus-item strong {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 15.5px;
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+        margin-bottom: 7px;
+      }
+      .webinar-bonus-item p {
+        margin: 0;
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: var(--text-secondary);
+      }
+      @media (max-width: 780px) {
+        .webinar-bonus-grid { grid-template-columns: 1fr; gap: 18px; }
+      }
+      @media (max-width: 600px) {
+        .webinar-bonus { padding: 26px 22px; border-radius: 14px; margin-top: 16px; }
+        .webinar-bonus-title { font-size: 22px; margin-top: 12px; }
+        .webinar-bonus-lead { font-size: 14.5px; margin-bottom: 22px; }
+      }
 
       /* Generic smooth-expand pattern for <details data-animate> */
       details[data-animate] [data-animate-body] {
@@ -5655,6 +5752,7 @@
             <div class="bundle-hero-features">
               <div class="bundle-feat-label">Im Bundle enthalten</div>
               <ul>
+                <li class="feat-bonus"><span class="check" aria-hidden="true">★</span><div><strong>Live-Schulung + Setup-Call</strong><span>Nur am Webinar-Tag: 2 bis 3 Std 1:1, maßgeschneidert auf dein Level und deinen Store.</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>Base System</strong><span>Theme-Optimization-Workflow + kompletter Skill-Stack</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>SEOFlow</strong><span>Suchdaten-Loop für kontinuierliches Ranken</span></div></li>
                 <li><span class="check" aria-hidden="true">✓</span><div><strong>ClarityFlow</strong><span>Verhaltensdaten-Loop für CVR aus echten Sessions</span></div></li>
@@ -5664,6 +5762,29 @@
             </div>
           </div>
         </article>
+
+        <div class="webinar-bonus" data-reveal="up">
+          <span class="webinar-bonus-tag">Nur am Webinar-Tag</span>
+          <p class="webinar-bonus-title">Live-Schulung + Setup-Call mit Alex. 1:1.</p>
+          <p class="webinar-bonus-lead">Wer am Webinar-Tag kauft, bekommt zusätzlich eine maßgeschneiderte Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call. Beides genau auf dein Level und deinen Store zugeschnitten, damit am Ende wirklich alles perfekt sitzt.</p>
+          <div class="webinar-bonus-grid">
+            <div class="webinar-bonus-item">
+              <div class="webinar-bonus-item-k">01 · Schulung</div>
+              <strong>2 bis 3 Std, auf dein Level</strong>
+              <p>Einsteiger bekommen alle Basics, Fortgeschrittene gehen in fortgeschrittene Themen und Hacks. Kompletter Umgang plus Tipps und Tricks, die die Arbeit spürbar effizienter machen.</p>
+            </div>
+            <div class="webinar-bonus-item">
+              <div class="webinar-bonus-item-k">02 · Setup-Call</div>
+              <strong>Gemeinsam eingerichtet</strong>
+              <p>Die Video-Anleitung zum Selbermachen ist dabei. Im Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten Ausstehendes ein, bis alles auf deinen Store passt.</p>
+            </div>
+            <div class="webinar-bonus-item">
+              <div class="webinar-bonus-item-k">03 · 1:1 und fokussiert</div>
+              <strong>Eine Person, echte Cases</strong>
+              <p>Owner oder Mitarbeiter, eine Person im Call, damit die volle Konzentration bleibt. Wir schauen uns direkt erste Cases an deinem Store an.</p>
+            </div>
+          </div>
+        </div>
 
         <div class="delivery-card" aria-label="Inhalt und Lieferung" data-reveal="up">
           <div class="delivery-col">
@@ -5709,6 +5830,10 @@
           <details class="faq-item" data-animate data-reveal="up" open>
             <summary>Brauche ich Programmier-Erfahrung?</summary>
             <div class="faq-body">Nein. Wir haben vorflows mit Foundern ohne Coding-Background getestet. Alle haben am Ende exakt den Output bekommen, den sie haben wollten.</div>
+          </details>
+          <details class="faq-item" data-animate data-reveal="up">
+            <summary>Was bekomme ich am Webinar-Tag zusätzlich?</summary>
+            <div class="faq-body">Wer am Webinar-Tag kauft, bekommt zusätzlich eine maßgeschneiderte Live-Schulung von zwei bis drei Stunden plus einen gemeinsamen Setup-Call, 1:1. Die Schulung richtet sich nach deinem Level: Einsteiger bekommen alle Basics inklusive der wichtigsten Grundlagen zu Claude Code, Fortgeschrittene gehen in fortgeschrittene Themen und Hacks. Eine Video-Anleitung zum Selbermachen ist ohnehin dabei. Im Setup-Call prüfen wir dein Setup gemeinsam, korrigieren Fehler und richten Ausstehendes ein, bis alles perfekt auf deinen Store zugeschnitten ist. Damit die Konzentration voll da bleibt, sollte nur eine Person im Call sein, Owner oder Mitarbeiter.</div>
           </details>
           <details class="faq-item" data-animate data-reveal="up">
             <summary>Welches Claude-Abo brauche ich?</summary>
