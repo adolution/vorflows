@@ -15,7 +15,7 @@ KEIN **Content-/Warm-Up-Video** (Learning #29): Alex zeigt die Inhalte live,
 nichts davon vorab auf der Danke-Seite. **ABER** seit 2026-06-13 läuft ein
 **Show-Up-Video** (40s, **quer 16:9 1920×1080**, Alex) zwischen confirm-box und
 Survey — es verrät keinen Workshop-Inhalt, sondern treibt nur die nächste Aktion
-(Mail bestätigen → Fragen → Kalender). Subline darüber: „Damit du am **25.06. um
+(Mail bestätigen → Fragen → Kalender). Subline darüber: „Damit du am **20.08. um
 11:00 Uhr** sicher dabei bist, schau dir dieses Video an:" (Datum/Zeit unterstrichen,
 `.cue-date`). Die alte Live-Termin-Pill (`.datebar`) wurde 2026-06-13 entfernt
 (Mobile-Umbruch + redundant, Termin steht jetzt in der Subline). Assets: `assets/video/lw-danke-1080.mp4` (H.264,
@@ -186,7 +186,7 @@ Clarity-Tags (Session-Filter): `lw_experiment` (A/B), `lw_revenue`, `lw_apps`,
      vorab glasklar macht (Anti-Fake-Klick).
    - „Ja, hab ich" → `lw_qualify_yes` → weiter zu Schritt 2 (`show(2)`, **kein** WJ,
      **kein** Close).
-4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 30. Juli, 11:00 Uhr?" → der
+4. **Modal Schritt 2 = Termin-Commit** „Kannst du am 20. August, 11:00 Uhr?" (Termin zentral in `WEBINAR_DATE`) → der
    **„Ja, der Termin passt"-Button IST jetzt der WebinarJam-Trigger**
    (`.wj-embed-button` + `data-lwq-confirm` + `data-webinarHash="0qgn9gag"`): der echte
    Klick feuert `lw_commit_date`, öffnet das WJ-Registrierungs-Popup direkt und schliesst
