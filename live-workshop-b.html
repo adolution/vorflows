@@ -346,8 +346,12 @@
       font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.01em}
     .lw-quote-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto}
     .lw-quote-name{font-weight:500}
-    .lw-quote-co{color:var(--text-secondary-dark)}
+    .lw-quote-co{color:var(--text-secondary)}
+    .section-dark .lw-quote-co{color:var(--text-secondary-dark)}
     .lw-quote-co::before{content:""}
+    /* Kompakt-Variante: Proof direkt an der Behauptung, kleinere Stufe als die Buehnen-Quote */
+    .lw-quote--inline{margin:clamp(30px,4vw,46px) 0 0;max-width:640px}
+    .lw-quote--inline blockquote{font-size:clamp(19px,2.1vw,26px);line-height:1.38;margin:0 0 16px}
 
     /* ---------- Commitment-Ladder Modal ---------- */
     .lwq-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.5);backdrop-filter:blur(3px);
@@ -510,6 +514,10 @@
           </ul>
         </div>
       </div>
+      <figure class="lw-quote lw-quote--inline reveal">
+        <blockquote>Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.</blockquote>
+        <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Adrian</span><span class="lw-quote-co">Founder, Skincare D2C</span></figcaption>
+      </figure>
       <div class="inline-cta reveal">
         <p class="ic-line">Rechne live mit, was <em>weg</em> kann.</p>
         <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
