@@ -653,7 +653,7 @@
 
       <!-- ============ SHOW-UP-VIDEO (Subline exakt über Video-Breite) ============ -->
       <div class="ty-video">
-        <p class="ty-video-cue">Damit du am <span class="cue-date">20.08. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
+        <p class="ty-video-cue">Damit du am <span class="cue-date">10.09. um 11:00&nbsp;Uhr</span> sicher dabei bist, schau dir dieses Video an:</p>
         <video class="ty-video-el" id="tyVideo" controls playsinline preload="metadata"
                poster="/assets/video/lw-danke-poster.webp">
           <source src="/assets/video/lw-danke-1080-v2.mp4" type="video/mp4" />
@@ -763,7 +763,7 @@
       <div class="joinbox">
         <p class="joinbox__eyebrow"><i></i>Dein Zugang zum Live-Workshop</p>
         <p class="joinbox__title">Link speichern, Termin eintragen.</p>
-        <p class="joinbox__sub">Am <strong><span data-webinar-date>Donnerstag, 20. August · 11:00 Uhr</span></strong> gehts los. Über diesen Link kommst du in den Raum.</p>
+        <p class="joinbox__sub">Am <strong><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></strong> gehts los. Über diesen Link kommst du in den Raum.</p>
 
         <div class="joinbox__linkrow">
           <a class="joinbox__link" data-join-link href="#" target="_blank" rel="noopener"></a>
@@ -808,10 +808,10 @@
         'use strict';
 
         // ── Zentrale Termin-Konstanten (eine Stelle) ──────────────────
-        var WEBINAR_DATE_TEXT = 'Donnerstag, 20. August · 11:00 Uhr';
+        var WEBINAR_DATE_TEXT = 'Donnerstag, 10. September · 11:00 Uhr';
         var WEBINAR_TITLE = 'Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um';
-        var WEBINAR_START_UTC = '20260820T090000Z'; // 11:00 Europe/Berlin (CEST)
-        var WEBINAR_END_UTC   = '20260820T100000Z';
+        var WEBINAR_START_UTC = '20260910T090000Z'; // 11:00 Europe/Berlin (CEST)
+        var WEBINAR_END_UTC   = '20260910T100000Z';
         // Öffentlicher Live-Raum-Link (gilt für alle). Fallback, wenn WebinarJam
         // keinen persönlichen Link in der TY-URL mitgibt — die Seite MUSS oben
         // immer einen funktionierenden Zugangslink zeigen (Bestätigungs-Mails
@@ -1254,7 +1254,7 @@
         var ics = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//vorflows//live-workshop//DE',
           'BEGIN:VEVENT',
-          'UID:lw-2026-08-20@vorflows.com',
+          'UID:lw-2026-09-10@vorflows.com',
           'DTSTAMP:' + WEBINAR_START_UTC,
           'DTSTART:' + WEBINAR_START_UTC,
           'DTEND:' + WEBINAR_END_UTC,
