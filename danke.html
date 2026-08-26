@@ -293,6 +293,81 @@
         height: 100%;
         border: 0;
       }
+      /* Loom lädt erst per Klick: 4 parallele Embed-Requests liefen ins
+         Loom-Rate-Limit (weiße Frames). Facade + Direktlink als Fallback. */
+      .video .title a { color: inherit; text-decoration: none; }
+      .video .title a:hover { color: var(--accent); text-decoration: underline; }
+      .video .title a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .frame-play {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        font-family: inherit;
+        background:
+          radial-gradient(28rem 18rem at 82% -20%, rgba(200, 99, 62, 0.16), transparent 70%),
+          radial-gradient(24rem 16rem at 8% 120%, rgba(47, 111, 79, 0.08), transparent 70%),
+          #EFECE5;
+      }
+      .play-ring {
+        width: 3.4rem;
+        height: 3.4rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 10px 24px -10px rgba(200, 99, 62, 0.55);
+        transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .play-ring svg { width: 1.15rem; height: 1.15rem; margin-left: 2px; }
+      .frame-play:hover .play-ring { transform: scale(1.08); }
+      .frame-play:active .play-ring { transform: scale(0.96); }
+      .frame-play:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 0.7rem; }
+      .play-text { font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
+      .frame-ext {
+        position: absolute;
+        right: 0.7rem;
+        bottom: 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.4rem;
+      }
+      .frame-ext:hover { color: var(--accent); text-decoration: underline; }
+      .frame-ext:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .frame-fallback {
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 1rem;
+        background: #EFECE5;
+      }
+      .frame.failed .frame-fallback { display: flex; }
+      .frame-fallback p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
+      .frame-fallback a { color: var(--accent); font-weight: 600; text-decoration: underline; }
+      .frame-fallback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .frame-note {
+        margin: 0.45rem 0 0;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+      .frame-note a { color: var(--accent); font-weight: 600; text-decoration: none; }
+      .frame-note a:hover { text-decoration: underline; }
+      .frame-note a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
       .setup-steps { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
       .setup-steps p {
@@ -619,6 +694,7 @@
         .stamp, .stamp path { animation: none; }
         .stamp path { stroke-dashoffset: 0; }
         a.home { transition: none; }
+        .play-ring { transition: none; }
       }
     </style>
   </head>
@@ -689,11 +765,20 @@
           <div class="video">
             <div class="label">
               <span class="num">01</span>
-              <span class="title">BaseFlow aufsetzen</span>
+              <span class="title"><a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">BaseFlow aufsetzen</a></span>
             </div>
-            <div class="frame">
-              <iframe src="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647"
-                      loading="lazy" allowfullscreen title="BaseFlow aufsetzen"></iframe>
+            <div class="frame" data-embed="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647" data-title="BaseFlow aufsetzen">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
             </div>
           </div>
 
@@ -729,33 +814,60 @@
           <div class="video">
             <div class="label">
               <span class="num">02</span>
-              <span class="title">Erste Section bauen</span>
+              <span class="title"><a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Erste Section bauen</a></span>
             </div>
-            <div class="frame">
-              <iframe src="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217"
-                      loading="lazy" allowfullscreen title="Erste Section bauen"></iframe>
+            <div class="frame" data-embed="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217" data-title="Erste Section bauen">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
             </div>
           </div>
 
           <div class="video">
             <div class="label">
               <span class="num">03</span>
-              <span class="title">Suchdaten &amp; Klickdaten verbinden</span>
+              <span class="title"><a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Suchdaten &amp; Klickdaten verbinden</a></span>
             </div>
-            <div class="frame">
-              <iframe src="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4"
-                      loading="lazy" allowfullscreen title="Suchdaten und Klickdaten verbinden"></iframe>
+            <div class="frame" data-embed="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4" data-title="Suchdaten und Klickdaten verbinden">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
             </div>
           </div>
 
           <div class="video">
             <div class="label">
               <span class="num">04</span>
-              <span class="title">GitHub verbinden &amp; in Shopify einrichten</span>
+              <span class="title"><a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">GitHub verbinden &amp; in Shopify einrichten</a></span>
             </div>
-            <div class="frame">
-              <iframe src="https://www.loom.com/embed/49026af0a5014f6486c1225bc63c0c30?hideEmbedTopBar=true&hide_owner=true"
-                      loading="lazy" allowfullscreen title="GitHub verbinden und in Shopify einrichten"></iframe>
+            <div class="frame" data-embed="https://www.loom.com/embed/49026af0a5014f6486c1225bc63c0c30?hideEmbedTopBar=true&hide_owner=true" data-title="GitHub verbinden und in Shopify einrichten">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
             </div>
           </div>
         </div>
@@ -816,6 +928,42 @@
          (Webinar-Attribution). Bei Pixel-Wechsel hier austauschen. Doku/Merker:
          memory project_wj_sale_pixel_danke.md -->
     <script src="https://event.webinarjam.com/t/sale/0qgn9gagi1/v2?price=0.00&currency=USD"></script>
+
+    <script>
+      // Loom-Embeds erst per Klick laden. Grund: 4 gleichzeitige Embed-Requests
+      // liefen in Looms Rate-Limit, einzelne Frames blieben weiß. Die Facade lädt
+      // genau ein Video pro Klick; kommt das Embed trotzdem nicht (Blocker,
+      // Netzwerk), erscheint nach 7s der Loom-Direktlink als Fallback.
+      document.querySelectorAll('.frame[data-embed]').forEach(function (frame) {
+        var btn = frame.querySelector('.frame-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var src = frame.getAttribute('data-embed');
+          var iframe = document.createElement('iframe');
+          iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.title = frame.getAttribute('data-title') || 'Tutorial-Video';
+          var loaded = false;
+          iframe.addEventListener('load', function () { loaded = true; });
+          setTimeout(function () {
+            if (!loaded) frame.classList.add('failed');
+          }, 7000);
+          frame.appendChild(iframe);
+          btn.remove();
+          var ext = frame.querySelector('.frame-ext');
+          if (ext) ext.remove();
+          // Loom-Fehlseiten feuern trotzdem 'load' → Ausfall ist von außen nicht
+          // sicher erkennbar. Deshalb steht der Direktlink nach dem Klick immer da.
+          var share = frame.querySelector('.frame-fallback a');
+          if (share) {
+            var note = document.createElement('p');
+            note.className = 'frame-note';
+            note.innerHTML = 'Video lädt nicht? <a href="' + share.href + '" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>';
+            frame.insertAdjacentElement('afterend', note);
+          }
+        });
+      });
+    </script>
 
     <script>
       // Copy-Buttons in den Befehl-Boxen (Installations-Hilfe)
