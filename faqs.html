@@ -214,6 +214,23 @@
         margin-bottom: 0.35rem;
       }
       .prompt p { margin: 0; color: var(--text-primary); font-size: 0.93rem; line-height: 1.55; }
+      .prompt p + p { margin-top: 0.6rem; }
+      .prompt-copy {
+        margin-top: 0.75rem;
+        padding: 0.45rem 0.95rem;
+        font-family: inherit;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: #fff;
+        background: var(--accent);
+        border: 0;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.16s ease, transform 0.16s ease;
+      }
+      .prompt-copy:hover { background: var(--accent-hover); }
+      .prompt-copy:active { transform: scale(0.97); }
+      .prompt-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
       code.inline {
         background: var(--accent-soft);
@@ -268,7 +285,7 @@
       .support a:hover { text-decoration: underline; }
 
       @media (prefers-reduced-motion: reduce) {
-        a.home, .acc .chev { transition: none; }
+        a.home, .acc .chev, .prompt-copy { transition: none; }
       }
     </style>
   </head>
@@ -340,6 +357,36 @@
           <div class="acc-body">
             <p>Besser nicht. Cloud-Ordner wie OneDrive synchronisieren ständig und sperren Dateien kurzzeitig, während Claude arbeitet. Das kann zu Lese- oder Cache-Fehlern führen.</p>
             <p>Leg das Projekt in einen normalen lokalen Ordner (z.&nbsp;B. unter „Dokumente"). Sichern darfst du es natürlich trotzdem, nur nicht direkt im aktiven Arbeitsordner synchronisieren lassen.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Einrichtung</span>
+            Wie richte ich einen zweiten oder dritten Shop ein?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Pro Shop ein eigener Projekt-Ordner. Du duplizierst dein bestehendes Setup und lässt Claude die Kopie auf den neuen Shop umstellen:</p>
+            <ol class="steps">
+              <li><strong>Projekt-Ordner duplizieren.</strong> Den Ordner, in dem du gerade arbeitest, an seinem Speicherort kopieren und wieder einfügen. Weißt du Name oder Ort nicht mehr: In VS&nbsp;Code oben links auf das Explorer-Symbol (Datei-Symbol) klicken, dort steht der Ordner-Name. Über einen Rechtsklick auf eine Datei und „Im Finder anzeigen" (Mac) bzw. „Im Explorer anzeigen" (Windows) findest du den Speicherort.</li>
+              <li><strong>Kopie sofort umbenennen,</strong> am besten in den Namen des neuen Shops (z.&nbsp;B. „Shop-Claude"), damit du die Ordner auseinanderhalten kannst.</li>
+              <li><strong>Neues Theme herunterladen.</strong> Das Theme des neuen Shops aus Shopify exportieren und einfach im Downloads-Ordner liegen lassen. Erst danach weitermachen, der Prompt unten erwartet es dort.</li>
+              <li><strong>Duplizierten Ordner öffnen.</strong> VS&nbsp;Code starten, dann File → Open Folder und den umbenannten Ordner auswählen. Darin stecken noch das alte Theme und die alten Verbindungen, genau das räumt der nächste Schritt auf.</li>
+              <li><strong>Prompt einfügen.</strong> Den folgenden Prompt kopieren, in Claude Code einfügen und abschicken. Claude richtet den Workspace komplett auf den neuen Shop ein und führt dich durch die restlichen Schritte.
+                <div class="prompt">
+                  <span class="plabel">Prompt zum Kopieren</span>
+                  <p>Dieser Workspace ist eine Kopie und war für einen anderen Shop von mir eingerichtet. Ich möchte ihn jetzt für einen neuen Shop nutzen. Die alten Theme-Dateien und die alte GitHub-Verbindung brauche ich in meinem anderen Workspace, aber nicht hier.</p>
+                  <p>Das neue Theme liegt in meinem Downloads-Ordner. Bitte nimm dieses Theme und richte den Workspace darauf ein. Entferne alle Rückstände des alten Themes aus diesem Ordner. Setze auch deine eigenen Dateien einmal zurück und passe sie neu auf dieses Theme an. Prüfe dabei die md-Dateien auf theme-spezifische Inhalte des alten Shops und mach sie rückgängig, damit wir hier mit dem frischen Theme und dem frischen Shop arbeiten.</p>
+                  <p>Lege bei GitHub ein neues Repository mit einem Staging-Branch und einem Main-Branch an, spiele das neue Theme dort ein und hinterlege in deiner claude.md, dass wir in diesem Workspace an dem neuen Theme arbeiten.</p>
+                  <p>Prüfe für die Google Search Console, ob du Zugriff auf die Property dieser Shop-URL hast. Wenn nicht, führe mich Schritt für Schritt durch, wie ich dir Zugriff gebe, zum Beispiel indem ich den Benutzer oder Account, auf den du aktuell Zugriff hast, im neuen Konto als Administrator oder Mitarbeiter hinzufüge.</p>
+                  <p>Führe mich außerdem durch die Einrichtung von Microsoft Clarity, damit ich auch für diesen Shop auf die Verhaltensdaten zugreifen kann. Weise mich bei Bedarf auf das Video auf der Danke-Seite hin, das die Installation der Verhaltensdaten zeigt: vorflows.com/danke</p>
+                  <p>Erkläre mir zum Schluss, dass ich den Token unter Datenexport bei Microsoft Clarity jedes Mal wechseln muss, je nachdem, an welchem Shop ich gerade arbeite. Das ist der einzige manuelle Schritt, wenn ich Daten von verschiedenen Shops abfragen will. Kennst du einen besseren Weg, führe mich durch den.</p>
+                  <button type="button" class="prompt-copy">Prompt kopieren</button>
+                </div>
+              </li>
+            </ol>
+            <p class="tip">Der Clarity-Token unter <strong>Datenexport</strong> bleibt der einzige Handgriff, den du bei jedem Shop-Wechsel manuell machst. Alles andere ist nach dieser Einrichtung dauerhaft getrennt.</p>
           </div>
         </details>
 
@@ -538,5 +585,38 @@
         </p>
       </div>
     </main>
+
+    <script>
+      // "Prompt kopieren": kopiert alle Absätze der zugehörigen Prompt-Box
+      document.querySelectorAll('.prompt-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var ps = btn.parentElement.querySelectorAll('p');
+          var text = Array.prototype.map
+            .call(ps, function (p) { return p.textContent.trim(); })
+            .join('\n\n');
+          function done() {
+            var prev = btn.textContent;
+            btn.textContent = 'Kopiert';
+            setTimeout(function () { btn.textContent = prev; }, 1400);
+          }
+          function legacyCopy() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { if (document.execCommand('copy')) done(); } catch (e) {}
+            ta.remove();
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, legacyCopy);
+          } else {
+            legacyCopy();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
