@@ -122,7 +122,38 @@
         font-size: 1.05rem;
       }
 
-      .acc-list { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
+      .cat-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 1.4rem 0 0;
+      }
+      .cat-nav a {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #fff;
+        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+      .cat-nav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
+      .cat-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .faq-group { margin: clamp(2.25rem, 6vw, 3rem) 0 0; scroll-margin-top: 1.25rem; }
+      .faq-group h2 {
+        margin: 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: 1.35rem;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .group-sub { margin: 0.3rem 0 1rem; font-size: 0.9rem; color: var(--text-secondary); }
 
       .acc {
         background: #fff;
@@ -311,11 +342,206 @@
         Schreib mir, dann nehme ich es hier auf.
       </p>
 
-      <div class="acc-list">
+      <nav class="cat-nav" aria-label="FAQ-Kategorien">
+        <a href="#arbeiten">Täglich arbeiten</a>
+        <a href="#projekte">Projekte &amp; md-Dateien</a>
+        <a href="#connector">Shopify-Connector</a>
+        <a href="#updates">Updates &amp; weitere Shops</a>
+      </nav>
+
+      <section class="faq-group" id="arbeiten">
+        <h2>Täglich mit Claude arbeiten</h2>
+        <p class="group-sub">Modelle, Kontextfenster, Screenshots und Feedback.</p>
 
         <details class="acc">
           <summary>
-            <span class="acc-tag">Updates</span>
+            Welches Claude-Modell nehme ich wofür?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p><strong>Opus</strong> ist dein Standard: Code schreiben, tägliche Aufgaben, auch Planen. Es hat das beste Verhältnis aus Leistung und Kosten.</p>
+            <p><strong>Sonnet</strong> führt fertige Pläne und Routineaufgaben aus. Stößt Sonnet an Grenzen, wechsle zu Opus.</p>
+            <p><strong>Fable</strong> nimmst du nur für sehr komplexe Planung. Es verbraucht dein Session-Limit deutlich schneller, danach heißt es warten.</p>
+            <p><strong>Haiku</strong> lässt du weg, die Output-Qualität reicht nicht.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Mit Opus planen, mit Sonnet ausführen: wie geht das?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <ol class="steps">
+              <li><strong>Opus um einen Plan bitten.</strong> Zum Beispiel: „Erstelle mir eine SEO-Strategie als md-Datei." Auch längere, vorbereitende Prompts funktionieren so.</li>
+              <li><strong>Plan speichern lassen.</strong> Opus legt die Strategie als md-Datei im Projekt ab.</li>
+              <li><strong>Zu Sonnet wechseln</strong> und den Plan aus der md-Datei ausführen lassen.</li>
+            </ol>
+            <p class="tip">So denkt das starke Modell und das günstige arbeitet ab. Dein Session-Limit hält deutlich länger.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Warum werden Antworten in langen Chats schlechter?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Claude hat ein Kontextfenster: Vor jeder Antwort liest es den ganzen bisherigen Chat neu. Je länger der Chat, desto mehr Tokens kostet das. Die Folge: Dein Session-Limit ist schneller voll und die Antworten werden mit der Zeit schlechter.</p>
+            <ol class="steps">
+              <li><strong>Neue Session starten,</strong> sobald eine Aufgabe fertig ist oder du etwas Neues beginnst.</li>
+              <li><strong><code class="inline">/compact</code> nutzen.</strong> Bei langen Aufgaben an Zwischenschritten eingeben. Claude fasst das Wichtigste zusammen und gibt Tokens frei.</li>
+            </ol>
+            <p class="tip">Unten im Chat erscheint irgendwann ein oranger Halbkreis. Beim Drüberfahren siehst du den Füllstand. Ab 40 bis 50 Prozent draufklicken, dann startet der automatische Compact.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wie zeige ich Claude am besten, was ich meine?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Mit Screenshots, das geht schneller als beschreiben. Gefällt dir etwas nicht oder willst du erklären, wie etwas aussehen soll:</p>
+            <ol class="steps">
+              <li><strong>Screenshot ablegen.</strong> In der Seitenleiste in den Projekt-Ordner ziehen oder einfach im Download-Ordner lassen.</li>
+              <li><strong>Claude darauf zeigen.</strong>
+                <div class="prompt">
+                  <span class="plabel">Beispiel-Prompt</span>
+                  <p>„Schau dir den letzten Screenshot in meinem Download-Ordner an. Da passt mir XY nicht, bitte ändere das."</p>
+                </div>
+              </li>
+              <li><strong>Desktop und Handy prüfen.</strong> Fürs Handy: Staging-Theme öffnen, in der grauen Bar unten auf das Link-Symbol klicken und dir den Link aufs Handy schicken. Passt dort etwas nicht, Handy-Screenshot an den PC senden und Claude zeigen.</li>
+            </ol>
+            <p class="tip">Du kannst auf dem Screenshot auch <strong>rot umkreisen, Pfeile ziehen oder unterstreichen</strong>. Claude liest solche Markierungen mit aus.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Claude macht etwas, das mir nicht gefällt. Was tun?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Sag es direkt im Chat: „Das gefällt mir nicht, merk dir das bitte." Claude speichert den Hinweis in der memory.md und macht denselben Fehler nicht noch mal. Das geht auch für den Ton: „Fasse dich in Zukunft kürzer."</p>
+            <p>Nutze das für Dinge, die öfter passieren oder dir wirklich wichtig sind, damit die memory.md nicht überlädt.</p>
+            <p class="tip">Das Setup lernt mit. In Woche eins dauert manches noch, ab Woche zwei bis drei sitzt vieles auf Anhieb so, wie du es dir vorstellst.</p>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="faq-group" id="projekte">
+        <h2>Projekte und md-Dateien</h2>
+        <p class="group-sub">Wie dein Workspace aufgebaut ist und sauber bleibt.</p>
+
+        <details class="acc">
+          <summary>
+            Wofür sind die vielen md-Dateien im Projekt?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Es gibt drei Sorten:</p>
+            <p><strong>Kontext-Dateien</strong> wie <code class="inline">seo-aufbauplan.md</code> speichern Wissen über deinen Shop und dein Projekt. Du kannst Claude jederzeit neue anlegen lassen: „Erstelle mir aus diesem Kontext eine md-Datei."</p>
+            <p><strong>claude.md</strong> ist das Gehirn des Projekts. Sie regelt, wie gearbeitet wird und welche md-Datei wann genutzt wird. Pro Projekt gibt es genau eine.</p>
+            <p><strong>Skills</strong> sind Anleitungen für konkrete Aufgaben, etwa technisches SEO oder Marketing-Psychologie. Sie aktivieren sich automatisch, sobald deine Aufgabe in die Richtung geht.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wie starte ich ein neues Projekt?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <ol class="steps">
+              <li><strong>Neuen Ordner anlegen</strong> und in VS&nbsp;Code öffnen.</li>
+              <li><strong>Beschreiben, was du vorhast.</strong> Kurz reicht.</li>
+              <li><strong>Architektur bauen lassen.</strong>
+                <div class="prompt">
+                  <span class="plabel">Beispiel-Prompt</span>
+                  <p>„Erstelle mir die komplette Architektur inklusive claude.md."</p>
+                </div>
+              </li>
+            </ol>
+            <p class="tip"><strong>Projekte strikt trennen.</strong> Alles in einen Ordner zu werfen macht die Ergebnisse schlechter.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Muss ich Skills selbst aktivieren?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Nein. Skills starten automatisch, eine grobe Richtung im Prompt reicht. „Optimiere den Text marketingpsychologisch" aktiviert den Marketing-Psychology-Skill, „Optimiere die Seite technisch für SEO" den SEO-Skill.</p>
+            <p>Du kannst dir die Skill-Dateien anschauen, um zu verstehen, was es gibt. Nötig ist das nicht.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wie wechsle ich zwischen mehreren Projekten?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>In VS&nbsp;Code über <strong>File → Open Folder</strong> den gewünschten Projektordner öffnen. Nach ein paar Wechseln geht es schneller über <strong>File → Open Recent</strong>.</p>
+            <p class="tip">Einen einmal angelegten Projektordner <strong>nicht umbenennen oder verschieben</strong>, sonst findet VS&nbsp;Code ihn beim nächsten Öffnen nicht mehr.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Sollte das Projekt in OneDrive oder einer Cloud liegen?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Besser nicht. Cloud-Ordner wie OneDrive synchronisieren ständig und sperren Dateien kurzzeitig, während Claude arbeitet. Das kann zu Lese- oder Cache-Fehlern führen.</p>
+            <p>Leg das Projekt in einen normalen lokalen Ordner (z.&nbsp;B. unter „Dokumente"). Sichern darfst du es natürlich trotzdem, nur nicht direkt im aktiven Arbeitsordner synchronisieren lassen.</p>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="faq-group" id="connector">
+        <h2>Shopify-Connector</h2>
+        <p class="group-sub">Wann verbinden, wann trennen und wie genau.</p>
+
+        <details class="acc">
+          <summary>
+            Wann verbinde ich den Shopify-Connector, wann trenne ich ihn?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Nur für gezielte, größere Aufgaben verbinden, zum Beispiel alle Meta-Beschreibungen in einer Session überarbeiten. Danach direkt wieder trennen, das senkt das Sicherheitsrisiko. Verbinden und Trennen geht beliebig oft.</p>
+            <p>Nach dem Verbinden VS&nbsp;Code einmal schließen und neu öffnen, erst dann ist der Connector geladen.</p>
+            <p class="tip">Auch mit Connector immer im vorflows-Setup in VS&nbsp;Code weiterarbeiten. Ohne das System führt der Connector Aufgaben ohne deinen Kontext und ohne die Skills aus.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wie verbinde und trenne ich den Connector konkret?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <ol class="steps">
+              <li><strong>Claude Desktop öffnen.</strong> Falls noch nicht installiert, zuerst die Desktop-App installieren.</li>
+              <li><strong>Auf „Anpassen" klicken,</strong> dann auf „Konnektoren".</li>
+              <li><strong>Noch kein Shopify-Connector?</strong> Auf die Lupe klicken, „Shopify" suchen und hinzufügen.</li>
+              <li><strong>Schon vorhanden?</strong> In der Liste steht er als „verbunden" oder „nicht verbunden". Anklicken und je nach Bedarf verbinden oder trennen.</li>
+            </ol>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="faq-group" id="updates">
+        <h2>Updates und weitere Shops</h2>
+        <p class="group-sub">Theme-Updates, Produkt-Updates und das Setup für Shop Nummer zwei.</p>
+
+        <details class="acc">
+          <summary>
             Was passiert bei einem Theme-Update?
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </summary>
@@ -338,7 +564,6 @@
 
         <details class="acc">
           <summary>
-            <span class="acc-tag">Updates</span>
             Bekomme ich kommende Updates?
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </summary>
@@ -350,19 +575,6 @@
 
         <details class="acc">
           <summary>
-            <span class="acc-tag">Einrichtung</span>
-            Sollte das Projekt in OneDrive oder einer Cloud liegen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Besser nicht. Cloud-Ordner wie OneDrive synchronisieren ständig und sperren Dateien kurzzeitig, während Claude arbeitet. Das kann zu Lese- oder Cache-Fehlern führen.</p>
-            <p>Leg das Projekt in einen normalen lokalen Ordner (z.&nbsp;B. unter „Dokumente"). Sichern darfst du es natürlich trotzdem, nur nicht direkt im aktiven Arbeitsordner synchronisieren lassen.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Einrichtung</span>
             Wie richte ich einen zweiten oder dritten Shop ein?
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </summary>
@@ -390,190 +602,19 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Modelle</span>
-            Welches Claude-Modell nehme ich wofür?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p><strong>Opus</strong> ist dein Standard: Code schreiben, tägliche Aufgaben, auch Planen. Es hat das beste Verhältnis aus Leistung und Kosten.</p>
-            <p><strong>Sonnet</strong> führt fertige Pläne und Routineaufgaben aus. Stößt Sonnet an Grenzen, wechsle zu Opus.</p>
-            <p><strong>Fable</strong> nimmst du nur für sehr komplexe Planung. Es verbraucht dein Session-Limit deutlich schneller, danach heißt es warten.</p>
-            <p><strong>Haiku</strong> lässt du weg, die Output-Qualität reicht nicht.</p>
-          </div>
-        </details>
+      </section>
 
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Modelle</span>
-            Mit Opus planen, mit Sonnet ausführen: wie geht das?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <ol class="steps">
-              <li><strong>Opus um einen Plan bitten.</strong> Zum Beispiel: „Erstelle mir eine SEO-Strategie als md-Datei." Auch längere, vorbereitende Prompts funktionieren so.</li>
-              <li><strong>Plan speichern lassen.</strong> Opus legt die Strategie als md-Datei im Projekt ab.</li>
-              <li><strong>Zu Sonnet wechseln</strong> und den Plan aus der md-Datei ausführen lassen.</li>
-            </ol>
-            <p class="tip">So denkt das starke Modell und das günstige arbeitet ab. Dein Session-Limit hält deutlich länger.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">md-Dateien</span>
-            Wofür sind die vielen md-Dateien im Projekt?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Es gibt drei Sorten:</p>
-            <p><strong>Kontext-Dateien</strong> wie <code class="inline">seo-aufbauplan.md</code> speichern Wissen über deinen Shop und dein Projekt. Du kannst Claude jederzeit neue anlegen lassen: „Erstelle mir aus diesem Kontext eine md-Datei."</p>
-            <p><strong>claude.md</strong> ist das Gehirn des Projekts. Sie regelt, wie gearbeitet wird und welche md-Datei wann genutzt wird. Pro Projekt gibt es genau eine.</p>
-            <p><strong>Skills</strong> sind Anleitungen für konkrete Aufgaben, etwa technisches SEO oder Marketing-Psychologie. Sie aktivieren sich automatisch, sobald deine Aufgabe in die Richtung geht.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">md-Dateien</span>
-            Wie starte ich ein neues Projekt?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <ol class="steps">
-              <li><strong>Neuen Ordner anlegen</strong> und in VS&nbsp;Code öffnen.</li>
-              <li><strong>Beschreiben, was du vorhast.</strong> Kurz reicht.</li>
-              <li><strong>Architektur bauen lassen.</strong>
-                <div class="prompt">
-                  <span class="plabel">Beispiel-Prompt</span>
-                  <p>„Erstelle mir die komplette Architektur inklusive claude.md."</p>
-                </div>
-              </li>
-            </ol>
-            <p class="tip"><strong>Projekte strikt trennen.</strong> Alles in einen Ordner zu werfen macht die Ergebnisse schlechter.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Skills</span>
-            Muss ich Skills selbst aktivieren?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Nein. Skills starten automatisch, eine grobe Richtung im Prompt reicht. „Optimiere den Text marketingpsychologisch" aktiviert den Marketing-Psychology-Skill, „Optimiere die Seite technisch für SEO" den SEO-Skill.</p>
-            <p>Du kannst dir die Skill-Dateien anschauen, um zu verstehen, was es gibt. Nötig ist das nicht.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Connector</span>
-            Wann verbinde ich den Shopify-Connector, wann trenne ich ihn?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Nur für gezielte, größere Aufgaben verbinden, zum Beispiel alle Meta-Beschreibungen in einer Session überarbeiten. Danach direkt wieder trennen, das senkt das Sicherheitsrisiko. Verbinden und Trennen geht beliebig oft.</p>
-            <p>Nach dem Verbinden VS&nbsp;Code einmal schließen und neu öffnen, erst dann ist der Connector geladen.</p>
-            <p class="tip">Auch mit Connector immer im vorflows-Setup in VS&nbsp;Code weiterarbeiten. Ohne das System führt der Connector Aufgaben ohne deinen Kontext und ohne die Skills aus.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Connector</span>
-            Wie verbinde und trenne ich den Connector konkret?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <ol class="steps">
-              <li><strong>Claude Desktop öffnen.</strong> Falls noch nicht installiert, zuerst die Desktop-App installieren.</li>
-              <li><strong>Auf „Anpassen" klicken,</strong> dann auf „Konnektoren".</li>
-              <li><strong>Noch kein Shopify-Connector?</strong> Auf die Lupe klicken, „Shopify" suchen und hinzufügen.</li>
-              <li><strong>Schon vorhanden?</strong> In der Liste steht er als „verbunden" oder „nicht verbunden". Anklicken und je nach Bedarf verbinden oder trennen.</li>
-            </ol>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Kontext</span>
-            Warum werden Antworten in langen Chats schlechter?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Claude hat ein Kontextfenster: Vor jeder Antwort liest es den ganzen bisherigen Chat neu. Je länger der Chat, desto mehr Tokens kostet das. Die Folge: Dein Session-Limit ist schneller voll und die Antworten werden mit der Zeit schlechter.</p>
-            <ol class="steps">
-              <li><strong>Neue Session starten,</strong> sobald eine Aufgabe fertig ist oder du etwas Neues beginnst.</li>
-              <li><strong><code class="inline">/compact</code> nutzen.</strong> Bei langen Aufgaben an Zwischenschritten eingeben. Claude fasst das Wichtigste zusammen und gibt Tokens frei.</li>
-            </ol>
-            <p class="tip">Unten im Chat erscheint irgendwann ein oranger Halbkreis. Beim Drüberfahren siehst du den Füllstand. Ab 40 bis 50 Prozent draufklicken, dann startet der automatische Compact.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">VS Code</span>
-            Wie wechsle ich zwischen mehreren Projekten?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>In VS&nbsp;Code über <strong>File → Open Folder</strong> den gewünschten Projektordner öffnen. Nach ein paar Wechseln geht es schneller über <strong>File → Open Recent</strong>.</p>
-            <p class="tip">Einen einmal angelegten Projektordner <strong>nicht umbenennen oder verschieben</strong>, sonst findet VS&nbsp;Code ihn beim nächsten Öffnen nicht mehr.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Screenshots</span>
-            Wie zeige ich Claude am besten, was ich meine?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Mit Screenshots, das geht schneller als beschreiben. Gefällt dir etwas nicht oder willst du erklären, wie etwas aussehen soll:</p>
-            <ol class="steps">
-              <li><strong>Screenshot ablegen.</strong> In der Seitenleiste in den Projekt-Ordner ziehen oder einfach im Download-Ordner lassen.</li>
-              <li><strong>Claude darauf zeigen.</strong>
-                <div class="prompt">
-                  <span class="plabel">Beispiel-Prompt</span>
-                  <p>„Schau dir den letzten Screenshot in meinem Download-Ordner an. Da passt mir XY nicht, bitte ändere das."</p>
-                </div>
-              </li>
-              <li><strong>Desktop und Handy prüfen.</strong> Fürs Handy: Staging-Theme öffnen, in der grauen Bar unten auf das Link-Symbol klicken und dir den Link aufs Handy schicken. Passt dort etwas nicht, Handy-Screenshot an den PC senden und Claude zeigen.</li>
-            </ol>
-            <p class="tip">Du kannst auf dem Screenshot auch <strong>rot umkreisen, Pfeile ziehen oder unterstreichen</strong>. Claude liest solche Markierungen mit aus.</p>
-          </div>
-        </details>
-
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Feedback</span>
-            Claude macht etwas, das mir nicht gefällt. Was tun?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Sag es direkt im Chat: „Das gefällt mir nicht, merk dir das bitte." Claude speichert den Hinweis in der memory.md und macht denselben Fehler nicht noch mal. Das geht auch für den Ton: „Fasse dich in Zukunft kürzer."</p>
-            <p>Nutze das für Dinge, die öfter passieren oder dir wirklich wichtig sind, damit die memory.md nicht überlädt.</p>
-            <p class="tip">Das Setup lernt mit. In Woche eins dauert manches noch, ab Woche zwei bis drei sitzt vieles auf Anhieb so, wie du es dir vorstellst.</p>
-          </div>
-        </details>
-
-        <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block kopieren, Titel/Text anpassen.
-        <details class="acc">
-          <summary>
-            <span class="acc-tag">Kategorie</span>
-            Kurze Frage als Titel
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
-            <p>Antwort hier.</p>
-          </div>
-        </details>
-        -->
-
-      </div>
-
+      <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block in die passende .faq-group kopieren, Titel/Text anpassen.
+      <details class="acc">
+        <summary>
+          Kurze Frage als Titel
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+        </summary>
+        <div class="acc-body">
+          <p>Antwort hier.</p>
+        </div>
+      </details>
+      -->
       <hr class="divider" />
 
       <div class="foot">
