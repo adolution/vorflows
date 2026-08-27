@@ -507,6 +507,56 @@ Rote Meldung „exited with code 1" und „You must run claude in the terminal t
           </div>
         </details>
 
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Einrichtung</span>
+            „Restricted Mode": Claude arbeitet im Ordner nicht
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Beim ersten Öffnen eines Ordners zeigt VS&nbsp;Code oben einen Balken mit <strong>„Restricted Mode"</strong> und dem Hinweis, dass Code hier nur eingeschränkt ausgeführt wird. Solange das steht, kannst du Claude in diesem Ordner nicht richtig nutzen.</p>
+            <ol class="steps">
+              <li><strong>Auf „Manage" klicken</strong> im Balken oben.</li>
+              <li><strong>Ordner freigeben.</strong> Die linke Option wählen: <strong>„Trust this folder"</strong> beziehungsweise „Yes, I trust the authors".</li>
+              <li><strong>Fenster schließen.</strong> Danach links auf das Claude-Symbol und eine neue Session starten.</li>
+            </ol>
+            <p class="tip">Das machst du pro Projektordner genau einmal. Legst du später einen zweiten Shop als Kopie an, kommt die Abfrage für den neuen Ordner noch einmal.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Shopify</span>
+            Theme-Export: die E-Mail hat keinen Download-Button
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Du exportierst dein Theme über <strong>Onlineshop → Themes</strong>, die drei Punkte am Theme und dann <strong>Theme-Datei herunterladen → E-Mail senden</strong>. Zwei Dinge irritieren dabei regelmäßig:</p>
+            <ol class="steps">
+              <li><strong>Die Mail kommt nicht sofort.</strong> Ein bis zwei Minuten sind normal. Kommt gar nichts an, prüf den Spam-Ordner.</li>
+              <li><strong>Es gibt keinen Button.</strong> In der Mail steht nur der blau markierte Text <strong>„ThemeExport"</strong>. Genau das ist der Download-Link, auch wenn nirgends „Download" steht.</li>
+            </ol>
+            <p class="tip">Die heruntergeladene Datei musst du weder öffnen noch entpacken noch verschieben. Lass sie im Downloads-Ordner liegen, Claude holt sie sich von dort.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            <span class="acc-tag">Arbeiten</span>
+            Claude bietet nur Optionen an, bei denen ich selbst klicken muss
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Manchmal legt Claude dir eine Auswahl mit mehreren Vorgehensweisen vor, und alle bedeuten Handarbeit für dich. Du musst keine davon nehmen.</p>
+            <ol class="steps">
+              <li><strong>„Other" wählen.</strong> Die Option steht unten in der Auswahlliste und lässt dich frei antworten.</li>
+              <li><strong>Klartext schreiben.</strong> Zum Beispiel: „Das muss automatisch funktionieren. Ich will nichts manuell klicken. Finde einen Weg, wie du das selbst erledigst."</li>
+              <li><strong>Abschicken.</strong> In den meisten Fällen sucht sich Claude danach einen automatischen Weg.</li>
+            </ol>
+            <p class="tip">Bleibt Claude dabei, dass es nicht ohne dich geht, fehlt ihm oft nur ein Zugang: der Shopify-Connector, ein Token oder eine Berechtigung. Frag direkt nach: „Was genau brauchst du von mir, damit du es selbst machen kannst?"</p>
+          </div>
+        </details>
+
         <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block kopieren, Titel/Text anpassen.
         <details class="acc">
           <summary>
@@ -523,9 +573,12 @@ Rote Meldung „exited with code 1" und „You must run claude in the terminal t
       </div>
 
       <div class="helpbox">
-        <strong>Hilft dir diese Seite nicht weiter?</strong> Schreib mir direkt an
+        <strong>Steckst du fest? Melde dich lieber sofort.</strong>
+        Wenn du zwei Stunden probierst, ist das meistens genau die Zeit, in der ich dir in einer
+        Minute hätte antworten können. Schreib mir an
         <a href="mailto:alex@adolution.de?subject=Hilfe%20bei%20Fehlern%20%E2%80%93%20vorflows">alex@adolution.de</a>
-        und beschreib kurz die Fehlermeldung, gern mit Screenshot. Ich helfe dir weiter.
+        oder per WhatsApp an die Nummer aus meiner E-Mail-Signatur. Ein Screenshot oder ein Foto
+        vom Bildschirm reicht völlig, dazu ein Satz, wo du gerade stehst.
       </div>
 
       <hr class="divider" />

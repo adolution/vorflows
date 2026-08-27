@@ -344,7 +344,9 @@
 
       <nav class="cat-nav" aria-label="FAQ-Kategorien">
         <a href="#arbeiten">Täglich arbeiten</a>
+        <a href="#limits">Limits &amp; Account</a>
         <a href="#projekte">Projekte &amp; md-Dateien</a>
+        <a href="#shop">Shop &amp; Daten</a>
         <a href="#connector">Shopify-Connector</a>
         <a href="#updates">Updates &amp; weitere Shops</a>
       </nav>
@@ -361,7 +363,7 @@
           <div class="acc-body">
             <p><strong>Opus</strong> ist dein Standard: Code schreiben, tägliche Aufgaben, auch Planen. Es hat das beste Verhältnis aus Leistung und Kosten.</p>
             <p><strong>Sonnet</strong> führt fertige Pläne und Routineaufgaben aus. Stößt Sonnet an Grenzen, wechsle zu Opus.</p>
-            <p><strong>Fable</strong> nimmst du nur für sehr komplexe Planung. Es verbraucht dein Session-Limit deutlich schneller, danach heißt es warten.</p>
+            <p><strong>Fable</strong> ist nur mit einem größeren Plan sinnvoll. Auf dem kleinen Plan ist dein Session-Limit fast sofort erreicht, weil das Modell sehr rechenintensiv ist. Hast du den großen Plan, nimmst du Fable für sehr komplexe Planung.</p>
             <p><strong>Haiku</strong> lässt du weg, die Output-Qualität reicht nicht.</p>
           </div>
         </details>
@@ -426,6 +428,143 @@
             <p>Sag es direkt im Chat: „Das gefällt mir nicht, merk dir das bitte." Claude speichert den Hinweis in der memory.md und macht denselben Fehler nicht noch mal. Das geht auch für den Ton: „Fasse dich in Zukunft kürzer."</p>
             <p>Nutze das für Dinge, die öfter passieren oder dir wirklich wichtig sind, damit die memory.md nicht überlädt.</p>
             <p class="tip">Das Setup lernt mit. In Woche eins dauert manches noch, ab Woche zwei bis drei sitzt vieles auf Anhieb so, wie du es dir vorstellst.</p>
+          </div>
+        </details>
+
+
+        <details class="acc">
+          <summary>
+            Was bringt der Effort-Regler?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Effort steuert, wie lange Claude nachdenkt, bevor es antwortet. Niedrig heißt sofort loslegen. Hoch heißt rund zehn bis zwölf Sekunden abwägen, welcher Weg der beste ist, und dann diesen Weg gehen.</p>
+            <p>Wenn dir die Ergebnisse zu flach sind, geh in dieser Reihenfolge vor:</p>
+            <ol class="steps">
+              <li><strong>Erst das Modell wechseln.</strong> Von Sonnet auf Opus.</li>
+              <li><strong>Dann den Effort erhöhen.</strong> Von <code class="inline">high</code> auf <code class="inline">extra high</code>.</li>
+            </ol>
+            <p class="tip">Höher als <code class="inline">extra high</code> lohnt sich nicht, das frisst dein Session-Limit. <strong>Thinking</strong> lässt du dauerhaft an. Beides findest du im Menü, das sich mit <code class="inline">/</code> im Chatfeld öffnet.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Kann ich vom Handy aus weiterarbeiten?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Ja. Steht unten in VS&nbsp;Code <strong>„Remote Control is active"</strong>, kannst du deine laufenden Sessions vom Handy aus steuern.</p>
+            <ol class="steps">
+              <li><strong>PC anlassen</strong> und die Session in VS&nbsp;Code offen lassen.</li>
+              <li><strong>Claude-App öffnen,</strong> oben auf die drei Striche, dann auf <strong>Code</strong>.</li>
+              <li><strong>Verbundene Session auswählen</strong> und ganz normal schreiben, auch per Sprachnachricht.</li>
+            </ol>
+            <p class="tip">Praktisch, wenn dir unterwegs etwas einfällt. Der Auftrag läuft dann auf deinem Rechner weiter und liegt fertig da, wenn du zurück bist.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Claude sagt, ich soll etwas selbst machen
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Das passiert regelmäßig, zum Beispiel: „Diesen Text kannst du jetzt in deinem Theme einfügen." Nimm das nicht hin, meistens kann Claude es sehr wohl selbst.</p>
+            <div class="prompt">
+              <span class="plabel">Antwort zum Kopieren</span>
+              <p>Nein, das akzeptiere ich nicht. Bitte mach du das. Gibt es einen Weg, wie du es selbst erledigen kannst?</p>
+              <button type="button" class="prompt-copy">Antwort kopieren</button>
+            </div>
+            <p>In den allermeisten Fällen macht Claude es danach einfach.</p>
+            <p class="tip">Bleibt es dabei, fehlt oft nur der Zugriff aufs Backend. Dann den Shopify-Connector kurz verbinden, VS&nbsp;Code neu starten und sagen: „Der Connector ist jetzt aktiv, bitte übernimm das." Danach den Connector wieder trennen.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Muss ich sauber tippen?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Nein. Tippfehler, fehlende Umlaute oder ein falsch geschriebener Dateiname sind egal, Claude versteht dich trotzdem. Schick es einfach ab, statt vorher zu korrigieren.</p>
+            <p class="tip">Du musst auch keine perfekten Prompts formulieren. Wichtiger als die einzelne Eingabe ist der Kontext, der im Projekt liegt: die md-Dateien, die Skills und deine claude.md.</p>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="faq-group" id="limits">
+        <h2>Limits und Account</h2>
+        <p class="group-sub">Wie das Fünf-Stunden-Fenster funktioniert und wie du länger am Stück arbeitest.</p>
+
+        <details class="acc">
+          <summary>
+            Wie funktioniert das Session-Limit?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Claude rechnet in einem Fünf-Stunden-Fenster. Wichtig: Der Timer startet <strong>mit deiner ersten Nachricht</strong>, nicht zu einer festen Uhrzeit und nicht jede Stunde neu.</p>
+            <p>Innerhalb dieses Fensters hast du ein Kontingent. Ist es aufgebraucht, erscheint <strong>„Session limit reached"</strong> und du kommst erst weiter, wenn die fünf Stunden seit deiner ersten Nachricht um sind. Danach steht der Zähler wieder auf null.</p>
+            <p class="tip">Wie schnell das Kontingent voll läuft, hängt vom Modell, vom Effort und von der Länge deines Kontexts ab. Kurze Sessions und regelmäßiges <code class="inline">/compact</code> strecken es deutlich.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Trick: das Zeitfenster morgens vorstarten
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Weil der Timer mit deiner ersten Nachricht startet, kannst du ihn laufen lassen, bevor du überhaupt am Rechner sitzt.</p>
+            <ol class="steps">
+              <li><strong>Claude-App aufs Handy</strong> holen und mit demselben Account anmelden.</li>
+              <li><strong>Direkt nach dem Aufstehen eine Nachricht schicken.</strong>
+                <div class="prompt">
+                  <span class="plabel">Nachricht zum Kopieren</span>
+                  <p>Guten Morgen Claude, antworte mir nicht, aber starte bitte deine Session.</p>
+                  <button type="button" class="prompt-copy">Nachricht kopieren</button>
+                </div>
+              </li>
+              <li><strong>Ganz normal in den Tag starten.</strong> Bis du am Laptop sitzt, sind oft schon zwei bis drei Stunden des Fensters vorbei.</li>
+            </ol>
+            <p class="tip">Der Effekt: Mitten in deiner Arbeitszeit setzt sich das Fenster zurück und du arbeitest am Stück weiter, statt zu warten.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wo sehe ich, wie viel ich schon verbraucht habe?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>In VS&nbsp;Code im Menü, das sich mit <code class="inline">/</code> im Chatfeld öffnet, unter <strong>Account → Usage</strong>. In der Claude-App findest du dasselbe in den Kontoeinstellungen unter <strong>Nutzung</strong>.</p>
+            <p><strong>Session (5 h)</strong> zeigt, wie voll dein aktuelles Fenster ist und wann es sich zurücksetzt.</p>
+            <p><strong>Weekly (7 Tage)</strong> zeigt dein Wochenkontingent.</p>
+            <p class="tip">Die Prozentzahl steigt schneller, je stärker das Modell, je höher der Effort und je länger der Kontext ist. Ein kurzer Blick vor einer großen Aufgabe erspart dir, mittendrin ausgebremst zu werden.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Ich stoße ständig ans Limit. Was tun?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Prüf zuerst die günstigen Hebel: kurze Sessions statt eines Dauerchats, <code class="inline">/compact</code> an Zwischenschritten und Alltagsaufgaben mit Sonnet statt Opus.</p>
+            <p>Reicht das nicht, musst du nicht dauerhaft mehr zahlen. Du kannst gezielt <strong>für einen Monat auf den größeren Plan</strong> wechseln und danach wieder zurück. Dort kommst du im normalen Arbeitsalltag praktisch nie ans Limit.</p>
+            <p class="tip">Leg dir für so einen Monat vorher zurecht, was viel Rechenleistung braucht: großer Umbau, komplette SEO-Analyse, ein zweiter Shop. Dann holst du am meisten heraus.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Können zwei Personen einen Account nutzen?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Wenn ihr an denselben Shops arbeitet: ja. Ein Plan reicht, ihr meldet euch beide mit demselben Account an, auch auf zwei Handys gleichzeitig.</p>
+            <p>Zwei getrennte Abos lohnen sich erst, wenn ihr wirklich in verschiedenen Themenbereichen arbeitet. Sonst schreibt ihr euch gegenseitig nur das Fünf-Stunden-Fenster leer.</p>
           </div>
         </details>
 
@@ -501,6 +640,152 @@
           </div>
         </details>
 
+
+        <details class="acc">
+          <summary>
+            Wie viele Kontext-Dateien sind zu viele?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Es ist verlockend, immer mehr ins Projekt zu speichern. Zu viel Kontext macht die Ergebnisse aber wieder schlechter, weil Claude bei jeder Aufgabe zu viel gleichzeitig verarbeiten muss.</p>
+            <p>Halte die Balance: Was dauerhaft gilt, bleibt liegen (Tonalität, Wunschkunde, Theme-Architektur). Was nur zu einer abgeschlossenen Aufgabe gehört, kommt wieder raus.</p>
+            <p class="tip">Bist du mit einem Thema durch, lösch die zugehörige md-Datei in der Seitenleiste. Genau dafür arbeitest du in VS&nbsp;Code und nicht in der Desktop-App: Du siehst die Dateien und kannst aufräumen.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Welche eigenen Kontext-Dateien lohnen sich?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Drei haben sich in der Praxis bewährt. Du legst sie an, indem du Claude einfach darum bittest.</p>
+            <p><strong>Tonalität.</strong> Damit deine Texte nach dir klingen und nicht nach KI.</p>
+            <div class="prompt">
+              <span class="plabel">Prompt zum Kopieren</span>
+              <p>Schau dir alle Texte in meinem Shop und meine bisherigen E-Mails an. Leg mir daraus eine md-Datei zu meiner Tonalität an und zieh sie ab jetzt immer heran, wenn du Texte für mich schreibst.</p>
+              <button type="button" class="prompt-copy">Prompt kopieren</button>
+            </div>
+            <p><strong>Wunschkunde.</strong> Wer bei dir kauft, was diesen Leuten wichtig ist und welche Bedenken sie haben. Claude nutzt das bei Texten, Angeboten und beim Seitenaufbau.</p>
+            <p><strong>Änderungslog.</strong> Claude trägt mit Datum ein, was wann gemacht wurde.</p>
+            <div class="prompt">
+              <span class="plabel">Prompt zum Kopieren</span>
+              <p>Leg ein Änderungslog als md-Datei an und trag ab jetzt mit Datum ein, was du geändert hast. Zieh es in jeder neuen Session heran, bevor du arbeitest.</p>
+              <button type="button" class="prompt-copy">Prompt kopieren</button>
+            </div>
+            <p class="tip">Das Änderungslog verhindert zwei Dinge: dass Claude gegen seine eigene frühere Arbeit anarbeitet und dass später niemand mehr weiß, was eine Änderung eigentlich gebracht hat.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wie sehe ich, welche Skills es überhaupt gibt?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Nötig ist das nicht, die passenden Skills starten von allein. Wenn du trotzdem stöbern willst:</p>
+            <ol class="steps">
+              <li><strong>Menü öffnen.</strong> <code class="inline">/</code> ins Chatfeld tippen oder auf das Kästchen mit dem Schrägstrich klicken.</li>
+              <li><strong>Nach unten scrollen</strong> bis zur Liste der Skills.</li>
+              <li><strong>Suchen.</strong> Oben in „Filter Actions" ein Stichwort tippen, zum Beispiel <code class="inline">shop</code> oder <code class="inline">seo</code>.</li>
+              <li><strong>Beschreibung lesen.</strong> Mit der Maus auf einem Skill stehen bleiben, dann erscheint eine kurze Erklärung, wofür er da ist.</li>
+            </ol>
+            <p class="tip">Im Paket stecken 119 Skills, alle auf E-Commerce zugeschnitten und bewusst kuratiert. Mehr ist hier nicht besser: Wer alles einsammelt, was es an Skills gibt, überlädt das System.</p>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="faq-group" id="shop">
+        <h2>Shop, Daten und Erweiterungen</h2>
+        <p class="group-sub">Live gehen, zurückrollen und was deine Datenquellen liefern.</p>
+
+        <details class="acc">
+          <summary>
+            Wie bekomme ich Änderungen live?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Dein Setup hat zwei Stände: <strong>Staging</strong> ist die Werkstatt, <strong>Main</strong> ist dein Live-Theme.</p>
+            <ol class="steps">
+              <li><strong>Bauen lassen.</strong> „Bitte ändere XY, nur auf Staging."</li>
+              <li><strong>Vorschau prüfen.</strong> In Shopify unter <strong>Onlineshop → Themes</strong> bei Staging auf die drei Punkte, dann auf <strong>Vorschau</strong>.</li>
+              <li><strong>Freigeben.</strong> Passt es, sagst du „bitte live stellen" oder „pack es auf Main". Claude versteht beides.</li>
+            </ol>
+            <p class="tip">Damit das greift, muss <strong>Main</strong> einmal als Live-Theme veröffentlicht sein. Liegen Staging und Main beide nur bei den Entwürfen, sieht deine Änderung niemand. Also einmal bei Main auf „Veröffentlichen", danach steht der Workflow dauerhaft.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Kann ich Änderungen rückgängig machen?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Ja, jederzeit. Über die GitHub-Verbindung wird jede Version deines Themes mit Datum und Uhrzeit gespeichert, automatisch bei jeder Änderung, egal ob sie aus Claude oder aus Shopify kommt.</p>
+            <p>Du musst dafür nichts suchen und nichts wiederherstellen. Sag es einfach im Chat:</p>
+            <div class="prompt">
+              <span class="plabel">Beispiel-Prompts</span>
+              <p>„Mach die letzte Änderung an der Produktseite rückgängig."</p>
+              <p>„Setz das Theme auf den Stand von letzter Woche zurück."</p>
+            </div>
+            <p class="tip">Deshalb ist GitHub hier mehr als ein Zwischenspeicher: Es ist gleichzeitig deine Sicherung. Kaputt machen kannst du damit praktisch nichts.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Wofür brauche ich Shopify Sidekick noch?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Nur für Datenfragen ans Backend, dafür ist er gut. Zum Beispiel: „Woher kamen meine Besucher in den letzten 30 Tagen?" oder „Wie war mein Inventarstand am 31.12.?" Solche Abfragen sparen dir das Zusammensuchen von Hand, etwa für die Steuer.</p>
+            <p>Zum Bauen taugt er nicht. Sections, Blöcke und Textarbeit laufen über dein Setup in VS&nbsp;Code, weil dort der Kontext zu deinem Shop und die Skills liegen.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Muss Microsoft Clarity in meine Datenschutzerklärung?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Ja. Sobald Clarity läuft, erhebst du anonymisierte Daten zum Nutzerverhalten auf deiner Seite. Das gehört in deine Datenschutzerklärung.</p>
+            <p>Den Absatz kannst du dir schreiben lassen:</p>
+            <div class="prompt">
+              <span class="plabel">Prompt zum Kopieren</span>
+              <p>Ich nutze Microsoft Clarity auf meinem Shopify-Shop und erhebe damit anonymisierte Daten zum Nutzerverhalten. Schreib mir einen passenden Absatz für meine Datenschutzerklärung.</p>
+              <button type="button" class="prompt-copy">Prompt kopieren</button>
+            </div>
+            <p class="tip">Das ist keine Rechtsberatung. Bist du bei einem Anbieter wie eRecht24 oder dem Händlerbund, nimm den Textbaustein von dort oder lass deine Fassung dort gegenprüfen.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Warum sieht Claude noch keine Daten?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Weil beide Datenquellen erst sammeln müssen, nachdem du sie eingerichtet hast. Das ist kein Fehler im Setup.</p>
+            <p><strong>Microsoft Clarity</strong> braucht ein paar Tage, bis genug Klicks und Scrollwege zusammenkommen, aus denen sich etwas ablesen lässt.</p>
+            <p><strong>Google Search Console</strong> braucht rund sieben Tage, bis Suchbegriffe, Positionen und Klicks erscheinen.</p>
+            <p class="tip">Starte die große SEO-Analyse deshalb erst danach, sonst arbeitet Claude ohne echte Zahlen. Bauen und optimieren kannst du in der Zwischenzeit ganz normal weiter.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>
+            Kann ich Produktbilder mit KI erzeugen lassen?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Ja, das lässt sich als Erweiterung an dein Setup anbinden. Claude steuert dann einen Bildgenerator direkt aus dem Projekt heraus: Bild erzeugen, prüfen, ob das Produkt korrekt dargestellt ist, nachbessern und die fertigen Bilder in den Shop legen.</p>
+            <p>Ein Auftrag heißt dann zum Beispiel „erzeuge für alle Produkte eine neue Reihe Lifestyle-Bilder", statt zu shooten, freizustellen und nachzubearbeiten.</p>
+            <p class="tip">Im Standard-Paket ist das nicht enthalten. Wenn es für dich interessant wird, schreib mir kurz an <a href="mailto:alex@adolution.de?subject=KI-Produktbilder%20%E2%80%93%20vorflows">alex@adolution.de</a>.</p>
+          </div>
+        </details>
+
       </section>
 
       <section class="faq-group" id="connector">
@@ -531,6 +816,25 @@
               <li><strong>Noch kein Shopify-Connector?</strong> Auf die Lupe klicken, „Shopify" suchen und hinzufügen.</li>
               <li><strong>Schon vorhanden?</strong> In der Liste steht er als „verbunden" oder „nicht verbunden". Anklicken und je nach Bedarf verbinden oder trennen.</li>
             </ol>
+          </div>
+        </details>
+
+
+        <details class="acc">
+          <summary>
+            Welche Connector-Rechte sollte ich blockieren?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Der Connector ist mächtig: Er kann Produkte anlegen und löschen, Inventar verstellen, Titel und Meta-Beschreibungen ändern, Bestellungen und Rabattcodes erstellen. Wenn du ihn nutzt, tust du das auf eigene Gefahr, denn was gelöscht ist, ist weg.</p>
+            <p>Deshalb direkt nach dem Hinzufügen in der Liste seiner Berechtigungen etwa bis zur Mitte scrollen und diese drei auf <strong>Blockiert</strong> stellen:</p>
+            <ol class="steps">
+              <li><code class="inline">Get Order</code></li>
+              <li><code class="inline">List Customers</code></li>
+              <li><code class="inline">List Orders</code></li>
+            </ol>
+            <p>Damit kommt Claude nicht an Kunden- und Bestelldaten. Alles, was du für die Shop-Arbeit brauchst, bleibt erlaubt.</p>
+            <p class="tip">Je größer dein Shop wird, desto vorsichtiger. Ab etwa 50 bis 70 Bestellungen am Tag würde ich die Rechte eher wieder enger ziehen als weiter öffnen. Und in jedem Fall gilt: nur für die konkrete Aufgabe verbinden, danach sofort trennen.</p>
           </div>
         </details>
 
