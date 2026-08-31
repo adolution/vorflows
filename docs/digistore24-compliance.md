@@ -118,6 +118,15 @@ Auch dort wurden die konditionierten Refund-Sätze entfernt und durch unkonditio
 ### Digistore24-Setting
 Im Digistore24-Backend ist die Rückgabedauer auf **14 Tage** gesetzt. Das muss mit dem Text auf der Seite übereinstimmen, sonst Diskrepanz und erneute Ablehnung.
 
+### Schulungs-Vorbehalt (Stand 2026-08-31)
+Auf Wunsch des Verkäufers steht überall neben der 14-Tage-Rückgabe zusätzlich:
+
+> Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.
+
+Grund: Rückgaben nach bereits geleisteter Schulungszeit sollen ausgeschlossen sein.
+
+**Achtung:** Das ist wieder eine Bedingung. Digistore24 hat konditionierte Refund-Angebote in der Vergangenheit abgelehnt (siehe oben). Wenn die Seite erneut geprüft wird, ist dieser Satz der wahrscheinlichste Beanstandungspunkt. Der Satz steht in `index.html`, `index-b.html`, `sales.html` und `danke.html` (jeweils bei jeder 14-Tage-Nennung inkl. FAQPage-JSON-LD).
+
 ---
 
 ## Re-Import-Checkliste (nach Provider-Wechsel)
