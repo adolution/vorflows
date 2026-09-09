@@ -27,6 +27,19 @@
   </url>
 
   <url>
+    <loc>https://vorflows.com/sales</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/sales" />
+    <image:image>
+      <image:loc>https://vorflows.com/brand_assets/og-image.jpg</image:loc>
+      <image:title>vorflows — Shopify-Store wie ein Senior Dev mit Claude Code</image:title>
+      <image:caption>vorflows Bundle: BaseFlow, SEOFlow, ClarityFlow für Shopify-Founder</image:caption>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://vorflows.com/baseflow</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>

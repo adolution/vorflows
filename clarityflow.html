@@ -102,7 +102,35 @@
             "Erkennt Dead-Clicks und Rage-Clicks",
             "Schlägt Section-Reihenfolge und Button-Position vor",
             "Schreibt Theme-Änderungen direkt ins Liquid"
-          ]
+          ],
+          "offers": {
+            "@type": "Offer",
+            "@id": "https://vorflows.com/sales#offer-bundle",
+            "sku": "vf-bundle",
+            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow)",
+            "description": "Nur im vorflows Bundle erhältlich. Einmalkauf 1.499 € netto statt 2.000 €, befristete Launch-Aktion. Einzelne Module werden nicht separat verkauft.",
+            "price": "1499",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://vorflows.com/sales",
+            "priceValidUntil": "2026-12-31",
+            "seller": { "@type": "Organization", "name": "vorflows", "url": "https://vorflows.com/" },
+            "areaServed": ["DE", "AT", "CH"],
+            "eligibleRegion": ["DE", "AT", "CH"],
+            "priceSpecification": [
+              { "@type": "UnitPriceSpecification", "priceType": "https://schema.org/SalePrice", "price": "1499", "priceCurrency": "EUR", "valueAddedTaxIncluded": false },
+              { "@type": "UnitPriceSpecification", "priceType": "https://schema.org/ListPrice", "price": "2000", "priceCurrency": "EUR", "valueAddedTaxIncluded": false }
+            ],
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": ["DE", "AT", "CH"],
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn"
+            }
+          }
         },
         {
           "@type": "HowTo",
@@ -154,12 +182,15 @@
     <nav class="nav" id="nav">
       <div class="container nav-inner">
         <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <a href="/" class="nav-back">
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Zurück zur Startseite
-        </a>
+        <div class="nav-actions">
+          <a href="/" class="nav-back">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Zurück zur Startseite
+          </a>
+          <a href="/sales" class="nav-buy">vorflows kaufen</a>
+        </div>
       </div>
     </nav>
 

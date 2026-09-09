@@ -353,6 +353,29 @@
       @media (prefers-reduced-motion: reduce) {
         a.home, .acc .chev { transition: none; }
       }
+
+      /* Kauf-CTA in der Kopfzeile — fuehrt auf die Sales-Seite (/sales). */
+      .topnav a.nav-buy {
+        display: inline-flex;
+        align-items: center;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        box-shadow: none;
+        color: var(--bg-light, #FAFAF7);
+        padding: 9px 16px;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1;
+        white-space: nowrap;
+        text-decoration: none;
+        transition: background-color 150ms ease-out, transform 150ms ease-out;
+      }
+      .topnav a.nav-buy:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+      .topnav a.nav-buy:active { transform: translateY(1px); }
+      .topnav a.nav-buy:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .nav-actions { display: inline-flex; align-items: center; gap: clamp(12px, 2vw, 20px); }
     </style>
   </head>
   <body>
@@ -367,6 +390,7 @@
             Tutorials
           </a>
           <a href="/faqs">FAQs</a>
+          <a href="/sales" class="nav-buy">vorflows kaufen</a>
         </nav>
       </div>
 

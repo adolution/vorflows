@@ -197,6 +197,34 @@
       }
       .nav-back:hover { color: var(--text-primary); }
       .nav-back svg { width: 14px; height: 14px; }
+      /* Kauf-CTA in der Kopfzeile — fuehrt auf die Sales-Seite (/sales). */
+      .nav-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 20px);
+      }
+      .nav-buy {
+        display: inline-flex;
+        align-items: center;
+        background: var(--accent);
+        color: var(--bg-light);
+        padding: 9px 16px;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1;
+        white-space: nowrap;
+        text-decoration: none;
+        transition: background-color 150ms ease-out, transform 150ms ease-out;
+      }
+      .nav-buy:hover { background: var(--accent-hover); }
+      .nav-buy:active { transform: translateY(1px); }
+      .nav-buy:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      /* Auf schmalen Screens weicht der Zurueck-Link, der Kauf-Button bleibt. */
+      @media (max-width: 560px) {
+        .nav-actions .nav-back { display: none; }
+      }
 
       /* Hero */
       .legal-hero {
@@ -365,12 +393,15 @@
     <nav class="nav" id="nav">
       <div class="container nav-inner">
         <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <a href="/" class="nav-back">
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Zurück zur Startseite
-        </a>
+        <div class="nav-actions">
+          <a href="/" class="nav-back">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Zurück zur Startseite
+          </a>
+          <a href="/sales" class="nav-buy">vorflows kaufen</a>
+        </div>
       </div>
     </nav>
 

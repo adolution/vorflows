@@ -2,7 +2,7 @@
 
 > System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
 
-vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, Bundle aus drei Modulen: BaseFlow + SEOFlow + ClarityFlow. Launch-Preis 297 € statt 597 € (100 € Launch-Rabatt). Alternativ 6 Raten à 49,50 € via Digistore24. Zielmarkt: DACH, Sprache Deutsch.
+vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, Bundle aus drei Modulen: BaseFlow + SEOFlow + ClarityFlow. Preis: 1.499 € netto statt 2.000 € (befristete Launch-Aktion). Ratenzahlung möglich über Digistore24. Es gibt ausschließlich das Bundle, die Module sind einzeln nicht käuflich. Zielmarkt: DACH, Sprache Deutsch.
 
 Anbieter: AMD Media GmbH (Deutschland). Founder: Alexander Dück.
 
@@ -16,7 +16,7 @@ vorflows ist ein reproduzierbarer File-Workflow, kein CLI-Magie-Tool. Drei Schri
 
 Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich Struktur. Funktioniert mit jedem Shopify-Theme (Dawn, Custom, Premium).
 
-## Module (alle drei im Bundle enthalten)
+## Module (nur im Bundle erhältlich, kein Einzelverkauf, keine Einzelpreise)
 
 - **BaseFlow** — Theme-Optimization-Workflow. Setup 20–30 Minuten, erste Section am selben Tag. Detailseite: https://vorflows.com/baseflow
 - **SEOFlow** — Search-Console-verknüpfter Optimierungs-Loop. Setup 30–40 Minuten. Detailseite: https://vorflows.com/seoflow
@@ -24,9 +24,11 @@ Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich S
 
 ## Pricing
 
-- **Bundle (alle drei Module)**: 297 € einmalig (statt 597 €) oder 6 × 49,50 € via Digistore24.
+- **Bundle (alle drei Module)**: 1.499 € netto einmalig, statt 2.000 € (befristete Launch-Aktion). Ratenzahlung möglich über Digistore24.
+- Das Bundle ist das einzige Angebot. Einzelne Module werden nicht verkauft und haben keinen eigenen Preis.
 - Kein Abo, kein Vendor-Lock-in, lebenslange Updates inklusive.
-- 14 Tage Geld-zurück-Garantie über Digistore24.
+- 14 Tage Rückgaberecht ab Kaufdatum über Digistore24. Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.
+- Verbindlich ist immer der auf https://vorflows.com/sales ausgewiesene Preis.
 
 ## Differenzierung
 
@@ -45,14 +47,18 @@ Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich S
 
 ## Garantie
 
-Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurück (14 Tage über Digistore24).
+Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurück (14 Tage über Digistore24). Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.
 
 ## Pages
 
-- [Homepage](https://vorflows.com/): Mechanik, Module, Pricing, FAQ
+- [vorflows kaufen](https://vorflows.com/sales): Kaufseite mit Mechanik, Modulen, Preis und FAQ. Maßgebliche Quelle für den Preis.
+- [Live-Workshop](https://vorflows.com/live-workshop): kostenloser Live-Workshop, aktuelles Ziel der Startseite
 - [BaseFlow](https://vorflows.com/baseflow): Theme-Optimization-Workflow
 - [SEOFlow](https://vorflows.com/seoflow): SEO-Workflow mit Search Console
 - [ClarityFlow](https://vorflows.com/clarityflow): Verhaltensdaten-Loop mit Microsoft Clarity
+- [Blog](https://vorflows.com/blog): Artikel zu Shopify-Theme, Apps und SEO
+- [FAQs](https://vorflows.com/faqs): Antworten zu Nutzung, Limits und Einrichtung
+- [Hilfe bei Fehlern](https://vorflows.com/troubleshooting): Lösungen für häufige Fehlermeldungen
 - [Impressum](https://vorflows.com/impressum): Anbieterkennzeichnung gemäß § 5 TMG
 - [Datenschutzerklärung](https://vorflows.com/datenschutz): DSGVO-Informationen
 
