@@ -382,9 +382,11 @@ Zweck jetzt: Aufzeichnung an alle schicken, die nicht live dabei waren. Später:
 
 **Video-Hosting (NICHT im Repo):** Vercel Blob, Store `vorflows-media` (public, mit Projekt `vorflows`
 verknüpft, Env `BLOB_READ_WRITE_TOKEN`). Datei
-`video/workshop-ki-shopify-2026-09-10.mp4` → `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10.mp4`
-(382 MB, 59:45, 1080p H.264 750 kbit/s + AAC 96 kbit/s, moov-Atom vorne, Metadaten entfernt, Stream
-byte-identisch zum Original). `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
+`video/workshop-ki-shopify-2026-09-10-v2.mp4` → `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10-v2.mp4`
+(287 MB, 53:20, 1080p H.264 750 kbit/s + AAC 96 kbit/s, moov-Atom vorne, Metadaten entfernt, Stream
+byte-identisch zum Original). **v2 = Original ohne die ersten 6:25** (Schnitt am Keyframe 384,87 s,
+verlustfrei per `-c copy`; Kapitelzeiten = alte Zeit minus 385 s). v1 (`…-10.mp4`, 382 MB, 59:45, Original
+ab 0:00) liegt noch im Store, wird von keiner Seite mehr referenziert und kann gelöscht werden. `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
 Grund: GitHub-Limit 100 MB/Datei; Repo-Videos bleiben ≤ 30 MB. Andere Seiten laden dadurch nichts mit,
 das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/workshop-replay-poster.webp`).
 **Neuer Schnitt = neuer Dateiname** (`…-v2.mp4`), weil 1 Jahr immutable gecached. Upload:
@@ -395,7 +397,7 @@ OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
 
 **Seiten-Aufbau:** Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, Play-Button, „Weiterschauen
 ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t`) → Hinweis (Bildschirmübertragung fiel stellenweise aus,
-Ton durchgehend) → 13 Kapitel (Buttons, `data-t` in Sekunden, springen + spielen, aktives Kapitel markiert)
+Ton durchgehend) → 12 Kapitel (Buttons, `data-t` in Sekunden, springen + spielen, aktives Kapitel markiert)
 → dunkles Angebots-Band (1.499 € statt 2.000 €, Voucher `launch`, `ds24tr=vf_replay`) → 3 Testimonials
 (Wortlaut aus `.agents/webinar-email-sequenz.md`) → Schluss-CTA → Footer (`impressum-lw-b`/`datenschutz-lw-b`).
 Kein Webinar-Tag-Bonus (Schulung + Setup-Call) auf der Replay-Seite — der gilt laut `sales.html` nur am Webinar-Tag.
