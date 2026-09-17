@@ -370,3 +370,50 @@ function doPost(e) {
 3. Deploy → "Neue Bereitstellung" → Typ **Web-App** → Ausführen als *ich*,
    Zugriff **Jeder**. Web-App-URL kopieren.
 4. Vercel → Projekt → Environment Variables → `LW_SURVEY_WEBHOOK` = diese URL → Redeploy.
+
+---
+
+## 9. Replay-Seite `/replay` (Aufzeichnung vom 10.09.2026) — NEU 2026-09-17
+
+**Datei:** `replay.html` → Live-Route `https://vorflows.com/replay` (`cleanUrls`). `noindex, nofollow`,
+eigener `<title>` „Aufzeichnung: KI + Shopify Live-Workshop · vorflows" (Clarity-MCP trennt nur über Titel).
+Zweck jetzt: Aufzeichnung an alle schicken, die nicht live dabei waren. Später: VSL-Funnel / Lead-Magnet
+(dann Opt-in-Seite davor, die Replay-Seite selbst bleibt der VSL-Teil).
+
+**Video-Hosting (NICHT im Repo):** Vercel Blob, Store `vorflows-media` (public, mit Projekt `vorflows`
+verknüpft, Env `BLOB_READ_WRITE_TOKEN`). Datei
+`video/workshop-ki-shopify-2026-09-10.mp4` → `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10.mp4`
+(382 MB, 59:45, 1080p H.264 750 kbit/s + AAC 96 kbit/s, moov-Atom vorne, Metadaten entfernt, Stream
+byte-identisch zum Original). `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
+Grund: GitHub-Limit 100 MB/Datei; Repo-Videos bleiben ≤ 30 MB. Andere Seiten laden dadurch nichts mit,
+das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/workshop-replay-poster.webp`).
+**Neuer Schnitt = neuer Dateiname** (`…-v2.mp4`), weil 1 Jahr immutable gecached. Upload:
+`vercel blob put <datei> --rw-token $BLOB_READ_WRITE_TOKEN --access public --pathname video/<name>.mp4 --content-type video/mp4 --cache-control-max-age 31536000`
+(Token aus `.env.local`, nach `vercel link --project vorflows --scope alex-4823s-projects`).
+Kosten: Storage ~0,01 €/Monat; Egress 0,05 $/GB über dem Plan-Inklusivvolumen (≈ 0,38 GB pro Komplett-View).
+OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
+
+**Seiten-Aufbau:** Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, Play-Button, „Weiterschauen
+ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t`) → Hinweis (Bildschirmübertragung fiel stellenweise aus,
+Ton durchgehend) → 13 Kapitel (Buttons, `data-t` in Sekunden, springen + spielen, aktives Kapitel markiert)
+→ dunkles Angebots-Band (1.499 € statt 2.000 €, Voucher `launch`, `ds24tr=vf_replay`) → 3 Testimonials
+(Wortlaut aus `.agents/webinar-email-sequenz.md`) → Schluss-CTA → Footer (`impressum-lw-b`/`datenschutz-lw-b`).
+Kein Webinar-Tag-Bonus (Schulung + Setup-Call) auf der Replay-Seite — der gilt laut `sales.html` nur am Webinar-Tag.
+
+**Tracking:** Clarity + Meta Pixel unconditional (sealed Funnel, wie Danke-Seite), Helfer `lwTrack(meta, props, clarity)`
+mit CAPI-Mirror (`/api/capi`, gleiche `event_id`). Props immer `variant`, `page:'replay'`, `utm_campaign`/`utm_content`
+aus `vf_lw_attr`. Attribution-Block der LP ist 1:1 drin (UTM/fbclid/gclid → `vf_lw_attr`, `_fbc`/`_fbp`, `vf_gclid`).
+Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
+
+| Meta-Event | Clarity-Event | Wann |
+|---|---|---|
+| `LW_Replay_Play` | `lw_replay_play` | Erstes Play (1× pro Browser, Guard `vf_lw_replay_play`) |
+| `LW_Replay_Resume` `{at}` | `lw_replay_resume` | Klick auf Cover, wenn „Weiterschauen"-Pill sichtbar |
+| `LW_Replay_Progress` `{pct}` | `lw_replay_25` / `_50` / `_75` / **`lw_replay_complete`** (≥ 95 %) | Watch-Depth, je 1× pro Browser (`vf_lw_replay_ms`) |
+| `LW_Replay_Chapter` `{t,title}` | `lw_replay_chapter` | Kapitel-Klick |
+| **`InitiateCheckout`** (Standard) `{content_name:'bundle', loc:'offer'|'final', value:1499}` | `lw_replay_checkout` | Klick auf Digistore-CTA (`[data-checkout]`), `vf_gclid` wird als `custom=` angehängt wie auf `/sales` |
+| `LW_Replay_Sales_Click` `{loc}` | `lw_replay_sales_click` | Klick auf „/sales"-Link |
+
+**Wo andocken:** neue Events über `lwTrack(...)` in `replay.html`; Kapitel-Zeiten in der `<ol>` (`data-t`).
+Bei neuem Video: Blob-Upload mit neuem Namen, `<source src>`, Preconnect-Host und Fallback-Link tauschen,
+Kapitel neu setzen (Szenenwechsel: `ffmpeg -vf "select='gt(scene,0.35)',showinfo"`), Poster + OG neu rendern.

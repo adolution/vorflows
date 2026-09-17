@@ -9,3 +9,4 @@ temporary screenshots/
 # Interne Ads-/Webinar-Playbooks (lokale Arbeitskopie, nicht deployen/pushen)
 .agents/vorflows-ads/
 .vercel
+.env*

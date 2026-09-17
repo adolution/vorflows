@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Aufzeichnung: KI + Shopify Live-Workshop · vorflows</title>
+    <meta name="description" content="Die komplette Aufzeichnung des Live-Workshops: Ich baue mit KI vor deinen Augen einen Shopify-Shop um. 60 Minuten an einem echten Shop." />
+    <!-- Replay page: only via link, never index -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://vorflows.com/replay" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <!-- Open Graph / Twitter: Vorschau, wenn der Link per Mail, WhatsApp oder Slack geteilt wird -->
+    <meta property="og:type" content="video.other" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="vorflows" />
+    <meta property="og:url" content="https://vorflows.com/replay" />
+    <meta property="og:title" content="Aufzeichnung: Ich baue mit KI vor deinen Augen einen Shopify-Shop um" />
+    <meta property="og:description" content="60 Minuten live an einem echten Shop: Sections bauen, Apps ersetzen, Rankings aus echten Suchdaten holen. Die komplette Aufzeichnung des Live-Workshops." />
+    <meta property="og:image" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+    <meta property="og:image:secure_url" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Alex im Live-Workshop KI + Shopify" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aufzeichnung: KI + Shopify Live-Workshop" />
+    <meta name="twitter:description" content="60 Minuten live an einem echten Shop. Die komplette Aufzeichnung." />
+    <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+
+    <!-- Video liegt auf Vercel Blob (nicht im Repo). Preconnect = TLS steht, bevor jemand auf Play drückt. -->
+    <link rel="preconnect" href="https://ywogisjwo1efkri1.public.blob.vercel-storage.com" crossorigin />
+    <link rel="preload" as="image" href="/assets/video/workshop-replay-poster.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+
+    <style>
+      :root {
+        --bg: #FAFAF7;
+        --bg-dark: #0F0F0F;
+        --ink: #1A1A1A;
+        --ink-2: #5C5C5C;
+        --ink-dark: #EAEAE5;
+        --ink-dark-2: #B3B1AA;
+        --border: #E5E3DD;
+        --border-strong: #C7C4BB;
+        --border-dark: #2A2A2A;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+        --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+        --ease-out-quart: cubic-bezier(.25, 1, .5, 1);
+        --gutter: clamp(1rem, 5vw, 2rem);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 40rem at 88% -12%, rgba(200, 99, 62, 0.10), transparent 70%),
+          radial-gradient(46rem 34rem at -12% 40%, rgba(47, 111, 79, 0.05), transparent 70%);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        font-feature-settings: "ss01", "cv11";
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 50rem;
+        margin: 0 auto;
+        padding-left: var(--gutter);
+        padding-right: var(--gutter);
+      }
+
+      /* ---------- Kopfzeile ---------- */
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: clamp(1.25rem, 4vw, 2rem);
+      }
+      .wordmark {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -.02em;
+        color: var(--ink);
+        text-decoration: none;
+        border-radius: 4px;
+      }
+      .wordmark .flows { font-style: italic; color: var(--accent); }
+      .wordmark:hover .flows { color: var(--accent-hover); }
+      .wordmark:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+      .top-meta {
+        margin: 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        white-space: nowrap;
+      }
+      @media (max-width: 30rem) { .top-meta { display: none; } }
+
+      /* ---------- Hero ---------- */
+      .hero { padding-top: clamp(2.2rem, 7vw, 4rem); }
+      .eyebrow {
+        margin: 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      h1 {
+        margin: 0.6rem 0 0;
+        max-width: 16ch;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2rem, 6.2vw, 3.4rem);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+      }
+      h1 em { font-style: italic; color: var(--accent); }
+      .lead {
+        margin: 1.1rem 0 0;
+        max-width: 36rem;
+        color: var(--ink-2);
+        font-size: clamp(1rem, 2.4vw, 1.08rem);
+        line-height: 1.6;
+      }
+
+      /* ---------- Player ---------- */
+      .player {
+        position: relative;
+        margin-top: clamp(1.6rem, 5vw, 2.4rem);
+        aspect-ratio: 16 / 9;
+        border-radius: clamp(0.7rem, 2vw, 1rem);
+        overflow: hidden;
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.06),
+          0 14px 30px -18px rgba(26, 26, 26, 0.35),
+          0 34px 70px -34px rgba(200, 99, 62, 0.45);
+        opacity: 0;
+        transform: translateY(14px);
+        animation: rise 0.8s 0.08s var(--ease-out-expo) forwards;
+      }
+      @keyframes rise { to { opacity: 1; transform: none; } }
+      .player-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: var(--bg-dark);
+      }
+      .player-cover {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        font-family: inherit;
+        color: #FFF7F1;
+        background: linear-gradient(to top, rgba(15, 15, 15, 0.78) 0%, rgba(15, 15, 15, 0.22) 42%, rgba(15, 15, 15, 0.05) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+      /* warme Tönung über dem Poster, sehr leicht */
+      .player-cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--accent);
+        opacity: 0.07;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+      .player-cover[hidden] { display: none; }
+      .play-ring {
+        position: relative;
+        width: clamp(3.6rem, 10vw, 5rem);
+        height: clamp(3.6rem, 10vw, 5rem);
+        border-radius: 999px;
+        background: var(--accent);
+        color: #FFF7F1;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 14px 34px -12px rgba(200, 99, 62, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        transition: transform 220ms var(--ease-out-quart), background-color 160ms ease-out;
+      }
+      .play-ring svg { width: 38%; height: 38%; margin-left: 6%; }
+      .play-label {
+        position: relative;
+        font-weight: 600;
+        font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+        letter-spacing: -0.01em;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+      }
+      .play-meta {
+        position: relative;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 247, 241, 0.78);
+      }
+      .player-cover:hover .play-ring { transform: scale(1.07); background: var(--accent-hover); }
+      .player-cover:active .play-ring { transform: scale(0.97); }
+      .player-cover:focus-visible { outline: 3px solid #FFF7F1; outline-offset: -6px; border-radius: inherit; }
+
+      /* Weiterschauen-Pill (nur wenn ein Fortschritt gespeichert ist) */
+      .resume {
+        position: absolute;
+        left: clamp(0.6rem, 2.5vw, 1.1rem);
+        bottom: clamp(0.6rem, 2.5vw, 1.1rem);
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.45rem 0.5rem 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(15, 15, 15, 0.72);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        color: #FFF7F1;
+        font-size: 0.82rem;
+        font-weight: 500;
+        border: 1px solid rgba(255, 247, 241, 0.16);
+        opacity: 0;
+        transform: translateY(6px);
+        animation: rise 0.5s 0.5s var(--ease-out-expo) forwards;
+      }
+      .resume[hidden] { display: none; }
+      .resume b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; }
+      .resume-reset {
+        appearance: none;
+        border: 0;
+        margin: 0;
+        padding: 0.3rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(255, 247, 241, 0.12);
+        color: #FFF7F1;
+        font-family: inherit;
+        font-size: 0.76rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 140ms ease-out, transform 140ms var(--ease-out-quart);
+      }
+      .resume-reset:hover { background: rgba(255, 247, 241, 0.22); }
+      .resume-reset:active { transform: scale(0.97); }
+      .resume-reset:focus-visible { outline: 2px solid #FFF7F1; outline-offset: 2px; }
+
+      .player-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1.5rem;
+        text-align: center;
+        background: var(--bg-dark);
+        color: var(--ink-dark);
+      }
+      .player.failed .player-fallback { display: flex; }
+      .player-fallback p { margin: 0; font-size: 0.95rem; color: var(--ink-dark-2); }
+      .player-fallback a { color: var(--accent); font-weight: 600; }
+      .player-fallback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      .player-note {
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+        margin: 0.9rem 0 0;
+        max-width: 40rem;
+        font-size: 0.86rem;
+        line-height: 1.55;
+        color: var(--ink-2);
+      }
+      .player-note i {
+        flex: 0 0 auto;
+        width: 7px;
+        height: 7px;
+        margin-top: 0.55rem;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      .player-note strong { color: var(--ink); font-weight: 600; }
+
+      /* ---------- Kapitel ---------- */
+      .chapters { margin-top: clamp(2.4rem, 7vw, 3.6rem); }
+      .chapters-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid var(--border-strong);
+      }
+      .chapters-head h2 {
+        margin: 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.3rem, 4vw, 1.6rem);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .chapters-head p {
+        margin: 0;
+        font-size: 0.86rem;
+        color: var(--ink-2);
+      }
+      .chapter-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: clamp(1.5rem, 5vw, 3rem);
+      }
+      @media (min-width: 44rem) {
+        .chapter-list { grid-template-columns: 1fr 1fr; }
+      }
+      .chapter {
+        appearance: none;
+        width: 100%;
+        margin: 0;
+        padding: 0.72rem 0.5rem 0.72rem 0.55rem;
+        border: 0;
+        border-bottom: 1px solid var(--border);
+        border-radius: 0;
+        background: transparent;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: baseline;
+        gap: 0.85rem;
+        transition: background-color 140ms ease-out, color 140ms ease-out;
+      }
+      .chapter:hover { background: var(--accent-soft); }
+      .chapter:hover .ch-title { color: var(--accent-hover); }
+      .chapter:active { background: rgba(200, 99, 62, 0.14); }
+      .chapter:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 0.4rem; }
+      .chapter.is-current { background: var(--accent-soft); }
+      .chapter.is-current .ch-time { color: var(--accent); }
+      .chapter.is-current .ch-time::before { content: "▶ "; font-size: 0.6em; vertical-align: 0.15em; }
+      .ch-time {
+        flex: 0 0 auto;
+        min-width: 3.9rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--ink-2);
+        font-variant-numeric: tabular-nums;
+      }
+      .ch-title { transition: color 140ms ease-out; }
+      /* Mobil: erst 6 Kapitel, Rest per Klick (Angebot bleibt in Reichweite) */
+      .chapters-more {
+        display: none;
+        appearance: none;
+        margin: 0.7rem 0 0;
+        padding: 0.55rem 0.2rem;
+        border: 0;
+        background: transparent;
+        color: var(--accent);
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 0.4rem;
+      }
+      .chapters-more:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+      .chapters-more:active { opacity: 0.8; }
+      .chapters-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      @media (max-width: 43.99rem) {
+        .chapter-list.is-collapsed li:nth-child(n + 7) { display: none; }
+        .chapter-list.is-collapsed + .chapters-more { display: inline-block; }
+      }
+
+      /* ---------- Angebot (dunkles Band, Optik der Webinar-Slides) ---------- */
+      .offer {
+        position: relative;
+        z-index: 1;
+        margin-top: clamp(3rem, 9vw, 5rem);
+        background: var(--bg-dark);
+        background-image:
+          radial-gradient(52rem 30rem at 92% -10%, rgba(200, 99, 62, 0.20), transparent 68%),
+          radial-gradient(40rem 26rem at 0% 110%, rgba(200, 99, 62, 0.08), transparent 70%);
+        color: var(--ink-dark);
+        padding: clamp(3rem, 8vw, 5rem) 0 clamp(3.2rem, 8vw, 5.2rem);
+      }
+      .offer::before {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; top: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 34%, transparent 34%);
+      }
+      .offer .eyebrow { color: var(--accent); }
+      .offer h2 {
+        margin: 0.7rem 0 0;
+        max-width: 18ch;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.75rem, 5.4vw, 2.7rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        color: #F4F3EE;
+        text-wrap: balance;
+      }
+      .offer h2 em { font-style: italic; color: var(--accent); }
+      .offer-lead {
+        margin: 1rem 0 0;
+        max-width: 34rem;
+        color: var(--ink-dark-2);
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+      .offer-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.4rem 2rem;
+        margin-top: clamp(1.6rem, 5vw, 2.4rem);
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--border-dark);
+      }
+      .offer-price { display: flex; flex-direction: column; gap: 0.15rem; }
+      .price-strike {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.86rem;
+        color: var(--ink-dark-2);
+        text-decoration: line-through;
+        text-decoration-color: rgba(200, 99, 62, 0.8);
+        text-decoration-thickness: 1.5px;
+      }
+      .price {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2.4rem, 7vw, 3.3rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: #F4F3EE;
+        font-variant-numeric: tabular-nums;
+      }
+      .price-meta {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-dark-2);
+        margin-top: 0.35rem;
+      }
+      .btn {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 1rem 1.6rem;
+        border-radius: 0.65rem;
+        border: 1px solid transparent;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 1.02rem;
+        letter-spacing: -0.005em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 180ms var(--ease-out-quart), background-color 150ms ease-out, box-shadow 180ms var(--ease-out-quart), border-color 150ms ease-out, color 150ms ease-out;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #FFF7F1;
+        box-shadow: 0 14px 30px -14px rgba(200, 99, 62, 0.8);
+      }
+      .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 18px 36px -14px rgba(200, 99, 62, 0.9); }
+      .btn-primary:active { transform: translateY(0); }
+      .btn-primary:focus-visible { outline: 3px solid #FFF7F1; outline-offset: 3px; }
+      .btn-primary svg { width: 1rem; height: 1rem; }
+      @media (max-width: 36rem) { .offer-row .btn { width: 100%; } }
+
+      .offer-list {
+        list-style: none;
+        margin: clamp(1.6rem, 5vw, 2.2rem) 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0 2.5rem;
+      }
+      @media (min-width: 40rem) { .offer-list { grid-template-columns: 1fr 1fr; } }
+      .offer-list li {
+        display: flex;
+        gap: 0.9rem;
+        align-items: baseline;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid var(--border-dark);
+        font-size: 0.96rem;
+        line-height: 1.5;
+        color: var(--ink-dark);
+      }
+      .offer-list li span.k {
+        flex: 0 0 auto;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+      }
+      .offer-list li strong { font-weight: 600; color: #F4F3EE; }
+      .offer-list li span.d { color: var(--ink-dark-2); }
+      .offer-fine {
+        margin: 1.3rem 0 0;
+        max-width: 38rem;
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: var(--ink-dark-2);
+      }
+      .offer-fine a { color: var(--ink-dark); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(234, 234, 229, 0.4); border-radius: 2px; }
+      .offer-fine a:hover { color: #F4F3EE; text-decoration-color: var(--accent); }
+      .offer-fine a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      /* ---------- Stimmen ---------- */
+      .voices { margin-top: clamp(2.8rem, 8vw, 4.5rem); }
+      .voices-head {
+        margin: 0 0 clamp(1.2rem, 4vw, 1.8rem);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .voice { margin: 0; }
+      .voice blockquote {
+        margin: 0 0 0.7rem;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.015em;
+        text-wrap: pretty;
+      }
+      .voice blockquote::before { content: "\201E"; color: var(--accent); }
+      .voice blockquote::after { content: "\201C"; color: var(--accent); }
+      .voice figcaption {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.76rem;
+      }
+      .voice-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+      .voice-name { font-weight: 600; }
+      .voice-co { color: var(--ink-2); }
+      .voice--big { max-width: 38rem; }
+      .voice--big blockquote { font-size: clamp(1.25rem, 3.6vw, 1.6rem); }
+      .voices-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(1.4rem, 4vw, 2rem) clamp(1.6rem, 5vw, 3rem);
+        margin-top: clamp(1.6rem, 5vw, 2.4rem);
+        padding-top: clamp(1.4rem, 4vw, 2rem);
+        border-top: 1px solid var(--border);
+      }
+      @media (min-width: 44rem) {
+        .voices-grid { grid-template-columns: 1.15fr 1fr; }
+        .voices-grid .voice:nth-child(2) { padding-top: 1.4rem; }
+      }
+      .voices-grid .voice blockquote { font-size: clamp(1rem, 2.6vw, 1.12rem); }
+
+      /* ---------- Schluss-CTA ---------- */
+      .final {
+        margin-top: clamp(2.6rem, 8vw, 4rem);
+        padding: clamp(1.4rem, 4vw, 1.9rem) 0;
+        border-top: 1px solid var(--border-strong);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+      }
+      .final p {
+        margin: 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+      }
+      .final p em { font-style: italic; color: var(--accent); }
+      .final-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+      .final .btn { padding: 0.85rem 1.3rem; font-size: 0.98rem; }
+      .link-quiet {
+        color: var(--ink-2);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid var(--border-strong);
+        padding-bottom: 1px;
+        transition: color 140ms ease-out, border-color 140ms ease-out;
+        border-radius: 2px;
+      }
+      .link-quiet:hover { color: var(--accent-hover); border-color: var(--accent); }
+      .link-quiet:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      @media (max-width: 36rem) { .final .btn { width: 100%; } .final-actions { width: 100%; } }
+
+      /* ---------- Footer ---------- */
+      .foot {
+        margin-top: clamp(1.8rem, 5vw, 2.6rem);
+        padding: 0 0 2.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.4rem;
+        align-items: center;
+        font-size: 0.86rem;
+        color: var(--ink-2);
+      }
+      .foot a { color: var(--ink-2); text-decoration: none; border-radius: 2px; }
+      .foot a:hover { color: var(--ink); }
+      .foot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .foot .mail { color: var(--accent); }
+      .foot .mail:hover { color: var(--accent-hover); }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .player, .resume { animation: none; opacity: 1; transform: none; }
+        .play-ring, .btn, .chapter, .resume-reset { transition: none; }
+        .btn-primary:hover, .player-cover:hover .play-ring { transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="wordmark" href="/sales">vor<span class="flows">flows</span></a>
+        <p class="top-meta">Aufzeichnung · 10.09.2026 · 60 Min</p>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">Aufzeichnung · KI + Shopify</p>
+        <h1>Ich baue mit KI vor deinen Augen einen <em>Shopify-Shop</em> um.</h1>
+        <p class="lead">60 Minuten, live an einem echten Shop: Claude Code baut Sections, ersetzt Apps und holt Rankings aus echten Suchdaten. Das Live-Theme bleibt unangetastet, bis du dein Go gibst.</p>
+
+        <div class="player" id="player">
+          <video class="player-video" id="replay" playsinline preload="none"
+                 poster="/assets/video/workshop-replay-poster.webp"
+                 controlslist="nodownload" aria-label="Aufzeichnung des Live-Workshops KI + Shopify">
+            <source src="https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10.mp4" type="video/mp4" />
+          </video>
+          <button class="player-cover" id="playerCover" type="button">
+            <span class="play-ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+            <span class="play-label">Aufzeichnung abspielen</span>
+            <span class="play-meta">59 Min · komplett</span>
+          </button>
+          <div class="resume" id="resume" hidden>
+            <span>Weiterschauen ab <b id="resumeAt">00:00</b></span>
+            <button class="resume-reset" id="resumeReset" type="button">Von vorne</button>
+          </div>
+          <div class="player-fallback" id="playerFallback" role="alert">
+            <p>Das Video lässt sich hier gerade nicht abspielen.</p>
+            <a href="https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10.mp4" target="_blank" rel="noopener">Aufzeichnung direkt öffnen ↗</a>
+          </div>
+        </div>
+        <p class="player-note"><i aria-hidden="true"></i><span><strong>Hinweis:</strong> An ein paar Stellen ist im Workshop kurz die Bildschirmübertragung ausgefallen. Der Ton läuft durchgehend weiter.</span></p>
+      </section>
+
+      <section class="chapters" aria-labelledby="chaptersTitle">
+        <div class="chapters-head">
+          <h2 id="chaptersTitle">Kapitel</h2>
+          <p>Klick auf ein Kapitel, das Video springt direkt hin.</p>
+        </div>
+        <ol class="chapter-list is-collapsed" id="chapterList">
+          <li><button class="chapter" type="button" data-t="27"><span class="ch-time">00:27</span><span class="ch-title">Intro</span></button></li>
+          <li><button class="chapter" type="button" data-t="375"><span class="ch-time">06:15</span><span class="ch-title">Das lernst du heute, für wen der Workshop ist, wer da spricht</span></button></li>
+          <li><button class="chapter" type="button" data-t="620"><span class="ch-time">10:20</span><span class="ch-title">KI in Shopify: Admin-Rechte und Müll ohne System</span></button></li>
+          <li><button class="chapter" type="button" data-t="820"><span class="ch-time">13:40</span><span class="ch-title">Fragen, die du vielleicht hast: die KI arbeitet nur am Duplikat</span></button></li>
+          <li><button class="chapter" type="button" data-t="870"><span class="ch-time">14:30</span><span class="ch-title">Live: Claude Code im Terminal, Workflow auf dem Whiteboard</span></button></li>
+          <li><button class="chapter" type="button" data-t="1400"><span class="ch-time">23:20</span><span class="ch-title">Was die KI zum Arbeiten braucht</span></button></li>
+          <li><button class="chapter" type="button" data-t="1540"><span class="ch-time">25:40</span><span class="ch-title">Live: Section bauen, Ergebnis im Shop</span></button></li>
+          <li><button class="chapter" type="button" data-t="1905"><span class="ch-time">31:45</span><span class="ch-title">Rechnen wir mal: 5.232 € im Jahr für Apps</span></button></li>
+          <li><button class="chapter" type="button" data-t="1990"><span class="ch-time">33:10</span><span class="ch-title">Eine Änderung, überall korrekt. Möglichkeiten und Grenzen von KI</span></button></li>
+          <li><button class="chapter" type="button" data-t="2170"><span class="ch-time">36:10</span><span class="ch-title">Ein Ordner, drei Module. Über 100 Skills</span></button></li>
+          <li><button class="chapter" type="button" data-t="2425"><span class="ch-time">40:25</span><span class="ch-title">Was Founder sagen. Was das woanders kostet</span></button></li>
+          <li><button class="chapter" type="button" data-t="2635"><span class="ch-time">43:55</span><span class="ch-title">Drei Wege ab hier: das Angebot</span></button></li>
+          <li><button class="chapter" type="button" data-t="2910"><span class="ch-time">48:30</span><span class="ch-title">Deine Fragen</span></button></li>
+        </ol>
+        <button class="chapters-more" id="chaptersMore" type="button" aria-controls="chapterList" aria-expanded="false">Alle 13 Kapitel anzeigen</button>
+      </section>
+    </div>
+
+    <section class="offer" id="angebot" aria-labelledby="offerTitle">
+      <div class="wrap">
+        <p class="eyebrow">Das System aus dem Workshop</p>
+        <h2 id="offerTitle">vorflows. <em>Base</em> baut, <em>SEOFlow</em> rankt, <em>ClarityFlow</em> optimiert.</h2>
+        <p class="offer-lead">Alle drei Module und 119 Skills, sofort einsatzbereit. Einmalig, kein Abo, alle Updates inklusive.</p>
+
+        <div class="offer-row">
+          <div class="offer-price">
+            <span class="price-strike">2.000 €</span>
+            <span class="price">1.499 €</span>
+            <span class="price-meta">einmalig · Launch-Preis</span>
+          </div>
+          <a class="btn btn-primary" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="offer">vorflows kaufen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <ul class="offer-list">
+          <li><span class="k">01</span><span><strong>BaseFlow</strong> <span class="d">· Theme-Umbau, Sections, App-Ersatz</span></span></li>
+          <li><span class="k">02</span><span><strong>SEOFlow</strong> <span class="d">· Suchdaten aus der Search Console in Code-Änderungen</span></span></li>
+          <li><span class="k">03</span><span><strong>ClarityFlow</strong> <span class="d">· Klick- und Scroll-Daten in Conversion-Fixes</span></span></li>
+          <li><span class="k">04</span><span><strong>Ratenzahlung möglich</strong> <span class="d">· über Digistore24</span></span></li>
+        </ul>
+
+        <p class="offer-fine">14 Tage Rückgaberecht. Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde. <a href="/sales" data-sales-link="offer">Alle Details auf der Produktseite</a>.</p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="voices" aria-label="Stimmen von Foundern">
+        <p class="voices-head">Was Founder nach dem Setup sagen</p>
+        <figure class="voice voice--big">
+          <blockquote>Dein Tool, die Integration, das macht es inhaltlich besser, technisch besser, billiger und schneller. Traumhaft.</blockquote>
+          <figcaption><span class="voice-dot" aria-hidden="true"></span><span class="voice-name">Michael Bodeske</span><span class="voice-co">Massagesesselwelt.de</span></figcaption>
+        </figure>
+        <div class="voices-grid">
+          <figure class="voice">
+            <blockquote>Wir hatten schon mit KI gearbeitet. Aber erst seit dem Setup von Alex merken wir, wie ineffizient wir vorher waren und wie viel schneller und vor allem zuverlässiger es geht.</blockquote>
+            <figcaption><span class="voice-dot" aria-hidden="true"></span><span class="voice-name">Leo</span><span class="voice-co">Pure U</span></figcaption>
+          </figure>
+          <figure class="voice">
+            <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
+            <figcaption><span class="voice-dot" aria-hidden="true"></span><span class="voice-name">Stefan Kisker</span><span class="voice-co">Prometheus Performance GmbH</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="final" aria-label="Zum Angebot">
+        <p>Bereit, es <em>selbst</em> zu bauen?</p>
+        <div class="final-actions">
+          <a class="btn btn-primary" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="final">vorflows kaufen · 1.499 €</a>
+          <a class="link-quiet" href="/sales" data-sales-link="final">Produktseite ansehen</a>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <a href="/impressum-lw-b">Impressum</a>
+        <a href="/datenschutz-lw-b">Datenschutz</a>
+        <span>Fragen? <a class="mail" href="mailto:alex@adolution.de">alex@adolution.de</a></span>
+      </footer>
+    </div>
+
+    <script>
+      /* ================================================================
+         vorflows · Replay-Seite (Aufzeichnung Live-Workshop 10.09.2026)
+         Video: Vercel Blob (nicht im Repo, siehe .agents/live-workshop-tracking.md §9).
+         Tracking: Clarity (lw_replay_*) + Meta Pixel/CAPI (Event-ID-Dedup),
+         gleicher Helfer wie die Danke-Seite. Doku bei Änderungen pflegen!
+         ================================================================ */
+      (function () {
+        'use strict';
+
+        var META_PIXEL_ID = '2002118703756086';
+        var DURATION_FALLBACK = 3585; // Sekunden, bis loadedmetadata den echten Wert liefert
+        var RESUME_KEY = 'vf_lw_replay_t';
+
+        // ── Helpers ───────────────────────────────────────────────────
+        var getCookie = function (n) { return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+        var ls = {
+          get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+          set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+          del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+        };
+        var uuid = function () {
+          try { return crypto.randomUUID(); } catch (e) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+              var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+          }
+        };
+        var fmt = function (s) {
+          s = Math.max(0, Math.floor(s));
+          var m = Math.floor(s / 60), r = s % 60;
+          return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r;
+        };
+
+        // ── Attribution (gleiche Logik wie die LP): UTM/fbclid/gclid → vf_lw_attr ──
+        var params = new URLSearchParams(location.search);
+        try {
+          var fbclid = params.get('fbclid');
+          if (fbclid && !getCookie('_fbc')) document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid + '; path=/; max-age=7776000; SameSite=Lax';
+          if (!getCookie('_fbp')) document.cookie = '_fbp=fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 2147483647) + '; path=/; max-age=7776000; SameSite=Lax';
+          var gclid = params.get('gclid');
+          if (gclid) document.cookie = 'vf_gclid=' + encodeURIComponent(gclid) + '; path=/; max-age=7776000; SameSite=Lax';
+        } catch (e) {}
+        try {
+          var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+          var hasUtm = KEYS.some(function (k) { return params.get(k); });
+          if (hasUtm || params.get('fbclid')) {
+            var fresh = { landed_at: new Date().toISOString(), landing: location.pathname };
+            KEYS.forEach(function (k) { var v = params.get(k); if (v) fresh[k] = v.slice(0, 250); });
+            if (params.get('fbclid')) fresh.fbclid = '1';
+            document.cookie = 'vf_lw_attr=' + encodeURIComponent(JSON.stringify(fresh)) + '; path=/; max-age=7776000; SameSite=Lax';
+            ls.set('vf_lw_attr', JSON.stringify(fresh));
+          }
+        } catch (e) {}
+        var attr = {};
+        try { attr = JSON.parse(decodeURIComponent(getCookie('vf_lw_attr') || '')) || {}; } catch (e) {}
+        if (!attr.utm_source) { try { attr = JSON.parse(ls.get('vf_lw_attr') || '{}'); } catch (e) { attr = {}; } }
+
+        var variant = getCookie('vf_ab_lw') || 'A';
+        var leadEmail = ls.get('vf_known_email') || null;
+        var extId = ls.get('vf_ext_id');
+        if (!extId) { extId = uuid(); ls.set('vf_ext_id', extId); }
+
+        // ── Microsoft Clarity (gleiche Property, sealed Funnel wie Danke-Seite) ──
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+          t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', 'wnn5d5ehwn');
+
+        // ── Meta Pixel ────────────────────────────────────────────────
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = !0; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        var am = { external_id: extId, country: 'de' };
+        if (leadEmail) am.em = leadEmail;
+        fbq('init', META_PIXEL_ID, am);
+        fbq('track', 'PageView');
+
+        // ── Event-Helfer: Clarity + Pixel + CAPI (Event-ID-Dedup) ─────
+        var META_STANDARD = { InitiateCheckout: 1, ViewContent: 1, Lead: 1 };
+        function lwTrack(name, props, clarityName) {
+          props = props || {};
+          props.variant = variant;
+          props.page = 'replay';
+          if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
+          if (attr.utm_content) props.utm_content = attr.utm_content;
+          var eventId = uuid();
+          if (window.clarity) window.clarity('event', clarityName || name);
+          if (window.gtag) window.gtag('event', clarityName || name, props);
+          if (window.fbq) fbq(META_STANDARD[name] ? 'track' : 'trackCustom', name, props, { eventID: eventId });
+          try {
+            fetch('/api/capi', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event_name: name,
+                event_id: eventId,
+                event_source_url: location.href,
+                custom_data: props,
+                user_data: {
+                  external_id: extId,
+                  country: 'de',
+                  fbp: getCookie('_fbp') || null,
+                  fbc: getCookie('_fbc') || null,
+                  email: leadEmail || undefined
+                }
+              }),
+              keepalive: true
+            }).catch(function () {});
+          } catch (e) {}
+        }
+        if (window.clarity) {
+          window.clarity('set', 'lw_page', 'replay');
+          window.clarity('set', 'lw_experiment', variant);
+          if (attr.utm_campaign) window.clarity('set', 'lw_utm_campaign', String(attr.utm_campaign).slice(0, 250));
+          if (attr.utm_content) window.clarity('set', 'lw_utm_content', String(attr.utm_content).slice(0, 250));
+        }
+
+        // ── Player ────────────────────────────────────────────────────
+        var player = document.getElementById('player');
+        var v = document.getElementById('replay');
+        var cover = document.getElementById('playerCover');
+        var resumeBox = document.getElementById('resume');
+        var resumeAt = document.getElementById('resumeAt');
+        var resumeReset = document.getElementById('resumeReset');
+        var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+
+        var duration = function () { return (v.duration && isFinite(v.duration)) ? v.duration : DURATION_FALLBACK; };
+        var saved = parseFloat(ls.get(RESUME_KEY)) || 0;
+        var hasResume = saved > 60 && saved < DURATION_FALLBACK - 90;
+        if (hasResume) { resumeAt.textContent = fmt(saved); resumeBox.hidden = false; }
+
+        function seekTo(t) {
+          if (v.readyState >= 1) { v.currentTime = t; return; }
+          var once = function () { v.removeEventListener('loadedmetadata', once); try { v.currentTime = t; } catch (e) {} };
+          v.addEventListener('loadedmetadata', once);
+        }
+        function start(at) {
+          cover.hidden = true;
+          resumeBox.hidden = true;
+          v.controls = true;
+          if (typeof at === 'number') seekTo(at);
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+
+        cover.addEventListener('click', function () {
+          if (hasResume) { lwTrack('LW_Replay_Resume', { at: Math.round(saved) }, 'lw_replay_resume'); start(saved); }
+          else start(0);
+        });
+        resumeReset.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          hasResume = false;
+          ls.del(RESUME_KEY);
+          start(0);
+        });
+
+        // Kapitel: springen + abspielen; Player in den Viewport holen, falls weit weg (Mobile)
+        chapters.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var t = parseFloat(btn.getAttribute('data-t')) || 0;
+            lwTrack('LW_Replay_Chapter', { t: t, title: (btn.querySelector('.ch-title') || {}).textContent }, 'lw_replay_chapter');
+            var r = player.getBoundingClientRect();
+            if (r.top < 0 || r.bottom > window.innerHeight) player.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            start(t);
+          });
+        });
+
+        // Mobil: Kapitel 7 bis 13 erst auf Klick
+        var moreBtn = document.getElementById('chaptersMore');
+        var list = document.getElementById('chapterList');
+        if (moreBtn && list) {
+          moreBtn.addEventListener('click', function () {
+            list.classList.remove('is-collapsed');
+            moreBtn.setAttribute('aria-expanded', 'true');
+            moreBtn.hidden = true;
+          });
+        }
+        // Läuft das Video in einem eingeklappten Kapitel, Liste automatisch öffnen
+        function expandChapters() { if (list && list.classList.contains('is-collapsed')) { list.classList.remove('is-collapsed'); if (moreBtn) moreBtn.hidden = true; } }
+
+        // Erstes Play = Replay-Start (1× pro Browser), Fortschritt 25/50/75/95 (je 1× pro Browser)
+        var playFired = !!ls.get('vf_lw_replay_play');
+        v.addEventListener('play', function () {
+          if (playFired) return; playFired = true;
+          ls.set('vf_lw_replay_play', '1');
+          lwTrack('LW_Replay_Play', {}, 'lw_replay_play');
+          if (window.clarity) window.clarity('set', 'lw_replay', 'played');
+        });
+
+        var MILESTONES = [25, 50, 75, 95];
+        var hit = {};
+        try { (ls.get('vf_lw_replay_ms') || '').split(',').forEach(function (m) { if (m) hit[m] = true; }); } catch (e) {}
+        var lastSave = 0;
+        var current = -1;
+        v.addEventListener('timeupdate', function () {
+          var t = v.currentTime, d = duration();
+          // Fortschritt sichern (alle ~5s), kurz vor Ende löschen
+          if (t - lastSave > 5 || t < lastSave) {
+            lastSave = t;
+            if (t > 30 && t < d - 60) ls.set(RESUME_KEY, String(Math.floor(t)));
+            else if (t >= d - 60) ls.del(RESUME_KEY);
+          }
+          // Meilensteine
+          var pct = d ? (t / d) * 100 : 0;
+          MILESTONES.forEach(function (m) {
+            if (pct >= m && !hit[m]) {
+              hit[m] = true;
+              ls.set('vf_lw_replay_ms', Object.keys(hit).join(','));
+              lwTrack('LW_Replay_Progress', { pct: m }, m === 95 ? 'lw_replay_complete' : 'lw_replay_' + m);
+              if (window.clarity) window.clarity('set', 'lw_replay', m === 95 ? 'complete' : 'p' + m);
+            }
+          });
+          // Aktives Kapitel markieren
+          var idx = -1;
+          for (var i = 0; i < chapters.length; i++) { if (t >= parseFloat(chapters[i].getAttribute('data-t'))) idx = i; }
+          if (idx !== current) {
+            current = idx;
+            if (idx >= 6) expandChapters();
+            chapters.forEach(function (c, j) { c.classList.toggle('is-current', j === idx); c.setAttribute('aria-current', j === idx ? 'true' : 'false'); });
+          }
+        });
+        v.addEventListener('ended', function () { ls.del(RESUME_KEY); });
+
+        // Quelle lädt nicht (Blob down, Netz weg) → Direktlink zeigen
+        var src = v.querySelector('source');
+        var fail = function () { player.classList.add('failed'); cover.hidden = true; resumeBox.hidden = true; };
+        if (src) src.addEventListener('error', fail);
+        v.addEventListener('error', function () { if (v.error && v.error.code !== 1) fail(); });
+
+        // ── CTA-Klicks ────────────────────────────────────────────────
+        Array.prototype.forEach.call(document.querySelectorAll('[data-checkout]'), function (a) {
+          a.addEventListener('click', function () {
+            try {
+              var gclid = getCookie('vf_gclid');
+              var href = a.getAttribute('href') || '';
+              if (gclid && !/[?&]custom=/.test(href)) a.setAttribute('href', href + (href.indexOf('?') > -1 ? '&' : '?') + 'custom=' + encodeURIComponent(gclid));
+            } catch (e) {}
+            lwTrack('InitiateCheckout', { content_name: 'bundle', loc: a.getAttribute('data-checkout'), value: 1499.0, currency: 'EUR' }, 'lw_replay_checkout');
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('[data-sales-link]'), function (a) {
+          a.addEventListener('click', function () {
+            lwTrack('LW_Replay_Sales_Click', { loc: a.getAttribute('data-sales-link') }, 'lw_replay_sales_click');
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
