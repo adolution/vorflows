@@ -72,6 +72,14 @@ Desktop mit `downlink < 2.5` → 720, sonst 1080. Das Video lädt erst beim Klic
 (Poster `assets/images/adsflow/vsl-poster*.webp` = LCP). Untertitel: `assets/video/adsflow-vsl-v3.vtt`
 (aus der v3-SRT, Zeiten ÷ 1,2, Schreibweisen Claude/Higgsfield/Ogilvy korrigiert), im Player zuschaltbar.
 
+## Feste Leisten (Sticky-CTA)
+
+Pro Gerät genau EINE feste Kaufleiste: Handy (≤ 760 px) nur die untere Leiste `.dock` (Preis + „AdsFlow holen“,
+sichtbar zwischen Hero und Angebot, aus bei Angebot/Agentur/Schluss), die Kopfzeile scrollt dort mit (`position: relative`).
+Desktop nur die feste Kopfzeile, `.dock` gibt es dort nicht. Beide Leisten haben einen **deckenden** Hintergrund
+(`var(--bg)`) und **kein `backdrop-filter`**: Safari 26 (iOS) zieht nur dann die Leistenfarbe bis hinter Statusleiste
+bzw. Toolbar. Mit Transparenz/Blur scrollt die Seite sichtbar über/unter der Leiste („Pflaster“-Optik).
+
 ## Ordner-Explorer mobil (≤ 900 px)
 
 Die Ordner sind dort eine seitlich scrollbare Chip-Leiste. Damit klar ist, dass man sie antippen kann:

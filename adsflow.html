@@ -225,15 +225,20 @@
       .link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
       /* ---------- Kopfzeile ---------- */
+      /* Deckend, ohne Blur: Safari 26 zieht die Farbe einer festen Leiste nur dann bis an den
+         Bildschirmrand (hinter Statusleiste/Toolbar), sonst scrollt die Seite sichtbar darüber. */
       .nav {
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(14, 14, 13, .72);
-        -webkit-backdrop-filter: blur(14px) saturate(140%);
-        backdrop-filter: blur(14px) saturate(140%);
+        background-color: var(--bg);
         border-bottom: 1px solid transparent;
         transition: border-color .3s var(--ease-q);
+      }
+      /* Handy: nur EINE feste Kaufleiste, und zwar unten (.dock). Die Kopfzeile scrollt mit. */
+      @media (max-width: 760px) {
+        .nav { position: relative; }
+        html { scroll-padding-top: 16px; }
       }
       .nav.is-stuck { border-bottom-color: var(--line); }
       .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 68px; }
@@ -1158,6 +1163,8 @@
       .photo::before { content: ""; position: absolute; inset: 0; background: rgba(200, 99, 62, .16); mix-blend-mode: multiply; z-index: 1; pointer-events: none; }
       .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 10, 9, .6), rgba(10, 10, 9, 0) 45%); z-index: 1; pointer-events: none; }
       .alex-copy .body { margin-top: 1.5rem; }
+      .credo { margin-top: 1.75rem; max-width: 30ch; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.35rem, 1.05rem + .9vw, 1.8rem); line-height: 1.3; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
+      .credo em { font-style: italic; color: var(--orange-hi); }
       blockquote {
         margin: 2.25rem 0 0;
         padding: 0;
@@ -1169,7 +1176,6 @@
         max-width: 30ch;
         color: var(--ink);
       }
-      blockquote cite { display: block; margin-top: .9rem; font-family: 'Inter', sans-serif; font-style: normal; font-size: 14px; color: var(--ink-3); letter-spacing: 0; }
       .rev { margin: 2.5rem 0 0; }
       .rev .shot { border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); background: #F4F4F2; box-shadow: var(--shadow-raise); max-width: 520px; }
       .facts { display: flex; flex-wrap: wrap; gap: 1.75rem 2.75rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
@@ -1246,6 +1252,14 @@
       .price { text-align: right; }
       .price b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: clamp(2.6rem, 2rem + 2vw, 3.4rem); letter-spacing: -.035em; line-height: 1; }
       .price span { display: block; margin-top: .4rem; font-size: 13.5px; color: var(--ink-3); }
+      @media (max-width: 560px) {
+        /* Preis linksbündig unter den Namen statt rechtsbündig in einer eigenen Zeile */
+        .offer-top { flex-direction: column; gap: 1.5rem; }
+        .price { text-align: left; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .8rem; }
+        .price b { order: 1; }
+        .price s { order: 2; display: inline; margin: 0; font-size: 17px; }
+        .price span { order: 3; flex-basis: 100%; }
+      }
       .incl { list-style: none; margin: 2rem 0 0; padding: 1.6rem 0 0; border-top: 1px solid var(--line); display: grid; gap: .95rem; }
       .incl li { position: relative; padding-left: 2rem; color: var(--ink-2); line-height: 1.5; }
       .incl li::before { content: ""; position: absolute; left: 0; top: .12em; width: 20px; height: 20px; border-radius: 50%; background: rgba(200, 99, 62, .16); }
@@ -1295,8 +1309,9 @@
       .qf-prog i { width: 34px; height: 4px; border-radius: 2px; background: var(--line-2); overflow: hidden; position: relative; }
       .qf-prog i::after { content: ""; position: absolute; inset: 0; background: var(--orange); transform: scaleX(0); transform-origin: 0 50%; transition: transform .6s var(--ease); }
       .qf-prog i.done::after { transform: scaleX(1); }
-      .qf-stepno { font-size: 13px; color: var(--ink-3); }
-      .qf-back { min-height: 36px; padding: 0 .9rem; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); font-size: 13.5px; cursor: pointer; transition: border-color .2s var(--ease-q), color .2s var(--ease-q); }
+      .qf-meta { display: flex; align-items: center; gap: .85rem; min-width: 0; }
+      .qf-stepno { font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+      .qf-back { flex: none; white-space: nowrap; min-height: 36px; padding: 0 .9rem; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); font-size: 13.5px; cursor: pointer; transition: border-color .2s var(--ease-q), color .2s var(--ease-q); }
       .qf-back:hover { border-color: var(--ink-3); color: var(--ink); }
       .qf-back:active { transform: scale(.97); }
       .qf-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
@@ -1365,9 +1380,19 @@
       .qf-fail { margin-top: .9rem; font-size: 14px; color: #F08A7B; text-align: center; }
       .qf-fail a { color: var(--ink); }
       @media (max-width: 960px) {
-        .agency { grid-template-columns: 1fr; }
+        .agency { grid-template-columns: minmax(0, 1fr); }
         .qf { min-height: 0; }
         .qf .btn { margin-top: 1.75rem; }
+      }
+      @media (max-width: 520px) {
+        /* Zwei Zeilen statt drei Elemente nebeneinander: oben Frage x von 3 + Zurück, darunter der Balken */
+        .qf-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 36px auto; align-items: center; row-gap: .6rem; column-gap: 1rem; padding-bottom: .5rem; }
+        .qf-meta { display: contents; }
+        .qf-stepno { grid-row: 1; grid-column: 1; }
+        .qf-back { grid-row: 1; grid-column: 2; padding: 0 .35rem 0 .6rem; border-color: transparent; }
+        .qf-back:hover { border-color: transparent; }
+        .qf-prog { grid-row: 2; grid-column: 1 / -1; }
+        .qf-prog i { flex: 1; width: auto; }
       }
       @media (max-width: 460px) {
         .opts { grid-template-columns: 1fr; }
@@ -1450,10 +1475,8 @@
         bottom: 0;
         z-index: 60;
         padding: .7rem var(--gutter) calc(.7rem + env(safe-area-inset-bottom));
-        background: rgba(14, 14, 13, .86);
-        -webkit-backdrop-filter: blur(14px);
-        backdrop-filter: blur(14px);
-        border-top: 1px solid var(--line);
+        background-color: var(--bg);
+        border-top: 1px solid var(--line-2);
         display: none;
         align-items: center;
         justify-content: space-between;
@@ -1957,7 +1980,7 @@
           <div class="alex-copy">
             <h2 id="h-alex" data-reveal>Ich nutze das jeden Tag <em>selbst</em>.</h2>
             <p class="body" data-reveal="2">Ich bin Alex. Ich mache seit neun Jahren Online-Marketing und habe eine eigene Agentur. Alle meine Kunden organisiere ich inzwischen mit diesem System, und die Anzeigen für vorflows baut es auch.</p>
-            <blockquote data-reveal="2">„Wenn ich eines gelernt habe in den letzten neun Jahren Online-Marketing, dann, dass mehr Ads zu testen gleich mehr Geld in meiner Tasche bedeutet.“<cite>Alex, im Video</cite></blockquote>
+            <p class="credo" data-reveal="2">Wenn ich in der Zeit eins gelernt habe, dann das: Wer mehr Anzeigen testet, hat am Ende <em>mehr Geld</em> in der Tasche.</p>
             <div class="facts" data-reveal="3">
               <div><b>9</b><span>Jahre Online-Marketing</span></div>
               <div><b>59</b><span>Werbekonten, die ich verwalte</span></div>
@@ -2148,11 +2171,11 @@
 
             <form class="qf" id="qf" novalidate aria-labelledby="h-agency">
               <div class="qf-top">
-                <div>
+                <div class="qf-meta">
                   <div class="qf-prog" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="qf-stepno" id="qfNo" aria-live="polite">Frage 1 von 3</span>
                 </div>
-                <span class="qf-stepno" id="qfNo" aria-live="polite">Frage 1 von 3</span>
-                <button class="qf-back" type="button" id="qfBack" hidden>Zurück</button>
+                <button class="qf-back" type="button" id="qfBack" hidden><span aria-hidden="true">←</span> Zurück</button>
               </div>
 
               <fieldset class="qf-step is-active" data-step="1">
@@ -2543,8 +2566,10 @@
         function pageTo(j) {
           stopHint();
           selectTab(tabs[j], false);
+          var navEl = document.querySelector('.nav');
+          var off = getComputedStyle(navEl).position === 'sticky' ? navEl.offsetHeight + 16 : 16;
           var top = explorer.getBoundingClientRect().top;
-          if (top < 84) window.scrollTo({ top: top + window.scrollY - 84, behavior: reduce ? 'auto' : 'smooth' });
+          if (top < off) window.scrollTo({ top: top + window.scrollY - off, behavior: reduce ? 'auto' : 'smooth' });
           if (window.clarity) window.clarity('event', 'af_folder_pager');
         }
         pgNext.addEventListener('click', function () { pageTo((curTab + 1) % tabs.length); });
