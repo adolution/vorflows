@@ -46,7 +46,7 @@ Webinar-Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und 
 Aktuell das bisherige Demo-Video `assets/video/ki-im-shop-1080.mp4` (Screen-Aufnahme 5:23, im Repo), Poster
 `assets/images/sales/demo-poster*.webp` (Videobild 2:10 als Screen auf dunklem Grund). Lädt erst beim Klick.
 Der Motion-VSL (`vsl/projects/vorflows-sales`) ist **noch nicht fertig** (Alex 2026-10-05) und deshalb nicht eingebunden.
-v1-Encodes liegen ungenutzt auf Vercel Blob (`video/vorflows-vsl-v1-*.mp4`, dürfen gelöscht werden).
+v1-Encodes wurden am 2026-10-05 vom Vercel Blob gelöscht (nur noch lokal in `web-v1/`).
 Wenn der VSL fertig ist: Encodes mit neuem Namen auf Blob, im Script `VIDEO_SRC`/`VIDEO_POSTER` tauschen
 (bei mehreren Stufen `pickRes()` aus adsflow.html übernehmen), Untertitel als `<track>`, VideoObject im JSON-LD anpassen.
 
