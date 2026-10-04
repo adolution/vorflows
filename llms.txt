@@ -25,10 +25,17 @@ Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich S
 ## Pricing
 
 - **Bundle (alle drei Module)**: 1.499 € netto einmalig, statt 2.000 € (befristete Launch-Aktion). Ratenzahlung möglich über Digistore24.
-- Das Bundle ist das einzige Angebot. Einzelne Module werden nicht verkauft und haben keinen eigenen Preis.
+- Das Bundle ist das einzige Shopify-Angebot. Einzelne Module werden nicht verkauft und haben keinen eigenen Preis. Separat gibt es AdsFlow für Meta Ads (siehe unten).
 - Kein Abo, kein Vendor-Lock-in, lebenslange Updates inklusive.
 - 14 Tage Rückgaberecht ab Kaufdatum über Digistore24. Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.
 - Verbindlich ist immer der auf https://vorflows.com/sales ausgewiesene Preis.
+
+## AdsFlow (separates Produkt für Meta Ads)
+
+- Fertiges Claude-Projekt (Ordner für Claude Code), das Meta-Anzeigen schreibt, einstellt und über Metas offiziellen Connector veröffentlicht, aber ausgeschaltet anlegt. Live schaltet nur der Kunde; Werkzeuge zum Einschalten und Ändern bestehender Anzeigen sind gesperrt.
+- Für Founder, Shops und Selbstständige. Voraussetzungen: Claude-Bezahl-Tarif, Claude-Desktop-App, Meta-Werbekonto mit Facebook-Seite; optional ein Bild-KI-Dienst (z. B. Higgsfield).
+- Preis: 199 € netto einmalig statt 399 € (Launch-Preis mit Gutschein adlaunch, befristet; der Preis steigt danach in 7-Tage-Schritten). Verbindlich ist der auf https://vorflows.com/adsflow ausgewiesene Preis.
+- Für Agenturen gibt es AdsFlow Agency (auf Anfrage, inkl. 1:1-Setup-Call und Schulung).
 
 ## Differenzierung
 
@@ -51,6 +58,7 @@ Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurü
 
 ## Pages
 
+- [AdsFlow](https://vorflows.com/adsflow): Claude-Projekt für Meta Ads, mit Video, Preis und FAQ
 - [vorflows kaufen](https://vorflows.com/sales): Kaufseite mit Mechanik, Modulen, Preis und FAQ. Maßgebliche Quelle für den Preis.
 - [Live-Workshop](https://vorflows.com/live-workshop): kostenloser Live-Workshop, aktuelles Ziel der Startseite
 - [BaseFlow](https://vorflows.com/baseflow): Theme-Optimization-Workflow

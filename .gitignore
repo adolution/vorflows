@@ -10,3 +10,6 @@ temporary screenshots/
 .agents/vorflows-ads/
 .vercel
 .env*
+
+# Apps-Script-Secret der AdsFlow-Agentur-Anfragen (nur clasp → Google, nie ins Repo/öffentlich)
+.agents/adsflow-agency-sheet/secret.js
