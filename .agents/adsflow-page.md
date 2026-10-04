@@ -18,7 +18,7 @@ steht auf der Seite „zzgl. MwSt.“. Gutschein-Ablauf in Digistore muss zum `e
 
 Testimonials stammen aus dem Webinar-Deck (`~/Adolution/vorflows-ads/webinar/deck-A-startupads.html`, A13 bis A13e)
 und `sales.html` (Adrian), Wortlaut unverändert (Kürzungen nur ganze Sätze oder mit […]). Sie betreffen vorflows
-(Shopify-Systeme), nicht AdsFlow, das steht als Hinweis unter dem oberen Block. Referenzen im Alex-Block aus
+(Shopify-Systeme). Alex 2026-10-04: KEIN Hinweis „Stimmen zu vorflows“ auf der Seite, die Zuordnung der Bewertungen klärt er später selbst. Referenzen im Alex-Block aus
 `live-workshop.html` (404/Atlas/Quiver, Höhle der Löwen, 20.000+ Bestellungen, 1.000+ Kursteilnehmende).
 
 ## Produkt-Claims (geprüft 2026-10-04 gegen AdsFlow-2026-10-03)
@@ -30,7 +30,7 @@ und `sales.html` (Adrian), Wortlaut unverändert (Kürzungen nur ganze Sätze od
   aufgerufen werden. `ads_boost_ig_post` ist nicht gesperrt. Empfehlung fürs Produkt: PreToolUse-Hook, der
   `status != PAUSED` bei Create-Aufrufen blockt, und `ads_boost_ig_post` in die deny-Liste.
 - Seite formuliert deshalb: „legt … ausgeschaltet an“ + „Werkzeuge zum Einschalten und Ändern sind gesperrt“.
-- Videoanleitung: im ZIP nicht enthalten, Seite nennt nur die PDF-Anleitung.
+- Videoanleitungen: nicht im ZIP, aber Käufer:innen bekommen mehrere Videoanleitungen (Alex 2026-10-04) → steht auf der Seite.
 
 ## VSL-Video (nicht im Repo)
 
