@@ -1,8 +1,8 @@
 # Kaufseite `/sales`
 
 Stand 2026-10-05. Datei `sales.html` → Route `https://vorflows.com/sales` (`cleanUrls`), indexiert, in der Sitemap.
-Neu gebaut im Stil von `/adsflow` und in der Sprache des Sales-VSL „Die Mappe“ (dunkler Grund mit Studiolicht,
-Papierobjekte, Fraunces + Inter). Die alte Fassung liegt in der Git-Historie (Commit vor dem Neubau).
+Neu gebaut im Stil von `/adsflow`: Materialsprache AdsFlow (fast schwarz, Spotlicht, dunkle Glasflächen, Orange,
+Fraunces + Inter). Kein Papier/Karton/Korn-Look (Alex 2026-10-04: wirkt billig). Objekte aus dem VSL als Interaktionen. Die alte Fassung liegt in der Git-Historie (Commit vor dem Neubau).
 
 ## Farbregel
 
@@ -15,7 +15,7 @@ Papierobjekte, Fraunces + Inter). Die alte Fassung liegt in der Git-Historie (Co
 
 Hero (VSL) → Stimmen → Laufband „Du schreibst Claude ganz normal“ → App-Miete (Stromzähler) → Ablauf (Schiene,
 Brücke Claude ⇄ Ordner ⇄ Shop) → Beweis (echter Shop + Chat + Versandleiste zum Ausprobieren) → große Stimme →
-Daten (tote Klicks zum Antippen, Clarity-Beleg, Rubbelfeld, Search-Console-Beleg) → Ordner als Mappe mit 7 Registern →
+Daten (tote Klicks zum Antippen, Clarity-Beleg, Glas zum Freiwischen, Search-Console-Beleg) → Ordner mit 7 Registern →
 Sicher (Live-Theme vs. Kopie, gesperrter Schalter) → Alex → Setup → Angebot `#bundle` → FAQ → Schluss → Footer.
 
 Belege (`assets/images/sales/beleg-*.webp`) sind Standbilder aus `assets/video/ki-im-shop.mp4` (Rohmaster,
@@ -41,17 +41,21 @@ Preis steht an: Dock, Angebotskarte, Kauf-Button, Vergleichskasten, `product:pri
 `PRICE_VALUE` im Script. `apply-price-sales-webinar.mjs` passt NICHT mehr zur neuen Seite (sucht alte Strings).
 Webinar-Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und als FAQ.
 
-## VSL
+## Video
 
-`vorflows-vsl-v1-{1080,720,480}.mp4` auf Vercel Blob (`video/…`, Store `vorflows-media`, 1 Jahr immutable),
-Quelle `~/Adolution/motion-system/vsl/projects/vorflows-sales/out/web-v1/`. Poster `assets/images/sales/vsl-poster*.webp`,
-Untertitel `assets/video/vorflows-vsl-v1.vtt`. Laden erst beim Klick, Auflösung per `pickRes()` wie auf /adsflow.
-**Neuer Schnitt = neuer Dateiname** (`…-v2-…`), dann `VSL_BASE` + `VSL_VTT` + VideoObject im JSON-LD tauschen.
+Aktuell das bisherige Demo-Video `assets/video/ki-im-shop-1080.mp4` (Screen-Aufnahme 5:23, im Repo), Poster
+`assets/images/sales/demo-poster*.webp` (Videobild 2:10 als Screen auf dunklem Grund). Lädt erst beim Klick.
+Der Motion-VSL (`vsl/projects/vorflows-sales`) ist **noch nicht fertig** (Alex 2026-10-05) und deshalb nicht eingebunden.
+v1-Encodes liegen ungenutzt auf Vercel Blob (`video/vorflows-vsl-v1-*.mp4`, dürfen gelöscht werden).
+Wenn der VSL fertig ist: Encodes mit neuem Namen auf Blob, im Script `VIDEO_SRC`/`VIDEO_POSTER` tauschen
+(bei mehreren Stufen `pickRes()` aus adsflow.html übernehmen), Untertitel als `<track>`, VideoObject im JSON-LD anpassen.
 
 ## Tracking (unverändert zur alten Seite)
 
 Meta Pixel `2002118703756086` + CAPI (`/api/capi`, Event-ID-Dedup), Clarity `wnn5d5ehwn`, Google Ads `AW-18158480775`.
-Consent im „A/B-Test-Modus“ wie bisher: Tracking läuft, der Hinweis (unten links, ohne Sperr-Overlay) blockiert nichts.
+Consent: Ohne Wahl läuft Tracking wie bisher („A/B-Test-Modus“), der Hinweis sitzt unten links ohne Sperr-Overlay.
+**Seit 2026-10-05 wird „Nur notwendige“ respektiert:** dann kein Laden, keine Events; bei Ablehnung mitten in der Sitzung
+`clarity('stop')`, `fbq('consent','revoke')`, gtag consent denied. Volles Opt-in vor dem ersten Laden wäre der nächste Schritt.
 Lokal (localhost) wird nichts geladen, nur `console.info`.
 
 | Event | Wann |
