@@ -2362,7 +2362,7 @@
         function runOff() {
           timers.forEach(clearTimeout); timers = [];
           tgs.forEach(function (t, i) {
-            timers.push(setTimeout(function () { setTg(t, false, true); }, reduce ? 0 : 1100 + i * 650));
+            timers.push(setTimeout(function () { setTg(t, false, true); }, reduce ? 0 : 300 + i * 650));
           });
         }
         tgs.forEach(function (t) {
@@ -2376,7 +2376,7 @@
         });
         var tgIO = new IntersectionObserver(function (es) {
           if (es[0].isIntersecting) { runOff(); tgIO.disconnect(); }
-        }, { threshold: .6 });
+        }, { threshold: .05 });
         tgIO.observe(panel);
 
         // ── Ablauf: Schiene füllt sich mit dem aktiven Schritt ────────
