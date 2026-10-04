@@ -104,6 +104,7 @@ export default async function handler(req, res) {
     utm_term: clean(attr.utm_term),
     fbclid: attr.fbclid ? true : false,
     landed_at: clean(attr.landed_at, 40),
+    variant: pick(body.variant, ['A', 'B']),
   };
 
   console.log('adsflow-agency', JSON.stringify(record));

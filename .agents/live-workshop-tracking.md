@@ -32,6 +32,9 @@ Ziel: DOI-Bestätigungsrate hoch → schließt die Lücke Ads-Manager vs. WJ-Bac
 
 ---
 
+> **Weitere A/B-Tests:** `/adsflow` hat seit 2026-10-04 einen eigenen Headline-Test (#5), **clientseitig** in `adsflow.html`
+> (Cookie `vf_ab_af`, kein Middleware-Eintrag, keine B-Datei). Doku: `.agents/adsflow-page.md`.
+
 ## 1. A/B-Test (Test #4)
 
 ### ✅ ENTSCHIEDEN 2026-06-18 — Sieger: **Variante A**. B verloren.

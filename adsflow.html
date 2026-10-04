@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>AdsFlow: Meta Ads mit Claude bauen · vorflows</title>
+    <title>AdsFlow: Du testest zu wenig Anzeigen · vorflows</title>
     <meta name="description" content="AdsFlow ist ein fertiges Claude-Projekt für Meta Ads. Es schreibt deine Anzeigen, stellt sie richtig ein und legt sie ausgeschaltet in dein Werbekonto. Live schaltest du." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://vorflows.com/adsflow" />
@@ -35,6 +35,28 @@
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <script>
+      /* A/B-Test #5 Headline (seit 2026-10-04), clientseitig ohne zweite Datei:
+         A = „Du testest zu wenig Anzeigen …“ (Schwartz/Ogilvy), B = „Ein Satz an Claude …“ (Hormozi).
+         Cookie vf_ab_af (90 Tage), ?ab=A|B erzwingt (QA, setzt kein Cookie), Bots immer A.
+         B bekommt eigenen <title>, weil Clarity-MCP Varianten nur am Titel trennt. Doku: .agents/adsflow-page.md */
+      (function () {
+        var v = null;
+        try {
+          var q = new URLSearchParams(location.search).get('ab');
+          var bot = /bot|crawl|spider|slurp|facebookexternalhit|meta-externalagent|lighthouse|headlesschrome/i.test(navigator.userAgent);
+          if (q === 'A' || q === 'B') v = q;
+          if (!v) v = (document.cookie.match(/(?:^|; )vf_ab_af=([AB])/) || [])[1] || null;
+          if (!v) {
+            v = bot ? 'A' : (Math.random() < 0.5 ? 'A' : 'B');
+            if (!bot) document.cookie = 'vf_ab_af=' + v + '; Path=/; Max-Age=7776000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+          }
+        } catch (e) { v = 'A'; }
+        window.__afVariant = v;
+        document.documentElement.setAttribute('data-ab', v);
+        if (v === 'B') document.title = 'AdsFlow: Ein Satz an Claude, 40 fertige Meta Ads · vorflows (Variante B)';
+      })();
+    </script>
 
     <style>
       /* ================================================================
@@ -258,13 +280,15 @@
       .hero-head { max-width: 1100px; }
       .hero h1 {
         margin-top: 1.1rem;
-        font-size: clamp(2.9rem, 1.1rem + 5.6vw, 6rem);
-        line-height: 1.02;
-        letter-spacing: -.035em;
+        max-width: 22ch;
+        font-size: clamp(2.45rem, 1.05rem + 4.1vw, 4.7rem);
+        line-height: 1.04;
+        letter-spacing: -.033em;
         padding-bottom: .06em;
+        text-wrap: balance;
       }
-      .hero h1 .l { display: inline; }
-      .hero h1 .l3 { display: block; }
+      /* A/B: eine Variante sichtbar, Standard (ohne JS / Bots) = A */
+      html[data-ab="B"] .ab-a, html:not([data-ab="B"]) .ab-b { display: none !important; }
       .hero-grid {
         display: grid;
         grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
@@ -368,7 +392,6 @@
 
       @media (max-width: 960px) {
         .hero-grid { grid-template-columns: 1fr; }
-        .hero h1 .l { display: block; }
       }
 
       /* Hero-Einstieg: gestaffelt, nur Opacity + Transform */
@@ -1405,15 +1428,12 @@
 
     <main>
       <!-- ============ HERO ============ -->
-      <section class="hero" aria-labelledby="h1">
+      <section class="hero" aria-label="AdsFlow im Überblick">
         <div class="wrap">
           <div class="hero-head">
             <span class="eyebrow rise d1">AdsFlow, das Claude-Projekt für Meta Ads</span>
-            <h1 id="h1" class="rise d2">
-              <span class="l">40 Anzeigen.</span>
-              <span class="l">Ein Prompt.</span>
-              <span class="l3"><em>Ein Kaffee.</em></span>
-            </h1>
+            <h1 id="h1" class="rise d2 ab-a">Du testest zu wenig Anzeigen. Schuld ist der <em>Ads&nbsp;Manager</em>.</h1>
+            <h1 class="rise d2 ab-b">Ein Satz an Claude. 40 fertige Meta Ads in deinem <em>Werbekonto</em>.</h1>
           </div>
 
           <div class="hero-grid">
@@ -1432,7 +1452,8 @@
             </div>
 
             <div class="hero-aside">
-              <p class="lead rise d4">AdsFlow schreibt deine Meta-Anzeigen, stellt sie richtig ein und legt sie ausgeschaltet in dein Werbekonto. Live schaltest du.</p>
+              <p class="lead rise d4 ab-a">43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. In 10 Minuten zeige ich dir, wie Claude das macht.</p>
+              <p class="lead rise d4 ab-b">Texte, Einstellungen, Formate: alles erledigt. Im Video siehst du live, wie es in meinem Konto passiert.</p>
               <div class="hero-ctas rise d5">
                 <a class="btn btn--lg" href="#angebot" data-cta="hero">AdsFlow holen <span class="arr" aria-hidden="true">→</span></a>
                 <a class="link" href="#agentur">Ich bin eine Agentur</a>
@@ -2129,6 +2150,7 @@
         'use strict';
 
         var META_PIXEL_ID = '2002118703756086';
+        var VARIANT = window.__afVariant === 'B' ? 'B' : 'A';
         // Preis-Stufen. Der Launch-Preis gilt bis `end`, danach steigt der Preis alle 7 Tage.
         // Neue Stufe = neuer Eintrag (Preis + Gutschein wie in Digistore angelegt, `end` = Ablauf).
         // Ist keine Stufe mehr aktiv, zeigt die Seite den Normalpreis ohne Gutschein und ohne Countdown.
@@ -2210,6 +2232,7 @@
         function afTrack(name, props, clarityName, email) {
           props = props || {};
           props.page = 'adsflow';
+          props.variant = VARIANT;
           if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
           if (attr.utm_content) props.utm_content = attr.utm_content;
           var eventId = uuid();
@@ -2233,6 +2256,8 @@
         }
         if (window.clarity) {
           window.clarity('set', 'af_page', 'adsflow');
+          window.clarity('set', 'af_experiment', VARIANT);
+          window.clarity('event', 'af_' + VARIANT);
           if (attr.utm_campaign) window.clarity('set', 'af_utm_campaign', String(attr.utm_campaign).slice(0, 250));
           if (attr.utm_content) window.clarity('set', 'af_utm_content', String(attr.utm_content).slice(0, 250));
         }
@@ -2252,7 +2277,7 @@
         function applyPrice() {
           step = activeStep();
           var price = step ? step.price : PRICE.regular;
-          var q = '?' + (step && step.voucher ? 'voucher=' + encodeURIComponent(step.voucher) + '&' : '') + 'ds24tr=' + PRICE.track;
+          var q = '?' + (step && step.voucher ? 'voucher=' + encodeURIComponent(step.voucher) + '&' : '') + 'ds24tr=' + PRICE.track + '_' + VARIANT;
           buy.href = PRICE.url + q;
           each('[data-price], [data-price-btn]', function (el) { el.textContent = eur(price); });
           each('[data-price-old], [data-voucher-note]', function (el) { el.hidden = !step; });
@@ -2486,6 +2511,7 @@
             email: val,
             phone: (fd.get('phone') || '').toString().trim(),
             page: 'adsflow',
+            variant: VARIANT,
             website: '',
             t: Date.now() - formSeen,
             attribution: attr

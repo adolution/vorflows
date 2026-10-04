@@ -7,7 +7,7 @@ Meta-Blau `#0081FB` = alles in Metas Welt (Schalter, Werbekonto). Blau nie als C
 
 ## Preis + Countdown
 
-Kauf-Link: `https://www.digistore24.com/product/690701?voucher=<gutschein>&ds24tr=vf_adsflow` (Produkt 690701).
+Kauf-Link: `https://www.digistore24.com/product/690701?voucher=<gutschein>&ds24tr=vf_adsflow_<A|B>` (Produkt 690701).
 Preis-Stufen im Script (`PRICE.steps`): Launch **199 € netto statt 399 €**, Gutschein `adlaunch`, gültig bis
 **2026-10-11 23:59 (Berlin)**. Danach steigt der Preis alle 7 Tage. **Für jede neue Stufe einen Eintrag ergänzen**
 (Preis, Gutschein aus Digistore, Ende). Ist keine Stufe aktiv, zeigt die Seite automatisch 399 € ohne Gutschein,
@@ -31,6 +31,24 @@ und `sales.html` (Adrian), Wortlaut unverändert (Kürzungen nur ganze Sätze od
   `status != PAUSED` bei Create-Aufrufen blockt, und `ads_boost_ig_post` in die deny-Liste.
 - Seite formuliert deshalb: „legt … ausgeschaltet an“ + „Werkzeuge zum Einschalten und Ändern sind gesperrt“.
 - Videoanleitungen: nicht im ZIP, aber Käufer:innen bekommen mehrere Videoanleitungen (Alex 2026-10-04) → steht auf der Seite.
+
+## A/B-Test #5: Headline (seit 2026-10-04)
+
+| | Headline | Unterzeile | Herkunft |
+|---|---|---|---|
+| **A** | „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ | „43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. In 10 Minuten zeige ich dir, wie Claude das macht.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
+| **B** | „Ein Satz an Claude. 40 fertige Meta Ads in deinem Werbekonto.“ | „Texte, Einstellungen, Formate: alles erledigt. Im Video siehst du live, wie es in meinem Konto passiert.“ | Hormozi (Value Equation) |
+
+Nur Headline + Unterzeile unterscheiden sich, Rest identisch. **Clientseitig, eine Datei** (keine Middleware, keine
+B-Datei): Inline-Script im `<head>` lost vor dem ersten Paint aus, Cookie **`vf_ab_af`** (90 Tage), `?ab=A|B`
+erzwingt ohne Cookie (QA), Bots immer A. `html[data-ab]` + CSS zeigt `.ab-a` bzw. `.ab-b`. Split 50/50 auf Mobil und Desktop.
+
+Auswertung:
+- **Käufe je Variante:** Digistore-Tracking-Key `ds24tr=vf_adsflow_A` bzw. `vf_adsflow_B` (Digistore → Statistiken nach Tracking).
+- **Clarity-MCP:** nur über den Titel trennbar → A = „AdsFlow: Du testest zu wenig Anzeigen · vorflows“,
+  B = „AdsFlow: Ein Satz an Claude, 40 fertige Meta Ads · vorflows (Variante B)“. Dazu Tag `af_experiment` + Event `af_A`/`af_B` (nur Web-UI).
+- **Meta/CAPI:** jedes Event trägt `variant` (A/B). Agentur-Anfragen: Spalte `variant` im Sheet (seit Deployment @4).
+- Bei Entscheidung: Verlierer-Markup (`.ab-a`/`.ab-b`) + Head-Script entfernen bzw. Variante fest setzen, Titel angleichen.
 
 ## VSL-Video (nicht im Repo)
 

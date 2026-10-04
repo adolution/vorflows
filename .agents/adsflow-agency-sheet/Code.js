@@ -14,7 +14,9 @@
 //
 // Neue Spalten NUR ANS ENDE hängen (Altdaten sonst in falschen Spalten).
 const HEADERS = ['submitted_at', 'email', 'phone', 'clients', 'spend', 'qualified', 'page',
-  'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'landed_at'];
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'landed_at',
+  // ── ab 2026-10-04 angehängt ──
+  'variant'];
 const NOTIFY = 'alex@adolution.de';
 const LABEL = {
   clients: { '1-5': '1 bis 5', '6-15': '6 bis 15', '16-40': '16 bis 40', '40+': 'mehr als 40' },
