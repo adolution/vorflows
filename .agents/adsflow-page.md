@@ -36,7 +36,7 @@ und `sales.html` (Adrian), Wortlaut unverändert (Kürzungen nur ganze Sätze od
 
 | | Headline | Unterzeile | Herkunft |
 |---|---|---|---|
-| **A** | „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ | „43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. In 10 Minuten zeige ich dir, wie Claude das macht.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
+| **A** | „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ | „43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. Im Video zeige ich dir, wie Claude das macht.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
 | **B** | „Ein Satz an Claude. 40 fertige Meta Ads in deinem Werbekonto.“ | „Texte, Einstellungen, Formate: alles erledigt. Im Video siehst du live, wie es in meinem Konto passiert.“ | Hormozi (Value Equation) |
 
 Nur Headline + Unterzeile unterscheiden sich, Rest identisch. **Clientseitig, eine Datei** (keine Middleware, keine
@@ -72,6 +72,15 @@ Desktop mit `downlink < 2.5` → 720, sonst 1080. Das Video lädt erst beim Klic
 (Poster `assets/images/adsflow/vsl-poster*.webp` = LCP). Untertitel: `assets/video/adsflow-vsl-v3.vtt`
 (aus der v3-SRT, Zeiten ÷ 1,2, Schreibweisen Claude/Higgsfield/Ogilvy korrigiert), im Player zuschaltbar.
 
+## Ordner-Explorer mobil (≤ 900 px)
+
+Die Ordner sind dort eine seitlich scrollbare Chip-Leiste. Damit klar ist, dass man sie antippen kann:
+Hinweis „9 Ordner · zum Öffnen tippen“, beim ersten Sichtkontakt ruckelt die Leiste kurz nach rechts und zurück,
+dann tippt eine Hand (Phosphor `hand-tap`) dreimal auf den zweiten Ordner. Ordner antippen, Leiste wischen oder
+blättern beendet die Hand für immer. Unter dem Inhalt sitzt eine Weiter-Leiste (← · Fortschritt · „Weiter ad-qa →“),
+die zum Anfang des Explorers zurückspringt. Desktop unverändert. Klasse heißt `is-tapping`, nicht `play`
+(`.play` ist der Video-Button mit negativem Margin).
+
 ## Tracking
 
 Clarity (`af_*`) + Meta Pixel/CAPI mit Event-ID-Dedup, gleicher Attribution-Block wie LP/Replay
@@ -85,7 +94,7 @@ Clarity (`af_*`) + Meta Pixel/CAPI mit Event-ID-Dedup, gleicher Attribution-Bloc
 | `InitiateCheckout` | `af_checkout` | Kauf-Button im Angebot |
 | `Lead` `{clients, spend}` | `af_agency_lead` | Agentur-Formular erfolgreich |
 | – | `af_agency_q1` / `_q2` | Formular-Fragen beantwortet |
-| – | `af_cta_hero` / `nav` / `dock` / `final`, `af_folder_*`, `af_lock_try`, `af_toggles_replay` | Interaktionen |
+| – | `af_cta_hero` / `nav` / `dock` / `final`, `af_folder_*` (+ `af_folder_pager` = Weiter-Leiste mobil), `af_lock_try`, `af_toggles_replay` | Interaktionen |
 
 ## Sicherheit Formular
 

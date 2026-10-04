@@ -883,10 +883,13 @@
         box-shadow: var(--shadow-float);
         overflow: hidden;
       }
-      .tree { padding: 1.25rem .75rem; border-right: 1px solid var(--line); background: rgba(10, 10, 9, .45); }
-      .tree-root { display: block; padding: .2rem .75rem .8rem; font-size: 13px; color: var(--ink-3); }
+      .tree { position: relative; padding: 1.25rem .75rem; border-right: 1px solid var(--line); background: rgba(10, 10, 9, .45); }
+      .tree-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .2rem .75rem .8rem; }
+      .tree-root { font-size: 13px; color: var(--ink-3); }
+      .tree-hint { display: none; font-size: 12.5px; color: var(--ink-3); white-space: nowrap; }
       .tree [role="tablist"] { display: flex; flex-direction: column; gap: 2px; }
       .tab {
+        position: relative;
         display: flex;
         align-items: center;
         gap: .6rem;
@@ -1048,13 +1051,73 @@
         .explorer { grid-template-columns: minmax(0, 1fr); }
         .explorer > * { min-width: 0; }
         .tree { border-right: 0; border-bottom: 1px solid var(--line); padding: 1rem 0 1rem; }
-        .tree-root { padding-inline: var(--gutter); }
+        .tree-head { padding: 0 1rem .75rem; }
+        .tree-hint { display: inline; }
         .tree [role="tablist"] { flex-direction: row; overflow-x: auto; gap: .4rem; padding: 0 1rem .25rem; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
         .tree [role="tablist"]::-webkit-scrollbar { display: none; }
         .tab { flex: none; border: 1px solid var(--line-2); }
         .tab-gap { display: none; }
         .pane { grid-template-columns: 1fr; min-height: 0; }
         .viz { min-height: 260px; }
+
+        /* Tipp-Hand: zeigt, dass die Ordner Knöpfe sind. Verschwindet bei der ersten Berührung. */
+        .tap-hint { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .35s var(--ease-q); }
+        .tap-hint.is-tapping { opacity: 1; }
+        .tap-hint.gone { opacity: 0; }
+        .tap-hint svg { position: absolute; left: -16px; top: -7px; width: 38px; height: 38px; color: var(--cream); filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .65)); transform-origin: 16px 7px; }
+        .tap-hint .ring { position: absolute; left: -18px; top: -18px; width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
+        .tab::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid var(--orange); background: rgba(200, 99, 62, .1); opacity: 0; pointer-events: none; }
+
+        /* Blättern unter dem Inhalt */
+        .pager { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1rem .75rem; padding: 1.1rem clamp(1rem, 4vw, 1.5rem) 1.4rem; border-top: 1px solid var(--line); }
+        .pg-top { grid-column: 1 / -1; display: flex; align-items: center; gap: .9rem; }
+        .pg-track { flex: 1; display: flex; gap: 4px; }
+        .pg-track i { position: relative; flex: 1; height: 3px; border-radius: 2px; background: var(--line-2); overflow: hidden; }
+        .pg-track i::after { content: ""; position: absolute; inset: 0; background: var(--ink-3); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+        .pg-track i.seen::after { transform: none; }
+        .pg-track i.on::after { transform: none; background: var(--orange); }
+        .pg-count { font-size: 12.5px; color: var(--ink-3); white-space: nowrap; }
+        .pg-prev, .pg-next { min-height: 44px; border-radius: 999px; font: inherit; cursor: pointer; transition: transform .15s var(--ease-q), opacity .2s, background-color .2s var(--ease-q); }
+        .pg-prev { width: 44px; border: 1px solid var(--line-2); background: transparent; color: var(--ink); font-size: 17px; }
+        .pg-prev:disabled { opacity: .3; cursor: default; }
+        .pg-next { justify-self: end; display: inline-flex; align-items: center; gap: .45rem; padding: 0 1.1rem; border: 1px solid rgba(200, 99, 62, .55); background: rgba(200, 99, 62, .14); color: var(--ink); font-size: 14.5px; font-weight: 500; white-space: nowrap; }
+        .pg-name { font-size: 13px; color: var(--orange-hi); }
+        .pg-prev:not(:disabled):hover { background: rgba(237, 236, 231, .05); }
+        .pg-next:hover { background: rgba(200, 99, 62, .22); }
+        .pg-prev:not(:disabled):active, .pg-next:active { transform: scale(.97); }
+        .pg-prev:focus-visible, .pg-next:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      }
+      @media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+        .tap-hint.is-tapping svg { animation: tapHand 2.6s var(--ease) 3 both; }
+        .tap-hint.is-tapping .ring { animation: tapRing 2.6s ease-out 3 both; }
+        .tab.tap-demo::after { animation: tapChip 2.6s ease-out 3 both; }
+        @keyframes tapHand {
+          0% { opacity: 0; transform: translate(14px, 18px); }
+          18%, 34% { opacity: 1; transform: none; }
+          42% { transform: translateY(1px) scale(.84); }
+          54% { transform: none; }
+          80% { opacity: 1; transform: none; }
+          100% { opacity: 0; transform: translate(6px, 10px); }
+        }
+        @keyframes tapRing {
+          0%, 40% { opacity: 0; transform: scale(.35); }
+          43% { opacity: .95; transform: scale(.45); }
+          78%, 100% { opacity: 0; transform: scale(1.6); }
+        }
+        @keyframes tapChip {
+          0%, 40% { opacity: 0; }
+          45% { opacity: 1; }
+          85%, 100% { opacity: 0; }
+        }
+      }
+      .pager, .tap-hint { display: none; }
+      @media (max-width: 900px) {
+        .pager { display: grid; }
+        .tap-hint { display: block; }
+      }
+      @media (max-width: 480px) {
+        /* Hänge-Mobile passt sonst nicht ganz in den Rahmen (Frequenz stößt rechts an) */
+        .mobile { transform: translateX(-14px) scale(.92); }
       }
 
       /* ---------- Sicher ---------- */
@@ -1196,7 +1259,12 @@
       .fit li::before { content: ""; position: absolute; left: 0; top: .55em; width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
       .fit .no { margin-top: 2.5rem; }
       .fit .no li::before { background: transparent; border: 1.5px solid var(--ink-3); }
-      @media (max-width: 900px) { .offer-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 900px) { .offer-grid { grid-template-columns: minmax(0, 1fr); } }
+      @media (max-width: 360px) {
+        /* sehr schmale Handys (320 px): Kaufkarte nicht über den Rand drücken */
+        .offer { padding: 1.4rem 1.15rem; }
+        .offer .btn { padding-inline: 1rem; font-size: 16px; }
+      }
 
       /* ---------- Agentur ---------- */
       .agency {
@@ -1445,14 +1513,14 @@
               <!-- VSL: Poster-Fassade, das Video wird erst beim Klick geladen (Quelle je nach Gerät, siehe VSL im Script). -->
               <div class="stage" id="stage">
                 <img src="/assets/images/adsflow/vsl-poster.webp" srcset="/assets/images/adsflow/vsl-poster-960.webp 960w, /assets/images/adsflow/vsl-poster.webp 1600w" sizes="(max-width: 960px) 100vw, 800px" width="1600" height="900" alt="Standbild aus dem Video: Alex erklärt das Claude-Projekt hinter AdsFlow" fetchpriority="high" />
-                <button class="play" type="button" id="play" aria-label="Video abspielen, 10 Minuten"></button>
+                <button class="play" type="button" id="play" aria-label="Video abspielen"></button>
                 <p class="stage-err" id="stageErr" hidden>Das Video lädt gerade nicht. <a id="stageErrLink" href="#" target="_blank" rel="noopener">Direkt öffnen</a></p>
               </div>
-              <p class="stage-cap"><b>10 Minuten</b> Ich zeige dir AdsFlow live in meinem Werbekonto.</p>
+              <p class="stage-cap"><b>Ton an</b> Ich zeige dir AdsFlow live in meinem Werbekonto.</p>
             </div>
 
             <div class="hero-aside">
-              <p class="lead rise d4 ab-a">43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. In 10 Minuten zeige ich dir, wie Claude das macht.</p>
+              <p class="lead rise d4 ab-a">43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. Im Video zeige ich dir, wie Claude das macht.</p>
               <p class="lead rise d4 ab-b">Texte, Einstellungen, Formate: alles erledigt. Im Video siehst du live, wie es in meinem Konto passiert.</p>
               <div class="hero-ctas rise d5">
                 <a class="btn btn--lg" href="#angebot" data-cta="hero">AdsFlow holen <span class="arr" aria-hidden="true">→</span></a>
@@ -1691,8 +1759,11 @@
           </div>
 
           <div class="explorer" data-reveal>
-            <div class="tree">
-              <span class="tree-root mono">adsflow/</span>
+            <div class="tree" id="tree">
+              <div class="tree-head">
+                <span class="tree-root mono">adsflow/</span>
+                <span class="tree-hint" aria-hidden="true">9 Ordner · zum Öffnen tippen</span>
+              </div>
               <div role="tablist" aria-label="Ordner von AdsFlow" aria-orientation="vertical" id="tabs">
                 <button class="tab" role="tab" id="t-ausw" aria-controls="p-ausw" aria-selected="true"><span class="ind"></span><span><span class="sub">skills/</span>ad-auswertung</span></button>
                 <button class="tab" role="tab" id="t-copy" aria-controls="p-copy" aria-selected="false" tabindex="-1"><span class="ind"></span><span><span class="sub">skills/</span>ad-copy</span></button>
@@ -1705,6 +1776,8 @@
                 <button class="tab" role="tab" id="t-fb" aria-controls="p-fb" aria-selected="false" tabindex="-1"><span class="ind"></span><span>feedback/</span></button>
                 <button class="tab" role="tab" id="t-set" aria-controls="p-set" aria-selected="false" tabindex="-1"><span class="ind"></span><span>SETUP.md</span></button>
               </div>
+              <!-- Mobil: Hand tippt auf den zweiten Ordner, bis man selbst etwas antippt (Icon: Phosphor hand-tap, fill). -->
+              <span class="tap-hint" id="tapHint" aria-hidden="true"><i class="ring"></i><svg viewBox="0 0 256 256" fill="currentColor"><path d="M64,64a48,48,0,0,1,96,0,8,8,0,0,1-16,0,32,32,0,0,0-64,0,8,8,0,0,1-16,0Zm143.23,56c-8.61.4-15.23,7.82-15.23,16.43v7.28a8.17,8.17,0,0,1-7.47,8.25,8,8,0,0,1-8.53-8V120.45c0-8.61-6.62-16-15.23-16.43A16,16,0,0,0,144,120v15.73a8.17,8.17,0,0,1-7.47,8.25,8,8,0,0,1-8.53-8V64.45c0-8.61-6.62-16-15.23-16.43A16,16,0,0,0,96,64V183.74a8.19,8.19,0,0,1-6.72,8.16l-.12,0a6.09,6.09,0,0,1-6-3.09l-21-36.44c-4.3-7.46-13.74-10.57-21.4-6.62A16,16,0,0,0,34.15,168L65.1,228.05A8,8,0,0,0,72,232H208a8,8,0,0,0,7.16-4.42c.36-.72,8.84-15.06,8.84-40.65V136A16,16,0,0,0,207.23,120Z"/></svg></span>
             </div>
 
             <div class="panes">
@@ -1846,6 +1919,16 @@
                 </div>
               </div>
             </div>
+
+            <!-- Mobil: Blättern unter dem Inhalt, damit niemand zurück nach oben zur Leiste muss. -->
+            <div class="pager" id="pager">
+              <div class="pg-top">
+                <span class="pg-track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="pg-count mono" id="pgCount">1 / 9</span>
+              </div>
+              <button class="pg-prev" type="button" id="pgPrev" aria-label="Vorheriger Ordner">←</button>
+              <button class="pg-next" type="button" id="pgNext"><span id="pgLab">Weiter</span> <span class="pg-name mono" id="pgName">ad-copy</span> <span aria-hidden="true">→</span></button>
+            </div>
           </div>
         </div>
       </section>
@@ -1913,7 +1996,7 @@
               <li><b>Den Ordner <code>adsflow</code> in VS Code öffnen</b><span>Den inneren Ordner, nicht den entpackten Überordner.</span></li>
               <li><b>Claude starten und <span class="say">„Lies SETUP.md“</span> schreiben</b><span>Ab da übernimmt Claude und richtet alles mit dir ein.</span></li>
             </ol>
-            <p class="body" data-reveal="2" style="font-size:15.5px">Noch kein VS Code und kein Claude Code? Die Komplettanleitung im Ordner bringt dich in etwa zehn Minuten von null dahin. Wer lieber zuschaut und nachklickt, nimmt die Videoanleitungen.</p>
+            <p class="body" data-reveal="2" style="font-size:15.5px">Noch kein VS Code und kein Claude Code? Die Komplettanleitung im Ordner bringt dich Schritt für Schritt von null dahin. Wer lieber zuschaut und nachklickt, nimmt die Videoanleitungen.</p>
             <div class="needs" data-reveal="3">
               <h3>Was du brauchst</h3>
               <ul>
@@ -2419,6 +2502,29 @@
 
         // ── Ordner-Tabs ───────────────────────────────────────────────
         var tabs = Array.prototype.slice.call(document.querySelectorAll('#tabs [role="tab"]'));
+        var strip = document.getElementById('tabs');
+        var tree = document.getElementById('tree');
+        var explorer = tree.parentNode;
+        var segs = Array.prototype.slice.call(document.querySelectorAll('#pager .pg-track i'));
+        var pgPrev = document.getElementById('pgPrev'), pgNext = document.getElementById('pgNext');
+        var curTab = 0, visited = { 0: true };
+        var isMobile = function () { return window.innerWidth <= 900; };
+        var tabName = function (t) { return t.textContent.replace('skills/', '').trim(); };
+
+        // Leiste seitlich so schieben, dass der aktive Ordner mittig steht (ohne die Seite vertikal zu bewegen).
+        function centerTab(tab, smooth) {
+          var sr = strip.getBoundingClientRect(), tr = tab.getBoundingClientRect();
+          strip.scrollTo({ left: strip.scrollLeft + (tr.left - sr.left) - (strip.clientWidth - tr.width) / 2, behavior: smooth && !reduce ? 'smooth' : 'auto' });
+        }
+        function updatePager() {
+          var last = curTab === tabs.length - 1, next = tabs[(curTab + 1) % tabs.length];
+          document.getElementById('pgCount').textContent = (curTab + 1) + ' / ' + tabs.length;
+          document.getElementById('pgLab').textContent = last ? 'Von vorn' : 'Weiter';
+          document.getElementById('pgName').textContent = tabName(next);
+          pgNext.setAttribute('aria-label', (last ? 'Von vorn: ' : 'Nächster Ordner: ') + tabName(next));
+          pgPrev.disabled = curTab === 0;
+          segs.forEach(function (el, i) { el.classList.toggle('on', i === curTab); el.classList.toggle('seen', !!visited[i]); });
+        }
         function selectTab(tab, focus) {
           tabs.forEach(function (t) {
             var on = t === tab;
@@ -2426,12 +2532,63 @@
             t.tabIndex = on ? 0 : -1;
             document.getElementById(t.getAttribute('aria-controls')).classList.toggle('is-active', on);
           });
-          if (focus) tab.focus();
-          if (window.innerWidth <= 900) tab.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+          curTab = tabs.indexOf(tab);
+          visited[curTab] = true;
+          if (focus) tab.focus({ preventScroll: true });
+          if (isMobile()) centerTab(tab, true);
+          updatePager();
           if (window.clarity) window.clarity('event', 'af_folder_' + tab.id.slice(2));
         }
+        // Blättern unten: neuer Ordner, dann zurück an den Anfang des Explorers, falls der oben aus dem Bild ist.
+        function pageTo(j) {
+          stopHint();
+          selectTab(tabs[j], false);
+          var top = explorer.getBoundingClientRect().top;
+          if (top < 84) window.scrollTo({ top: top + window.scrollY - 84, behavior: reduce ? 'auto' : 'smooth' });
+          if (window.clarity) window.clarity('event', 'af_folder_pager');
+        }
+        pgNext.addEventListener('click', function () { pageTo((curTab + 1) % tabs.length); });
+        pgPrev.addEventListener('click', function () { if (curTab > 0) pageTo(curTab - 1); });
+        updatePager();
+
+        // Tipp-Hand (nur mobil): Leiste ruckelt einmal kurz nach rechts und zurück, dann tippt die Hand
+        // dreimal auf den zweiten Ordner. Ordner antippen, Leiste wischen oder blättern beendet das für immer.
+        var hint = document.getElementById('tapHint'), hintDone = false, nudging = false, hintTimers = [];
+        function stopHint() {
+          if (hintDone) return;
+          hintDone = true;
+          hintTimers.forEach(clearTimeout);
+          hint.classList.add('gone');
+          tabs[1].classList.remove('tap-demo');
+        }
+        function playHint() {
+          var tr = tabs[1].getBoundingClientRect(), pr = tree.getBoundingClientRect();
+          hint.style.left = Math.round(tr.left - pr.left + Math.min(tr.width * .4, 56)) + 'px';
+          hint.style.top = Math.round(tr.top - pr.top + tr.height * .55) + 'px';
+          hint.classList.remove('is-tapping'); tabs[1].classList.remove('tap-demo');
+          void hint.offsetWidth;
+          hint.classList.add('is-tapping'); tabs[1].classList.add('tap-demo');
+        }
+        function startHint() {
+          if (hintDone || !isMobile()) return;
+          if (reduce) { playHint(); return; }
+          nudging = true;
+          strip.scrollTo({ left: 0, behavior: 'auto' });
+          hintTimers.push(setTimeout(function () { strip.scrollTo({ left: 96, behavior: 'smooth' }); }, 150));
+          hintTimers.push(setTimeout(function () { strip.scrollTo({ left: 0, behavior: 'smooth' }); }, 850));
+          hintTimers.push(setTimeout(function () { nudging = false; if (!hintDone) playHint(); }, 1650));
+        }
+        strip.addEventListener('scroll', function () { if (!nudging) stopHint(); }, { passive: true });
+        var hintIO = new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (en.isIntersecting) startHint();
+            else if (!hintDone) { hintTimers.forEach(clearTimeout); hintTimers = []; nudging = false; hint.classList.remove('is-tapping'); tabs[1].classList.remove('tap-demo'); }
+          });
+        }, { threshold: .45 });
+        hintIO.observe(tree);
+
         tabs.forEach(function (t, i) {
-          t.addEventListener('click', function () { selectTab(t, false); });
+          t.addEventListener('click', function () { stopHint(); selectTab(t, false); });
           t.addEventListener('keydown', function (e) {
             var k = e.key, j = -1;
             if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % tabs.length;
