@@ -43,12 +43,14 @@ Webinar-Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und 
 
 ## Video
 
-Aktuell das bisherige Demo-Video `assets/video/ki-im-shop-1080.mp4` (Screen-Aufnahme 5:23, im Repo), Poster
-`assets/images/sales/demo-poster*.webp` (Videobild 2:10 als Screen auf dunklem Grund). Lädt erst beim Klick.
-Der Motion-VSL (`vsl/projects/vorflows-sales`) ist **noch nicht fertig** (Alex 2026-10-05) und deshalb nicht eingebunden.
-v1-Encodes wurden am 2026-10-05 vom Vercel Blob gelöscht (nur noch lokal in `web-v1/`).
-Wenn der VSL fertig ist: Encodes mit neuem Namen auf Blob, im Script `VIDEO_SRC`/`VIDEO_POSTER` tauschen
-(bei mehreren Stufen `pickRes()` aus adsflow.html übernehmen), Untertitel als `<track>`, VideoObject im JSON-LD anpassen.
+**Übergangsfassung seit 2026-10-05 (Alex: „zum Übergang drauf“):** Motion-VSL v1b (5:05, Look „Die Mappe“ mit
+Papier, wird durch eine v2 im AdsFlow-Material ersetzt). `vorflows-vsl-v1b-{1080,720,480}.mp4` auf Vercel Blob
+(`video/…`, Store `vorflows-media`, 1 Jahr immutable), Quelle `~/Adolution/motion-system/vsl/projects/vorflows-sales/out/web-v1/`
+(Build 5, feiner Papiergrain). Poster `assets/images/sales/vsl-v1b-poster*.webp`, Untertitel
+`assets/video/vorflows-vsl-v1b.vtt`. Laden erst beim Klick, Auflösung per `pickRes()` wie auf /adsflow,
+Clarity-Tag `hero_video_res`. Name `v1b`, weil die alten `v1`-Dateien schon einmal live waren (Cache).
+**Neuer Schnitt = neuer Dateiname** (`…-v2-…`), dann `VSL_BASE` + `VSL_VTT` + `VSL_POSTER` + VideoObject im JSON-LD tauschen.
+Fallback: bisheriges Demo-Video `assets/video/ki-im-shop-1080.mp4` + `assets/images/sales/demo-poster*.webp` (im Repo).
 
 ## Tracking (unverändert zur alten Seite)
 

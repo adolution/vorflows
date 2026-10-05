@@ -45,7 +45,9 @@
     <meta property="product:retailer_item_id" content="vf-bundle" />
     <meta property="product:category" content="Shopify Optimization System" />
 
-    <link rel="preload" as="image" href="/assets/images/sales/demo-poster.webp" imagesrcset="/assets/images/sales/demo-poster-960.webp 960w, /assets/images/sales/demo-poster.webp 1920w" imagesizes="(max-width: 1000px) 100vw, 800px" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/images/sales/vsl-v1b-poster.webp" imagesrcset="/assets/images/sales/vsl-v1b-poster-960.webp 960w, /assets/images/sales/vsl-v1b-poster.webp 1920w" imagesizes="(max-width: 1000px) 100vw, 800px" fetchpriority="high" />
+    <!-- VSL liegt auf Vercel Blob (nicht im Repo). Preconnect, damit der Start nach dem Klick schnell ist. -->
+    <link rel="preconnect" href="https://ywogisjwo1efkri1.public.blob.vercel-storage.com" crossorigin />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
@@ -131,7 +133,7 @@
             { "@type": "Thing", "name": "Shopify Apps" }
           ],
           "mainEntity": { "@id": "https://vorflows.com/#product-bundle" },
-          "primaryImageOfPage": { "@type": "ImageObject", "url": "https://vorflows.com/assets/images/sales/demo-poster.webp", "width": 1920, "height": 1080 },
+          "primaryImageOfPage": { "@type": "ImageObject", "url": "https://vorflows.com/assets/images/sales/vsl-v1b-poster.webp", "width": 1920, "height": 1080 },
           "datePublished": "2026-04-27",
           "dateModified": "2026-10-04"
         },
@@ -146,7 +148,7 @@
           "brand": { "@id": "https://vorflows.com/#organization" },
           "manufacturer": { "@id": "https://vorflows.com/#organization" },
           "image": [
-            "https://vorflows.com/assets/images/sales/demo-poster.webp",
+            "https://vorflows.com/assets/images/sales/vsl-v1b-poster.webp",
             "https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp"
           ],
           "category": "Digital Goods > Shopify Optimization System",
@@ -200,10 +202,10 @@
           "@id": "https://vorflows.com/sales#video",
           "name": "vorflows live an einem echten Shopify-Shop",
           "description": "Alex zeigt, wie Claude mit vorflows eine App ersetzt, eine Versandleiste baut und aus Clarity- und Search-Console-Daten Verbesserungen für den Shop ableitet.",
-          "thumbnailUrl": ["https://vorflows.com/assets/images/sales/demo-poster.webp"],
-          "uploadDate": "2026-05-07T10:00:00+02:00",
-          "duration": "PT5M23S",
-          "contentUrl": "https://vorflows.com/assets/video/ki-im-shop-1080.mp4",
+          "thumbnailUrl": ["https://vorflows.com/assets/images/sales/vsl-v1b-poster.webp"],
+          "uploadDate": "2026-10-05T02:00:00+02:00",
+          "duration": "PT5M5S",
+          "contentUrl": "https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/vorflows-vsl-v1b-1080.mp4",
           "embedUrl": "https://vorflows.com/sales#video",
           "inLanguage": "de-DE",
           "isFamilyFriendly": true,
@@ -1755,9 +1757,9 @@
 
           <div class="hero-grid">
             <div class="stage-wrap rise d3" id="video">
-              <!-- Demo-Video: Poster-Fassade, das Video lädt erst beim Klick. -->
+              <!-- VSL: Poster-Fassade, das Video lädt erst beim Klick (Quelle je nach Gerät, siehe VSL im Script). -->
               <div class="stage" id="stage" data-hero-video>
-                <img src="/assets/images/sales/demo-poster.webp" srcset="/assets/images/sales/demo-poster-960.webp 960w, /assets/images/sales/demo-poster.webp 1920w" sizes="(max-width: 1000px) 100vw, 800px" width="1920" height="1080" alt="Standbild aus dem Video: meine Shopify-Produktseite mit Bundle-Auswahl und Versandleiste, unten links Alex im Bild" fetchpriority="high" />
+                <img src="/assets/images/sales/vsl-v1b-poster.webp" srcset="/assets/images/sales/vsl-v1b-poster-960.webp 960w, /assets/images/sales/vsl-v1b-poster.webp 1920w" sizes="(max-width: 1000px) 100vw, 800px" width="1920" height="1080" alt="Standbild aus dem Video: unten links Alex im Bild, daneben richtet sich eine Produktseite aus einer Mappe auf" fetchpriority="high" />
                 <button class="play" type="button" id="play" aria-label="Video abspielen"></button>
                 <p class="stage-err" id="stageErr" hidden>Das Video lädt gerade nicht. <a id="stageErrLink" href="#" target="_blank" rel="noopener">Direkt öffnen</a></p>
               </div>
@@ -2503,9 +2505,10 @@
           purchase: 'VDg2CKiF_ascEIfb0dJD'
         };
         var PRICE_VALUE = 1499.0;
-        // Demo-Video (Screen-Aufnahme, 5:23). Der Motion-VSL kommt später, dann hier tauschen (siehe .agents/sales-page.md).
-        var VIDEO_SRC = '/assets/video/ki-im-shop-1080.mp4';
-        var VIDEO_POSTER = '/assets/images/sales/demo-poster.webp';
+        // VSL v1b (5:05, Übergangsfassung), drei Stufen auf Vercel Blob. Neuer Schnitt = neue Dateinamen (1 Jahr immutable gecacht).
+        var VSL_BASE = 'https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/vorflows-vsl-v1b-';
+        var VSL_VTT = '/assets/video/vorflows-vsl-v1b.vtt';
+        var VSL_POSTER = '/assets/images/sales/vsl-v1b-poster.webp';
 
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var isLocal = /^(localhost|127\.)/.test(location.hostname);
@@ -2726,21 +2729,35 @@
         each('[data-reveal]', function (el) { revealIO.observe(el); });
 
         // ── Video-Bühne ───────────────────────────────────────────────
-        // Geladen wird erst beim Klick (Poster = LCP).
+        // Stufe nach Gerät + Verbindung: 480p bei Datensparen/langsamem Netz, 720p auf dem Handy
+        // oder bei mäßiger Bandbreite, sonst 1080p. Geladen wird erst beim Klick (Poster = LCP).
         var stage = $('stage');
+        function pickRes() {
+          var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          if (c && (c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || ''))) return '480';
+          if (window.matchMedia('(max-width: 760px)').matches) return '720';
+          if (c && c.downlink && c.downlink < 2.5) return '720';
+          return '1080';
+        }
         $('play').addEventListener('click', function () {
+          var res = pickRes();
+          var src = VSL_BASE + res + '.mp4';
           var v = document.createElement('video');
           v.controls = true;
           v.playsInline = true;
           v.preload = 'auto';
-          v.poster = VIDEO_POSTER;
-          v.src = VIDEO_SRC;
-          v.addEventListener('error', function () { $('stageErrLink').href = VIDEO_SRC; $('stageErr').hidden = false; });
+          v.poster = VSL_POSTER;
+          v.src = src;
+          var tr = document.createElement('track');
+          tr.kind = 'subtitles'; tr.srclang = 'de'; tr.label = 'Deutsch'; tr.src = VSL_VTT;
+          v.appendChild(tr);
+          v.addEventListener('error', function () { $('stageErrLink').href = src; $('stageErr').hidden = false; });
           stage.appendChild(v);
           stage.classList.add('is-playing');
           watch(v);
           v.play().catch(function () {});
           v.focus({ preventScroll: true });
+          if (window.clarity && consentState !== 'denied') window.clarity('set', 'hero_video_res', res);
         }, { once: true });
 
         // Watch-Time wie bisher: Meilensteine + Zeit-Buckets bei Pause/Ende/Tab-Wechsel
