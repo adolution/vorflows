@@ -285,13 +285,15 @@
       @media (max-width: 420px) { .brand .prod { display: none; } }
 
       /* ---------- Hero ---------- */
-      .hero { position: relative; padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(3rem, 6vw, 5rem); isolation: isolate; overflow-x: clip; }
+      /* Kein isolation/z-index am Hero: sonst sitzt der Mini-Player (position: fixed) in dessen Stapelebene
+         und spätere Abschnitte malen über ihn. Licht-Ebene liegt per DOM-Reihenfolge hinter .wrap. */
+      .hero { position: relative; padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(3rem, 6vw, 5rem); overflow-x: clip; }
+      .hero > .wrap { position: relative; }
       .hero::before {
         /* Zwei Lichter: warmes Claude-Licht links, grünes Shop-Licht rechts, Lichtpool oben */
         content: "";
         position: absolute;
         inset: -68px 0 -6rem 0;
-        z-index: -1;
         pointer-events: none;
         -webkit-mask-image: linear-gradient(#000 70%, transparent);
         mask-image: linear-gradient(#000 70%, transparent);
