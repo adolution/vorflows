@@ -398,12 +398,29 @@ das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/wor
 Kosten: Storage ~0,01 €/Monat; Egress 0,05 $/GB über dem Plan-Inklusivvolumen (≈ 0,38 GB pro Komplett-View).
 OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
 
-**Seiten-Aufbau:** Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, Play-Button, „Weiterschauen
-ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t`) → Hinweis (Bildschirmübertragung fiel stellenweise aus,
-Ton durchgehend) → 12 Kapitel (Buttons, `data-t` in Sekunden, springen + spielen, aktives Kapitel markiert)
-→ dunkles Angebots-Band (1.499 € statt 2.000 €, Voucher `launch`, `ds24tr=vf_replay`) → 3 Testimonials
-(Wortlaut aus `.agents/webinar-email-sequenz.md`) → Schluss-CTA → Footer (`impressum-lw-b`/`datenschutz-lw-b`).
-Kein Webinar-Tag-Bonus (Schulung + Setup-Call) auf der Replay-Seite — der gilt laut `sales.html` nur am Webinar-Tag.
+**Seiten-Aufbau (Neubau 2026-10-06, Material = /adsflow: dunkel, Studiolicht, Fraunces/Inter):**
+Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, „Weiterschauen ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t_v2`)
++ Kapitel-Panel daneben (12 Kapitel, aktives Kapitel scrollt im Panel mit) → Laufband mit Sätzen aus dem Workshop →
+darunter jedes Workshop-Thema als Visual, alles aus Transkript/Folien/echten Screens:
+Heute (3 Ziele, 10 h → 1 h, für wen) · Problem (Tresor: 10.000 Erstattungen, Fremdblock im Theme, Sidekick) ·
+Duplikat-Regel (Schleife Duplizieren → Claude → Ansehen → Live) · Live-Demo (3 Tabs, Prompt tippt sich, Ergebnis mit
+den echten Zahlen vom Screen: 3.192 Impr./Pos. 11,7, 457 Klicks aufs Hauptfoto …) · Vorher/Nachher-Regler (echte
+Screenshots `assets/images/replay/shop-{vorher,nachher}*.webp`, exakt ausgerichtet) · Ratgeberseite (langer Screenshot
+`assets/images/replay/ratgeber.webp`, aus 6 Frames 22:52 bis 24:10 zusammengesetzt, scrollt beim Seiten-Scrollen im
+Rahmen mit) · System (3 Wege: Connector / ZIP / 2 Zwischenspeicher, „Stell es live" klickbar; Sync-Plattform bewusst
+NICHT genannt, Alex hat sie im Q&A als Produktinhalt zurückgehalten) · Küche (Koch/Zutaten/Bon/Rezepte) + Punktfeld
+„googeln" · Underpriced (3 $ rein, 1 $ raus) · Kosten-Rechner (Folie 157/69/210 = 436 €/Monat, Monate-Regler,
+Schalter SEO-Agentur 2.000 €) · Eine Änderung (29 → 39 € an 5 Stellen, „von Hand" vs. „Claude") · Grenzen ·
+Ordner-Explorer (11 Dateien/Skills, KEIN GITHUB.md wegen Sync) · Wer da spricht · Stimmen · Fragen aus dem Q&A
+(ohne Schulungscall-Versprechen) · Schluss „Alles davon siehst du live" → Footer (`impressum-lw-b`/`datenschutz-lw-b`).
+**Kein Kauf-Button, kein Preis, kein /sales-Link** (Alex 2026-10-06: Leute sollen erst das Replay schauen, Angebot
+entscheidet er noch). Video bleibt v2 (Motion-Fassung erst nach Alex' Freigabe tauschen).
+Jeder Abschnitt hat Sprungmarken `.tchip` (`data-t` Sekunden, `data-live="von-bis"`): Klick spielt ab der Stelle.
+Ist der große Player aus dem Bild, läuft das Video im **Mini-Player** unten rechts weiter (nur `position: fixed`,
+kein DOM-Umhängen; Leiste mit Kapitel, ↑ zum Player, × = Pause). Läuft das Video in einem Abschnitt, zeigt dessen
+Sprungmarke „läuft gerade". Handy: eine feste Leiste unten „Ansehen / Ab mm:ss", nur wenn nichts läuft.
+Achtung: `.rise` (Hero-Einstieg) nutzt `animation-fill-mode: backwards`, sonst bleibt ein transform stehen und der
+Mini-Player klebt am Hero statt am Viewport.
 
 **Tracking:** Clarity + Meta Pixel unconditional (sealed Funnel, wie Danke-Seite), Helfer `lwTrack(meta, props, clarity)`
 mit CAPI-Mirror (`/api/capi`, gleiche `event_id`). Props immer `variant`, `page:'replay'`, `utm_campaign`/`utm_content`
@@ -416,8 +433,13 @@ Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
 | `LW_Replay_Resume` `{at}` | `lw_replay_resume` | Klick auf Cover, wenn „Weiterschauen"-Pill sichtbar |
 | `LW_Replay_Progress` `{pct}` | `lw_replay_25` / `_50` / `_75` / **`lw_replay_complete`** (≥ 95 %) | Watch-Depth, je 1× pro Browser (`vf_lw_replay_ms`) |
 | `LW_Replay_Chapter` `{t,title}` | `lw_replay_chapter` | Kapitel-Klick |
-| **`InitiateCheckout`** (Standard) `{content_name:'bundle', loc:'offer'|'final', value:1499}` | `lw_replay_checkout` | Klick auf Digistore-CTA (`[data-checkout]`), `vf_gclid` wird als `custom=` angehängt wie auf `/sales` |
-| `LW_Replay_Sales_Click` `{loc}` | `lw_replay_sales_click` | Klick auf „/sales"-Link |
+| `LW_Replay_Jump` `{t,loc}` | `lw_replay_jump` | Sprungmarke in einem Abschnitt (`loc` = Section-ID) |
+| – | `lw_replay_cta_nav` / `_dock` / `_final` | „Ansehen / Weiterschauen"-Buttons |
+| – | `lw_replay_float_close` / `_float_up` | Mini-Player geschlossen / zurück zum großen Player |
+| – | `lw_replay_ix_*` (`vault`, `demo_1..3`, `compare`, `legend`, `system_1..3`, `golive`, `kitchen`, `calc`, `calc_agency`, `change_hand`, `change_ki`, `folder_1..11`) | Interaktionen mit den Visuals (nur Clarity) |
+
+Checkout-/Sales-Events (`InitiateCheckout`, `LW_Replay_Sales_Click`) entfallen seit 2026-10-06, weil die Seite
+keinen Kauf-Button mehr hat. Lokal (localhost) lädt die Seite weder Clarity noch Pixel und sendet nichts, nur `console.info`.
 
 **Wo andocken:** neue Events über `lwTrack(...)` in `replay.html`; Kapitel-Zeiten in der `<ol>` (`data-t`).
 Bei neuem Video: Blob-Upload mit neuem Namen, `<source src>`, Preconnect-Host und Fallback-Link tauschen,
