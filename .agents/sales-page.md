@@ -42,7 +42,7 @@ Prozent-Positionen im Markup (`--l` Desktop, `--lm` Handy).
 Produkt-Aussagen nur wie im Ordner: Claude hat kein Shopify-Login, im Standard fügst du die geänderte Datei in die
 Kopie ein („Deploy = Datei in den Theme-Editor kopieren“), optional mit zwei Zwischenspeichern (Test und Live), live
 erst auf das Wort der Inhaberin. **Den Namen des Sync-Dienstes nie nennen, immer „Zwischenspeicher“** (Alex 2026-10-07,
-gilt für alle Seiten, auch faqs/danke). Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
+gilt für alle Verkaufs- und Inhaltsseiten; **faqs und danke dürfen GitHub nennen**, dort stehen Käufer-Anleitungen und Prompts). Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
 
 ## Mini-Player + Sprungmarken
 
