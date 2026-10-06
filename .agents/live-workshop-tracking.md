@@ -385,11 +385,11 @@ Zweck jetzt: Aufzeichnung an alle schicken, die nicht live dabei waren. Später:
 
 **Video-Hosting (NICHT im Repo):** Vercel Blob, Store `vorflows-media` (public, mit Projekt `vorflows`
 verknüpft, Env `BLOB_READ_WRITE_TOKEN`). Datei
-`video/workshop-ki-shopify-2026-09-10-v2.mp4` → `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10-v2.mp4`
-(287 MB, 53:20, 1080p H.264 750 kbit/s + AAC 96 kbit/s, moov-Atom vorne, Metadaten entfernt, Stream
-byte-identisch zum Original). **v2 = Original ohne die ersten 6:25** (Schnitt am Keyframe 384,87 s,
-verlustfrei per `-c copy`; Kapitelzeiten = alte Zeit minus 385 s). v1 (`…-10.mp4`, 382 MB, 59:45, Original
-ab 0:00) liegt noch im Store, wird von keiner Seite mehr referenziert und kann gelöscht werden. `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
+`video/workshop-ki-shopify-2026-09-10-v5.mp4` → `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10-v5.mp4`
+(343 MB, 52:06, 1080p H.264 ~710 kbit/s + AAC 160 kbit/s, moov vorne). **v5 = Motion-Fassung (2026-10-06):** ab 6:25 des
+Originals, Motion Graphics, Folie bleibt bei Freigabe-Abbrüchen stehen, Replay-Texte statt „nur heute“, 9 Schnitte
+(Entschuldigungen, „nur heute“, Frage nach Wiederholung). Projekt + Zeit-Mapping alt→neu: `~/Adolution/motion-system/vsl/projects/workshop-replay`
+(`build/cutmap.json`, Log `log.md`). v1 und v2 wurden aus dem Store gelöscht (Alex 2026-10-06). `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
 Grund: GitHub-Limit 100 MB/Datei; Repo-Videos bleiben ≤ 30 MB. Andere Seiten laden dadurch nichts mit,
 das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/workshop-replay-poster.webp`).
 **Neuer Schnitt = neuer Dateiname** (`…-v2.mp4`), weil 1 Jahr immutable gecached. Upload:
@@ -399,23 +399,23 @@ Kosten: Storage ~0,01 €/Monat; Egress 0,05 $/GB über dem Plan-Inklusivvolumen
 OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
 
 **Seiten-Aufbau (Stand 2026-10-06 abends, Material = /adsflow: dunkel, Studiolicht, Fraunces/Inter):**
-Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, „Weiterschauen ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t_v2`)
-+ Kapitel-Panel daneben (**10 Kapitel**: „Was Founder sagen / was das woanders kostet" 34:00 und „Drei Wege ab hier"
-37:30 bewusst raus, damit niemand direkt zum Preis springt) → nur drei Ergebnis-Abschnitte: Live-Demo (3 Tabs, Prompt
+Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, „Weiterschauen ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t_v5`)
++ Kapitel-Panel daneben (**10 Kapitel**: „Was Founder sagen / was das woanders kostet" 33:23 und „Drei Wege ab hier"
+36:53 bewusst raus, damit niemand direkt zum Preis springt) → nur drei Ergebnis-Abschnitte: Live-Demo (3 Tabs, Prompt
 tippt sich, echte Zahlen vom Screen) · Vorher/Nachher-Regler (`assets/images/replay/shop-{vorher,nachher}*.webp`) ·
 Stimmen → Schluss → Footer (`impressum-lw-b`/`datenschutz-lw-b`). Grund (CRO, Alex 2026-10-06): Die Seite soll das
 Video nicht ersetzen, das Angebot gibt es nur im Video.
 **Vollfassung mit allen Workshop-Visuals** (Problem, Duplikat, Ratgeber, System, Küche, Kosten, Änderung, Grenzen,
 Ordner, Q&A …) liegt als Archiv unter `replay-voll.html` → `/replay-voll` (noindex, eigener Titel, **ohne Tracking**:
 `LOCAL = true`). Zurück: Datei nach `replay.html` kopieren, Titel/canonical/`LOCAL`-Zeile zurücksetzen.
-**Angebot erst ab der Preisfolie:** `OFFER_AT = 2281` (38:01, Folie „Alle 3 Module. Nur heute 1.499 €").
+**Angebot erst ab der Preisfolie:** `OFFER_AT = 2243` (37:23 in v5, Folie „Alle 3 Module. Jetzt für 1.499 €").
 Sobald `currentTime` das erreicht (auch durch Springen), erscheinen alle `[data-offer]`-Elemente und alle
 `[data-pre-offer]` verschwinden: Angebotskasten unter dem Player, Kauf-Knopf in der Kopfzeile (statt „Ansehen"),
 im Mini-Player (nur Desktop), in der Handy-Leiste (statt „Ansehen", dann auch während der Mini-Player läuft; der
 Player schwebt dann über der Leiste) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
 (`localStorage.vf_lw_replay_offer = 1`). Vorschau ohne Event: `/replay?angebot=1`.
 Checkout: `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_replay` (Voucher MUSS mit, Basis 2.000 €).
-Video bleibt v2 (Motion-Fassung erst nach Alex' Freigabe tauschen, dann `OFFER_AT` neu bestimmen!).
+Video = v5 (Motion-Fassung, freigegeben 2026-10-06). Alle `data-t`/`data-live`-Zeiten beider Seiten sind v5-Zeiten; Weiterschauen-Key `vf_lw_replay_t_v5`.
 Sprungmarken `.tchip` (`data-t` Sekunden, `data-live="von-bis"`): Klick spielt ab der Stelle.
 Ist der große Player aus dem Bild, läuft das Video im **Mini-Player** unten rechts weiter (nur `position: fixed`,
 kein DOM-Umhängen; Leiste mit Kapitel, ↑ zum Player, × = Pause). Läuft das Video in einem Abschnitt, zeigt dessen
@@ -438,7 +438,7 @@ Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
 | – | `lw_replay_cta_nav` / `_dock` / `_final` / `_final_alt` | „Ansehen / Weiterschauen"-Buttons |
 | – | `lw_replay_float_close` / `_float_up` | Mini-Player geschlossen / zurück zum großen Player |
 | – | `lw_replay_ix_*` (`demo_1..3`, `compare`, `legend`) | Interaktionen mit den Visuals (nur Clarity) |
-| `LW_Replay_Offer` `{t}` | `lw_replay_offer` | Video erreicht 38:01, Kauf-Knöpfe erscheinen (1× pro Browser) |
+| `LW_Replay_Offer` `{t}` | `lw_replay_offer` | Video erreicht 37:23, Kauf-Knöpfe erscheinen (1× pro Browser) |
 | `InitiateCheckout` `{content_name:'bundle', loc, value:1499, currency:'EUR'}` | `lw_replay_checkout` | Klick auf Digistore (`loc` = `player` / `nav` / `float` / `dock` / `final`) |
 
 Clarity-Tag `lw_replay_offer=shown`, sobald die Knöpfe sichtbar sind. Lokal (localhost) lädt die Seite weder Clarity
