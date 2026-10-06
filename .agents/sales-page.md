@@ -1,8 +1,12 @@
 # Kaufseite `/sales`
 
-Stand 2026-10-05. Datei `sales.html` → Route `https://vorflows.com/sales` (`cleanUrls`), indexiert, in der Sitemap.
+Stand 2026-10-06. Datei `sales.html` → Route `https://vorflows.com/sales` (`cleanUrls`), indexiert, in der Sitemap.
 Neu gebaut im Stil von `/adsflow`: Materialsprache AdsFlow (fast schwarz, Spotlicht, dunkle Glasflächen, Orange,
-Fraunces + Inter). Kein Papier/Karton/Korn-Look (Alex 2026-10-04: wirkt billig). Objekte aus dem VSL als Interaktionen. Die alte Fassung liegt in der Git-Historie (Commit vor dem Neubau).
+Fraunces + Inter). Kein Papier/Karton/Korn-Look (Alex 2026-10-04: wirkt billig). Objekte aus dem VSL als Interaktionen.
+**Seit 2026-10-06 zusätzlich die Workshop-Visuals von /replay** (Alex: „das Beste von beiden Seiten kombinieren“), auf
+Produkt-Aussagen umgeschrieben, ohne Workshop-Bezug (kein Q&A, keine Ratgeberseite, keine Workshop-Zeiten).
+**Fassung vor dem Umbau:** `sales-alt.html` → `/sales-alt` (noindex, ohne JSON-LD, ohne Tracking: `isLocal = true`).
+Zurück: Datei nach `sales.html` kopieren, Titel/robots/JSON-LD/`isLocal`-Zeile aus der Git-Historie (Commit 96b6156) zurückholen.
 
 ## Farbregel
 
@@ -11,16 +15,45 @@ Fraunces + Inter). Kein Papier/Karton/Korn-Look (Alex 2026-10-04: wirkt billig).
   Grün nie als CTA. In Überschriften: `<em>` = Orange, `<em class="s">` = Grün.
 - Keine Shopify- oder Claude-Logos, nur die Farben. Markenhinweis steht im Footer.
 
-## Aufbau
+## Aufbau (CRO-Reihenfolge, Stand 2026-10-06)
 
-Hero (VSL) → Stimmen → Laufband „Du schreibst Claude ganz normal“ → App-Miete (Stromzähler) → Ablauf (Schiene,
-Brücke Claude ⇄ Ordner ⇄ Shop) → Beweis (echter Shop + Chat + Versandleiste zum Ausprobieren) → große Stimme →
-Daten (tote Klicks zum Antippen, Clarity-Beleg, Glas zum Freiwischen, Search-Console-Beleg) → Ordner mit 7 Registern →
-Sicher (Live-Theme vs. Kopie, gesperrter Schalter) → Alex → Setup → Angebot `#bundle` → FAQ → Schluss → Footer.
+Hero (VSL + Mini-Player, Vertrauenszeile, 5 Sprungmarken ins Video) → Stimmen → Laufband → **Drei Dinge** (Apps ersetzen /
+bei Google gefunden werden / mehr Käufe aus Verhalten, jede Zeile springt zu `#apps`, `#suche`, `#klicks`; 10 h → 1 h)
+→ App-Miete (Stromzähler) → Ablauf (Schiene + Brücke) → Beweis (echter Shop, Chat, Versandleiste) → Daten (tote Klicks
+`#klicks`, Clarity-Beleg, Rubbelfeld `#suche`, Search-Console-Beleg) → große Stimme + **Kauf-Zwischenstopp 1** →
+**Problem** (Admin-Rechte: Tresor mit 10.000 Erstattungen; Qualität: Fremdblock im Theme; Sidekick) → **Sicher**
+(Duplikat-Schleife, „Drei Wege“: Connector-App / Kopie auf deinem Rechner = Standard im Paket / Test- und Live-Version
+mit GitHub = optional, „Stell es live“ klickbar; gesperrter Schalter) → **Kontext** (Sternekoch-Küche + Punktfeld
+„googeln“) → Ordner mit 7 Registern → **Vorher/Nachher** (Demo-Kopie, `assets/images/replay/shop-*.webp`) → **Eine
+Änderung** (29 → 39 € an 5 Theme-Stellen, „von Hand“ vergisst den Footer) + **Kauf-Zwischenstopp 2** → **Grenzen**
+(was Claude baut, wo die App bleibt) → Alex → Setup → **Rechnen wir mal** (436 €/Monat, Monate-Regler, SEO-Agentur)
+→ Angebot `#bundle` (Vergleich jetzt mit App-Stack 5.232 €) → FAQ (+ digitale Produkte, PageFly/GemPages, Ahrefs)
+→ Schluss → Footer. Fett = neu seit 2026-10-06.
 
 Belege (`assets/images/sales/beleg-*.webp`) sind Standbilder aus `assets/video/ki-im-shop.mp4` (Rohmaster,
 untracked): Shop 2:08, Versandleiste-Chat 2:48, Clarity-Auswertung 3:20, Suchdaten 4:10. Ringe/Labels sind
 Prozent-Positionen im Markup (`--l` Desktop, `--lm` Handy).
+
+**Übernommene Klassen** stammen aus /replay; wo /sales den Namen schon nutzt, heißen sie hier anders: `.pviz` (statt
+`.viz`), `.vkey`, `.ly1–3` (statt `.l1–3`, die kollidieren mit `.js .in .l1` der Beleg-Labels), `.cmp-legend`,
+`.lchips`, `.sys .node`. Farben auf Claude-Orange `#D97757` umgerechnet.
+
+**Texte:** keine Stakkato-Dreier und Slogan-Fragmente (Linie aus Commit 96b6156), keine Gedankenstriche.
+Produkt-Aussagen nur wie im Ordner: Claude hat kein Shopify-Login, ohne GitHub fügst du die geänderte Datei in die
+Kopie ein (`GITHUB.md`: „Deploy = Datei in den Theme-Editor kopieren“), mit GitHub Test-/Live-Branch, live erst auf
+das Wort der Inhaberin. Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
+
+## Mini-Player + Sprungmarken
+
+Die VSL-Bühne steckt in `#stageSlot` (Platzhalter mit 16:9). Läuft das Video und der Platzhalter ist zu < 35 % im Bild,
+bekommt `#stage` die Klasse `is-float` (nur `position: fixed`, kein DOM-Umhängen, sonst pausiert das Video). Leiste
+mit Kapitel (`VSL_CH` im Script), ↑ zurück, × = Pause. Am Handy schwebt er über der Kaufleiste (`body.dock-on`).
+**Stapelebenen:** `.hero` darf kein `isolation`/`z-index`/`transform` haben, `.rise` läuft mit `animation-fill-mode:
+backwards`. Sonst liegt der Mini-Player hinter späteren Abschnitten oder klebt am Hero.
+Sprungmarken `.tchip` (`data-t` Sekunden im VSL, `data-live="von-bis"`): Klick lädt das Video bei Bedarf und springt;
+läuft die Stelle gerade, steht „läuft gerade“ daran. Zeiten aus `assets/video/vorflows-vsl-v1b.vtt`:
+0:36 App, 0:59 Auftrag, 1:47 Versandleiste, 2:34 Nutzerdaten, 3:22 Suchdaten, 4:02 Ordner, 4:13 Einrichten.
+**Beim VSL-Tausch (v2) alle `data-t`/`data-live` und `VSL_CH` neu setzen.**
 
 ## Produkt-Claims (geprüft gegen `~/Downloads/vorflows-produkt/shopifycld-DE`, Stand v3 2026-06-29)
 
@@ -70,6 +103,8 @@ Lokal (localhost) wird nichts geladen, nur `console.info`.
 | `faq_open` | FAQ aufgeklappt |
 | `video_play`, `hero_video_pct_25…100`, `hero_video_watch_<bucket>`, `HeroVideoWatch` | VSL |
 | Clarity-only: `sales_unplug`, `sales_ship_plus`, `sales_deadclick_fix`, `sales_scratch_open`, `sales_folder_<id>`, `sales_lock_try` | Interaktionen |
+| Clarity-only seit 2026-10-06: `sales_vsl_jump` (+ Tag `sales_vsl_jump_loc` = Section-ID), `sales_float_close`, `sales_float_up`, `sales_vault`, `sales_system_1..3`, `sales_golive`, `sales_kitchen`, `sales_compare`, `sales_legend`, `sales_change_hand`, `sales_change_ki`, `sales_calc`, `sales_calc_agency` | Sprungmarken, Mini-Player, neue Visuals |
+| `cta_click_inline` | Kauf-Zwischenstopps (Anker `#bundle` außerhalb von Hero/Dock/Schluss) |
 
 ## Feste Leisten
 
