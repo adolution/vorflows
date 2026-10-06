@@ -390,7 +390,7 @@ verknüpft, Env `BLOB_READ_WRITE_TOKEN`). Datei
 Originals, Motion Graphics, Folie bleibt bei Freigabe-Abbrüchen stehen, Replay-Texte statt „nur heute“, 9 Schnitte
 (Entschuldigungen, „nur heute“, Frage nach Wiederholung). Projekt + Zeit-Mapping alt→neu: `~/Adolution/motion-system/vsl/projects/workshop-replay`
 (`build/cutmap.json`, Log `log.md`). v1 und v2 wurden aus dem Store gelöscht (Alex 2026-10-06). `cache-control: max-age=31536000`, Range-Requests OK (Seeking).
-Grund: GitHub-Limit 100 MB/Datei; Repo-Videos bleiben ≤ 30 MB. Andere Seiten laden dadurch nichts mit,
+Grund: Repo-Limit 100 MB/Datei; Repo-Videos bleiben ≤ 30 MB. Andere Seiten laden dadurch nichts mit,
 das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/workshop-replay-poster.webp`).
 **Neuer Schnitt = neuer Dateiname** (`…-v2.mp4`), weil 1 Jahr immutable gecached. Upload:
 `vercel blob put <datei> --rw-token $BLOB_READ_WRITE_TOKEN --access public --pathname video/<name>.mp4 --content-type video/mp4 --cache-control-max-age 31536000`

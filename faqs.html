@@ -787,14 +787,14 @@
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </summary>
           <div class="acc-body">
-            <p>Ja, jederzeit. Über die GitHub-Verbindung wird jede Version deines Themes mit Datum und Uhrzeit gespeichert, automatisch bei jeder Änderung, egal ob sie aus Claude oder aus Shopify kommt.</p>
+            <p>Ja, jederzeit. Über den Zwischenspeicher wird jede Version deines Themes mit Datum und Uhrzeit gespeichert, automatisch bei jeder Änderung, egal ob sie aus Claude oder aus Shopify kommt.</p>
             <p>Du musst dafür nichts suchen und nichts wiederherstellen. Sag es einfach im Chat:</p>
             <div class="prompt">
               <span class="plabel">Beispiel-Prompts</span>
               <p>„Mach die letzte Änderung an der Produktseite rückgängig."</p>
               <p>„Setz das Theme auf den Stand von letzter Woche zurück."</p>
             </div>
-            <p class="tip">Deshalb ist GitHub hier mehr als ein Zwischenspeicher: Es ist gleichzeitig deine Sicherung. Kaputt machen kannst du damit praktisch nichts.</p>
+            <p class="tip">Deshalb ist der Zwischenspeicher mehr als ein Ablageort: Er ist gleichzeitig deine Sicherung. Kaputt machen kannst du damit praktisch nichts.</p>
           </div>
         </details>
 
@@ -919,12 +919,12 @@
             <ol class="steps">
               <li><strong>Update in Shopify anstoßen.</strong> Unter <strong>Onlineshop &rarr; Themes</strong> liegt bei deinem Theme der Hinweis auf eine neue Version. Update starten. Shopify legt daraufhin ein aktualisiertes Duplikat bei den Entwürfen ab. Dein Live-Theme bleibt unangetastet.</li>
               <li><strong>Aktualisiertes Duplikat herunterladen.</strong> Bei dem neuen Entwurf auf die drei Punkte, dann <strong>Theme-Datei exportieren</strong>. Shopify schickt dir die ZIP-Datei per E-Mail. Herunterladen, entpacken und im Downloads-Ordner liegen lassen, der Prompt unten erwartet sie dort.</li>
-              <li><strong>Workspace öffnen.</strong> VS&nbsp;Code mit dem Ordner starten, in dem du normalerweise arbeitest. Dort liegt dein aktuelles Theme mit allen Anpassungen, verbunden mit deinem Staging- und Main-Branch bei GitHub.</li>
+              <li><strong>Workspace öffnen.</strong> VS&nbsp;Code mit dem Ordner starten, in dem du normalerweise arbeitest. Dort liegt dein aktuelles Theme mit allen Anpassungen, verbunden mit deinem Staging- und Main-Branch im Zwischenspeicher.</li>
               <li><strong>Prompt einfügen.</strong> Den folgenden Prompt kopieren, in Claude Code einfügen und abschicken. Claude vergleicht zuerst nur und fragt dich, bevor es etwas überträgt.
                 <div class="prompt">
                   <span class="plabel">Prompt zum Kopieren</span>
                   <p>Ich habe in Shopify ein Theme-Update angestoßen. Shopify hat dabei ein aktualisiertes Duplikat meines Themes als Entwurf angelegt. Dieses Duplikat habe ich exportiert und entpackt, es liegt in meinem Downloads-Ordner.</p>
-                  <p>In diesem Workspace liegt mein echtes Theme. Es ist über GitHub mit meinem Staging-Branch und meinem Main-Branch verbunden und enthält alle Anpassungen, die wir zusammen gebaut haben. Diese Anpassungen dürfen auf keinen Fall verloren gehen.</p>
+                  <p>In diesem Workspace liegt mein echtes Theme. Es ist über den Zwischenspeicher mit meinem Staging-Branch und meinem Main-Branch verbunden und enthält alle Anpassungen, die wir zusammen gebaut haben. Diese Anpassungen dürfen auf keinen Fall verloren gehen.</p>
                   <p>Schritt 1: Finde das entpackte Update-Theme in meinem Downloads-Ordner. Wenn du mehrere Kandidaten siehst, zeig sie mir und lass mich wählen, statt zu raten.</p>
                   <p>Schritt 2: Vergleiche das Update-Theme mit meinem aktuellen Theme in diesem Workspace. Zeig mir das Ergebnis als Liste: welche Dateien in der neuen Version neu sind, welche geändert wurden und welche wegfallen. Trenne dabei klar zwischen echten Neuerungen des Theme-Herstellers und Stellen, an denen in der neuen Version schlicht meine eigenen Anpassungen fehlen.</p>
                   <p>Schritt 3: Sag mir danach deine ehrliche Einschätzung, ob sich die Übertragung überhaupt lohnt. Nenne den konkreten Nutzen, den Aufwand und die Risiken, besonders an den Dateien, die wir stark angepasst haben. Wenn das Update kaum Mehrwert bringt, sag mir das offen und empfiehl mir, es zu lassen.</p>
@@ -942,7 +942,7 @@
               <li><strong>Auf Main übertragen.</strong> Läuft Staging sauber, gibst du Claude das OK für Main. Main ist dein Live-Theme, damit ist das Update draußen.</li>
             </ol>
             <p class="tip"><strong>Nie</strong> das Live-Theme direkt updaten und das aktualisierte Duplikat nie einfach veröffentlichen. In dem Duplikat fehlt alles, was wir gebaut haben. Der Weg geht immer über den Vergleich und über Staging, dann ist dein Shop zu keinem Zeitpunkt kaputt.</p>
-            <p class="tip">Deine Sicherung läuft nebenbei mit: Über GitHub ist jeder Stand deines Themes mit Datum gespeichert. Geht beim Zusammenführen etwas schief, lässt du Claude einfach auf den letzten sauberen Stand zurücksetzen.</p>
+            <p class="tip">Deine Sicherung läuft nebenbei mit: Im Zwischenspeicher ist jeder Stand deines Themes mit Datum gespeichert. Geht beim Zusammenführen etwas schief, lässt du Claude einfach auf den letzten sauberen Stand zurücksetzen.</p>
           </div>
         </details>
 
@@ -972,9 +972,9 @@
               <li><strong>Prompt einfügen.</strong> Den folgenden Prompt kopieren, in Claude Code einfügen und abschicken. Claude richtet den Workspace komplett auf den neuen Shop ein und führt dich durch die restlichen Schritte.
                 <div class="prompt">
                   <span class="plabel">Prompt zum Kopieren</span>
-                  <p>Dieser Workspace ist eine Kopie und war für einen anderen Shop von mir eingerichtet. Ich möchte ihn jetzt für einen neuen Shop nutzen. Die alten Theme-Dateien und die alte GitHub-Verbindung brauche ich in meinem anderen Workspace, aber nicht hier.</p>
+                  <p>Dieser Workspace ist eine Kopie und war für einen anderen Shop von mir eingerichtet. Ich möchte ihn jetzt für einen neuen Shop nutzen. Die alten Theme-Dateien und die alte Verbindung zum Zwischenspeicher brauche ich in meinem anderen Workspace, aber nicht hier.</p>
                   <p>Das neue Theme liegt in meinem Downloads-Ordner. Bitte nimm dieses Theme und richte den Workspace darauf ein. Entferne alle Rückstände des alten Themes aus diesem Ordner. Setze auch deine eigenen Dateien einmal zurück und passe sie neu auf dieses Theme an. Prüfe dabei die md-Dateien auf theme-spezifische Inhalte des alten Shops und mach sie rückgängig, damit wir hier mit dem frischen Theme und dem frischen Shop arbeiten.</p>
-                  <p>Lege bei GitHub ein neues Repository mit einem Staging-Branch und einem Main-Branch an, spiele das neue Theme dort ein und hinterlege in deiner claude.md, dass wir in diesem Workspace an dem neuen Theme arbeiten.</p>
+                  <p>Lege im Zwischenspeicher ein neues Repository mit einem Staging-Branch und einem Main-Branch an, spiele das neue Theme dort ein und hinterlege in deiner claude.md, dass wir in diesem Workspace an dem neuen Theme arbeiten.</p>
                   <p>Prüfe für die Google Search Console, ob du Zugriff auf die Property dieser Shop-URL hast. Wenn nicht, führe mich Schritt für Schritt durch, wie ich dir Zugriff gebe, zum Beispiel indem ich den Benutzer oder Account, auf den du aktuell Zugriff hast, im neuen Konto als Administrator oder Mitarbeiter hinzufüge.</p>
                   <p>Führe mich außerdem durch die Einrichtung von Microsoft Clarity, damit ich auch für diesen Shop auf die Verhaltensdaten zugreifen kann. Weise mich bei Bedarf auf das Video auf der Danke-Seite hin, das die Installation der Verhaltensdaten zeigt: vorflows.com/danke</p>
                   <p>Erkläre mir zum Schluss, dass ich den Token unter Datenexport bei Microsoft Clarity jedes Mal wechseln muss, je nachdem, an welchem Shop ich gerade arbeite. Das ist der einzige manuelle Schritt, wenn ich Daten von verschiedenen Shops abfragen will. Kennst du einen besseren Weg, führe mich durch den.</p>
@@ -1003,13 +1003,13 @@
                 <div class="prompt">
                   <span class="plabel">Prompt zum Kopieren</span>
                   <p>Ich möchte ein System von einem alten Laptop auf diesen Laptop übertragen, mit dem ich all meine Dinge in diesem Workspace tun kann, wie ich es auf dem alten Laptop getan habe.</p>
-                  <p>Überprüfe dafür bitte einmal, ob die Installation schon steht und welche Dinge noch eingerichtet werden müssen. Schau, ob der GitHub-Workflow funktioniert, ob die Synchronisation funktioniert, ob alle erforderlichen Tools verbunden sind, wie zum Beispiel die Google Search Console oder auch Microsoft Clarity.</p>
+                  <p>Überprüfe dafür bitte einmal, ob die Installation schon steht und welche Dinge noch eingerichtet werden müssen. Schau, ob der Zwischenspeicher und die Synchronisation funktionieren, ob alle erforderlichen Tools verbunden sind, wie zum Beispiel die Google Search Console oder auch Microsoft Clarity.</p>
                   <p>Falls irgendetwas noch nicht steht oder noch nicht verbunden ist, sag mir bitte, wie ich das einrichten soll, und leite mich durch alle Schritte, damit dieses Setup genauso funktioniert wie auf meinem alten PC auch.</p>
                   <button type="button" class="prompt-copy">Prompt kopieren</button>
                 </div>
               </li>
             </ol>
-            <p class="tip">Zugänge wie Claude, GitHub, die Search Console oder Clarity hängen an deinem Konto, nicht am Gerät. Du meldest dich auf dem neuen Rechner einmal an, danach arbeitest du genau wie vorher weiter.</p>
+            <p class="tip">Die Zugänge zu Claude, zum Zwischenspeicher, zur Search Console und zu Clarity hängen an deinem Konto, nicht am Gerät. Du meldest dich auf dem neuen Rechner einmal an, danach arbeitest du genau wie vorher weiter.</p>
           </div>
         </details>
 

@@ -245,7 +245,7 @@
             { "@type": "Question", "name": "Wie lange dauert das Einrichten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code installierst du nach der Anleitung in etwa zehn Minuten. Das Grundsystem richtet Claude danach mit einem Satz selbst ein. Die Search Console verbindest du in rund 20 Minuten, Clarity in 5 bis 10 Minuten. Bei Clarity dauert es danach etwa zwei Stunden, bis die ersten Daten da sind." } },
             { "@type": "Question", "name": "Läuft das auf Mac und Windows?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für beide gibt es eigene Anleitungen, auch für die Verbindung zur Search Console." } },
             { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Search Console und Clarity liest Claude über deine eigenen Konten, vorflows selbst hostet nichts. In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst." } },
-            { "@type": "Question", "name": "Was bekomme ich am Webinar-Tag zusätzlich?", "acceptedAnswer": { "@type": "Answer", "text": "Wer am Webinar-Tag kauft, bekommt eine Live-Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call, beides 1:1. Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe. Im Setup-Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten ein, was noch fehlt. Damit die Konzentration bleibt, ist nur eine Person im Call, du oder jemand aus deinem Team." } },
+            { "@type": "Question", "name": "Was hat es mit der Schulung und dem Setup-Call auf sich?", "acceptedAnswer": { "@type": "Answer", "text": "Pro Monat bekommen nur 20 Käuferinnen und Käufer zusätzlich eine Live-Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call, beides 1:1. Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe. Im Setup-Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten ein, was noch fehlt. Damit die Konzentration bleibt, ist nur eine Person im Call, du oder jemand aus deinem Team." } },
             { "@type": "Question", "name": "Kann ich vorflows für mehrere Shops nutzen?", "acceptedAnswer": { "@type": "Answer", "text": "Eine Lizenz gilt für einen Shop. Für jeden weiteren Shop brauchst du eine eigene Lizenz. Wenn du mehrere auf einmal willst, schreib mir an alex@adolution.de, dann finden wir etwas Passendes." } },
             { "@type": "Question", "name": "Kann ich mir beim Einrichten helfen lassen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Eine persönliche Begleitung, bei der wir das System zusammen komplett aufsetzen, kannst du für 900 € netto dazubuchen. Schreib mir dafür an alex@adolution.de." } },
             { "@type": "Question", "name": "Kann ich nur ein Modul kaufen?", "acceptedAnswer": { "@type": "Answer", "text": "Hier gibt es nur das komplette Paket. Wenn du ausschließlich ein Modul willst, schreib mir kurz an alex@adolution.de." } },
@@ -2350,6 +2350,45 @@
       .chg .chg-msg { display: grid; min-height: 0; }
       .chg-msg .mail, .chg-msg .okmsg { position: relative; grid-area: 1 / 1; }
 
+
+      /* KI ist gerade underpriced: drei Münzen rein, eine raus */
+      .coins-band { position: relative; padding-block: clamp(3.5rem, 8vw, 6rem); border-block: 1px solid var(--line); background: rgba(21, 21, 20, .45); overflow: hidden; }
+      .coins-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      .coins-grid h2 { font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.3rem); }
+      .coins-grid .lead { margin-top: 1.2rem; }
+      .coins-grid .lead + .lead { margin-top: .9rem; }
+      .coins { position: relative; height: 240px; width: 100%; max-width: 320px; margin-inline: auto; }
+      .slotbox { position: absolute; left: 50%; bottom: 40px; width: 150px; height: 70px; margin-left: -75px; border-radius: 12px; background: var(--raise-2); border: 1px solid var(--line-2); }
+      .slotbox::before { content: ""; position: absolute; left: 30px; right: 30px; top: -2px; height: 5px; border-radius: 3px; background: #050505; }
+      .slotbox::after { content: "KI-Anbieter"; position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-size: 11.5px; color: var(--ink-3); }
+      .coin { position: absolute; left: 50%; top: 0; width: 38px; height: 38px; margin-left: -19px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #EDB094, var(--orange) 60%, #A4502F); box-shadow: inset 0 0 0 3px rgba(255, 225, 205, .25), 0 8px 16px -6px rgba(0, 0, 0, .7); display: grid; place-items: center; font-weight: 700; font-size: 15px; color: var(--on-orange); }
+      .coin.c1 { margin-left: -66px; }
+      .coin.c3 { margin-left: 28px; }
+      .coin.out { top: auto; bottom: 48px; margin-left: 92px; background: radial-gradient(circle at 35% 30%, #F4F2EC, #BDB9AE 70%); color: var(--cream-ink); }
+      .coins .lbl { position: absolute; font-size: 12px; color: var(--ink-3); }
+      .coins .lbl.in { left: calc(50% - 150px); top: 8px; }
+      .coins .lbl.outl { left: calc(50% + 78px); bottom: 20px; }
+      @media (prefers-reduced-motion: no-preference) {
+        .coins.run .coin.c1, .coins.run .coin.c2, .coins.run .coin.c3 { animation: drop 4.8s var(--ease-q) infinite; }
+        .coins.run .coin.c1 { animation-delay: .0s; }
+        .coins.run .coin.c2 { animation-delay: .25s; }
+        .coins.run .coin.c3 { animation-delay: .5s; }
+        .coins.run .coin.out { animation: rise1 4.8s var(--ease) infinite 1.4s; }
+        @keyframes drop { 0% { transform: translateY(0); opacity: 1; } 30% { transform: translateY(120px); opacity: 1; } 34% { transform: translateY(130px) scale(.6); opacity: 0; } 92% { transform: translateY(0); opacity: 0; } 100% { opacity: 1; } }
+        @keyframes rise1 { 0% { transform: translateY(20px); opacity: 0; } 15% { transform: none; opacity: 1; } 70% { opacity: 1; } 85%, 100% { opacity: 0; } }
+      }
+      @media (max-width: 860px) { .coins-grid { grid-template-columns: 1fr; } }
+
+      /* Bonus: nur 20 pro Monat, freie Plätze */
+      .bonus-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1rem; }
+      .bonus-left { display: inline-flex; align-items: center; gap: .45rem; padding: .2rem .65rem; border-radius: 999px; background: rgba(149, 191, 71, .12); border: 1px solid rgba(149, 191, 71, .4); font-size: 12.5px; font-weight: 500; color: var(--shop-ink); white-space: nowrap; }
+      .bonus-left b { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .bonus-left i { width: 7px; height: 7px; border-radius: 50%; background: var(--shop); }
+      @media (prefers-reduced-motion: no-preference) {
+        .bonus-left i { animation: slotPulse 2s ease-out infinite; }
+        @keyframes slotPulse { 0% { box-shadow: 0 0 0 0 rgba(149, 191, 71, .55); } 100% { box-shadow: 0 0 0 7px rgba(149, 191, 71, 0); } }
+      }
+
       /* ---------- Mobile-Leiste ---------- */
       .dock {
         position: fixed;
@@ -2895,7 +2934,7 @@
             <div class="sys-tabs" role="tablist" aria-label="Drei Wege, Claude mit dem Shop zu verbinden">
               <button class="stab s1" role="tab" type="button" id="st-1" aria-controls="sv-1" aria-selected="true"><b>1 · Connector-App</b><small>Unsicher</small><span class="prog"></span></button>
               <button class="stab s2" role="tab" type="button" id="st-2" aria-controls="sv-2" aria-selected="false" tabindex="-1"><b>2 · Kopie auf deinem Rechner</b><small>Im Paket</small><span class="prog"></span></button>
-              <button class="stab s3" role="tab" type="button" id="st-3" aria-controls="sv-3" aria-selected="false" tabindex="-1"><b>3 · Test- und Live-Version</b><small>Optional, mein Setup</small><span class="prog"></span></button>
+              <button class="stab s3" role="tab" type="button" id="st-3" aria-controls="sv-3" aria-selected="false" tabindex="-1"><b>3 · Zwei Zwischenspeicher</b><small>Optional, mein Setup</small><span class="prog"></span></button>
             </div>
 
             <div class="sys-stage" aria-hidden="true">
@@ -2932,13 +2971,13 @@
                     <div class="chamber c1" id="ch1">
                       <span class="pipe p0"></span>
                       <div class="pg"><i></i><i></i><i class="n"></i><i></i></div>
-                      <span class="cl"><b>Test-Version</b>Claude arbeitet</span>
+                      <span class="cl"><b><span class="lg">Zwischen</span>speicher 1</b>Claude arbeitet</span>
                     </div>
                     <span class="pipe p1"></span>
                     <div class="chamber c2" id="ch2">
                       <span class="pipe p2"></span>
                       <div class="pg"><i></i><i></i><i class="n"></i><i></i></div>
-                      <span class="cl"><b>Live-Version</b>dein Shop</span>
+                      <span class="cl"><b><span class="lg">Zwischen</span>speicher 2</b>verbunden mit live</span>
                     </div>
                     <div class="pg fly" id="pgFly"><i></i><i></i><i class="n"></i><i></i></div>
                   </div>
@@ -2968,8 +3007,8 @@
                 <p>Du lädst eine Kopie deines Themes herunter, Claude baut daran auf deinem Rechner. Die geänderte Datei fügst du in die Kopie in Shopify ein und schaust sie dir in der Vorschau an. Keine Verbindung zum Shop, keine Kundendaten. So läuft vorflows ohne jede Zusatz-Einrichtung.</p>
               </div>
               <div id="sv-3" role="tabpanel" aria-labelledby="st-3">
-                <h3>Mit GitHub: Live geht es erst auf dein Wort.</h3>
-                <p>Wer mag, bekommt eine Test-Version und eine Live-Version seines Themes. Claude arbeitet an der Test-Version, du siehst das Ergebnis direkt in der Shopify-Vorschau. Erst wenn du sagst „stell es live“, führt Claude die Test-Version in die Live-Version über. Änderungen, die du selbst im Theme-Editor machst, kommen automatisch zurück. Claude richtet das mit dir ein, du klickst nur ein paar Knöpfe.</p>
+                <h3>Mit zwei Zwischenspeichern geht es erst auf dein Wort live.</h3>
+                <p>Wer mag, bekommt zwei Zwischenspeicher für sein Theme. In Zwischenspeicher 1 arbeitet Claude, und du siehst das Ergebnis direkt in der Shopify-Vorschau. Erst wenn du sagst „stell es live“, wandert es in Zwischenspeicher 2, der mit deinem Live-Theme verbunden ist. Änderungen, die du selbst im Theme-Editor machst, kommen automatisch zurück. Claude richtet das mit dir ein, du klickst nur ein paar Knöpfe.</p>
                 <div style="display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; align-items: center;">
                   <button class="ghost solid" type="button" id="goLive">„Stell es live“ ausprobieren</button>
                 </div>
@@ -3299,10 +3338,10 @@
           </div>
           <div class="alex-copy">
             <h2 id="h-alex" data-reveal>Ich nutze das in meinen eigenen <em class="s">Shops</em>.</h2>
-            <p class="body" data-reveal="2">Ich bin Alex. Ich mache seit neun Jahren Online-Marketing, habe eine eigene Agentur und zwei eigene Shopify-Shops. Alles, was du im Video siehst, passiert in einem davon.</p>
+            <p class="body" data-reveal="2">Ich bin Alex. Ich mache seit acht Jahren Online-Marketing, habe eine eigene Agentur und zwei eigene Shopify-Shops. Alles, was du im Video siehst, passiert in einem davon.</p>
             <p class="credo" data-reveal="2">Mir war wichtig, dass Claude nichts aus dem Bauch heraus ändert. Jede Empfehlung kommt aus den <em>Daten</em> deines Shops.</p>
             <div class="facts" data-reveal="3">
-              <div><b>9</b><span>Jahre Online-Marketing</span></div>
+              <div><b>8</b><span>Jahre Online-Marketing</span></div>
               <div><b>2</b><span>eigene Shopify-Shops</span></div>
               <div><b>20.000+</b><span>Bestellungen darin</span></div>
             </div>
@@ -3331,7 +3370,7 @@
               <div class="mod data"><span class="st">Drin, rund 20 Min.</span><b>Suchdaten</b><p>Google Search Console verbinden, Anleitung für Mac und Windows.</p></div>
               <div class="mod data"><span class="st">Drin, 5 bis 10 Min.</span><b>Verhalten</b><p>Microsoft Clarity verbinden. Erste Daten nach etwa zwei Stunden.</p></div>
               <div class="mod need"><span class="st">Brauchst du</span><b>Claude-Abo</b><p>Jeder Bezahl-Tarif, mit dem Claude Code läuft.</p></div>
-              <div class="mod extra"><span class="st">Optional</span><b>GitHub</b><p>Dann landen Änderungen von allein in deiner Test-Kopie in Shopify.</p></div>
+              <div class="mod extra"><span class="st">Optional</span><b>Zwischenspeicher</b><p>Dann landen Änderungen von allein in deiner Test-Kopie in Shopify.</p></div>
             </div>
           </div>
           <div>
@@ -3355,8 +3394,26 @@
         </div>
       </section>
 
+      <!-- ============ KI IST UNDERPRICED ============ -->
+      <section class="coins-band" aria-labelledby="h-coins">
+        <div class="wrap coins-grid">
+          <div class="coins" id="coins" aria-hidden="true">
+            <span class="lbl in">3 $ rein</span>
+            <span class="coin c1">$</span><span class="coin c2">$</span><span class="coin c3">$</span>
+            <span class="slotbox"></span>
+            <span class="coin out">$</span>
+            <span class="lbl outl">1 $ raus</span>
+          </div>
+          <div>
+            <h2 id="h-coins" data-reveal>KI ist gerade <em>underpriced</em>.</h2>
+            <p class="lead" data-reveal="2">Die Anbieter geben drei Dollar oder mehr aus, um einen Dollar einzunehmen, weil sie möglichst viele Nutzer wollen. Das ist wie bei Meta Ads am Anfang: Solange es kaum jemand macht, bekommst du viel Leistung für wenig Geld.</p>
+            <p class="lead" data-reveal="2">Meine Einschätzung ist, dass die Preise spätestens in einem halben Jahr kräftig anziehen. Je früher dein System steht, desto länger arbeitest du zum günstigen Tarif.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- ============ KOSTEN ============ -->
-      <section class="sec" id="kosten" aria-labelledby="h-cost" style="padding-top: 0;">
+      <section class="sec" id="kosten" aria-labelledby="h-cost">
         <div class="wrap">
           <div class="sec-head">
             <span class="eyebrow" data-reveal>Was das spart</span>
@@ -3419,7 +3476,7 @@
                 <li><b>Alle künftigen Updates</b> ohne Aufpreis</li>
               </ul>
               <div class="bonus">
-                <span class="bonus-tag">Nur am Webinar-Tag</span>
+                <div class="bonus-top"><span class="bonus-tag">Nur 20 pro Monat</span><span class="bonus-left"><i aria-hidden="true"></i><span>noch <b data-bonus-left>7</b> verfügbar</span></span></div>
                 <p><b>Live-Schulung und Setup-Call mit mir, 1:1.</b> Zwei bis drei Stunden, zugeschnitten auf dein Level und deinen Shop.</p>
               </div>
               <a class="btn btn--lg" id="buy" href="https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_ab_A" target="_blank" rel="noopener">vorflows für 1.499&nbsp;€ holen <span class="arr" aria-hidden="true">→</span></a>
@@ -3513,8 +3570,8 @@
               <div class="ans"><p>Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Search Console und Clarity liest Claude über deine eigenen Konten, vorflows selbst hostet nichts.</p><p>In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst.</p></div>
             </details>
             <details>
-              <summary>Was bekomme ich am Webinar-Tag zusätzlich?<span class="pm" aria-hidden="true"></span></summary>
-              <div class="ans"><p>Wer am Webinar-Tag kauft, bekommt eine Live-Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call, beides 1:1. Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe.</p><p>Im Setup-Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten ein, was noch fehlt. Damit die Konzentration bleibt, ist nur eine Person im Call, du oder jemand aus deinem Team.</p></div>
+              <summary>Was hat es mit der Schulung und dem Setup-Call auf sich?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Pro Monat bekommen nur 20 Käuferinnen und Käufer zusätzlich eine Live-Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call, beides 1:1. Diesen Monat sind noch <span data-bonus-left>7</span> Plätze frei. Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe.</p><p>Im Setup-Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten ein, was noch fehlt. Damit die Konzentration bleibt, ist nur eine Person im Call, du oder jemand aus deinem Team.</p></div>
             </details>
             <details>
               <summary>Kann ich vorflows für mehrere Shops nutzen?<span class="pm" aria-hidden="true"></span></summary>
@@ -4410,6 +4467,9 @@
         $('lqApps').style.transform = 'scaleY(0)';
         $('lqAgency').style.transform = 'scaleY(0)';
         whenSeen('calc', function () { setTimeout(function () { calcUpdate(true); }, 300); });
+
+        // Münzen (KI ist underpriced) nur animieren, solange sichtbar
+        new IntersectionObserver(function (es) { $('coins').classList.toggle('run', es[0].isIntersecting); }).observe($('coins'));
 
         // ── Mobile-Leiste: nur zwischen Hero und Angebot ──────────────
         var dock = $('dock'), dockBtn = dock.querySelector('a');

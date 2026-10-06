@@ -23,7 +23,7 @@ bei Google gefunden werden / mehr Käufe aus Verhalten, jede Zeile springt zu `#
 `#klicks`, Clarity-Beleg, Rubbelfeld `#suche`, Search-Console-Beleg) → große Stimme + **Kauf-Zwischenstopp 1** →
 **Problem** (Admin-Rechte: Tresor mit 10.000 Erstattungen; Qualität: Fremdblock im Theme; Sidekick) → **Sicher**
 (Duplikat-Schleife, „Drei Wege“: Connector-App / Kopie auf deinem Rechner = Standard im Paket / Test- und Live-Version
-mit GitHub = optional, „Stell es live“ klickbar; gesperrter Schalter) → **Kontext** (Sternekoch-Küche + Punktfeld
+mit zwei Zwischenspeichern = optional, „Stell es live“ klickbar; gesperrter Schalter) → **Kontext** (Sternekoch-Küche + Punktfeld
 „googeln“) → Ordner mit 7 Registern → **Vorher/Nachher** (Demo-Kopie, `assets/images/replay/shop-*.webp`) → **Eine
 Änderung** (29 → 39 € an 5 Theme-Stellen, „von Hand“ vergisst den Footer) + **Kauf-Zwischenstopp 2** → **Grenzen**
 (was Claude baut, wo die App bleibt) → Alex → Setup → **Rechnen wir mal** (436 €/Monat, Monate-Regler, SEO-Agentur)
@@ -39,9 +39,10 @@ Prozent-Positionen im Markup (`--l` Desktop, `--lm` Handy).
 `.lchips`, `.sys .node`. Farben auf Claude-Orange `#D97757` umgerechnet.
 
 **Texte:** keine Stakkato-Dreier und Slogan-Fragmente (Linie aus Commit 96b6156), keine Gedankenstriche.
-Produkt-Aussagen nur wie im Ordner: Claude hat kein Shopify-Login, ohne GitHub fügst du die geänderte Datei in die
-Kopie ein (`GITHUB.md`: „Deploy = Datei in den Theme-Editor kopieren“), mit GitHub Test-/Live-Branch, live erst auf
-das Wort der Inhaberin. Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
+Produkt-Aussagen nur wie im Ordner: Claude hat kein Shopify-Login, im Standard fügst du die geänderte Datei in die
+Kopie ein („Deploy = Datei in den Theme-Editor kopieren“), optional mit zwei Zwischenspeichern (Test und Live), live
+erst auf das Wort der Inhaberin. **Den Namen des Sync-Dienstes nie nennen, immer „Zwischenspeicher“** (Alex 2026-10-07,
+gilt für alle Seiten, auch faqs/danke). Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
 
 ## Mini-Player + Sprungmarken
 
@@ -72,7 +73,9 @@ läuft die Stelle gerade, steht „läuft gerade“ daran. Zeiten aus `assets/vi
 `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_ab_A` (Voucher MUSS mit, Basis ist 2.000 €).
 Preis steht an: Dock, Angebotskarte, Kauf-Button, Vergleichskasten, `product:price:amount`, JSON-LD Offer,
 `PRICE_VALUE` im Script. `apply-price-sales-webinar.mjs` passt NICHT mehr zur neuen Seite (sucht alte Strings).
-Webinar-Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und als FAQ.
+Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und als FAQ: **„Nur 20 pro Monat“ + „noch N verfügbar“**
+(seit 2026-10-07 statt „Nur am Webinar-Tag“). Die Zahl steht in jedem Element mit `data-bonus-left` (sales.html: Kasten + FAQ;
+sales-alt.html: Kasten + FAQ als Text). Von Hand pflegen, im JSON-LD steht bewusst keine Zahl. danke.html: „Einer von nur 20 Plätzen pro Monat“.
 
 ## Video
 
