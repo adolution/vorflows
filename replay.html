@@ -1186,6 +1186,8 @@
         var DURATION_FALLBACK = 3126; // Sekunden, bis loadedmetadata den echten Wert liefert
         var RESUME_KEY = 'vf_lw_replay_t_v5'; // v5: new cut, old positions do not fit
         var OFFER_AT = 2243; // 37:23, ab hier steht im Video die Preisfolie (v5)
+        var PITCH_END = 2476; // 41:16, danach Fragerunde (v5)
+        var PITCH_NEED = 15;  // Sekunden echte Wiedergabe im Pitch, bis der Kauf-Knopf kommt
         var OFFER_KEY = 'vf_lw_replay_offer';
         var LOCAL = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname);
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1527,7 +1529,9 @@
 
 
         // ================================================================
-        //  ANGEBOT: Kauf-Knöpfe erst ab der Preisfolie im Video (37:23).
+        //  ANGEBOT: Kauf-Knöpfe erst, wenn der Pitch (37:23 bis 41:16)
+        //  15 Sekunden wirklich gelaufen ist. Springen, Spulen und die
+        //  Fragerunde zählen nicht. Wer bis zum Ende schaut, bekommt sie auch.
         //  Einmal erreicht, merkt sich der Browser das (auch nach Neuladen).
         //  ?angebot=1 schaltet es ohne Event frei (Vorschau).
         // ================================================================
@@ -1544,7 +1548,19 @@
           updateDock();
         }
         if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { offerBoxVisible = es[0].isIntersecting; updateDock(); }).observe($('#offerBox'));
-        v.addEventListener('timeupdate', function () { if (!offerOn && v.currentTime >= OFFER_AT) setOffer(true, 'video'); });
+        var pitchSeen = 0, lastT = null;
+        v.addEventListener('seeking', function () { lastT = null; });
+        v.addEventListener('timeupdate', function () {
+          if (offerOn) return;
+          var t = v.currentTime;
+          if (lastT !== null && !v.seeking) {
+            var d = t - lastT;
+            if (d > 0 && d < 2 && t > OFFER_AT && t <= PITCH_END) pitchSeen += d;
+          }
+          lastT = t;
+          if (pitchSeen >= PITCH_NEED) setOffer(true, 'video');
+        });
+        v.addEventListener('ended', function () { setOffer(true, 'video'); });
         if (ls.get(OFFER_KEY) === '1') setOffer(true, 'stored');
         else if (/[?&]angebot=1\b/.test(location.search)) setOffer(true, 'param');
 

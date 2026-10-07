@@ -408,9 +408,12 @@ Video nicht ersetzen, das Angebot gibt es nur im Video.
 **Vollfassung mit allen Workshop-Visuals** (Problem, Duplikat, Ratgeber, System, Küche, Kosten, Änderung, Grenzen,
 Ordner, Q&A …) liegt als Archiv unter `replay-voll.html` → `/replay-voll` (noindex, eigener Titel, **ohne Tracking**:
 `LOCAL = true`). Zurück: Datei nach `replay.html` kopieren, Titel/canonical/`LOCAL`-Zeile zurücksetzen.
-**Angebot erst ab der Preisfolie:** `OFFER_AT = 2243` (37:23 in v5, Folie „Alle 3 Module. Jetzt für 1.499 €").
-Sobald `currentTime` das erreicht (auch durch Springen), erscheinen alle `[data-offer]`-Elemente und alle
-`[data-pre-offer]` verschwinden: Angebotskasten unter dem Player, Kauf-Knopf in der Kopfzeile (statt „Ansehen"),
+**Angebot erst nach dem Pitch:** Pitch-Fenster `OFFER_AT = 2243` (37:23 in v5, Folie „Alle 3 Module. Jetzt für 1.499 €")
+bis `PITCH_END = 2476` (41:16, danach Fragerunde). Erst wenn darin `PITCH_NEED = 15` Sekunden **echte Wiedergabe**
+gelaufen sind (Summe der `timeupdate`-Schritte < 2 s, `seeking` setzt zurück), oder das Video bis zum Ende läuft (`ended`),
+erscheinen alle `[data-offer]`-Elemente und alle
+`[data-pre-offer]` verschwinden. Springen (Kapitel, Regler) in die Fragerunde oder auf die Preisfolie schaltet
+nichts frei (Alex 2026-10-07: Preis darf nicht ohne Pitch auftauchen). Angebotskasten unter dem Player, Kauf-Knopf in der Kopfzeile (statt „Ansehen"),
 im Mini-Player (nur Desktop), in der Handy-Leiste (statt „Ansehen", dann auch während der Mini-Player läuft; der
 Player schwebt dann über der Leiste) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
 (`localStorage.vf_lw_replay_offer = 1`). Vorschau ohne Event: `/replay?angebot=1`.
@@ -438,7 +441,7 @@ Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
 | – | `lw_replay_cta_nav` / `_dock` / `_final` / `_final_alt` | „Ansehen / Weiterschauen"-Buttons |
 | – | `lw_replay_float_close` / `_float_up` | Mini-Player geschlossen / zurück zum großen Player |
 | – | `lw_replay_ix_*` (`demo_1..3`, `compare`, `legend`) | Interaktionen mit den Visuals (nur Clarity) |
-| `LW_Replay_Offer` `{t}` | `lw_replay_offer` | Video erreicht 37:23, Kauf-Knöpfe erscheinen (1× pro Browser) |
+| `LW_Replay_Offer` `{t}` | `lw_replay_offer` | 15 s Pitch (ab 37:23) gelaufen oder Video zu Ende, Kauf-Knöpfe erscheinen (1× pro Browser) |
 | `InitiateCheckout` `{content_name:'bundle', loc, value:1499, currency:'EUR'}` | `lw_replay_checkout` | Klick auf Digistore (`loc` = `player` / `nav` / `float` / `dock` / `final`) |
 
 Clarity-Tag `lw_replay_offer=shown`, sobald die Knöpfe sichtbar sind. Lokal (localhost) lädt die Seite weder Clarity
