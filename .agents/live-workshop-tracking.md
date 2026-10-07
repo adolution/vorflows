@@ -400,8 +400,9 @@ OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
 
 **Seiten-Aufbau (Stand 2026-10-06 abends, Material = /adsflow: dunkel, Studiolicht, Fraunces/Inter):**
 Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, „Weiterschauen ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t_v5`)
-+ Kapitel-Panel daneben (**10 Kapitel**: „Was Founder sagen / was das woanders kostet" 33:23 und „Drei Wege ab hier"
-36:53 bewusst raus, damit niemand direkt zum Preis springt) → nur drei Ergebnis-Abschnitte: Live-Demo (3 Tabs, Prompt
++ Kapitel-Panel daneben (**9 Kapitel**: „Was Founder sagen / was das woanders kostet" 33:23, „Drei Wege ab hier"
+36:53 und „Deine Fragen" 41:16 bewusst raus, damit niemand direkt zum Preis oder daran vorbei springt; letztes Kapitel
+„Ein Ordner, drei Module" 29:15) → nur drei Ergebnis-Abschnitte: Live-Demo (3 Tabs, Prompt
 tippt sich, echte Zahlen vom Screen) · Vorher/Nachher-Regler (`assets/images/replay/shop-{vorher,nachher}*.webp`) ·
 Stimmen → Schluss → Footer (`impressum-lw-b`/`datenschutz-lw-b`). Grund (CRO, Alex 2026-10-06): Die Seite soll das
 Video nicht ersetzen, das Angebot gibt es nur im Video.
