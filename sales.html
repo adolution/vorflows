@@ -2303,7 +2303,7 @@
       .chg-more p { margin-top: .6rem; color: var(--ink-2); font-size: 15.5px; }
       .chg-more .say { font-size: 1.05em; }
       @media (max-width: 860px) { .spots { grid-template-columns: repeat(3, minmax(0, 1fr)); } .chg-more { grid-template-columns: 1fr; } }
-      @media (max-width: 520px) { .spots { grid-template-columns: 1fr 1fr; } .spots .spot:last-child { grid-column: 1 / -1; } .chg-ctrl .reset { margin-left: 0; } .chg-msg { min-height: 6.5rem; } }
+      @media (max-width: 520px) { .spots { grid-template-columns: repeat(2, minmax(0, 1fr)); } .spot .s { overflow-wrap: break-word; hyphens: auto; } .spots .spot:last-child { grid-column: 1 / -1; } .chg-ctrl .reset { margin-left: 0; } .chg-msg { min-height: 6.5rem; } }
 
       /* ---------- Grenzen ---------- */
       .lim { margin-top: clamp(2.5rem, 5vw, 3.75rem); padding: clamp(1.25rem, 3vw, 2.25rem); }
@@ -2453,6 +2453,201 @@
         body.dock-on .cookie-banner { bottom: calc(80px + env(safe-area-inset-bottom)); }
       }
 
+      /* ---------- 1:1-Schulung: Hinweis im Hero ---------- */
+      .perk {
+        display: flex;
+        align-items: center;
+        gap: .85rem;
+        margin-top: 1.5rem;
+        padding: .8rem .9rem .8rem .8rem;
+        border-radius: 16px;
+        background: radial-gradient(18rem 8rem at 0% 0%, rgba(149, 191, 71, .13), transparent 70%), var(--raise);
+        border: 1px solid rgba(149, 191, 71, .38);
+        box-shadow: var(--shadow-raise);
+        color: inherit;
+        text-decoration: none;
+        transition: border-color .25s var(--ease-q), transform .5s var(--ease);
+      }
+      .perk:hover { border-color: rgba(149, 191, 71, .65); transform: translateY(-2px); }
+      .perk:active { transform: translateY(1px); }
+      .perk:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .perk-av { position: relative; flex: none; width: 48px; height: 48px; }
+      .perk-av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--raise), 0 0 0 3.5px rgba(149, 191, 71, .75); }
+      .perk-av i { position: absolute; right: -2px; bottom: 0; width: 13px; height: 13px; border-radius: 50%; background: var(--shop); border: 2.5px solid var(--raise); }
+      .perk-t { flex: 1; min-width: 0; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+      .perk-t b { display: block; margin-bottom: .1rem; font-size: 15px; font-weight: 600; color: var(--ink); }
+      .perk-go { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-2); font-size: 14px; color: var(--ink-2); transition: transform .4s var(--ease), border-color .25s var(--ease-q); }
+      .perk:hover .perk-go { transform: translateY(2px); border-color: var(--ink-3); }
+      .bonus p a { color: var(--ink); text-underline-offset: 3px; border-radius: 3px; transition: color .2s var(--ease-q); }
+      .bonus p a:hover { color: var(--orange-hi); }
+      .bonus p a:active { opacity: .7; }
+      .bonus p a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+      /* ---------- 1:1-Schulung: eigener Abschnitt ---------- */
+      .coach { overflow-x: clip; border-top: 1px solid var(--line); }
+      .coach::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(38rem 26rem at 88% 42%, rgba(149, 191, 71, .07), transparent 70%),
+          radial-gradient(34rem 24rem at 8% 12%, rgba(217, 119, 87, .08), transparent 70%);
+      }
+      .coach-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+        grid-template-areas: "head call" "body call";
+        column-gap: clamp(2.5rem, 6vw, 6rem);
+        align-items: start;
+      }
+      .coach-head { grid-area: head; }
+      .coach-head h2 { margin-top: 1rem; max-width: 17ch; }
+      .coach-head .lead { margin-top: 1.4rem; }
+      .coach-body { grid-area: body; }
+      .coach-steps { list-style: none; margin: 2.25rem 0 0; padding: 0; border-top: 1px solid var(--line); }
+      .coach-steps li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0 1rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+      .coach-steps .n { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; margin-top: .1rem; border-radius: 50%; border: 1px solid var(--line-2); font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; color: var(--ink); }
+      .coach-steps li:nth-child(1) .n { border-color: rgba(149, 191, 71, .6); color: var(--shop-ink); }
+      .coach-steps li:nth-child(2) .n { border-color: rgba(217, 119, 87, .6); color: var(--orange-hi); }
+      .coach-steps h3 { font-size: clamp(1.3rem, 1.1rem + .7vw, 1.65rem); }
+      .coach-steps p { margin-top: .45rem; max-width: 54ch; font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+      .coach-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; margin-top: 2rem; }
+
+      /* Call-Fenster: zwei Teilnehmende, geteilter Bildschirm mit Setup-Check */
+      .call { grid-area: call; align-self: center; position: relative; overflow: hidden; border-radius: var(--r-surface); background: linear-gradient(180deg, var(--raise-2), var(--raise)); border: 1px solid var(--line-2); box-shadow: var(--shadow-float); }
+      .call-bar { display: flex; align-items: center; gap: .7rem; height: 46px; padding: 0 1rem; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-3); }
+      .call-bar b { font-weight: 500; color: var(--ink); }
+      .call-bar .ppl { margin-left: auto; }
+      .call .live { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .55rem; border-radius: 999px; background: rgba(217, 119, 87, .14); font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--orange-hi); }
+      .call .live i { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+      .call-screen { margin: 1rem; padding: 1.1rem 1.15rem 1.2rem; border-radius: 12px; background: var(--bg-deep); border: 1px solid var(--line); }
+      .cs-k { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+      .cs-h { margin-top: .7rem; font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; letter-spacing: -.01em; color: var(--ink); }
+      .cs-list { display: grid; gap: .55rem; margin: .75rem 0 0; padding: 0; list-style: none; }
+      .cs-list li { display: flex; align-items: center; gap: .65rem; font-size: 14.5px; line-height: 1.35; color: var(--ink-2); }
+      .cs-list i { position: relative; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line-2); }
+      .cs-list i::before { content: ""; position: absolute; inset: -1.5px; border-radius: 50%; background: var(--shop); transform: scale(0); transition: transform .5s var(--ease); }
+      .cs-list i::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid var(--on-shop); border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .4s var(--ease); }
+      .call.in .cs-list i::before { transform: scale(1); }
+      .call.in .cs-list i::after { transform: rotate(45deg) scale(1); }
+      .cs-list li:nth-child(1) i::before, .cs-list li:nth-child(1) i::after { transition-delay: .5s; }
+      .cs-list li:nth-child(2) i::before, .cs-list li:nth-child(2) i::after { transition-delay: .85s; }
+      .cs-list li:nth-child(3) i::before, .cs-list li:nth-child(3) i::after { transition-delay: 1.2s; }
+      .cs-list li:nth-child(4) i::before, .cs-list li:nth-child(4) i::after { transition-delay: 1.55s; }
+      .cs-list li:nth-child(5) i::before, .cs-list li:nth-child(5) i::after { transition-delay: 1.9s; }
+      .cs-h2 { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px dashed var(--line-2); font-size: 13px; color: var(--ink-3); }
+      .cs-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+      .cs-chips span { padding: .3rem .7rem; border-radius: 999px; border: 1px solid rgba(217, 119, 87, .45); background: rgba(217, 119, 87, .09); font-size: 13px; color: var(--ink); }
+      .call-ppl { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; padding: 0 1rem 1rem; }
+      .tile { display: flex; align-items: center; gap: .75rem; min-width: 0; margin: 0; padding: .7rem .8rem; border-radius: 12px; background: rgba(237, 236, 231, .03); border: 1px solid var(--line); }
+      .tile .av { position: relative; flex: none; width: 48px; height: 48px; border-radius: 50%; }
+      .tile .av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+      .t-alex .av { box-shadow: 0 0 0 2px var(--raise), 0 0 0 3.5px var(--shop); }
+      .t-you .av { display: grid; place-items: center; background: linear-gradient(160deg, #3E5C4D, #2F473C); font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; color: #EDE6DA; }
+      .tile figcaption { min-width: 0; margin: 0; font-size: 13px; line-height: 1.35; color: var(--ink-3); }
+      .tile figcaption b { display: block; font-size: 14.5px; font-weight: 500; color: var(--ink); }
+      @media (prefers-reduced-motion: no-preference) {
+        .call.in .live i { animation: slotPulse 2s ease-out infinite; }
+        .t-alex .av::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--shop); opacity: 0; }
+        .call.in .t-alex .av::after { animation: speak 2.4s ease-out infinite 2.4s; }
+        @keyframes speak { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.25); } }
+      }
+      @media (max-width: 960px) {
+        .coach-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "call" "body"; }
+        .call { margin-top: 2.25rem; max-width: 560px; }
+        .coach-steps { margin-top: 2rem; }
+      }
+      @media (max-width: 420px) {
+        .call-screen { margin: .75rem; padding: 1rem; }
+        .call-ppl { grid-template-columns: minmax(0, 1fr); gap: .5rem; padding: 0 .75rem .75rem; }
+        .call-bar .ppl { font-size: 12px; }
+      }
+
+      /* ---------- Großansicht für Screenshots ---------- */
+      .zoomable { cursor: zoom-in; }
+      .zoomable:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .zoom-badge { position: absolute; right: .6rem; bottom: .6rem; z-index: 3; display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .65rem .3rem .55rem; border-radius: 999px; background: rgba(14, 14, 13, .88); border: 1px solid var(--line-2); font-size: 12px; font-weight: 500; color: var(--ink); pointer-events: none; transition: transform .4s var(--ease), background-color .2s var(--ease-q); }
+      .zoom-badge::before { content: ""; width: 9px; height: 9px; border: 1.5px solid currentColor; border-radius: 50%; box-shadow: 4px 4px 0 -2.5px currentColor; margin-right: 2px; }
+      .zoomable:hover .zoom-badge { transform: translateY(-2px); background: rgba(14, 14, 13, .96); }
+      .zoomable:active .zoom-badge { transform: scale(.96); }
+      .zoom { position: fixed; inset: 0; z-index: 120; display: flex; flex-direction: column; background: var(--bg-deep); }
+      .zoom[hidden] { display: none; }
+      .zoom-scroll { flex: 1; display: flex; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 64px 12px 12px; }
+      .zoom-scroll img { flex: none; margin: auto; width: min(1600px, 96vw); max-width: none; height: auto; border-radius: 10px; }
+      .zoom-x { position: absolute; top: max(10px, env(safe-area-inset-top)); right: 10px; z-index: 2; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--raise-2); color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; transition: background-color .2s var(--ease-q), transform .15s var(--ease-q); }
+      .zoom-x:hover { background: #2A2926; }
+      .zoom-x:active { transform: scale(.94); }
+      .zoom-x:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .zoom-hint { display: none; padding: .6rem 1rem calc(.8rem + env(safe-area-inset-bottom)); text-align: center; font-size: 13px; color: var(--ink-3); }
+      @media (max-width: 900px) {
+        .zoom-scroll img { width: 1250px; }
+        .zoom-hint { display: block; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .zoom:not([hidden]) { animation: paneIn .35s var(--ease) both; }
+      }
+
+      /* ---------- Handy: Player heftet sich beim Weiterscrollen oben an, volle Breite ---------- */
+      /* Statt eines kleinen Fensters mitten im Text (deckte 62 % der Breite ab) wie bei YouTube oben angeheftet. */
+      @media (max-width: 760px) {
+        .stage.is-float,
+        body.dock-on .stage.is-float {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: auto;
+          width: 100%;
+          border-radius: 0;
+          box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .9), 0 1px 0 var(--line-2);
+        }
+        .stage.is-float .stage-clip { border-radius: 0; }
+        .stage.is-float .float-bar { top: 100%; bottom: auto; height: 38px; border-radius: 0; border: 0; border-bottom: 1px solid var(--line-2); }
+        .fb-ch { font-size: 12px; }
+      }
+      @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+        .stage.is-float { animation-name: floatTop; }
+        @keyframes floatTop { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+      }
+
+      /* ---------- Handy-Feinschliff ---------- */
+      .tap { display: none; }
+      @media (hover: none) { .hov { display: none; } .tap { display: inline; } }
+      @media (max-width: 760px) {
+        :root { --section: 3.75rem; }
+        .voices { padding-block: 2.75rem 2.5rem; }
+        .sec-head .lead, .proof-head .lead, .data-head .lead, .flow-intro .lead, .today-intro .lead { margin-top: 1.1rem; }
+        .inline-cta { margin-top: 2.5rem; }
+        .offer-quotes { margin-top: 2.5rem; }
+        .bigquote blockquote { font-size: clamp(1.55rem, 1.1rem + 2.6vw, 3.2rem); }
+        /* Münzen erst nach der Überschrift, damit man weiß, worum es geht */
+        .coins-grid > .coins { order: 2; }
+        .coins-band { padding-block: 3rem 2rem; }
+        .coach-foot .btn { width: 100%; }
+        .perk { margin-top: 1.25rem; }
+      }
+      @media (max-width: 560px) {
+        .ten { flex-direction: column; align-items: flex-start; gap: .75rem; margin-top: 1.75rem; padding: 1.2rem 1.25rem; }
+        .ten p { padding-bottom: 0; }
+        /* Änderungs-Demo: zwei Wege nebeneinander, Zurücksetzen als Textlink, Meldungsfläche erst nach dem Tippen */
+        .chg-ctrl { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+        .chg-ctrl .ghost { min-height: 48px; padding: .45rem .7rem; line-height: 1.25; white-space: normal; }
+        .chg-ctrl .reset { grid-column: 1 / -1; justify-self: start; min-height: 40px; padding: 0 .2rem; border: 0; text-decoration: underline; text-underline-offset: 3px; }
+        .chg:not([data-m]) .chg-msg { display: none; }
+      }
+      @media (max-width: 420px) {
+        /* Drei Wege: Zusatz unter den Titel statt daneben (brach sonst in drei Zeilen) */
+        .stab { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+        /* Ordner-Register: Dateiliste passt auch bei 360 px ganz rein */
+        .tmap { font-size: 11.5px; }
+        .tmap div { gap: .5rem; padding: 0 .4rem; }
+        .tmap div span { font-size: 11px; white-space: nowrap; }
+        /* Admin-Zugriff: Text über dem Knopf statt daneben */
+        .vault-head { flex-wrap: wrap; }
+        .vault-foot { flex-direction: column; align-items: flex-start; gap: .7rem; }
+        .perk-t { font-size: 13px; }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
       }
@@ -2510,6 +2705,11 @@
                 <a class="btn btn--lg" href="#bundle">vorflows holen <span class="arr" aria-hidden="true">→</span></a>
                 <a class="link" href="#ablauf">So läuft es ab</a>
               </div>
+              <a class="perk rise d5" href="#schulung">
+                <span class="perk-av"><img src="/assets/images/sales/alex-call-96.webp" srcset="/assets/images/sales/alex-call-96.webp 1x, /assets/images/sales/alex-call-192.webp 2x" width="48" height="48" alt="" /><i aria-hidden="true"></i></span>
+                <span class="perk-t"><b>Inklusive: 1:1-Schulung mit mir</b>Kein Gruppencall: Wir prüfen dein Setup und gehen die Use-Cases deines Shops durch.</span>
+                <span class="perk-go" aria-hidden="true">↓</span>
+              </a>
               <p class="hero-trust rise d5"><span>Einmalkauf</span><span>Jedes Shopify-Theme</span><span>Mac und Windows</span></p>
               <div class="vsl-chips rise d5">
                 <p class="vc-k">Direkt zur Stelle im Video</p>
@@ -2578,6 +2778,50 @@
         </div>
       </div>
 
+
+      <!-- ============ 1:1-SCHULUNG ============ -->
+      <section class="sec coach" id="schulung" aria-labelledby="h-coach">
+        <div class="wrap coach-grid">
+          <div class="coach-head">
+            <span class="eyebrow" data-reveal>Inklusive, nur 20 pro Monat</span>
+            <h2 id="h-coach" data-reveal>Dazu bekommst du eine <em>1:1-Schulung</em> für deinen Shop.</h2>
+            <p class="lead" data-reveal="2">Das ist kein Gruppencall und kein Kurs von der Stange. Du bekommst eine persönliche Shopify- und Claude-Code-Schulung von zwei bis drei Stunden und einen Setup-Call, beides live mit mir und an deinem eigenen Shop.</p>
+          </div>
+
+          <div class="call" data-reveal aria-hidden="true">
+            <div class="call-bar"><span class="live"><i></i>Live</span><b>1:1-Schulung</b><span class="ppl">2 Teilnehmende</span></div>
+            <div class="call-screen">
+              <p class="cs-k">Geteilter Bildschirm: dein Shop</p>
+              <p class="cs-h">Erst der Setup-Check</p>
+              <ul class="cs-list">
+                <li><i></i>Claude Code läuft</li>
+                <li><i></i>vorflows-Ordner ist geöffnet</li>
+                <li><i></i>Theme-Kopie ist eingelesen</li>
+                <li><i></i>Search Console ist verbunden</li>
+                <li><i></i>Clarity ist verbunden</li>
+              </ul>
+              <p class="cs-h2">Dann deine Use-Cases</p>
+              <div class="cs-chips"><span>Welche App raus kann</span><span>Wo Kunden hängen</span><span>Was bei Google fehlt</span></div>
+            </div>
+            <div class="call-ppl">
+              <figure class="tile t-alex"><span class="av"><img src="/assets/images/sales/alex-call-96.webp" srcset="/assets/images/sales/alex-call-96.webp 1x, /assets/images/sales/alex-call-192.webp 2x" width="48" height="48" alt="" loading="lazy" /></span><figcaption><b>Alex</b>Shopify und Claude Code</figcaption></figure>
+              <figure class="tile t-you"><span class="av">Du</span><figcaption><b>Du</b>oder jemand aus deinem Team</figcaption></figure>
+            </div>
+          </div>
+
+          <div class="coach-body">
+            <ol class="coach-steps">
+              <li data-reveal><span class="n">1</span><div><h3>Wir prüfen dein Setup</h3><p>Im Setup-Call schauen wir zusammen, ob Claude Code, der Ordner, die Search Console und Clarity richtig sitzen. Fehler korrigieren wir sofort, und was noch fehlt, richten wir gemeinsam ein.</p></div></li>
+              <li data-reveal="2"><span class="n">2</span><div><h3>Wir gehen deine Use-Cases durch</h3><p>In der Schulung geht es um deinen Shop: welche App raus kann, wo deine Kunden hängen bleiben und was dir bei Google am meisten bringt. Wir legen fest, was Claude als Erstes für dich baut.</p></div></li>
+              <li data-reveal="3"><span class="n">3</span><div><h3>Zugeschnitten auf dein Level</h3><p>Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe. Im Call ist nur eine Person, du oder jemand aus deinem Team.</p></div></li>
+            </ol>
+            <div class="coach-foot" data-reveal="3">
+              <a class="btn" href="#bundle">vorflows mit Schulung holen <span class="arr" aria-hidden="true">→</span></a>
+              <span class="bonus-left"><i aria-hidden="true"></i><span>diesen Monat noch <b data-bonus-left>7</b> von 20 frei</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ============ DREI DINGE ============ -->
       <section class="sec" id="drei" aria-labelledby="h-three">
@@ -3032,7 +3276,7 @@
           <div class="sec-head">
             <span class="eyebrow" data-reveal>Warum es zu deinem Shop passt</span>
             <h2 id="h-kit" data-reveal>Ein Sternekoch in einer <em>leeren</em> Küche.</h2>
-            <p class="lead" data-reveal="2">Claude kann eigentlich alles. Aber ohne Wissen über deinen Shop kommt Standard raus. Fahr über die Begriffe:</p>
+            <p class="lead" data-reveal="2">Claude kann eigentlich alles. Aber ohne Wissen über deinen Shop kommt Standard raus. <span class="hov">Fahr über die Begriffe:</span><span class="tap">Tipp auf die Begriffe:</span></p>
           </div>
           <div class="kit-grid">
             <div class="kitchen" id="kitchen" aria-hidden="true">
@@ -3477,7 +3721,7 @@
               </ul>
               <div class="bonus">
                 <div class="bonus-top"><span class="bonus-tag">Nur 20 pro Monat</span><span class="bonus-left"><i aria-hidden="true"></i><span>noch <b data-bonus-left>7</b> verfügbar</span></span></div>
-                <p><b>Live-Schulung und Setup-Call mit mir, 1:1.</b> Zwei bis drei Stunden, zugeschnitten auf dein Level und deinen Shop.</p>
+                <p><b>1:1-Schulung und Setup-Call mit mir.</b> Kein Gruppencall: Zwei bis drei Stunden zu deinem Shop, wir prüfen dein Setup und gehen deine Use-Cases durch. <a href="#schulung">Mehr zur Schulung</a></p>
               </div>
               <a class="btn btn--lg" id="buy" href="https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_ab_A" target="_blank" rel="noopener">vorflows für 1.499&nbsp;€ holen <span class="arr" aria-hidden="true">→</span></a>
               <p class="rate-note">Ratenzahlung möglich über Digistore24</p>
@@ -3628,8 +3872,15 @@
       </div>
     </footer>
 
+    <!-- Großansicht für Screenshots (Terminal-Text ist am Handy sonst zu klein) -->
+    <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Screenshot in groß" hidden>
+      <button class="zoom-x" type="button" id="zoomX" aria-label="Großansicht schließen">×</button>
+      <div class="zoom-scroll" id="zoomScroll"><img id="zoomImg" alt="" /></div>
+      <p class="zoom-hint">Zum Lesen seitlich wischen</p>
+    </div>
+
     <div class="dock" id="dock" aria-hidden="true">
-      <p class="t"><b>vorflows</b>1.499&nbsp;€ statt <s>2.000&nbsp;€</s></p>
+      <p class="t"><b>vorflows + 1:1-Schulung</b>1.499&nbsp;€ statt <s>2.000&nbsp;€</s></p>
       <a class="btn sticky-cta-btn" href="#bundle" tabindex="-1">vorflows holen</a>
     </div>
 
@@ -4470,6 +4721,42 @@
 
         // Münzen (KI ist underpriced) nur animieren, solange sichtbar
         new IntersectionObserver(function (es) { $('coins').classList.toggle('run', es[0].isIntersecting); }).observe($('coins'));
+
+        // Screenshots: Tippen öffnet die Großansicht (am Handy seitlich wischen zum Lesen)
+        var zoom = $('zoom'), zoomImg = $('zoomImg'), zoomScroll = $('zoomScroll'), zoomFrom = null;
+        function zoomOpen(el) {
+          var img = el.querySelector('img');
+          var srcs = (img.getAttribute('srcset') || '').split(',').map(function (x) { return x.trim().split(' ')[0]; }).filter(Boolean);
+          zoomImg.src = srcs.length ? srcs[srcs.length - 1] : img.currentSrc || img.src;
+          zoomImg.alt = img.alt;
+          zoomFrom = el;
+          zoom.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          zoomScroll.scrollTop = 0; zoomScroll.scrollLeft = 0;
+          $('zoomX').focus({ preventScroll: true });
+          clarityEvent('sales_zoom');
+        }
+        function zoomClose() {
+          if (zoom.hidden) return;
+          zoom.hidden = true;
+          document.documentElement.style.overflow = '';
+          if (zoomFrom) zoomFrom.focus({ preventScroll: true });
+        }
+        qsa('.shot, .shot-xl').forEach(function (el) {
+          if (!el.querySelector('img')) return;
+          el.classList.add('zoomable');
+          el.setAttribute('role', 'button');
+          el.setAttribute('tabindex', '0');
+          el.setAttribute('aria-label', 'Screenshot vergrößern');
+          var b = document.createElement('span'); b.className = 'zoom-badge'; b.setAttribute('aria-hidden', 'true'); b.textContent = 'Vergrößern';
+          el.appendChild(b);
+          el.addEventListener('click', function () { zoomOpen(el); });
+          el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zoomOpen(el); } });
+        });
+        $('zoomX').addEventListener('click', zoomClose);
+        // Hinweise auf die 1:1-Schulung (Hero-Kasten, Angebotskarte)
+        qsa('a[href="#schulung"]').forEach(function (a) { a.addEventListener('click', function () { clarityEvent(a.classList.contains('perk') ? 'sales_schulung_hero' : 'sales_schulung_offer'); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') zoomClose(); });
 
         // ── Mobile-Leiste: nur zwischen Hero und Angebot ──────────────
         var dock = $('dock'), dockBtn = dock.querySelector('a');

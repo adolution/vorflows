@@ -416,13 +416,15 @@ erscheinen alle `[data-offer]`-Elemente und alle
 `[data-pre-offer]` verschwinden. Springen (Kapitel, Regler) in die Fragerunde oder auf die Preisfolie schaltet
 nichts frei (Alex 2026-10-07: Preis darf nicht ohne Pitch auftauchen). Angebotskasten unter dem Player, Kauf-Knopf in der Kopfzeile (statt „Ansehen"),
 im Mini-Player (nur Desktop), in der Handy-Leiste (statt „Ansehen", dann auch während der Mini-Player läuft; der
-Player schwebt dann über der Leiste) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
+Player hängt dann oben, die Leiste unten) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
 (`localStorage.vf_lw_replay_offer = 1`). Vorschau ohne Event: `/replay?angebot=1`.
 Checkout: `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_replay` (Voucher MUSS mit, Basis 2.000 €).
 Video = v5 (Motion-Fassung, freigegeben 2026-10-06). Alle `data-t`/`data-live`-Zeiten beider Seiten sind v5-Zeiten; Weiterschauen-Key `vf_lw_replay_t_v5`.
 Sprungmarken `.tchip` (`data-t` Sekunden, `data-live="von-bis"`): Klick spielt ab der Stelle.
 Ist der große Player aus dem Bild, läuft das Video im **Mini-Player** unten rechts weiter (nur `position: fixed`,
-kein DOM-Umhängen; Leiste mit Kapitel, ↑ zum Player, × = Pause). Läuft das Video in einem Abschnitt, zeigt dessen
+kein DOM-Umhängen; Leiste mit Kapitel, ↑ zum Player, × = Pause). **Handy (≤ 760 px) seit 2026-10-08:** kein Fenster
+unten rechts (deckte 62 % der Textbreite ab), sondern oben in voller Breite angeheftet wie bei YouTube, Kapitel-Leiste
+darunter. Reine CSS-Überschreibung am Ende des `<style>`, Logik unverändert. Gleiches Muster auf /sales. Läuft das Video in einem Abschnitt, zeigt dessen
 Sprungmarke „läuft gerade".
 Achtung Stapelebenen: `.hero` darf kein `isolation`/`z-index`/`transform` bekommen und `.rise` nutzt
 `animation-fill-mode: backwards`, sonst hängt der Mini-Player in der Ebene des Heros (verdeckt / klebt am Hero).
