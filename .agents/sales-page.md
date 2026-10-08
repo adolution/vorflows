@@ -44,7 +44,12 @@ Prozent-Positionen im Markup (`--l` Desktop, `--lm` Handy).
 Produkt-Aussagen nur wie im Ordner: Claude hat kein Shopify-Login, im Standard fügst du die geänderte Datei in die
 Kopie ein („Deploy = Datei in den Theme-Editor kopieren“), optional mit zwei Zwischenspeichern (Test und Live), live
 erst auf das Wort der Inhaberin. **Den Namen des Sync-Dienstes nie nennen, immer „Zwischenspeicher“** (Alex 2026-10-07,
-gilt für alle Verkaufs- und Inhaltsseiten; **faqs und danke dürfen GitHub nennen**, dort stehen Käufer-Anleitungen und Prompts). Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
+gilt für alle Verkaufs- und Inhaltsseiten; **faqs und danke dürfen GitHub nennen**, dort stehen Käufer-Anleitungen und Prompts).
+**Seit 2026-10-08 genauso: nie „Clarity“ und nie „Search Console“** auf /sales, /sales-alt, /replay, /replay-voll (sichtbarer Text,
+Alt-Texte, JSON-LD). Stattdessen „Klickdatentool“ / „Suchdatentool“ bzw. „Klick- und Suchdaten“. Screenshot heißt jetzt
+`beleg-klickdaten*.webp` (Kopie, `beleg-clarity*` liegt noch im Repo). Footer ohne ClarityFlow-Link, JSON-LD-Module heißen
+Grundsystem / Suchdaten / Verhalten. **Ausnahme Cookie-Hinweis:** nennt Microsoft Clarity weiter (Einwilligung muss die Dienste nennen).
+Tracking-Code (`window.clarity`, Events) ist unsichtbar und bleibt. Shopify Dev MCP = Prüf-Werkzeug für Theme-Code, nicht mit dem Shop verbunden.
 
 ## Mini-Player + Sprungmarken
 
@@ -81,6 +86,7 @@ Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und als FAQ:
 Handy-Leiste „vorflows + 1:1-Schulung“. Fakten nur aus FAQ: 2 bis 3 Std. Live-Schulung + Setup-Call, beides 1:1, eine Person
 im Call, Einsteiger bekommen Basics inkl. Claude Code. Avatar `assets/images/sales/alex-call-{96,192,320}.webp` = Facecam-Kreis
 aus dem VSL-Poster. Die Zahl steht in jedem Element mit `data-bonus-left` (sales.html: Kasten + FAQ + `#schulung`;
+replay.html: Angebotskasten + Schluss, beide erst nach dem Pitch sichtbar;
 sales-alt.html: Kasten + FAQ als Text). Von Hand pflegen, im JSON-LD steht bewusst keine Zahl. danke.html: „Einer von nur 20 Plätzen pro Monat“.
 
 ## Video

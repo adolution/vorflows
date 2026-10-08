@@ -128,8 +128,6 @@
             { "@type": "Thing", "name": "Claude Code" }
           ],
           "mentions": [
-            { "@type": "Thing", "name": "Microsoft Clarity" },
-            { "@type": "Thing", "name": "Google Search Console" },
             { "@type": "Thing", "name": "Shopify Apps" }
           ],
           "mainEntity": { "@id": "https://vorflows.com/#product-bundle" },
@@ -140,8 +138,8 @@
         {
           "@type": ["Product", "SoftwareApplication"],
           "@id": "https://vorflows.com/#product-bundle",
-          "name": "vorflows Bundle: BaseFlow + SEOFlow + ClarityFlow",
-          "description": "Digitales Produkt für Shopify-Founder: ein Ordner für Claude Code mit 119 Fähigkeiten und 19 Agenten, Setup-Anleitungen für Google Search Console und Microsoft Clarity, SEO-Aufbauplan und Setup-Videos. Claude arbeitet an einer Kopie des Themes, live schaltet der Shop-Inhaber. Lieferung digital per Download-Link über Digistore24. Einmalkauf.",
+          "name": "vorflows: Grundsystem, Suchdaten und Verhalten",
+          "description": "Digitales Produkt für Shopify-Founder: ein Ordner für Claude Code mit 119 Fähigkeiten und 19 Agenten, Setup-Anleitungen für Such- und Klickdaten, SEO-Aufbauplan und Setup-Videos. Claude arbeitet an einer Kopie des Themes, live schaltet der Shop-Inhaber. Lieferung digital per Download-Link über Digistore24. Einmalkauf.",
           "applicationCategory": "BusinessApplication",
           "applicationSubCategory": "Shopify Optimization Workflow",
           "operatingSystem": "macOS, Windows",
@@ -163,15 +161,15 @@
             { "@type": "PropertyValue", "name": "Sprache", "value": "Deutsch" }
           ],
           "hasPart": [
-            { "@type": "SoftwareApplication", "@id": "https://vorflows.com/#baseflow", "name": "BaseFlow", "url": "https://vorflows.com/baseflow", "description": "Grundsystem: Claude baut Sections und ersetzt Apps an einer Kopie deines Shopify-Themes.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } },
-            { "@type": "SoftwareApplication", "@id": "https://vorflows.com/#seoflow", "name": "SEOFlow", "url": "https://vorflows.com/seoflow", "description": "Claude liest die Google Search Console und findet Suchbegriffe, bei denen Title und Beschreibung mehr Klicks holen können.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } },
-            { "@type": "SoftwareApplication", "@id": "https://vorflows.com/#clarityflow", "name": "ClarityFlow", "url": "https://vorflows.com/clarityflow", "description": "Claude liest Microsoft Clarity und findet tote Klicks und Bereiche, die kaum jemand erreicht.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } }
+            { "@type": "SoftwareApplication", "name": "Grundsystem", "description": "Claude baut Sections und ersetzt Apps an einer Kopie deines Shopify-Themes.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } },
+            { "@type": "SoftwareApplication", "name": "Suchdaten", "description": "Claude liest deine Suchdaten und findet Suchbegriffe, bei denen Title und Beschreibung mehr Klicks holen können.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } },
+            { "@type": "SoftwareApplication", "name": "Verhalten", "description": "Claude liest deine Klickdaten und findet tote Klicks und Bereiche, die kaum jemand erreicht.", "applicationCategory": "BusinessApplication", "operatingSystem": "macOS, Windows", "isPartOf": { "@id": "https://vorflows.com/#product-bundle" } }
           ],
           "offers": {
             "@type": "Offer",
             "@id": "https://vorflows.com/#offer-bundle",
             "sku": "vf-bundle",
-            "name": "vorflows Bundle (BaseFlow + SEOFlow + ClarityFlow)",
+            "name": "vorflows (Grundsystem, Suchdaten und Verhalten)",
             "description": "Einmalkauf 1.499 € netto statt 2.000 €. Ratenzahlung möglich über Digistore24.",
             "price": "1499",
             "priceCurrency": "EUR",
@@ -201,7 +199,7 @@
           "@type": "VideoObject",
           "@id": "https://vorflows.com/sales#video",
           "name": "vorflows live an einem echten Shopify-Shop",
-          "description": "Alex zeigt, wie Claude mit vorflows eine App ersetzt, eine Versandleiste baut und aus Clarity- und Search-Console-Daten Verbesserungen für den Shop ableitet.",
+          "description": "Alex zeigt, wie Claude mit vorflows eine App ersetzt, eine Versandleiste baut und aus Klick- und Suchdaten Verbesserungen für den Shop ableitet.",
           "thumbnailUrl": ["https://vorflows.com/assets/images/sales/vsl-v1b-poster.webp"],
           "uploadDate": "2026-10-05T02:00:00+02:00",
           "duration": "PT5M5S",
@@ -241,10 +239,10 @@
             { "@type": "Question", "name": "Funktioniert das mit meinem Theme?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, mit jedem Shopify-Theme, egal ob Dawn, ein gekauftes Premium-Theme oder eine Eigenentwicklung. Beim Einrichten liest Claude dein Theme einmal komplett und schreibt sich auf, wie es aufgebaut ist." } },
             { "@type": "Question", "name": "Lohnt sich das auch für digitale Produkte?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Solange du einen Shopify-Shop hast, lohnt es sich. Ich habe selbst mit digitalen Produkten angefangen, weil die Marge höher ist." } },
             { "@type": "Question", "name": "Funktioniert das mit PageFly oder GemPages?", "acceptedAnswer": { "@type": "Answer", "text": "PageFly sollte funktionieren, auch diese Seiten sind in Code geschrieben. GemPages kannst du ersetzen: Claude baut das bestehende Design im Theme nach, danach kündigst du die App." } },
-            { "@type": "Question", "name": "Brauche ich Ahrefs oder andere SEO-Tools?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Du brauchst keine bezahlte SEO-Software. Die Suchdaten kommen aus deiner kostenlosen Google Search Console, dazu brauchst du nur dein Claude-Abo." } },
-            { "@type": "Question", "name": "Wie lange dauert das Einrichten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code installierst du nach der Anleitung in etwa zehn Minuten. Das Grundsystem richtet Claude danach mit einem Satz selbst ein. Die Search Console verbindest du in rund 20 Minuten, Clarity in 5 bis 10 Minuten. Bei Clarity dauert es danach etwa zwei Stunden, bis die ersten Daten da sind." } },
-            { "@type": "Question", "name": "Läuft das auf Mac und Windows?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für beide gibt es eigene Anleitungen, auch für die Verbindung zur Search Console." } },
-            { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Search Console und Clarity liest Claude über deine eigenen Konten, vorflows selbst hostet nichts. In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst." } },
+            { "@type": "Question", "name": "Brauche ich Ahrefs oder andere SEO-Tools?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Du brauchst keine bezahlte SEO-Software. Die Suchdaten kommen aus einem kostenlosen Suchdatentool, dazu brauchst du nur dein Claude-Abo." } },
+            { "@type": "Question", "name": "Wie lange dauert das Einrichten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code installierst du nach der Anleitung in etwa zehn Minuten. Das Grundsystem richtet Claude danach mit einem Satz selbst ein. Das Suchdatentool bindest du in rund 20 Minuten an, das Klickdatentool in 5 bis 10 Minuten. Beim Klickdatentool dauert es danach etwa zwei Stunden, bis die ersten Daten da sind." } },
+            { "@type": "Question", "name": "Läuft das auf Mac und Windows?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für beide gibt es eigene Anleitungen, auch für die Anbindung des Suchdatentools." } },
+            { "@type": "Question", "name": "Was passiert mit meinen Daten?", "acceptedAnswer": { "@type": "Answer", "text": "Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Such- und Klickdaten liest Claude über deine eigenen Konten, vorflows selbst hostet nichts. In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst." } },
             { "@type": "Question", "name": "Was hat es mit der Schulung und dem Setup-Call auf sich?", "acceptedAnswer": { "@type": "Answer", "text": "Pro Monat bekommen nur 20 Käuferinnen und Käufer zusätzlich eine Live-Schulung von zwei bis drei Stunden und einen gemeinsamen Setup-Call, beides 1:1. Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe. Im Setup-Call prüfen wir dein Setup zusammen, korrigieren Fehler und richten ein, was noch fehlt. Damit die Konzentration bleibt, ist nur eine Person im Call, du oder jemand aus deinem Team." } },
             { "@type": "Question", "name": "Kann ich vorflows für mehrere Shops nutzen?", "acceptedAnswer": { "@type": "Answer", "text": "Eine Lizenz gilt für einen Shop. Für jeden weiteren Shop brauchst du eine eigene Lizenz. Wenn du mehrere auf einmal willst, schreib mir an alex@adolution.de, dann finden wir etwas Passendes." } },
             { "@type": "Question", "name": "Kann ich mir beim Einrichten helfen lassen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Eine persönliche Begleitung, bei der wir das System zusammen komplett aufsetzen, kannst du für 900 € netto dazubuchen. Schreib mir dafür an alex@adolution.de." } },
@@ -2797,8 +2795,8 @@
                 <li><i></i>Claude Code läuft</li>
                 <li><i></i>vorflows-Ordner ist geöffnet</li>
                 <li><i></i>Theme-Kopie ist eingelesen</li>
-                <li><i></i>Search Console ist verbunden</li>
-                <li><i></i>Clarity ist verbunden</li>
+                <li><i></i>Suchdatentool ist angebunden</li>
+                <li><i></i>Klickdatentool ist angebunden</li>
               </ul>
               <p class="cs-h2">Dann deine Use-Cases</p>
               <div class="cs-chips"><span>Welche App raus kann</span><span>Wo Kunden hängen</span><span>Was bei Google fehlt</span></div>
@@ -2811,7 +2809,7 @@
 
           <div class="coach-body">
             <ol class="coach-steps">
-              <li data-reveal><span class="n">1</span><div><h3>Wir prüfen dein Setup</h3><p>Im Setup-Call schauen wir zusammen, ob Claude Code, der Ordner, die Search Console und Clarity richtig sitzen. Fehler korrigieren wir sofort, und was noch fehlt, richten wir gemeinsam ein.</p></div></li>
+              <li data-reveal><span class="n">1</span><div><h3>Wir prüfen dein Setup</h3><p>Im Setup-Call schauen wir zusammen, ob Claude Code, der Ordner, das Suchdatentool und das Klickdatentool richtig sitzen. Fehler korrigieren wir sofort, und was noch fehlt, richten wir gemeinsam ein.</p></div></li>
               <li data-reveal="2"><span class="n">2</span><div><h3>Wir gehen deine Use-Cases durch</h3><p>In der Schulung geht es um deinen Shop: welche App raus kann, wo deine Kunden hängen bleiben und was dir bei Google am meisten bringt. Wir legen fest, was Claude als Erstes für dich baut.</p></div></li>
               <li data-reveal="3"><span class="n">3</span><div><h3>Zugeschnitten auf dein Level</h3><p>Einsteiger bekommen alle Basics inklusive Claude Code, Fortgeschrittene gehen direkt in die Kniffe. Im Call ist nur eine Person, du oder jemand aus deinem Team.</p></div></li>
             </ol>
@@ -2929,7 +2927,7 @@
                   <span class="dot" aria-hidden="true"></span>
                   <h3>Claude schaut in die Daten</h3>
                   <p>Auf Wunsch schaut Claude vorher in die Zahlen deines Shops und sieht, wo Leute aussteigen. Lesen darf es dort, ändern nicht.</p>
-                  <span class="who">Liest: <b class="s">Clarity und Search Console</b></span>
+                  <span class="who">Liest: <b class="s">Klick- und Suchdaten</b></span>
                 </li>
                 <li class="claude">
                   <span class="dot" aria-hidden="true"></span>
@@ -2946,7 +2944,7 @@
                 <li class="claude">
                   <span class="dot" aria-hidden="true"></span>
                   <h3>„Wie läuft der Shop diese Woche?“</h3>
-                  <p>Claude holt die Zahlen aus der Search Console, vergleicht sie mit der Vorwoche und sagt dir, was als Nächstes dran ist. Dann geht es von vorn los.</p>
+                  <p>Claude holt die Zahlen aus dem Suchdatentool, vergleicht sie mit der Vorwoche und sagt dir, was als Nächstes dran ist. Dann geht es von vorn los.</p>
                   <span class="who">Macht: <b>Claude</b>, wenn du fragst</span>
                 </li>
               </ol>
@@ -3010,12 +3008,12 @@
         <div class="wrap">
           <div class="data-head">
             <h2 id="h-data" data-reveal>Claude schaut erst nach, was deine <em class="s">Kunden</em> tun.</h2>
-            <p class="lead" data-reveal="2">Dafür verbindest du zwei kostenlose Tools. Microsoft Clarity sieht, wo Leute tippen und wie weit sie scrollen. Die Google Search Console weiß, wonach sie suchen. Claude darf in beiden nur lesen.</p>
+            <p class="lead" data-reveal="2">Dafür bindest du zwei kostenlose Tools an. Das Klickdatentool sieht, wo Leute tippen und wie weit sie scrollen. Das Suchdatentool weiß, wonach sie bei Google suchen. Claude darf in beiden nur lesen.</p>
           </div>
 
           <div class="bento">
             <div class="cell pad" id="klicks" data-reveal>
-              <span class="src">Microsoft Clarity</span>
+              <span class="src">Klickdatentool</span>
               <h3>Tote Klicks</h3>
               <p class="cell-p">Tipp mal auf die Bundle-Auswahl.</p>
               <div class="tapzone" id="tapzone">
@@ -3030,13 +3028,13 @@
                 <p id="tzMsg" aria-live="polite">Tote Klicks: <b id="tzN">0</b></p>
                 <button class="tz-fix" type="button" id="tzFix" hidden>Fix einbauen</button>
               </div>
-              <p class="cell-foot">In meinem Shop sah die Auswahl klickbar aus, reagierte aber nicht. Clarity hat die toten Klicks gezählt, Claude hat Tap-Feedback eingebaut.</p>
+              <p class="cell-foot">In meinem Shop sah die Auswahl klickbar aus, reagierte aber nicht. Das Klickdatentool hat die toten Klicks gezählt, Claude hat Tap-Feedback eingebaut.</p>
               <div class="tchips"><button class="tchip" type="button" data-t="154" data-live="154-202"><i></i><b>2:34</b><span class="off">im Video</span><span class="live">läuft gerade</span></button></div>
             </div>
 
             <figure class="cell shotcell" data-reveal="2">
               <div class="shot">
-                <img src="/assets/images/sales/beleg-clarity.webp" srcset="/assets/images/sales/beleg-clarity-900.webp 900w, /assets/images/sales/beleg-clarity.webp 1600w" sizes="(max-width: 900px) 100vw, 680px" width="1600" height="865" loading="lazy" alt="Screenshot aus Claude Code: Optimierungen aus den Nutzerdaten der letzten drei Tage, unter anderem 91 Prozent mobile Besuche, tote Klicks auf den Bundle-Seiten und fünf Quick Wins" />
+                <img src="/assets/images/sales/beleg-klickdaten.webp" srcset="/assets/images/sales/beleg-klickdaten-900.webp 900w, /assets/images/sales/beleg-klickdaten.webp 1600w" sizes="(max-width: 900px) 100vw, 680px" width="1600" height="865" loading="lazy" alt="Screenshot aus Claude Code: Optimierungen aus den Nutzerdaten der letzten drei Tage, unter anderem 91 Prozent mobile Besuche, tote Klicks auf den Bundle-Seiten und fünf Quick Wins" />
                 <span class="anno a1" style="left:1.4%;top:9.4%;width:14.6%;height:5.8%"></span>
                 <span class="anno a2" style="left:3.6%;top:21%;width:23.6%;height:8.2%"></span>
                 <span class="anno-label l1" style="--l:18%;top:8.6%">91&nbsp;% kommen vom Handy</span>
@@ -3046,7 +3044,7 @@
             </figure>
 
             <div class="cell pad scratch-wrap" id="suche" data-reveal>
-              <span class="src">Google Search Console</span>
+              <span class="src">Suchdatentool</span>
               <h3>Verdeckte Chancen</h3>
               <p class="cell-p">Wisch frei, was Leute bei Google gesucht haben.</p>
               <div class="scratch" id="scratch">
@@ -3068,7 +3066,7 @@
 
             <figure class="cell shotcell" data-reveal="2">
               <div class="shot">
-                <img src="/assets/images/sales/beleg-suche.webp" srcset="/assets/images/sales/beleg-suche-900.webp 900w, /assets/images/sales/beleg-suche.webp 1600w" sizes="(max-width: 900px) 100vw, 680px" width="1600" height="749" loading="lazy" alt="Screenshot aus Claude Code: die zwei größten Chancen aus der Search Console, an erster Stelle dating apps vergleich mit 605 Impressionen, Position 4,9 und 0,83 Prozent Klickrate, darunter der Vorschlag für einen neuen Title" />
+                <img src="/assets/images/sales/beleg-suche.webp" srcset="/assets/images/sales/beleg-suche-900.webp 900w, /assets/images/sales/beleg-suche.webp 1600w" sizes="(max-width: 900px) 100vw, 680px" width="1600" height="749" loading="lazy" alt="Screenshot aus Claude Code: die zwei größten Chancen aus den Suchdaten, an erster Stelle dating apps vergleich mit 605 Impressionen, Position 4,9 und 0,83 Prozent Klickrate, darunter der Vorschlag für einen neuen Title" />
                 <span class="anno a1" style="left:1.2%;top:44.4%;width:38%;height:7.6%"></span>
                 <span class="anno a2" style="left:3.4%;top:54%;width:67%;height:6.4%"></span>
                 <span class="anno-label l1" style="--l:41%;--lm:32%;top:43.6%">605 Impressionen<span class="lg">, kaum Klicks</span></span>
@@ -3364,7 +3362,7 @@
                 <div class="pane-copy">
                   <p class="pane-count"><b>4</b><span>lesen deine echten Zahlen</span></p>
                   <h3>Findet, wo Umsatz liegen bleibt</h3>
-                  <p>Vier Fähigkeiten werten Search Console und Clarity aus. Sie finden Suchbegriffe kurz vor Seite 1, tote Klicks und Bereiche, bis zu denen kaum jemand scrollt. Am Ende fragt Claude: Soll ich direkt anfangen?</p>
+                  <p>Vier Fähigkeiten werten Such- und Klickdaten aus. Sie finden Suchbegriffe kurz vor Seite 1, tote Klicks und Bereiche, bis zu denen kaum jemand scrollt. Am Ende fragt Claude: Soll ich direkt anfangen?</p>
                   <div class="chips"><span>opportunity-detection</span><span>weekly-report</span><span>click-behavior</span><span>scroll-depth</span></div>
                 </div>
                 <div class="viz">
@@ -3372,7 +3370,7 @@
                     <div class="flood"><span class="water"></span><i class="tall"></i><i></i><i></i><i class="tall"></i><i></i><i class="rev"></i><i></i></div>
                     <div class="flood-notes"><span class="fn1">Hier hören die meisten auf</span><span class="fn2">Bewertungen nach oben holen</span></div>
                   </div>
-                  <p class="viz-cap">Scrolltiefe aus Clarity. Was unter der Linie liegt, sieht kaum jemand.</p>
+                  <p class="viz-cap">Scrolltiefe aus dem Klickdatentool. Was unter der Linie liegt, sieht kaum jemand.</p>
                 </div>
               </div>
               <!-- 3 SEO -->
@@ -3611,8 +3609,8 @@
             <div class="tchips" data-reveal="2"><button class="tchip" type="button" data-t="253" data-live="253-305"><i></i><b>4:13</b><span class="off">im Video</span><span class="live">läuft gerade</span></button></div>
             <div class="kit" data-reveal="3">
               <div class="mod base"><span class="st">Drin</span><b>Grundsystem</b><p>Theme umbauen, Apps ersetzen, neue Sections bauen. Mit Vorlage für die Bundle-Auswahl.</p></div>
-              <div class="mod data"><span class="st">Drin, rund 20 Min.</span><b>Suchdaten</b><p>Google Search Console verbinden, Anleitung für Mac und Windows.</p></div>
-              <div class="mod data"><span class="st">Drin, 5 bis 10 Min.</span><b>Verhalten</b><p>Microsoft Clarity verbinden. Erste Daten nach etwa zwei Stunden.</p></div>
+              <div class="mod data"><span class="st">Drin, rund 20 Min.</span><b>Suchdaten</b><p>Suchdatentool anbinden, Anleitung für Mac und Windows.</p></div>
+              <div class="mod data"><span class="st">Drin, 5 bis 10 Min.</span><b>Verhalten</b><p>Klickdatentool anbinden. Erste Daten nach etwa zwei Stunden.</p></div>
               <div class="mod need"><span class="st">Brauchst du</span><b>Claude-Abo</b><p>Jeder Bezahl-Tarif, mit dem Claude Code läuft.</p></div>
               <div class="mod extra"><span class="st">Optional</span><b>Zwischenspeicher</b><p>Dann landen Änderungen von allein in deiner Test-Kopie in Shopify.</p></div>
             </div>
@@ -3630,8 +3628,8 @@
                 <li class="req"><b>Claude-Konto mit Bezahl-Tarif.</b> Im Gratis-Konto läuft Claude Code nicht.</li>
                 <li class="req"><b>VS Code</b>, kostenlos. Die Anleitung zeigt dir, wie.</li>
                 <li class="req"><b>Einen Shopify-Shop</b>, in dem du Themes duplizieren und Code bearbeiten darfst.</li>
-                <li class="opt">Für die Suchdaten: <b>Inhaber-Zugriff</b> auf deine Search Console.</li>
-                <li class="opt">Für die Verhaltensdaten: ein kostenloses <b>Clarity-Konto</b>.</li>
+                <li class="opt">Für die Suchdaten: <b>Inhaber-Zugriff</b> auf das Suchdatentool deines Shops.</li>
+                <li class="opt">Für die Verhaltensdaten: ein kostenloses <b>Konto beim Klickdatentool</b>, die Anleitung liegt bei.</li>
               </ul>
             </div>
           </div>
@@ -3714,8 +3712,8 @@
               <ul class="incl">
                 <li><b>Der vorflows-Ordner</b> mit 119 Fähigkeiten und 19 Agenten</li>
                 <li><b>Grundsystem</b> zum Umbauen deines Themes, mit Vorlage für die Bundle-Auswahl</li>
-                <li><b>Suchdaten:</b> Search-Console-Anleitung für Mac und Windows plus SEO-Aufbauplan</li>
-                <li><b>Verhalten:</b> Clarity-Anleitung und Auswertung von Klicks und Scrolltiefe</li>
+                <li><b>Suchdaten:</b> Anleitung zum Suchdatentool für Mac und Windows plus SEO-Aufbauplan</li>
+                <li><b>Verhalten:</b> Anleitung zum Klickdatentool und Auswertung von Klicks und Scrolltiefe</li>
                 <li><b>Setup-Videos</b> Schritt für Schritt</li>
                 <li><b>Alle künftigen Updates</b> ohne Aufpreis</li>
               </ul>
@@ -3747,7 +3745,7 @@
                   <h3>Passt nicht, wenn du</h3>
                   <ul>
                     <li>einen Knopf suchst, der alles von allein erledigt</li>
-                    <li>keine Lust hast, Search Console und Clarity einmal zu verbinden</li>
+                    <li>keine Lust hast, ein Such- und ein Klickdatentool einmal anzubinden</li>
                     <li>nicht beschreiben magst, was du haben willst</li>
                   </ul>
                 </div>
@@ -3799,19 +3797,19 @@
             </details>
             <details>
               <summary>Brauche ich Ahrefs oder andere SEO-Tools?<span class="pm" aria-hidden="true"></span></summary>
-              <div class="ans"><p>Nein. Du brauchst keine bezahlte SEO-Software. Die Suchdaten kommen aus deiner kostenlosen Google Search Console, dazu brauchst du nur dein Claude-Abo.</p></div>
+              <div class="ans"><p>Nein. Du brauchst keine bezahlte SEO-Software. Die Suchdaten kommen aus einem kostenlosen Suchdatentool, dazu brauchst du nur dein Claude-Abo.</p></div>
             </details>
             <details>
               <summary>Wie lange dauert das Einrichten?<span class="pm" aria-hidden="true"></span></summary>
-              <div class="ans"><p>Claude Code installierst du nach der Anleitung in etwa zehn Minuten. Das Grundsystem richtet Claude danach mit einem Satz selbst ein. Die Search Console verbindest du in rund 20 Minuten, Clarity in 5 bis 10 Minuten. Bei Clarity dauert es danach etwa zwei Stunden, bis die ersten Daten da sind.</p></div>
+              <div class="ans"><p>Claude Code installierst du nach der Anleitung in etwa zehn Minuten. Das Grundsystem richtet Claude danach mit einem Satz selbst ein. Das Suchdatentool bindest du in rund 20 Minuten an, das Klickdatentool in 5 bis 10 Minuten. Beim Klickdatentool dauert es danach etwa zwei Stunden, bis die ersten Daten da sind.</p></div>
             </details>
             <details>
               <summary>Läuft das auf Mac und Windows?<span class="pm" aria-hidden="true"></span></summary>
-              <div class="ans"><p>Ja. Für beide gibt es eigene Anleitungen, auch für die Verbindung zur Search Console.</p></div>
+              <div class="ans"><p>Ja. Für beide gibt es eigene Anleitungen, auch für die Anbindung des Suchdatentools.</p></div>
             </details>
             <details>
               <summary>Was passiert mit meinen Daten?<span class="pm" aria-hidden="true"></span></summary>
-              <div class="ans"><p>Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Search Console und Clarity liest Claude über deine eigenen Konten, vorflows selbst hostet nichts.</p><p>In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst.</p></div>
+              <div class="ans"><p>Claude arbeitet an den Theme-Dateien, die du dir herunterlädst. Bestellungen, Kundendaten und dein Shopify-Backend sieht es nicht. Such- und Klickdaten liest Claude über deine eigenen Konten, vorflows selbst hostet nichts.</p><p>In den Theme-Dateien können Produktinfos stehen. Wenn du vorflows für den Shop von jemand anderem nutzt, sprich das vorher mit dem Inhaber ab. Lässt du Claude einen Tracking-Code einbauen, prüfst du dein Cookie-Banner am Ende selbst.</p></div>
             </details>
             <details>
               <summary>Was hat es mit der Schulung und dem Setup-Call auf sich?<span class="pm" aria-hidden="true"></span></summary>
@@ -3861,7 +3859,6 @@
         <nav aria-label="Weitere Seiten und Rechtliches">
           <a href="/baseflow">BaseFlow</a>
           <a href="/seoflow">SEOFlow</a>
-          <a href="/clarityflow">ClarityFlow</a>
           <a href="/blog">Blog</a>
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>

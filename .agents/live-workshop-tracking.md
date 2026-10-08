@@ -418,6 +418,9 @@ nichts frei (Alex 2026-10-07: Preis darf nicht ohne Pitch auftauchen). Angebotsk
 im Mini-Player (nur Desktop), in der Handy-Leiste (statt „Ansehen", dann auch während der Mini-Player läuft; der
 Player hängt dann oben, die Leiste unten) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
 (`localStorage.vf_lw_replay_offer = 1`). Vorschau ohne Event: `/replay?angebot=1`.
+**1:1-Schulung im Angebot (seit 2026-10-08):** Zeile im Angebotskasten (Avatar, „Inklusive: 1:1-Schulung mit mir“, „noch N von 20 frei“),
+Satz im Schluss, Handy-Leiste „vorflows + 1:1-Schulung“. Alles `data-offer`, also erst nach dem Pitch. Zahl in `data-bonus-left` von Hand.
+Auf /replay und /replay-voll nie „Clarity“, „Search Console“ oder „GitHub“ (Alex 2026-10-08).
 Checkout: `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_replay` (Voucher MUSS mit, Basis 2.000 €).
 Video = v5 (Motion-Fassung, freigegeben 2026-10-06). Alle `data-t`/`data-live`-Zeiten beider Seiten sind v5-Zeiten; Weiterschauen-Key `vf_lw_replay_t_v5`.
 Sprungmarken `.tchip` (`data-t` Sekunden, `data-live="von-bis"`): Klick spielt ab der Stelle.

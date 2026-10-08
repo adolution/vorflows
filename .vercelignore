@@ -1,0 +1,12 @@
+# Interne Doku und Arbeitsdateien nicht ausliefern (waren unter vorflows.com/... öffentlich abrufbar).
+# Seiten, /api, middleware.js, assets, llms.txt, robots.txt und sitemap.xml bleiben drin.
+.agents/
+.claude/
+docs/
+CLAUDE.md
+SETUP.md
+ab-tests.md
+buttons.md
+designidee1.md
+product.md
+.impeccable.md
