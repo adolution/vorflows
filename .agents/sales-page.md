@@ -5,6 +5,8 @@ Neu gebaut im Stil von `/adsflow`: Materialsprache AdsFlow (fast schwarz, Spotli
 Fraunces + Inter). Kein Papier/Karton/Korn-Look (Alex 2026-10-04: wirkt billig). Objekte aus dem VSL als Interaktionen.
 **Seit 2026-10-06 zusätzlich die Workshop-Visuals von /replay** (Alex: „das Beste von beiden Seiten kombinieren“), auf
 Produkt-Aussagen umgeschrieben, ohne Workshop-Bezug (kein Q&A, keine Ratgeberseite, keine Workshop-Zeiten).
+**Seit 2026-10-09 steht der ganze Inhalt von /sales auch auf /replay** (dort mit Workshop-Zeiten, Preis erst nach dem Pitch,
+siehe `.agents/live-workshop-tracking.md` §9). Änderungen an gemeinsamen Abschnitten in beiden Dateien nachziehen.
 **Fassung vor dem Umbau:** `sales-alt.html` → `/sales-alt` (noindex, ohne JSON-LD, ohne Tracking: `isLocal = true`).
 Zurück: Datei nach `sales.html` kopieren, Titel/robots/JSON-LD/`isLocal`-Zeile aus der Git-Historie (Commit 96b6156) zurückholen.
 
@@ -86,7 +88,7 @@ Bonus (Schulung + Setup-Call) steht als Kasten in der Angebotskarte und als FAQ:
 Handy-Leiste „vorflows + 1:1-Schulung“. Fakten nur aus FAQ: 2 bis 3 Std. Live-Schulung + Setup-Call, beides 1:1, eine Person
 im Call, Einsteiger bekommen Basics inkl. Claude Code. Avatar `assets/images/sales/alex-call-{96,192,320}.webp` = Facecam-Kreis
 aus dem VSL-Poster. Die Zahl steht in jedem Element mit `data-bonus-left` (sales.html: Kasten + FAQ + `#schulung`;
-replay.html: Angebotskasten + Schluss, beide erst nach dem Pitch sichtbar;
+replay.html: Angebotskasten, Schluss, `#schulung`, `#preis`, FAQ, alle erst nach dem Pitch sichtbar;
 sales-alt.html: Kasten + FAQ als Text). Von Hand pflegen, im JSON-LD steht bewusst keine Zahl. danke.html: „Einer von nur 20 Plätzen pro Monat“.
 
 ## Video

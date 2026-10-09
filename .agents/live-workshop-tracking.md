@@ -398,17 +398,20 @@ das Video wird erst beim Play geholt (`preload="none"`, Poster `assets/video/wor
 Kosten: Storage ~0,01 €/Monat; Egress 0,05 $/GB über dem Plan-Inklusivvolumen (≈ 0,38 GB pro Komplett-View).
 OG-Bild: `brand_assets/og-replay.jpg` (Frame 1:35).
 
-**Seiten-Aufbau (Stand 2026-10-06 abends, Material = /adsflow: dunkel, Studiolicht, Fraunces/Inter):**
-Hero (Sieger-H1 aus Test #4) → Player (Poster-Facade, „Weiterschauen ab mm:ss"-Pill aus `localStorage.vf_lw_replay_t_v5`)
-+ Kapitel-Panel daneben (**9 Kapitel**: „Was Founder sagen / was das woanders kostet" 33:23, „Drei Wege ab hier"
-36:53 und „Deine Fragen" 41:16 bewusst raus, damit niemand direkt zum Preis oder daran vorbei springt; letztes Kapitel
-„Ein Ordner, drei Module" 29:15) → nur drei Ergebnis-Abschnitte: Live-Demo (3 Tabs, Prompt
-tippt sich, echte Zahlen vom Screen) · Vorher/Nachher-Regler (`assets/images/replay/shop-{vorher,nachher}*.webp`) ·
-Stimmen → Schluss → Footer (`impressum-lw-b`/`datenschutz-lw-b`). Grund (CRO, Alex 2026-10-06): Die Seite soll das
-Video nicht ersetzen, das Angebot gibt es nur im Video.
-**Vollfassung mit allen Workshop-Visuals** (Problem, Duplikat, Ratgeber, System, Küche, Kosten, Änderung, Grenzen,
-Ordner, Q&A …) liegt als Archiv unter `replay-voll.html` → `/replay-voll` (noindex, eigener Titel, **ohne Tracking**:
-`LOCAL = true`). Zurück: Datei nach `replay.html` kopieren, Titel/canonical/`LOCAL`-Zeile zurücksetzen.
+**Seiten-Aufbau (seit 2026-10-09: die ganze Workshop-Seite, Material wie /sales, Claude-Orange #D97757):**
+Alex 2026-10-09: „Wir brauchen nicht unbedingt eine Sales- und eine Replay-Seite“, die Replay-Seite soll alles aus dem
+Workshop erklären. Darum steht jetzt alles von /sales und aus der Vollfassung auf /replay, in Video-Reihenfolge, fast jeder
+Abschnitt mit Sprungmarke (v5-Zeiten): Hero + Player + 9 Kapitel (unverändert) → Laufband „Im Workshop an Claude“ →
+Worum es geht (3 Dinge, 10 h → 1 h, für wen, 00:00) → Problem (03:59/05:04/05:29) → Sicher (Duplikat 07:24, drei Wege
+10:53/12:46, Schloss) → Live-Demo (3 Tabs) → Ablauf → Küche (15:39/16:40) → Underpriced (17:53) → Vorher/Nachher (20:30)
+→ Ratgeber (scrollt mit, 21:51) → aus Alex' eigenem Shop: App-Miete-Zähler, Beweis + Versandleiste, tote Klicks +
+Rubbelfeld → große Stimme → Kosten-Rechner (24:48/35:30) → Eine Änderung (26:16) → Grenzen (27:55) → Ordner: Mappe mit
+119 Fähigkeiten (29:15) + Explorer mit den 11 Dateien aus dem Video (29:17 bis 33:06) → Einrichten (30:55) → Alex (01:32)
+→ Stimmen (33:16) → [nach dem Pitch: 1:1-Schulung `#schulung`, Angebot `#preis`] → Fragen (Workshop-Q&A + FAQ von /sales)
+→ Schluss. Gebaut per Skript aus `sales.html`, `replay-voll.html` und der alten kurzen Fassung (Archiv
+`.agents/archiv/replay-kurz-2026-10-09.html`). Klassen, die es auf /sales schon gab, heißen in der Demo `.t-ask`,
+`.dbundle`, `.dserp`, `.dme`, `.tp`, `.pz`, im Explorer `.ftab`, `.fpane`, `.fpane-copy`, `.fcode`, `.fpager`, Für-wen `.wfit`.
+**Vollfassung von 2026-10-06** bleibt als Archiv unter `replay-voll.html` → `/replay-voll` (noindex, **ohne Tracking**: `LOCAL = true`).
 **Angebot erst nach dem Pitch:** Pitch-Fenster `OFFER_AT = 2243` (37:23 in v5, Folie „Alle 3 Module. Jetzt für 1.499 €")
 bis `PITCH_END = 2476` (41:16, danach Fragerunde). Erst wenn darin `PITCH_NEED = 15` Sekunden **echte Wiedergabe**
 gelaufen sind (Summe der `timeupdate`-Schritte < 2 s, `seeking` setzt zurück), oder das Video bis zum Ende läuft (`ended`),
@@ -419,7 +422,9 @@ im Mini-Player (nur Desktop), in der Handy-Leiste (statt „Ansehen", dann auch 
 Player hängt dann oben, die Leiste unten) und im Schluss (+ Link „Weiterschauen"). Der Browser merkt es sich
 (`localStorage.vf_lw_replay_offer = 1`). Vorschau ohne Event: `/replay?angebot=1`.
 **1:1-Schulung im Angebot (seit 2026-10-08):** Zeile im Angebotskasten (Avatar, „Inklusive: 1:1-Schulung mit mir“, „noch N von 20 frei“),
-Satz im Schluss, Handy-Leiste „vorflows + 1:1-Schulung“. Alles `data-offer`, also erst nach dem Pitch. Zahl in `data-bonus-left` von Hand.
+Satz im Schluss, Handy-Leiste „vorflows + 1:1-Schulung“, seit 2026-10-09 auch Abschnitt `#schulung`, Angebot `#preis` und
+die Kauf-Fragen im FAQ. Alles `data-offer`, also erst nach dem Pitch. Ebenso die zwei Kauf-Zwischenstopps (`.inline-cta`)
+und alle Sprungmarken in die Fragerunde (hinter 41:16). Zahl in `data-bonus-left` von Hand (auf /replay 5 Stellen).
 Auf /replay und /replay-voll nie „Clarity“, „Search Console“ oder „GitHub“ (Alex 2026-10-08).
 Checkout: `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_replay` (Voucher MUSS mit, Basis 2.000 €).
 Video = v5 (Motion-Fassung, freigegeben 2026-10-06). Alle `data-t`/`data-live`-Zeiten beider Seiten sind v5-Zeiten; Weiterschauen-Key `vf_lw_replay_t_v5`.
@@ -446,9 +451,9 @@ Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
 | `LW_Replay_Jump` `{t,loc}` | `lw_replay_jump` | Sprungmarke in einem Abschnitt (`loc` = Section-ID) |
 | – | `lw_replay_cta_nav` / `_dock` / `_final` / `_final_alt` | „Ansehen / Weiterschauen"-Buttons |
 | – | `lw_replay_float_close` / `_float_up` | Mini-Player geschlossen / zurück zum großen Player |
-| – | `lw_replay_ix_*` (`demo_1..3`, `compare`, `legend`) | Interaktionen mit den Visuals (nur Clarity) |
+| – | `lw_replay_ix_*` (`demo_1..3`, `compare`, `legend`, `folder_1..11`, `mappe_*`, `unplug`, `ship_plus`, `deadclick_fix`, `scratch_open`, `lock_try`, `system_1..3`, `golive`, `vault`, `kitchen`, `change_hand`/`_ki`, `calc`, `calc_agency`, `zoom`) | Interaktionen mit den Visuals (nur Clarity) |
 | `LW_Replay_Offer` `{t}` | `lw_replay_offer` | 15 s Pitch (ab 37:23) gelaufen oder Video zu Ende, Kauf-Knöpfe erscheinen (1× pro Browser) |
-| `InitiateCheckout` `{content_name:'bundle', loc, value:1499, currency:'EUR'}` | `lw_replay_checkout` | Klick auf Digistore (`loc` = `player` / `nav` / `float` / `dock` / `final`) |
+| `InitiateCheckout` `{content_name:'bundle', loc, value:1499, currency:'EUR'}` | `lw_replay_checkout` | Klick auf Digistore (`loc` = `player` / `nav` / `float` / `dock` / `final` / `offer`) |
 
 Clarity-Tag `lw_replay_offer=shown`, sobald die Knöpfe sichtbar sind. Lokal (localhost) lädt die Seite weder Clarity
 noch Pixel und sendet nichts, nur `console.info`.

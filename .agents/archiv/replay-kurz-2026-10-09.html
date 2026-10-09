@@ -1,0 +1,1764 @@
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Aufzeichnung: KI + Shopify Live-Workshop · vorflows</title>
+    <meta name="description" content="Die Aufzeichnung des Live-Workshops vom 10.09.2026: 52 Minuten, in denen ich mit Claude Code einen echten Shopify-Shop umbaue." />
+    <!-- Replay page: only via link, never index -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://vorflows.com/replay" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <!-- Open Graph / Twitter: Vorschau, wenn der Link per Mail, WhatsApp oder Slack geteilt wird -->
+    <meta property="og:type" content="video.other" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="vorflows" />
+    <meta property="og:url" content="https://vorflows.com/replay" />
+    <meta property="og:title" content="Aufzeichnung: Ich baue mit KI vor deinen Augen einen Shopify-Shop um" />
+    <meta property="og:description" content="52 Minuten an einem echten Shop. Ich lasse Claude Code eine App ersetzen, Sections bauen und in den Suchdaten nach Rankings suchen." />
+    <meta property="og:image" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+    <meta property="og:image:secure_url" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Alex im Live-Workshop KI + Shopify" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aufzeichnung: KI + Shopify Live-Workshop" />
+    <meta name="twitter:description" content="52 Minuten an einem echten Shop, aufgezeichnet im Live-Workshop." />
+    <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-replay.jpg" />
+
+    <!-- Video liegt auf Vercel Blob (nicht im Repo). Preconnect = TLS steht, bevor jemand auf Play drückt. -->
+    <link rel="preconnect" href="https://ywogisjwo1efkri1.public.blob.vercel-storage.com" crossorigin />
+    <link rel="preload" as="image" href="/assets/video/workshop-replay-poster.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    <style>
+      /* ================================================================
+         vorflows · Replay (Aufzeichnung Live-Workshop 10.09.2026)
+         Material = AdsFlow: dunkler Grund mit Studiolicht, Fraunces + Inter.
+         Farbregel (zwei Lichter, wie im Motion-Replay):
+           Terracotta #C8633E = Claude / KI-Seite / deine Aktion.
+           Shopify-Grün #95BF47 = alles, was im Shop und live passiert.
+           Grün nie als Button, nie als Glow-Deko.
+         Unter dem Video: jedes Workshop-Thema als Visual, jeweils mit
+         Sprungmarke ins Video (.tchip). Kein Kauf-Button (Alex 2026-10-06).
+         Radien: Buttons + Chips = Pille, Flächen = 18px, Felder = 12px.
+         ================================================================ */
+      :root {
+        --bg: #0E0E0D;
+        --bg-deep: #0A0A09;
+        --raise: #151514;
+        --raise-2: #1C1C1A;
+        --line: #252523;
+        --line-2: #33322E;
+        --ink: #EDECE7;
+        --ink-2: #B6B4AC;
+        --ink-3: #8C8A82;
+        --cream: #EFEDE6;
+        --cream-ink: #1A1A1A;
+        --orange: #C8633E;
+        --orange-hi: #E27B54;
+        --orange-press: #B05530;
+        --on-orange: #140A05;
+        --shop: #95BF47;
+        --shop-hi: #C6E487;
+        --shop-deep: #47702A;
+
+        --ease: cubic-bezier(.16, 1, .3, 1);
+        --ease-q: cubic-bezier(.25, 1, .5, 1);
+
+        --gutter: clamp(1rem, 4.5vw, 2.5rem);
+        --section: clamp(5rem, 11vw, 9.5rem);
+        --r-surface: 18px;
+        --r-field: 12px;
+
+        --shadow-float:
+          inset 0 1px 0 rgba(237, 236, 231, .05),
+          0 1px 2px rgba(0, 0, 0, .4),
+          0 24px 60px -18px rgba(0, 0, 0, .7),
+          0 40px 120px -40px rgba(200, 99, 62, .14);
+        --shadow-raise:
+          inset 0 1px 0 rgba(237, 236, 231, .04),
+          0 18px 40px -22px rgba(0, 0, 0, .8);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      /* Korn über allem, fix, klickdurchlässig */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        pointer-events: none;
+        opacity: .5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+      img { display: block; max-width: 100%; height: auto; }
+      a { color: inherit; }
+      button { font: inherit; color: inherit; }
+      ::selection { background: rgba(200, 99, 62, .35); color: var(--ink); }
+
+      .wrap { position: relative; width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
+      .sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+      /* ---------- Typo ---------- */
+      h1, h2, h3 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -.03em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      h2 { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.9rem); line-height: 1.04; }
+      /* Fraunces: optische Größe deckeln wie auf AdsFlow, sonst greift der kontrastreiche Display-Schnitt */
+      h1, h2, .big-num, .facts b, .calc-sum b { font-variation-settings: "opsz" 60; }
+      h3 { font-size: clamp(1.45rem, 1.1rem + 1.2vw, 2rem); line-height: 1.12; letter-spacing: -.02em; }
+      em { font-style: italic; }
+      h1 em, h2 em, h3 em { color: var(--orange-hi); }
+      p { margin: 0; }
+      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .25vw, 1.2rem); line-height: 1.65; max-width: 58ch; }
+      .body { color: var(--ink-2); max-width: 60ch; }
+      .body + .body { margin-top: 1em; }
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .say { font-family: 'Fraunces', Georgia, serif; font-style: italic; color: var(--ink); }
+      code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .86em; }
+      .sec-head { max-width: 820px; }
+      .sec-head h2 { margin-top: 1rem; }
+      .sec-head .lead { margin-top: 1.4rem; }
+      .sec-head .tchip { margin-top: 1.5rem; }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        --lift: 0px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        min-height: 52px;
+        padding: 0 1.6rem;
+        border-radius: 999px;
+        border: 0;
+        background: var(--orange);
+        color: var(--on-orange);
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: -.005em;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 220, 200, .35),
+          0 1px 2px rgba(0, 0, 0, .35),
+          0 14px 34px -12px rgba(200, 99, 62, .55);
+        transform: translateY(var(--lift));
+        transition: transform .5s var(--ease), background-color .25s var(--ease-q), box-shadow .5s var(--ease);
+      }
+      .btn .pl { width: 0; height: 0; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; }
+      .btn:hover { --lift: -2px; background: #D06A44; }
+      .btn:active { --lift: 1px; background: var(--orange-press); transition-duration: .12s; }
+      .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .btn--lg { min-height: 58px; padding: 0 2rem; font-size: 17px; }
+
+      .ghost {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        min-height: 40px;
+        padding: 0 1rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: transparent;
+        color: var(--ink-2);
+        font-size: 14px;
+        cursor: pointer;
+        transition: border-color .2s var(--ease-q), color .2s var(--ease-q), background-color .2s var(--ease-q), transform .15s var(--ease-q);
+      }
+      .ghost:hover { border-color: var(--ink-3); color: var(--ink); }
+      .ghost:active { transform: scale(.97); }
+      .ghost:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .ghost.solid { background: rgba(200, 99, 62, .14); border-color: rgba(200, 99, 62, .55); color: var(--ink); }
+      .ghost.solid:hover { background: rgba(200, 99, 62, .22); }
+
+      /* Sprungmarke ins Video. Läuft das Video gerade in diesem Abschnitt: "läuft gerade". */
+      .tchip {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        min-height: 36px;
+        padding: 0 .95rem 0 .75rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: rgba(21, 21, 20, .6);
+        color: var(--ink-2);
+        font-size: 13.5px;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: border-color .2s var(--ease-q), color .2s var(--ease-q), background-color .2s var(--ease-q), transform .15s var(--ease-q);
+      }
+      .tchip i {
+        position: relative;
+        flex: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--orange);
+      }
+      .tchip i::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 5px;
+        border-style: solid;
+        border-width: 4px 0 4px 6px;
+        border-color: transparent transparent transparent var(--on-orange);
+      }
+      .tchip b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; font-size: 12.5px; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .tchip .live { display: none; color: var(--orange-hi); }
+      .tchip:hover { border-color: var(--ink-3); color: var(--ink); }
+      .tchip:active { transform: scale(.97); }
+      .tchip:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .tchip.is-live { border-color: rgba(200, 99, 62, .6); background: rgba(200, 99, 62, .1); }
+      .tchip.is-live .live { display: inline; }
+      .tchip.is-live .off { display: none; }
+      .tchip.is-live i::before { display: none; }
+      .tchip.is-live i::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--on-orange); }
+      @media (prefers-reduced-motion: no-preference) {
+        .tchip.is-live i { animation: pulse 1.6s ease-out infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(200, 99, 62, .55); } 100% { box-shadow: 0 0 0 9px rgba(200, 99, 62, 0); } }
+      }
+
+      /* ---------- Kopfzeile ---------- */
+      /* Deckend, ohne Blur: Safari 26 zieht die Farbe einer festen Leiste nur dann bis an den Bildschirmrand. */
+      .nav { position: sticky; top: 0; z-index: 50; background-color: var(--bg); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease-q); }
+      @media (max-width: 760px) {
+        .nav { position: relative; }
+        html { scroll-padding-top: 16px; }
+      }
+      .nav.is-stuck { border-bottom-color: var(--line); }
+      .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 68px; }
+      .brand { display: inline-flex; align-items: baseline; gap: .7rem; text-decoration: none; border-radius: 6px; }
+      .brand:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .wordmark { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
+      .wordmark .flows { font-style: italic; color: var(--orange); transition: color .2s var(--ease-q); }
+      .brand:hover .flows { color: var(--orange-hi); }
+      .brand .prod { font-size: 13px; font-weight: 500; color: var(--ink-3); padding-left: .7rem; border-left: 1px solid var(--line-2); line-height: 1; }
+      .nav-links { display: flex; align-items: center; gap: 1.9rem; }
+      .nav-links a:not(.btn) { font-size: 14.5px; color: var(--ink-2); text-decoration: none; padding: .4rem 0; border-radius: 4px; transition: color .2s var(--ease-q); }
+      .nav-links a:not(.btn):hover { color: var(--ink); }
+      .nav-links a:not(.btn):active { opacity: .7; }
+      .nav-links a:not(.btn):focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .nav .btn { min-height: 42px; padding: 0 1.2rem; font-size: 14.5px; }
+      @media (max-width: 900px) { .nav-links a:not(.btn) { display: none; } }
+      @media (max-width: 420px) { .brand .prod { display: none; } }
+
+      /* ---------- Hero ---------- */
+      /* Kein isolation/z-index am Hero: sonst sitzt der Mini-Player (position: fixed) in dessen Stapelebene
+         und spätere Abschnitte malen über ihn. Licht-Ebene liegt per DOM-Reihenfolge hinter .wrap. */
+      .hero { position: relative; padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(3rem, 6vw, 5rem); overflow-x: clip; }
+      .hero > .wrap { position: relative; }
+      .hero::before {
+        /* Zwei Lichter: warmes Claude-Licht links, grünes Shop-Licht rechts, Lichtpool oben */
+        content: "";
+        position: absolute;
+        inset: -68px 0 -6rem 0;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(#000 70%, transparent);
+        mask-image: linear-gradient(#000 70%, transparent);
+        background:
+          radial-gradient(52rem 34rem at 50% -8%, rgba(237, 236, 231, .075), transparent 62%),
+          radial-gradient(40rem 30rem at 4% 62%, rgba(200, 99, 62, .12), transparent 66%),
+          radial-gradient(38rem 30rem at 98% 70%, rgba(149, 191, 71, .07), transparent 66%);
+      }
+      .hero h1 {
+        margin-top: 1.1rem;
+        max-width: 20ch;
+        font-size: clamp(2.45rem, 1.05rem + 4.1vw, 4.7rem);
+        line-height: 1.04;
+        letter-spacing: -.033em;
+        padding-bottom: .06em;
+      }
+      .hero .lead { margin-top: 1.3rem; max-width: 62ch; }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+        gap: clamp(1.25rem, 2.5vw, 2rem);
+        margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+        align-items: stretch;
+      }
+      @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+
+      /* Bühne */
+      .stage-slot { position: relative; aspect-ratio: 16 / 9; }
+      .stage {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--r-surface);
+        background: var(--bg-deep);
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-float);
+      }
+      .stage-clip { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
+      .stage video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: var(--bg-deep); }
+      .cover {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        color: var(--ink);
+        background: linear-gradient(to top, rgba(10, 10, 9, .78) 0%, rgba(10, 10, 9, .25) 45%, rgba(10, 10, 9, .08) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .9rem;
+      }
+      /* warme Tönung über dem Poster */
+      .cover::before { content: ""; position: absolute; inset: 0; background: var(--orange); opacity: .1; mix-blend-mode: multiply; pointer-events: none; }
+      .cover[hidden] { display: none; }
+      .play {
+        position: relative;
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .4), 0 18px 50px -10px rgba(200, 99, 62, .6), 0 0 0 10px rgba(200, 99, 62, .14);
+        transition: transform .6s var(--ease), box-shadow .6s var(--ease), background-color .2s var(--ease-q);
+      }
+      .play::before { content: ""; position: absolute; left: 50%; top: 50%; margin: -12px 0 0 -7px; border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent var(--on-orange); }
+      .cover:hover .play { transform: scale(1.07); box-shadow: inset 0 1px 0 rgba(255, 220, 200, .4), 0 22px 60px -10px rgba(200, 99, 62, .7), 0 0 0 16px rgba(200, 99, 62, .12); }
+      .cover:active .play { transform: scale(.97); background: var(--orange-press); }
+      .cover:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: inherit; }
+      .cover-label { position: relative; font-weight: 600; font-size: clamp(1rem, 2.4vw, 1.12rem); letter-spacing: -.01em; text-shadow: 0 1px 14px rgba(0, 0, 0, .5); }
+      .cover-meta { position: relative; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(237, 236, 231, .78); }
+      @media (max-width: 600px) {
+        .play { width: 68px; height: 68px; box-shadow: inset 0 1px 0 rgba(255, 220, 200, .4), 0 14px 36px -10px rgba(200, 99, 62, .6), 0 0 0 7px rgba(200, 99, 62, .14); }
+        .play::before { margin: -10px 0 0 -5px; border-width: 10px 0 10px 16px; }
+      }
+      .resume {
+        position: absolute;
+        left: clamp(.6rem, 2.5vw, 1.1rem);
+        bottom: clamp(.6rem, 2.5vw, 1.1rem);
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        padding: .4rem .45rem .4rem .85rem;
+        border-radius: 999px;
+        background: rgba(14, 14, 13, .9);
+        border: 1px solid var(--line-2);
+        color: var(--ink);
+        font-size: 13.5px;
+        font-weight: 500;
+      }
+      .resume[hidden] { display: none; }
+      .resume b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; }
+      .resume .ghost { min-height: 30px; padding: 0 .75rem; font-size: 12.5px; }
+      .fallback { position: absolute; inset: 0; z-index: 3; display: none; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; padding: 1.5rem; text-align: center; background: var(--bg-deep); }
+      .stage.failed .fallback { display: flex; }
+      .fallback p { font-size: 15px; color: var(--ink-2); }
+      .fallback a { color: var(--orange-hi); font-weight: 600; border-radius: 3px; }
+      .fallback a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .stage-cap { display: flex; gap: .8rem; align-items: baseline; margin-top: 1rem; color: var(--ink-3); font-size: 14px; line-height: 1.5; }
+      .stage-cap b { color: var(--ink-2); font-weight: 500; white-space: nowrap; }
+
+      /* Mini-Player: läuft das Video und ist der große Player aus dem Bild, schwebt es unten rechts mit.
+         Kein Umhängen im DOM (das würde das Video pausieren), nur position: fixed. */
+      .float-bar { display: none; }
+      .stage.is-float {
+        position: fixed;
+        inset: auto;
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
+        width: min(380px, 40vw);
+        aspect-ratio: 16 / 9;
+        z-index: 80;
+        border-radius: 14px;
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .9), 0 0 0 1px var(--line-2);
+      }
+      .stage.is-float .float-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        height: 40px;
+        padding: 0 .35rem 0 .8rem;
+        border-radius: 12px 12px 0 0;
+        background: var(--raise-2);
+        border: 1px solid var(--line-2);
+        border-bottom: 0;
+      }
+      .stage.is-float .stage-clip { border-radius: 0 0 14px 14px; }
+      .fb-ch { flex: 1; min-width: 0; font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .fb-ch b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; color: var(--orange-hi); margin-right: .4rem; }
+      .fb-btn { flex: none; width: 32px; height: 32px; border-radius: 8px; border: 0; background: transparent; color: var(--ink-2); font-size: 16px; line-height: 1; cursor: pointer; transition: background-color .2s var(--ease-q), color .2s var(--ease-q); }
+      .fb-btn:hover { background: rgba(237, 236, 231, .08); color: var(--ink); }
+      .fb-btn:active { background: rgba(237, 236, 231, .14); }
+      .fb-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+      @media (prefers-reduced-motion: no-preference) {
+        .stage.is-float { animation: floatIn .55s var(--ease) both; }
+        @keyframes floatIn { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: none; } }
+      }
+      @media (max-width: 760px) {
+        .stage.is-float { width: 62vw; right: 10px; bottom: 10px; }
+        .fb-ch { font-size: 11.5px; }
+      }
+
+      /* Kapitel-Panel neben dem Player */
+      .chap { position: relative; min-height: 260px; }
+      .chap-in {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-raise);
+        overflow: hidden;
+      }
+      .chap-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem .8rem; border-bottom: 1px solid var(--line); }
+      .chap-head h2 { font-size: 1.25rem; letter-spacing: -.015em; }
+      .chap-head span { font-size: 12.5px; color: var(--ink-3); }
+      .chap-list { list-style: none; margin: 0; padding: .4rem; overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+      .chapter {
+        display: flex;
+        align-items: baseline;
+        gap: .8rem;
+        width: 100%;
+        min-height: 44px;
+        padding: .55rem .7rem;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--ink-2);
+        font-size: 14.5px;
+        line-height: 1.4;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color .2s var(--ease-q), color .2s var(--ease-q);
+      }
+      .chapter:hover { background: rgba(237, 236, 231, .045); color: var(--ink); }
+      .chapter:active { background: rgba(237, 236, 231, .08); }
+      .chapter:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+      .ch-time { flex: none; min-width: 3.1rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+      .chapter.is-current { background: rgba(200, 99, 62, .12); color: var(--ink); }
+      .chapter.is-current .ch-time { color: var(--orange-hi); }
+      .chapters-more { display: none; }
+      @media (max-width: 960px) {
+        .chap { min-height: 0; }
+        .chap-in { position: relative; }
+        .chap-list { overflow: visible; }
+        .chap-list.is-collapsed li:nth-child(n + 6) { display: none; }
+        .chapters-more { display: block; width: 100%; min-height: 48px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--orange-hi); font-size: 14.5px; font-weight: 500; cursor: pointer; transition: background-color .2s var(--ease-q); }
+        .chapters-more:hover { background: rgba(237, 236, 231, .04); }
+        .chapters-more:active { background: rgba(237, 236, 231, .07); }
+        .chapters-more:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+        .chapters-more[hidden] { display: none; }
+      }
+
+      /* Hero-Einstieg: gestaffelt, nur Opacity + Transform */
+      @media (prefers-reduced-motion: no-preference) {
+        /* fill-mode backwards: nach dem Einstieg bleibt kein transform stehen (sonst wäre .hero-grid der
+           Bezugsrahmen für den position:fixed Mini-Player) */
+        .js .rise { animation: rise 1s var(--ease) backwards; }
+        .js .rise.d1 { animation-delay: .05s; }
+        .js .rise.d2 { animation-delay: .16s; }
+        .js .rise.d3 { animation-delay: .28s; }
+        .js .rise.d4 { animation-delay: .4s; }
+        @keyframes rise { from { opacity: 0; transform: translateY(22px); } }
+      }
+
+      /* ---------- Sektionen + Reveal ---------- */
+      section.sec { position: relative; padding-block: var(--section); }
+      section.sec.tight { padding-top: 0; }
+      @media (prefers-reduced-motion: no-preference) {
+        .js [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform 1.1s var(--ease); }
+        .js [data-reveal].in { opacity: 1; transform: none; }
+        .js [data-reveal="2"] { transition-delay: .1s; }
+        .js [data-reveal="3"] { transition-delay: .2s; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .js [data-reveal] { opacity: 0; transition: opacity .15s linear; }
+        .js [data-reveal].in { opacity: 1; }
+      }
+      .panel {
+        position: relative;
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-float);
+      }
+      .viz {
+        position: relative;
+        border-radius: 14px;
+        background: radial-gradient(22rem 16rem at 50% 30%, rgba(237, 236, 231, .06), transparent 70%), var(--bg-deep);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        padding: 1.25rem;
+      }
+      figcaption, .cap { margin-top: .85rem; font-size: 14px; line-height: 1.55; color: var(--ink-3); max-width: 60ch; }
+
+      /* ---------- Live-Demo ---------- */
+      .demo { display: grid; grid-template-columns: minmax(230px, 3fr) minmax(0, 9fr); margin-top: clamp(2.5rem, 5vw, 3.75rem); overflow: hidden; }
+      .dtabs { display: flex; flex-direction: column; gap: 4px; padding: 1rem .75rem; border-right: 1px solid var(--line); background: rgba(10, 10, 9, .45); }
+      .dtab {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: .2rem .8rem;
+        align-items: baseline;
+        min-height: 64px;
+        padding: .8rem .85rem;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color .2s var(--ease-q);
+      }
+      .dtab .dn { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: var(--ink-3); }
+      .dtab b { display: block; font-weight: 500; font-size: 15.5px; color: var(--ink-2); transition: color .2s var(--ease-q); }
+      .dtab small { display: block; font-size: 13px; color: var(--ink-3); line-height: 1.4; margin-top: .15rem; }
+      .dtab:hover { background: rgba(237, 236, 231, .04); }
+      .dtab:hover b { color: var(--ink); }
+      .dtab:active { background: rgba(237, 236, 231, .07); }
+      .dtab:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+      .dtab[aria-selected="true"] { background: rgba(200, 99, 62, .12); }
+      .dtab[aria-selected="true"] b { color: var(--ink); }
+      .dtab[aria-selected="true"] .dn { color: var(--orange-hi); }
+      .dpane { display: none; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(1.25rem, 2.5vw, 2rem); padding: clamp(1.25rem, 2.8vw, 2.25rem); align-items: start; }
+      .dpane.is-active { display: grid; }
+      .term { border-radius: 14px; background: #0B0B0A; border: 1px solid var(--line-2); overflow: hidden; }
+      .term-bar { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 .9rem; border-bottom: 1px solid var(--line); }
+      .term-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3A3935; }
+      .term-bar span { margin-left: .6rem; font-size: 12px; color: var(--ink-3); }
+      .term-body { padding: 1.1rem 1.15rem 1.25rem; font-size: 14.5px; line-height: 1.6; }
+      .t-k { display: block; margin-bottom: .3rem; font-size: 11.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+      .t-you { padding: .8rem .95rem; border-radius: 10px; background: var(--raise-2); border: 1px solid var(--line-2); }
+      .t-you .t-k { color: var(--orange-hi); }
+      .t-type { color: var(--ink); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 1.65; white-space: pre-wrap; }
+      .t-type.typing::after { content: ""; display: inline-block; width: 7px; height: 1.05em; margin-left: 2px; vertical-align: -.15em; background: var(--orange-hi); }
+      .t-out { margin-top: 1.1rem; padding-left: .95rem; border-left: 2px solid var(--line-2); }
+      .t-out p { color: var(--ink-2); }
+      .t-out p + p { margin-top: .6rem; }
+      .t-out b { color: var(--ink); font-weight: 600; }
+      .t-out .hl { color: var(--orange-hi); font-weight: 600; }
+      .t-table { width: 100%; margin: .7rem 0 .2rem; border-collapse: collapse; font-size: 13px; }
+      .t-table th { text-align: left; font-weight: 500; color: var(--ink-3); padding: .3rem .4rem .3rem 0; border-bottom: 1px solid var(--line-2); }
+      .t-table td { padding: .35rem .4rem .35rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+      .t-table td:first-child { color: var(--ink); }
+      .t-table th:not(:first-child), .t-table td:not(:first-child) { text-align: right; }
+      .term-foot { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0 1.15rem 1.15rem; }
+      @media (prefers-reduced-motion: no-preference) {
+        .js .dpane .t-out { opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease-q), transform .8s var(--ease); }
+        .js .dpane.done .t-out { opacity: 1; transform: none; }
+      }
+      .dviz { position: relative; min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem; padding: 1.5rem 1.1rem 1.1rem; }
+      .dviz .cap { align-self: stretch; margin: 0; font-size: 12.5px; }
+
+      /* Telefon-Skizze */
+      .phone { position: relative; width: 210px; aspect-ratio: 9 / 18.5; border-radius: 30px; padding: 9px; background: #222220; box-shadow: inset 0 0 0 1px #3A3935, 0 30px 60px -24px rgba(0, 0, 0, .9); }
+      .ph-screen { position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden; background: #F7F6F2; color: #1A1A1A; padding: 12px 11px; }
+      .ph-img { position: relative; height: 34%; border-radius: 6px; background: #E9E7E1; display: grid; place-items: center; }
+      .ph-img::before { content: ""; width: 62%; height: 64%; border-radius: 3px; background: #2F5A3A; box-shadow: 0 8px 14px -6px rgba(0, 0, 0, .45); }
+      .ph-img::after { content: "LIEBE LEBEN"; position: absolute; font-family: 'Fraunces', Georgia, serif; font-size: 10px; letter-spacing: .08em; color: #F4F2EC; }
+      .ph-t { margin-top: 9px; font-size: 10.5px; font-weight: 700; line-height: 1.25; }
+      .ph-l { display: block; height: 5px; border-radius: 2px; background: #D9D6CD; margin-top: 6px; }
+      .ph-l.s { width: 64%; }
+      .bundle { margin-top: 9px; display: grid; gap: 5px; }
+      .bundle span { display: flex; justify-content: space-between; align-items: center; gap: 6px; padding: 6px 7px; border-radius: 6px; border: 1px solid #DCD9D0; background: #fff; font-size: 8.5px; line-height: 1.2; transition: border-color .4s var(--ease-q), background-color .4s var(--ease-q); }
+      .bundle span::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #B9B5AA; }
+      .bundle span em { flex: 1; font-style: normal; font-weight: 600; }
+      .bundle span s { color: #9A968B; margin-left: 3px; }
+      .bundle span.sel { border-color: #E2B93B; background: #FFF8E3; }
+      .bundle span.sel::before { border-color: #E2B93B; background: radial-gradient(circle, #E2B93B 45%, transparent 50%); }
+      .ship { margin-top: 7px; padding: 5px 7px; border-radius: 6px; border: 1px dashed #CFCBC0; font-size: 8.5px; color: #4A4840; }
+      .sticky { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 9px 10px 12px; background: #fff; border-top: 1px solid #E5E2D9; box-shadow: 0 -8px 18px -10px rgba(0, 0, 0, .3); font-size: 10px; font-weight: 700; }
+      .sticky b { padding: 7px 10px; border-radius: 4px; background: #E9C24A; font-size: 9px; letter-spacing: .04em; text-transform: uppercase; }
+      @media (prefers-reduced-motion: no-preference) {
+        .js .v-apps .bundle span, .js .v-apps .ship { opacity: 0; transform: translateX(14px); transition: opacity .5s var(--ease-q), transform .8s var(--ease); }
+        .js .v-apps .sticky { transform: translateY(110%); transition: transform .9s var(--ease) 1.1s; }
+        .js .done .v-apps .bundle span, .js .done .v-apps .ship { opacity: 1; transform: none; }
+        .js .done .v-apps .bundle span:nth-child(2) { transition-delay: .12s; }
+        .js .done .v-apps .bundle span:nth-child(3) { transition-delay: .24s; }
+        .js .done .v-apps .ship { transition-delay: .6s; }
+        .js .done .v-apps .sticky { transform: none; }
+      }
+
+      /* SERP: Seite 2 → Seite 1 */
+      .serp { position: relative; width: 100%; max-width: 300px; display: grid; gap: 1.4rem; }
+      .sp { border-radius: 12px; border: 1px solid var(--line-2); background: var(--raise); padding: .9rem .9rem .75rem; }
+      .sp-h { display: block; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .6rem; }
+      .sp i { display: block; height: 30px; border-radius: 7px; background: #22221F; margin-top: 6px; }
+      .sp i.slot { border: 1.5px dashed var(--line-2); background: transparent; }
+      .me {
+        position: absolute;
+        left: .9rem;
+        right: .9rem;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5rem;
+        padding: 0 .7rem;
+        border-radius: 7px;
+        background: var(--cream);
+        color: var(--cream-ink);
+        font-size: 12px;
+        font-weight: 600;
+        box-shadow: 0 12px 26px -10px rgba(0, 0, 0, .7);
+        transition: transform 1.2s var(--ease) .9s;
+      }
+      .me small { font-weight: 500; color: #6B685F; font-variant-numeric: tabular-nums; }
+      .me .p2 { display: inline; }
+      .me .p1 { display: none; color: var(--shop-deep); }
+      .done .me .p2 { display: none; }
+      .done .me .p1 { display: inline; }
+
+      /* Taps aufs Hauptfoto */
+      .v-ux .ph-img { height: 40%; overflow: visible; }
+      .tap { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
+      .lupe { position: absolute; right: 6px; bottom: 6px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); opacity: 0; }
+      .lupe::before { content: ""; position: absolute; left: 5px; top: 5px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #1A1A1A; }
+      .lupe::after { content: ""; position: absolute; left: 12px; top: 12px; width: 4px; height: 1.5px; background: #1A1A1A; transform: rotate(45deg); }
+      .zoom { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; background: #F7F6F2; opacity: 0; transform: scale(.4); transform-origin: 50% 22%; pointer-events: none; }
+      .zoom::before { content: ""; width: 86%; aspect-ratio: 4 / 3; border-radius: 4px; background: #2F5A3A; box-shadow: 0 14px 28px -10px rgba(0, 0, 0, .5); }
+      .zoom::after { content: "LIEBE LEBEN"; position: absolute; font-family: 'Fraunces', Georgia, serif; font-size: 16px; letter-spacing: .08em; color: #F4F2EC; }
+      .zoom span { position: absolute; right: 10px; top: 10px; font-size: 14px; color: #1A1A1A; }
+      .uxcount { padding: .35rem .8rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--line-2); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
+      .uxcount b { color: var(--orange-hi); font-variant-numeric: tabular-nums; }
+      @media (prefers-reduced-motion: no-preference) {
+        .done .v-ux .tap { animation: tap 1.1s var(--ease-q) both; animation-delay: calc(var(--d) * 1ms); }
+        @keyframes tap { 0% { opacity: 0; transform: scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(2.2); } }
+        .done .v-ux .lupe { animation: show .5s var(--ease-q) 2.6s both; }
+        .done .v-ux .zoom { animation: zoomIn 4s var(--ease) 3.3s both; }
+        @keyframes show { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: none; } }
+        @keyframes zoomIn { 0% { opacity: 0; transform: scale(.4); } 15%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(.4); } }
+      }
+      @media (prefers-reduced-motion: reduce) { .done .v-ux .lupe { opacity: 1; } }
+
+      @media (max-width: 900px) {
+        .demo { grid-template-columns: 1fr; }
+        .dtabs { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: .75rem; scrollbar-width: none; }
+        .dtabs::-webkit-scrollbar { display: none; }
+        .dtab { flex: none; min-height: 56px; padding: .6rem .8rem; border: 1px solid var(--line-2); }
+        .dtab small { display: none; }
+        .dpane { grid-template-columns: 1fr; }
+        .dviz { min-height: 380px; }
+      }
+
+      /* ---------- Vorher / Nachher ---------- */
+      .cmp-wrap { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 3.4fr); gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 5vw, 3.75rem); align-items: start; }
+      .compare {
+        --x: 50;
+        position: relative;
+        border-radius: var(--r-surface);
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        background: #fff;
+        box-shadow: var(--shadow-float);
+        touch-action: pan-y;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .compare img { width: 100%; pointer-events: none; }
+      .cmp-after { position: absolute; inset: 0; clip-path: inset(0 0 0 calc(var(--x) * 1%)); }
+      .cmp-handle { position: absolute; inset: 0; pointer-events: none; transform: translateX(calc((var(--x) - 50) * 1%)); }
+      .cmp-handle::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--orange); box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); }
+      .cmp-knob { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: var(--orange); box-shadow: 0 10px 26px -6px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 220, 200, .4); display: grid; place-items: center; }
+      .cmp-knob::before, .cmp-knob::after { content: ""; position: absolute; top: 50%; margin-top: -5px; border-style: solid; border-width: 5px 0; border-color: transparent; }
+      .cmp-knob::before { left: 12px; border-right: 7px solid var(--on-orange); }
+      .cmp-knob::after { right: 12px; border-left: 7px solid var(--on-orange); }
+      .cmp-lab { position: absolute; top: 12px; padding: .3rem .7rem; border-radius: 999px; background: rgba(14, 14, 13, .88); color: var(--ink); font-size: 12px; font-weight: 500; pointer-events: none; transition: opacity .3s var(--ease-q); }
+      .cmp-lab.l { left: 12px; }
+      .cmp-lab.r { right: 12px; }
+      .cmp-lab.r::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--shop); margin-right: .4rem; vertical-align: .1em; }
+      .cmp-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
+      .compare:has(.cmp-range:focus-visible) { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .pin { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: var(--orange); color: var(--on-orange); font-size: 13px; font-weight: 700; display: grid; place-items: center; box-shadow: 0 0 0 4px rgba(200, 99, 62, .25), 0 6px 14px -4px rgba(0, 0, 0, .5); }
+      .pin.ping { animation: ping 1s var(--ease-q) 2; }
+      @keyframes ping { 0% { box-shadow: 0 0 0 4px rgba(200, 99, 62, .25), 0 6px 14px -4px rgba(0, 0, 0, .5); } 50% { box-shadow: 0 0 0 14px rgba(200, 99, 62, 0), 0 6px 14px -4px rgba(0, 0, 0, .5); } 100% { box-shadow: 0 0 0 4px rgba(200, 99, 62, .25), 0 6px 14px -4px rgba(0, 0, 0, .5); } }
+      .legend { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+      .legend button {
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr);
+        gap: .85rem;
+        align-items: start;
+        width: 100%;
+        padding: .8rem .85rem;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color .2s var(--ease-q), border-color .2s var(--ease-q);
+      }
+      .legend button:hover { background: rgba(237, 236, 231, .04); border-color: var(--line); }
+      .legend button:active { background: rgba(237, 236, 231, .07); }
+      .legend button:focus-visible { outline: 2px solid var(--ink); outline-offset: 0; }
+      .legend .pin { position: static; margin: 0; width: 26px; height: 26px; }
+      .legend b { display: block; font-weight: 500; font-size: 15px; color: var(--ink); line-height: 1.35; }
+      .legend span.d { display: block; margin-top: .2rem; font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
+      .cmp-side .tchip { margin-top: 1.2rem; }
+      .cmp-quote { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
+      @media (max-width: 960px) { .cmp-wrap { grid-template-columns: 1fr; } }
+      @media (max-width: 600px) { .pin { width: 22px; height: 22px; margin: -11px 0 0 -11px; font-size: 11.5px; } .cmp-knob { width: 40px; height: 40px; margin: -20px 0 0 -20px; } }
+
+      /* ---------- Stimmen ---------- */
+      .bigquote { padding-block: 0 clamp(3.5rem, 7vw, 5.5rem); text-align: center; }
+      .bigquote figure, .voices figure { margin: 0; }
+      .voices .bigquote blockquote { margin: 0 auto; max-width: 26ch; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.8rem, 1.1rem + 2.6vw, 3.2rem); line-height: 1.16; letter-spacing: -.025em; text-wrap: balance; }
+      .bigquote blockquote em { font-style: italic; color: var(--orange-hi); }
+      .bigquote figcaption, .voices figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; margin-top: 1rem; font-size: 14px; max-width: none; }
+      .bigquote figcaption { justify-content: center; margin-top: 1.6rem; }
+      .bigquote figcaption b, .voices figcaption b { font-weight: 500; color: var(--ink); }
+      .bigquote figcaption span, .voices figcaption span { color: var(--ink-3); }
+      .v-main figcaption b::before, .bigquote figcaption b::before { content: ""; display: inline-block; width: 22px; height: 1.5px; margin-right: .6rem; vertical-align: .3em; background: var(--orange); }
+      .voices-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+      .voices blockquote { margin: 0; font-family: 'Fraunces', Georgia, serif; letter-spacing: -.015em; color: var(--ink); }
+      .v-main blockquote { font-size: clamp(1.55rem, 1.1rem + 1.6vw, 2.35rem); line-height: 1.22; text-wrap: pretty; }
+      .v-side { display: grid; gap: 1.75rem; padding-top: .4rem; }
+      .v-side figure + figure { padding-top: 1.75rem; border-top: 1px solid var(--line); }
+      .v-side blockquote { font-size: clamp(1.1rem, 1rem + .35vw, 1.3rem); line-height: 1.38; }
+      .voices .tchip { margin-top: 2.5rem; }
+      @media (max-width: 860px) { .voices-grid { grid-template-columns: 1fr; } }
+
+      /* ---------- Schluss ---------- */
+      .final { position: relative; text-align: center; padding-block: clamp(6rem, 13vw, 11rem); overflow: hidden; isolation: isolate; }
+      .final::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(36rem 22rem at 50% 55%, rgba(200, 99, 62, .16), transparent 70%), radial-gradient(60rem 30rem at 50% 120%, rgba(149, 191, 71, .06), transparent 70%); }
+      .final h2 { max-width: 17ch; margin: 0 auto; font-size: clamp(2.4rem, 1.4rem + 4vw, 4.8rem); }
+      .final .lead { margin: 1.4rem auto 0; }
+      .final .btn { margin-top: 2.5rem; }
+      .final .sub { margin-top: 1.4rem; font-size: 14.5px; color: var(--ink-3); }
+      .final .sub a { color: var(--ink-2); border-radius: 3px; }
+      .final .sub a:hover { color: var(--ink); }
+      .final .sub a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+      footer.foot { border-top: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--ink-3); font-size: 13.5px; }
+      .foot .wrap { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 3rem; align-items: start; }
+      .foot nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; justify-content: flex-end; }
+      .foot nav a { text-decoration: none; color: var(--ink-2); border-radius: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+      .foot nav a:hover { color: var(--ink); }
+      .foot nav a:active { opacity: .7; }
+      .foot nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .foot .tm { grid-column: 1 / -1; max-width: 80ch; line-height: 1.6; margin: 0; }
+      @media (max-width: 640px) { .foot .wrap { grid-template-columns: 1fr; } .foot nav { justify-content: flex-start; } }
+
+
+      /* ---------- Angebot: erscheint erst, wenn das Video beim Angebot ankommt (37:23) ---------- */
+      [data-offer][hidden], [data-pre-offer][hidden] { display: none !important; }
+      .offer-box {
+        position: relative;
+        margin-top: 1.25rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1rem 1.75rem;
+        padding: clamp(1.1rem, 2.5vw, 1.5rem) clamp(1.1rem, 2.5vw, 1.75rem);
+        border-radius: var(--r-surface);
+        background: radial-gradient(30rem 14rem at 0% 0%, rgba(200, 99, 62, .2), transparent 70%), linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid rgba(200, 99, 62, .45);
+        box-shadow: var(--shadow-float);
+      }
+      .ob-k { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange-hi); }
+      .ob-name { margin-top: .35rem; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+      .ob-name b { color: var(--ink); font-weight: 600; }
+      .ob-buy { display: flex; align-items: center; gap: 1.25rem; }
+      .ob-price { display: grid; justify-items: end; line-height: 1.1; }
+      .ob-price s { font-size: 13.5px; color: var(--ink-3); }
+      .ob-price b { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2rem; letter-spacing: -.02em; color: var(--ink); }
+      .ob-price span { font-size: 12px; color: var(--ink-3); }
+      .ob-fine { grid-column: 1 / -1; font-size: 13px; color: var(--ink-3); }
+      /* 1:1-Schulung im Angebot (Bonus, nur 20 pro Monat, Zahl von Hand in allen data-bonus-left) */
+      .ob-coach { grid-column: 1 / -1; display: flex; align-items: center; gap: .85rem 1rem; flex-wrap: wrap; padding: .85rem .95rem; border-radius: 14px; background: radial-gradient(20rem 8rem at 0% 0%, rgba(149, 191, 71, .12), transparent 70%), rgba(237, 236, 231, .03); border: 1px solid rgba(149, 191, 71, .38); }
+      .ob-av { position: relative; flex: none; width: 44px; height: 44px; }
+      .ob-av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--raise), 0 0 0 3.5px rgba(149, 191, 71, .75); }
+      .ob-av i { position: absolute; right: -2px; bottom: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--shop); border: 2.5px solid var(--raise); }
+      .ob-coach p { flex: 1 1 260px; min-width: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+      .ob-coach p b { display: block; margin-bottom: .1rem; font-size: 15px; font-weight: 600; color: var(--ink); }
+      .ob-left { display: inline-flex; align-items: center; gap: .45rem; padding: .2rem .65rem; border-radius: 999px; background: rgba(149, 191, 71, .12); border: 1px solid rgba(149, 191, 71, .4); font-size: 12.5px; font-weight: 500; color: var(--shop-hi); white-space: nowrap; }
+      .ob-left b { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .ob-left i { width: 7px; height: 7px; border-radius: 50%; background: var(--shop); }
+      .final-coach { margin-top: 1.1rem; font-size: 15px; color: var(--ink-2); }
+      .final-coach b { color: var(--ink); }
+      @media (prefers-reduced-motion: no-preference) {
+        .ob-left i { animation: slotPulse 2s ease-out infinite; }
+        @keyframes slotPulse { 0% { box-shadow: 0 0 0 0 rgba(149, 191, 71, .55); } 100% { box-shadow: 0 0 0 7px rgba(149, 191, 71, 0); } }
+      }
+      @media (max-width: 640px) { .ob-coach { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: start; gap: .6rem .85rem; } .ob-left { grid-column: 2; justify-self: start; } }
+      .btn .arr { transition: transform .5s var(--ease); }
+      .btn:hover .arr { transform: translateX(3px); }
+      @media (max-width: 640px) {
+        .offer-box { grid-template-columns: 1fr; }
+        .ob-buy { justify-content: space-between; }
+        .ob-price { justify-items: start; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .offer-box.pop { animation: obIn .8s var(--ease) both; }
+        @keyframes obIn { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+      }
+      /* Kauf-Knopf im Mini-Player (nur Desktop; am Handy kauft man über die untere Leiste) */
+      .fb-buy { flex: none; display: inline-flex; align-items: center; min-height: 30px; padding: 0 .8rem; border-radius: 999px; background: var(--orange); color: var(--on-orange); font-size: 12.5px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background-color .2s var(--ease-q), transform .4s var(--ease); }
+      .fb-buy:hover { background: #D06A44; }
+      .fb-buy:active { transform: scale(.97); background: var(--orange-press); }
+      .fb-buy:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .final .watch-alt { display: block; margin: 1.1rem auto 0; background: none; border: 0; color: var(--ink-2); font-size: 15px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; border-radius: 4px; }
+      .final .watch-alt:hover { color: var(--ink); }
+      .final .watch-alt:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .dock .t s { color: var(--ink-3); }
+      @media (max-width: 760px) {
+        .fb-buy { display: none; }
+        /* Läuft das Video im Mini-Player und die Kaufleiste ist da, schwebt der Player über ihr */
+        body.offer-on.dock-on .stage.is-float { bottom: calc(82px + env(safe-area-inset-bottom)); }
+      }
+
+      /* ---------- Handy-Leiste: Weiterschauen, nach dem Angebot Kaufen (die einzige feste Leiste auf dem Handy) ---------- */
+      .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: .7rem var(--gutter) calc(.7rem + env(safe-area-inset-bottom)); background-color: var(--bg); border-top: 1px solid var(--line-2); display: none; align-items: center; justify-content: space-between; gap: 1rem; transform: translateY(110%); transition: transform .6s var(--ease); }
+      .dock.show { transform: none; }
+      .dock .t { font-size: 13.5px; line-height: 1.3; color: var(--ink-2); }
+      .dock .t b { display: block; color: var(--ink); font-weight: 500; font-size: 14.5px; }
+      .dock .btn { min-height: 46px; padding: 0 1.25rem; font-size: 15px; }
+      @media (max-width: 760px) { .dock { display: flex; } }
+
+      /* ---------- Handy: Player heftet sich beim Weiterscrollen oben an, volle Breite ---------- */
+      /* Statt eines kleinen Fensters mitten im Text (deckte 62 % der Breite ab) wie bei YouTube oben angeheftet. */
+      @media (max-width: 760px) {
+        .stage.is-float,
+        body.offer-on.dock-on .stage.is-float {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: auto;
+          width: 100%;
+          border-radius: 0;
+          box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .9), 0 1px 0 var(--line-2);
+        }
+        .stage.is-float .stage-clip { border-radius: 0; }
+        .stage.is-float .float-bar { top: 100%; bottom: auto; height: 38px; border-radius: 0; border: 0; border-bottom: 1px solid var(--line-2); }
+        .fb-ch { font-size: 12px; }
+      }
+      @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+        .stage.is-float { animation-name: floatTop; }
+        @keyframes floatTop { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+      }
+
+      /* ---------- Handy-Feinschliff ---------- */
+      .tap { display: none; }
+      @media (hover: none) { .hov { display: none; } .tap { display: inline; } }
+      @media (max-width: 760px) {
+        :root { --section: 3.75rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav" id="top">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="vorflows, nach oben"><span class="wordmark">vor<span class="flows">flows</span></span><span class="prod">Aufzeichnung</span></a>
+        <nav class="nav-links" aria-label="Seitennavigation">
+          <a href="#demo">Live-Demo</a>
+          <a href="#vorher-nachher">Ergebnis</a>
+          <a href="#stimmen">Stimmen</a>
+          <button class="btn" type="button" data-watch="nav" data-pre-offer><span class="pl" aria-hidden="true"></span><span class="watch-txt">Ansehen</span></button>
+          <a class="btn" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="nav" data-offer hidden>vorflows holen <span class="arr" aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ HERO + PLAYER ============ -->
+      <section class="hero" aria-labelledby="h-hero">
+        <div class="wrap">
+          <p class="eyebrow rise d1">Aufzeichnung · Live-Workshop vom 10.09.2026 · 52 Min</p>
+          <h1 id="h-hero" class="rise d2">Ich baue mit KI vor deinen Augen einen <em>Shopify-Shop</em> um.</h1>
+          <p class="lead rise d3">52 Minuten an einem echten Shop. Ich gebe Claude Code drei Aufträge und erkläre nebenbei, wie das System dahinter arbeitet.</p>
+
+          <div class="hero-grid rise d4">
+            <div>
+              <div class="stage-slot" id="stageSlot">
+                <div class="stage" id="player">
+                  <div class="float-bar">
+                    <span class="fb-ch" id="fbCh">Aufzeichnung</span>
+                    <a class="fb-buy" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="float" data-offer hidden>1.499&nbsp;€ holen</a>
+                    <button class="fb-btn" id="fbUp" type="button" aria-label="Zum großen Player">↑</button>
+                    <button class="fb-btn" id="fbClose" type="button" aria-label="Video anhalten und Mini-Player schließen">×</button>
+                  </div>
+                  <div class="stage-clip">
+                    <video id="replay" playsinline preload="none"
+                           poster="/assets/video/workshop-replay-poster.webp"
+                           controlslist="nodownload" aria-label="Aufzeichnung des Live-Workshops KI + Shopify">
+                      <source src="https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10-v5.mp4" type="video/mp4" />
+                    </video>
+                    <button class="cover" id="playerCover" type="button">
+                      <span class="play" aria-hidden="true"></span>
+                      <span class="cover-label">Aufzeichnung abspielen</span>
+                      <span class="cover-meta">52 Min</span>
+                    </button>
+                    <div class="resume" id="resume" hidden>
+                      <span>Weiterschauen ab <b id="resumeAt">00:00</b></span>
+                      <button class="ghost" id="resumeReset" type="button">Von vorne</button>
+                    </div>
+                    <div class="fallback" role="alert">
+                      <p>Das Video lässt sich hier gerade nicht abspielen.</p>
+                      <a href="https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/workshop-ki-shopify-2026-09-10-v5.mp4" target="_blank" rel="noopener">Aufzeichnung direkt öffnen ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="stage-cap"><b>Ton an.</b><span>Ein paar Pannen aus dem Live-Workshop habe ich rausgeschnitten, sonst ist alles drin.</span></p>
+              <div class="offer-box" id="offerBox" data-offer hidden>
+                <div>
+                  <span class="ob-k">Das Angebot aus dem Video</span>
+                  <p class="ob-name"><b>vorflows</b> · alle 3 Module, alle Dateien, Setup-Anleitung. Einmalig, kein Abo, alle Updates inklusive.</p>
+                </div>
+                <div class="ob-buy">
+                  <p class="ob-price"><s>2.000&nbsp;€</s><b>1.499&nbsp;€</b><span>netto, einmalig</span></p>
+                  <a class="btn" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="player">vorflows holen <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="ob-coach">
+                  <span class="ob-av"><img src="/assets/images/sales/alex-call-96.webp" srcset="/assets/images/sales/alex-call-96.webp 1x, /assets/images/sales/alex-call-192.webp 2x" width="44" height="44" alt="" /><i aria-hidden="true"></i></span>
+                  <p><b>Inklusive: 1:1-Schulung mit mir</b>Kein Gruppencall: Zwei bis drei Stunden live an deinem Shop. Wir prüfen dein Setup und gehen deine Use-Cases durch.</p>
+                  <span class="ob-left"><i aria-hidden="true"></i><span>noch <b data-bonus-left>7</b> von 20 frei</span></span>
+                </div>
+                <p class="ob-fine">Sichere Zahlung über Digistore24. Ratenzahlung möglich.</p>
+              </div>
+            </div>
+
+            <aside class="chap" aria-labelledby="chapTitle">
+              <div class="chap-in">
+                <div class="chap-head"><h2 id="chapTitle">Kapitel</h2><span><span class="hov">Klick springt hin</span><span class="tap">Tippen springt hin</span></span></div>
+                <ol class="chap-list is-collapsed" id="chapterList">
+                  <li><button class="chapter" type="button" data-t="0"><span class="ch-time">00:00</span><span class="ch-title">Das lernst du heute, für wen der Workshop ist, wer da spricht</span></button></li>
+                  <li><button class="chapter" type="button" data-t="235"><span class="ch-time">03:55</span><span class="ch-title">KI in Shopify: Admin-Rechte und Müll ohne System</span></button></li>
+                  <li><button class="chapter" type="button" data-t="435"><span class="ch-time">07:15</span><span class="ch-title">Fragen, die du vielleicht hast: die KI arbeitet nur am Duplikat</span></button></li>
+                  <li><button class="chapter" type="button" data-t="485"><span class="ch-time">08:05</span><span class="ch-title">Live: Claude Code im Terminal und wie der Workflow läuft</span></button></li>
+                  <li><button class="chapter" type="button" data-t="1005"><span class="ch-time">16:45</span><span class="ch-title">Was die KI zum Arbeiten braucht</span></button></li>
+                  <li><button class="chapter" type="button" data-t="1130"><span class="ch-time">18:50</span><span class="ch-title">Live: Section bauen, Ergebnis im Shop</span></button></li>
+                  <li><button class="chapter" type="button" data-t="1490"><span class="ch-time">24:50</span><span class="ch-title">Rechnen wir mal: 5.232 € im Jahr für Apps</span></button></li>
+                  <li><button class="chapter" type="button" data-t="1575"><span class="ch-time">26:15</span><span class="ch-title">Eine Änderung, überall korrekt. Möglichkeiten und Grenzen von KI</span></button></li>
+                  <li><button class="chapter" type="button" data-t="1755"><span class="ch-time">29:15</span><span class="ch-title">Ein Ordner, drei Module. Über 100 Skills</span></button></li>
+                </ol>
+                <button class="chapters-more" id="chaptersMore" type="button" aria-controls="chapterList" aria-expanded="false">Alle 9 Kapitel anzeigen</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ LIVE-DEMO ============ -->
+      <section class="sec tight" id="demo" aria-labelledby="h-demo">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="eyebrow" data-reveal>Live-Demo</span>
+            <h2 id="h-demo" data-reveal>Drei Aufträge an <em>einem</em> Shop.</h2>
+            <p class="lead" data-reveal="2">Statt Folien tippe ich drei Aufträge in Claude Code, an einem Demo-Theme. Während Claude arbeitet, erkläre ich das System. Das kam zurück:</p>
+          </div>
+
+          <div class="panel demo" id="demoPanel" data-reveal>
+            <div class="dtabs" role="tablist" aria-label="Die drei Aufträge">
+              <button class="dtab" role="tab" type="button" id="dt-1" aria-controls="dp-1" aria-selected="true"><span class="dn">01</span><span><b>Apps ersetzen</b><small>Kaufleiste und Bundle-Auswahl</small></span></button>
+              <button class="dtab" role="tab" type="button" id="dt-2" aria-controls="dp-2" aria-selected="false" tabindex="-1"><span class="dn">02</span><span><b>SEO aus Suchdaten</b><small>Ratgeberseite und Brotkrümel</small></span></button>
+              <button class="dtab" role="tab" type="button" id="dt-3" aria-controls="dp-3" aria-selected="false" tabindex="-1"><span class="dn">03</span><span><b>Nutzerverhalten</b><small>Hauptfoto öffnet Großansicht</small></span></button>
+            </div>
+
+            <div class="dpane is-active" role="tabpanel" id="dp-1" aria-labelledby="dt-1">
+              <div class="term">
+                <div class="term-bar"><i></i><i></i><i></i><span>Claude Code · Demo-Theme</span></div>
+                <div class="term-body">
+                  <p class="t-you"><span class="t-k">Ich</span><span class="t-type">bitte an der Demo arbeiten. Bau mir auf der Produktseite einen Sticky Add-to-Cart, der beim Scrollen unten klebt. Mit Preis und Warenkorb-Button, damit man von überall auf der Seite kaufen kann. Kein Produktbild in der Leiste, mobile optimiert. Außerdem einen Bundle-Selektor bei meinem Bestseller, der meine Bundles bewirbt.</span></p>
+                  <div class="t-out">
+                    <span class="t-k">Claude</span>
+                    <p><b>Fertig, beides in der Vorschau:</b> die Kaufleiste und die Bundle-Auswahl auf der Produktseite.</p>
+                    <p>Obendrauf, ohne dass ich es angewiesen habe: ein Hinweis, <span class="hl">wie viel bis zum kostenlosen Versand fehlt</span>.</p>
+                    <p>Sticky-Add-to-Cart und Bundles sind Apps, die ich sofort ersetzen würde. Sie kosten zu viel und lassen sich leicht nachbauen.</p>
+                  </div>
+                </div>
+                <div class="term-foot">
+                  <button class="tchip" type="button" data-t="509" data-live="485-551"><i></i><b>08:29</b><span class="off">Auftrag</span><span class="live">läuft gerade</span></button>
+                  <button class="tchip" type="button" data-t="1133" data-live="1121-1141"><i></i><b>18:53</b><span class="off">Ergebnis</span><span class="live">läuft gerade</span></button>
+                </div>
+              </div>
+              <div class="viz dviz v-apps" aria-hidden="true">
+                <div class="phone">
+                  <div class="ph-screen">
+                    <div class="ph-img"></div>
+                    <p class="ph-t">Liebe Leben · Das Fragespiel für Paare</p>
+                    <span class="ph-l s"></span>
+                    <div class="bundle" id="bundle">
+                      <span class="sel"><em>Nur das Spiel</em>24,95 €</span>
+                      <span><em>Spiel + Dating Edition</em>29,95 €<s>37,90</s></span>
+                      <span><em>Spiel + Selbstreflexion</em>45,95 €<s>57,80</s></span>
+                    </div>
+                    <div class="ship">Noch 15,05 € bis kostenlosem Versand</div>
+                    <div class="sticky"><span id="stickyPrice">24,95 €</span><b>In den Warenkorb</b></div>
+                  </div>
+                </div>
+                <p class="cap">Skizze der Produktseite. Preise aus dem Demo-Shop, echte Screenshots weiter unten.</p>
+              </div>
+            </div>
+
+            <div class="dpane" role="tabpanel" id="dp-2" aria-labelledby="dt-2" hidden>
+              <div class="term">
+                <div class="term-bar"><i></i><i></i><i></i><span>Claude Code · Demo-Theme</span></div>
+                <div class="term-body">
+                  <p class="t-you"><span class="t-k">Ich</span><span class="t-type">bitte an der Demo arbeiten. Schau dir mal die Suchdaten an. Wo haben wir Potenzial? Wo sollten wir als Nächstes ansetzen? Was wäre eine technische Maßnahme für SEO? Setze das um, was du als Nächstes ansetzen würdest. Auch technisch. Keine Rückfrage, bis die Aufgabe erledigt ist.</span></p>
+                  <div class="t-out">
+                    <span class="t-k">Claude</span>
+                    <p>Die Startseite ist mit <b>3.192 Impressionen auf Position 11,7</b> die stärkste Auffangseite. Sie rankt für Anfragen, für die es keine eigene Seite gibt:</p>
+                    <table class="t-table">
+                      <thead><tr><th>Suchanfrage</th><th>Impr.</th><th>Pos.</th><th>Klicks</th></tr></thead>
+                      <tbody>
+                        <tr><td>kartenspiele für paare</td><td>89</td><td>12,3</td><td>1</td></tr>
+                        <tr><td>liebes spiele</td><td>98</td><td>9,7</td><td>3</td></tr>
+                        <tr><td>bestes kartenspiel für paare</td><td>7</td><td>11,1</td><td>0</td></tr>
+                      </tbody>
+                    </table>
+                    <p><span class="hl">Gebaut:</span> eine eigene Ratgeberseite. Rund 1.000 Wörter, 18 interne Links auf Produkte und Sammlungen, Vergleichstabelle, vier FAQ-Blöcke.</p>
+                    <p><span class="hl">Technisch:</span> Die sichtbare Brotkrümel-Navigation fehlte. Jetzt ist sie da.</p>
+                  </div>
+                </div>
+                <div class="term-foot">
+                  <button class="tchip" type="button" data-t="551" data-live="551-602"><i></i><b>09:11</b><span class="off">Auftrag</span><span class="live">läuft gerade</span></button>
+                  <button class="tchip" type="button" data-t="1141" data-live="1141-1193"><i></i><b>19:01</b><span class="off">Ergebnis</span><span class="live">läuft gerade</span></button>
+                </div>
+              </div>
+              <div class="viz dviz v-seo" aria-hidden="true">
+                <div class="serp">
+                  <div class="sp"><span class="sp-h">Google · Seite 1</span><i></i><i></i><i></i><i class="slot"></i></div>
+                  <div class="sp"><span class="sp-h">Seite 2</span><i style="visibility: hidden;"></i><i></i><i></i></div>
+                  <span class="me" id="serpMe">Liebe Leben · Ratgeber <small><span class="p2">Pos. 11,7</span><span class="p1">Seite 1</span></small></span>
+                </div>
+                <p class="cap">Sagst du nur „mach SEO“, denkt sich die KI etwas aus. Mit echten Suchdaten sieht sie, wo du auf Seite 2 stehst und was dich nach vorn bringt.</p>
+              </div>
+            </div>
+
+            <div class="dpane" role="tabpanel" id="dp-3" aria-labelledby="dt-3" hidden>
+              <div class="term">
+                <div class="term-bar"><i></i><i></i><i></i><span>Claude Code · Demo-Theme</span></div>
+                <div class="term-body">
+                  <p class="t-you"><span class="t-k">Ich</span><span class="t-type">bitte an der Demo arbeiten. Analysiere mal das Nutzerverhalten auf der Produktseite. Wohin klicken die Leute, wohin scrollen sie, wo hakt etwas? Bitte den stärksten Befund direkt verbessern.</span></p>
+                  <div class="t-out">
+                    <span class="t-k">Claude</span>
+                    <p><b>70 tote Klicks und 9 Wut-Klicks auf Mobile</b>, gegenüber 12 am Desktop.</p>
+                    <p>Am häufigsten erfolglos angetippt: das Hauptfoto. <span class="hl">457 Klicks, ohne dass etwas passiert.</span> Die Leute wollen die Karten größer sehen.</p>
+                    <p><span class="hl">Gefixt:</span> Tippen aufs Produktfoto öffnet jetzt die Großansicht. Ein kleines Lupen-Symbol zeigt, dass da was geht.</p>
+                    <p>Zweiter Befund: Mobil kommen Besucher im Schnitt nur 21 % tief, am Desktop 36 %.</p>
+                  </div>
+                </div>
+                <div class="term-foot">
+                  <button class="tchip" type="button" data-t="602" data-live="602-630"><i></i><b>10:02</b><span class="off">Auftrag</span><span class="live">läuft gerade</span></button>
+                  <button class="tchip" type="button" data-t="1193" data-live="1193-1230"><i></i><b>19:53</b><span class="off">Ergebnis</span><span class="live">läuft gerade</span></button>
+                </div>
+              </div>
+              <div class="viz dviz v-ux" aria-hidden="true">
+                <span class="uxcount"><b id="uxN">0</b> Klicks aufs Hauptfoto</span>
+                <div class="phone">
+                  <div class="ph-screen">
+                    <div class="ph-img">
+                      <span class="tap" style="left: 38%; top: 40%; --d: 0;"></span>
+                      <span class="tap" style="left: 60%; top: 55%; --d: 220;"></span>
+                      <span class="tap" style="left: 48%; top: 30%; --d: 430;"></span>
+                      <span class="tap" style="left: 34%; top: 62%; --d: 640;"></span>
+                      <span class="tap" style="left: 64%; top: 36%; --d: 850;"></span>
+                      <span class="tap" style="left: 52%; top: 50%; --d: 1060;"></span>
+                      <span class="tap" style="left: 42%; top: 48%; --d: 1270;"></span>
+                      <span class="tap" style="left: 57%; top: 66%; --d: 1480;"></span>
+                      <span class="lupe"></span>
+                    </div>
+                    <p class="ph-t">Liebe Leben · Das Fragespiel für Paare</p>
+                    <span class="ph-l"></span><span class="ph-l s"></span><span class="ph-l"></span>
+                    <div class="zoom"><span>×</span></div>
+                  </div>
+                </div>
+                <p class="cap">Erst tippen die Leute ins Leere. Nach dem Fix öffnet sich das Foto groß.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ VORHER / NACHHER ============ -->
+      <section class="sec tight" id="vorher-nachher" aria-labelledby="h-cmp">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="eyebrow" data-reveal>Ergebnis im Shop</span>
+            <h2 id="h-cmp" data-reveal>Einmal neu laden, und <em>alles</em> ist da.</h2>
+            <p class="lead" data-reveal="2">Gleiche Produktseite im Demo-Shop, vor und nach dem Neuladen. Echte Screenshots aus dem Workshop. Zieh den Regler.</p>
+          </div>
+          <div class="cmp-wrap">
+            <div class="compare" id="compare" data-reveal>
+              <img src="/assets/images/replay/shop-vorher.webp" srcset="/assets/images/replay/shop-vorher-800.webp 800w, /assets/images/replay/shop-vorher.webp 1440w" sizes="(max-width: 960px) 100vw, 820px" width="1440" height="743" loading="lazy" alt="Produktseite vorher: ohne Brotkrümel, ohne Bundle-Auswahl, ohne Versand-Hinweis" />
+              <div class="cmp-after">
+                <img src="/assets/images/replay/shop-nachher.webp" srcset="/assets/images/replay/shop-nachher-800.webp 800w, /assets/images/replay/shop-nachher.webp 1440w" sizes="(max-width: 960px) 100vw, 820px" width="1440" height="743" loading="lazy" alt="Produktseite nachher: mit Brotkrümel-Navigation, Bundle-Auswahl, Versand-Hinweis und Lupe am Foto" />
+                <span class="pin" data-pin="1" style="left: 30%; top: 3.5%;">1</span>
+                <span class="pin" data-pin="2" style="left: 74%; top: 49%;">2</span>
+                <span class="pin" data-pin="3" style="left: 70%; top: 85.4%;">3</span>
+                <span class="pin" data-pin="4" style="left: 41.5%; top: 82.4%;">4</span>
+              </div>
+              <div class="cmp-handle" aria-hidden="true"><span class="cmp-knob"></span></div>
+              <span class="cmp-lab l" aria-hidden="true">Vorher</span>
+              <span class="cmp-lab r" aria-hidden="true">Nachher</span>
+              <input class="cmp-range" type="range" min="0" max="100" value="50" step="0.5" aria-label="Regler zwischen Vorher und Nachher" />
+            </div>
+            <div class="cmp-side" data-reveal="2">
+              <ol class="legend" id="legend">
+                <li><button type="button" data-pin="1" data-x="2"><span class="pin">1</span><span><b>Brotkrümel-Navigation</b><span class="d">Hilft der Suchmaschine zu verstehen, auf welcher Seite sie ist und welche Pfade es gibt.</span></span></button></li>
+                <li><button type="button" data-pin="2" data-x="50"><span class="pin">2</span><span><b>Bundle-Auswahl mit Sale</b><span class="d">Funktioniert per Klick, der Preis wechselt mit.</span></span></button></li>
+                <li><button type="button" data-pin="3" data-x="50"><span class="pin">3</span><span><b>Noch 15,05 € bis kostenlosem Versand</b><span class="d">Hatte ich nicht angewiesen. Claude hat es trotzdem gebaut.</span></span></button></li>
+                <li><button type="button" data-pin="4" data-x="34"><span class="pin">4</span><span><b>Lupe am Foto</b><span class="d">Tippen öffnet die Großansicht. Vorher scrollten die Bilder nur.</span></span></button></li>
+              </ol>
+              <button class="tchip" type="button" data-t="1230" data-live="1230-1311"><i></i><b>20:30</b><span class="off">im Video</span><span class="live">läuft gerade</span></button>
+              <p class="cmp-quote">„Ich könnte jetzt nachfassen und sagen, ich will was anderes. Versuch das mal mit Sidekick.“</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STIMMEN ============ -->
+      <section class="sec tight voices" id="stimmen" aria-labelledby="h-voices">
+        <h2 class="sr" id="h-voices">Was Founder nach dem Setup sagen</h2>
+        <div class="bigquote">
+          <div class="wrap">
+            <figure data-reveal>
+              <blockquote>„Ich hatte bisher Agenturen und Freelancer, irgendwie zehn unterschiedliche Entwickler und Berater, und ich muss sagen: die sind alle schlechter. […] Dein Tool ist <em>gnadenlos gut</em>.“</blockquote>
+              <figcaption><b>Michael Bodeske</b><span>Massagesesselwelt.de</span></figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="wrap">
+          <div class="voices-grid">
+            <figure class="v-main" data-reveal>
+              <blockquote>„Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.“</blockquote>
+              <figcaption><b>Markus Bonk</b><span>Rheinland.Coffee</span></figcaption>
+            </figure>
+            <div class="v-side">
+              <figure data-reveal="2">
+                <blockquote>„Wir hatten schon mit KI gearbeitet. Aber erst seit dem Setup von Alex merken wir, wie ineffizient wir vorher waren und wie viel schneller und vor allem zuverlässiger es geht.“</blockquote>
+                <figcaption><b>Leo</b><span>Pure U</span></figcaption>
+              </figure>
+              <figure data-reveal="3">
+                <blockquote>„Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.“</blockquote>
+                <figcaption><b>Stefan Kisker</b><span>Prometheus Performance GmbH</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCHLUSS ============ -->
+      <section class="final" aria-labelledby="h-final" id="final">
+        <div class="wrap">
+          <h2 id="h-final" data-reveal>Den ganzen Ablauf siehst du im <em>Video</em>.</h2>
+          <p class="lead" data-reveal="2">52 Minuten, mit allen Fragen aus dem Workshop und meinen Antworten.</p>
+          <div data-reveal="3">
+            <button class="btn btn--lg" type="button" data-watch="final" data-pre-offer><span class="pl" aria-hidden="true"></span><span class="watch-txt">Aufzeichnung ansehen</span></button>
+            <a class="btn btn--lg" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" data-checkout="final" data-offer hidden>vorflows für 1.499&nbsp;€ holen <span class="arr" aria-hidden="true">→</span></a>
+            <button class="watch-alt" type="button" data-watch="final_alt" data-offer hidden>Weiterschauen</button>
+          </div>
+          <p class="final-coach" data-offer hidden>Dazu gehört eine 1:1-Schulung für deinen Shop, kein Gruppencall. Diesen Monat sind noch <b data-bonus-left>7</b> von 20 Plätzen frei.</p>
+          <p class="sub" data-reveal="3">Fragen? Schreib mir: <a href="mailto:alex@adolution.de">alex@adolution.de</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="vorflows, nach oben"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav aria-label="Rechtliches">
+          <a href="/impressum-lw-b">Impressum</a>
+          <a href="/datenschutz-lw-b">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </nav>
+        <p class="tm">Shopify ist eine Marke von Shopify Inc. Claude ist eine Marke von Anthropic. vorflows steht in keiner Verbindung zu Shopify oder Anthropic.</p>
+      </div>
+    </footer>
+
+    <div class="dock" id="dock" aria-hidden="true">
+      <p class="t" data-pre-offer><b>Aufzeichnung</b><span id="dockSub">52 Min</span></p>
+      <button class="btn" type="button" data-watch="dock" tabindex="-1" data-pre-offer><span class="pl" aria-hidden="true"></span><span class="watch-txt">Ansehen</span></button>
+      <p class="t" data-offer hidden><b>vorflows + 1:1-Schulung</b>1.499&nbsp;€ statt <s>2.000&nbsp;€</s></p>
+      <a class="btn" href="https://www.digistore24.com/product/688983?voucher=launch&amp;ds24tr=vf_replay" target="_blank" rel="noopener" tabindex="-1" data-checkout="dock" data-offer hidden>vorflows holen</a>
+    </div>
+
+    <script>
+      /* ================================================================
+         vorflows · Replay-Seite (Aufzeichnung Live-Workshop 10.09.2026)
+         Video: Vercel Blob (nicht im Repo, siehe .agents/live-workshop-tracking.md §9).
+         Tracking: Clarity (lw_replay_*) + Meta Pixel/CAPI (Event-ID-Dedup),
+         gleicher Helfer wie die Danke-Seite. Lokal (localhost) wird nichts
+         gesendet, nur console.info. Doku bei Änderungen pflegen!
+         ================================================================ */
+      (function () {
+        'use strict';
+
+        var META_PIXEL_ID = '2002118703756086';
+        var DURATION_FALLBACK = 3126; // Sekunden, bis loadedmetadata den echten Wert liefert
+        var RESUME_KEY = 'vf_lw_replay_t_v5'; // v5: new cut, old positions do not fit
+        var OFFER_AT = 2243; // 37:23, ab hier steht im Video die Preisfolie (v5)
+        var PITCH_END = 2476; // 41:16, danach Fragerunde (v5, bewusst ohne Kapitel: kein Sprung am Pitch vorbei)
+        var PITCH_NEED = 15;  // Sekunden echte Wiedergabe im Pitch, bis der Kauf-Knopf kommt
+        var OFFER_KEY = 'vf_lw_replay_offer';
+        var LOCAL = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname);
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // ── Helpers ───────────────────────────────────────────────────
+        var $ = function (s, r) { return (r || document).querySelector(s); };
+        var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+        var getCookie = function (n) { return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+        var ls = {
+          get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+          set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+          del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+        };
+        var uuid = function () {
+          try { return crypto.randomUUID(); } catch (e) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+              var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+          }
+        };
+        var fmt = function (s) {
+          s = Math.max(0, Math.floor(s));
+          var m = Math.floor(s / 60), r = s % 60;
+          return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r;
+        };
+        var euro = function (n) { return Math.round(n).toLocaleString('de-DE') + ' €'; };
+
+        // ── Attribution (gleiche Logik wie die LP): UTM/fbclid/gclid → vf_lw_attr ──
+        var params = new URLSearchParams(location.search);
+        try {
+          var fbclid = params.get('fbclid');
+          if (fbclid && !getCookie('_fbc')) document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid + '; path=/; max-age=7776000; SameSite=Lax';
+          if (!getCookie('_fbp')) document.cookie = '_fbp=fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 2147483647) + '; path=/; max-age=7776000; SameSite=Lax';
+          var gclid = params.get('gclid');
+          if (gclid) document.cookie = 'vf_gclid=' + encodeURIComponent(gclid) + '; path=/; max-age=7776000; SameSite=Lax';
+        } catch (e) {}
+        try {
+          var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+          var hasUtm = KEYS.some(function (k) { return params.get(k); });
+          if (hasUtm || params.get('fbclid')) {
+            var fresh = { landed_at: new Date().toISOString(), landing: location.pathname };
+            KEYS.forEach(function (k) { var v = params.get(k); if (v) fresh[k] = v.slice(0, 250); });
+            if (params.get('fbclid')) fresh.fbclid = '1';
+            document.cookie = 'vf_lw_attr=' + encodeURIComponent(JSON.stringify(fresh)) + '; path=/; max-age=7776000; SameSite=Lax';
+            ls.set('vf_lw_attr', JSON.stringify(fresh));
+          }
+        } catch (e) {}
+        var attr = {};
+        try { attr = JSON.parse(decodeURIComponent(getCookie('vf_lw_attr') || '')) || {}; } catch (e) {}
+        if (!attr.utm_source) { try { attr = JSON.parse(ls.get('vf_lw_attr') || '{}'); } catch (e) { attr = {}; } }
+
+        var variant = getCookie('vf_ab_lw') || 'A';
+        var leadEmail = ls.get('vf_known_email') || null;
+        var extId = ls.get('vf_ext_id');
+        if (!extId) { extId = uuid(); ls.set('vf_ext_id', extId); }
+
+        if (!LOCAL) {
+          // ── Microsoft Clarity (gleiche Property, sealed Funnel wie Danke-Seite) ──
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'wnn5d5ehwn');
+
+          // ── Meta Pixel ────────────────────────────────────────────────
+          !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v;
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+          }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+          var am = { external_id: extId, country: 'de' };
+          if (leadEmail) am.em = leadEmail;
+          fbq('init', META_PIXEL_ID, am);
+          fbq('track', 'PageView');
+        }
+
+        // ── Event-Helfer: Clarity + Pixel + CAPI (Event-ID-Dedup) ─────
+        var META_STANDARD = { InitiateCheckout: 1, ViewContent: 1, Lead: 1 };
+        function lwTrack(name, props, clarityName) {
+          props = props || {};
+          props.variant = variant;
+          props.page = 'replay';
+          if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
+          if (attr.utm_content) props.utm_content = attr.utm_content;
+          if (LOCAL) { console.info('[track]', name, clarityName || '', props); return; }
+          var eventId = uuid();
+          if (window.clarity) window.clarity('event', clarityName || name);
+          if (window.gtag) window.gtag('event', clarityName || name, props);
+          if (window.fbq) fbq(META_STANDARD[name] ? 'track' : 'trackCustom', name, props, { eventID: eventId });
+          try {
+            fetch('/api/capi', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event_name: name,
+                event_id: eventId,
+                event_source_url: location.href,
+                custom_data: props,
+                user_data: {
+                  external_id: extId,
+                  country: 'de',
+                  fbp: getCookie('_fbp') || null,
+                  fbc: getCookie('_fbc') || null,
+                  email: leadEmail || undefined
+                }
+              }),
+              keepalive: true
+            }).catch(function () {});
+          } catch (e) {}
+        }
+        // Nur Clarity: Interaktionen mit den Visuals (kein Meta, kein CAPI)
+        var cxSeen = {};
+        function cx(name, once) {
+          if (once) { if (cxSeen[name]) return; cxSeen[name] = 1; }
+          if (LOCAL) { console.info('[clarity]', name); return; }
+          if (window.clarity) window.clarity('event', name);
+        }
+        if (window.clarity) {
+          window.clarity('set', 'lw_page', 'replay');
+          window.clarity('set', 'lw_experiment', variant);
+          if (attr.utm_campaign) window.clarity('set', 'lw_utm_campaign', String(attr.utm_campaign).slice(0, 250));
+          if (attr.utm_content) window.clarity('set', 'lw_utm_content', String(attr.utm_content).slice(0, 250));
+        }
+
+        // ── Kopfzeile: Linie beim Scrollen ────────────────────────────
+        var nav = $('.nav');
+        var sentinel = document.createElement('div');
+        sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px';
+        document.body.prepend(sentinel);
+        if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { nav.classList.toggle('is-stuck', !es[0].isIntersecting); }).observe(sentinel);
+
+        // ── Reveal ────────────────────────────────────────────────────
+        var onReveal = {}; // id → callback beim ersten Sichtkontakt
+        var revealIO = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            en.target.classList.add('in');
+            revealIO.unobserve(en.target);
+            var cb = onReveal[en.target.id]; if (cb) cb();
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: .12 }) : null;
+        $$('[data-reveal], [data-reveal-self], #compare, #demoPanel').forEach(function (el) {
+          if (revealIO) revealIO.observe(el); else el.classList.add('in');
+        });
+        function whenSeen(id, cb) { onReveal[id] = cb; if (!revealIO) cb(); }
+
+        // ================================================================
+        //  PLAYER
+        // ================================================================
+        var slot = $('#stageSlot');
+        var player = $('#player');
+        var v = $('#replay');
+        var cover = $('#playerCover');
+        var resumeBox = $('#resume');
+        var resumeAt = $('#resumeAt');
+        var chapters = $$('.chapter');
+        var chips = $$('.tchip');
+        var fbCh = $('#fbCh');
+
+        var duration = function () { return (v.duration && isFinite(v.duration)) ? v.duration : DURATION_FALLBACK; };
+        var saved = parseFloat(ls.get(RESUME_KEY)) || 0;
+        var hasResume = saved > 60 && saved < DURATION_FALLBACK - 90;
+        function refreshWatchLabels() {
+          var t = hasResume ? 'Weiterschauen ab ' + fmt(saved) : null;
+          $$('[data-watch] .watch-txt').forEach(function (s) {
+            var loc = s.parentNode.getAttribute('data-watch');
+            if (loc === 'nav') s.textContent = hasResume ? 'Weiterschauen' : 'Ansehen';
+            else if (loc === 'dock') s.textContent = hasResume ? 'Ab ' + fmt(saved) : 'Ansehen';
+            else s.textContent = t || 'Aufzeichnung ansehen';
+          });
+          var ds = $('#dockSub'); if (ds) ds.textContent = hasResume ? 'Du warst bei ' + fmt(saved) : '52 Min';
+        }
+        if (hasResume) { resumeAt.textContent = fmt(saved); resumeBox.hidden = false; }
+        refreshWatchLabels();
+
+        var started = false, dismissed = false, slotVisible = true;
+        function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+        function updateFloat() {
+          var want = started && !dismissed && !slotVisible && !v.ended && !isFs() && !player.classList.contains('failed');
+          if (want !== player.classList.contains('is-float')) player.classList.toggle('is-float', want);
+          updateDock();
+        }
+        function seekTo(t) {
+          if (v.readyState >= 1) { try { v.currentTime = t; } catch (e) {} return; }
+          var once = function () { v.removeEventListener('loadedmetadata', once); try { v.currentTime = t; } catch (e) {} };
+          v.addEventListener('loadedmetadata', once);
+        }
+        function start(at) {
+          cover.hidden = true;
+          resumeBox.hidden = true;
+          v.controls = true;
+          dismissed = false;
+          if (typeof at === 'number') seekTo(at);
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+        function watch(loc) {
+          cx('lw_replay_cta_' + loc);
+          if (hasResume) lwTrack('LW_Replay_Resume', { at: Math.round(saved) }, 'lw_replay_resume');
+          var at = hasResume ? saved : (v.currentTime > 0 ? undefined : 0);
+          if (!slotVisible) slot.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+          start(at);
+        }
+
+        cover.addEventListener('click', function () {
+          if (hasResume) { lwTrack('LW_Replay_Resume', { at: Math.round(saved) }, 'lw_replay_resume'); start(saved); }
+          else start(0);
+        });
+        $('#resumeReset').addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          hasResume = false;
+          ls.del(RESUME_KEY);
+          refreshWatchLabels();
+          start(0);
+        });
+        $$('[data-watch]').forEach(function (b) { b.addEventListener('click', function () { watch(b.getAttribute('data-watch')); }); });
+
+        // Mini-Player
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) { slotVisible = es[0].intersectionRatio > .35; updateFloat(); }, { threshold: [0, .35, .7, 1] }).observe(slot);
+        }
+        $('#fbClose').addEventListener('click', function () { v.pause(); dismissed = true; updateFloat(); cx('lw_replay_float_close'); });
+        $('#fbUp').addEventListener('click', function () { slot.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); cx('lw_replay_float_up'); });
+        document.addEventListener('fullscreenchange', updateFloat);
+        document.addEventListener('webkitfullscreenchange', updateFloat);
+
+        // Sprungmarken: Video springt hin. Ist der große Player nicht im Bild, läuft es im Mini-Player weiter,
+        // und du bleibst an deiner Stelle auf der Seite.
+        chips.forEach(function (b) {
+          b.addEventListener('click', function () {
+            var t = parseFloat(b.getAttribute('data-t')) || 0;
+            var sec = b.closest('section, .says');
+            lwTrack('LW_Replay_Jump', { t: t, loc: sec && sec.id ? sec.id : 'page' }, 'lw_replay_jump');
+            start(t);
+          });
+        });
+        chapters.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var t = parseFloat(btn.getAttribute('data-t')) || 0;
+            lwTrack('LW_Replay_Chapter', { t: t, title: (btn.querySelector('.ch-title') || {}).textContent }, 'lw_replay_chapter');
+            start(t);
+          });
+        });
+        // Mobil: Kapitel 6 bis 12 erst auf Klick
+        var moreBtn = $('#chaptersMore');
+        var list = $('#chapterList');
+        moreBtn.addEventListener('click', function () { list.classList.remove('is-collapsed'); moreBtn.setAttribute('aria-expanded', 'true'); moreBtn.hidden = true; });
+        function expandChapters() { if (list.classList.contains('is-collapsed')) { list.classList.remove('is-collapsed'); moreBtn.hidden = true; } }
+
+        // Live-Bereiche der Sprungmarken einmal parsen
+        chips.forEach(function (b) {
+          var r = (b.getAttribute('data-live') || '').split('-');
+          b._from = parseFloat(r[0]); b._to = parseFloat(r[1]);
+        });
+
+        // Erstes Play = Replay-Start (1× pro Browser), Fortschritt 25/50/75/95 (je 1× pro Browser)
+        var playFired = !!ls.get('vf_lw_replay_play');
+        v.addEventListener('play', function () {
+          started = true; dismissed = false; updateFloat();
+          if (playFired) return; playFired = true;
+          ls.set('vf_lw_replay_play', '1');
+          lwTrack('LW_Replay_Play', {}, 'lw_replay_play');
+          if (window.clarity) window.clarity('set', 'lw_replay', 'played');
+        });
+        v.addEventListener('pause', updateDock);
+
+        var MILESTONES = [25, 50, 75, 95];
+        var hit = {};
+        try { (ls.get('vf_lw_replay_ms') || '').split(',').forEach(function (m) { if (m) hit[m] = true; }); } catch (e) {}
+        var lastSave = 0;
+        var current = -1;
+        var listEl = $('#chapterList');
+        v.addEventListener('timeupdate', function () {
+          var t = v.currentTime, d = duration();
+          // Fortschritt sichern (alle ~5s), kurz vor Ende löschen
+          if (t - lastSave > 5 || t < lastSave) {
+            lastSave = t;
+            if (t > 30 && t < d - 60) { ls.set(RESUME_KEY, String(Math.floor(t))); saved = Math.floor(t); hasResume = saved > 60; }
+            else if (t >= d - 60) { ls.del(RESUME_KEY); hasResume = false; }
+            refreshWatchLabels();
+          }
+          // Meilensteine
+          var pct = d ? (t / d) * 100 : 0;
+          MILESTONES.forEach(function (m) {
+            if (pct >= m && !hit[m]) {
+              hit[m] = true;
+              ls.set('vf_lw_replay_ms', Object.keys(hit).join(','));
+              lwTrack('LW_Replay_Progress', { pct: m }, m === 95 ? 'lw_replay_complete' : 'lw_replay_' + m);
+              if (window.clarity) window.clarity('set', 'lw_replay', m === 95 ? 'complete' : 'p' + m);
+            }
+          });
+          // Aktives Kapitel
+          var idx = -1;
+          for (var i = 0; i < chapters.length; i++) { if (t >= parseFloat(chapters[i].getAttribute('data-t'))) idx = i; }
+          if (idx !== current) {
+            current = idx;
+            if (idx >= 5) expandChapters();
+            chapters.forEach(function (c, j) { c.classList.toggle('is-current', j === idx); c.setAttribute('aria-current', j === idx ? 'true' : 'false'); });
+            if (idx >= 0) {
+              var c = chapters[idx];
+              fbCh.innerHTML = '';
+              var bt = document.createElement('b'); bt.textContent = c.querySelector('.ch-time').textContent;
+              fbCh.appendChild(bt); fbCh.appendChild(document.createTextNode(c.querySelector('.ch-title').textContent));
+              // im Panel mitscrollen (nur das Panel, nie die Seite)
+              if (window.innerWidth > 960 && listEl.scrollHeight > listEl.clientHeight) {
+                var li = c.parentNode, top = li.offsetTop - listEl.offsetTop;
+                if (top < listEl.scrollTop || top + li.offsetHeight > listEl.scrollTop + listEl.clientHeight) listEl.scrollTo({ top: Math.max(0, top - 40), behavior: reduce ? 'auto' : 'smooth' });
+              }
+            }
+          }
+          // "läuft gerade" an den Sprungmarken
+          var playing = !v.paused;
+          chips.forEach(function (b) { b.classList.toggle('is-live', playing && t >= b._from && t < b._to); });
+        });
+        v.addEventListener('pause', function () { chips.forEach(function (b) { b.classList.remove('is-live'); }); });
+        v.addEventListener('ended', function () { ls.del(RESUME_KEY); hasResume = false; refreshWatchLabels(); updateFloat(); });
+
+        // Quelle lädt nicht (Blob down, Netz weg) → Direktlink zeigen
+        var src = v.querySelector('source');
+        var fail = function () { player.classList.add('failed'); cover.hidden = true; resumeBox.hidden = true; updateFloat(); };
+        if (src) src.addEventListener('error', fail);
+        v.addEventListener('error', function () { if (v.error && v.error.code !== 1) fail(); });
+
+        // Handy-Leiste: sichtbar, wenn der Player aus dem Bild ist und nichts läuft; aus beim Schluss
+        var dock = $('#dock');
+        var finalVisible = false, offerBoxVisible = false;
+        function updateDock() {
+          // Vor dem Angebot: Weiterschauen, wenn nichts läuft. Danach: Kaufen, auch während der Mini-Player läuft.
+          var show = offerOn
+            ? !finalVisible && !offerBoxVisible
+            : !slotVisible && !finalVisible && (v.paused || !started) && !player.classList.contains('is-float');
+          dock.classList.toggle('show', show);
+          dock.setAttribute('aria-hidden', show ? 'false' : 'true');
+          document.body.classList.toggle('dock-on', show);
+          $$('button, a', dock).forEach(function (b) { b.tabIndex = show && !b.hidden ? 0 : -1; });
+        }
+        if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { finalVisible = es[0].isIntersecting; updateDock(); }).observe($('#final'));
+
+
+        // ================================================================
+        //  ANGEBOT: Kauf-Knöpfe erst, wenn der Pitch (37:23 bis 41:16)
+        //  15 Sekunden wirklich gelaufen ist. Springen, Spulen und die
+        //  Fragerunde zählen nicht. Wer bis zum Ende schaut, bekommt sie auch.
+        //  Einmal erreicht, merkt sich der Browser das (auch nach Neuladen).
+        //  ?angebot=1 schaltet es ohne Event frei (Vorschau).
+        // ================================================================
+        var offerOn = false;
+        function setOffer(on, how) {
+          if (offerOn || !on) return;
+          offerOn = true;
+          document.body.classList.add('offer-on');
+          $$('[data-offer]').forEach(function (el) { el.hidden = false; });
+          $$('[data-pre-offer]').forEach(function (el) { el.hidden = true; });
+          var box = $('#offerBox');
+          if (how === 'video') { box.classList.add('pop'); ls.set(OFFER_KEY, '1'); lwTrack('LW_Replay_Offer', { t: Math.round(v.currentTime) }, 'lw_replay_offer'); }
+          if (window.clarity) window.clarity('set', 'lw_replay_offer', 'shown');
+          updateDock();
+        }
+        if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { offerBoxVisible = es[0].isIntersecting; updateDock(); }).observe($('#offerBox'));
+        var pitchSeen = 0, lastT = null;
+        v.addEventListener('seeking', function () { lastT = null; });
+        v.addEventListener('timeupdate', function () {
+          if (offerOn) return;
+          var t = v.currentTime;
+          if (lastT !== null && !v.seeking) {
+            var d = t - lastT;
+            if (d > 0 && d < 2 && t > OFFER_AT && t <= PITCH_END) pitchSeen += d;
+          }
+          lastT = t;
+          if (pitchSeen >= PITCH_NEED) setOffer(true, 'video');
+        });
+        v.addEventListener('ended', function () { setOffer(true, 'video'); });
+        if (ls.get(OFFER_KEY) === '1') setOffer(true, 'stored');
+        else if (/[?&]angebot=1\b/.test(location.search)) setOffer(true, 'param');
+
+        // Klick auf Digistore = InitiateCheckout (Pixel + CAPI, 1.499 €)
+        $$('[data-checkout]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            lwTrack('InitiateCheckout', { content_name: 'bundle', loc: a.getAttribute('data-checkout'), value: 1499.0, currency: 'EUR' }, 'lw_replay_checkout');
+          });
+        });
+
+        // ── Generische Tabs (Pfeiltasten, Home/End) ──────────────────
+        function tabs(tabEls, onSelect) {
+          tabEls.forEach(function (t, i) {
+            t.addEventListener('click', function () { onSelect(i, true); });
+            t.addEventListener('keydown', function (e) {
+              var k = e.key, n = null;
+              if (k === 'ArrowRight' || k === 'ArrowDown') n = (i + 1) % tabEls.length;
+              if (k === 'ArrowLeft' || k === 'ArrowUp') n = (i - 1 + tabEls.length) % tabEls.length;
+              if (k === 'Home') n = 0;
+              if (k === 'End') n = tabEls.length - 1;
+              if (n !== null) { e.preventDefault(); onSelect(n, true); tabEls[n].focus(); }
+            });
+          });
+        }
+        function selectTab(tabEls, i) {
+          tabEls.forEach(function (t, j) {
+            t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+            t.tabIndex = j === i ? 0 : -1;
+            var p = document.getElementById(t.getAttribute('aria-controls'));
+            if (p) { p.hidden = j !== i; p.classList.toggle('is-active', j === i); p.classList.toggle('on', j === i); }
+          });
+        }
+
+        // ================================================================
+        //  VISUALS
+        // ================================================================
+
+        // Live-Demo: Tabs, Prompt tippt sich, dann das Ergebnis
+        var dtabs = $$('#demoPanel [role="tab"]');
+        var typedPane = {};
+        var typeTimer = 0;
+        function typeInto(el, text, done) {
+          clearTimeout(typeTimer);
+          if (reduce) { el.textContent = text; done(); return; }
+          var i = 0; el.textContent = ''; el.classList.add('typing');
+          (function step() {
+            i = Math.min(text.length, i + 3);
+            el.textContent = text.slice(0, i);
+            if (i < text.length) typeTimer = setTimeout(step, 14);
+            else { el.classList.remove('typing'); done(); }
+          })();
+        }
+        $$('#demoPanel .t-type').forEach(function (el) { el._text = el.textContent.trim(); el.setAttribute('aria-label', el._text); });
+        function runPane(i) {
+          var pane = document.getElementById('dp-' + (i + 1));
+          if (typedPane[i]) return;
+          typedPane[i] = true;
+          var tt = pane.querySelector('.t-type');
+          pane.classList.remove('done');
+          typeInto(tt, tt._text, function () {
+            setTimeout(function () {
+              pane.classList.add('done');
+              if (i === 2) countUx();
+            }, reduce ? 0 : 250);
+          });
+        }
+        function demoSelect(i, user) {
+          selectTab(dtabs, i);
+          runPane(i);
+          if (user) cx('lw_replay_ix_demo_' + (i + 1));
+        }
+        tabs(dtabs, demoSelect);
+        whenSeen('demoPanel', function () { runPane(0); });
+        // Bundle-Auswahl wechselt, solange der erste Tab offen ist
+        var bundleOpts = $$('#bundle span'), stickyPrice = $('#stickyPrice'), bIdx = 0;
+        var B_PRICES = ['24,95 €', '29,95 €', '45,95 €'];
+        if (!reduce) setInterval(function () {
+          if (!$('#dp-1').classList.contains('done') || document.hidden) return;
+          bIdx = (bIdx + 1) % 3;
+          bundleOpts.forEach(function (o, j) { o.classList.toggle('sel', j === bIdx); });
+          stickyPrice.textContent = B_PRICES[bIdx];
+        }, 1800);
+        // SERP-Karte: von Seite 2 auf den freien Platz auf Seite 1
+        function placeSerp() {
+          var me = $('#serpMe'); if (!me) return;
+          var serp = me.parentNode, sps = serp.querySelectorAll('.sp');
+          var slotEl = sps[0].querySelector('.slot'), from = sps[1].querySelectorAll('i')[0];
+          var sr = serp.getBoundingClientRect();
+          if (!sr.height) return;
+          var fy = from.getBoundingClientRect().top - sr.top, ty = slotEl.getBoundingClientRect().top - sr.top;
+          me.style.top = fy + 'px';
+          me.style.transform = $('#dp-2').classList.contains('done') ? 'translateY(' + (ty - fy) + 'px)' : 'none';
+        }
+        var dp2 = $('#dp-2');
+        if ('MutationObserver' in window) new MutationObserver(placeSerp).observe(dp2, { attributes: true, attributeFilter: ['class', 'hidden'] });
+        window.addEventListener('resize', placeSerp);
+        // Zähler Hauptfoto-Klicks
+        function countUx() {
+          var n = $('#uxN');
+          if (reduce) { n.textContent = '457'; return; }
+          var t0 = performance.now(), D = 2400;
+          (function step(now) {
+            var p = Math.min(1, (now - t0) / D);
+            n.textContent = String(Math.round(p * 457));
+            if (p < 1) requestAnimationFrame(step);
+          })(t0);
+        }
+
+        // Vorher / Nachher
+        var cmp = $('#compare'), cmpRange = cmp.querySelector('.cmp-range'), labL = cmp.querySelector('.cmp-lab.l'), labR = cmp.querySelector('.cmp-lab.r');
+        var cmpRaf = 0, cmpTouched = false;
+        function setX(x) {
+          cmp.style.setProperty('--x', x);
+          cmpRange.value = x;
+          labL.style.opacity = x < 12 ? 0 : 1;
+          labR.style.opacity = x > 88 ? 0 : 1;
+        }
+        function animX(to, dur, done) {
+          cancelAnimationFrame(cmpRaf);
+          var from = parseFloat(cmpRange.value);
+          if (reduce) { setX(to); if (done) done(); return; }
+          var t0 = performance.now();
+          (function step(now) {
+            var p = Math.min(1, (now - t0) / dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+            setX(from + (to - from) * e);
+            if (p < 1) cmpRaf = requestAnimationFrame(step); else if (done) done();
+          })(t0);
+        }
+        cmpRange.addEventListener('input', function () { cmpTouched = true; cancelAnimationFrame(cmpRaf); setX(parseFloat(cmpRange.value)); cx('lw_replay_ix_compare', true); });
+        whenSeen('compare', function () {
+          if (reduce) return;
+          setTimeout(function () { if (cmpTouched) return; animX(18, 1100, function () { if (cmpTouched) return; animX(50, 1000); }); }, 500);
+        });
+        $$('#legend button').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var x = parseFloat(b.getAttribute('data-x')), id = b.getAttribute('data-pin');
+            cmpTouched = true;
+            var cur = parseFloat(cmpRange.value);
+            animX(Math.min(cur, x), 700, function () {
+              var pin = cmp.querySelector('.cmp-after .pin[data-pin="' + id + '"]');
+              if (pin) { pin.classList.remove('ping'); void pin.offsetWidth; pin.classList.add('ping'); }
+            });
+            cx('lw_replay_ix_legend');
+          });
+        });
+
+      })();
+    </script>
+  </body>
+</html>
