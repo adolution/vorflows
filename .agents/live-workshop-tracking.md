@@ -34,6 +34,12 @@ Ziel: DOI-Bestätigungsrate hoch → schließt die Lücke Ads-Manager vs. WJ-Bac
 
 > **Weitere A/B-Tests:** `/adsflow` hat seit 2026-10-04 einen eigenen Headline-Test (#5), **clientseitig** in `adsflow.html`
 > (Cookie `vf_ab_af`, kein Middleware-Eintrag, keine B-Datei). Doku: `.agents/adsflow-page.md`.
+>
+> **Startseite seit 2026-10-10:** `/` leitet nicht mehr auf `/live-workshop` um, sondern zeigt den Marken-Hub (`index.html`).
+> Der alte Homepage-Test (`vf_ab`, `index-b.html`) ist beendet, `middleware.js` matcht nur noch `/live-workshop`
+> (Version `v9-2026-10-10-home-hub`). Alte Dateien liegen in `.agents/archiv/index-alt-2026-10-10.html` und
+> `index-b-alt-2026-10-10.html`, `/index-b` leitet per 301 auf `/`. Hub-Tracking: Clarity `hub_*` + Pixel PageView,
+> Doku `.agents/startseite.md`.
 
 ## 1. A/B-Test (Test #4)
 
@@ -61,7 +67,7 @@ Test vorzeitig beendet (Webinar 25.06., kein Test-Runway mehr). **A geht auf 100
   - A (Control): "Ich baue mit KI vor deinen Augen einen Shopify-Shop um."
   - B (Challenger): "Du zahlst für Apps, die KI gratis ersetzt. Und für Rankings, die du selbst holen könntest."
 - **Routing:** `middleware.js`. Pfad `/live-workshop` → `testConfig()`:
-  - Cookie **`vf_ab_lw`** (getrennt vom Homepage-Test `vf_ab`).
+  - Cookie **`vf_ab_lw`** (der frühere Homepage-Test `vf_ab` ist seit 2026-10-10 beendet).
   - B-Rewrite-Target: `/live-workshop-b`. A = pass-through (canonical).
   - `splitDesktop: true` → **Desktop UND Mobile je 50/50** gebucket.
   - **Bots** (ohne `?ab=`-Override) → immer A (kein Cookie, keine Split-Crawl-Inkonsistenz).

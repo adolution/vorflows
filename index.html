@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>vorflows · Claude-Systeme für Shopify und Meta Ads</title>
+    <meta name="description" content="vorflows macht aus Claude deinen Shopify-Entwickler und dein Anzeigen-Team. Zwei fertige Systeme von Alexander Dück, mit Kundenstimmen, Preisen und allen Infos zum Ablauf." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://vorflows.com/" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="vorflows" />
+    <meta property="og:url" content="https://vorflows.com/" />
+    <meta property="og:title" content="vorflows: Claude als Shopify-Entwickler und Anzeigen-Team" />
+    <meta property="og:description" content="Zwei fertige Claude-Systeme von Alexander Dück: vorflows für Shopify und AdsFlow für Meta Ads." />
+    <meta property="og:image" content="https://vorflows.com/brand_assets/og-home.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-home.jpg" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://vorflows.com/#org",
+          "name": "vorflows",
+          "legalName": "AMD Media GmbH",
+          "url": "https://vorflows.com/",
+          "logo": "https://vorflows.com/brand_assets/logos/10d.1-wordmark.png",
+          "email": "alex@adolution.de",
+          "address": { "@type": "PostalAddress", "streetAddress": "Ritterstraße 8", "postalCode": "33602", "addressLocality": "Bielefeld", "addressCountry": "DE" },
+          "founder": { "@id": "https://vorflows.com/#alex" },
+          "sameAs": ["https://www.instagram.com/vorflows/"]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://vorflows.com/#alex",
+          "name": "Alexander Dück",
+          "alternateName": "Alex",
+          "jobTitle": "Gründer von vorflows",
+          "image": "https://vorflows.com/assets/images/home/alex-lifestyle-640.webp",
+          "worksFor": { "@id": "https://vorflows.com/#org" },
+          "sameAs": ["https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://vorflows.com/#website",
+          "name": "vorflows",
+          "url": "https://vorflows.com/",
+          "inLanguage": "de-DE",
+          "publisher": { "@id": "https://vorflows.com/#org" }
+        },
+        {
+          "@type": "ItemList",
+          "name": "Systeme von vorflows",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "vorflows für Shopify", "url": "https://vorflows.com/sales" },
+            { "@type": "ListItem", "position": 2, "name": "AdsFlow für Meta Ads", "url": "https://vorflows.com/adsflow" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Wer steckt hinter vorflows?", "acceptedAnswer": { "@type": "Answer", "text": "Alexander Dück. vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld. Erreichbar ist er direkt unter alex@adolution.de." } },
+            { "@type": "Question", "name": "Was ist der Unterschied zwischen vorflows und AdsFlow?", "acceptedAnswer": { "@type": "Answer", "text": "vorflows für Shopify arbeitet in deinem Shop: Theme, Apps, Suchdaten und Klickdaten. AdsFlow arbeitet in deinem Meta-Werbekonto und baut dort Anzeigen für Facebook und Instagram. Beide nutzen Claude und sind unabhängig voneinander." } },
+            { "@type": "Question", "name": "Ist das ein Abo?", "acceptedAnswer": { "@type": "Answer", "text": "Nein, beide Systeme sind ein Einmalkauf. Laufend zahlst du nur dein eigenes Claude-Abo." } }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    <style>
+      /* ================================================================
+         vorflows · Startseite (Marken-Hub für Leute, die „vorflows“ googeln)
+         Sprache = /adsflow: dunkler Grund mit Studiolicht, Fraunces + Inter.
+         Farbregel (je Farbe eine Bedeutung):
+           Terracotta    #C8633E = vorflows / deine Aktion (alle CTAs).
+           Shopify-Grün  #95BF47 = alles zu „vorflows für Shopify“.
+           Meta-Blau     #0081FB = alles zu AdsFlow (Metas Welt).
+           Grün und Blau nur als Markierung (Punkt, Wort, Linie),
+           nie als CTA und nie als Glow.
+         Radien: Buttons = Pille, Flächen = 18px, Felder = 12px.
+         Doku: .agents/startseite.md
+         ================================================================ */
+      :root {
+        --bg: #0E0E0D;
+        --bg-deep: #0A0A09;
+        --raise: #151514;
+        --raise-2: #1C1C1A;
+        --line: #252523;
+        --line-2: #33322E;
+        --ink: #EDECE7;
+        --ink-2: #B6B4AC;
+        --ink-3: #8C8A82;
+        --orange: #C8633E;
+        --orange-hi: #E27B54;
+        --orange-press: #B05530;
+        --on-orange: #140A05;
+        --shop: #95BF47;
+        --shop-ink: #A9CF68;
+        --meta: #0081FB;
+        --meta-ink: #4DA6FF;
+
+        --ease: cubic-bezier(.16, 1, .3, 1);
+        --ease-q: cubic-bezier(.25, 1, .5, 1);
+
+        --gutter: clamp(1rem, 4.5vw, 2.5rem);
+        --section: clamp(5rem, 11vw, 9.5rem);
+        --r-surface: 18px;
+        --r-field: 12px;
+
+        --shadow-float:
+          inset 0 1px 0 rgba(237, 236, 231, .05),
+          0 1px 2px rgba(0, 0, 0, .4),
+          0 24px 60px -18px rgba(0, 0, 0, .7),
+          0 40px 120px -40px rgba(200, 99, 62, .14);
+        --shadow-raise:
+          inset 0 1px 0 rgba(237, 236, 231, .04),
+          0 18px 40px -22px rgba(0, 0, 0, .8);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      /* Korn über allem, fix, klickdurchlässig */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        pointer-events: none;
+        opacity: .5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+      img { display: block; max-width: 100%; height: auto; }
+      a { color: inherit; }
+      button { font: inherit; color: inherit; }
+      ::selection { background: rgba(200, 99, 62, .35); color: var(--ink); }
+
+      .wrap { position: relative; width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
+      .sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+      /* ---------- Typo ---------- */
+      h1, h2, h3 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -.03em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      h2 { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.9rem); line-height: 1.04; }
+      /* Fraunces: optische Größe deckeln wie auf /adsflow, sonst greift der kontrastreiche Display-Schnitt */
+      h1, h2, .facts b { font-variation-settings: "opsz" 60; }
+      h3 { font-size: clamp(1.45rem, 1.1rem + 1.2vw, 2rem); line-height: 1.12; letter-spacing: -.02em; }
+      em { font-style: italic; }
+      h1 em, h2 em, h3 em { color: var(--orange-hi); }
+      h1 em.s { color: var(--shop-ink); }
+      h1 em.m { color: var(--meta-ink); }
+      p { margin: 0; }
+      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .25vw, 1.2rem); line-height: 1.65; max-width: 58ch; }
+      .body { color: var(--ink-2); max-width: 60ch; }
+      .body + .body { margin-top: 1em; }
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .label { margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .02em; line-height: 1.4; color: var(--orange-hi); font-variation-settings: normal; }
+
+      /* Welt-Markierung: Punkt + Text in der Farbe des Systems */
+      .world { display: inline-flex; align-items: center; gap: .5rem; font-size: 13px; font-weight: 500; line-height: 1.3; letter-spacing: .01em; }
+      .world i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+      .world--shop { color: var(--shop-ink); }
+      .world--meta { color: var(--meta-ink); }
+      .world--alex { color: var(--ink-3); }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        --lift: 0px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        min-height: 52px;
+        padding: 0 1.6rem;
+        border-radius: 999px;
+        border: 0;
+        background: var(--orange);
+        color: var(--on-orange);
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: -.005em;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 220, 200, .35),
+          0 1px 2px rgba(0, 0, 0, .35),
+          0 14px 34px -12px rgba(200, 99, 62, .55);
+        transform: translateY(var(--lift));
+        transition: transform .5s var(--ease), background-color .25s var(--ease-q), box-shadow .5s var(--ease);
+      }
+      .btn .arr { display: inline-block; transition: transform .5s var(--ease); }
+      .btn:hover { --lift: -2px; background: #D06A44; }
+      .btn:hover .arr { transform: translateX(3px); }
+      .btn:active { --lift: 1px; background: var(--orange-press); transition-duration: .12s; }
+      .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .btn--lg { min-height: 58px; padding: 0 2rem; font-size: 17px; }
+      .btn--ghost {
+        background: transparent;
+        color: var(--ink);
+        box-shadow: inset 0 0 0 1px var(--line-2);
+      }
+      .btn--ghost:hover { background: var(--raise-2); box-shadow: inset 0 0 0 1px var(--ink-3); }
+      .btn--ghost:active { background: var(--raise); }
+
+      .link {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        min-height: 44px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 6px;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-size: 100% 1px;
+        background-position: 0 calc(100% - 10px);
+        background-repeat: no-repeat;
+        transition: color .2s var(--ease-q);
+      }
+      .link:hover { color: var(--orange-hi); }
+      .link:active { opacity: .7; }
+      .link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+      /* ---------- Kopfzeile ---------- */
+      /* Deckend, ohne Blur: Safari 26 zieht die Farbe einer festen Leiste nur dann bis an den
+         Bildschirmrand (hinter Statusleiste/Toolbar), sonst scrollt die Seite sichtbar darüber. */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: var(--bg);
+        border-bottom: 1px solid transparent;
+        transition: border-color .3s var(--ease-q);
+      }
+      /* Handy: keine feste Leiste, die Kopfzeile scrollt mit */
+      @media (max-width: 760px) {
+        .nav { position: relative; }
+        html { scroll-padding-top: 16px; }
+      }
+      .nav.is-stuck { border-bottom-color: var(--line); }
+      .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 68px; }
+      .brand { display: inline-flex; align-items: baseline; gap: .7rem; text-decoration: none; border-radius: 6px; }
+      .brand:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .wordmark { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
+      .wordmark .flows { font-style: italic; color: var(--orange); transition: color .2s var(--ease-q); }
+      .brand:hover .flows { color: var(--orange-hi); }
+      .nav-links { display: flex; align-items: center; gap: 1.9rem; }
+      .nav-links a:not(.btn) {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        text-decoration: none;
+        padding: .4rem 0;
+        border-radius: 4px;
+        transition: color .2s var(--ease-q);
+      }
+      .nav-links a:not(.btn):hover { color: var(--ink); }
+      .nav-links a:not(.btn):active { opacity: .7; }
+      .nav-links a:not(.btn):focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .nav .btn { min-height: 42px; padding: 0 1.2rem; font-size: 14.5px; }
+      @media (max-width: 920px) {
+        .nav-links a:not(.btn) { display: none; }
+      }
+
+      /* ---------- Hero ---------- */
+      .hero { position: relative; padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(3rem, 6vw, 4.5rem); isolation: isolate; overflow-x: clip; }
+      .hero::before {
+        /* Studiolicht: Lichtpool oben, warmes Führungslicht links, je ein Hauch Grün und Blau unter den Türen */
+        content: "";
+        position: absolute;
+        inset: -68px 0 -6rem 0;
+        z-index: -1;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(#000 70%, transparent);
+        mask-image: linear-gradient(#000 70%, transparent);
+        background:
+          radial-gradient(52rem 34rem at 50% -8%, rgba(237, 236, 231, .075), transparent 62%),
+          radial-gradient(40rem 30rem at 4% 40%, rgba(200, 99, 62, .11), transparent 66%),
+          radial-gradient(34rem 22rem at 22% 95%, rgba(149, 191, 71, .045), transparent 70%),
+          radial-gradient(34rem 22rem at 80% 95%, rgba(0, 100, 224, .05), transparent 70%);
+      }
+      .hero-top { display: grid; grid-template-columns: minmax(0, 7.6fr) minmax(0, 4fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
+      .hero h1 {
+        margin-top: 1.1rem;
+        max-width: 19ch;
+        font-size: clamp(2.2rem, 1.1rem + 3.4vw, 4.1rem);
+        line-height: 1.05;
+        letter-spacing: -.033em;
+        padding-bottom: .06em;
+      }
+      .hero-intro { padding-bottom: .5rem; }
+      .hero-intro .lead { margin-top: 1rem; font-size: clamp(1rem, .96rem + .2vw, 1.1rem); }
+      .me { display: flex; align-items: center; gap: .85rem; font-size: 14px; line-height: 1.4; color: var(--ink-3); }
+      .me img { flex: none; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
+      .me b { display: block; font-weight: 500; color: var(--ink); font-size: 15px; }
+      @media (max-width: 960px) {
+        .hero-top { grid-template-columns: minmax(0, 1fr); align-items: start; }
+        .hero h1 { max-width: 20ch; }
+      }
+
+      /* Zwei Türen: je ein System, gleich gewichtet */
+      .doors { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.5rem); margin-top: clamp(2rem, 4vw, 2.75rem); }
+      .door {
+        --lift: 0px;
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+        border-radius: var(--r-surface);
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-raise);
+        color: var(--ink);
+        text-decoration: none;
+        transform: translateY(var(--lift));
+        transition: transform .6s var(--ease), border-color .3s var(--ease-q), box-shadow .6s var(--ease);
+      }
+      .door:hover { --lift: -4px; border-color: #45433D; box-shadow: var(--shadow-float); }
+      .door:active { --lift: -1px; transition-duration: .15s; }
+      .door:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .door-media { position: relative; overflow: hidden; background: var(--bg-deep); border-right: 1px solid var(--line); }
+      .door-media img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 0% 50%); transition: transform .9s var(--ease); }
+      .door:hover .door-media img { transform: scale(1.04); }
+      .door-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(10, 10, 9, .55), rgba(10, 10, 9, 0) 50%); }
+      .door-vid {
+        position: absolute;
+        left: .75rem;
+        top: .7rem;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        padding: .2rem .6rem .2rem .45rem;
+        border-radius: 999px;
+        background: rgba(14, 14, 13, .82);
+        border: 1px solid var(--line-2);
+        font-size: 12px;
+        color: var(--ink-2);
+        line-height: 1.5;
+      }
+      .door-vid::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 4px 0 4px 7px; border-color: transparent transparent transparent var(--orange-hi); }
+      .door-body { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2vw, 1.6rem); min-width: 0; }
+      .door h2 { margin-top: .55rem; font-size: clamp(1.5rem, 1.2rem + .9vw, 1.95rem); line-height: 1.08; letter-spacing: -.025em; }
+      .door-text { margin-top: .6rem; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+      .door-meta { margin: .55rem 0 1.25rem; font-size: 13.5px; line-height: 1.5; color: var(--ink-3); }
+      .door .btn { margin-top: auto; min-height: 46px; padding: 0 1.2rem; font-size: 15px; }
+      .door:hover .btn { background: #D06A44; }
+      .door:hover .btn .arr { transform: translateX(3px); }
+      .door:active .btn { background: var(--orange-press); }
+
+      .trust { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.25rem; margin-top: clamp(1.5rem, 3vw, 2rem); }
+      .faces { display: flex; }
+      .faces img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); }
+      .faces img + img { margin-left: -10px; }
+      .trust p { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); max-width: 52ch; }
+      .trust .link { min-height: 36px; font-size: 14.5px; background-position: 0 calc(100% - 6px); }
+
+      @media (max-width: 1060px) and (min-width: 721px) {
+        .door { grid-template-columns: minmax(0, 1fr); }
+        .door-media { aspect-ratio: 16 / 8; border-right: 0; border-bottom: 1px solid var(--line); }
+      }
+      @media (max-width: 720px) {
+        .doors { grid-template-columns: minmax(0, 1fr); }
+        /* Handy: kompakte Türen, Gesicht aus dem Video als Quadrat links, Knopf über die volle Breite */
+        .door { grid-template-columns: 104px minmax(0, 1fr); }
+        .door-media { grid-row: 1; aspect-ratio: 1 / 1; height: auto; align-self: start; margin: 1rem 0 0 1rem; border: 1px solid var(--line); border-radius: 12px; }
+        .door-media img { object-position: var(--face, 14% 80%); }
+        .door-media::after, .door-vid { display: none; }
+        .door-body { display: contents; }
+        .door-head { grid-column: 2; grid-row: 1; padding: 1rem 1rem 0 1rem; }
+        .door h2 { margin-top: .3rem; font-size: 1.45rem; }
+        .door-text, .door-meta { grid-column: 1 / -1; padding-inline: 1rem; }
+        .door-text { margin-top: .85rem; }
+        .door-meta { display: none; }
+        .door-body > .btn { grid-column: 1 / -1; margin: 1rem; width: calc(100% - 2rem); }
+      }
+
+      /* Hero-Einstieg: gestaffelt, nur Opacity + Transform */
+      @media (prefers-reduced-motion: no-preference) {
+        .js .rise { opacity: 0; transform: translateY(22px); animation: rise 1s var(--ease) forwards; }
+        .js .rise.d1 { animation-delay: .05s; }
+        .js .rise.d2 { animation-delay: .16s; }
+        .js .rise.d3 { animation-delay: .28s; }
+        .js .rise.d4 { animation-delay: .4s; }
+        .js .rise.d5 { animation-delay: .52s; }
+        .js .rise.d6 { animation-delay: .64s; }
+        @keyframes rise { to { opacity: 1; transform: none; } }
+      }
+
+      /* ---------- Namen (Laufband) ---------- */
+      .names { border-block: 1px solid var(--line); background: rgba(21, 21, 20, .5); }
+      .names .wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 2rem; }
+      .names-label { font-size: 14px; color: var(--ink-3); line-height: 1.4; padding-block: 1.25rem; max-width: 19ch; }
+      .marquee {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      }
+      .marquee-track { display: flex; width: max-content; }
+      .marquee ul { display: flex; gap: 2.6rem; margin: 0; padding: 1.25rem 1.3rem; list-style: none; }
+      .marquee li { position: relative; font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; color: var(--ink); white-space: nowrap; letter-spacing: -.01em; }
+      .marquee li::after { content: ""; position: absolute; right: -1.37rem; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: var(--orange); }
+      @media (prefers-reduced-motion: no-preference) {
+        .marquee-track { animation: marquee 52s linear infinite; }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        @keyframes marquee { to { transform: translateX(-50%); } }
+      }
+      @media (max-width: 700px) {
+        .names .wrap { grid-template-columns: 1fr; gap: 0; padding-inline: 0; }
+        .names-label { padding: 1.1rem var(--gutter) 0; max-width: none; }
+        .marquee ul { padding-block: .7rem 1.2rem; }
+        .marquee li { font-size: 1.15rem; }
+      }
+
+      /* ---------- Sektionen ---------- */
+      section.sec { position: relative; padding-block: var(--section); }
+      .sec-head { max-width: 860px; }
+      .sec-head .lead { margin-top: 1.4rem; }
+
+      /* Reveal beim Scrollen */
+      @media (prefers-reduced-motion: no-preference) {
+        .js [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform 1.1s var(--ease); }
+        .js [data-reveal].in { opacity: 1; transform: none; }
+        .js [data-reveal="2"] { transition-delay: .1s; }
+        .js [data-reveal="3"] { transition-delay: .2s; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .js [data-reveal] { opacity: 0; transition: opacity .15s linear; }
+        .js [data-reveal].in { opacity: 1; }
+      }
+
+      /* ---------- Stimmen ---------- */
+      .voices { padding-block: clamp(3.5rem, 8vw, 6.5rem) var(--section); }
+      .voices figure { margin: 0; }
+      .voices blockquote { margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: normal; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
+      .voices blockquote em { font-style: italic; color: var(--orange-hi); }
+      .v-top { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+      .v-main blockquote { font-size: clamp(1.55rem, 1.1rem + 1.6vw, 2.35rem); line-height: 1.22; }
+      .v-side { display: grid; gap: 1.75rem; padding-top: .4rem; }
+      .v-side figure + figure { padding-top: 1.75rem; border-top: 1px solid var(--line); }
+      .v-side blockquote, .wall blockquote { font-size: clamp(1.08rem, 1rem + .3vw, 1.25rem); line-height: 1.4; }
+      .who { display: flex; align-items: center; gap: .75rem; margin-top: 1.1rem; }
+      .who img { flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
+      .who .ini { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--raise-2); border: 1px solid var(--line-2); font-size: 14px; font-weight: 500; color: var(--ink-2); }
+      .who > span { display: block; min-width: 0; font-size: 14px; line-height: 1.4; color: var(--ink-3); }
+      .who b { display: block; font-weight: 500; color: var(--ink); }
+      .who .world { display: flex; margin-top: .25rem; font-size: 12.5px; }
+      .wall {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 2vw, 1.5rem);
+        margin-top: clamp(3rem, 6vw, 4.5rem);
+      }
+      .wall figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(1.25rem, 2.2vw, 1.75rem);
+        border-radius: var(--r-surface);
+        background: var(--raise);
+        border: 1px solid var(--line);
+      }
+      .more { display: none; margin-top: 1.25rem; width: 100%; }
+      @media (max-width: 960px) {
+        .v-top { grid-template-columns: minmax(0, 1fr); }
+        .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .wall { grid-template-columns: minmax(0, 1fr); }
+        /* Handy: erst vier Stimmen, Rest auf Tipp */
+        .wall:not(.is-open) figure:nth-child(n+5) { display: none; }
+        .more { display: inline-flex; }
+        .wall.is-open + .more { display: none; }
+      }
+
+      /* ---------- Alex ---------- */
+      .alex-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+      .photos { position: relative; padding-bottom: 14%; }
+      .photo { position: relative; border-radius: var(--r-surface); overflow: hidden; aspect-ratio: 4 / 5; border: 1px solid var(--line-2); box-shadow: var(--shadow-float); }
+      .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; filter: saturate(.85) contrast(1.02); }
+      .photo::before { content: ""; position: absolute; inset: 0; background: rgba(200, 99, 62, .16); mix-blend-mode: multiply; z-index: 1; pointer-events: none; }
+      .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 10, 9, .7), rgba(10, 10, 9, 0) 45%); z-index: 1; pointer-events: none; }
+      .photo figcaption { position: absolute; left: 1.1rem; bottom: 1rem; right: 40%; z-index: 2; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+      .photo-2 {
+        position: absolute;
+        right: -6%;
+        bottom: 0;
+        z-index: 3;
+        width: 44%;
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 1;
+        border: 4px solid var(--bg);
+        box-shadow: 0 24px 60px -18px rgba(0, 0, 0, .8);
+        transform: rotate(2.5deg);
+      }
+      .photo-2 img { width: 100%; height: 100%; object-fit: cover; }
+      .alex-copy .body { margin-top: 1.5rem; }
+      .credo { margin-top: 1.75rem; max-width: 32ch; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.35rem, 1.05rem + .9vw, 1.8rem); line-height: 1.3; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
+      .credo em { font-style: italic; color: var(--orange-hi); }
+      .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+      .facts div b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2.1rem; line-height: 1; letter-spacing: -.03em; }
+      .facts div span { display: block; margin-top: .45rem; font-size: 13.5px; line-height: 1.45; color: var(--ink-3); }
+      .creds { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: .65rem; }
+      .creds li { position: relative; padding-left: 1.5rem; font-size: 15.5px; color: var(--ink-2); line-height: 1.5; }
+      .creds li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+      .reach { display: flex; flex-wrap: wrap; gap: .25rem 1.6rem; margin-top: 1.75rem; }
+      .company { margin-top: 1rem; font-size: 14px; line-height: 1.55; color: var(--ink-3); max-width: 56ch; }
+      .company a { color: var(--ink-2); border-radius: 3px; }
+      .company a:hover { color: var(--ink); }
+      .company a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      @media (max-width: 1100px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 900px) {
+        .alex-grid { grid-template-columns: minmax(0, 1fr); }
+        .photos { max-width: 520px; padding-bottom: 18%; }
+        .photo { aspect-ratio: 5 / 4; }
+        .photo-2 { right: 0; width: 38%; }
+      }
+
+      /* ---------- Systeme im Vergleich ---------- */
+      .sys { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(1rem, 2.5vw, 2rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+      .sys-card {
+        position: relative;
+        display: grid;
+        grid-row: span 8;
+        grid-template-rows: subgrid;
+        row-gap: 0;
+        padding: clamp(1.5rem, 3vw, 2.25rem);
+        border-radius: 22px;
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-raise);
+      }
+      .sys-card::before { content: ""; position: absolute; left: clamp(1.5rem, 3vw, 2.25rem); top: -1px; width: 56px; height: 2px; border-radius: 2px; }
+      .sys--shop::before { background: var(--shop); }
+      .sys--meta::before { background: var(--meta); }
+      .sys-card header { padding-bottom: 1.4rem; }
+      .sys-card h3 { margin-top: .5rem; font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.3rem); }
+      .sys-card dl { display: contents; }
+      .sys-card dl > div { padding: 1rem 0; border-top: 1px solid var(--line); }
+      .sys-card dt { font-size: 13.5px; color: var(--ink-3); }
+      .sys-card dd { margin: .25rem 0 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.55; }
+      .sys-card dd b { color: var(--ink); font-weight: 500; }
+      .sys-card .price-row dd { font-size: 16px; }
+      .sys-card .price-row b { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 1.6rem; letter-spacing: -.02em; }
+      .sys-card .price-row s { color: var(--ink-3); }
+      .sys-card .btn { align-self: end; justify-self: start; margin-top: 1.25rem; }
+      .rule { display: flex; align-items: flex-start; gap: .9rem; margin-top: clamp(2rem, 4vw, 2.75rem); max-width: 70ch; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+      .rule svg { flex: none; width: 22px; height: 22px; margin-top: .1rem; color: var(--orange-hi); }
+      @media (max-width: 860px) {
+        .sys { grid-template-columns: minmax(0, 1fr); }
+        .sys-card + .sys-card { margin-top: 1.25rem; }
+      }
+      @media (max-width: 360px) {
+        .sys-card { padding: 1.4rem 1.15rem; }
+        .sys-card .btn { padding-inline: 1.1rem; font-size: 15px; }
+      }
+
+      /* ---------- Live-Workshop ---------- */
+      .ws {
+        display: grid;
+        grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+        align-items: stretch;
+        border-radius: 22px;
+        overflow: hidden;
+        background:
+          radial-gradient(30rem 18rem at 0% 0%, rgba(200, 99, 62, .12), transparent 70%),
+          linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow: var(--shadow-float);
+      }
+      .ws-copy { padding: clamp(1.75rem, 4vw, 3.25rem); }
+      .ws-copy h2 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3rem); }
+      .ws-copy .body { margin-top: 1.1rem; }
+      .ws-copy .btn { margin-top: 1.75rem; }
+      .ws-media { position: relative; min-height: 260px; background: #0b0b0a; }
+      .ws-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+      @media (max-width: 860px) {
+        .ws { grid-template-columns: minmax(0, 1fr); }
+        .ws-media { order: -1; min-height: 0; aspect-ratio: 16 / 8; }
+      }
+      @media (max-width: 420px) {
+        .ws-copy .btn { width: 100%; }
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 5rem); }
+      .faq-side { position: sticky; top: 110px; align-self: start; }
+      .ask { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); max-width: 34ch; }
+      .ask img { flex: none; width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
+      .ask p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+      .ask a { color: var(--ink); border-radius: 3px; }
+      .ask a:hover { color: var(--orange-hi); }
+      .ask a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      details { border-bottom: 1px solid var(--line); }
+      details:first-child { border-top: 1px solid var(--line); }
+      summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        min-height: 72px;
+        padding: 1.1rem 0;
+        cursor: pointer;
+        font-size: clamp(1.02rem, .98rem + .2vw, 1.12rem);
+        font-weight: 500;
+        color: var(--ink);
+        border-radius: 6px;
+        transition: color .2s var(--ease-q);
+      }
+      summary::-webkit-details-marker { display: none; }
+      summary:hover { color: var(--orange-hi); }
+      summary:active { opacity: .8; }
+      summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      summary .pm { position: relative; flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-2); }
+      summary .pm::before, summary .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink-2); transition: transform .4s var(--ease); }
+      summary .pm::after { transform: rotate(90deg); }
+      details[open] summary .pm::after { transform: rotate(0deg); }
+      .ans { padding: 0 3rem 1.6rem 0; color: var(--ink-2); max-width: 64ch; }
+      .ans p + p { margin-top: .8em; }
+      .ans a { color: var(--ink); border-radius: 3px; }
+      .ans a:hover { color: var(--orange-hi); }
+      .ans a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      @media (max-width: 860px) {
+        .faq-grid { grid-template-columns: minmax(0, 1fr); }
+        .faq-side { position: static; }
+        .ans { padding-right: 0; }
+      }
+
+      /* ---------- Schluss ---------- */
+      .final { position: relative; text-align: center; padding-block: clamp(6rem, 13vw, 11rem); overflow: hidden; isolation: isolate; }
+      .final::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(36rem 22rem at 50% 55%, rgba(200, 99, 62, .16), transparent 70%);
+      }
+      .final h2 { max-width: 16ch; margin: 0 auto; font-size: clamp(2.4rem, 1.4rem + 4vw, 4.8rem); }
+      .final-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.5rem; }
+      .final .sub { margin-top: 1.4rem; font-size: 14.5px; color: var(--ink-3); }
+      .final .sub a { color: var(--ink-2); border-radius: 3px; }
+      .final .sub a:hover { color: var(--ink); }
+      .final .sub a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      @media (max-width: 520px) {
+        .final-ctas .btn { width: 100%; }
+      }
+
+      footer.foot { border-top: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--ink-3); font-size: 13.5px; }
+      .foot .wrap { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 3rem; align-items: start; }
+      .foot nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; justify-content: flex-end; }
+      .foot nav a { text-decoration: none; color: var(--ink-2); border-radius: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+      .foot nav a:hover { color: var(--ink); }
+      .foot nav a:active { opacity: .7; }
+      .foot nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .foot .tm { grid-column: 1 / -1; max-width: 80ch; line-height: 1.6; }
+      @media (max-width: 640px) {
+        .foot .wrap { grid-template-columns: minmax(0, 1fr); }
+        .foot nav { justify-content: flex-start; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav" id="top">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="vorflows, Startseite">
+          <span class="wordmark">vor<span class="flows">flows</span></span>
+        </a>
+        <nav class="nav-links" aria-label="Seitennavigation">
+          <a href="/sales" data-cta="nav_vorflows">Für Shopify</a>
+          <a href="/adsflow" data-cta="nav_adsflow">AdsFlow</a>
+          <a href="#stimmen">Stimmen</a>
+          <a href="#alex">Über mich</a>
+          <a class="btn btn--ghost" href="/live-workshop" data-cta="nav_workshop">Kostenloser Workshop</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ HERO: zwei Türen ============ -->
+      <section class="hero" aria-labelledby="h1">
+        <div class="wrap">
+          <div class="hero-top">
+            <div>
+              <span class="eyebrow rise d1">Claude-Systeme von Alexander Dück</span>
+              <h1 id="h1" class="rise d2">vorflows macht aus Claude deinen <em class="s">Shopify&#8209;Entwickler</em> und dein <em class="m">Anzeigen&#8209;Team</em></h1>
+            </div>
+            <div class="hero-intro rise d3">
+              <p class="me"><img src="/assets/images/home/alex-lifestyle-400.webp" width="52" height="52" alt="" /><span><b>Alexander Dück</b>Gründer von vorflows</span></p>
+              <p class="lead">Ich mache seit acht Jahren Online-Marketing. Was in meinen eigenen Shops und bei meinen Kunden funktioniert hat, steckt in zwei fertigen Ordnern für Claude. Claude macht die Arbeit, und live geht nur, was du freigibst.</p>
+            </div>
+          </div>
+
+          <div class="doors">
+            <a class="door rise d4" href="/sales" data-cta="door_vorflows" style="--face: 55% 50%; --pos: 2% 50%;">
+              <div class="door-media">
+                <img src="/assets/images/sales/vsl-v1b-poster-960.webp" width="960" height="540" alt="" />
+                <span class="door-vid">Mit Video aus meinem Shop</span>
+              </div>
+              <div class="door-body">
+                <div class="door-head">
+                  <span class="world world--shop"><i></i>Für Shopify-Shops</span>
+                  <h2>vorflows für Shopify</h2>
+                </div>
+                <p class="door-text">Claude baut deinen Shop um, ersetzt Apps durch eigene Sections und wertet deine Klick- und Suchdaten aus.</p>
+                <p class="door-meta">Einmalkauf mit 1:1-Schulung</p>
+                <span class="btn">vorflows für Shopify ansehen <span class="arr" aria-hidden="true">→</span></span>
+              </div>
+            </a>
+            <a class="door rise d5" href="/adsflow" data-cta="door_adsflow" style="--face: 62% 50%; --pos: 6% 50%;">
+              <div class="door-media">
+                <img src="/assets/images/adsflow/vsl-poster-960.webp" width="960" height="540" alt="" />
+                <span class="door-vid">Mit Video aus meinem Werbekonto</span>
+              </div>
+              <div class="door-body">
+                <div class="door-head">
+                  <span class="world world--meta"><i></i>Für Meta Ads</span>
+                  <h2>AdsFlow</h2>
+                </div>
+                <p class="door-text">Claude schreibt deine Anzeigen für Facebook und Instagram, stellt sie ein und legt sie ausgeschaltet in dein Werbekonto.</p>
+                <p class="door-meta">Einmalkauf, über 1.200 Anzeigen damit gebaut</p>
+                <span class="btn">AdsFlow ansehen <span class="arr" aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="trust rise d6">
+            <span class="faces" aria-hidden="true">
+              <img src="/assets/images/home/av-robin-96.webp" width="36" height="36" alt="" />
+              <img src="/assets/images/home/av-lukas-96.webp" width="36" height="36" alt="" />
+              <img src="/assets/images/home/av-leo-carla-96.webp" width="36" height="36" alt="" />
+              <img src="/assets/images/home/av-felix-96.webp" width="36" height="36" alt="" />
+              <img src="/assets/images/home/av-sebastian-96.webp" width="36" height="36" alt="" />
+              <img src="/assets/images/home/av-lasse-96.webp" width="36" height="36" alt="" />
+            </span>
+            <p>Kunden wie 404, Atlas und Paddy AI und über 1.000 Teilnehmende in meinen Kursen</p>
+            <a class="link" href="#stimmen">Stimmen lesen</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NAMEN ============ -->
+      <section class="names" aria-label="Kunden und Käufer">
+        <div class="wrap">
+          <p class="names-label">Mit mir oder mit vorflows arbeiten unter anderem</p>
+          <div class="marquee">
+            <div class="marquee-track">
+              <ul>
+                <li>404</li><li>Atlas</li><li>Quiver</li><li>Paddy AI</li><li>Curawork</li><li>Vansite</li><li>PURE U</li><li>Ledist Agency</li><li>Rheinland.Coffee</li><li>Prometheus Performance</li><li>massagesesselwelt.de</li><li>Royal Vitality</li>
+              </ul>
+              <ul aria-hidden="true">
+                <li>404</li><li>Atlas</li><li>Quiver</li><li>Paddy AI</li><li>Curawork</li><li>Vansite</li><li>PURE U</li><li>Ledist Agency</li><li>Rheinland.Coffee</li><li>Prometheus Performance</li><li>massagesesselwelt.de</li><li>Royal Vitality</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STIMMEN ============ -->
+      <!-- Echte Stimmen: vorflows-Käufer (wie auf /sales) und Kunden aus Alex' Beratung (wie auf startupads.de). Jede trägt ihre Herkunft. -->
+      <section class="voices" id="stimmen" aria-labelledby="h-voices">
+        <div class="wrap">
+          <h2 class="label" id="h-voices" data-reveal>Was Kundinnen und Kunden sagen</h2>
+          <div class="v-top">
+            <figure class="v-main" data-reveal>
+              <blockquote>„Ich hatte bisher Agenturen und Freelancer, irgendwie zehn unterschiedliche Entwickler und Berater, und ich muss sagen: die sind alle schlechter. […] Dein Tool ist <em>gnadenlos gut</em>.“</blockquote>
+              <figcaption class="who"><span class="ini" aria-hidden="true">MB</span><span><b>Michael Bodeske</b>massagesesselwelt.de<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+            </figure>
+            <div class="v-side" data-reveal="2">
+              <figure>
+                <blockquote>„Nach 3 Monaten kannst du es selbst. Zehnmal mehr wert als jede Agentur.“</blockquote>
+                <figcaption class="who"><img src="/assets/images/home/av-robin-96.webp" srcset="/assets/images/home/av-robin-96.webp 1x, /assets/images/home/av-robin-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Robin</b>404 und Atlas, Google Cloud Partner<span class="world world--alex"><i></i>über meine Beratung</span></span></figcaption>
+              </figure>
+              <figure>
+                <blockquote>„Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.“</blockquote>
+                <figcaption class="who"><span class="ini" aria-hidden="true">MB</span><span><b>Markus Bonk</b>Rheinland.Coffee<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="wall" id="wall" data-reveal>
+            <figure>
+              <blockquote>„Alex hat uns in nur 3 Monaten wertvolles Inhouse-Wissen für alle wichtigen Plattformen aufgebaut und auch in Sachen Landingpages und Leadmagneten beraten. Wir sind jetzt komplett unabhängig von Performance-Agenturen.“</blockquote>
+              <figcaption class="who"><img src="/assets/images/home/av-lukas-96.webp" srcset="/assets/images/home/av-lukas-96.webp 1x, /assets/images/home/av-lukas-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Lukas</b>Paddy AI, bekannt aus dem TV<span class="world world--alex"><i></i>über meine Beratung</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.“</blockquote>
+              <figcaption class="who"><span class="ini" aria-hidden="true">SK</span><span><b>Stefan Kisker</b>Prometheus Performance GmbH<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„70&nbsp;% weniger Kosten pro Registrierung, seit der Zusammenarbeit mit Alex.“</blockquote>
+              <figcaption class="who"><img src="/assets/images/home/av-sebastian-96.webp" srcset="/assets/images/home/av-sebastian-96.webp 1x, /assets/images/home/av-sebastian-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Sebastian</b>Founder, Vansite<span class="world world--alex"><i></i>über meine Beratung</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Wir hatten schon mit KI gearbeitet. Aber erst seit dem Setup von Alex merken wir, wie ineffizient wir vorher waren und wie viel schneller und vor allem zuverlässiger es geht.“</blockquote>
+              <figcaption class="who"><span class="ini" aria-hidden="true">L</span><span><b>Leo</b>PURE U, Skincare-Brand<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„10&nbsp;€ pro Lead: Durch die Ausbildung haben wir es geschafft, unser Startup richtig zu monetarisieren.“</blockquote>
+              <figcaption class="who"><img src="/assets/images/home/av-felix-96.webp" srcset="/assets/images/home/av-felix-96.webp 1x, /assets/images/home/av-felix-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Felix</b>Founder, Curawork<span class="world world--alex"><i></i>über meine Ausbildung</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.“</blockquote>
+              <figcaption class="who"><span class="ini" aria-hidden="true">A</span><span><b>Adrian</b>Founder, Skincare D2C<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Alex hat zwei meiner Mitarbeiter geschult und mit ihnen gemeinsam unsere Kampagnen verbessert.“</blockquote>
+              <figcaption class="who"><img src="/assets/images/home/av-lasse-96.webp" srcset="/assets/images/home/av-lasse-96.webp 1x, /assets/images/home/av-lasse-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Lasse Dumstrei</b>Ledist Agency<span class="world world--alex"><i></i>über meine Schulung</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Das ist genau das, wonach ich schon seit Wochen gesucht habe. Dankeschön!“</blockquote>
+              <figcaption class="who"><span class="ini" aria-hidden="true">MW</span><span><b>Manuela Wonning</b>Royal Vitality, Fashion<span class="world world--shop"><i></i>über vorflows für Shopify</span></span></figcaption>
+            </figure>
+            <figure>
+              <blockquote>„Alex hat uns ein kritisches Tracking-Problem vor einem wichtigen Sale gefixt, schnell und unkompliziert.“</blockquote>
+              <figcaption class="who"><img src="/assets/images/home/av-leo-carla-96.webp" srcset="/assets/images/home/av-leo-carla-96.webp 1x, /assets/images/home/av-leo-carla-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Leo und Carla</b>Founder, PURE U<span class="world world--alex"><i></i>über meine Beratung</span></span></figcaption>
+            </figure>
+          </div>
+          <button class="btn btn--ghost more" type="button" id="more" aria-controls="wall" aria-expanded="false">Alle Stimmen zeigen</button>
+        </div>
+      </section>
+
+      <!-- ============ ALEX ============ -->
+      <section class="sec" id="alex" aria-labelledby="h-alex" style="padding-top: 0;">
+        <div class="wrap alex-grid">
+          <div class="photos" data-reveal>
+            <figure class="photo" style="margin: 0;">
+              <img src="/assets/images/adsflow/alex.webp" width="900" height="900" loading="lazy" alt="Alex steht bei einem Workshop vor Publikum, hinter ihm die Leinwand mit einem Werbekonto" />
+              <figcaption>Bei einem meiner Workshops vor Ort</figcaption>
+            </figure>
+            <figure class="photo-2">
+              <img src="/assets/images/home/alex-lifestyle-400.webp" srcset="/assets/images/home/alex-lifestyle-400.webp 400w, /assets/images/home/alex-lifestyle-640.webp 640w" sizes="(max-width: 900px) 40vw, 240px" width="400" height="400" loading="lazy" alt="Alex lacht, im Hintergrund ein Café" />
+            </figure>
+          </div>
+          <div class="alex-copy">
+            <h2 id="h-alex" data-reveal>Hinter vorflows stehe ich mit meinem <em>Namen</em></h2>
+            <p class="body" data-reveal="2">Ich bin Alexander Dück, die meisten sagen Alex. Seit acht Jahren mache ich Online-Marketing, habe eine eigene Agentur und zwei eigene Shopify-Shops mit zusammen über 20.000 Bestellungen.</p>
+            <p class="body" data-reveal="2">Mit Claude arbeite ich jeden Tag, für meine Shops, für meine Kunden und für die Anzeigen von vorflows. Was dabei zuverlässig funktioniert, kommt in die Ordner.</p>
+            <p class="credo" data-reveal="2">Deshalb verkaufe ich nur Systeme, die ich selbst <em>jeden Tag</em> benutze.</p>
+            <div class="facts" data-reveal="3">
+              <div><b>8</b><span>Jahre Online-Marketing</span></div>
+              <div><b>20.000+</b><span>Bestellungen in meinen eigenen Shops</span></div>
+              <div><b>1.000+</b><span>Teilnehmende in meinen Kursen zu SEO und Ads</span></div>
+              <div><b>1.200+</b><span>Anzeigen mit AdsFlow gebaut</span></div>
+            </div>
+            <ul class="creds" data-reveal="3">
+              <li>Kunden aus KI-Startups wie 404, Atlas und Quiver, alle mit Multimillionen-Funding</li>
+              <li>Marketing-Beratung für Unternehmen aus „Die Höhle der Löwen“</li>
+              <li>Workshops vor Ort und live online</li>
+            </ul>
+            <div class="reach" data-reveal="3">
+              <a class="link" href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" target="_blank" rel="noopener" data-cta="alex_linkedin">LinkedIn</a>
+              <a class="link" href="https://www.instagram.com/vorflows/" target="_blank" rel="noopener" data-cta="alex_instagram">Instagram</a>
+              <a class="link" href="mailto:alex@adolution.de" data-cta="alex_mail">alex@adolution.de</a>
+            </div>
+            <p class="company" data-reveal="3">vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld. Alle Angaben findest du im <a href="/impressum">Impressum</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SYSTEME IM VERGLEICH ============ -->
+      <section class="sec" id="systeme" aria-labelledby="h-sys" style="padding-top: 0;">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2 id="h-sys" data-reveal>Welches System passt zu <em>dir</em>?</h2>
+            <p class="lead" data-reveal="2">Beide Systeme sind fertige Ordner, die du mit Claude öffnest. Das eine arbeitet in deinem Shopify-Shop, das andere in deinem Meta-Werbekonto.</p>
+          </div>
+          <div class="sys" data-reveal>
+            <article class="sys-card sys--shop" aria-labelledby="h-sys-shop">
+              <header>
+                <span class="world world--shop"><i></i>Für Shopify-Shops</span>
+                <h3 id="h-sys-shop">vorflows für Shopify</h3>
+              </header>
+              <dl>
+                <div><dt>Für wen</dt><dd>Shopify-Shops mit echtem Umsatz, die ihren Shop selbst weiterbauen wollen</dd></div>
+                <div><dt>Was Claude übernimmt</dt><dd>Apps durch eigene Sections ersetzen, dein Theme umbauen und aus Klick- und Suchdaten konkrete Änderungen machen</dd></div>
+                <div><dt>Was du entscheidest</dt><dd>Claude baut an einer Kopie deines Themes. Veröffentlichen tust du selbst, und dein altes Theme bleibt als Rückweg liegen.</dd></div>
+                <div><dt>Im Paket</dt><dd><b>119 Fähigkeiten und 19 Agenten</b>, Setup-Videos, alle künftigen Updates und eine <b>1:1-Schulung</b> mit Setup-Call bei mir</dd></div>
+                <div><dt>Was du brauchst</dt><dd>Claude mit Claude Code, einen Mac oder Windows-Rechner und ein beliebiges Shopify-Theme</dd></div>
+                <div class="price-row"><dt>Preis</dt><dd><b>1.499&nbsp;€</b> netto, einmalig <s>2.000&nbsp;€</s><br />Ratenzahlung möglich</dd></div>
+              </dl>
+              <a class="btn" href="/sales" data-cta="sys_vorflows">vorflows für Shopify ansehen <span class="arr" aria-hidden="true">→</span></a>
+            </article>
+            <article class="sys-card sys--meta" aria-labelledby="h-sys-meta">
+              <header>
+                <span class="world world--meta"><i></i>Für Meta Ads</span>
+                <h3 id="h-sys-meta">AdsFlow</h3>
+              </header>
+              <dl>
+                <div><dt>Für wen</dt><dd>Founder, Shops und Selbstständige, die auf Facebook und Instagram werben oder damit anfangen wollen</dd></div>
+                <div><dt>Was Claude übernimmt</dt><dd>Anzeigentexte schreiben, das passende Format für Feed und Story nehmen, alles richtig einstellen und ins Werbekonto legen</dd></div>
+                <div><dt>Was du entscheidest</dt><dd>Neue Anzeigen landen ausgeschaltet im Werbekonto. Einschalten und Budgets ändern kann Claude nicht, das machst du.</dd></div>
+                <div><dt>Im Paket</dt><dd><b>Der komplette AdsFlow-Ordner</b>, Anleitung als PDF, mehrere Videoanleitungen und ein geführtes Setup in 20 bis 30 Minuten</dd></div>
+                <div><dt>Was du brauchst</dt><dd>Claude mit Bezahl-Tarif (der kleinste reicht) und ein Meta-Werbekonto mit Facebook-Seite</dd></div>
+                <div class="price-row"><dt>Preis</dt><dd data-af-price><b>299&nbsp;€</b> zzgl. MwSt., einmalig <s>499&nbsp;€</s><br />Launch-Preis bis 24.10.</dd></div>
+              </dl>
+              <a class="btn" href="/adsflow" data-cta="sys_adsflow">AdsFlow ansehen <span class="arr" aria-hidden="true">→</span></a>
+            </article>
+          </div>
+          <p class="rule" data-reveal>
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.27,47,25.53a8,8,0,0,0,4.2,0c1-.26,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg>
+            <span>Für beide gilt dieselbe Regel: Claude macht die Arbeit, und was live geht, entscheidest du. Bei vorflows kommt Claude nicht an Bestellungen und Kundendaten, bei AdsFlow nicht an den Schalter, der Anzeigen einschaltet.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ LIVE-WORKSHOP ============ -->
+      <section class="sec" id="workshop" aria-labelledby="h-ws" style="padding-top: 0;">
+        <div class="wrap">
+          <div class="ws" data-reveal>
+            <div class="ws-copy">
+              <span class="eyebrow">Kostenlos und live</span>
+              <h2 id="h-ws" style="margin-top: .8rem;">Lieber erst mal <em>zuschauen</em>?</h2>
+              <p class="body">Im Live-Workshop baue ich mit Claude vor deinen Augen einen Shopify-Shop um. Du siehst, wie das System arbeitet, und kannst mir zwischendurch deine Fragen stellen.</p>
+              <a class="btn btn--ghost" href="/live-workshop" data-cta="ws_workshop">Zum Live-Workshop <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+            <div class="ws-media">
+              <img src="/assets/images/home/workshop-shop.webp" srcset="/assets/images/home/workshop-shop-372.webp 372w, /assets/images/home/workshop-shop.webp 744w" sizes="(max-width: 860px) 100vw, 520px" width="744" height="837" loading="lazy" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="sec" id="fragen" aria-labelledby="h-faq" style="padding-top: 0;">
+        <div class="wrap faq-grid">
+          <div class="faq-side">
+            <h2 id="h-faq" data-reveal>Fragen, die oft kommen</h2>
+            <div class="ask" data-reveal="2">
+              <img src="/assets/images/home/alex-portrait-480.webp" width="64" height="64" loading="lazy" alt="Alex" />
+              <p>Deine Frage ist nicht dabei? Schreib mir direkt an <a href="mailto:alex@adolution.de" data-cta="faq_mail">alex@adolution.de</a>.</p>
+            </div>
+          </div>
+          <div data-reveal="2">
+            <details>
+              <summary>Wer steckt hinter vorflows?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Ich, Alexander Dück. vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld, alle Angaben stehen im <a href="/impressum">Impressum</a>. Du erreichst mich direkt unter <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder auf <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" target="_blank" rel="noopener">LinkedIn</a>.</p></div>
+            </details>
+            <details>
+              <summary>Was ist der Unterschied zwischen vorflows und AdsFlow?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>vorflows für Shopify arbeitet in deinem Shop: Theme, Apps, Suchdaten und Klickdaten. AdsFlow arbeitet in deinem Meta-Werbekonto und baut dort Anzeigen für Facebook und Instagram. Beide nutzen Claude und laufen unabhängig voneinander.</p></div>
+            </details>
+            <details>
+              <summary>Brauche ich beide Systeme?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Nein, jedes läuft für sich. Willst du vor allem an deinem Shop arbeiten, nimm <a href="/sales">vorflows für Shopify</a>. Geht es dir um mehr Anzeigen in weniger Zeit, nimm <a href="/adsflow">AdsFlow</a>.</p></div>
+            </details>
+            <details>
+              <summary>Ist das ein Abo?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Nein, beide Systeme sind ein Einmalkauf. Laufend zahlst du nur dein eigenes Claude-Abo. Bei vorflows für Shopify sind alle künftigen Updates schon dabei.</p></div>
+            </details>
+            <details>
+              <summary>Muss ich programmieren können?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Nein. Du schreibst Claude auf Deutsch, was du willst, so wie du es einem Mitarbeiter sagen würdest. Die Anleitungen und Videos fangen bei null an, und beim Einrichten erklärt dir Claude jeden Schritt.</p></div>
+            </details>
+            <details>
+              <summary>Kann Claude in meinem Shop oder Werbekonto etwas kaputt machen?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Beide Systeme sind so gebaut, dass am Ende du entscheidest. Bei vorflows arbeitet Claude an einer Kopie deines Themes und hat keinen Zugang zu deinem Shopify-Konto, also auch nicht zu Bestellungen oder Kundendaten. Bei AdsFlow legt Claude neue Anzeigen ausgeschaltet an, und die Werkzeuge zum Einschalten und Ändern sind gesperrt.</p></div>
+            </details>
+            <details>
+              <summary>Wie bezahle ich, und kann ich zurückgeben?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Bezahlt wird sicher über Digistore24, von dort kommt auch deine Rechnung. Für vorflows für Shopify ist Ratenzahlung möglich, und du hast 14 Tage Rückgaberecht, solange die Schulung noch nicht stattgefunden hat.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCHLUSS ============ -->
+      <section class="final" aria-labelledby="h-final">
+        <div class="wrap">
+          <h2 id="h-final" data-reveal>Womit soll Claude für dich <em>anfangen</em>?</h2>
+          <div data-reveal="2">
+            <div class="final-ctas">
+              <a class="btn btn--lg" href="/sales" data-cta="final_vorflows">vorflows für Shopify <span class="arr" aria-hidden="true">→</span></a>
+              <a class="btn btn--lg" href="/adsflow" data-cta="final_adsflow">AdsFlow für Meta Ads <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+            <p class="sub">Oder erst mal kostenlos zuschauen: <a href="/live-workshop" data-cta="final_workshop">zum Live-Workshop</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="vorflows, nach oben"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav aria-label="Weitere Seiten">
+          <a href="/sales">vorflows für Shopify</a>
+          <a href="/adsflow">AdsFlow</a>
+          <a href="/live-workshop">Live-Workshop</a>
+          <a href="/blog">Blog</a>
+          <a href="/faqs">FAQs</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </nav>
+        <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+      </div>
+    </footer>
+
+    <script>
+      /* ================================================================
+         vorflows · Startseite
+         Tracking: Clarity (hub_*) + Meta Pixel (PageView), Attribution wie
+         LP/Replay/AdsFlow, damit UTM + fbclid bis zur Kaufseite mitlaufen.
+         Lokal (localhost) wird nichts gesendet.
+         ================================================================ */
+      (function () {
+        'use strict';
+
+        var META_PIXEL_ID = '2002118703756086';
+        // AdsFlow-Launch-Preis wie auf /adsflow (PRICE.steps): danach automatisch Normalpreis.
+        var AF_LAUNCH_END = '2026-10-24T23:59:59+02:00';
+
+        var getCookie = function (n) { return (document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]+)')) || [])[1]; };
+        var ls = {
+          get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+          set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        };
+        var uuid = function () {
+          try { return crypto.randomUUID(); } catch (e) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+              var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+          }
+        };
+
+        // ── Attribution (gleiche Logik wie LP/Replay/AdsFlow) ─────────
+        var params = new URLSearchParams(location.search);
+        try {
+          var fbclid = params.get('fbclid');
+          if (fbclid && !getCookie('_fbc')) document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid + '; path=/; max-age=7776000; SameSite=Lax';
+          if (!getCookie('_fbp')) document.cookie = '_fbp=fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 2147483647) + '; path=/; max-age=7776000; SameSite=Lax';
+        } catch (e) {}
+        var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        try {
+          var hasUtm = KEYS.some(function (k) { return params.get(k); });
+          if (hasUtm || params.get('fbclid')) {
+            var fresh = { landed_at: new Date().toISOString(), landing: location.pathname };
+            KEYS.forEach(function (k) { var v = params.get(k); if (v) fresh[k] = v.slice(0, 250); });
+            if (params.get('fbclid')) fresh.fbclid = '1';
+            document.cookie = 'vf_lw_attr=' + encodeURIComponent(JSON.stringify(fresh)) + '; path=/; max-age=7776000; SameSite=Lax';
+            ls.set('vf_lw_attr', JSON.stringify(fresh));
+          }
+        } catch (e) {}
+
+        var extId = ls.get('vf_ext_id');
+        if (!extId) { extId = uuid(); ls.set('vf_ext_id', extId); }
+        var leadEmail = ls.get('vf_known_email') || null;
+        var isLocal = /^(localhost|127\.)/.test(location.hostname);
+
+        // ── Clarity + Pixel (nicht lokal) ─────────────────────────────
+        if (!isLocal) {
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'wnn5d5ehwn');
+
+          !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v;
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+          }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+          var am = { external_id: extId, country: 'de' };
+          if (leadEmail) am.em = leadEmail;
+          fbq('init', META_PIXEL_ID, am);
+          fbq('track', 'PageView');
+        }
+        function hubEvent(name) {
+          if (window.clarity) window.clarity('event', 'hub_' + name);
+          if (isLocal) console.info('[track]', 'hub_' + name);
+        }
+        if (window.clarity) window.clarity('set', 'vf_page', 'home');
+        hubEvent('view');
+
+        // Klicks: welche Tür, welcher Link (Clarity hub_cta_*)
+        Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
+          a.addEventListener('click', function () { hubEvent('cta_' + a.getAttribute('data-cta')); });
+        });
+
+        // ── AdsFlow-Preis nach dem Launch ─────────────────────────────
+        if (Date.now() >= Date.parse(AF_LAUNCH_END)) {
+          Array.prototype.forEach.call(document.querySelectorAll('[data-af-price]'), function (el) {
+            el.innerHTML = '<b>499&nbsp;€</b> zzgl. MwSt., einmalig';
+          });
+        }
+
+        // ── Stimmen am Handy aufklappen ───────────────────────────────
+        var more = document.getElementById('more');
+        var wall = document.getElementById('wall');
+        more.addEventListener('click', function () {
+          wall.classList.add('is-open');
+          more.setAttribute('aria-expanded', 'true');
+          var next = wall.querySelector('figure:nth-child(5) blockquote');
+          if (next) { next.setAttribute('tabindex', '-1'); next.focus({ preventScroll: true }); }
+          hubEvent('voices_more');
+        });
+
+        // ── Kopfzeile: Linie beim Scrollen ────────────────────────────
+        var nav = document.querySelector('.nav');
+        var sentinel = document.createElement('div');
+        sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px';
+        document.body.prepend(sentinel);
+        new IntersectionObserver(function (es) { nav.classList.toggle('is-stuck', !es[0].isIntersecting); }).observe(sentinel);
+
+        // ── Reveal ────────────────────────────────────────────────────
+        var revealIO = new IntersectionObserver(function (es) {
+          es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); revealIO.unobserve(en.target); } });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+        Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (el) { revealIO.observe(el); });
+      })();
+    </script>
+  </body>
+</html>

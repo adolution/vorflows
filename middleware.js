@@ -1,29 +1,27 @@
 export const config = {
-  matcher: ['/', '/index.html', '/live-workshop'],
+  matcher: ['/live-workshop'],
 };
 
 const MOBILE_UA = /Mobi|Android|iPhone|iPad|iPod/i;
 const BOT_UA = /googlebot|bingbot|duckduckbot|yandex|baiduspider|slurp|applebot|gptbot|chatgpt-user|oai-searchbot|perplexitybot|claudebot|claude-web|anthropic-ai|google-extended|ccbot|bytespider|facebookexternalhit|meta-externalagent|twitterbot|linkedinbot|petalbot|semrushbot|ahrefsbot|mj12bot/i;
-const MIDDLEWARE_VERSION = 'v8-2026-06-18-lw-forceA';
+const MIDDLEWARE_VERSION = 'v9-2026-10-10-home-hub';
 
 // Per-Pfad-Testkonfiguration. Jeder Test hat eigenen Cookie + eigenes
 // B-Rewrite-Target → Tests laufen unabhängig, keine Bucket-Vermischung.
 // splitDesktop: true → Desktop wird 50/50 gebucket statt auf A gepinnt.
 // forceA: true → Test entschieden, alle auf A pinnen (Sieger). ?ab=B bleibt für QA/Preview offen.
-function testConfig(pathname) {
-  if (pathname === '/live-workshop') {
-    // A/B-Test #4 entschieden 2026-06-18: A gewinnt → 100 % A für den Webinar-Push.
-    return { cookie: 'vf_ab_lw', bTarget: '/live-workshop-b', splitDesktop: true, forceA: true };
-  }
-  // '/' + '/index.html' → bestehender Homepage-Test (Desktop bleibt A).
-  return { cookie: 'vf_ab', bTarget: '/index-b', splitDesktop: false };
+// Die Startseite (/) läuft seit 2026-10-10 ohne Middleware: Marken-Hub statt Homepage-Test
+// (vf_ab / index-b beendet, alte Dateien in .agents/archiv/).
+function testConfig() {
+  // A/B-Test #4 entschieden 2026-06-18: A gewinnt → 100 % A für den Webinar-Push.
+  return { cookie: 'vf_ab_lw', bTarget: '/live-workshop-b', splitDesktop: true, forceA: true };
 }
 
 export default function middleware(req) {
   const url = new URL(req.url);
   console.log(`[ab-middleware ${MIDDLEWARE_VERSION}] ${url.pathname}${url.search}`);
 
-  const { cookie: COOKIE, bTarget: B_TARGET, splitDesktop: SPLIT_DESKTOP, forceA: FORCE_A } = testConfig(url.pathname);
+  const { cookie: COOKIE, bTarget: B_TARGET, splitDesktop: SPLIT_DESKTOP, forceA: FORCE_A } = testConfig();
 
   const ua = req.headers.get('user-agent') || '';
   const isMobile = MOBILE_UA.test(ua);
@@ -77,7 +75,7 @@ export default function middleware(req) {
   headers.set('x-ab-source', source || 'unknown');
 
   // cleanUrls: true → rewrite-Target ohne .html.
-  // A bleibt pass-through (canonical-Datei: index.html bzw. live-workshop.html).
+  // A bleibt pass-through (canonical-Datei: live-workshop.html).
   if (bucket === 'B') {
     headers.set('x-middleware-rewrite', new URL(B_TARGET, url).toString());
   } else {

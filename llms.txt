@@ -1,8 +1,12 @@
 # vorflows
 
-> System, mit dem Shopify-Founder ihren Store über Claude Code umbauen, ranken und optimieren — ohne Agentur, ohne App-Stack, ohne Dev-Team.
+> Fertige Claude-Systeme von Alexander Dück: vorflows für Shopify (Claude baut den Shopify-Shop um, ersetzt Apps, wertet Such- und Klickdaten aus) und AdsFlow für Meta Ads (Claude schreibt und stellt Facebook-/Instagram-Anzeigen ein und legt sie ausgeschaltet ins Werbekonto).
 
-vorflows ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, Bundle aus drei Modulen: BaseFlow + SEOFlow + ClarityFlow. Preis: 1.499 € netto statt 2.000 € (befristete Launch-Aktion). Ratenzahlung möglich über Digistore24. Es gibt ausschließlich das Bundle, die Module sind einzeln nicht käuflich. Zielmarkt: DACH, Sprache Deutsch.
+Die Startseite https://vorflows.com/ ist der Überblick über die Marke: wer dahinter steckt, Kundenstimmen, Vergleich beider Systeme und Links zu beiden Kaufseiten.
+
+## vorflows für Shopify
+
+vorflows für Shopify ist ein digitales Produkt (Methode + Skill-Stack + Setup-Files) für Shopify-Stores. Einmalkauf, Bundle aus drei Modulen: BaseFlow + SEOFlow + ClarityFlow. Preis: 1.499 € netto statt 2.000 € (befristete Launch-Aktion). Ratenzahlung möglich über Digistore24. Es gibt ausschließlich das Bundle, die Module sind einzeln nicht käuflich. Zielmarkt: DACH, Sprache Deutsch.
 
 Anbieter: AMD Media GmbH (Deutschland). Founder: Alexander Dück.
 
@@ -58,9 +62,10 @@ Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurü
 
 ## Pages
 
+- [Startseite](https://vorflows.com/): Überblick über vorflows, Alexander Dück, Kundenstimmen und beide Systeme
 - [AdsFlow](https://vorflows.com/adsflow): Claude-Projekt für Meta Ads, mit Video, Preis und FAQ
 - [vorflows kaufen](https://vorflows.com/sales): Kaufseite mit Mechanik, Modulen, Preis und FAQ. Maßgebliche Quelle für den Preis.
-- [Live-Workshop](https://vorflows.com/live-workshop): kostenloser Live-Workshop, aktuelles Ziel der Startseite
+- [Live-Workshop](https://vorflows.com/live-workshop): kostenloser Live-Workshop, in dem Alex mit Claude einen Shopify-Shop umbaut
 - [BaseFlow](https://vorflows.com/baseflow): Theme-Optimization-Workflow
 - [SEOFlow](https://vorflows.com/seoflow): SEO-Workflow mit Search Console
 - [ClarityFlow](https://vorflows.com/clarityflow): Verhaltensdaten-Loop mit Microsoft Clarity
@@ -73,5 +78,6 @@ Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurü
 ## Kontakt
 
 - Instagram: https://www.instagram.com/vorflows/
+- LinkedIn (Alexander Dück): https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/
 - E-Mail: alex@adolution.de
 - Anbieter: AMD Media GmbH, Deutschland

@@ -5,20 +5,19 @@
 
   <url>
     <loc>https://vorflows.com/</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://vorflows.com/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vorflows.com/" />
     <image:image>
-      <image:loc>https://vorflows.com/brand_assets/og-image.jpg</image:loc>
-      <image:title>vorflows — Shopify-Store wie ein Senior Dev mit Claude Code</image:title>
-      <image:caption>vorflows Bundle: BaseFlow, SEOFlow, ClarityFlow für Shopify-Founder</image:caption>
+      <image:loc>https://vorflows.com/brand_assets/og-home.jpg</image:loc>
+      <image:title>vorflows: Claude-Systeme für Shopify und Meta Ads</image:title>
+      <image:caption>vorflows für Shopify und AdsFlow für Meta Ads, von Alexander Dück</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://vorflows.com/brand_assets/boxes/family-tonal-1x1-transparent.webp</image:loc>
-      <image:title>vorflows Bundle Modul-Boxen</image:title>
-      <image:caption>BaseFlow, SEOFlow und ClarityFlow im vorflows Bundle</image:caption>
+      <image:loc>https://vorflows.com/assets/images/home/alex-lifestyle-640.webp</image:loc>
+      <image:title>Alexander Dück, Gründer von vorflows</image:title>
     </image:image>
     <image:image>
       <image:loc>https://vorflows.com/brand_assets/logos/10d.1-wordmark.png</image:loc>

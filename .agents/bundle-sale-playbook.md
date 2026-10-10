@@ -7,6 +7,12 @@ Letzter Stand: **2026-06-29 — Sale AUS, Regulärpreis 897 € netto** (Webinar
 25.–28.06.2026 wieder zurückgestellt). Voriger Sale: 397 € netto statt 897 €, Voucher
 `launchsale`, Countdown bis 28.06.
 
+> 🔁 **Stand 2026-10-10 — Playbook teilweise veraltet.** `index.html` ist jetzt der Marken-Hub (zwei Systeme,
+> Stimmen, Alex), `index-b.html` gibt es nicht mehr (Archiv: `.agents/archiv/index-*-alt-2026-10-10.html`). Die
+> Homepage-Redirects in `vercel.json` sind **dauerhaft weg**, Schritte 5 und 9 entfallen. Preisführend für das Bundle ist
+> `sales.html`. Die Startseite nennt Preise nur im Vergleichskasten `#systeme` (vorflows 1.499 € statt 2.000 €, AdsFlow
+> per Datum aus `AF_LAUNCH_END` im Script) → bei jeder Preisänderung dort mitpflegen. Doku: `.agents/startseite.md`.
+
 > ⚠️ **Geld + Kundenseite.** Der angezeigte Preis MUSS exakt dem entsprechen, was
 > Digistore24 (Produkt `688983`) **ohne Voucher** abbucht. Der Voucher `launchsale`
 > rabattiert vom Regulärpreis auf den Sale-Preis. Stimmen Seite und Digistore nicht
