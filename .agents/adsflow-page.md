@@ -138,8 +138,18 @@ Hinweis: `.agents/` ist auf vorflows.com öffentlich abrufbar, deshalb hier kein
 ## Danke-Seite `/danke-adsflow` (seit 2026-10-10)
 
 Datei `danke-adsflow.html` → `https://vorflows.com/danke-adsflow`, `noindex`, nicht in Sitemap/llms.txt.
-**In Digistore (Produkt 690701) als Danke-Seite eintragen** (Stand 2026-10-10 noch offen). Look = LP `/adsflow`
-(gleiche Tokens, Terracotta = Claude/Aktion, Meta-Blau = Metas Welt).
+Look = LP `/adsflow` (gleiche Tokens, Terracotta = Claude/Aktion, Meta-Blau = Metas Welt).
+
+**Digistore 690701 (Stand 2026-10-10):** Dankeseite = `https://vorflows.com/danke-adsflow` (per API gesetzt).
+Auslieferung über den **Download-Tresor** (Paket mit PDF „Zuerst lesen“ + `AdsFlow-JJJJ-MM-TT.zip`); die Dateien
+kommen laut Alex auch per Digistore-Mail. Die Digistore-Hilfe sagt, der Tresor brauche ein leeres Dankeseite-Feld,
+deshalb per Testkauf prüfen, ob die Mail die Downloads trotz eigener Dankeseite enthält. Der Mail-Text verlinkt groß
+auf `/danke-adsflow`. Über die API lassen sich weder die Texte (`modified: N`) noch der Tresor setzen, das geht nur
+im Digistore-Backend. Produktbild (seit 2026-10-10): `assets/images/adsflow/digistore-produkt.jpg` (500×500, Digistore
+erlaubt max. 500 px Breite), AdsFlow-Box im Stil der Box-Familie (Terracotta-Variante, HTML-Render) und per Higgsfield
+(Nano Banana Pro) als Studiofoto mit Spotlicht umgesetzt; 2048-px-Original liegt lokal in `~/Downloads/AdsFlow-Digistore-Upload/`.
+Achtung bei Updates: Ein geändertes Datei-Paket sperrt laut Digistore
+den Zugriff bestehender Käufer, Updates also nicht durch Bearbeiten des bestehenden Pakets ausliefern.
 
 Aufbau: Hero mit Pflicht-Download „Bitte zuerst diese Datei herunterladen und lesen.“
 (`assets/help/AdsFlow-Zuerst-lesen.pdf` = Kopie von `product/adsflow/00-ZUERST-LESEN.pdf`, **bei jedem Release neu kopieren**)
