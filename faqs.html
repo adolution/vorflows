@@ -1,390 +1,339 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Häufige Fragen — vorflows</title>
+    <title>Häufige Fragen · vorflows</title>
     <meta name="description" content="Antworten rund um Nutzung, Updates und Einrichtung von vorflows." />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
 
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
     <style>
-      :root {
-        --bg: #FAFAF7;
-        --text-primary: #1A1A1A;
-        --text-secondary: #5C5C5C;
-        --border: #E5E3DD;
-        --accent: #C8633E;
-        --accent-hover: #B05530;
-        --accent-soft: rgba(200, 99, 62, 0.08);
-      }
+      /* ================================================================
+         Hilfe-Seiten für Käufer (/faqs + /troubleshooting)
+         Basis: /assets/site-dark.css. Hier nur, was die Hilfe braucht:
+         Seitenkopf, Sprungmarken, Gruppen, Antworten, Kopierfelder.
+         Gleicher Block in faqs.html und troubleshooting.html.
+         ================================================================ */
 
-      * { box-sizing: border-box; }
-      html, body { margin: 0; }
+      /* ---------- Seitenkopf ---------- */
+      .page-hero .world { margin-bottom: .2rem; }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: end; }
+      .hero-links { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0 1.75rem; }
+      .hero-links .link svg { width: 15px; height: 15px; flex: none; }
+      .hero-links .link.back { gap: .35rem; }
+      .hero-links .link.back svg { transition: transform .5s var(--ease); }
+      .hero-links .link.back:hover svg { transform: translateX(-3px); }
 
-      body {
-        min-height: 100vh;
-        background: var(--bg);
-        background-image:
-          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
-          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
-        color: var(--text-primary);
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        font-size: 17px;
-        line-height: 1.7;
-        -webkit-font-smoothing: antialiased;
-        display: flex;
-        flex-direction: column;
-      }
+      /* Anleitung als PDF (nur /troubleshooting): schwebende Fläche im Seitenkopf */
+      .guide { padding: clamp(1.4rem, 3vw, 1.9rem); }
+      .guide-top { display: flex; align-items: flex-start; gap: 1.1rem; }
+      .guide .doc { flex: none; width: 54px; height: 68px; color: var(--ink-3); }
+      .guide-t { font-size: clamp(1.3rem, 1.15rem + .6vw, 1.6rem); line-height: 1.18; letter-spacing: -.02em; }
+      .guide p { margin-top: .85rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+      .guide .btn { margin-top: 1.4rem; width: 100%; }
+      .guide .btn svg { width: 18px; height: 18px; }
 
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.4;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      }
-
-      .wrap {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        max-width: 40rem;
-        margin: 0 auto;
-        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      .wordmark img { height: 26px; width: auto; display: block; }
-      .topnav { display: flex; gap: 0.4rem; }
-      .topnav a {
+      /* ---------- Sprungmarken ---------- */
+      .jump { position: relative; z-index: 40; background-color: var(--bg); border-block: 1px solid var(--line); }
+      .chips { display: flex; flex-wrap: wrap; gap: .5rem; padding-block: .75rem; }
+      .chip {
+        flex: none;
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        font-size: 0.86rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        padding: 0.45rem 0.8rem;
-        border-radius: 0.55rem;
-        border: 1px solid var(--border);
-        background: #fff;
-        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-      }
-      .topnav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
-      .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .topnav a svg { width: 0.95rem; height: 0.95rem; }
-      @media (max-width: 30rem) {
-        .topnav a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
-      }
-
-      .eyebrow {
-        margin: clamp(1.75rem, 6vw, 3rem) 0 0;
-        font-size: 0.78rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--accent);
-        font-weight: 600;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-      }
-      h1 {
-        margin: 0.5rem 0 0;
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(2.1rem, 7vw, 3.1rem);
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-      }
-      .lead {
-        margin: 1rem 0 0;
-        max-width: 34rem;
-        color: var(--text-secondary);
-        font-size: 1.05rem;
-      }
-
-      .cat-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin: 1.4rem 0 0;
-      }
-      .cat-nav a {
-        display: inline-flex;
-        align-items: center;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        padding: 0.4rem 0.8rem;
+        gap: .55rem;
+        min-height: 44px;
+        padding: 0 1.05rem;
         border-radius: 999px;
-        border: 1px solid var(--border);
-        background: #fff;
-        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-      }
-      .cat-nav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
-      .cat-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-      .faq-group { margin: clamp(2.25rem, 6vw, 3rem) 0 0; scroll-margin-top: 1.25rem; }
-      .faq-group h2 {
-        margin: 0;
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-size: 1.35rem;
-        letter-spacing: -0.02em;
+        border: 1px solid var(--line-2);
+        background-color: var(--raise);
+        color: var(--ink-2);
+        font-size: 14.5px;
+        font-weight: 500;
         line-height: 1.2;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), background-color .2s var(--ease-q), transform .4s var(--ease);
       }
-      .group-sub { margin: 0.3rem 0 1rem; font-size: 0.9rem; color: var(--text-secondary); }
+      .chip .n { font-size: 12.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; transition: color .2s var(--ease-q); }
+      .chip .n:empty { display: none; }
+      .chip:hover { color: var(--ink); border-color: var(--ink-3); }
+      .chip:active { transform: scale(.97); }
+      .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .chip.is-here { color: var(--ink); border-color: rgba(200, 99, 62, .6); background-color: var(--orange-soft); }
+      .chip.is-here .n { color: var(--orange-hi); }
+      /* Desktop: Leiste klebt unter der Kopfzeile (beide deckend, ohne Blur) */
+      @media (min-width: 761px) {
+        .jump { position: sticky; top: 69px; }
+        html { scroll-padding-top: 150px; }
+      }
+      /* Handy: eine Zeile, seitlich wischen, die Seite selbst läuft nicht über */
+      @media (max-width: 760px) {
+        .chips {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          margin-inline: calc(-1 * var(--gutter));
+          padding-inline: var(--gutter);
+          scrollbar-width: none;
+          -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+          mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+        }
+        .chips::-webkit-scrollbar { display: none; }
+        .chips::after { content: ""; flex: 0 0 1.75rem; }
+      }
 
-      .acc {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 0.8rem;
-        overflow: hidden;
-      }
-      .acc + .acc { margin-top: 0.75rem; }
-      .acc > summary {
-        list-style: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 1rem 1.15rem;
-        font-weight: 600;
-        font-size: 0.98rem;
-        line-height: 1.4;
-        color: var(--text-primary);
-      }
-      .acc > summary::-webkit-details-marker { display: none; }
-      .acc > summary:hover { color: var(--accent); }
-      .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-      .acc .chev { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; color: var(--text-secondary); transition: transform 0.2s ease; }
-      .acc[open] .chev { transform: rotate(90deg); }
-      .acc-tag {
+      /* ---------- Gruppen ---------- */
+      .grp { padding-block: clamp(3rem, 6vw, 5rem); scroll-margin-top: -1rem; }
+      .grp + .grp { border-top: 1px solid var(--line); }
+      .grp-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 5rem); }
+      .grp-head { position: sticky; top: 168px; align-self: start; }
+      .grp-head h2 { font-size: clamp(1.8rem, 1.3rem + 1.7vw, 2.6rem); line-height: 1.08; max-width: 14ch; }
+      .grp-sub { margin-top: .9rem; color: var(--ink-3); font-size: 15.5px; line-height: 1.6; max-width: 34ch; }
+
+      /* ---------- Fragen ---------- */
+      .qa summary .t { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+      .qa .ans { font-size: 16px; line-height: 1.7; }
+      .ans p { color: var(--ink-2); }
+      .ans a:not(.btn) { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 123, 84, .55); text-underline-offset: 3px; text-decoration-thickness: 1px; border-radius: 3px; overflow-wrap: anywhere; transition: color .2s var(--ease-q), text-decoration-color .2s var(--ease-q); }
+      .ans a:not(.btn):hover { color: var(--orange-hi); text-decoration-color: currentColor; }
+      .ans a:not(.btn):active { opacity: .7; }
+      .ans a:not(.btn):focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      code.inline {
         font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        background: var(--accent-soft);
-        padding: 0.2rem 0.45rem;
-        border-radius: 0.4rem;
-        flex-shrink: 0;
+        font-size: max(12px, .84em);
+        background: rgba(237, 236, 231, .06);
+        border: 1px solid var(--line-2);
+        padding: .05em .4em;
+        border-radius: 6px;
+        color: var(--ink);
+        overflow-wrap: anywhere;
       }
-      .acc-body { padding: 0 1.15rem 1.2rem; border-top: 1px solid var(--border); }
-      .acc-body > *:first-child { margin-top: 1rem; }
-      .acc-body p { margin: 0 0 0.8rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; }
-      .acc-body p:last-child { margin-bottom: 0; }
-      .acc-body strong { color: var(--text-primary); font-weight: 600; }
-      .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
-      .acc-body a:hover { text-decoration: underline; }
 
-      .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
-      .steps li {
-        counter-increment: s;
-        position: relative;
-        padding-left: 2.1rem;
-        margin: 0 0 0.9rem;
-        color: var(--text-secondary);
-        font-size: 0.96rem;
-        line-height: 1.6;
-      }
-      .steps li:last-child { margin-bottom: 0; }
-      .steps li::before {
+      /* Schritte: echte Reihenfolge, deshalb nummeriert */
+      .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 1rem; }
+      .steps > li { counter-increment: s; position: relative; padding-left: 2.45rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.65; }
+      .steps > li::before {
         content: counter(s);
         position: absolute;
         left: 0;
-        top: 0;
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.78rem;
-        font-weight: 600;
+        top: .05rem;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 1px solid var(--line-2);
+        background: var(--raise);
         display: grid;
         place-items: center;
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 13px;
+        line-height: 1;
+        color: var(--ink);
       }
-      .steps li strong { color: var(--text-primary); font-weight: 600; }
+      .steps > li > strong:first-child { color: var(--ink); }
+      .steps > li > .alt { margin-top: .6rem; }
 
-      .prompt {
-        margin: 0.6rem 0 0.9rem;
-        padding: 0.85rem 1rem 0.9rem;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--accent);
-        border-radius: 0.5rem;
-      }
-      .prompt .plabel {
-        display: block;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.35rem;
-      }
-      .prompt p { margin: 0; color: var(--text-primary); font-size: 0.93rem; line-height: 1.55; }
-      .prompt p + p { margin-top: 0.6rem; }
-      .prompt-copy {
-        margin-top: 0.75rem;
-        padding: 0.45rem 0.95rem;
-        font-family: inherit;
-        font-size: 0.83rem;
-        font-weight: 600;
-        color: #fff;
-        background: var(--accent);
-        border: 0;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: background-color 0.16s ease, transform 0.16s ease;
-      }
-      .prompt-copy:hover { background: var(--accent-hover); }
-      .prompt-copy:active { transform: scale(0.97); }
-      .prompt-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-      code.inline {
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.85em;
-        padding: 0.05rem 0.3rem;
-        border-radius: 0.3rem;
-      }
-
+      /* Tipp unter einer Antwort */
       .tip {
-        margin: 0.8rem 0 0;
-        padding: 0.85rem 1rem;
-        background: var(--accent-soft);
-        border-left: 3px solid var(--accent);
-        border-radius: 0.5rem;
-        font-size: 0.9rem;
-        line-height: 1.55;
-        color: var(--text-primary);
+        padding: .95rem 1.15rem 1rem;
+        border: 1px solid var(--line-2);
+        border-radius: var(--r-field);
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        color: var(--ink-2);
+        font-size: 15px;
+        line-height: 1.62;
       }
-      .tip strong { font-weight: 600; }
+      .ans p.tip { color: var(--ink-2); }
+      .tip strong { color: var(--ink); }
+      .tip + .tip { margin-top: .6rem; }
 
-      .divider {
-        margin: clamp(2rem, 6vw, 3rem) 0 0;
-        border: 0;
-        border-top: 1px solid var(--border);
-      }
-      .foot {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem 1.5rem;
+      /* ---------- Kopierfelder: Prompts + Befehle ---------- */
+      .prompt, .cmd {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
         align-items: center;
+        gap: .5rem .75rem;
+        padding: .6rem .6rem 1rem 1.05rem;
+        border: 1px solid var(--line-2);
+        border-radius: var(--r-field);
+        background: var(--bg-deep);
+        box-shadow: inset 0 1px 0 rgba(237, 236, 231, .03);
       }
-      a.home {
+      .steps .prompt, .steps .cmd { margin-top: .8rem; }
+      .cmd + .cmd { margin-top: .55rem; }
+      .prompt .plabel, .cmd .os { grid-row: 1; grid-column: 1; font-size: 12.5px; font-weight: 500; line-height: 1.3; color: var(--ink-3); padding-block: .45rem; }
+      .prompt p { grid-column: 1 / -1; color: var(--ink); font-size: 15px; line-height: 1.62; padding-right: .45rem; }
+      .ans .prompt p { color: var(--ink); }
+      .cmd code {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        padding-right: .45rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 13.5px;
+        line-height: 1.65;
+        color: #E9E7DF;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .cmd--solo { padding-block: .55rem; }
+      .cmd--solo code { grid-row: 1; grid-column: 1; }
+      .prompt-copy, .cmd-copy {
+        grid-row: 1;
+        grid-column: 2;
+        position: relative;
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        color: var(--text-primary);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        padding: 0.55rem 0.9rem;
-        margin-left: -0.9rem;
-        border-radius: 0.5rem;
-        transition: background-color 0.16s ease, transform 0.16s ease;
-      }
-      a.home:hover { background: var(--accent-soft); transform: translateX(-2px); }
-      a.home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .support { font-size: 0.9rem; color: var(--text-secondary); }
-      .support a { color: var(--accent); text-decoration: none; font-weight: 500; }
-      .support a:hover { text-decoration: underline; }
-
-      @media (prefers-reduced-motion: reduce) {
-        a.home, .acc .chev, .prompt-copy { transition: none; }
-      }
-
-      /* Kauf-CTA in der Kopfzeile — fuehrt auf die Sales-Seite (/sales). */
-      .topnav a.nav-buy {
-        display: inline-flex;
-        align-items: center;
-        background: var(--accent);
-        border: 1px solid var(--accent);
-        box-shadow: none;
-        color: var(--bg-light, #FAFAF7);
-        padding: 9px 16px;
-        border-radius: 6px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 14px;
+        justify-content: center;
+        min-height: 34px;
+        padding: 0 .9rem 0 2rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: var(--raise-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B6B4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") no-repeat .8rem 50% / 13px 13px;
+        color: var(--ink-2);
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
         line-height: 1;
         white-space: nowrap;
-        text-decoration: none;
-        transition: background-color 150ms ease-out, transform 150ms ease-out;
+        cursor: pointer;
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), transform .4s var(--ease);
       }
-      .topnav a.nav-buy:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-      .topnav a.nav-buy:active { transform: translateY(1px); }
-      .topnav a.nav-buy:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-      .nav-actions { display: inline-flex; align-items: center; gap: clamp(12px, 2vw, 20px); }
+      /* Trefferfläche auf 44px vergrößern, ohne das Feld größer zu machen */
+      .prompt-copy::before, .cmd-copy::before { content: ""; position: absolute; inset: -5px -3px; }
+      .prompt-copy:hover, .cmd-copy:hover { color: var(--ink); border-color: var(--ink-3); }
+      .prompt-copy:active, .cmd-copy:active { transform: scale(.96); }
+      .prompt-copy:focus-visible, .cmd-copy:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .prompt-copy.is-done, .cmd-copy.is-done {
+        color: var(--ok);
+        border-color: rgba(95, 174, 133, .5);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235FAE85' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+      }
+
+      /* ---------- Screenshots in Antworten ---------- */
+      .shot { margin: 0; }
+      .shot img { width: 100%; height: auto; border: 1px solid var(--line-2); border-radius: 12px; background: var(--bg-deep); box-shadow: var(--shadow-raise); }
+      .shot figcaption { margin-top: .65rem; font-size: 14px; line-height: 1.55; color: var(--ink-3); }
+
+      /* ---------- Kontakt am Ende ---------- */
+      .contact { position: relative; padding-block: clamp(4.5rem, 10vw, 8rem); border-top: 1px solid var(--line); overflow: hidden; isolation: isolate; }
+      .contact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          radial-gradient(36rem 22rem at 18% 75%, rgba(200, 99, 62, .1), transparent 70%),
+          radial-gradient(30rem 18rem at 95% 0%, rgba(237, 236, 231, .035), transparent 70%);
+      }
+      .contact-grid { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.4rem clamp(1.5rem, 3vw, 2.5rem); align-items: start; max-width: 880px; }
+      .contact .face { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); box-shadow: var(--shadow-raise); }
+      .contact h2 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem); }
+      .contact .body { margin-top: 1rem; max-width: 60ch; }
+      .contact .acts { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.75rem; }
+      .contact .btn svg { width: 18px; height: 18px; }
+
+      /* ---------- Tablet + Handy (geprüft bei 320/360/390/430 px) ---------- */
+      @media (max-width: 999px) {
+        .grp-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+        .grp-head { position: static; }
+        .grp-head h2 { max-width: none; }
+      }
+      @media (max-width: 860px) {
+        .hero-grid { grid-template-columns: minmax(0, 1fr); align-items: start; }
+        .guide { max-width: 520px; }
+      }
+      @media (max-width: 760px) {
+        .grp { scroll-margin-top: 0; }
+      }
+      @media (max-width: 560px) {
+        .contact-grid { grid-template-columns: minmax(0, 1fr); }
+        .contact .face { width: 72px; height: 72px; }
+        .contact .acts .btn { width: 100%; }
+      }
+      @media (max-width: 480px) {
+        .steps > li { padding-left: 2.2rem; }
+        /* Kopierfelder in Schritten auf volle Breite ziehen */
+        .steps > li > .prompt, .steps > li > .cmd { margin-left: -2.2rem; }
+        .prompt, .cmd { padding-left: .9rem; }
+      }
+      @media (max-width: 380px) {
+        .guide { padding: 1.1rem; }
+        .guide .doc { width: 44px; height: 56px; }
+        .guide .btn { padding-inline: .9rem; font-size: 15px; }
+        .guide .btn svg { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .chip, .prompt-copy, .cmd-copy, .hero-links .link.back svg { transition: none; }
+      }
     </style>
   </head>
   <body>
-    <main class="wrap">
-      <div class="topbar">
-        <a class="wordmark" href="/" aria-label="vorflows Startseite">
-          <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
-        </a>
-        <nav class="topnav" aria-label="Seiten">
-          <a href="/danke#tutorials">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-            Tutorials
-          </a>
-          <a href="/troubleshooting">Hilfe bei Fehlern</a>
-          <a href="/sales" class="nav-buy">vorflows kaufen</a>
+    <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+    <header class="nav" id="top">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav class="nav-links" aria-label="Seitennavigation">
+        <a class="hide-m" href="/sales">Für Shopify</a>
+        <a class="hide-m" href="/adsflow">AdsFlow</a>
+        <a class="hide-m" href="/faqs" aria-current="page">FAQs</a>
+        <a class="hide-m" href="/troubleshooting">Hilfe bei Fehlern</a>
+          <a class="btn nav-buy" href="/sales">vorflows kaufen</a>
         </nav>
       </div>
+    </header>
 
-      <p class="eyebrow">Hilfe · Fragen</p>
-      <h1>Häufige Fragen</h1>
-      <p class="lead">
-        Antworten rund um Nutzung, Updates und Einrichtung. Fehlt etwas?
-        Schreib mir, dann nehme ich es hier auf.
-      </p>
+    <main id="inhalt">
+      <section class="page-hero page-hero--shop" aria-labelledby="h1">
+        <div class="wrap">
+          <span class="world world--shop rise d1"><i></i>vorflows für Shopify</span>
+          <h1 id="h1" class="rise d2">Häufige Fragen</h1>
+          <p class="lead rise d3">
+            Antworten rund um Nutzung, Updates und Einrichtung. Fehlt etwas?
+            Schreib mir, dann nehme ich es hier auf.
+          </p>
+          <div class="hero-links rise d4">
+            <a class="link back" href="/danke#tutorials"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>Zurück zu den Tutorials</a>
+            <a class="link" href="/troubleshooting">Hilfe bei Fehlern</a>
+          </div>
+        </div>
+      </section>
 
-      <nav class="cat-nav" aria-label="FAQ-Kategorien">
-        <a href="#arbeiten">Täglich arbeiten</a>
-        <a href="#limits">Limits &amp; Account</a>
-        <a href="#projekte">Projekte &amp; md-Dateien</a>
-        <a href="#shop">Shop &amp; Daten</a>
-        <a href="#connector">Shopify-Connector</a>
-        <a href="#updates">Updates &amp; weitere Shops</a>
+      <nav class="jump" aria-label="FAQ-Kategorien">
+        <div class="wrap">
+          <div class="chips">
+            <a class="chip" href="#arbeiten">Täglich arbeiten<span class="n" data-count="arbeiten"></span></a>
+            <a class="chip" href="#limits">Limits &amp; Account<span class="n" data-count="limits"></span></a>
+            <a class="chip" href="#projekte">Projekte &amp; md-Dateien<span class="n" data-count="projekte"></span></a>
+            <a class="chip" href="#shop">Shop &amp; Daten<span class="n" data-count="shop"></span></a>
+            <a class="chip" href="#connector">Shopify-Connector<span class="n" data-count="connector"></span></a>
+            <a class="chip" href="#updates">Updates &amp; weitere Shops<span class="n" data-count="updates"></span></a>
+          </div>
+        </div>
       </nav>
 
-      <section class="faq-group" id="arbeiten">
-        <h2>Täglich mit Claude arbeiten</h2>
-        <p class="group-sub">Modelle, Kontextfenster, Screenshots und Feedback.</p>
+      <section class="grp" id="arbeiten" aria-labelledby="h-arbeiten">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-arbeiten">Täglich mit Claude arbeiten</h2>
+            <p class="grp-sub">Modelle, Kontextfenster, Screenshots und Feedback.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Welches Claude-Modell nehme ich wofür?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Welches Claude-Modell nehme ich wofür?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p><strong>Opus</strong> ist dein Standard: Code schreiben, tägliche Aufgaben, auch Planen. Es hat das beste Verhältnis aus Leistung und Kosten.</p>
             <p><strong>Sonnet</strong> führt fertige Pläne und Routineaufgaben aus. Stößt Sonnet an Grenzen, wechsle zu Opus.</p>
             <p><strong>Fable</strong> ist nur mit einem größeren Plan sinnvoll. Auf dem kleinen Plan ist dein Session-Limit fast sofort erreicht, weil das Modell sehr rechenintensiv ist. Hast du den großen Plan, nimmst du Fable für sehr komplexe Planung.</p>
@@ -392,12 +341,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Mit Opus planen, mit Sonnet ausführen: wie geht das?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Mit Opus planen, mit Sonnet ausführen: wie geht das?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <ol class="steps">
               <li><strong>Opus um einen Plan bitten.</strong> Zum Beispiel: „Erstelle mir eine SEO-Strategie als md-Datei." Auch längere, vorbereitende Prompts funktionieren so.</li>
               <li><strong>Plan speichern lassen.</strong> Opus legt die Strategie als md-Datei im Projekt ab.</li>
@@ -407,12 +353,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Warum werden Antworten in langen Chats schlechter?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Warum werden Antworten in langen Chats schlechter?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Claude hat ein Kontextfenster: Vor jeder Antwort liest es den ganzen bisherigen Chat neu. Je länger der Chat, desto mehr Tokens kostet das. Die Folge: Dein Session-Limit ist schneller voll und die Antworten werden mit der Zeit schlechter.</p>
             <ol class="steps">
               <li><strong>Neue Session starten,</strong> sobald eine Aufgabe fertig ist oder du etwas Neues beginnst.</li>
@@ -422,53 +365,38 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie starte ich eine neue Session?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie starte ich eine neue Session?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Klicke auf das <strong>Cloud-Symbol</strong> in deiner linken Seitenleiste und tippe dann auf <strong>„+ New Session“</strong>, um eine neue Session zu öffnen.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wann starte ich eine neue Session?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wann starte ich eine neue Session?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Immer wenn du eine neue Aufgabe startest, für die der Kontext eines aktuellen Chats nicht wichtig ist.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wann nutze ich Compact?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wann nutze ich Compact?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Immer dann, wenn du einen Zwischenschritt erreicht hast und den Chat noch weiterhin benutzen willst.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Kann ich Kontext aus einem Chat auch in einem anderen Chat verwenden?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Kann ich Kontext aus einem Chat auch in einem anderen Chat verwenden?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja. Lass Claude einfach eine <strong>md-Datei</strong> daraus machen, die du in einem anderen Chat ansprichst.</p>
             <p class="tip">Nutze diese Funktion nur, wenn du wirklich über längere Zeit hinweg an einer Aufgabe arbeitest, und lösche die md-Datei anschließend wieder. Das macht zum Beispiel Sinn bei mehrwöchigen SEO-Planungen.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie zeige ich Claude am besten, was ich meine?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie zeige ich Claude am besten, was ich meine?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Mit Screenshots, das geht schneller als beschreiben. Gefällt dir etwas nicht oder willst du erklären, wie etwas aussehen soll:</p>
             <ol class="steps">
               <li><strong>Screenshot ablegen.</strong> In der Seitenleiste in den Projekt-Ordner ziehen oder einfach im Download-Ordner lassen.</li>
@@ -484,12 +412,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Claude macht etwas, das mir nicht gefällt. Was tun?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Claude macht etwas, das mir nicht gefällt. Was tun?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Sag es direkt im Chat: „Das gefällt mir nicht, merk dir das bitte." Claude speichert den Hinweis in der memory.md und macht denselben Fehler nicht noch mal. Das geht auch für den Ton: „Fasse dich in Zukunft kürzer."</p>
             <p>Nutze das für Dinge, die öfter passieren oder dir wirklich wichtig sind, damit die memory.md nicht überlädt.</p>
             <p class="tip">Das Setup lernt mit. In Woche eins dauert manches noch, ab Woche zwei bis drei sitzt vieles auf Anhieb so, wie du es dir vorstellst.</p>
@@ -497,12 +422,9 @@
         </details>
 
 
-        <details class="acc">
-          <summary>
-            Was bringt der Effort-Regler?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Was bringt der Effort-Regler?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Effort steuert, wie lange Claude nachdenkt, bevor es antwortet. Niedrig heißt sofort loslegen. Hoch heißt rund zehn bis zwölf Sekunden abwägen, welcher Weg der beste ist, und dann diesen Weg gehen.</p>
             <p>Wenn dir die Ergebnisse zu flach sind, geh in dieser Reihenfolge vor:</p>
             <ol class="steps">
@@ -513,12 +435,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Kann ich vom Handy aus weiterarbeiten?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Kann ich vom Handy aus weiterarbeiten?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja. Steht unten in VS&nbsp;Code <strong>„Remote Control is active"</strong>, kannst du deine laufenden Sessions vom Handy aus steuern.</p>
             <ol class="steps">
               <li><strong>PC anlassen</strong> und die Session in VS&nbsp;Code offen lassen.</li>
@@ -529,12 +448,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Claude sagt, ich soll etwas selbst machen
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Claude sagt, ich soll etwas selbst machen</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Das passiert regelmäßig, zum Beispiel: „Diesen Text kannst du jetzt in deinem Theme einfügen." Nimm das nicht hin, meistens kann Claude es sehr wohl selbst.</p>
             <div class="prompt">
               <span class="plabel">Antwort zum Kopieren</span>
@@ -546,41 +462,37 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Muss ich sauber tippen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Muss ich sauber tippen?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Nein. Tippfehler, fehlende Umlaute oder ein falsch geschriebener Dateiname sind egal, Claude versteht dich trotzdem. Schick es einfach ab, statt vorher zu korrigieren.</p>
             <p class="tip">Du musst auch keine perfekten Prompts formulieren. Wichtiger als die einzelne Eingabe ist der Kontext, der im Projekt liegt: die md-Dateien, die Skills und deine claude.md.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <section class="faq-group" id="limits">
-        <h2>Limits und Account</h2>
-        <p class="group-sub">Wie das Fünf-Stunden-Fenster funktioniert und wie du länger am Stück arbeitest.</p>
+      <section class="grp" id="limits" aria-labelledby="h-limits">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-limits">Limits und Account</h2>
+            <p class="grp-sub">Wie das Fünf-Stunden-Fenster funktioniert und wie du länger am Stück arbeitest.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Wie funktioniert das Session-Limit?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie funktioniert das Session-Limit?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Claude rechnet in einem Fünf-Stunden-Fenster. Wichtig: Der Timer startet <strong>mit deiner ersten Nachricht</strong>, nicht zu einer festen Uhrzeit und nicht jede Stunde neu.</p>
             <p>Innerhalb dieses Fensters hast du ein Kontingent. Ist es aufgebraucht, erscheint <strong>„Session limit reached"</strong> und du kommst erst weiter, wenn die fünf Stunden seit deiner ersten Nachricht um sind. Danach steht der Zähler wieder auf null.</p>
             <p class="tip">Wie schnell das Kontingent voll läuft, hängt vom Modell, vom Effort und von der Länge deines Kontexts ab. Kurze Sessions und regelmäßiges <code class="inline">/compact</code> strecken es deutlich.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Trick: das Zeitfenster morgens vorstarten
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Trick: das Zeitfenster morgens vorstarten</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Weil der Timer mit deiner ersten Nachricht startet, kannst du ihn laufen lassen, bevor du überhaupt am Rechner sitzt.</p>
             <ol class="steps">
               <li><strong>Claude-App aufs Handy</strong> holen und mit demselben Account anmelden.</li>
@@ -597,12 +509,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wo sehe ich, wie viel ich schon verbraucht habe?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wo sehe ich, wie viel ich schon verbraucht habe?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>In VS&nbsp;Code im Menü, das sich mit <code class="inline">/</code> im Chatfeld öffnet, unter <strong>Account → Usage</strong>. In der Claude-App findest du dasselbe in den Kontoeinstellungen unter <strong>Nutzung</strong>.</p>
             <p><strong>Session (5 h)</strong> zeigt, wie voll dein aktuelles Fenster ist und wann es sich zurücksetzt.</p>
             <p><strong>Weekly (7 Tage)</strong> zeigt dein Wochenkontingent.</p>
@@ -610,41 +519,37 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Ich stoße ständig ans Limit. Was tun?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Ich stoße ständig ans Limit. Was tun?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Prüf zuerst die günstigen Hebel: kurze Sessions statt eines Dauerchats, <code class="inline">/compact</code> an Zwischenschritten und Alltagsaufgaben mit Sonnet statt Opus.</p>
             <p>Reicht das nicht, musst du nicht dauerhaft mehr zahlen. Du kannst gezielt <strong>für einen Monat auf den größeren Plan</strong> wechseln und danach wieder zurück. Dort kommst du im normalen Arbeitsalltag praktisch nie ans Limit.</p>
             <p class="tip">Leg dir für so einen Monat vorher zurecht, was viel Rechenleistung braucht: großer Umbau, komplette SEO-Analyse, ein zweiter Shop. Dann holst du am meisten heraus.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Können zwei Personen einen Account nutzen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Können zwei Personen einen Account nutzen?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Wenn ihr an denselben Shops arbeitet: ja. Ein Plan reicht, ihr meldet euch beide mit demselben Account an, auch auf zwei Handys gleichzeitig.</p>
             <p>Zwei getrennte Abos lohnen sich erst, wenn ihr wirklich in verschiedenen Themenbereichen arbeitet. Sonst schreibt ihr euch gegenseitig nur das Fünf-Stunden-Fenster leer.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <section class="faq-group" id="projekte">
-        <h2>Projekte und md-Dateien</h2>
-        <p class="group-sub">Wie dein Workspace aufgebaut ist und sauber bleibt.</p>
+      <section class="grp" id="projekte" aria-labelledby="h-projekte">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-projekte">Projekte und md-Dateien</h2>
+            <p class="grp-sub">Wie dein Workspace aufgebaut ist und sauber bleibt.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Wofür sind die vielen md-Dateien im Projekt?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wofür sind die vielen md-Dateien im Projekt?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Es gibt drei Sorten:</p>
             <p><strong>Kontext-Dateien</strong> wie <code class="inline">seo-aufbauplan.md</code> speichern Wissen über deinen Shop und dein Projekt. Du kannst Claude jederzeit neue anlegen lassen: „Erstelle mir aus diesem Kontext eine md-Datei."</p>
             <p><strong>claude.md</strong> ist das Gehirn des Projekts. Sie regelt, wie gearbeitet wird und welche md-Datei wann genutzt wird. Pro Projekt gibt es genau eine.</p>
@@ -652,12 +557,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie starte ich ein neues Projekt?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie starte ich ein neues Projekt?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <ol class="steps">
               <li><strong>Neuen Ordner anlegen</strong> und in VS&nbsp;Code öffnen.</li>
               <li><strong>Beschreiben, was du vorhast.</strong> Kurz reicht.</li>
@@ -672,58 +574,43 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Muss ich Skills selbst aktivieren?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Muss ich Skills selbst aktivieren?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Nein. Skills starten automatisch, eine grobe Richtung im Prompt reicht. „Optimiere den Text marketingpsychologisch" aktiviert den Marketing-Psychology-Skill, „Optimiere die Seite technisch für SEO" den SEO-Skill.</p>
             <p>Du kannst dir die Skill-Dateien anschauen, um zu verstehen, was es gibt. Nötig ist das nicht.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie wechsle ich zwischen mehreren Projekten?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie wechsle ich zwischen mehreren Projekten?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>In VS&nbsp;Code über <strong>File → Open Folder</strong> den gewünschten Projektordner öffnen. Nach ein paar Wechseln geht es schneller über <strong>File → Open Recent</strong>.</p>
             <p class="tip">Einen einmal angelegten Projektordner <strong>nicht umbenennen oder verschieben</strong>, sonst findet VS&nbsp;Code ihn beim nächsten Öffnen nicht mehr.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Sollte das Projekt in OneDrive oder einer Cloud liegen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Sollte das Projekt in OneDrive oder einer Cloud liegen?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Besser nicht. Cloud-Ordner wie OneDrive synchronisieren ständig und sperren Dateien kurzzeitig, während Claude arbeitet. Das kann zu Lese- oder Cache-Fehlern führen.</p>
             <p>Leg das Projekt in einen normalen lokalen Ordner (z.&nbsp;B. unter „Dokumente"). Sichern darfst du es natürlich trotzdem, nur nicht direkt im aktiven Arbeitsordner synchronisieren lassen.</p>
           </div>
         </details>
 
 
-        <details class="acc">
-          <summary>
-            Wie viele Kontext-Dateien sind zu viele?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie viele Kontext-Dateien sind zu viele?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Es ist verlockend, immer mehr ins Projekt zu speichern. Zu viel Kontext macht die Ergebnisse aber wieder schlechter, weil Claude bei jeder Aufgabe zu viel gleichzeitig verarbeiten muss.</p>
             <p>Halte die Balance: Was dauerhaft gilt, bleibt liegen (Tonalität, Wunschkunde, Theme-Architektur). Was nur zu einer abgeschlossenen Aufgabe gehört, kommt wieder raus.</p>
             <p class="tip">Bist du mit einem Thema durch, lösch die zugehörige md-Datei in der Seitenleiste. Genau dafür arbeitest du in VS&nbsp;Code und nicht in der Desktop-App: Du siehst die Dateien und kannst aufräumen.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Welche eigenen Kontext-Dateien lohnen sich?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Welche eigenen Kontext-Dateien lohnen sich?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Drei haben sich in der Praxis bewährt. Du legst sie an, indem du Claude einfach darum bittest.</p>
             <p><strong>Tonalität.</strong> Damit deine Texte nach dir klingen und nicht nach KI.</p>
             <div class="prompt">
@@ -742,12 +629,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie sehe ich, welche Skills es überhaupt gibt?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie sehe ich, welche Skills es überhaupt gibt?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Nötig ist das nicht, die passenden Skills starten von allein. Wenn du trotzdem stöbern willst:</p>
             <ol class="steps">
               <li><strong>Menü öffnen.</strong> <code class="inline">/</code> ins Chatfeld tippen oder auf das Kästchen mit dem Schrägstrich klicken.</li>
@@ -758,19 +642,21 @@
             <p class="tip">Im Paket stecken 119 Skills, alle auf E-Commerce zugeschnitten und bewusst kuratiert. Mehr ist hier nicht besser: Wer alles einsammelt, was es an Skills gibt, überlädt das System.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <section class="faq-group" id="shop">
-        <h2>Shop, Daten und Erweiterungen</h2>
-        <p class="group-sub">Live gehen, zurückrollen und was deine Datenquellen liefern.</p>
+      <section class="grp" id="shop" aria-labelledby="h-shop">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-shop">Shop, Daten und Erweiterungen</h2>
+            <p class="grp-sub">Live gehen, zurückrollen und was deine Datenquellen liefern.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Wie bekomme ich Änderungen live?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie bekomme ich Änderungen live?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Dein Setup hat zwei Stände: <strong>Staging</strong> ist die Werkstatt, <strong>Main</strong> ist dein Live-Theme.</p>
             <ol class="steps">
               <li><strong>Bauen lassen.</strong> „Bitte ändere XY, nur auf Staging."</li>
@@ -781,12 +667,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Kann ich Änderungen rückgängig machen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Kann ich Änderungen rückgängig machen?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja, jederzeit. Über die GitHub-Verbindung wird jede Version deines Themes mit Datum und Uhrzeit gespeichert, automatisch bei jeder Änderung, egal ob sie aus Claude oder aus Shopify kommt.</p>
             <p>Du musst dafür nichts suchen und nichts wiederherstellen. Sag es einfach im Chat:</p>
             <div class="prompt">
@@ -798,23 +681,17 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wofür brauche ich Shopify Sidekick noch?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wofür brauche ich Shopify Sidekick noch?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Nur für Datenfragen ans Backend, dafür ist er gut. Zum Beispiel: „Woher kamen meine Besucher in den letzten 30 Tagen?" oder „Wie war mein Inventarstand am 31.12.?" Solche Abfragen sparen dir das Zusammensuchen von Hand, etwa für die Steuer.</p>
             <p>Zum Bauen taugt er nicht. Sections, Blöcke und Textarbeit laufen über dein Setup in VS&nbsp;Code, weil dort der Kontext zu deinem Shop und die Skills liegen.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Muss Microsoft Clarity in meine Datenschutzerklärung?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Muss Microsoft Clarity in meine Datenschutzerklärung?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja. Sobald Clarity läuft, erhebst du anonymisierte Daten zum Nutzerverhalten auf deiner Seite. Das gehört in deine Datenschutzerklärung.</p>
             <p>Den Absatz kannst du dir schreiben lassen:</p>
             <div class="prompt">
@@ -826,12 +703,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Warum sieht Claude noch keine Daten?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Warum sieht Claude noch keine Daten?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Weil beide Datenquellen erst sammeln müssen, nachdem du sie eingerichtet hast. Das ist kein Fehler im Setup.</p>
             <p><strong>Microsoft Clarity</strong> braucht ein paar Tage, bis genug Klicks und Scrollwege zusammenkommen, aus denen sich etwas ablesen lässt.</p>
             <p><strong>Google Search Console</strong> braucht rund sieben Tage, bis Suchbegriffe, Positionen und Klicks erscheinen.</p>
@@ -839,42 +713,38 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Kann ich Produktbilder mit KI erzeugen lassen?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Kann ich Produktbilder mit KI erzeugen lassen?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja, das lässt sich als Erweiterung an dein Setup anbinden. Claude steuert dann einen Bildgenerator direkt aus dem Projekt heraus: Bild erzeugen, prüfen, ob das Produkt korrekt dargestellt ist, nachbessern und die fertigen Bilder in den Shop legen.</p>
             <p>Ein Auftrag heißt dann zum Beispiel „erzeuge für alle Produkte eine neue Reihe Lifestyle-Bilder", statt zu shooten, freizustellen und nachzubearbeiten.</p>
             <p class="tip">Im Standard-Paket ist das nicht enthalten. Wenn es für dich interessant wird, schreib mir kurz an <a href="mailto:alex@adolution.de?subject=KI-Produktbilder%20%E2%80%93%20vorflows">alex@adolution.de</a>.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <section class="faq-group" id="connector">
-        <h2>Shopify-Connector</h2>
-        <p class="group-sub">Wann verbinden, wann trennen und wie genau.</p>
+      <section class="grp" id="connector" aria-labelledby="h-connector">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-connector">Shopify-Connector</h2>
+            <p class="grp-sub">Wann verbinden, wann trennen und wie genau.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Wann verbinde ich den Shopify-Connector, wann trenne ich ihn?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wann verbinde ich den Shopify-Connector, wann trenne ich ihn?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Nur für gezielte, größere Aufgaben verbinden, zum Beispiel alle Meta-Beschreibungen in einer Session überarbeiten. Danach direkt wieder trennen, das senkt das Sicherheitsrisiko. Verbinden und Trennen geht beliebig oft.</p>
             <p>Nach dem Verbinden VS&nbsp;Code einmal schließen und neu öffnen, erst dann ist der Connector geladen.</p>
             <p class="tip">Auch mit Connector immer im vorflows-Setup in VS&nbsp;Code weiterarbeiten. Ohne das System führt der Connector Aufgaben ohne deinen Kontext und ohne die Skills aus.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie verbinde und trenne ich den Connector konkret?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie verbinde und trenne ich den Connector konkret?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <ol class="steps">
               <li><strong>Claude Desktop öffnen.</strong> Falls noch nicht installiert, zuerst die Desktop-App installieren.</li>
               <li><strong>Auf „Anpassen" klicken,</strong> dann auf „Konnektoren".</li>
@@ -885,12 +755,9 @@
         </details>
 
 
-        <details class="acc">
-          <summary>
-            Welche Connector-Rechte sollte ich blockieren?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Welche Connector-Rechte sollte ich blockieren?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Der Connector ist mächtig: Er kann Produkte anlegen und löschen, Inventar verstellen, Titel und Meta-Beschreibungen ändern, Bestellungen und Rabattcodes erstellen. Wenn du ihn nutzt, tust du das auf eigene Gefahr, denn was gelöscht ist, ist weg.</p>
             <p>Deshalb direkt nach dem Hinzufügen in der Liste seiner Berechtigungen etwa bis zur Mitte scrollen und diese drei auf <strong>Blockiert</strong> stellen:</p>
             <ol class="steps">
@@ -902,19 +769,21 @@
             <p class="tip">Je größer dein Shop wird, desto vorsichtiger. Ab etwa 50 bis 70 Bestellungen am Tag würde ich die Rechte eher wieder enger ziehen als weiter öffnen. Und in jedem Fall gilt: nur für die konkrete Aufgabe verbinden, danach sofort trennen.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <section class="faq-group" id="updates">
-        <h2>Updates und weitere Shops</h2>
-        <p class="group-sub">Theme-Updates, Produkt-Updates, Shop Nummer zwei und der Umzug auf einen neuen Rechner.</p>
+      <section class="grp" id="updates" aria-labelledby="h-updates">
+        <div class="wrap grp-grid">
+          <header class="grp-head">
+            <h2 id="h-updates">Updates und weitere Shops</h2>
+            <p class="grp-sub">Theme-Updates, Produkt-Updates, Shop Nummer zwei und der Umzug auf einen neuen Rechner.</p>
+          </header>
+          <div class="qa">
 
-        <details class="acc">
-          <summary>
-            Was passiert bei einem Theme-Update?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Was passiert bei einem Theme-Update?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ein Theme-Update bringt dir die neue Version des Theme-Herstellers, kennt aber keine einzige deiner Anpassungen. Shopify spielt das Update deshalb nicht in dein laufendes Theme ein, sondern legt ein <strong>aktualisiertes Duplikat</strong> als Entwurf an. Dieses Duplikat lädst du herunter und lässt Claude es mit deinem echten Theme abgleichen. So bekommst du die Neuerungen, ohne deine Arbeit zu verlieren.</p>
             <ol class="steps">
               <li><strong>Update in Shopify anstoßen.</strong> Unter <strong>Onlineshop &rarr; Themes</strong> liegt bei deinem Theme der Hinweis auf eine neue Version. Update starten. Shopify legt daraufhin ein aktualisiertes Duplikat bei den Entwürfen ab. Dein Live-Theme bleibt unangetastet.</li>
@@ -946,23 +815,17 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Bekomme ich kommende Updates?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Bekomme ich kommende Updates?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Ja. Updates bekommst du per E-Mail mit einem Download-Link. Du entpackst die Datei, ziehst die enthaltene Update-Datei in Claude Code und bittest Claude, das Update einzuspielen.</p>
             <p>Deine eigenen Einstellungen, dein Theme und deine Daten bleiben dabei erhalten, es wird nichts überschrieben, nur ergänzt.</p>
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie richte ich einen zweiten oder dritten Shop ein?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie richte ich einen zweiten oder dritten Shop ein?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Pro Shop ein eigener Projekt-Ordner. Du duplizierst dein bestehendes Setup und lässt Claude die Kopie auf den neuen Shop umstellen:</p>
             <ol class="steps">
               <li><strong>Projekt-Ordner duplizieren.</strong> Den Ordner, in dem du gerade arbeitest, an seinem Speicherort kopieren und wieder einfügen. Weißt du Name oder Ort nicht mehr: In VS&nbsp;Code oben links auf das Explorer-Symbol (Datei-Symbol) klicken, dort steht der Ordner-Name. Über einen Rechtsklick auf eine Datei und „Im Finder anzeigen" (Mac) bzw. „Im Explorer anzeigen" (Windows) findest du den Speicherort.</li>
@@ -986,12 +849,9 @@
           </div>
         </details>
 
-        <details class="acc">
-          <summary>
-            Wie ziehe ich mein System auf einen anderen Rechner um?
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </summary>
-          <div class="acc-body">
+        <details>
+          <summary><span class="t">Wie ziehe ich mein System auf einen anderen Rechner um?</span><span class="pm" aria-hidden="true"></span></summary>
+          <div class="ans">
             <p>Dein ganzes System steckt in dem Ordner, in dem du arbeitest. Du nimmst ihn einfach mit und lässt Claude auf dem neuen Gerät prüfen, was noch fehlt:</p>
             <ol class="steps">
               <li><strong>Ordner zippen.</strong> Auf dem alten Rechner den Arbeits-Ordner per Rechtsklick komprimieren: „Komprimieren" (Mac) bzw. „Senden an &rarr; ZIP-komprimierter Ordner" (Windows).</li>
@@ -1012,31 +872,54 @@
             <p class="tip">Zugänge wie Claude, GitHub, die Search Console oder Clarity hängen an deinem Konto, nicht am Gerät. Du meldest dich auf dem neuen Rechner einmal an, danach arbeitest du genau wie vorher weiter.</p>
           </div>
         </details>
-
+          </div>
+        </div>
       </section>
 
-      <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block in die passende .faq-group kopieren, Titel/Text anpassen.
-      <details class="acc">
-        <summary>
-          Kurze Frage als Titel
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-        </summary>
-        <div class="acc-body">
+      <!-- NEUEN EINTRAG HINZUFÜGEN: diesen Block in die passende .qa einer .grp kopieren, Frage/Antwort anpassen.
+           Kopierfeld: <div class="prompt"><span class="plabel">Prompt zum Kopieren</span><p>…</p><button type="button" class="prompt-copy">Prompt kopieren</button></div>
+      <details>
+        <summary><span class="t">Kurze Frage als Titel</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">
           <p>Antwort hier.</p>
         </div>
       </details>
       -->
-      <hr class="divider" />
 
-      <div class="foot">
-        <a class="home" href="/danke#tutorials">
-          <span aria-hidden="true">←</span> Zurück zu den Tutorials
-        </a>
-        <p class="support">
-          Frage nicht dabei? <a href="mailto:alex@adolution.de">alex@adolution.de</a>
-        </p>
-      </div>
+      <section class="contact" aria-labelledby="h-kontakt">
+        <div class="wrap">
+          <div class="contact-grid">
+            <img class="face" src="/assets/images/home/alex-portrait-480.webp" width="96" height="96" loading="lazy" alt="Alex" />
+            <div>
+              <h2 id="h-kontakt">Frage nicht dabei?</h2>
+              <p class="body">Schreib mir, dann nehme ich sie hier auf.</p>
+              <div class="acts">
+                <a class="btn btn--ghost" href="mailto:alex@adolution.de"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6 8.5-6" /></svg>alex@adolution.de</a>
+                <a class="link" href="/danke#tutorials">Zurück zu den Tutorials</a>
+                <a class="link" href="/troubleshooting">Hilfe bei Fehlern</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav aria-label="Weitere Seiten">
+          <a href="/sales">vorflows für Shopify</a>
+          <a href="/adsflow">AdsFlow</a>
+          <a href="/replay">Shopify-Workshop</a>
+          <a href="/blog">Blog</a>
+          <a href="/faqs">FAQs</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </nav>
+        <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+      </div>
+    </footer>
 
     <script>
       // "Prompt kopieren": kopiert alle Absätze der zugehörigen Prompt-Box
@@ -1049,7 +932,8 @@
           function done() {
             var prev = btn.textContent;
             btn.textContent = 'Kopiert';
-            setTimeout(function () { btn.textContent = prev; }, 1400);
+            btn.classList.add('is-done');
+            setTimeout(function () { btn.textContent = prev; btn.classList.remove('is-done'); }, 1400);
           }
           function legacyCopy() {
             var ta = document.createElement('textarea');
@@ -1069,6 +953,46 @@
           }
         });
       });
+    </script>
+
+    <script>
+      /* Sprungmarken: Zähler, aktive Kategorie, Anker auf eine Frage klappt sie auf */
+      (function () {
+        var groups = Array.prototype.slice.call(document.querySelectorAll('.grp'));
+        groups.forEach(function (g) {
+          var c = document.querySelector('[data-count="' + g.id + '"]');
+          if (c) c.textContent = g.querySelectorAll('.qa details').length;
+        });
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.jump .chip'));
+        function mark(id) {
+          chips.forEach(function (a) {
+            var on = a.getAttribute('href') === '#' + id;
+            a.classList.toggle('is-here', on);
+            if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+          });
+        }
+        if ('IntersectionObserver' in window && chips.length) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) mark(en.target.id); });
+          }, { rootMargin: '-35% 0px -60% 0px' });
+          groups.forEach(function (g) { io.observe(g); });
+          var hero = document.querySelector('.page-hero');
+          if (hero) {
+            new IntersectionObserver(function (entries) {
+              if (entries[0].isIntersecting) mark('');
+            }, { rootMargin: '-35% 0px -60% 0px' }).observe(hero);
+          }
+        }
+        function openTarget(hash) {
+          var t = null;
+          try { t = hash && document.querySelector(hash); } catch (e) {}
+          if (t && t.tagName === 'DETAILS') t.open = true;
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function () { openTarget(a.getAttribute('href')); });
+        });
+        openTarget(location.hash);
+      })();
     </script>
   </body>
 </html>

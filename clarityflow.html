@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ClarityFlow — Shopify-Conversion mit Verhaltensdaten | vorflows</title>
+    <title>ClarityFlow: Shopify-Conversion mit Verhaltensdaten | vorflows</title>
     <meta name="description" content="ClarityFlow: Verhaltensdaten-Loop für Shopify. Heatmaps, Klicks und Scrolls landen in Claude Code. KI verschiebt Sections auf Basis echter Besucherdaten." />
     <meta name="author" content="vorflows" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="content-language" content="de-DE" />
     <meta name="language" content="German" />
@@ -22,14 +22,14 @@
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="vorflows" />
     <meta property="og:url" content="https://vorflows.com/clarityflow" />
-    <meta property="og:title" content="ClarityFlow — Shopify-Conversion mit Verhaltensdaten" />
+    <meta property="og:title" content="ClarityFlow: Shopify-Conversion mit Verhaltensdaten" />
     <meta property="og:description" content="Heatmaps, Klicks und Scrolls in Claude Code. CRO-Optimierungen direkt ins Theme. Setup 15 Minuten." />
     <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="vorflows ClarityFlow — Shopify-Conversion-Optimierung mit Verhaltensdaten" />
+    <meta property="og:image:alt" content="vorflows ClarityFlow: Shopify-Conversion-Optimierung mit Verhaltensdaten" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ClarityFlow — Shopify-Conversion mit Verhaltensdaten" />
+    <meta name="twitter:title" content="ClarityFlow: Shopify-Conversion mit Verhaltensdaten" />
     <meta name="twitter:description" content="Verhaltensdaten-Loop für Shopify mit Claude Code. Setup 15 Minuten." />
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
@@ -167,229 +167,280 @@
     }
     </script>
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/module-page.css?v=20260909" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/module-page.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
-  <body>
+  <body class="mod mod--clarity">
+    <a class="skip" href="#main">Zum Inhalt springen</a>
 
-    <nav class="nav" id="nav">
-      <div class="container nav-inner">
-        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <div class="nav-actions">
-          <a href="/" class="nav-back">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Zurück zur Startseite
-          </a>
-          <a href="/sales" class="nav-buy">vorflows kaufen</a>
-        </div>
-      </div>
-    </nav>
+    <!-- NAV -->
+    <header class="nav"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav class="nav-links" aria-label="Seitennavigation">
+        <a class="hide-m" href="/sales">Für Shopify</a>
+        <a class="hide-m" href="/adsflow">AdsFlow</a>
+        <a class="hide-m" href="/faqs">FAQs</a>
+        <a class="btn nav-buy" href="/sales">vorflows kaufen</a>
+      </nav>
+    </div></header>
 
-    <header class="mod-hero">
-      <div class="container mod-hero-grid">
-        <div class="mod-hero-text">
-          <div class="meta mod-eyebrow">Modul 03 · ClarityFlow · Stand Mai 2026</div>
-          <h1 class="mod-h1">Conversion auf Basis <em>echter</em> Besucherdaten.</h1>
-          <p class="mod-lead">ClarityFlow ist der Verhaltensdaten-Loop von vorflows. Heatmaps, Klicks und Scrolls aus deinem Shop landen direkt in Claude. Claude schreibt Theme-Änderungen, die zu mehr Käufen führen. Kein A/B-Tool, keine CRO-Agentur.</p>
-          <div class="mod-ctas">
-            <a href="/sales#preis" class="btn btn-primary">Im Bundle enthalten</a>
-            <a href="#workflow" class="btn btn-ghost">So läuft der Loop ↓</a>
+    <main id="main">
+
+      <!-- HERO -->
+      <section class="mh" aria-labelledby="h1">
+        <div class="wrap mh-grid">
+          <div class="mh-copy">
+            <div class="mh-top rise d1">
+              <span class="world world--shop"><i></i>vorflows für Shopify</span>
+              <nav class="switch" aria-label="Module von vorflows für Shopify">
+                <a href="/baseflow">BaseFlow</a>
+                <a href="/seoflow">SEOFlow</a>
+                <a href="/clarityflow" aria-current="page">ClarityFlow</a>
+              </nav>
+            </div>
+            <h1 id="h1" class="rise d2">Conversion auf Basis <em>echter</em> Besucherdaten</h1>
+            <p class="lead rise d3">ClarityFlow ist der Verhaltensdaten-Loop von vorflows. Heatmaps, Klicks und Scrolls aus deinem Shop landen direkt in Claude. Claude schreibt Theme-Änderungen, die zu mehr Käufen führen. Kein A/B-Tool, keine CRO-Agentur.</p>
+            <div class="mh-ctas rise d4">
+              <a href="/sales#preis" class="btn">Im Bundle enthalten</a>
+              <a href="#workflow" class="btn btn--ghost">So läuft der Loop <span class="arr arr--down" aria-hidden="true">↓</span></a>
+            </div>
+            <ul class="facts rise d5">
+              <li><b>15 Min</b><span>Setup</span></li>
+              <li><b>DSGVO-konform</b></li>
+              <li><b>Heatmaps + Klicks + Scrolls</b></li>
+            </ul>
+            <p class="stand rise d5">Modul 3 von 3, Stand Mai 2026</p>
           </div>
-          <ul class="mod-quickfacts">
-            <li><strong>15 Min</strong> Setup</li>
-            <li><strong>DSGVO-konform</strong></li>
-            <li><strong>Heatmaps + Klicks + Scrolls</strong></li>
+          <div class="mh-art rise d3">
+            <span class="bx"><img src="/brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box, Shopify-Conversion-Optimierung mit Verhaltensdaten" width="600" height="600" decoding="async" fetchpriority="high" /></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="sec" aria-labelledby="h-problem">
+        <div class="wrap split">
+          <div class="split-head">
+            <p class="label">Das Problem</p>
+            <h2 id="h-problem">Du siehst die Heatmap, weißt aber nicht, was zu tun ist</h2>
+          </div>
+          <div class="split-body">
+            <p class="body">Verhaltensdaten-Tools sind brutal gut geworden. Heatmaps, Session-Recordings, Dead-Clicks. Alles da, oft sogar kostenlos. Zwischen <span class="say">„67 % der Mobile-User scrollen nicht bis zur ATC-Section“</span> und <span class="say">„Sticky-ATC implementiert“</span> liegen aber vier Stunden Theme-Code, pro Insight.</p>
+            <p class="body">ClarityFlow überspringt diese Lücke. Claude liest die Daten, identifiziert das Problem und schreibt direkt die Theme-Änderung. Du publishst, wenn der Diff gut aussieht.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKFLOW -->
+      <section class="sec" id="workflow" aria-labelledby="h-workflow">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">So läuft der Loop</p>
+            <h2 id="h-workflow">Verhaltensdaten als Input, Theme-Code als Output</h2>
+          </div>
+          <ol class="track">
+            <li>
+              <span class="n">01</span>
+              <h3>Tool anschließen</h3>
+              <p>ClarityFlow installiert ein DSGVO-konformes Tracking-Snippet in dein Theme (Consent-gated). Verbindung zu deinem Account in fünf Minuten.</p>
+            </li>
+            <li>
+              <span class="n">02</span>
+              <h3>Daten lesen</h3>
+              <p>Claude liest Heatmaps, Dead-Clicks, Rage-Clicks und Scroll-Drop-offs pro Page. Erkennt Muster über 7-, 28- und 90-Tage-Fenster.</p>
+            </li>
+            <li>
+              <span class="n">03</span>
+              <h3>CRO-Code schreiben</h3>
+              <p>Claude schlägt Section-Reihenfolge, Button-Position oder Trust-Signal-Platzierung vor und schreibt die Änderung ins Theme-Duplicate. Review im Preview, manueller Publish.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- WAS CLARITYFLOW ERKENNT -->
+      <section class="sec" aria-labelledby="h-signals">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">Was ClarityFlow erkennt</p>
+            <h2 id="h-signals">Sechs Signale aus deinem Store, direkt verwertbar</h2>
+            <p class="body">Die meisten Verhaltensdaten-Tools sammeln mehr, als klassische Analytics jemals zeigt. ClarityFlow zieht sechs Signale heraus, die Claude direkt in Code übersetzen kann.</p>
+          </div>
+          <ul class="signals">
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="5.75" y="5.75" width="32.5" height="32.5" rx="5" stroke="currentColor" stroke-width="1.5"/><circle class="ac" cx="25" cy="19" r="10" opacity=".16"/><circle class="ac" cx="25" cy="19" r="6" opacity=".38"/><circle class="ac" cx="25" cy="19" r="2.6"/></svg>
+              <h3>Click-Heatmaps</h3>
+              <p>Wo wirklich geklickt wird, nicht wo du es vermutest.</p>
+            </li>
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="5.75" y="5.75" width="32.5" height="32.5" rx="5" stroke="currentColor" stroke-width="1.5"/><rect class="ac" x="10" y="10" width="24" height="5" rx="1.5" opacity=".9"/><rect class="ac" x="10" y="17" width="24" height="5" rx="1.5" opacity=".55"/><rect class="ac" x="10" y="24" width="24" height="5" rx="1.5" opacity=".28"/><rect class="ac" x="10" y="31" width="24" height="3" rx="1.5" opacity=".1"/></svg>
+              <h3>Scroll-Heatmaps</h3>
+              <p>Wie weit Besucher scrollen, pro Device-Klasse.</p>
+            </li>
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="5.75" y="12.75" width="26.5" height="11.5" rx="5.75" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/><path class="acs" d="M25.5 21.5v14l3.6-3.4 2.7 5.6 2.4-1.1-2.7-5.6 4.9-.4z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <h3>Dead-Clicks</h3>
+              <p>Elemente, die wie Buttons aussehen, aber keine sind. UX-Bug.</p>
+            </li>
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M20 19v14l3.6-3.4 2.7 5.6 2.4-1.1-2.7-5.6 4.9-.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path class="acs" d="M17.5 15.5 13 11M20.5 13.5V7M15 19H8.5M24 15l3.5-4" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <h3>Rage-Clicks</h3>
+              <p>Wiederholte Klicks aus Frust. Sicheres Drop-off-Signal.</p>
+            </li>
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><path class="acs" d="M14 15h14a8 8 0 0 1 0 16H17" stroke-width="1.5" stroke-linecap="round"/><path class="acs" d="M18.5 10.5 14 15l4.5 4.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 37h28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg>
+              <h3>Quick-Backs</h3>
+              <p>User, die innerhalb von Sekunden zurückgehen. Falsche-Erwartung-Indikator.</p>
+            </li>
+            <li>
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="5.75" y="9.75" width="32.5" height="24.5" rx="5" stroke="currentColor" stroke-width="1.5"/><path class="ac" d="M19 16.5v11l9-5.5z"/></svg>
+              <h3>Session-Recordings</h3>
+              <p>Anonymisierte Replays für High-Value-Pages (Checkout, Pricing, PDP).</p>
+            </li>
           </ul>
+          <p class="body signals-end">Jedes Signal mündet in eine konkrete Code-Empfehlung. Kein Heatmap-Bilder-Selbst-Deuten.</p>
         </div>
-        <div class="mod-hero-art">
-          <img src="/brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="ClarityFlow Modul-Box — Shopify-Conversion-Optimierung mit Verhaltensdaten" width="600" height="600" decoding="async" fetchpriority="high" />
-        </div>
-      </div>
-    </header>
+      </section>
 
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Das Problem</div>
-        <h2 class="mod-h2">Du siehst die Heatmap. Du weißt aber nicht, was zu tun ist.</h2>
-        <p class="mod-prose">Verhaltensdaten-Tools sind brutal gut geworden. Heatmaps, Session-Recordings, Dead-Clicks. Alles da, oft sogar kostenlos. Zwischen <em>"67 % der Mobile-User scrollen nicht bis zur ATC-Section"</em> und <em>"Sticky-ATC implementiert"</em> liegen aber vier Stunden Theme-Code. Pro Insight.</p>
-        <p class="mod-prose">ClarityFlow überspringt diese Lücke. Claude liest die Daten, identifiziert das Problem und schreibt direkt die Theme-Änderung. Du publishst, wenn der Diff gut aussieht.</p>
-      </div>
-    </section>
-
-    <section class="mod-section mod-section-alt" id="workflow">
-      <div class="container">
-        <div class="meta mod-eyebrow">So läuft der Loop</div>
-        <h2 class="mod-h2 mod-h2-center">Verhaltensdaten als Input. Theme-Code als Output.</h2>
-        <ol class="mod-steps">
-          <li class="mod-step">
-            <span class="mod-step-num">01</span>
-            <h3 class="mod-step-title">Tool anschließen.</h3>
-            <p class="mod-step-body">ClarityFlow installiert ein DSGVO-konformes Tracking-Snippet in dein Theme (Consent-gated). Verbindung zu deinem Account in fünf Minuten.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">02</span>
-            <h3 class="mod-step-title">Daten lesen.</h3>
-            <p class="mod-step-body">Claude liest Heatmaps, Dead-Clicks, Rage-Clicks und Scroll-Drop-offs pro Page. Erkennt Muster über 7-, 28- und 90-Tage-Fenster.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">03</span>
-            <h3 class="mod-step-title">CRO-Code schreiben.</h3>
-            <p class="mod-step-body">Claude schlägt Section-Reihenfolge, Button-Position oder Trust-Signal-Platzierung vor und schreibt die Änderung ins Theme-Duplicate. Review im Preview, manueller Publish.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Was ClarityFlow erkennt</div>
-        <h2 class="mod-h2">Sechs Signale aus deinem Store. Direkt verwertbar.</h2>
-        <p class="mod-prose">Die meisten Verhaltensdaten-Tools sammeln mehr, als klassische Analytics jemals zeigt. ClarityFlow zieht sechs Signale heraus, die Claude direkt in Code übersetzen kann.</p>
-        <ul class="mod-replace-list">
-          <li><strong>Click-Heatmaps</strong> — wo wirklich geklickt wird, nicht wo du es vermutest.</li>
-          <li><strong>Scroll-Heatmaps</strong> — wie weit Besucher scrollen, pro Device-Klasse.</li>
-          <li><strong>Dead-Clicks</strong> — Elemente, die wie Buttons aussehen, aber keine sind. UX-Bug.</li>
-          <li><strong>Rage-Clicks</strong> — wiederholte Klicks aus Frust. Sicheres Drop-off-Signal.</li>
-          <li><strong>Quick-Backs</strong> — User, die innerhalb von Sekunden zurückgehen. Falsche-Erwartung-Indikator.</li>
-          <li><strong>Session-Recordings</strong> — anonymisierte Replays für High-Value-Pages (Checkout, Pricing, PDP).</li>
-        </ul>
-        <p class="mod-prose">Jedes Signal mündet in eine konkrete Code-Empfehlung. Kein Heatmap-Bilder-Selbst-Deuten.</p>
-      </div>
-    </section>
-
-    <section class="mod-section mod-section-alt">
-      <div class="container">
-        <div class="meta mod-eyebrow">Was ClarityFlow enthält</div>
-        <h2 class="mod-h2 mod-h2-center">Daten-Skill, Pattern-Library, Theme-Editor.</h2>
-        <div class="mod-cards">
-          <article class="mod-card">
-            <h3 class="mod-card-title">Daten-Skill</h3>
-            <p class="mod-card-body">DSGVO-konforme Snippet-Einbindung und API-Anbindung. Aggregiert pro Page, Device, Country und Session-Source.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">CRO-Pattern-Library</h3>
-            <p class="mod-card-body">200+ E-Commerce-Patterns aus Shopify-Stores: Sticky-ATC, Trust-Strips, Bundle-Selektoren, Inline-Reviews, Above-the-Fold-CTAs.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Theme-CRO-Editor</h3>
-            <p class="mod-card-body">Schreibt Layout- und Component-Änderungen direkt in Liquid. Section-Reihenfolge, Block-Position, Button-Style. Alles im Theme-Code.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Hypothesis-Logger</h3>
-            <p class="mod-card-body">Jede Änderung kommt mit Hypothese und Erwartung. Nach 14 Tagen siehst du, ob der Effekt eingetreten ist, gegengeprüft mit den Daten.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">So läuft ein Loop ab</div>
-        <h2 class="mod-h2">Vom ersten Heatmap-Read bis zum Publish.</h2>
-        <p class="mod-prose">Ein CRO-Loop in ClarityFlow ist kein Big-Bang-Redesign. Er ist eine Reihe kleiner, datengestützter Theme-Änderungen, jede mit Hypothese und Erwartung. So sieht ein typischer Durchlauf aus:</p>
-        <p class="mod-prose"><strong>1. Heatmap lesen.</strong> Claude liest die aggregierten Verhaltensdaten der letzten Woche aus deinem Tracking-Tool und identifiziert die Page mit dem höchsten Drop-off-Signal. Beispiel: die Produktseite, auf der ein Großteil der Mobile-Besucher unter dem Add-to-Cart abbricht.</p>
-        <p class="mod-prose"><strong>2. Hypothese formulieren.</strong> Aus dem Datensignal wird eine konkrete Annahme: <em>"Wenn die Versandkosten klarer in der Page kommuniziert werden, sinkt der Cart-Abbruch."</em> Hypothese, Ziel-Metrik und Zeitfenster landen im Hypothesis-Logger.</p>
-        <p class="mod-prose"><strong>3. Code-Änderung schreiben.</strong> Claude schreibt die Section-Anpassung direkt im Theme-Duplicate. Section-Reihenfolge, Block-Position, Button-Style, Trust-Strip-Inhalt. Du bekommst den Diff zur Review.</p>
-        <p class="mod-prose"><strong>4. Preview, Publish, Logging.</strong> Du öffnest den Preview, prüfst auf Desktop und Mobile, drückst manuell Publish. Datum, Hypothese und erwartete Metrik werden im Logger festgehalten.</p>
-        <p class="mod-prose"><strong>5. Auswertung nach 14 Tagen.</strong> Nach zwei Wochen liest Claude die Daten erneut. Hat die Änderung den Effekt gebracht? Halten, verwerfen oder iterieren — der nächste Loop startet automatisch auf dem nächsthöchsten Drop-off-Signal.</p>
-        <p class="mod-prose">Kein A/B-Tool nötig, keine externe CRO-Agentur. Jede Schleife ist nachvollziehbar, jede Änderung steht im Theme-Code dokumentiert.</p>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">FAQ</div>
-        <h2 class="mod-h2">Was du dich zurecht fragst.</h2>
-        <details class="mod-faq">
-          <summary>Kostet das Verhaltensdaten-Tool extra?</summary>
-          <p>Nein. ClarityFlow nutzt ein kostenloses Tracking-Tool, das du in fünf Minuten in dein Theme einbindest. Kein Sessions-Limit, kein Heatmap-Limit.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Welche Daten liest ClarityFlow aus?</summary>
-          <p>Heatmaps (Click, Scroll, Area), Dead-Clicks, Rage-Clicks, Drop-off-Scrollpositionen und Session-Recordings. Pro Page aggregiert über 7-, 28- und 90-Tage-Fenster.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Was macht ClarityFlow mit den Daten?</summary>
-          <p>Claude liest die Daten und schreibt konkrete Theme-Änderungen vor. Beispiel: <em>"Trust-Strip oberhalb des Folds — 47 % der Mobile-User scrollen nicht weiter."</em> Du publishst manuell.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Ist das DSGVO-konform?</summary>
-          <p>Ja, bei korrekter Einbindung mit Consent-Gate. ClarityFlow setzt das Tracking so, dass es erst nach User-Einwilligung lädt. Auftragsverarbeitungsvertrag mit dem Anbieter ist Pflicht und wird im Setup durchgegangen.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Brauche ich viel Traffic?</summary>
-          <p>Ab ungefähr 500 Sessions pro Woche werden Heatmaps statistisch belastbar. Für kleinere Stores sammelt ClarityFlow erst Daten und aktiviert die Optimierungs-Schleife automatisch, sobald die Schwelle erreicht ist.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="mod-cta-band">
-      <div class="container-prose mod-cta-inner">
-        <div class="meta mod-eyebrow mod-eyebrow-light">Bundle</div>
-        <h2 class="mod-cta-title">ClarityFlow ist eines von drei Modulen.</h2>
-        <p class="mod-cta-body">Im vorflows Bundle bekommst du ClarityFlow plus <a href="/baseflow">BaseFlow</a> (Theme-Workflow) und <a href="/seoflow">SEOFlow</a> (SEO-Loop). Kein Abo, lebenslange Updates.</p>
-        <a href="/sales#preis" class="btn btn-primary btn-lg">Bundle ansehen</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
-              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
-            </p>
+      <!-- WAS DRIN IST -->
+      <section class="sec" aria-labelledby="h-kit">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">Was ClarityFlow enthält</p>
+            <h2 id="h-kit">Daten-Skill, Pattern-Library, Theme-Editor</h2>
           </div>
-          <div class="footer-col">
-            <h4>Module</h4>
-            <ul>
-              <li><a href="/baseflow">BaseFlow</a></li>
-              <li><a href="/seoflow">SEOFlow</a></li>
-              <li><a href="/clarityflow">ClarityFlow</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Produkt</h4>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/sales#ablauf">Workflow</a></li>
-              <li><a href="/sales#preis">Pricing</a></li>
-              <li><a href="/sales#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="/impressum">Impressum</a></li>
-              <li><a href="/datenschutz">Datenschutz</a></li>
-            </ul>
+          <div class="kit">
+            <article>
+              <h3>Daten-Skill</h3>
+              <p>DSGVO-konforme Snippet-Einbindung und API-Anbindung. Aggregiert pro Page, Device, Country und Session-Source.</p>
+            </article>
+            <article>
+              <h3>CRO-Pattern-Library</h3>
+              <p>200+ E-Commerce-Patterns aus Shopify-Stores: Sticky-ATC, Trust-Strips, Bundle-Selektoren, Inline-Reviews, Above-the-Fold-CTAs.</p>
+            </article>
+            <article>
+              <h3>Theme-CRO-Editor</h3>
+              <p>Schreibt Layout- und Component-Änderungen direkt in Liquid. Section-Reihenfolge, Block-Position, Button-Style. Alles im Theme-Code.</p>
+            </article>
+            <article>
+              <h3>Hypothesis-Logger</h3>
+              <p>Jede Änderung kommt mit Hypothese und Erwartung. Nach 14 Tagen siehst du, ob der Effekt eingetreten ist, gegengeprüft mit den Daten.</p>
+            </article>
           </div>
         </div>
-        <div class="footer-bottom">
-          <span>© 2026 vorflows</span>
-          <span>built with claude code</span>
-        </div>
-      </div>
-    </footer>
+      </section>
 
-    <script>
-      const nav = document.getElementById('nav');
-      const onScroll = () => {
-        if (window.scrollY > 8) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    </script>
+      <!-- ABLAUF EINES LOOPS -->
+      <section class="sec" aria-labelledby="h-loop">
+        <div class="wrap loop">
+          <div class="loop-side">
+            <p class="label">So läuft ein Loop ab</p>
+            <h2 id="h-loop">Vom ersten Heatmap-Read bis zum Publish</h2>
+            <p class="body">Ein CRO-Loop in ClarityFlow ist kein Big-Bang-Redesign. Er ist eine Reihe kleiner, datengestützter Theme-Änderungen, jede mit Hypothese und Erwartung. So sieht ein typischer Durchlauf aus:</p>
+            <figure class="win">
+              <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Hypothesis-Logger</span></div>
+              <div class="win-body">
+                <dl class="win-dl">
+                  <div><dt>Hypothese</dt><dd>Wenn die Versandkosten klarer in der Page kommuniziert werden, sinkt der Cart-Abbruch.</dd></div>
+                  <div><dt>Ziel-Metrik</dt><dd>Cart-Abbruch</dd></div>
+                  <div><dt>Zeitfenster</dt><dd>14 Tage</dd></div>
+                </dl>
+              </div>
+              <figcaption>Beispiel aus Schritt 2</figcaption>
+            </figure>
+          </div>
+          <div class="loop-main">
+            <ol class="steps steps--loop">
+              <li>
+                <h3>Heatmap lesen</h3>
+                <p>Claude liest die aggregierten Verhaltensdaten der letzten Woche aus deinem Tracking-Tool und identifiziert die Page mit dem höchsten Drop-off-Signal. Beispiel: die Produktseite, auf der ein Großteil der Mobile-Besucher unter dem Add-to-Cart abbricht.</p>
+              </li>
+              <li>
+                <h3>Hypothese formulieren</h3>
+                <p>Aus dem Datensignal wird eine konkrete Annahme: <span class="say">„Wenn die Versandkosten klarer in der Page kommuniziert werden, sinkt der Cart-Abbruch.“</span> Hypothese, Ziel-Metrik und Zeitfenster landen im Hypothesis-Logger.</p>
+              </li>
+              <li>
+                <h3>Code-Änderung schreiben</h3>
+                <p>Claude schreibt die Section-Anpassung direkt im Theme-Duplicate. Section-Reihenfolge, Block-Position, Button-Style, Trust-Strip-Inhalt. Du bekommst den Diff zur Review.</p>
+              </li>
+              <li>
+                <h3>Preview, Publish, Logging</h3>
+                <p>Du öffnest den Preview, prüfst auf Desktop und Mobile, drückst manuell Publish. Datum, Hypothese und erwartete Metrik werden im Logger festgehalten.</p>
+              </li>
+              <li>
+                <h3>Auswertung nach 14 Tagen</h3>
+                <p>Nach zwei Wochen liest Claude die Daten erneut. Hat die Änderung den Effekt gebracht? Halten, verwerfen oder iterieren. Der nächste Loop startet automatisch auf dem nächsthöchsten Drop-off-Signal.</p>
+              </li>
+            </ol>
+            <p class="note loop-end">Kein A/B-Tool nötig, keine externe CRO-Agentur. Jede Schleife ist nachvollziehbar, jede Änderung steht im Theme-Code dokumentiert.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec" id="faq" aria-labelledby="h-faq">
+        <div class="wrap faq">
+          <div class="faq-side">
+            <h2 id="h-faq">Was du dich zu Recht fragst</h2>
+          </div>
+          <div class="qa">
+            <details class="mod-faq">
+              <summary>Kostet das Verhaltensdaten-Tool extra?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Nein. ClarityFlow nutzt ein kostenloses Tracking-Tool, das du in fünf Minuten in dein Theme einbindest. Kein Sessions-Limit, kein Heatmap-Limit.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Welche Daten liest ClarityFlow aus?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Heatmaps (Click, Scroll, Area), Dead-Clicks, Rage-Clicks, Drop-off-Scrollpositionen und Session-Recordings. Pro Page aggregiert über 7-, 28- und 90-Tage-Fenster.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Was macht ClarityFlow mit den Daten?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Claude liest die Daten und schreibt konkrete Theme-Änderungen vor. Beispiel: <span class="say">„Trust-Strip oberhalb des Folds: 47 % der Mobile-User scrollen nicht weiter.“</span> Du publishst manuell.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Ist das DSGVO-konform?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Ja, bei korrekter Einbindung mit Consent-Gate. ClarityFlow setzt das Tracking so, dass es erst nach User-Einwilligung lädt. Auftragsverarbeitungsvertrag mit dem Anbieter ist Pflicht und wird im Setup durchgegangen.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Brauche ich viel Traffic?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Ab ungefähr 500 Sessions pro Woche werden Heatmaps statistisch belastbar. Für kleinere Stores sammelt ClarityFlow erst Daten und aktiviert die Optimierungs-Schleife automatisch, sobald die Schwelle erreicht ist.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUNDLE -->
+      <section class="fin" aria-labelledby="h-fin">
+        <div class="wrap">
+          <div class="trio">
+            <a class="trio-item" href="/baseflow"><span class="bx"><img src="/brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">BaseFlow</span></a>
+            <a class="trio-item is-seo" href="/seoflow"><span class="bx"><img src="/brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">SEOFlow</span></a>
+            <span class="trio-item is-current" aria-current="page"><span class="bx"><img src="/brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">ClarityFlow</span></span>
+          </div>
+          <h2 id="h-fin">ClarityFlow ist eines von drei Modulen</h2>
+          <p class="body">Im vorflows Bundle bekommst du ClarityFlow plus <a class="tl" href="/baseflow">BaseFlow</a> (Theme-Workflow) und <a class="tl" href="/seoflow">SEOFlow</a> (SEO-Loop). Kein Abo, lebenslange Updates.</p>
+          <a href="/sales#preis" class="btn btn--lg">Bundle ansehen</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="foot"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav aria-label="Weitere Seiten">
+        <a href="/sales">vorflows für Shopify</a><a href="/adsflow">AdsFlow</a><a href="/replay">Shopify-Workshop</a>
+        <a href="/blog">Blog</a><a href="/faqs">FAQs</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a>
+        <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+      </nav>
+      <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+    </div></footer>
   </body>
 </html>

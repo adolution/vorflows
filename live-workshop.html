@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -7,8 +7,8 @@
   <meta name="description" content="Kostenloser Live-Workshop für Shopify-Founder. In 60 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
   <meta name="author" content="vorflows" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <meta name="theme-color" content="#C8633E" />
-  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0E0E0D" />
+  <meta name="color-scheme" content="dark" />
   <meta name="format-detection" content="telephone=no" />
   <link rel="canonical" href="https://vorflows.com/live-workshop" />
   <link rel="alternate" hreflang="de-DE" href="https://vorflows.com/live-workshop" />
@@ -35,456 +35,398 @@
   <meta name="twitter:description" content="In 60 Minuten live: Apps ersetzen, ranken, Conversion-Rate verbessern. Kostenlos, ohne eine Zeile Code." />
   <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
-  <!-- Self-hosted Fonts (identisch zur Homepage) -->
+  <!-- Self-hosted Fonts + gemeinsame Basis im dunklen Look (wie /adsflow, /sales, Startseite) -->
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
-  <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
   <style>
     /* ============================================================
-       vorflows · Live-Workshop-Anmeldung (Variante A · Homepage-Editorial)
-       Designsprache 1:1 von vorflows.com: Creme #FAFAF7 + Dark-Sections,
-       Fraunces (Display) + Inter (Body) + JetBrains Mono (Labels),
-       Terracotta #C8633E als einziger Akzent. Copy identisch zu A.
+       vorflows · Live-Workshop-Anmeldung (Variante A · dunkler Look)
+       Basis: /assets/site-dark.css (Tokens, Typo, .btn, .qa, .foot, .rise).
+       Funnel: kein Kauf-Button, keine Links zu anderen Seiten der Website.
+       Klassen, an denen JS/Tracking hängt, bleiben: .nav#nav, .lw-hero,
+       .lw-final, .sticky-cta, [data-webinar-cta], .lwq*, #reg-note,
+       .cookie-*, details (FAQ). Doku: .agents/live-workshop-tracking.md
        ============================================================ */
-    :root{
-      --bg-light:#FAFAF7; --bg-dark:#0F0F0F;
-      --text-primary:#1A1A1A; --text-inverse:#EAEAE5;
-      --text-secondary:#5C5C5C; --text-secondary-dark:#8A8A82;
-      --border:#E5E3DD; --border-strong:#C7C4BB; --border-dark:#2A2A2A;
-      --accent:#C8633E; --accent-hover:#B05530; --accent-soft:rgba(200,99,62,.08);
-      --ease-out-expo:cubic-bezier(.16,1,.3,1);
+    [hidden] { display: none !important; }
+    html { scroll-padding-top: 84px; }
+
+    /* ---------- Kopfzeile: die EINE feste Leiste (auch am Handy, trägt „Platz sichern") ---------- */
+    .nav { position: sticky; top: 0; padding-top: env(safe-area-inset-top); border-bottom-color: transparent; transition: border-color .3s var(--ease-q); }
+    .nav.scrolled { border-bottom-color: var(--line); }
+    @media (max-width: 760px) {
+      .nav { position: sticky; }
+      html { scroll-padding-top: 76px; }
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
-    html,body{overflow-x:clip}
-    body{margin:0;background:var(--bg-light);color:var(--text-primary);
-      font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;font-size:17px;line-height:1.6;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11"}
+    .nav .wrap { height: 64px; }
+    .nav .btn { min-height: 44px; padding: 0 1.25rem; }
+    .brand:active { opacity: .7; }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
 
-    .display{font-family:'Fraunces',Georgia,serif;font-feature-settings:"ss01";letter-spacing:-.02em;line-height:1.05}
-    .display-italic{font-family:'Fraunces',Georgia,serif;font-style:italic;font-feature-settings:"ss01"}
-    .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-feature-settings:"calt"}
-    .meta{font-family:'Inter',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
-    .accent{color:var(--accent)}
-    em{font-style:italic}
-    a{color:inherit;text-decoration:none}
+    /* Lesefortschritt: liegt auf der Kopfzeile, nur Transform */
+    .scroll-progress { position: fixed; left: 0; top: 0; z-index: 70; width: 100%; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
 
-    .container{max-width:1200px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
-    .section{padding-block:clamp(72px,10vw,160px)}
-    .section-tight{padding-block:clamp(48px,6vw,96px)}
-    .section-dark{background:var(--bg-dark);color:var(--text-inverse)}
-    @media(max-width:600px){.section{padding-block:56px}.section-tight{padding-block:40px}}
+    /* Sticky-Bottom-CTA mobil bewusst AUS (Nav-CTA bleibt sichtbar, kein Doppel-CTA). Markup + JS bleiben. */
+    .sticky-cta { display: none !important; }
 
-    .eyebrow{color:var(--accent);margin-bottom:20px}
-    .h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(28px,4.5vw,48px);
-      letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
-    .h2 em{font-style:italic;font-weight:400}
-    .lead{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--text-secondary);max-width:46ch;margin-top:20px}
-    .section-dark .lead{color:var(--text-secondary-dark)}
-    .sec-head{max-width:54ch}
+    /* ---------- Hero: Bühnenfoto als Hintergrund + Studiolicht ---------- */
+    .lw-hero { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: min(86vh, 820px); padding-block: clamp(4.5rem, 9vw, 7.5rem) clamp(4.5rem, 8vw, 6.5rem); }
+    .lw-hero .vbg { position: absolute; top: 0; right: 0; bottom: 0; width: 66%; z-index: -2; background: var(--bg-deep); }
+    .lw-hero .vbg img { width: 100%; height: 100%; object-fit: cover; object-position: 74% 22%; filter: saturate(.85) brightness(.7) contrast(1.06); }
+    /* Farbbehandlung: warmes Multiply wie das Bühnenlicht */
+    .lw-hero .vbg::before { content: ""; position: absolute; inset: 0; background: #7A3A22; mix-blend-mode: multiply; opacity: .35; }
+    .lw-hero .vbg::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(14, 14, 13, .82) 24%, rgba(14, 14, 13, .3) 62%, rgba(14, 14, 13, .45) 100%),
+        linear-gradient(0deg, var(--bg) 0%, rgba(14, 14, 13, 0) 42%),
+        linear-gradient(180deg, rgba(14, 14, 13, .55) 0%, rgba(14, 14, 13, 0) 26%);
+    }
+    .lw-hero::before {
+      content: ""; position: absolute; inset: -68px 0 0 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(52rem 34rem at 30% -12%, rgba(237, 236, 231, .07), transparent 62%),
+        radial-gradient(40rem 30rem at 0% 62%, rgba(200, 99, 62, .13), transparent 66%);
+    }
+    .lw-hero .wrap { position: relative; }
+    .lw-hero h1 { max-width: 16.5ch; font-size: clamp(2.45rem, 1.05rem + 4.1vw, 4.8rem); line-height: 1.03; letter-spacing: -.034em; padding-bottom: .06em; }
+    .lw-hero .lead { margin-top: 1.5rem; max-width: 38ch; color: var(--ink-2); }
+    .hero-act { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: clamp(2rem, 3.5vw, 2.6rem); }
+    .hero-act .cta-row { order: 1; }
+    .hero-act .datebar { order: 2; padding-left: 2rem; border-left: 1px solid var(--line-2); }
 
-    /* ---------- Buttons (Homepage) ---------- */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:6px;
-      font-family:'Inter',sans-serif;font-weight:500;font-size:15px;cursor:pointer;border:1px solid transparent;
-      transition:background-color 150ms ease-out,transform 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out}
-    .btn-primary{background:var(--accent);color:var(--bg-light)}
-    .btn-primary:hover{background:var(--accent-hover)}
-    .btn-primary:active{transform:translateY(1px)}
-    .btn-primary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-    .btn-outline{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
-    .btn-outline:hover{border-color:var(--text-primary)}
-    .section-dark .btn-outline{color:var(--text-inverse);border-color:rgba(255,255,255,.28)}
-    .section-dark .btn-outline:hover{border-color:var(--text-inverse)}
-    .btn-lg{padding:16px 28px;font-size:16px}
-    .cta-sub{margin-top:12px;font-size:13.5px;color:var(--text-secondary)}
-    .section-dark .cta-sub{color:var(--text-secondary-dark)}
+    /* Live-Termin: Punkt + Bezeichnung, darunter das Datum */
+    .datebar { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: .6rem; row-gap: .15rem; max-width: 100%; }
+    .datebar .ldot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--orange-hi); }
+    .datebar .ldot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--orange-hi); animation: lpulse 1.9s var(--ease) infinite; }
+    @keyframes lpulse { 0% { transform: scale(1); opacity: .7; } 70%, 100% { transform: scale(2.8); opacity: 0; } }
+    .datebar .lbl { font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--ink-3); }
+    .datebar .dt { grid-column: 1 / -1; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.2rem, 1.1rem + .45vw, 1.45rem); line-height: 1.2; letter-spacing: -.015em; color: var(--ink); }
+    @media (max-width: 360px) { .datebar .dt { font-size: 1.06rem; } }
 
-    /* ---------- Inline-CTA (wiederkehrender Anmelde-Anker zwischen Sections) ---------- */
-    .inline-cta{margin-top:clamp(40px,5.5vw,60px);padding-top:clamp(32px,4vw,44px);
-      border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
-    .section-dark .inline-cta{border-top-color:rgba(255,255,255,.12)}
-    .inline-cta .ic-line{font-family:'Fraunces',Georgia,serif;font-feature-settings:"ss01";
-      font-size:clamp(21px,2.8vw,27px);letter-spacing:-.015em;line-height:1.18;color:var(--text-primary);max-width:22ch}
-    .inline-cta .ic-line em{font-style:italic;color:var(--accent)}
-    .section-dark .inline-cta .ic-line{color:var(--text-inverse)}
-    .inline-cta .btn{min-height:54px}
-    .inline-cta .ic-note{font-size:13px;color:var(--text-secondary);letter-spacing:.01em}
-    .section-dark .inline-cta .ic-note{color:var(--text-secondary-dark)}
-    @media(max-width:599px){.inline-cta{gap:13px}.inline-cta .btn{width:100%;max-width:360px}}
-    /* Steps enden bereits mit Border — Inline-CTA direkt danach ohne zweiten Trennstrich */
-    .steps + .inline-cta{border-top:0;padding-top:0}
-
-    /* ---------- Pills ---------- */
-    .pills{display:flex;flex-wrap:wrap;gap:8px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
-      border:1px solid var(--border-strong);font-family:'JetBrains Mono',monospace;font-size:12px;
-      letter-spacing:.02em;color:var(--text-secondary);white-space:nowrap}
-    .section-dark .pill{border-color:rgba(255,255,255,.2);color:var(--text-secondary-dark)}
-    .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
-
-    /* ---------- Proof-Line (Benefit-Checkliste statt Pills) ---------- */
-    .proofline{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px}
-    .proofline span{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;
-      color:var(--text-secondary);line-height:1.3}
-    .section-dark .proofline span{color:var(--text-secondary-dark)}
-    .proofline span::before{content:"";width:18px;height:18px;flex:0 0 auto;border-radius:50%;
-      background:rgba(200,99,62,.18);
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C8633E' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      background-repeat:no-repeat;background-position:center}
-
-    /* ---------- Live-Termin-Block (Eyebrow + Datum, kein Pill · Parität A/B) ---------- */
-    .datebar{display:flex;flex-wrap:wrap;align-items:center;column-gap:9px;row-gap:6px;max-width:100%}
-    .datebar .ldot{width:9px;height:9px;border-radius:50%;background:#E5484D;position:relative;flex:0 0 auto}
-    .datebar .ldot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#E5484D;
-      animation:lpulse 1.7s var(--ease-out-expo) infinite}
-    .datebar .lbl{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px;letter-spacing:.16em;
-      text-transform:uppercase;color:#E5484D;flex:0 0 auto}
-    .datebar .dt{flex-basis:100%;font-weight:700;font-size:clamp(18px,5vw,22px);color:var(--text-inverse);
-      line-height:1.15;letter-spacing:-.01em}
-    @keyframes lpulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
-
-    /* ---------- Nav ---------- */
-    .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.96);
-      backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
-      border-bottom:1px solid transparent;transition:border-color 200ms ease-out;padding-top:env(safe-area-inset-top)}
-    .nav.scrolled{border-bottom-color:var(--border)}
-    .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .wordmark{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;letter-spacing:-.02em;
-      font-feature-settings:"ss01";color:var(--text-primary)}
-    .wordmark .flows{font-style:italic;font-weight:500;color:var(--accent)}
-    .nav-right{display:flex;align-items:center;gap:16px}
-    .nav .pill{display:none}
-    .nav .btn{padding:10px 16px;font-size:14px;min-height:44px}
-
-    /* ---------- Sticky Mobile-CTA (nur Mobile · fängt Klicks bei jeder Scrolltiefe) ---------- */
-    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
-      padding:10px clamp(16px,4vw,20px) calc(10px + env(safe-area-inset-bottom));
-      background:rgba(250,250,247,.92);backdrop-filter:saturate(180%) blur(14px);
-      -webkit-backdrop-filter:saturate(180%) blur(14px);border-top:1px solid var(--border);
-      transform:translateY(110%);transition:transform 320ms var(--ease-out-expo)}
-    .sticky-cta.show{transform:translateY(0)}
-    .sticky-cta .btn{width:100%;min-height:50px;font-size:16px}
-    /* Sticky-Bottom-CTA mobil bewusst AUS — Nav-CTA „Platz sichern" bleibt sticky sichtbar (kein Doppel-CTA) */
-    @media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}.datebar .ldot::after{animation:none}}
-
-    /* ---------- Scroll progress ---------- */
-    .scroll-progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--accent);z-index:70;
-      transition:width 80ms linear;pointer-events:none}
-
-    /* ---------- Hero ---------- */
-    .lw-hero{position:relative;overflow:hidden}
-    .lw-hero .vbg{position:absolute;inset:0;z-index:0}
-    .lw-hero .vbg img{width:100%;height:100%;object-fit:cover;opacity:.20;filter:grayscale(.2) contrast(1.02)}
-    .lw-hero .vbg::after{content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(15,15,15,.55) 0%,rgba(15,15,15,.82) 60%,var(--bg-dark) 100%)}
-    .lw-hero .container{position:relative;z-index:2}
-    .lw-hero h1{font-size:clamp(38px,8vw,84px);margin:18px 0 0;text-wrap:balance}
-    .lw-hero .lead{max-width:36ch}
-    .lw-hero .datebar{margin-top:24px}
-    .lw-hero .proofline{margin-top:22px}
-    .lw-hero .cta-row{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-    @media(min-width:600px){.lw-hero .cta-sub{margin-top:0}}
-    @media(max-width:599px){
-      .lw-hero.section{padding-top:36px;padding-bottom:48px}
-      .lw-hero h1{margin-top:14px}
-      .lw-hero .datebar{margin-top:18px}
-      .lw-hero .proofline{margin-top:20px;flex-direction:column;align-items:flex-start;gap:11px}
-      .lw-hero .cta-row{margin-top:22px;flex-direction:column;align-items:stretch;gap:12px}
-      .lw-hero .cta-row .btn-primary{width:100%}
-      .lw-hero .cta-sub{margin-top:0;text-align:left}
-      .lw-final .btn-primary{width:100%;max-width:360px}
+    @media (max-width: 760px) {
+      .lw-hero { display: block; min-height: 0; padding-top: clamp(13rem, 58vw, 17rem); padding-bottom: 3.5rem; }
+      .lw-hero .vbg { left: 0; width: 100%; bottom: auto; height: clamp(19rem, 86vw, 25rem); }
+      .lw-hero .vbg img { object-position: 78% 18%; filter: saturate(.85) brightness(.78) contrast(1.05); }
+      .lw-hero .vbg::after { background: linear-gradient(180deg, rgba(14, 14, 13, .35) 0%, rgba(14, 14, 13, .25) 30%, rgba(14, 14, 13, .78) 72%, var(--bg) 100%); }
+      .lw-hero::before { background: radial-gradient(30rem 24rem at 0% 70%, rgba(200, 99, 62, .14), transparent 66%); }
+      .lw-hero h1 { font-size: clamp(2.2rem, 1.3rem + 4.6vw, 2.9rem); line-height: 1.05; }
+      .lw-hero .lead { margin-top: 1.1rem; }
+      .hero-act { flex-direction: column; align-items: stretch; gap: 1.4rem; margin-top: 1.6rem; }
+      .hero-act .datebar { order: 0; padding-left: 0; border-left: 0; }
+      .hero-act .btn { width: 100%; }
     }
 
-    /* ---------- Numbered editorial steps ---------- */
-    .steps{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--border)}
-    .step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--border);align-items:start}
-    .step .n{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(40px,5vw,64px);line-height:.8;
-      color:var(--accent);min-width:1.4ch}
-    .step .n .u{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:12px;
-      letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);margin-top:8px}
-    .step h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(20px,2.4vw,26px);
-      letter-spacing:-.01em;line-height:1.15;margin:0}
-    .step p{margin:10px 0 0;color:var(--text-secondary);max-width:60ch;font-size:clamp(15px,1.4vw,17px)}
-    @media(min-width:768px){.step{grid-template-columns:auto 1fr;gap:40px;padding:34px 0}}
+    /* ---------- Sektionen ---------- */
+    .sec { padding-block: var(--section); }
+    .sec + .sec, .lw-final { border-top: 1px solid var(--line); }
+    .sec-head { max-width: 40rem; }
+    .sec-head .lead { margin-top: 1.3rem; }
+    .sec-head .lead + .lead { margin-top: .9rem; }
 
-    /* ---------- Objections (auf dunkel) ---------- */
-    .objs{margin-top:clamp(36px,4vw,56px);display:grid;gap:1px;background:var(--border-dark);
-      border:1px solid var(--border-dark);border-radius:10px;overflow:hidden}
-    @media(min-width:768px){.objs{grid-template-columns:repeat(3,1fr)}}
-    .obj{background:var(--bg-dark);padding:28px 26px}
-    @media(max-width:767px){.obj{padding:22px 20px}}
-    .obj .myth{color:var(--text-secondary-dark);font-size:15px}
-    .obj .myth::before{content:"„ "}.obj .myth::after{content:" “"}
-    .obj h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(19px,2vw,23px);
-      letter-spacing:-.01em;line-height:1.15;margin:10px 0 0;color:var(--text-inverse)}
-    .obj p{margin:10px 0 0;color:var(--text-secondary-dark);font-size:15px;line-height:1.55}
+    /* ---------- Was du live siehst: Agenda ---------- */
+    .agenda { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+    .agenda .sec-head { position: sticky; top: 112px; }
+    .steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 1.1rem; padding: clamp(1.6rem, 3vw, 2.2rem) 0; border-bottom: 1px solid var(--line); }
+    .step .n { font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-style: italic; font-size: clamp(2.4rem, 2rem + 1.4vw, 3.2rem); line-height: .85; color: var(--orange-hi); }
+    .step h3 { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); }
+    .step p { margin-top: .65rem; max-width: 54ch; color: var(--ink-2); font-size: 16px; line-height: 1.7; }
+    @media (max-width: 860px) {
+      .agenda { grid-template-columns: minmax(0, 1fr); }
+      .agenda .sec-head { position: static; }
+      .step { grid-template-columns: 2.6rem minmax(0, 1fr); gap: .9rem; }
+    }
 
-    /* ---------- Two-column ---------- */
-    .twocol{display:grid;gap:clamp(36px,5vw,72px)}
-    @media(min-width:880px){.twocol{grid-template-columns:1fr 1fr;align-items:center}}
+    /* ---------- Stimmen ---------- */
+    .lw-quote { margin: clamp(3rem, 6vw, 4.5rem) 0 0; max-width: 48rem; }
+    .lw-quote blockquote { margin: 0; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.45rem, 1.1rem + 1.3vw, 2.15rem); line-height: 1.28; letter-spacing: -.018em; color: var(--ink); text-wrap: pretty; }
+    .lw-quote blockquote::before { content: "\201E"; color: var(--orange-hi); }
+    .lw-quote blockquote::after { content: "\201C"; color: var(--orange-hi); }
+    .lw-quote figcaption { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .7rem; margin-top: 1.2rem; font-size: 14px; line-height: 1.4; }
+    .lw-quote-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex: none; }
+    .lw-quote-name { font-weight: 500; color: var(--ink); }
+    .lw-quote-co { color: var(--ink-3); }
+    /* Beleg direkt an der Behauptung: kleiner, mit Linie */
+    .lw-quote--inline { max-width: 42rem; padding-left: 1.4rem; border-left: 2px solid var(--orange); }
+    .lw-quote--inline blockquote { font-size: clamp(1.18rem, 1.05rem + .55vw, 1.45rem); line-height: 1.42; }
+    .lw-quote--mini { margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; max-width: 34rem; text-align: center; }
+    .lw-quote--mini blockquote { font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem); line-height: 1.45; }
+    .lw-quote--mini figcaption { justify-content: center; }
 
-    /* ---------- Kosten ---------- */
-    .costline{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(24px,3.4vw,38px);
-      line-height:1.18;letter-spacing:-.02em;color:var(--text-primary);max-width:18ch}
-    .costline .big{color:var(--accent);font-style:italic}
-    .cost-card{border:1px solid var(--border);border-radius:12px;padding:clamp(24px,3vw,34px);background:#fff}
-    .cost-card .meta{color:var(--text-secondary);display:block;margin-bottom:18px}
-    .applist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
-    .applist li{position:relative;padding-left:22px;font-size:15.5px;color:var(--text-secondary);line-height:1.5}
-    .applist li::before{content:"";position:absolute;left:0;top:.7em;width:11px;height:1px;background:var(--border-strong)}
-    .applist .tot{color:var(--text-primary);font-weight:500;padding-top:14px;margin-top:6px;border-top:1px solid var(--border)}
-    .applist .tot::before{display:none}
+    /* ---------- Wiederkehrender Anmelde-Anker ---------- */
+    .inline-cta {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .4rem 2rem;
+      margin-top: clamp(3rem, 6vw, 4.5rem); padding: clamp(1.4rem, 3vw, 1.9rem) clamp(1.4rem, 3vw, 2.2rem);
+      border: 1px solid var(--line-2); border-radius: var(--r-surface);
+      background: linear-gradient(180deg, var(--raise-2), var(--raise)); box-shadow: var(--shadow-raise);
+    }
+    .inline-cta .ic-line { grid-column: 1; grid-row: 1; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.35rem, 1.15rem + .8vw, 1.8rem); line-height: 1.18; letter-spacing: -.02em; color: var(--ink); }
+    .inline-cta .ic-line em { font-style: italic; color: var(--orange-hi); }
+    .inline-cta .btn { grid-column: 2; grid-row: 1 / span 2; }
+    .inline-cta .ic-note { grid-column: 1; grid-row: 2; font-size: 14px; line-height: 1.5; color: var(--ink-3); }
+    @media (max-width: 700px) {
+      .inline-cta { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+      .inline-cta .ic-line, .inline-cta .btn, .inline-cta .ic-note { grid-column: 1; grid-row: auto; }
+      .inline-cta .btn { width: 100%; }
+      .inline-cta .ic-note { margin-top: -.2rem; text-align: center; }
+    }
 
-    /* ---------- Credibility (dunkel · Portrait auf Schwarz) ---------- */
-    .cred{display:grid;gap:clamp(28px,4vw,56px)}
-    @media(min-width:768px){.cred{grid-template-columns:1fr 1.2fr;align-items:center}}
-    .cred .photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:#000;border:1px solid var(--border-dark)}
-    .cred .photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
-    .cred .photo::after{content:"";position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(120% 70% at 50% 108%,rgba(200,99,62,.26) 0%,transparent 62%)}
-    .cred .ptag,.stagephoto .ptag{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;
-      padding:7px 13px;border-radius:999px;background:rgba(15,15,15,.72);border:1px solid rgba(255,255,255,.18);
-      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:.04em;color:var(--text-inverse)}
-    .cred .ptag .dot,.stagephoto .ptag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
-
-    /* ---------- Stage-Foto (Warum jetzt · echte Live-Situation) ---------- */
-    .stagephoto{position:relative;margin-top:clamp(32px,4.5vw,52px);border-radius:14px;overflow:hidden;
-      aspect-ratio:1/1;background:#000;border:1px solid var(--border-dark);max-width:560px}
-    .stagephoto img{width:100%;height:100%;object-fit:cover;object-position:center top}
-    .stagephoto::after{content:"";position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(180deg,rgba(15,15,15,0) 50%,rgba(15,15,15,.5) 100%)}
-    @media(max-width:599px){.stagephoto{aspect-ratio:1/1}}
-    .cred-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px);
-      margin-top:30px;padding-top:26px;border-top:1px solid var(--border-dark)}
-    .cred-stat .v{display:block;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
-      font-size:clamp(32px,4.5vw,52px);line-height:1;letter-spacing:-.02em;color:var(--accent)}
-    .cred-stat .l{display:block;margin-top:8px;font-size:14px;line-height:1.5;color:var(--text-secondary-dark)}
-    @media(max-width:767px){
-      .cred{gap:24px}
-      .cred .photo{max-width:440px}
-      .cred-stats{gap:14px;margin-top:24px;padding-top:20px}
-      .cred-stat .l{font-size:13px;margin-top:6px}
+    /* ---------- Über mich ---------- */
+    .cred { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+    .cred .photo { position: relative; margin: 0; aspect-ratio: 1 / 1; border-radius: var(--r-surface); overflow: hidden; background: #000; border: 1px solid var(--line-2); box-shadow: var(--shadow-float); }
+    .cred .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .cred .photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 70% at 50% 110%, rgba(200, 99, 62, .28), transparent 62%), linear-gradient(0deg, rgba(10, 10, 9, .6), rgba(10, 10, 9, 0) 40%); }
+    .ptag { position: absolute; left: 1rem; bottom: 1rem; z-index: 1; display: inline-flex; align-items: center; gap: .5rem; padding: .35rem .8rem .35rem .65rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--line-2); font-size: 13px; line-height: 1.4; color: var(--ink-2); }
+    .ptag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex: none; }
+    .cred .lead { margin-top: 1.2rem; }
+    .cred-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2.2rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+    .cred-stat .v { display: block; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-style: italic; font-size: clamp(2.3rem, 1.8rem + 2vw, 3.4rem); line-height: 1; letter-spacing: -.03em; color: var(--orange-hi); }
+    .cred-stat .l { display: block; margin-top: .6rem; font-size: 14px; line-height: 1.5; color: var(--ink-3); }
+    @media (max-width: 860px) {
+      .cred { grid-template-columns: minmax(0, 1fr); }
+      .cred .photo { max-width: 26rem; }
     }
 
     /* ---------- Listen ---------- */
-    ul.checks,ul.no{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
-    ul.checks li{position:relative;padding-left:34px;font-size:16.5px;color:var(--text-primary);line-height:1.45}
-    .section-dark ul.checks li{color:var(--text-inverse)}
-    ul.checks li::before{content:"";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;
-      background:var(--accent-soft);border:1px solid var(--accent)}
-    ul.checks li::after{content:"";position:absolute;left:7px;top:8px;width:8px;height:4px;
-      border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
-    ul.no li{position:relative;padding-left:26px;font-size:15.5px;color:var(--text-secondary);line-height:1.5}
-    ul.no li::before{content:"";position:absolute;left:2px;top:.72em;width:13px;height:2px;background:var(--border-strong)}
+    ul.checks, ul.no { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: .85rem; }
+    ul.checks li { position: relative; padding-left: 2.1rem; font-size: 16px; line-height: 1.55; color: var(--ink); }
+    ul.checks li::before { content: ""; position: absolute; left: 0; top: .12em; width: 22px; height: 22px; border-radius: 50%; background: var(--orange-soft); border: 1px solid rgba(200, 99, 62, .6); }
+    ul.checks li::after { content: ""; position: absolute; left: 7px; top: calc(.12em + 7px); width: 8px; height: 4px; border-left: 2px solid var(--orange-hi); border-bottom: 2px solid var(--orange-hi); transform: rotate(-45deg); }
+    ul.no li { position: relative; padding-left: 2.1rem; font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+    ul.no li::before { content: ""; position: absolute; left: 5px; top: .78em; width: 12px; height: 1.5px; background: var(--ink-3); }
 
-    .qual{display:grid;gap:clamp(36px,5vw,64px)}
-    @media(min-width:768px){.qual{grid-template-columns:1fr 1fr}}
-    .qual h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);
-      letter-spacing:-.02em;line-height:1.12;margin:14px 0 0}
+    /* ---------- Kosten ---------- */
+    .cost { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+    .costline { font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.8rem, 1.25rem + 2.1vw, 2.9rem); line-height: 1.14; letter-spacing: -.028em; color: var(--ink); max-width: 19ch; text-wrap: balance; }
+    .costline .big { font-style: italic; color: var(--orange-hi); white-space: nowrap; }
+    .cost .lead { margin-top: 1.4rem; max-width: 40ch; }
+    .cost-card { position: relative; padding: clamp(1.5rem, 3vw, 2.1rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: linear-gradient(180deg, var(--raise-2), var(--raise)); box-shadow: var(--shadow-float); }
+    .cost-card .meta { display: block; padding-bottom: 1rem; margin-bottom: .4rem; border-bottom: 1px solid var(--line-2); font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.45rem, 1.25rem + .6vw, 1.75rem); line-height: 1.15; letter-spacing: -.02em; color: var(--ink); }
+    .applist { list-style: none; margin: 0; padding: 0; }
+    .applist li { position: relative; padding: .7rem 0 .7rem 1.5rem; font-size: 15.5px; line-height: 1.5; color: var(--ink-2); border-bottom: 1px dashed var(--line-2); }
+    .applist li::before { content: ""; position: absolute; left: 0; top: calc(.7rem + .75em); width: 10px; height: 1.5px; background: var(--ink-3); }
+    .applist .tot { padding: 1rem 0 0; border-bottom: 0; color: var(--ink); font-weight: 500; }
+    .applist .tot::before { display: none; }
+    @media (max-width: 860px) { .cost { grid-template-columns: minmax(0, 1fr); } }
 
-    /* ---------- Final CTA ---------- */
-    .lw-final{position:relative;overflow:hidden;text-align:center}
-    .lw-final .vbg{position:absolute;inset:0;z-index:0}
-    .lw-final .vbg img{width:100%;height:100%;object-fit:cover;opacity:.16}
-    .lw-final .vbg::after{content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,var(--bg-dark) 0%,rgba(15,15,15,.78) 50%,var(--bg-dark) 100%)}
-    .lw-final .container{position:relative;z-index:2;max-width:680px}
-    .lw-final h2{margin-top:14px}
-    .lw-final .lead{margin:18px auto 0;text-align:center;max-width:38ch}
-    .lw-final .datebar{margin:24px 0 28px;justify-content:center}
-    .lw-final .datebar .dt{text-align:center}
-    .lw-final .pills{justify-content:center;margin:20px 0 26px}
-    .lw-final .btn{margin:0 auto}
-    .lw-final .cta-sub{margin-top:14px}
-    #reg-note{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:80;
-      display:flex;flex-direction:column;align-items:center;gap:10px;
-      background:var(--bg-light);border:1px solid var(--border);border-radius:14px;
-      padding:20px 24px;box-shadow:0 18px 50px -12px rgba(18,18,18,.4);
-      max-width:340px;width:calc(100% - 32px)}
-    #reg-note[hidden]{display:none}
-    #reg-note .reg-head{font-size:15px;font-weight:600;color:var(--text-primary);margin:0}
-    #reg-note .wj-embed-button{margin:0 auto}
-    #reg-note .reg-fallback{font-size:13px;line-height:1.5;color:var(--text-secondary);text-align:center;margin:0}
-    #reg-note .reg-fallback a{color:var(--accent);font-weight:500}
+    /* ---------- Einwände ---------- */
+    .objs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+    .obj { padding: clamp(1.4rem, 2.4vw, 1.9rem); border: 1px solid var(--line); border-radius: var(--r-surface); background: linear-gradient(180deg, var(--raise), var(--bg)); box-shadow: var(--shadow-raise); }
+    .obj .myth { display: block; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.12rem; line-height: 1.35; color: var(--ink-3); }
+    .obj .myth::before { content: "\201E"; }
+    .obj .myth::after { content: "\201C"; }
+    .obj h3 { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); font-size: clamp(1.35rem, 1.2rem + .5vw, 1.6rem); }
+    .obj p { margin-top: .6rem; font-size: 15.5px; line-height: 1.65; color: var(--ink-2); }
+    @media (max-width: 900px) { .objs { grid-template-columns: minmax(0, 1fr); } }
 
-    /* ---------- FAQ (Homepage) ---------- */
-    .faq{margin-top:clamp(32px,4vw,48px)}
-    .faq-item{border-top:1px solid var(--border)}
-    .faq-item:last-child{border-bottom:1px solid var(--border)}
-    .faq-item summary{list-style:none;cursor:pointer;padding:22px 0;display:grid;grid-template-columns:1fr 24px;
-      gap:16px;align-items:center;font-family:'Inter',sans-serif;font-weight:500;font-size:17px;transition:color 200ms ease}
-    .faq-item summary:hover{color:var(--accent)}
-    .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::after{content:"+";font-family:'JetBrains Mono',monospace;font-size:22px;line-height:1;
-      color:var(--accent);transition:transform 320ms var(--ease-out-expo)}
-    .faq-item[open] summary::after{transform:rotate(45deg)}
-    .faq-body{padding:0 0 24px;color:var(--text-secondary);font-size:16px;line-height:1.65;max-width:60ch}
+    /* ---------- Für wen ---------- */
+    .qual { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+    .qual > div { padding: clamp(1.5rem, 3vw, 2.2rem); border-radius: var(--r-surface); }
+    .qual-yes { border: 1px solid rgba(200, 99, 62, .4); background: linear-gradient(180deg, var(--raise-2), var(--raise)); box-shadow: var(--shadow-float); }
+    .qual-no { border: 1px solid var(--line); }
+    .qlabel { font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--orange-hi); }
+    .qual-no .qlabel { color: var(--ink-3); }
+    .qual h3 { margin-top: .5rem; font-size: clamp(1.5rem, 1.25rem + .9vw, 1.95rem); }
+    @media (max-width: 760px) { .qual { grid-template-columns: minmax(0, 1fr); } }
 
-    /* ---------- Footer ---------- */
-    footer{background:var(--bg-dark);color:var(--text-inverse);padding:48px 0 calc(40px + env(safe-area-inset-bottom))}
-    .foot-in{display:flex;flex-direction:column;gap:18px}
-    .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
-    .foot-links a{color:var(--text-secondary-dark)}
-    .foot-links a:hover{color:var(--text-inverse)}
-    .foot-copy{font-size:12px;color:var(--text-secondary-dark);letter-spacing:.02em}
-
-    .hr{border:0;height:1px;background:var(--border);margin:0}
-
-    /* ---------- Reveal ---------- */
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo)}
-    .reveal.in{opacity:1;transform:none}
-    @media(prefers-reduced-motion:reduce){
-      .reveal{opacity:1;transform:none;transition:none}
-      html{scroll-behavior:auto}
-      .btn,.faq-item summary::after{transition:none}
+    /* ---------- Warum jetzt ---------- */
+    .beta { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+    .stagephoto { position: relative; margin: 0; aspect-ratio: 1 / 1; border-radius: var(--r-surface); overflow: hidden; background: #000; border: 1px solid var(--line-2); box-shadow: var(--shadow-float); }
+    .stagephoto img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 30%; filter: saturate(.9); }
+    .stagephoto::before { content: ""; position: absolute; inset: 0; z-index: 1; background: #7A3A22; mix-blend-mode: multiply; opacity: .22; pointer-events: none; }
+    .stagephoto::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(0deg, rgba(10, 10, 9, .6), rgba(10, 10, 9, 0) 45%); }
+    .beta .lw-quote { margin-top: clamp(2rem, 4vw, 2.8rem); }
+    .beta .lw-quote blockquote { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.75rem); }
+    .live-note { display: flex; align-items: center; gap: .6rem; margin-top: 2rem; font-size: 14.5px; line-height: 1.5; color: var(--ink-3); }
+    .live-note::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--orange-hi); }
+    @media (max-width: 860px) {
+      .beta { grid-template-columns: minmax(0, 1fr); }
+      .stagephoto { max-width: 30rem; }
     }
-    /* ---------- Live-Quote (Beta-Stimme) ---------- */
-    .lw-quote{margin:clamp(36px,5vw,56px) 0 0;max-width:760px}
-    .lw-quote blockquote{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(22px,3vw,32px);
-      line-height:1.34;letter-spacing:-.02em;margin:0 0 22px}
-    .lw-quote blockquote::before{content:"\201C";color:var(--accent)}
-    .lw-quote blockquote::after{content:"\201D";color:var(--accent)}
-    .lw-quote figcaption{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-      font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.01em}
-    .lw-quote-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto}
-    .lw-quote-name{font-weight:500}
-    .lw-quote-co{color:var(--text-secondary)}
-    .section-dark .lw-quote-co{color:var(--text-secondary-dark)}
-    .lw-quote-co::before{content:""}
-    /* Kompakt-Variante: Proof direkt an der Behauptung, kleinere Stufe als die Buehnen-Quote */
-    .lw-quote--inline{margin:clamp(30px,4vw,46px) 0 0;max-width:640px}
-    .lw-quote--inline blockquote{font-size:clamp(19px,2.1vw,26px);line-height:1.38;margin:0 0 16px}
-    /* Mini-Stufe fuer den Abbinder unter dem letzten CTA */
-    .lw-quote--mini{margin:clamp(26px,3vw,34px) auto 0;max-width:560px;text-align:center}
-    .lw-quote--mini blockquote{font-size:clamp(17px,1.7vw,21px);line-height:1.42;margin:0 0 12px}
-    .lw-quote--mini figcaption{justify-content:center}
 
-    /* ---------- Commitment-Ladder Modal ---------- */
-    .lwq-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.5);backdrop-filter:blur(3px);
-      -webkit-backdrop-filter:blur(3px);z-index:1199;animation:cookieFade 220ms ease-out}
-    .lwq-backdrop[hidden]{display:none}
-    .lwq{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:480px;
-      background:var(--bg-light);color:var(--text-primary);border:1px solid var(--border);border-radius:16px;
-      box-shadow:0 24px 60px rgba(15,15,15,.28),0 4px 12px rgba(15,15,15,.1);padding:clamp(26px,4vw,38px);
-      z-index:1200;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
-    .lwq[hidden]{display:none}
-    .lwq-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:26px;line-height:1;
-      color:var(--text-secondary);cursor:pointer;padding:4px;border-radius:6px;transition:color 150ms ease}
-    .lwq-close:hover{color:var(--text-primary)}
-    .lwq-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-    .lwq-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(22px,3vw,28px);
-      letter-spacing:-.02em;line-height:1.18;margin:10px 0 0}
-    .lwq-sub{color:var(--text-secondary);font-size:15px;line-height:1.55;margin:12px 0 0}
-    .lwq-step>.btn{margin-top:22px}
-    .lwq-choices{display:flex;flex-direction:column;gap:12px;margin-top:22px}
-    .lwq-choices .btn{width:100%}
-    @media(prefers-reduced-motion:reduce){.lwq,.lwq-backdrop{animation:none}}
+    /* ---------- FAQ (site-dark .qa) ---------- */
+    .faq-wrap { max-width: calc(820px + 2 * var(--gutter)); }
+    .faq { margin-top: clamp(2rem, 4vw, 2.8rem); }
 
-    /* ---------- Cookie-Banner (zentriert, Backdrop-Blur · wie Homepage · Test-Modus) ---------- */
-    .cookie-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:460px;text-align:center;background:#FFFFFF;border:1px solid #E5E3DD;border-radius:14px;box-shadow:0 18px 48px rgba(15,15,15,.18),0 2px 8px rgba(15,15,15,.08);padding:22px 22px 20px;z-index:1100;font-family:'Inter',system-ui,sans-serif;animation:cookieRise 280ms cubic-bezier(.22,1,.36,1)}
-    @keyframes cookieRise{from{transform:translate(-50%,calc(-50% + 12px));opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
-    .cookie-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.32);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1099;animation:cookieFade 220ms ease-out}
-    .cookie-backdrop[hidden]{display:none}
-    @keyframes cookieFade{from{opacity:0}to{opacity:1}}
-    .cookie-banner[hidden]{display:none}
-    .cookie-title{font-size:14.5px;font-weight:600;margin:0 0 6px;color:#1A1A1A;letter-spacing:-.005em}
-    .cookie-text{font-size:13px;line-height:1.55;color:#5C5C5C;margin:0 0 14px}
-    .cookie-text a{color:#C8633E;border-bottom:1px solid currentColor;text-decoration:none}
-    .cookie-text a:hover{color:#B05530}
-    .cookie-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-    .cookie-btn{padding:9px 14px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}
-    .cookie-btn:focus-visible{outline:2px solid #C8633E;outline-offset:2px}
-    .cookie-btn-ghost{background:transparent;color:#5C5C5C;border:1px solid #C7C4BB}
-    .cookie-btn-ghost:hover{color:#1A1A1A;border-color:#1A1A1A}
-    .cookie-btn-primary{background:#C8633E;color:#FFFFFF;border:1px solid #C8633E}
-    .cookie-btn-primary:hover{background:#B05530;border-color:#B05530}
-    @media (max-width:480px){.cookie-banner{width:calc(100% - 24px);padding:18px 16px 16px}.cookie-actions{flex-direction:column-reverse}.cookie-btn{width:100%}}
+    /* ---------- Schluss ---------- */
+    .lw-final { position: relative; overflow: hidden; text-align: center; padding-block: var(--section); }
+    .lw-final .vbg { position: absolute; inset: 0; z-index: 0; }
+    .lw-final .vbg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; opacity: .5; }
+    .lw-final .vbg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 70% at 50% 46%, rgba(14, 14, 13, .62), rgba(14, 14, 13, .5) 60%, var(--bg) 100%), linear-gradient(180deg, var(--bg) 0%, rgba(14, 14, 13, 0) 30%, rgba(14, 14, 13, 0) 70%, var(--bg) 100%); }
+    .lw-final .wrap { position: relative; max-width: calc(44rem + 2 * var(--gutter)); }
+    .lw-final h2 { font-size: clamp(2.6rem, 1.4rem + 4.4vw, 4.8rem); line-height: 1.02; letter-spacing: -.034em; }
+    .lw-final .lead { margin: 1.3rem auto 0; max-width: 40ch; }
+    .lw-final .datebar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: .6rem; row-gap: .2rem; margin: 2.2rem auto 1.8rem; }
+    .lw-final .datebar .dt { flex-basis: 100%; text-align: center; }
+    .lw-final .cta-sub { margin-top: 1rem; font-size: 14px; color: var(--ink-3); }
+    @media (max-width: 560px) { .lw-final > .wrap > .btn { width: 100%; } }
+
+    /* Fallback-Karte, falls das Anmeldefenster nicht aufgeht (schwebend, deckend) */
+    #reg-note { position: fixed; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 80; display: flex; flex-direction: column; align-items: center; gap: .75rem; width: calc(100% - 32px); max-width: 360px; padding: 1.3rem 1.4rem; text-align: center; background: var(--raise-2); border: 1px solid var(--line-2); border-radius: var(--r-surface); box-shadow: var(--shadow-float); }
+    #reg-note .reg-head { font-size: 15.5px; font-weight: 600; color: var(--ink); }
+    #reg-note .reg-fallback { font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
+    #reg-note .reg-fallback a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 123, 84, .6); text-underline-offset: 3px; }
+    #reg-note .reg-fallback a:hover { color: var(--orange-hi); }
+    #reg-note .reg-fallback a:active { opacity: .7; }
+    #reg-note .reg-fallback a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 3px; }
+
+    /* WebinarJam-CSS setzt auf .wj-embed-button eigene Transition, Hover-Deckkraft und outline:none.
+       Unsere Pille behält Federung + sichtbaren Fokus. */
+    .lwq .btn.wj-embed-button, #reg-note .btn.wj-embed-button { transition: transform .5s var(--ease), background-color .25s var(--ease-q), box-shadow .5s var(--ease); opacity: 1; }
+    .lwq .btn.wj-embed-button:hover, #reg-note .btn.wj-embed-button:hover, .lwq .btn.wj-embed-button:focus:hover, #reg-note .btn.wj-embed-button:focus:hover { opacity: 1; }
+    .lwq .btn.wj-embed-button:focus-visible, #reg-note .btn.wj-embed-button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+    /* ---------- Fußzeile ---------- */
+    footer.foot { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+    .foot .tm { color: var(--ink-3); }
+
+    /* ---------- Qualifier-Modal (schwebend, deckend) ---------- */
+    .lwq-backdrop { position: fixed; inset: 0; z-index: 1199; background: rgba(10, 10, 9, .72); animation: lwFade .25s var(--ease-q); }
+    .lwq {
+      position: fixed; top: 50%; left: 50%; z-index: 1200; transform: translate(-50%, -50%);
+      width: calc(100% - 32px); max-width: 480px; max-height: calc(100dvh - 32px); overflow-y: auto;
+      padding: clamp(1.6rem, 4vw, 2.3rem); color: var(--ink);
+      background: var(--raise-2); border: 1px solid var(--line-2); border-radius: var(--r-surface); box-shadow: var(--shadow-float);
+      animation: lwPop .5s var(--ease);
+    }
+    .lwq-close { position: absolute; top: .7rem; right: .7rem; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-3); font-size: 26px; line-height: 1; cursor: pointer; transition: color .2s var(--ease-q), background-color .2s var(--ease-q), transform .3s var(--ease); }
+    .lwq-close:hover { color: var(--ink); background: var(--raise); }
+    .lwq-close:active { transform: scale(.94); }
+    .lwq-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .lwq-kicker { display: flex; align-items: center; gap: .7rem; padding-right: 3rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
+    .lwq-kicker .seg { display: inline-flex; gap: 4px; }
+    .lwq-kicker .seg i { width: 18px; height: 3px; border-radius: 2px; background: var(--line-2); }
+    .lwq-kicker .seg i.on { background: var(--orange-hi); }
+    .lwq-title { margin-top: .9rem; padding-right: 1.5rem; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.6rem, 1.3rem + 1.1vw, 2rem); line-height: 1.12; letter-spacing: -.025em; color: var(--ink); text-wrap: balance; }
+    .lwq-step[data-step="reject"] .lwq-title { margin-top: 0; padding-right: 3rem; }
+    .lwq-sub { margin-top: .8rem; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
+    .lwq-step > .btn { width: 100%; margin-top: 1.4rem; }
+    .lwq-step > .btn + .btn { margin-top: .7rem; }
+    .lwq-choices { display: grid; gap: .7rem; margin-top: 1.5rem; }
+    .lwq-choices .btn { width: 100%; }
+
+    /* ---------- Cookie-Hinweis (schwebend, deckend) ---------- */
+    .cookie-backdrop { position: fixed; inset: 0; z-index: 1099; background: rgba(10, 10, 9, .6); animation: lwFade .25s var(--ease-q); }
+    .cookie-banner {
+      position: fixed; top: 50%; left: 50%; z-index: 1100; transform: translate(-50%, -50%);
+      width: calc(100% - 32px); max-width: 460px; padding: 1.5rem 1.5rem 1.35rem; text-align: center;
+      background: var(--raise-2); border: 1px solid var(--line-2); border-radius: var(--r-surface); box-shadow: var(--shadow-float);
+      animation: lwPop .5s var(--ease);
+    }
+    .cookie-title { font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: 1.3rem; line-height: 1.2; letter-spacing: -.015em; color: var(--ink); }
+    .cookie-text { margin-top: .6rem; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+    .cookie-text a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 123, 84, .6); text-underline-offset: 3px; border-radius: 3px; }
+    .cookie-text a:hover { color: var(--orange-hi); }
+    .cookie-text a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .cookie-text a:active { opacity: .7; }
+    .cookie-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.2rem; }
+    .cookie-btn { min-height: 44px; padding: 0 1.3rem; border: 0; border-radius: 999px; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: transform .4s var(--ease), background-color .2s var(--ease-q), box-shadow .3s var(--ease-q); }
+    .cookie-btn:hover { transform: translateY(-1px); }
+    .cookie-btn:active { transform: translateY(1px); }
+    .cookie-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .cookie-btn-ghost { background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line-2); }
+    .cookie-btn-ghost:hover { color: var(--ink); background: var(--raise); box-shadow: inset 0 0 0 1px var(--ink-3); }
+    .cookie-btn-primary { background: var(--orange); color: var(--on-orange); box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 10px 24px -12px rgba(200, 99, 62, .6); }
+    .cookie-btn-primary:hover { background: #D06A44; }
+    .cookie-btn-primary:active { background: var(--orange-press); }
+    @media (max-width: 480px) {
+      .cookie-banner { padding: 1.3rem 1.1rem 1.1rem; }
+      .cookie-actions { flex-direction: column-reverse; }
+      .cookie-btn { width: 100%; }
+    }
+
+    @keyframes lwFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes lwPop { from { opacity: 0; transform: translate(-50%, calc(-50% + 14px)); } to { opacity: 1; transform: translate(-50%, -50%); } }
   </style>
 </head>
 <body id="top">
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ===================== NAV ===================== -->
+  <!-- ===================== NAV (Funnel: nur Wordmark + Anmelde-CTA) ===================== -->
   <header class="nav" id="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#top" class="wordmark" aria-label="Nach oben">vor<span class="flows">flows</span></a>
-        <div class="nav-right">
-          <span class="pill"><span class="dot"></span>Kostenlos · Live-Workshop</span>
-          <button class="btn btn-primary" type="button" data-webinar-cta>Platz sichern</button>
-        </div>
+    <div class="wrap">
+      <a href="#top" class="brand" aria-label="Nach oben"><span class="wordmark">vor<span class="flows">flows</span></span><span class="prod">Live-Workshop</span></a>
+      <div class="nav-right">
+        <button class="btn btn--sm" type="button" data-webinar-cta>Platz sichern</button>
       </div>
     </div>
   </header>
 
+  <main>
   <!-- ===================== HERO ===================== -->
-  <section class="lw-hero section section-dark">
-    <div class="vbg"><img src="/assets/images/alex-workshop-square.jpg" alt="" aria-hidden="true" /></div>
-    <div class="container">
-      <h1 class="display">Ich baue mit KI vor deinen Augen einen <span class="accent display-italic">Shopify-Shop</span> um.</h1>
-      <p class="lead">Live in 60 Minuten: Apps ersetzen, ranken, Conversion-Rate verbessern. Ohne Code.</p>
-      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
-      <div class="cta-row">
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+  <section class="lw-hero" aria-label="Live-Workshop">
+    <div class="vbg" aria-hidden="true"><img src="/assets/images/alex-workshop-square.jpg" alt="" fetchpriority="high" /></div>
+    <div class="wrap">
+      <h1 class="rise d1">Ich baue mit KI vor deinen Augen einen <em>Shopify-Shop</em> um</h1>
+      <p class="lead rise d2">Live in 60 Minuten: Apps ersetzen, ranken, Conversion-Rate verbessern. Ohne Code.</p>
+      <div class="hero-act rise d3">
+        <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
+        <div class="cta-row">
+          <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== WAS DU LIVE SIEHST ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="sec-head">
-        <h2 class="h2">Das baue ich <em>live</em> in den Shop.</h2>
-        <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen.</p>
+  <section class="sec">
+    <div class="wrap">
+      <div class="agenda">
+        <div class="sec-head">
+          <h2>Das baue ich <em>live</em> in den Shop</h2>
+          <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen.</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <div class="n" aria-hidden="true">1</div>
+            <div>
+              <h3>Teure Apps durch sauberen Code ersetzen</h3>
+              <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="n" aria-hidden="true">2</div>
+            <div>
+              <h3>Rankingoptimierung mit KI an einer echten Produktseite</h3>
+              <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, und baut technisches SEO und Schema direkt ins Theme.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="n" aria-hidden="true">3</div>
+            <div>
+              <h3>CRO aus echtem Klick- und Scrollverhalten</h3>
+              <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion-Rate verbessert.</p>
+            </div>
+          </li>
+        </ol>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="n">1</div>
-          <div>
-            <h3>Teure Apps durch sauberen Code ersetzen.</h3>
-            <p>Ich baue live eine Bundle-Section und eine Free-Shipping-Bar direkt ins Theme. Zwei Apps weniger, ein höherer Warenkorb, sichtbar in Minuten.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="n">2</div>
-          <div>
-            <h3>Rankingoptimierung mit KI an einer echten Produktseite.</h3>
-            <p>Die KI liest echte Suchdaten, findet die Begriffe, für die du fast rankst, und baut technisches SEO und Schema direkt ins Theme.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="n">3</div>
-          <div>
-            <h3>CRO aus echtem Klick- und Scrollverhalten.</h3>
-            <p>Wo brechen Besucher ab? Aus den Verhaltensdaten leite ich live ab, welche Section nach vorn gehört und welcher Button die Conversion-Rate verbessert.</p>
-          </div>
-        </div>
-      </div>
-      <figure class="lw-quote lw-quote--inline reveal">
+      <figure class="lw-quote lw-quote--inline">
         <blockquote>Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Stefan Kisker</span><span class="lw-quote-co">Prometheus Performance GmbH</span></figcaption>
       </figure>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Genau das siehst du <em>live</em>.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+      <div class="inline-cta">
+        <p class="ic-line">Genau das siehst du <em>live</em></p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
         <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · 60 Min · mit Q&amp;A</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== CREDIBILITY (dunkel) ===================== -->
-  <section class="section section-dark">
-    <div class="container">
+  <!-- ===================== ÜBER MICH ===================== -->
+  <section class="sec">
+    <div class="wrap">
       <div class="cred">
-        <div class="photo reveal">
-          <img src="/shop-ki-founder-square.webp" alt="Alex von vorflows" loading="lazy" />
-          <span class="ptag mono"><span class="dot" aria-hidden="true"></span>Alex · Founder vorflows</span>
-        </div>
-        <div class="reveal">
-          <h2 class="h2">8 Jahre <em>Online-Marketing</em>.</h2>
+        <figure class="photo">
+          <img src="/shop-ki-founder-square.webp" alt="Alex von vorflows" loading="lazy" width="864" height="864" />
+          <span class="ptag"><span class="dot" aria-hidden="true"></span>Alex · Founder vorflows</span>
+        </figure>
+        <div>
+          <h2>9 Jahre <em>Online-Marketing</em></h2>
           <p class="lead">Ich rede nicht über etwas, das ich mal gehört habe. Ich mache das jeden Tag selbst.</p>
           <ul class="checks">
             <li>KI-Startup-Kunden: 404, Atlas, Quiver (8,3 Mio. € Funding)</li>
@@ -498,23 +440,23 @@
           </div>
         </div>
       </div>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Lern es von jemandem, der es <em>täglich</em> macht.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+      <div class="inline-cta">
+        <p class="ic-line">Lern es von jemandem, der es <em>täglich</em> macht</p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
         <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · ohne Vorkenntnisse</p>
       </div>
     </div>
   </section>
 
   <!-- ===================== KOSTEN ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="twocol">
-        <div class="reveal">
+  <section class="sec">
+    <div class="wrap">
+      <div class="cost">
+        <div>
           <p class="costline">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
-          <p class="lead" style="max-width:34ch">Im Workshop rechnest du live mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
+          <p class="lead">Im Workshop rechnest du live mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
         </div>
-        <div class="cost-card reveal">
+        <div class="cost-card">
           <span class="meta">436 Euro im Monat</span>
           <ul class="applist">
             <li>Shipping-Bar, Cart-Upsell, Sticky-ATC</li>
@@ -526,61 +468,61 @@
           </ul>
         </div>
       </div>
-      <figure class="lw-quote lw-quote--inline reveal">
+      <figure class="lw-quote lw-quote--inline">
         <blockquote>Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Adrian</span><span class="lw-quote-co">Founder, Skincare D2C</span></figcaption>
       </figure>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Rechne live mit, was <em>weg</em> kann.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+      <div class="inline-cta">
+        <p class="ic-line">Rechne live mit, was <em>weg</em> kann</p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
         <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · live</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== EINWÄNDE (dunkel) ===================== -->
-  <section class="section section-dark">
-    <div class="container">
+  <!-- ===================== EINWÄNDE ===================== -->
+  <section class="sec">
+    <div class="wrap">
       <div class="sec-head">
-        <h2 class="h2">Du brauchst keinen <em>Entwickler</em> dafür.</h2>
+        <h2>Du brauchst keinen <em>Entwickler</em> dafür</h2>
         <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
       </div>
       <div class="objs">
-        <div class="obj reveal">
-          <span class="myth mono">Ich kann nicht coden</span>
-          <h3>Musst du nicht.</h3>
+        <div class="obj">
+          <span class="myth">Ich kann nicht coden</span>
+          <h3>Musst du nicht</h3>
           <p>Du sagst, was du willst. Die KI schreibt den Code wie ein Senior-Dev. Du prüfst die Vorschau und gibst frei.</p>
         </div>
-        <div class="obj reveal">
-          <span class="myth mono">Zu riskant am Live-Shop</span>
-          <h3>Dein Shop bleibt sicher.</h3>
+        <div class="obj">
+          <span class="myth">Zu riskant am Live-Shop</span>
+          <h3>Dein Shop bleibt sicher</h3>
           <p>Gearbeitet wird am duplizierten Theme. Nichts geht live ohne dein Zutun.</p>
         </div>
-        <div class="obj reveal">
-          <span class="myth mono">KI ist nicht auf Profi-Niveau</span>
-          <h3>Doch, mit der richtigen Führung.</h3>
+        <div class="obj">
+          <span class="myth">KI ist nicht auf Profi-Niveau</span>
+          <h3>Doch, mit der richtigen Führung</h3>
           <p>Ich zeige dir live den Unterschied zwischen Shopifys eigener KI und einem sauber geführten Workflow.</p>
         </div>
       </div>
-      <figure class="lw-quote  reveal">
+      <figure class="lw-quote">
         <blockquote>Ich hatte bisher Agenturen und Freelancer, irgendwie zehn unterschiedliche Entwickler und Berater, und ich muss sagen: die sind alle schlechter. Dein Tool, die Integration, das macht es inhaltlich besser, technisch besser, billiger und schneller.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Michael Bodeske</span><span class="lw-quote-co">massagesesselwelt.de</span></figcaption>
       </figure>
-      <div class="inline-cta reveal">
-        <p class="ic-line">Kein Code, kein Risiko. Nur <em>60 Minuten</em>.</p>
-        <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Platz sichern</button>
+      <div class="inline-cta">
+        <p class="ic-line">Kein Code, kein Risiko, nur <em>60 Minuten</em></p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Platz sichern</button>
         <p class="ic-note">Kostenlos · live · keine Aufzeichnung</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== QUALIFIER ===================== -->
-  <section class="section section-tight">
-    <div class="container">
+  <!-- ===================== FÜR WEN ===================== -->
+  <section class="sec">
+    <div class="wrap">
       <div class="qual">
-        <div class="reveal">
-          <p class="meta eyebrow">Für dich, wenn</p>
-          <h3>Du einen laufenden Shop hast.</h3>
+        <div class="qual-yes">
+          <p class="qlabel">Für dich, wenn</p>
+          <h3>Du einen laufenden Shop hast</h3>
           <ul class="checks">
             <li>Du einen laufenden Shopify-Shop führst</li>
             <li>Du bereit bist, KI-Tools selbst zu nutzen</li>
@@ -588,9 +530,9 @@
             <li>Du den App-Stack satt hast und die Kontrolle zurück willst</li>
           </ul>
         </div>
-        <div class="reveal">
-          <p class="meta eyebrow">Nicht für dich, wenn</p>
-          <h3>Du nur zuschauen willst.</h3>
+        <div class="qual-no">
+          <p class="qlabel">Nicht für dich, wenn</p>
+          <h3>Du nur zuschauen willst</h3>
           <ul class="no">
             <li>Du noch keinen Shop hast und nur stöbern willst</li>
             <li>Du eine Ein-Klick-App suchst, die alles allein macht</li>
@@ -598,86 +540,91 @@
           </ul>
         </div>
       </div>
-      <figure class="lw-quote lw-quote--inline reveal">
+      <figure class="lw-quote lw-quote--inline">
         <blockquote>Wir hatten schon mit KI gearbeitet. Aber erst seit dem Setup von Alex merken wir, wie ineffizient wir vorher waren und wie viel schneller und vor allem zuverlässiger es geht.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Leo</span><span class="lw-quote-co">Pure U, Skincare Brand</span></figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ===================== WARUM JETZT (Closed-Beta · Scarcity) ===================== -->
-  <section class="section section-dark">
-    <div class="container">
-      <div class="sec-head">
-        <h2 class="h2">Bis heute lief das nur in <em>geschlossener Beta</em>.</h2>
-        <p class="lead">Zum ersten Mal zeige ich das System öffentlich, weil die Beta-Resultate es rechtfertigen.</p>
-        <p class="lead">Wer das jetzt nutzt, baut einen echten Vorsprung auf. Was heute wenige tun, machen in zwei Jahren alle.</p>
+  <!-- ===================== WARUM JETZT (Closed-Beta) ===================== -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="beta">
+        <div>
+          <div class="sec-head">
+            <h2>Bis heute lief das nur in <em>geschlossener Beta</em></h2>
+            <p class="lead">Zum ersten Mal zeige ich das System öffentlich, weil die Beta-Resultate es rechtfertigen.</p>
+            <p class="lead">Wer das jetzt nutzt, baut einen echten Vorsprung auf. Was heute wenige tun, machen in zwei Jahren alle.</p>
+          </div>
+          <figure class="lw-quote">
+            <blockquote>Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.</blockquote>
+            <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Markus Bonk</span><span class="lw-quote-co">Rheinland.Coffee</span></figcaption>
+          </figure>
+          <p class="live-note">Keine Aufzeichnung. Nur wer live dabei ist, sieht jeden Schritt.</p>
+        </div>
+        <figure class="stagephoto">
+          <img src="/assets/images/alex-workshop-square.jpg" alt="Alex live auf der Bühne vor Publikum" loading="lazy" width="2268" height="2268" />
+        </figure>
       </div>
-      <div class="stagephoto reveal">
-        <img src="/assets/images/alex-workshop-square.jpg" alt="Alex live auf der Bühne vor Publikum" loading="lazy" />
-      </div>
-      <figure class="lw-quote  reveal">
-        <blockquote>Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.</blockquote>
-        <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Markus Bonk</span><span class="lw-quote-co">Rheinland.Coffee</span></figcaption>
-      </figure>
-      <p class="cta-sub" style="margin-top:30px">Keine Aufzeichnung. Nur wer live dabei ist, sieht jeden Schritt.</p>
     </div>
   </section>
 
   <!-- ===================== FAQ ===================== -->
-  <section class="section">
-    <div class="container" style="max-width:820px">
-      <h2 class="h2">Häufige Fragen.</h2>
-      <div class="faq">
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <h2>Häufige Fragen</h2>
+      <div class="faq qa">
         <details class="faq-item" open>
-          <summary>Kostet der Workshop etwas?</summary>
-          <div class="faq-body">Nein, der Live-Workshop ist komplett kostenlos.</div>
+          <summary>Kostet der Workshop etwas?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Nein, der Live-Workshop ist komplett kostenlos.</div>
         </details>
         <details class="faq-item">
-          <summary>Brauche ich Vorkenntnisse im Coden?</summary>
-          <div class="faq-body">Nein. Du musst kein Entwickler sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
+          <summary>Brauche ich Vorkenntnisse im Coden?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Nein. Du musst kein Entwickler sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
         </details>
         <details class="faq-item">
-          <summary>Gibt es eine Aufzeichnung?</summary>
-          <div class="faq-body">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
+          <summary>Gibt es eine Aufzeichnung?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
         </details>
         <details class="faq-item">
-          <summary>Für welchen Shop ist das gedacht?</summary>
-          <div class="faq-body">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion-Rate verbessern.</div>
+          <summary>Für welchen Shop ist das gedacht?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion-Rate verbessern.</div>
         </details>
         <details class="faq-item">
-          <summary>Wie lange dauert es?</summary>
-          <div class="faq-body">Circa 60 Minuten. Je nach Menge der Fragen kann es auch bis zu 90 Minuten dauern. Plane dir also etwas Zeit ein.</div>
+          <summary>Wie lange dauert es?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Circa 60 Minuten. Je nach Menge der Fragen kann es auch bis zu 90 Minuten dauern. Plane dir also etwas Zeit ein.</div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FINAL CTA (dunkel) ===================== -->
-  <section class="lw-final section section-dark">
-    <div class="vbg"><img src="/brand_assets/webinar/appstack.webp" alt="" aria-hidden="true" /></div>
-    <div class="container">
-      <h2 class="h2">Sei <em>live</em> dabei.</h2>
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="lw-final">
+    <div class="vbg" aria-hidden="true"><img src="/brand_assets/webinar/appstack.webp" alt="" loading="lazy" /></div>
+    <div class="wrap">
+      <h2>Sei <em>live</em> dabei</h2>
       <p class="lead">In 60 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
-      <div class="datebar"><span class="ldot"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
-      <button class="btn btn-primary btn-lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+      <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
+      <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
       <p class="cta-sub">Live mit Fragerunde am Ende · keine Aufzeichnung</p>
-      <figure class="lw-quote lw-quote--mini reveal">
+      <figure class="lw-quote lw-quote--mini">
         <blockquote>Das ist genau das, wonach ich schon seit Wochen gesucht habe.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Manuela Wonning</span><span class="lw-quote-co">Royal Vitality, Fashion</span></figcaption>
       </figure>
       <div id="reg-note" role="status" aria-live="polite" hidden>
         <p class="reg-head">Kein Fenster aufgegangen?</p>
-        <button class="btn btn-primary wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
+        <button class="btn wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
         <p class="reg-fallback">Oder schreib an
           <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>.</p>
       </div>
     </div>
   </section>
+  </main>
 
-  <!-- ===================== STICKY MOBILE-CTA ===================== -->
+  <!-- ===================== STICKY MOBILE-CTA (bewusst aus, siehe CSS) ===================== -->
   <div class="sticky-cta" id="stickyCta" aria-hidden="true">
-    <button class="btn btn-primary" type="button" data-webinar-cta>Kostenlos anmelden</button>
+    <button class="btn" type="button" data-webinar-cta>Kostenlos anmelden</button>
   </div>
 
   <!-- ===================== COMMITMENT-LADDER (Qualify-Modal) ===================== -->
@@ -685,40 +632,38 @@
   <div class="lwq" id="lwqModal" hidden role="dialog" aria-modal="true" aria-labelledby="lwqTitle">
     <button class="lwq-close" id="lwqClose" type="button" aria-label="Schließen">&times;</button>
     <div class="lwq-step" data-step="1">
-      <p class="meta eyebrow">Schritt 1 von 2</p>
+      <p class="lwq-kicker"><span class="seg" aria-hidden="true"><i class="on"></i><i></i></span>Schritt 1 von 2</p>
       <p class="lwq-title" id="lwqTitle">Hast du einen Shopify-Shop?</p>
       <p class="lwq-sub">Dieser Live-Workshop ist <strong>nur für bestehende Shopify-Shops</strong>. Ohne eigenen Shop bringt er dir nichts. Bitte sei hier ehrlich.</p>
       <div class="lwq-choices">
-        <button class="btn btn-primary btn-lg" type="button" data-lwq-shopify="yes">Ja, hab ich</button>
-        <button class="btn btn-outline" type="button" data-lwq-shopify="no">Nein, hab ich nicht</button>
+        <button class="btn btn--lg" type="button" data-lwq-shopify="yes">Ja, hab ich</button>
+        <button class="btn btn--ghost" type="button" data-lwq-shopify="no">Nein, hab ich nicht</button>
       </div>
     </div>
     <div class="lwq-step" data-step="2" hidden>
-      <p class="meta eyebrow">Schritt 2 von 2</p>
+      <p class="lwq-kicker"><span class="seg" aria-hidden="true"><i class="on"></i><i class="on"></i></span>Schritt 2 von 2</p>
       <p class="lwq-title">Kannst du am Donnerstag, 10. September, 11:00 Uhr?</p>
       <p class="lwq-sub">60 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
-      <button class="btn btn-primary btn-lg wj-embed-button" type="button" data-lwq-confirm data-webinarHash="0qgn9gag">Ja, der Termin passt</button>
+      <button class="btn btn--lg wj-embed-button" type="button" data-lwq-confirm data-webinarHash="0qgn9gag">Ja, der Termin passt</button>
     </div>
     <div class="lwq-step" data-step="reject" hidden>
-      <p class="lwq-title">Ich habe ein passenderes Angebot für dich.</p>
+      <p class="lwq-title">Ich habe ein passenderes Angebot für dich</p>
       <p class="lwq-sub">Wenn du keinen Shop hast, bringt dir der Live-Workshop leider <strong>gar nichts</strong>. Alles, was ich zeige, läuft direkt im Shopify-Theme. Schreib mir stattdessen kurz, dann melde ich mich mit etwas, das wirklich zu dir passt.</p>
-      <a class="btn btn-primary btn-lg" data-lwq-mailto href="mailto:alex@adolution.de?subject=Interesse%3A%20KI%20%2B%20Shopify%20(noch%20kein%20Shop)&amp;body=Hallo%2C%0A%0Aich%20habe%20noch%20keinen%20Shop%2C%20bin%20aber%20trotzdem%20interessiert%20am%20Thema%20KI%20%2B%20Shopify.%0A%0AViele%20Gr%C3%BC%C3%9Fe%0A">Passenderes Angebot anfragen</a>
-      <button class="btn btn-outline" type="button" data-lwq-done>Nein danke, schließen</button>
+      <a class="btn btn--lg" data-lwq-mailto href="mailto:alex@adolution.de?subject=Interesse%3A%20KI%20%2B%20Shopify%20(noch%20kein%20Shop)&amp;body=Hallo%2C%0A%0Aich%20habe%20noch%20keinen%20Shop%2C%20bin%20aber%20trotzdem%20interessiert%20am%20Thema%20KI%20%2B%20Shopify.%0A%0AViele%20Gr%C3%BC%C3%9Fe%0A">Passenderes Angebot anfragen</a>
+      <button class="btn btn--ghost" type="button" data-lwq-done>Nein danke, schließen</button>
     </div>
   </div>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    <div class="container">
-      <div class="foot-in">
-        <a href="#top" class="wordmark" style="color:var(--text-inverse)" aria-label="Nach oben">vor<span class="flows">flows</span></a>
-        <nav class="foot-links">
-          <a href="/impressum-lw-b">Impressum</a>
-          <a href="/datenschutz-lw-b">Datenschutz</a>
-          <a href="mailto:alex@adolution.de">Kontakt</a>
-        </nav>
-        <span class="foot-copy">© 2026 vorflows</span>
-      </div>
+  <!-- ===================== FOOTER (Funnel: nur Rechtstexte + Kontakt) ===================== -->
+  <footer class="foot">
+    <div class="wrap">
+      <a href="#top" class="brand" aria-label="Nach oben"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav class="foot-links" aria-label="Rechtliches und Kontakt">
+        <a href="/impressum-lw-b">Impressum</a>
+        <a href="/datenschutz-lw-b">Datenschutz</a>
+        <a href="mailto:alex@adolution.de">Kontakt</a>
+      </nav>
+      <p class="tm">© 2026 vorflows</p>
     </div>
   </footer>
 
@@ -848,19 +793,9 @@
         var d = document.documentElement, sc = d.scrollTop || document.body.scrollTop;
         if(nav) nav.classList.toggle('scrolled', sc > 4);
         var h = d.scrollHeight - d.clientHeight;
-        if(bar) bar.style.width = (h > 0 ? (sc / h * 100) : 0) + '%';
+        if(bar) bar.style.transform = 'scaleX(' + (h > 0 ? (sc / h) : 0) + ')';
       };
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-    })();
-
-    // ---- Reveal on scroll ----
-    (function(){
-      var els = document.querySelectorAll('.reveal');
-      if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-      },{rootMargin:'0px 0px -8% 0px',threshold:.12});
-      els.forEach(function(e){ io.observe(e); });
     })();
 
     // ---- Sticky Mobile-CTA: erscheint nach Hero, versteckt sich am Final-CTA ----

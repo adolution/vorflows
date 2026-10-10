@@ -27,7 +27,7 @@ läuft, die vier Links zurückstellen.
      Gedankenstriche in den Zitaten durch Komma/Doppelpunkt ersetzt, sonst unverändert.
    - **Keine AdsFlow-Stimmen**, solange es keine echten gibt (siehe `.agents/adsflow-page.md`). Keine erfundenen Zitate.
    - Handy: erst 4 Kacheln, Rest hinter „Alle Stimmen zeigen“.
-4. **Alex `#alex`** („Wer hinter vorflows steckt“; „Dahinter stehe ich mit meinem Namen“ klang Alex zu sehr nach HiPP): Workshop-Foto (Beweis) + Lifestyle-Foto (sympathisch), Ich-Text, Fakten (8 Jahre, 20.000+,
+4. **Alex `#alex`** („Wer hinter vorflows steckt“; „Dahinter stehe ich mit meinem Namen“ klang Alex zu sehr nach HiPP): Workshop-Foto (Beweis) + Lifestyle-Foto (sympathisch), Ich-Text, Fakten (9 Jahre, 20.000+,
    1.000+, 1.200+), Referenzen, LinkedIn/Instagram/Mail, AMD Media GmbH + Impressum-Link.
 5. **Vergleich `#systeme`:** zwei Karten mit gleichen Zeilen (Subgrid): Für wen, Was Claude übernimmt, Was du
    entscheidest, Im Paket, Was du brauchst, Preis. Darunter die gemeinsame Regel (live geht nur, was du freigibst).

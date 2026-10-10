@@ -41,6 +41,28 @@ Ziel: DOI-Bestätigungsrate hoch → schließt die Lücke Ads-Manager vs. WJ-Bac
 > `index-b-alt-2026-10-10.html`, `/index-b` leitet per 301 auf `/`. Hub-Tracking: Clarity `hub_*` + Pixel PageView,
 > Doku `.agents/startseite.md`.
 
+> **Dunkler Look (2026-10-10):** `live-workshop.html`, `live-workshop-b.html` und `danke-live-workshop.html` laufen auf
+> `/assets/site-dark.css?v=20261010` (Fraunces/Inter, Studiolicht, Terracotta-Pillen) plus seiteneigenem `<style>`.
+> Funktional nichts geändert: alle IDs, `data-*`, Event-Namen, Pixel/CAPI/Clarity-Blöcke und die Funnel-Logik sind gleich
+> (Funnel weiter ohne Kauf-Button und ohne Links zu anderen Seiten). Was sich an Klassen/Struktur geändert hat:
+> - Buttons: `btn`, `btn--lg`, `btn--ghost`, `btn--sm` statt `btn-primary`/`btn-outline`/`btn-lg` (kein JS hing daran).
+>   `.wj-embed-button` + `data-webinarHash` unverändert. Das WJ-CSS setzt auf `.wj-embed-button` `outline:none` und
+>   Hover-Deckkraft, das Seiten-CSS übersteuert das (Fokus sichtbar, Pille bleibt).
+> - Kopfzeile `.nav#nav` ist auch am Handy die eine feste Leiste (deckend, kein Blur) mit „Platz sichern“; `.sticky-cta`
+>   bleibt per CSS aus. Lesefortschritt `#scrollProgress` per `transform: scaleX` statt `width`.
+> - Scroll-Einblenden (`.reveal` + IntersectionObserver) entfernt, nur noch ein Hero-Einstieg (`.rise`).
+> - FAQ nutzt `.qa` aus site-dark (`details.faq-item`, `summary` mit leerem `.pm`), `lw_faq_open` liest weiter `summary.textContent`.
+> - Modal: Schritt-Label `.lwq-kicker` statt `.meta.eyebrow`. Modal, Cookie-Banner und `#reg-note` sind schwebende,
+>   deckende Flächen (`--shadow-float`), Backdrops ohne Blur.
+> - Danke-Seite: `#progressFill` per `transform: scaleX(n/6)` statt `width`, Fuß heißt `.ty-foot` (statt `.foot`),
+>   `.done` ist eine Karte, Emojis in der `.joinbox` sind SVG-Icons. Reihenfolge und `.confirm-alert` (laut, Terracotta,
+>   ganz oben) unverändert.
+> - Überschriften ohne Schlusspunkt (bei H1 A/B nur der Punkt am Ende weg, Wortlaut unverändert). `<title>` unverändert
+>   (Clarity-MCP trennt A/B über den Titel). B wird aus A erzeugt, Unterschiede wie bisher: Kommentar Zeile 2, `<title>`,
+>   `noindex`, fehlende hreflang/og:image-Zusatztags, H1 + Lead.
+> - Termin im Hero/Modal/Danke-Video-Subline steht noch auf **10. September**: bei neuem Termin `WEBINAR_DATE` (LP) bzw.
+>   `WEBINAR_DATE_TEXT` + UTC-Konstanten (Danke) und die festen Texte im Modal-Schritt 2 und in `.cue-date` anpassen.
+
 ## 1. A/B-Test (Test #4)
 
 ### ✅ ENTSCHIEDEN 2026-06-18 — Sieger: **Variante A**. B verloren.

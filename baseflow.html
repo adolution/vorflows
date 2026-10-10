@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BaseFlow — Shopify-Theme bearbeiten mit Claude Code | vorflows</title>
-    <meta name="description" content="BaseFlow: Shopify-Theme mit Claude Code umbauen — ohne Agentur, ohne App-Stack. Setup in 20–30 Min, erste Section am gleichen Tag. Live-Theme bleibt sicher." />
+    <title>BaseFlow: Shopify-Theme bearbeiten mit Claude Code | vorflows</title>
+    <meta name="description" content="BaseFlow: Shopify-Theme mit Claude Code umbauen, ohne Agentur und ohne App-Stack. Setup in 20 bis 30 Min, erste Section am gleichen Tag. Live-Theme bleibt sicher." />
     <meta name="author" content="vorflows" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="content-language" content="de-DE" />
     <meta name="language" content="German" />
@@ -23,15 +23,15 @@
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="vorflows" />
     <meta property="og:url" content="https://vorflows.com/baseflow" />
-    <meta property="og:title" content="BaseFlow — Shopify-Theme bearbeiten mit Claude Code" />
+    <meta property="og:title" content="BaseFlow: Shopify-Theme bearbeiten mit Claude Code" />
     <meta property="og:description" content="Theme-Optimization-Workflow für Shopify. Du sagst Claude was du willst, Claude schreibt die Liquid-Files. Live-Theme bleibt unangetastet bis manueller Publish." />
     <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="vorflows BaseFlow — Shopify-Theme bearbeiten mit Claude Code" />
+    <meta property="og:image:alt" content="vorflows BaseFlow: Shopify-Theme bearbeiten mit Claude Code" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BaseFlow — Shopify-Theme bearbeiten mit Claude Code" />
-    <meta name="twitter:description" content="Theme-Optimization-Workflow für Shopify mit Claude Code. Setup 20–30 Minuten." />
+    <meta name="twitter:title" content="BaseFlow: Shopify-Theme bearbeiten mit Claude Code" />
+    <meta name="twitter:description" content="Theme-Optimization-Workflow für Shopify mit Claude Code. Setup 20 bis 30 Minuten." />
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
     <!-- JSON-LD -->
@@ -169,238 +169,256 @@
     }
     </script>
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/module-page.css?v=20260909" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/module-page.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
-  <body>
+  <body class="mod mod--base">
+    <a class="skip" href="#main">Zum Inhalt springen</a>
 
     <!-- NAV -->
-    <nav class="nav" id="nav">
-      <div class="container nav-inner">
-        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <div class="nav-actions">
-          <a href="/" class="nav-back">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Zurück zur Startseite
-          </a>
-          <a href="/sales" class="nav-buy">vorflows kaufen</a>
-        </div>
-      </div>
-    </nav>
+    <header class="nav"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav class="nav-links" aria-label="Seitennavigation">
+        <a class="hide-m" href="/sales">Für Shopify</a>
+        <a class="hide-m" href="/adsflow">AdsFlow</a>
+        <a class="hide-m" href="/faqs">FAQs</a>
+        <a class="btn nav-buy" href="/sales">vorflows kaufen</a>
+      </nav>
+    </div></header>
 
-    <!-- HERO -->
-    <header class="mod-hero">
-      <div class="container mod-hero-grid">
-        <div class="mod-hero-text">
-          <div class="meta mod-eyebrow">Modul 01 · BaseFlow · Stand Mai 2026</div>
-          <h1 class="mod-h1">Shopify-Theme bearbeiten — wie ein <em>Senior Dev,</em> mit Claude Code.</h1>
-          <p class="mod-lead">BaseFlow ist der Theme-Optimization-Workflow von vorflows. Du sagst Claude in natürlicher Sprache was dein Shop können soll. Claude liest dein Theme, schreibt sauberen Liquid-Code und arbeitet auf einem Duplicate. Live-Theme bleibt unangetastet, bis du manuell publishst.</p>
-          <div class="mod-ctas">
-            <a href="/sales#preis" class="btn btn-primary">Im Bundle enthalten</a>
-            <a href="#workflow" class="btn btn-ghost">So läuft jede Änderung ↓</a>
+    <main id="main">
+
+      <!-- HERO -->
+      <section class="mh" aria-labelledby="h1">
+        <div class="wrap mh-grid">
+          <div class="mh-copy">
+            <div class="mh-top rise d1">
+              <span class="world world--shop"><i></i>vorflows für Shopify</span>
+              <nav class="switch" aria-label="Module von vorflows für Shopify">
+                <a href="/baseflow" aria-current="page">BaseFlow</a>
+                <a href="/seoflow">SEOFlow</a>
+                <a href="/clarityflow">ClarityFlow</a>
+              </nav>
+            </div>
+            <h1 id="h1" class="rise d2">Shopify-Theme bearbeiten wie ein <em>Senior Dev</em>, mit Claude Code</h1>
+            <p class="lead rise d3">BaseFlow ist der Theme-Optimization-Workflow von vorflows. Du sagst Claude in natürlicher Sprache was dein Shop können soll. Claude liest dein Theme, schreibt sauberen Liquid-Code und arbeitet auf einem Duplicate. Live-Theme bleibt unangetastet, bis du manuell publishst.</p>
+            <div class="mh-ctas rise d4">
+              <a href="/sales#preis" class="btn">Im Bundle enthalten</a>
+              <a href="#workflow" class="btn btn--ghost">So läuft jede Änderung <span class="arr arr--down" aria-hidden="true">↓</span></a>
+            </div>
+            <ul class="facts rise d5">
+              <li><b>20 bis 30 Min</b><span>Setup</span></li>
+              <li><b>Erste Section</b><span>am gleichen Tag</span></li>
+              <li><b>Jedes Theme</b><span>Dawn, Custom, Premium</span></li>
+            </ul>
+            <p class="stand rise d5">Modul 1 von 3, Stand Mai 2026</p>
           </div>
-          <ul class="mod-quickfacts">
-            <li><strong>20–30 Min</strong> Setup</li>
-            <li><strong>Erste Section</strong> am gleichen Tag</li>
-            <li><strong>Jedes Theme</strong> — Dawn, Custom, Premium</li>
-          </ul>
+          <div class="mh-art rise d3">
+            <span class="bx"><img src="/brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box, Shopify-Theme-Optimization-Workflow für Claude Code" width="600" height="600" decoding="async" fetchpriority="high" /></span>
+          </div>
         </div>
-        <div class="mod-hero-art">
-          <img src="/brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="BaseFlow Modul-Box — Shopify-Theme-Optimization-Workflow für Claude Code" width="600" height="600" decoding="async" fetchpriority="high" />
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="sec" aria-labelledby="h-problem">
+        <div class="wrap split">
+          <div class="split-head">
+            <p class="label">Das Problem</p>
+            <h2 id="h-problem">Du wolltest eine kleine Section und hast eine App-Subscription bekommen</h2>
+          </div>
+          <div class="split-body">
+            <p class="body">Jede zusätzliche Funktion in deinem Shopify-Store kostet dich entweder eine Agentur (1.500 € pro Anpassung) oder eine App (29 € pro Monat, ewig). Theme-Code wird zur Black-Box. Du bist abhängig: vom Entwickler oder vom Vendor.</p>
+            <p class="body">BaseFlow dreht das um. Du installierst einen Skill-Ordner in Claude Code. Claude liest dein Theme, versteht die Struktur (Sections, Snippets, Layouts, Settings-Schema) und kann ab dann jede Änderung machen, die ein Senior-Dev machen würde, nur schneller und ohne Stundensatz.</p>
+          </div>
         </div>
-      </div>
-    </header>
+      </section>
 
-    <!-- PROBLEM -->
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Das Problem</div>
-        <h2 class="mod-h2">Du wolltest eine kleine Section. Du hast eine App-Subscription bekommen.</h2>
-        <p class="mod-prose">Jede zusätzliche Funktion in deinem Shopify-Store kostet dich entweder eine Agentur (1.500 € pro Anpassung) oder eine App (29 € pro Monat, ewig). Theme-Code wird zur Black-Box. Du bist abhängig — vom Entwickler oder vom Vendor.</p>
-        <p class="mod-prose">BaseFlow dreht das um. Du installierst einen Skill-Ordner in Claude Code. Claude liest dein Theme, versteht die Struktur (Sections, Snippets, Layouts, Settings-Schema) und kann ab dann jede Änderung machen, die ein Senior-Dev machen würde. Nur schneller. Und ohne Stundensatz.</p>
-      </div>
-    </section>
-
-    <!-- WORKFLOW -->
-    <section class="mod-section mod-section-alt" id="workflow">
-      <div class="container">
-        <div class="meta mod-eyebrow">So läuft jede Änderung</div>
-        <h2 class="mod-h2 mod-h2-center">Drei Schritte. Null Risiko fürs Live-Theme.</h2>
-        <ol class="mod-steps">
-          <li class="mod-step">
-            <span class="mod-step-num">01</span>
-            <h3 class="mod-step-title">Theme duplizieren.</h3>
-            <p class="mod-step-body">Shopify Admin → Themes → Actions → Duplicate. Du arbeitest ab jetzt auf einer Kopie (z. B. <code>vorflows-edit</code>). Live-Theme bleibt unangetastet.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">02</span>
-            <h3 class="mod-step-title">Claude bearbeitet.</h3>
-            <p class="mod-step-body">Du sagst Claude in einem Satz, was du willst: <em>"Ersetze meine Shipping-Bar-App durch eine native Section"</em> oder <em>"Bau einen Bundle-Selektor wie auf athletic-greens.com"</em>. Claude schreibt die Liquid-Files auf das Duplicate.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">03</span>
-            <h3 class="mod-step-title">Review & Publish.</h3>
-            <p class="mod-step-body">Du reviewst das Ergebnis im Shopify-Preview. Wenn es passt, publishst du manuell mit einem Klick. Niemals Auto-Deploy. Live-Theme wechselt erst bei deinem expliziten Go.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- WAS DU ERSETZT -->
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Was du ersetzt</div>
-        <h2 class="mod-h2">Apps, Agentur, Page-Builder. Alles im Theme-Code.</h2>
-        <p class="mod-prose">Ein Senior-Dev kann jede dieser Apps durch nativen Theme-Code ersetzen. BaseFlow gibt dir denselben Hebel — ohne Senior-Dev-Stundensatz.</p>
-        <ul class="mod-replace-list">
-          <li><strong>Shipping-Bar Apps</strong> — native Announcement-Section mit Live-Schwellenwerten.</li>
-          <li><strong>Cart-Upsell Apps</strong> — Cart-Drawer mit Recommendation-Logik direkt aus Liquid.</li>
-          <li><strong>Bundle-Builder Apps</strong> — Section mit Variant-Picker und automatischem Discount-Code.</li>
-          <li><strong>Page-Builder</strong> — frei konfigurierbare Sections und Blocks pro Template.</li>
-          <li><strong>Countdown-Timer</strong> — Liquid-Snippet ohne externe JS-Bibliothek.</li>
-          <li><strong>Sticky-ATC</strong> — produktseitige Sticky-Bar via Theme-Section.</li>
-          <li><strong>Lead-Form Apps</strong> — Customer-Account-Form mit Klaviyo- oder Brevo-Integration.</li>
-        </ul>
-        <p class="mod-prose">~5.232 € im Jahr an Subscriptions, durch eigenen Theme-Code ersetzt.</p>
-      </div>
-    </section>
-
-    <!-- WAS DRIN IST -->
-    <section class="mod-section mod-section-alt">
-      <div class="container">
-        <div class="meta mod-eyebrow">Was BaseFlow enthält</div>
-        <h2 class="mod-h2 mod-h2-center">Setup-Datei, Skill-Stack, Videos.</h2>
-        <div class="mod-cards">
-          <article class="mod-card">
-            <h3 class="mod-card-title">Setup-Datei</h3>
-            <p class="mod-card-body">Liest dein komplettes Theme. Erkennt Section-Schema, Settings, Translations. Claude weiß ab Setup-Ende, wie dein Theme tickt.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Skill-Stack</h3>
-            <p class="mod-card-body">119 Skills für Claude Code. Sechs davon Shopify-spezifisch: Section-Builder, Snippet-Refactor, Schema-Editor, Translation-Sync, Asset-Optimizer, Theme-Diff.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Installations-Videos</h3>
-            <p class="mod-card-body">Klick-für-Klick durch Setup, Theme-Duplizierung und erste Section. Keine Lücken zwischen Schritt 1 und Schritt 2.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Lifetime-Updates</h3>
-            <p class="mod-card-body">Neue Skills, neue Workflows, neue Shopify-API-Updates: kostenlos für alle Bundle-Käufer. Kein Abo.</p>
-          </article>
+      <!-- WORKFLOW -->
+      <section class="sec" id="workflow" aria-labelledby="h-workflow">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">So läuft jede Änderung</p>
+            <h2 id="h-workflow">Drei Schritte, null Risiko fürs Live-Theme</h2>
+          </div>
+          <ol class="track">
+            <li>
+              <span class="n">01</span>
+              <h3>Theme duplizieren</h3>
+              <p>Shopify Admin → Themes → Actions → Duplicate. Du arbeitest ab jetzt auf einer Kopie (z. B. <code>vorflows-edit</code>). Live-Theme bleibt unangetastet.</p>
+            </li>
+            <li>
+              <span class="n">02</span>
+              <h3>Claude bearbeitet</h3>
+              <p>Du sagst Claude in einem Satz, was du willst: <span class="say">„Ersetze meine Shipping-Bar-App durch eine native Section“</span> oder <span class="say">„Bau einen Bundle-Selektor wie auf athletic-greens.com“</span>. Claude schreibt die Liquid-Files auf das Duplicate.</p>
+            </li>
+            <li>
+              <span class="n">03</span>
+              <h3>Review &amp; Publish</h3>
+              <p>Du reviewst das Ergebnis im Shopify-Preview. Wenn es passt, publishst du manuell mit einem Klick. Niemals Auto-Deploy. Live-Theme wechselt erst bei deinem expliziten Go.</p>
+            </li>
+          </ol>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">So läuft ein Theme-Edit ab</div>
-        <h2 class="mod-h2">Vom ersten Setup-Befehl bis zum Publish.</h2>
-        <p class="mod-prose">Ein Theme-Edit in BaseFlow ist immer derselbe Loop, egal ob du eine Section neu anordnest oder einen Bundle-Builder baust. Drei Schritte, drei klare Übergaben.</p>
-        <p class="mod-prose"><strong>1. Setup einmalig.</strong> Du installierst die BaseFlow-Setup-Datei in Claude Code (20 bis 30 Minuten). Claude liest dein Theme einmal komplett ein — Sections, Snippets, Layouts, Settings-Schema, Translations. Ab jetzt kennt Claude deine Code-Konventionen.</p>
-        <p class="mod-prose"><strong>2. Aufgabe beschreiben.</strong> Du formulierst die Änderung in einem Satz Klartext: <em>"Bau eine Sticky-ATC-Section mit Variant-Picker und Quantity-Stepper."</em> Claude erstellt automatisch ein Theme-Duplicate, schreibt Liquid und CSS direkt darauf, gibt dir den Diff zurück.</p>
-        <p class="mod-prose"><strong>3. Preview reviewen.</strong> Shopify hat einen Preview-Link für jedes Theme. Du öffnest ihn auf Desktop und Mobile, klickst dich durch Home, Collection, Produktseite, Cart, Checkout. Wenn etwas nicht passt, sagst du Claude in einem Satz, was geändert werden soll. Claude iteriert, du reviewst erneut.</p>
-        <p class="mod-prose"><strong>4. Manuell publishen.</strong> Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Live-Theme wechselt in dieser Sekunde. Fällt nach Publish doch etwas auf, drückst du beim alten Theme erneut Publish — Rollback in zehn Sekunden.</p>
-        <p class="mod-prose">Kein Auto-Deploy, kein direkter Zugriff aufs Live-Theme. Jeder Edit ist nachvollziehbar im Diff, jede Iteration ist dokumentiert.</p>
-      </div>
-    </section>
+      <!-- WAS DU ERSETZT -->
+      <section class="sec" aria-labelledby="h-replace">
+        <div class="wrap split">
+          <div class="split-head is-sticky">
+            <p class="label">Was du ersetzt</p>
+            <h2 id="h-replace">Apps, Agentur, Page-Builder: alles im Theme-Code</h2>
+            <p class="body">Ein Senior-Dev kann jede dieser Apps durch nativen Theme-Code ersetzen. BaseFlow gibt dir denselben Hebel, ohne Senior-Dev-Stundensatz.</p>
+          </div>
+          <div class="ledger ledger--swap">
+            <dl>
+              <div><dt>Shipping-Bar Apps</dt><dd>Native Announcement-Section mit Live-Schwellenwerten.</dd></div>
+              <div><dt>Cart-Upsell Apps</dt><dd>Cart-Drawer mit Recommendation-Logik direkt aus Liquid.</dd></div>
+              <div><dt>Bundle-Builder Apps</dt><dd>Section mit Variant-Picker und automatischem Discount-Code.</dd></div>
+              <div><dt>Page-Builder</dt><dd>Frei konfigurierbare Sections und Blocks pro Template.</dd></div>
+              <div><dt>Countdown-Timer</dt><dd>Liquid-Snippet ohne externe JS-Bibliothek.</dd></div>
+              <div><dt>Sticky-ATC</dt><dd>Produktseitige Sticky-Bar via Theme-Section.</dd></div>
+              <div><dt>Lead-Form Apps</dt><dd>Customer-Account-Form mit Klaviyo- oder Brevo-Integration.</dd></div>
+            </dl>
+            <p class="ledger-sum"><b>~5.232 €</b><span>im Jahr an Subscriptions, durch eigenen Theme-Code ersetzt.</span></p>
+          </div>
+        </div>
+      </section>
 
-    <!-- FAQ -->
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">FAQ</div>
-        <h2 class="mod-h2">Was du dich zurecht fragst.</h2>
-        <details class="mod-faq">
-          <summary>Funktioniert BaseFlow mit Dawn, Custom oder Premium-Themes?</summary>
-          <p>Ja, mit jedem Shopify-Theme. Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich, wie es funktioniert. Dawn, Custom-Themes, Premium-Themes wie Impulse oder Prestige — alle funktionieren.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Was passiert wenn ich mein Theme zerschieße?</summary>
-          <p>Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du manuell publishst. Kein Auto-Deploy. Geht etwas schief, löschst du das Duplicate und startest neu.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Brauche ich Programmier-Erfahrung?</summary>
-          <p>Nein. Du gibst Claude Anweisungen in natürlicher Sprache. BaseFlow wurde mit Foundern ohne Coding-Background getestet — alle haben am Ende den Output bekommen, den sie wollten.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Wie lange dauert das Setup?</summary>
-          <p>20 bis 30 Minuten. Erste Section am selben Tag. Du installierst die Setup-Datei, verbindest Claude Code mit deinem Theme-Duplicate und kannst direkt loslegen.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Kann ich BaseFlow einzeln kaufen?</summary>
-          <p>Wir verkaufen ausschließlich das Bundle (BaseFlow + SEOFlow + ClarityFlow). Den aktuellen Preis findest du auf der <a href="/sales#preis">Kaufseite</a>. Wenn du ausschließlich BaseFlow willst, schreib uns kurz an <a href="mailto:alex@adolution.de">alex@adolution.de</a>.</p>
-        </details>
-      </div>
-    </section>
+      <!-- WAS DRIN IST -->
+      <section class="sec" aria-labelledby="h-kit">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">Was BaseFlow enthält</p>
+            <h2 id="h-kit">Setup-Datei, Skill-Stack, Videos</h2>
+          </div>
+          <div class="kit">
+            <article>
+              <h3>Setup-Datei</h3>
+              <p>Liest dein komplettes Theme. Erkennt Section-Schema, Settings, Translations. Claude weiß ab Setup-Ende, wie dein Theme tickt.</p>
+            </article>
+            <article>
+              <h3>Skill-Stack</h3>
+              <p>119 Skills für Claude Code. Sechs davon Shopify-spezifisch: Section-Builder, Snippet-Refactor, Schema-Editor, Translation-Sync, Asset-Optimizer, Theme-Diff.</p>
+            </article>
+            <article>
+              <h3>Installations-Videos</h3>
+              <p>Klick-für-Klick durch Setup, Theme-Duplizierung und erste Section. Keine Lücken zwischen Schritt 1 und Schritt 2.</p>
+            </article>
+            <article>
+              <h3>Lifetime-Updates</h3>
+              <p>Neue Skills, neue Workflows, neue Shopify-API-Updates: kostenlos für alle Bundle-Käufer. Kein Abo.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-    <!-- BUNDLE-CTA -->
-    <section class="mod-cta-band">
-      <div class="container-prose mod-cta-inner">
-        <div class="meta mod-eyebrow mod-eyebrow-light">Bundle</div>
-        <h2 class="mod-cta-title">BaseFlow ist eines von drei Modulen.</h2>
-        <p class="mod-cta-body">Im vorflows Bundle bekommst du BaseFlow plus <a href="/seoflow">SEOFlow</a> (Search-Console-Loop) und <a href="/clarityflow">ClarityFlow</a> (Verhaltensdaten-Loop). Kein Abo, lebenslange Updates.</p>
-        <a href="/sales#preis" class="btn btn-primary btn-lg">Bundle ansehen</a>
-      </div>
-    </section>
+      <!-- ABLAUF EINES THEME-EDITS -->
+      <section class="sec" aria-labelledby="h-loop">
+        <div class="wrap loop">
+          <div class="loop-side">
+            <p class="label">So läuft ein Theme-Edit ab</p>
+            <h2 id="h-loop">Vom ersten Setup-Befehl bis zum Publish</h2>
+            <p class="body">Ein Theme-Edit in BaseFlow ist immer derselbe Loop, egal ob du eine Section neu anordnest oder einen Bundle-Builder baust. Drei Schritte, drei klare Übergaben.</p>
+            <figure class="win">
+              <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Claude Code</span></div>
+              <div class="win-body">
+                <p class="win-in"><span class="pr" aria-hidden="true">&gt;</span><span>Bau eine Sticky-ATC-Section mit Variant-Picker und Quantity-Stepper.</span></p>
+                <ul class="win-out">
+                  <li>Theme-Duplicate erstellt</li>
+                  <li>Liquid und CSS direkt darauf geschrieben</li>
+                  <li>Diff zur Review zurückgegeben</li>
+                </ul>
+              </div>
+              <figcaption>Beispiel aus Schritt 2: ein Satz Klartext als Aufgabe</figcaption>
+            </figure>
+          </div>
+          <div class="loop-main">
+            <ol class="steps">
+              <li>
+                <h3>Setup einmalig</h3>
+                <p>Du installierst die BaseFlow-Setup-Datei in Claude Code (20 bis 30 Minuten). Claude liest dein Theme einmal komplett ein: Sections, Snippets, Layouts, Settings-Schema, Translations. Ab jetzt kennt Claude deine Code-Konventionen.</p>
+              </li>
+              <li>
+                <h3>Aufgabe beschreiben</h3>
+                <p>Du formulierst die Änderung in einem Satz Klartext: <span class="say">„Bau eine Sticky-ATC-Section mit Variant-Picker und Quantity-Stepper.“</span> Claude erstellt automatisch ein Theme-Duplicate, schreibt Liquid und CSS direkt darauf, gibt dir den Diff zurück.</p>
+              </li>
+              <li>
+                <h3>Preview reviewen</h3>
+                <p>Shopify hat einen Preview-Link für jedes Theme. Du öffnest ihn auf Desktop und Mobile, klickst dich durch Home, Collection, Produktseite, Cart, Checkout. Wenn etwas nicht passt, sagst du Claude in einem Satz, was geändert werden soll. Claude iteriert, du reviewst erneut.</p>
+              </li>
+              <li>
+                <h3>Manuell publishen</h3>
+                <p>Erst wenn der Preview okay ist, gehst du auf <code>Actions → Publish</code>. Live-Theme wechselt in dieser Sekunde. Fällt nach Publish doch etwas auf, drückst du beim alten Theme erneut Publish: Rollback in zehn Sekunden.</p>
+              </li>
+            </ol>
+            <p class="note loop-end">Kein Auto-Deploy, kein direkter Zugriff aufs Live-Theme. Jeder Edit ist nachvollziehbar im Diff, jede Iteration ist dokumentiert.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec" id="faq" aria-labelledby="h-faq">
+        <div class="wrap faq">
+          <div class="faq-side">
+            <h2 id="h-faq">Was du dich zu Recht fragst</h2>
+          </div>
+          <div class="qa">
+            <details class="mod-faq">
+              <summary>Funktioniert BaseFlow mit Dawn, Custom oder Premium-Themes?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Ja, mit jedem Shopify-Theme. Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich, wie es funktioniert. Dawn, Custom-Themes, Premium-Themes wie Impulse oder Prestige: alle funktionieren.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Was passiert wenn ich mein Theme zerschieße?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Du arbeitest immer auf einem Duplicate. Live-Theme bleibt unangetastet, bis du manuell publishst. Kein Auto-Deploy. Geht etwas schief, löschst du das Duplicate und startest neu.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Brauche ich Programmier-Erfahrung?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Nein. Du gibst Claude Anweisungen in natürlicher Sprache. BaseFlow wurde mit Foundern ohne Coding-Background getestet. Alle haben am Ende den Output bekommen, den sie wollten.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Wie lange dauert das Setup?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>20 bis 30 Minuten. Erste Section am selben Tag. Du installierst die Setup-Datei, verbindest Claude Code mit deinem Theme-Duplicate und kannst direkt loslegen.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Kann ich BaseFlow einzeln kaufen?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Wir verkaufen ausschließlich das Bundle (BaseFlow + SEOFlow + ClarityFlow). Den aktuellen Preis findest du auf der <a class="tl" href="/sales#preis">Kaufseite</a>. Wenn du ausschließlich BaseFlow willst, schreib uns kurz an <a class="tl" href="mailto:alex@adolution.de">alex@adolution.de</a>.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUNDLE -->
+      <section class="fin" aria-labelledby="h-fin">
+        <div class="wrap">
+          <div class="trio">
+            <span class="trio-item is-current" aria-current="page"><span class="bx"><img src="/brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">BaseFlow</span></span>
+            <a class="trio-item is-seo" href="/seoflow"><span class="bx"><img src="/brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">SEOFlow</span></a>
+            <a class="trio-item" href="/clarityflow"><span class="bx"><img src="/brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">ClarityFlow</span></a>
+          </div>
+          <h2 id="h-fin">BaseFlow ist eines von drei Modulen</h2>
+          <p class="body">Im vorflows Bundle bekommst du BaseFlow plus <a class="tl" href="/seoflow">SEOFlow</a> (Search-Console-Loop) und <a class="tl" href="/clarityflow">ClarityFlow</a> (Verhaltensdaten-Loop). Kein Abo, lebenslange Updates.</p>
+          <a href="/sales#preis" class="btn btn--lg">Bundle ansehen</a>
+        </div>
+      </section>
+
+    </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
-              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
-            </p>
-          </div>
-          <div class="footer-col">
-            <h4>Module</h4>
-            <ul>
-              <li><a href="/baseflow">BaseFlow</a></li>
-              <li><a href="/seoflow">SEOFlow</a></li>
-              <li><a href="/clarityflow">ClarityFlow</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Produkt</h4>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/sales#ablauf">Workflow</a></li>
-              <li><a href="/sales#preis">Pricing</a></li>
-              <li><a href="/sales#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="/impressum">Impressum</a></li>
-              <li><a href="/datenschutz">Datenschutz</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© 2026 vorflows</span>
-          <span>built with claude code</span>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      const nav = document.getElementById('nav');
-      const onScroll = () => {
-        if (window.scrollY > 8) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    </script>
+    <footer class="foot"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav aria-label="Weitere Seiten">
+        <a href="/sales">vorflows für Shopify</a><a href="/adsflow">AdsFlow</a><a href="/replay">Shopify-Workshop</a>
+        <a href="/blog">Blog</a><a href="/faqs">FAQs</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a>
+        <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+      </nav>
+      <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+    </div></footer>
   </body>
 </html>

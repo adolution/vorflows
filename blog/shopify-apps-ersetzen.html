@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
     <meta name="description" content="Welche Shopify-Apps du 2026 durch Theme-Code ersetzt. Vergleichstabelle, Liquid-Beispiele und ehrliche Spar-Rechnung. Plus: welche Apps bleiben." />
     <meta name="author" content="Alexander Dück" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
     <meta http-equiv="content-language" content="de-DE" />
     <meta name="language" content="German" />
     <meta name="geo.region" content="DE" />
@@ -106,70 +106,59 @@
     }
     </script>
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/blog-page.css?v=20260909" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/blog-page.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
   <body>
+    <header class="nav"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav class="nav-links" aria-label="Seitennavigation">
+        <a class="hide-m" href="/sales">Für Shopify</a>
+        <a class="hide-m" href="/adsflow">AdsFlow</a>
+        <a class="hide-m" href="/faqs">FAQs</a>
+        <a class="btn nav-buy" href="/sales">vorflows kaufen</a>
+      </nav>
+    </div></header>
 
-    <nav class="nav" id="nav">
-      <div class="container nav-inner">
-        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <div class="nav-links">
-          <a href="/blog" class="nav-link">Blog</a>
-          <a href="/baseflow" class="nav-link">BaseFlow</a>
-          <a href="/seoflow" class="nav-link">SEOFlow</a>
-          <a href="/clarityflow" class="nav-link">ClarityFlow</a>
-          <a href="/sales" class="nav-cta">vorflows kaufen</a>
-        </div>
-      </div>
-    </nav>
-
-    <article>
-      <header class="post-head">
-        <div class="container-prose">
-          <nav class="post-breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Start</a>
-            <span class="post-breadcrumb-sep">/</span>
-            <a href="/blog">Blog</a>
-            <span class="post-breadcrumb-sep">/</span>
-            <span>Shopify Apps ersetzen</span>
-          </nav>
-          <h1 class="post-h1">Shopify Apps ersetzen: die <em>ehrliche</em> Liste 2026.</h1>
-          <p class="post-deck">Du zahlst jeden Monat für Apps, die ein 80-Zeilen-Liquid-Snippet auch könnte. Hier ist, was du ersetzen kannst, was du behalten solltest, und wie du anfängst, ohne den Shop kaputt zu machen.</p>
-          <div class="post-byline">
-            <span>Von <strong>Alexander Dück</strong></span>
-            <span class="post-byline-sep">·</span>
-            <span>10. Mai 2026</span>
-            <span class="post-byline-sep">·</span>
-            <span>11 Min Lesezeit</span>
+    <main>
+      <article class="post">
+        <header class="page-hero page-hero--shop post-head">
+          <div class="wrap post-wrap">
+            <nav class="crumbs rise d1" aria-label="Breadcrumb">
+              <a href="/">Start</a><span class="sep" aria-hidden="true">/</span><a href="/blog">Blog</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Shopify Apps ersetzen</span>
+            </nav>
+            <h1 class="rise d2">Shopify Apps ersetzen: die <em>ehrliche</em> Liste 2026</h1>
+            <p class="lead rise d3">Du zahlst jeden Monat für Apps, die ein 80-Zeilen-Liquid-Snippet auch könnte. Hier ist, was du ersetzen kannst, was du behalten solltest, und wie du anfängst, ohne den Shop kaputt zu machen.</p>
+            <div class="byline rise d4">
+              <img src="/assets/images/home/alex-lifestyle-400.webp" width="44" height="44" alt="" decoding="async" />
+              <div>
+                <span class="by">Von <b>Alexander Dück</b></span>
+                <span class="meta"><time datetime="2026-05-10">10. Mai 2026</time><span>11 Min Lesezeit</span></span>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <div class="post-body">
-        <div class="container-prose">
-
-          <figure class="post-hero-figure" aria-hidden="true">
-            <img src="/assets/images/blog/apps-hero.webp" alt="App-Stack-Tower vs Theme-Code-Layer als minimales Linien-Diagramm — vertikale gestapelte App-Subscriptions versus horizontale Theme-Code-Schicht in Akzent-Farbe" width="1376" height="768" loading="eager" fetchpriority="high" decoding="async" />
+        <div class="wrap post-wrap">
+          <figure class="plate plate--hero rise d5" aria-hidden="true">
+            <img src="/assets/images/blog/apps-hero.webp" alt="App-Stack-Tower vs Theme-Code-Layer als minimales Linien-Diagramm: vertikale gestapelte App-Subscriptions versus horizontale Theme-Code-Schicht in Akzent-Farbe" width="1376" height="768" loading="eager" fetchpriority="high" decoding="async" />
           </figure>
+        </div>
 
-          <aside class="tldr">
-            <span class="tldr-label">Kurz und ehrlich</span>
-            <p>Die meisten Shopify-Stores zahlen 200 bis 500 € pro Monat für Apps, deren Funktionen im Theme-Code wenige Stunden Arbeit wären. Versandkosten-Bar oben auf der Seite, klebender "In den Warenkorb"-Button, Bundle-Wähler, Countdown, Seiten-Builder, Empfehlungen im Warenkorb-Drawer, Bewertungs-Anzeige, einfache Lead-Formulare. Alles ersetzbar.</p>
-            <p>Behalten solltest du Apps, die echte Daten verwalten oder eigener Logik folgen. Dein E-Mail-Tool (Klaviyo, Brevo), dein Abo-Tool (Recharge), dein Versand-Tool (ShipStation, Sendcloud), das Bewertungs-Tool fürs Einsammeln (Judge.me oder Loox; nur das Anzeigen baust du selbst).</p>
-            <p><strong>Sparpotenzial im Mittel: rund 5.232 € pro Jahr.</strong> Aufwand: ein Wochenende, wenn du Claude Code mit einer fertigen Setup-Datei nutzt.</p>
-          </aside>
-
-          <nav class="toc" aria-label="Inhaltsverzeichnis">
-            <span class="toc-label">Inhalt</span>
-            <ol>
+        <div class="wrap post-wrap post-grid">
+          <div class="post-rail">
+            <details class="toc" id="toc">
+              <summary>Inhalt<span class="pm" aria-hidden="true"></span></summary>
+              <nav aria-label="Inhaltsverzeichnis">
+              <ol>
               <li><a href="#warum">Warum der Shopify-App-Stack so teuer geworden ist</a></li>
               <li><a href="#tabelle">Vergleichstabelle: 9 Apps, was sie kosten, was sie ersetzt</a></li>
               <li><a href="#shipping">Shipping-Bar: 80 Zeilen Liquid statt 19 € im Monat</a></li>
@@ -184,7 +173,19 @@
               <li><a href="#start">Wie du anfängst, ohne den Shop kaputt zu machen</a></li>
               <li><a href="#faq">FAQ</a></li>
             </ol>
-          </nav>
+              </nav>
+            </details>
+            <script>(function () { var t = document.getElementById('toc'); if (t && window.matchMedia('(min-width: 1080px)').matches) t.open = true; })();</script>
+          </div>
+
+          <div class="post-main">
+            <div class="prose post-prose">
+          <aside class="tldr">
+            <span class="label">Kurz und ehrlich</span>
+            <p>Die meisten Shopify-Stores zahlen 200 bis 500 € pro Monat für Apps, deren Funktionen im Theme-Code wenige Stunden Arbeit wären. Versandkosten-Bar oben auf der Seite, klebender "In den Warenkorb"-Button, Bundle-Wähler, Countdown, Seiten-Builder, Empfehlungen im Warenkorb-Drawer, Bewertungs-Anzeige, einfache Lead-Formulare. Alles ersetzbar.</p>
+            <p>Behalten solltest du Apps, die echte Daten verwalten oder eigener Logik folgen. Dein E-Mail-Tool (Klaviyo, Brevo), dein Abo-Tool (Recharge), dein Versand-Tool (ShipStation, Sendcloud), das Bewertungs-Tool fürs Einsammeln (Judge.me oder Loox; nur das Anzeigen baust du selbst).</p>
+            <p><strong>Sparpotenzial im Mittel: rund 5.232 € pro Jahr.</strong> Aufwand: ein Wochenende, wenn du Claude Code mit einer fertigen Setup-Datei nutzt.</p>
+          </aside>
 
           <h2 id="warum">Warum der Shopify-App-Stack so teuer geworden ist</h2>
           <p>Apps haben Shopify groß gemacht. 2015 war das die richtige Antwort: Theme-Code war Spezialwissen, Apps waren der Umweg drumherum. Du installierst etwas, klickst dich durch, fertig.</p>
@@ -211,58 +212,58 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Shipping-Bar</td>
-                  <td><span class="price-strike">19 €/Mo</span></td>
-                  <td><span class="price-replace">Section + 1 Settings-Block</span></td>
-                  <td>30 Min</td>
+                  <td data-label="Funktion">Shipping-Bar</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">19 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Section + 1 Settings-Block</span></td>
+                  <td data-label="Aufwand">30 Min</td>
                 </tr>
                 <tr>
-                  <td>Cart-Upsell</td>
-                  <td><span class="price-strike">29 €/Mo</span></td>
-                  <td><span class="price-replace">Cart-Drawer-Snippet</span></td>
-                  <td>2–3 h</td>
+                  <td data-label="Funktion">Cart-Upsell</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">29 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Cart-Drawer-Snippet</span></td>
+                  <td data-label="Aufwand">2 bis 3 h</td>
                 </tr>
                 <tr>
-                  <td>Bundle-Builder</td>
-                  <td><span class="price-strike">59 €/Mo</span></td>
-                  <td><span class="price-replace">Custom-Section + JS</span></td>
-                  <td>4–6 h</td>
+                  <td data-label="Funktion">Bundle-Builder</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">59 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Custom-Section + JS</span></td>
+                  <td data-label="Aufwand">4 bis 6 h</td>
                 </tr>
                 <tr>
-                  <td>Page-Builder</td>
-                  <td><span class="price-strike">39 €/Mo</span></td>
-                  <td><span class="price-replace">Section-Library</span></td>
-                  <td>einmalig 1 Tag</td>
+                  <td data-label="Funktion">Page-Builder</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">39 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Section-Library</span></td>
+                  <td data-label="Aufwand">einmalig 1 Tag</td>
                 </tr>
                 <tr>
-                  <td>Countdown-Timer</td>
-                  <td><span class="price-strike">12 €/Mo</span></td>
-                  <td><span class="price-replace">Snippet + 20 Zeilen JS</span></td>
-                  <td>20 Min</td>
+                  <td data-label="Funktion">Countdown-Timer</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">12 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Snippet + 20 Zeilen JS</span></td>
+                  <td data-label="Aufwand">20 Min</td>
                 </tr>
                 <tr>
-                  <td>Sticky-ATC</td>
-                  <td><span class="price-strike">19 €/Mo</span></td>
-                  <td><span class="price-replace">Section mit position: sticky</span></td>
-                  <td>30 Min</td>
+                  <td data-label="Funktion">Sticky-ATC</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">19 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Section mit position: sticky</span></td>
+                  <td data-label="Aufwand">30 Min</td>
                 </tr>
                 <tr>
-                  <td>SEO-Suite</td>
-                  <td><span class="price-strike">29 €/Mo</span></td>
-                  <td><span class="price-replace">Liquid Meta-Templates</span></td>
-                  <td>3–4 h</td>
+                  <td data-label="Funktion">SEO-Suite</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">29 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Liquid Meta-Templates</span></td>
+                  <td data-label="Aufwand">3 bis 4 h</td>
                 </tr>
                 <tr>
-                  <td>Lead-Form</td>
-                  <td><span class="price-strike">15 €/Mo</span></td>
-                  <td><span class="price-replace">Customer-Account-Form</span></td>
-                  <td>1 h</td>
+                  <td data-label="Funktion">Lead-Form</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">15 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Customer-Account-Form</span></td>
+                  <td data-label="Aufwand">1 h</td>
                 </tr>
                 <tr>
-                  <td>Reviews-Anzeige (nicht Sammlung)</td>
-                  <td><span class="price-strike">15 €/Mo</span></td>
-                  <td><span class="price-replace">Schema + Liquid-Output</span></td>
-                  <td>1–2 h</td>
+                  <td data-label="Funktion">Reviews-Anzeige (nicht Sammlung)</td>
+                  <td data-label="Typische App / Preis"><span class="price-strike">15 €/Mo</span></td>
+                  <td data-label="Ersatz im Theme"><span class="price-replace">Schema + Liquid-Output</span></td>
+                  <td data-label="Aufwand">1 bis 2 h</td>
                 </tr>
               </tbody>
             </table>
@@ -271,8 +272,8 @@
           <p>Summe der ersetzbaren Apps: rund <strong>236 € pro Monat</strong>, also 2.832 € pro Jahr. Wenn dein Shop noch Trust-Badges, Color-Swatches und einen Wishlist-Button per App umsetzt, landest du schnell bei den 5.232 €, die wir im Median sehen.</p>
 
           <figure class="post-figure">
-            <img src="/assets/images/blog/apps-cost.webp" alt="Zwei vertikale Kosten-Bars als minimales Linien-Diagramm — App-Stack hoch und outline-only links, Theme-Code-Aufwand niedrig und gefüllt rechts" width="1264" height="848" loading="lazy" decoding="async" />
-            <figcaption>Laufende App-Kosten vs einmaliger Theme-Code-Aufwand — Median-Differenz im DACH-Markt.</figcaption>
+            <div class="plate"><img src="/assets/images/blog/apps-cost.webp" alt="Zwei vertikale Kosten-Bars als minimales Linien-Diagramm: App-Stack hoch und outline-only links, Theme-Code-Aufwand niedrig und gefüllt rechts" width="1264" height="848" loading="lazy" decoding="async" /></div>
+            <figcaption>Laufende App-Kosten vs einmaliger Theme-Code-Aufwand: Median-Differenz im DACH-Markt.</figcaption>
           </figure>
 
           <h2 id="shipping">Shipping-Bar: 80 Zeilen Liquid statt 19 € im Monat</h2>
@@ -298,7 +299,7 @@
           <p class="pull-quote">Was bei der App 19 € pro Monat kostet, lebt jetzt im Theme und wird nie wieder gewartet.</p>
 
           <h2 id="cart">Empfehlungen im Warenkorb (Cart-Upsell)</h2>
-          <p>Cart-Upsell-Apps versprechen mehr durchschnittlichen Bestellwert (AOV — <em>Average Order Value</em>) durch Produktempfehlungen, die im Warenkorb-Drawer eingeblendet werden. Die Logik dahinter ist simpel: <em>"Wenn Produkt X im Warenkorb liegt, zeig Produkt Y als Zusatz."</em></p>
+          <p>Cart-Upsell-Apps versprechen mehr durchschnittlichen Bestellwert (AOV, <em>Average Order Value</em>) durch Produktempfehlungen, die im Warenkorb-Drawer eingeblendet werden. Die Logik dahinter ist simpel: <em>"Wenn Produkt X im Warenkorb liegt, zeig Produkt Y als Zusatz."</em></p>
           <p>Im Theme wird daraus ein kleiner Code-Baustein (Snippet), der auf den aktuellen Warenkorb-Inhalt reagiert. Eine Section mit Einstellungen für Auslöser-Produkte und Empfehlungs-Produkte reicht. Claude liest dein Theme und baut den Drawer in zwei bis drei Stunden, inklusive Mobile-Optimierung und Klick-Tracking.</p>
           <p>Was du gewinnst: vollen Zugriff auf das Aussehen. Keine "geht nur im Pro-Plan"-Limits, keine fremde JavaScript-Bibliothek, die mit deinem Warenkorb-Zähler in Konflikt gerät.</p>
 
@@ -308,11 +309,11 @@
 
           <div class="callout callout--accent">
             <span class="callout-label">Quick-Win</span>
-            <p>Wenn du diesen Monat nur eine App ersetzen willst: nimm den Bundle-Builder. Höchste monatliche Kosten, niedrigste Umstellungs-Komplexität — denn deine Bundle-Logik existiert ohnehin schon im Shop.</p>
+            <p>Wenn du diesen Monat nur eine App ersetzen willst: nimm den Bundle-Builder. Höchste monatliche Kosten, niedrigste Umstellungs-Komplexität, denn deine Bundle-Logik existiert ohnehin schon im Shop.</p>
           </div>
 
           <h2 id="page">Seiten-Builder (PageFly, GemPages)</h2>
-          <p>Seiten-Builder sind die meist-missverstandene App-Kategorie. Sie waren nötig, als Themes noch starre Layouts hatten. Online Store 2.0 hat das Problem strukturell gelöst — heute ist jede Seite aus austauschbaren Bausteinen aufgebaut.</p>
+          <p>Seiten-Builder sind die meist-missverstandene App-Kategorie. Sie waren nötig, als Themes noch starre Layouts hatten. Online Store 2.0 hat das Problem strukturell gelöst. Heute ist jede Seite aus austauschbaren Bausteinen aufgebaut.</p>
           <p>Eine Bibliothek mit 10 bis 15 flexiblen Sections (Hero-Bild, Feature-Raster, Kunden-Streifen, Bild-mit-Text, Preisblock, FAQ, Logo-Reihe, Aufruf-zum-Handeln, Abstandshalter, Galerie) deckt 95 Prozent aller Landing-Pages ab. Einmal bauen, überall einsetzen.</p>
           <p>Das ist ein Tag Arbeit, kein Dauer-Abo. <a href="/baseflow">BaseFlow</a> liefert eine fertige Section-Bibliothek mit, ab Tag eins einsetzbar.</p>
 
@@ -329,7 +330,7 @@
           <p><strong>Audits.</strong> Hier hört der App-Vorteil auf. Audits sind ein Schnappschuss, keine laufende Optimierung. <a href="/seoflow">SEOFlow</a> macht das auf Knopfdruck mit echten Such-Daten und schreibt Code, statt nur Listen mit Problemen.</p>
 
           <h2 id="leads">Lead-Formulare und E-Mail-Sammlung</h2>
-          <p>Ein Lead-Formular ist ein Eingabefeld plus ein Absenden-Button. Shopify selbst hat ein Customer-Account-Form-System. Was du anbinden musst, ist dein E-Mail-Tool — auf Englisch <em>ESP (Email Service Provider)</em>: Klaviyo, Brevo, Mailchimp etc.</p>
+          <p>Ein Lead-Formular ist ein Eingabefeld plus ein Absenden-Button. Shopify selbst hat ein Customer-Account-Form-System. Was du anbinden musst, ist dein E-Mail-Tool, auf Englisch <em>ESP (Email Service Provider)</em>: Klaviyo, Brevo, Mailchimp etc.</p>
           <p>Die meisten ESPs bieten direkt einen einbettbaren Liquid-Snippet für Formulare an. Einmal kopieren, Styling anpassen, fertig. Eine separate Lead-App ist nicht nötig.</p>
 
           <h2 id="reviews">Bewertungs-Anzeige (das Sammeln bleibt extern)</h2>
@@ -338,29 +339,29 @@
           <p>Ergebnis: du behältst Judge.me oder Loox für die Sammlung (5 bis 15 € pro Monat), sparst dir aber den zusätzlichen "Display-Plan", den viele Anbieter obendrauf packen.</p>
 
           <figure class="post-figure">
-            <img src="/assets/images/blog/apps-grid.webp" alt="3-mal-3-Grid mit neun outlined Tiles — fünf Tiles diagonal durchgestrichen — als minimales Linien-Diagramm" width="1264" height="848" loading="lazy" decoding="async" />
-            <figcaption>Fünf von neun typischen Apps fallen weg, wenn du sie durch Theme-Code ersetzt — vier bleiben.</figcaption>
+            <div class="plate"><img src="/assets/images/blog/apps-grid.webp" alt="3-mal-3-Grid mit neun outlined Tiles, fünf davon diagonal durchgestrichen, als minimales Linien-Diagramm" width="1264" height="848" loading="lazy" decoding="async" /></div>
+            <figcaption>Fünf von neun typischen Apps fallen weg, wenn du sie durch Theme-Code ersetzt, vier bleiben.</figcaption>
           </figure>
 
           <h2 id="behalten">Apps, die du behalten solltest</h2>
           <p>Hier ist die ehrliche Liste der Apps, die ich nie zum Selber-Bauen empfehlen würde. Sie haben echte Logik oder echte Daten dahinter, und der Aufwand für eine eigene Lösung übersteigt den Subscription-Vorteil deutlich.</p>
           <ul>
             <li><strong>E-Mail-Tools (Klaviyo, Brevo, Mailchimp).</strong> Lifecycle-Mails, Segmente, automatisierte Flows. Bau das nicht selbst.</li>
-            <li><strong>Abo-Tools (Recharge, Bold Subscriptions).</strong> Wiederkehrende Abrechnung, Kündigungs-Flows. Rechtlich heikel — Profi-Werkzeug nutzen.</li>
+            <li><strong>Abo-Tools (Recharge, Bold Subscriptions).</strong> Wiederkehrende Abrechnung, Kündigungs-Flows. Rechtlich heikel, also Profi-Werkzeug nutzen.</li>
             <li><strong>Versand-Tools (ShipStation, Sendcloud).</strong> Multi-Anbieter-Versand, Label-Druck, Tracking. Eigene Welt.</li>
-            <li><strong>Bewertungs-Sammlung (Judge.me, Loox, Yotpo).</strong> Das Einsammeln behalten — die Anzeige machst du selbst.</li>
+            <li><strong>Bewertungs-Sammlung (Judge.me, Loox, Yotpo).</strong> Das Einsammeln behalten, die Anzeige machst du selbst.</li>
             <li><strong>Buchhaltungs-Brücken</strong> (Shopify ↔ DATEV/Lexware). Fehler hier kosten mehr als jedes Monats-Abo.</li>
-            <li><strong>Lager-Sync für Multi-Channel</strong> (Amazon, eBay, Etsy). Externe API-Komplexität — überlass das einer Spezial-App.</li>
+            <li><strong>Lager-Sync für Multi-Channel</strong> (Amazon, eBay, Etsy). Externe API-Komplexität: überlass das einer Spezial-App.</li>
           </ul>
           <p>Faustregel: behält die App ihre Daten? Hat sie Compliance-Touchpoints? Lebt sie außerhalb deines Stores? Dann lass sie laufen.</p>
 
-          <div class="product-cta">
+          <div class="product-cta card card--lift">
             <div>
               <span class="product-cta-label">Empfehlung</span>
-              <p class="product-cta-title">Ersetze deinen App-Stack mit BaseFlow.</p>
+              <p class="product-cta-title">Ersetze deinen App-Stack mit BaseFlow</p>
               <p class="product-cta-body">Setup-Datei für Claude Code, Skill-Stack, Section-Library und Workflow-Anleitung. Erste Section am gleichen Tag. Live-Theme bleibt unangetastet bis Publish.</p>
             </div>
-            <a href="/sales#preis" class="product-cta-btn">Bundle ansehen</a>
+            <a href="/sales#preis" class="btn product-cta-btn">Bundle ansehen</a>
           </div>
 
           <h2 id="start">Wie du anfängst, ohne den Shop kaputt zu machen</h2>
@@ -378,106 +379,108 @@
           <p>Wenn du Claude Code mit der <a href="/baseflow">BaseFlow</a>-Setup-Datei nutzt, läuft jeder dieser drei Punkte automatisch ab. Du sagst, was du ersetzen willst. Die Setup-Datei sorgt dafür, dass Claude auf einem Duplicate arbeitet und dir vor jeder Änderung den Diff zeigt.</p>
 
           <h2 id="faq">FAQ</h2>
+          <div class="qa">
+            <details>
+              <summary>Wie viel kann ich im Jahr sparen?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Bei einem typischen Shopify-Store mit 8 bis 12 aktiven Apps liegt das Sparpotenzial zwischen 3.000 € und 6.500 € pro Jahr. Der Median in unserer Beta-Gruppe lag bei rund 5.232 € jährlich.</p></div>
+            </details>
+            <details>
+              <summary>Welche Apps lassen sich nicht ersetzen?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Apps mit eigenem Datenbestand und externer Logik. Beispiele: Klaviyo, Recharge, ShipStation, Judge.me oder Loox für die Sammlung von Reviews. Die Anzeige der Reviews lässt sich aber im Theme bauen.</p></div>
+            </details>
+            <details>
+              <summary>Brauche ich Programmier-Erfahrung?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Mit Claude Code und einer Setup-Datei nicht. Du beschreibst die gewünschte Funktion in einem Satz, Claude liest dein Theme und schreibt den Liquid-Code auf einem Theme-Duplicate. Das ist <a href="/baseflow">BaseFlow</a> in einem Satz.</p></div>
+            </details>
+            <details>
+              <summary>Was passiert mit den App-Daten beim Deinstallieren?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Reine UI-Apps haben keine eigenen Kunden-Daten. Apps mit Daten (Reviews, Bundle-Verläufe) solltest du vor der Deinstallation exportieren. Die meisten Anbieter bieten CSV-Export.</p></div>
+            </details>
+            <details>
+              <summary>Was, wenn die ersetzte Funktion langsamer lädt als die App?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Sie lädt in den meisten Fällen schneller, weil App-Code zusätzliche Scripts und externe Calls nachlädt. Theme-Code wird mit der Seite ausgeliefert, nichts kommt extra.</p></div>
+            </details>
+          </div>
+            </div>
 
-          <details class="post-faq">
-            <summary>Wie viel kann ich im Jahr sparen?</summary>
-            <p>Bei einem typischen Shopify-Store mit 8 bis 12 aktiven Apps liegt das Sparpotenzial zwischen 3.000 € und 6.500 € pro Jahr. Der Median in unserer Beta-Gruppe lag bei rund 5.232 € jährlich.</p>
-          </details>
-          <details class="post-faq">
-            <summary>Welche Apps lassen sich nicht ersetzen?</summary>
-            <p>Apps mit eigenem Datenbestand und externer Logik. Beispiele: Klaviyo, Recharge, ShipStation, Judge.me oder Loox für die Sammlung von Reviews. Die Anzeige der Reviews lässt sich aber im Theme bauen.</p>
-          </details>
-          <details class="post-faq">
-            <summary>Brauche ich Programmier-Erfahrung?</summary>
-            <p>Mit Claude Code und einer Setup-Datei nicht. Du beschreibst die gewünschte Funktion in einem Satz, Claude liest dein Theme und schreibt den Liquid-Code auf einem Theme-Duplicate. Das ist <a href="/baseflow">BaseFlow</a> in einem Satz.</p>
-          </details>
-          <details class="post-faq">
-            <summary>Was passiert mit den App-Daten beim Deinstallieren?</summary>
-            <p>Reine UI-Apps haben keine eigenen Kunden-Daten. Apps mit Daten (Reviews, Bundle-Verläufe) solltest du vor der Deinstallation exportieren. Die meisten Anbieter bieten CSV-Export.</p>
-          </details>
-          <details class="post-faq">
-            <summary>Was, wenn die ersetzte Funktion langsamer lädt als die App?</summary>
-            <p>Sie lädt in den meisten Fällen schneller, weil App-Code zusätzliche Scripts und externe Calls nachlädt. Theme-Code wird mit der Seite ausgeliefert, nichts kommt extra.</p>
-          </details>
-
-          <aside class="author-bio" aria-label="Über den Autor">
-            <img class="author-bio-photo" src="/shop-ki-founder.webp" alt="Alexander Dück, Founder von vorflows" width="88" height="88" loading="lazy" decoding="async" />
+          <aside class="author-bio card" aria-label="Über den Autor">
+            <img class="author-bio-photo" src="/assets/images/home/alex-lifestyle-400.webp" alt="Alexander Dück, Founder von vorflows" width="88" height="88" loading="lazy" decoding="async" />
             <div class="author-bio-text">
-              <span class="author-bio-label">Über den Autor</span>
+              <span class="label">Über den Autor</span>
               <h3 class="author-bio-name">Alexander Dück</h3>
               <p class="author-bio-role">Founder, vorflows · Shopify-Theme-Workflow mit Claude Code</p>
               <p>Baut vorflows als Drei-Modul-System (BaseFlow, SEOFlow, ClarityFlow) für Shopify-Stores, die ohne Agentur und ohne App-Stack arbeiten.</p>
-              <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" class="author-bio-link" rel="me noopener" target="_blank">LinkedIn ↗</a>
+              <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" class="link author-bio-link" rel="me noopener" target="_blank">LinkedIn</a>
             </div>
           </aside>
-
-          <section class="related" aria-label="Verwandte Artikel">
-            <span class="related-label">Weiterlesen</span>
-            <div class="related-grid">
-              <a href="/blog/shopify-theme-bearbeiten-ohne-developer" class="related-card">
-                <h3 class="related-card-title">Shopify-Theme bearbeiten ohne Developer</h3>
-                <p class="related-card-body">Was du heute selbst kannst, wann du noch jemanden brauchst, und wie du anfängst.</p>
-              </a>
-              <a href="/blog/shopify-seo-checkliste-2026" class="related-card">
-                <h3 class="related-card-title">Shopify SEO Checkliste 2026</h3>
-                <p class="related-card-body">23 Punkte, die du heute prüfen solltest. Inklusive AI Overviews und Core Web Vitals.</p>
-              </a>
-            </div>
-          </section>
-
-        </div>
-      </div>
-    </article>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
-              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
-            </p>
-          </div>
-          <div class="footer-col">
-            <h4>Module</h4>
-            <ul>
-              <li><a href="/baseflow">BaseFlow</a></li>
-              <li><a href="/seoflow">SEOFlow</a></li>
-              <li><a href="/clarityflow">ClarityFlow</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/sales#ablauf">Workflow</a></li>
-              <li><a href="/sales#preis">Pricing</a></li>
-              <li><a href="/sales#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="/impressum">Impressum</a></li>
-              <li><a href="/datenschutz">Datenschutz</a></li>
-            </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <span>© 2026 vorflows</span>
-          <span>built with claude code</span>
+      </article>
+
+      <section class="related" aria-labelledby="h-related">
+        <div class="wrap post-wrap">
+          <h2 id="h-related">Weiterlesen</h2>
+          <div class="entry-row">
+          <a href="/blog/shopify-theme-bearbeiten-ohne-developer" class="entry">
+            <span class="plate"><img src="/assets/images/blog/theme-hero.webp" alt="" width="1376" height="768" loading="lazy" decoding="async" /></span>
+            <span class="meta"><time datetime="2026-05-10">10. Mai 2026</time><span>12 Min Lesezeit</span></span>
+            <h3 class="entry-title">Shopify-Theme bearbeiten ohne Developer</h3>
+            <span class="entry-deck">Was du heute selbst kannst, wann du noch jemanden brauchst, und wie du anfängst.</span>
+          </a>
+          <a href="/blog/shopify-seo-checkliste-2026" class="entry">
+            <span class="plate"><img src="/assets/images/blog/seo-hero.webp" alt="" width="1376" height="768" loading="lazy" decoding="async" /></span>
+            <span class="meta"><time datetime="2026-05-10">10. Mai 2026</time><span>14 Min Lesezeit</span></span>
+            <h3 class="entry-title">Shopify SEO Checkliste 2026</h3>
+            <span class="entry-deck">23 Punkte, die du heute prüfen solltest. Inklusive AI Overviews und Core Web Vitals.</span>
+          </a>
+          </div>
         </div>
-      </div>
-    </footer>
+      </section>
+    </main>
+
+    <footer class="foot"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav aria-label="Weitere Seiten">
+        <a href="/sales">vorflows für Shopify</a><a href="/adsflow">AdsFlow</a><a href="/replay">Shopify-Workshop</a>
+        <a href="/blog">Blog</a><a href="/faqs">FAQs</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a>
+        <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+      </nav>
+      <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+    </div></footer>
 
     <script>
-      const nav = document.getElementById('nav');
-      const onScroll = () => {
-        if (window.scrollY > 8) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+      /* Inhaltsverzeichnis: ab 1080 px feste Spalte (immer offen), darunter Aufklapper.
+         Markiert beim Lesen den aktuellen Abschnitt. */
+      (function () {
+        var toc = document.getElementById('toc');
+        if (!toc) return;
+        var mq = window.matchMedia('(min-width: 1080px)');
+        function sync() { toc.open = mq.matches; }
+        if (mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+        toc.querySelector('summary').addEventListener('click', function (e) { if (mq.matches) e.preventDefault(); });
+        toc.addEventListener('click', function (e) {
+          if (!mq.matches && e.target.closest('a')) toc.open = false;
+        });
+
+        var links = {};
+        Array.prototype.forEach.call(toc.querySelectorAll('a[href^="#"]'), function (a) { links[a.getAttribute('href').slice(1)] = a; });
+        var heads = Array.prototype.filter.call(document.querySelectorAll('.post-prose h2[id]'), function (h) { return links[h.id]; });
+        if (!heads.length) return;
+        var current = null, ticking = false;
+        function update() {
+          ticking = false;
+          var line = window.innerHeight * 0.4, id = null;
+          for (var i = 0; i < heads.length; i++) { if (heads[i].getBoundingClientRect().top < line) id = heads[i].id; }
+          if (id === current) return;
+          if (current && links[current]) links[current].removeAttribute('aria-current');
+          current = id;
+          if (id && links[id]) links[id].setAttribute('aria-current', 'true');
+        }
+        function onScroll() { if (!ticking) { ticking = true; window.requestAnimationFrame(update); } }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+      })();
     </script>
   </body>
 </html>

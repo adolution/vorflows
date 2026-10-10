@@ -1,22 +1,24 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kauf bestätigt — vorflows</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Kauf bestätigt · vorflows</title>
     <meta name="description" content="Danke für deinen Kauf. Dein Zugang zu vorflows ist unterwegs." />
     <!-- Thank-you page: never index -->
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
 
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
     <!-- Google Ads — purchase conversion fires from this page.
          danke.html lives on vorflows.com, so gtag reads the _gcl_aw cookie
@@ -31,887 +33,883 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18158480775"></script>
 
     <style>
-      :root {
-        --bg: #FAFAF7;
-        --text-primary: #1A1A1A;
-        --text-secondary: #5C5C5C;
-        --border: #E5E3DD;
-        --accent: #C8633E;
-        --accent-hover: #B05530;
-        --accent-soft: rgba(200, 99, 62, 0.08);
-      }
+      /* ================================================================
+         vorflows · Käufer-Danke für „vorflows für Shopify“ (/danke)
+         Gleiche Sprache wie /danke-adsflow und /sales: dunkler Grund,
+         Studiolicht, Fraunces + Inter. Basis in /assets/site-dark.css.
+         Farbregel: Terracotta = deine Aktion. Shopify-Grün nur als
+         Markierung der drei Module (Punkt), nie als Knopf oder Glow.
+         Die alte helle Fassung liegt in .agents/archiv/danke-alt-2026-10-10.html.
+         ================================================================ */
 
-      * { box-sizing: border-box; }
-
-      html, body { margin: 0; }
-
-      body {
-        min-height: 100vh;
-        background: var(--bg);
-        background-image:
-          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
-          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
-        color: var(--text-primary);
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        font-size: 17px;
-        line-height: 1.7;
-        -webkit-font-smoothing: antialiased;
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* grain */
-      body::before {
+      /* ---------- Hero ---------- */
+      .hero { position: relative; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); isolation: isolate; overflow-x: clip; }
+      .hero::before {
         content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.4;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      }
-
-      .wrap {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        max-width: 40rem;
-        margin: 0 auto;
-        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .wordmark img { height: 26px; width: auto; display: block; }
-
-      .stamp {
-        margin-top: clamp(1.75rem, 6vw, 3rem);
-        width: 56px;
-        height: 56px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow:
-          0 1px 2px rgba(200, 99, 62, 0.25),
-          0 12px 28px -10px rgba(200, 99, 62, 0.5);
-        display: grid;
-        place-items: center;
-        animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) both;
-      }
-      .stamp svg { width: 26px; height: 26px; }
-      .stamp path {
-        stroke-dasharray: 30;
-        stroke-dashoffset: 30;
-        animation: draw 0.45s 0.28s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-      }
-
-      .eyebrow {
-        margin: 1.5rem 0 0;
-        font-size: 0.78rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--accent);
-        font-weight: 600;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-      }
-
-      h1 {
-        margin: 0.5rem 0 0;
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(2.1rem, 7vw, 3.1rem);
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-      }
-
-      .lead {
-        margin: 1rem 0 0;
-        max-width: 34rem;
-        color: var(--text-secondary);
-        font-size: 1.05rem;
-      }
-
-      /* Post-purchase notice — elevated card, sits high under the welcome */
-      .notice {
-        margin: clamp(1.5rem, 5vw, 2rem) 0 0;
-        display: flex;
-        align-items: flex-start;
-        gap: 0.9rem;
-        padding: 1.1rem 1.25rem;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--accent);
-        border-radius: 0.9rem;
-        box-shadow:
-          0 1px 2px rgba(26, 26, 26, 0.04),
-          0 16px 32px -24px rgba(200, 99, 62, 0.45);
-      }
-      .notice-icon {
-        flex-shrink: 0;
-        width: 2.1rem;
-        height: 2.1rem;
-        display: grid;
-        place-items: center;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-      }
-      .notice-icon svg { width: 1.1rem; height: 1.1rem; }
-      .notice-body { margin: 0; }
-      .notice-badge {
-        display: inline-block;
-        margin: 0 0 0.3rem;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      .notice-text {
-        margin: 0;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: var(--text-primary);
-      }
-      .notice-text strong { font-weight: 600; }
-      .notice--setup .notice-text { margin-bottom: 0; }
-      .notice-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.95rem;
-        background: var(--accent);
-        color: #fff;
-        text-decoration: none;
-        border: 0;
-        cursor: pointer;
-        font-family: inherit;
-        font-weight: 600;
-        font-size: 0.95rem;
-        padding: 0.7rem 1.15rem;
-        border-radius: 0.6rem;
-        transition: filter 0.16s ease, transform 0.16s ease;
-      }
-      .notice-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
-      .notice-cta:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
-
-      .divider {
-        margin: clamp(2rem, 6vw, 3rem) 0 0;
-        border: 0;
-        border-top: 1px solid var(--border);
-      }
-
-      /* Tutorial — highlighted callout, sits high so it can't be missed */
-      .tutorial {
-        margin: clamp(1.75rem, 5vw, 2.5rem) 0 0;
-        padding: clamp(1.4rem, 5vw, 2.25rem);
-        background: var(--accent-soft);
-        border: 1px solid rgba(200, 99, 62, 0.2);
-        border-radius: 1rem;
-      }
-      .tutorial-eyebrow {
-        margin: 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.74rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      .tutorial-eyebrow::before {
-        content: "";
-        width: 1.6rem;
-        height: 1px;
-        background: var(--accent);
-      }
-      .tutorial h2 {
-        margin: 0.55rem 0 0;
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(1.5rem, 5vw, 2.1rem);
-        line-height: 1.12;
-        letter-spacing: -0.025em;
-      }
-
-      .videos {
-        margin: 1.4rem 0 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .skip-note {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.55rem;
-        margin: 0;
-        padding: 0.65rem 0.85rem;
-        background: #fff;
-        border: 1px solid rgba(200, 99, 62, 0.22);
-        border-radius: 0.6rem;
-        font-size: 0.86rem;
-        line-height: 1.5;
-        color: var(--text-secondary);
-      }
-      .skip-note svg { flex-shrink: 0; width: 16px; height: 16px; color: var(--accent); margin-top: 0.1rem; }
-      .skip-note strong { color: var(--text-primary); font-weight: 600; }
-      .video .label {
-        display: flex;
-        align-items: baseline;
-        gap: 0.65rem;
-        margin-bottom: 0.6rem;
-      }
-      .video .num {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--accent);
-      }
-      .video .title {
-        font-weight: 600;
-        font-size: 0.99rem;
-        letter-spacing: -0.01em;
-      }
-      .video .frame {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        border-radius: 0.7rem;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #EFECE5;
-        box-shadow:
-          0 1px 2px rgba(26, 26, 26, 0.05),
-          0 18px 36px -20px rgba(200, 99, 62, 0.32);
-      }
-      .video .frame iframe {
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
+        inset: -68px 0 -4rem 0;
+        z-index: -1;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(#000 70%, transparent);
+        mask-image: linear-gradient(#000 70%, transparent);
+        background:
+          radial-gradient(52rem 34rem at 40% -10%, rgba(237, 236, 231, .07), transparent 62%),
+          radial-gradient(40rem 30rem at 0% 70%, rgba(200, 99, 62, .12), transparent 66%),
+          radial-gradient(34rem 26rem at 88% 45%, rgba(200, 99, 62, .09), transparent 66%),
+          radial-gradient(30rem 20rem at 100% 0%, rgba(149, 191, 71, .04), transparent 70%);
       }
-      /* Loom lädt erst per Klick: 4 parallele Embed-Requests liefen ins
-         Loom-Rate-Limit (weiße Frames). Facade + Direktlink als Fallback. */
-      .video .title a { color: inherit; text-decoration: none; }
-      .video .title a:hover { color: var(--accent); text-decoration: underline; }
-      .video .title a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 6.6fr) minmax(0, 5.4fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      .stamp-row { display: flex; align-items: center; gap: .9rem; }
+      .stamp {
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: var(--orange);
+        display: grid;
+        place-items: center;
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 12px 30px -10px rgba(200, 99, 62, .6);
+      }
+      .stamp svg { width: 22px; height: 22px; }
+      .stamp path { stroke-dasharray: 30; stroke-dashoffset: 0; }
+      .js .stamp path { stroke-dashoffset: 30; animation: draw .55s .3s var(--ease) forwards; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      .hero h1 { margin-top: 1.2rem; font-size: clamp(2.7rem, 1.2rem + 4.8vw, 5.2rem); line-height: 1.01; letter-spacing: -.038em; max-width: 12ch; }
+      .hero .lead { margin-top: 1.4rem; max-width: 46ch; }
+      .hero-jump { display: flex; flex-wrap: wrap; gap: .25rem 1.6rem; margin-top: 1.6rem; }
+
+      /* Termin-Ticket: der Setup-Call als greifbares Objekt */
+      .ticket {
+        position: relative;
+        border-radius: 22px;
+        background:
+          radial-gradient(28rem 16rem at 100% 0%, rgba(200, 99, 62, .14), transparent 70%),
+          linear-gradient(180deg, var(--raise-2), var(--raise));
+        border: 1px solid var(--line-2);
+        box-shadow:
+          inset 0 1px 0 rgba(237, 236, 231, .06),
+          0 1px 2px rgba(0, 0, 0, .4),
+          0 30px 70px -24px rgba(0, 0, 0, .8),
+          0 50px 120px -40px rgba(200, 99, 62, .22);
+      }
+      .t-top { padding: clamp(1.4rem, 2.6vw, 2rem) clamp(1.3rem, 2.6vw, 2rem) 1.6rem; }
+      .t-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+      .t-who { display: flex; align-items: center; gap: .8rem; font-size: 14px; line-height: 1.35; color: var(--ink-3); }
+      .t-who img { flex: none; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
+      .t-who b { display: block; color: var(--ink); font-weight: 500; font-size: 15px; }
+      .t-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        min-height: 28px;
+        padding: 0 .75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(200, 99, 62, .45);
+        background: var(--orange-soft);
+        color: var(--orange-hi);
+        font-size: 12.5px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+      .t-badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--orange-hi); }
+      .t-h { margin-top: 1.5rem; font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem); line-height: 1.04; }
+      .t-text { margin-top: .8rem; color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 40ch; }
+      .t-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: 1.1rem; font-size: 14px; color: var(--ink-3); }
+      .t-facts span { display: inline-flex; align-items: center; gap: .45rem; }
+      .t-facts svg { color: var(--ink-2); }
+      /* Perforation mit zwei ausgestanzten Halbkreisen */
+      .t-perf { position: relative; height: 0; margin-inline: 1.4rem; border-top: 1.5px dashed var(--line-2); }
+      .t-perf::before, .t-perf::after {
+        content: "";
+        position: absolute;
+        top: -13px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--line-2);
+      }
+      .t-perf::before { left: calc(-1.4rem - 13px); clip-path: inset(0 0 0 50%); }
+      .t-perf::after { right: calc(-1.4rem - 13px); clip-path: inset(0 50% 0 0); }
+      .t-bottom { padding: 1.5rem clamp(1.3rem, 2.6vw, 2rem) clamp(1.4rem, 2.6vw, 1.9rem); }
+      .t-bottom .btn { width: 100%; }
+      .t-small { margin-top: 1rem; color: var(--ink-3); font-size: 14px; line-height: 1.55; }
+
+      /* ---------- Abschnittskopf ---------- */
+      .sec-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(1.5rem, 4vw, 4.5rem); align-items: end; }
+      .sec-head h2 { margin-top: .8rem; }
+
+      /* ---------- Start: drei Schritte ---------- */
+      .steps3 { margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+      .step {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, var(--raise), var(--bg));
+        box-shadow: var(--shadow-raise);
+        overflow: hidden;
+      }
+      .step-viz {
+        position: relative;
+        height: 190px;
+        display: grid;
+        place-items: center;
+        border-bottom: 1px solid var(--line);
+        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .05), transparent 70%), var(--bg-deep);
+        padding: 1rem;
+      }
+      .step-txt { padding: 1.3rem 1.35rem 1.5rem; }
+      .num {
+        display: inline-grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--line-2);
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 15px;
+        line-height: 1;
+        color: var(--ink);
+      }
+      .step h3 { margin-top: .8rem; font-size: 1.32rem; }
+      .step p { margin-top: .55rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+
+      /* Viz 1: Mail von Digistore24 */
+      .v-mail {
+        width: 100%;
+        max-width: 270px;
+        border: 1px solid var(--line-2);
+        border-radius: 14px;
+        background: var(--raise);
+        padding: .9rem .95rem 1rem;
+        box-shadow: 0 16px 40px -20px rgba(0, 0, 0, .9);
+      }
+      .m-head { display: flex; align-items: center; gap: .6rem; font-size: 12.5px; line-height: 1.25; color: var(--ink-3); }
+      .m-head b { display: block; color: var(--ink); font-weight: 500; }
+      .m-av { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--raise-2); border: 1px solid var(--line-2); font-size: 12px; font-weight: 600; color: var(--ink-2); }
+      .m-time { margin-left: auto; font-size: 11.5px; }
+      .m-lines { display: grid; gap: 6px; margin-top: .85rem; }
+      .m-lines i { display: block; height: 6px; border-radius: 3px; background: var(--line-2); }
+      .m-lines i:nth-child(2) { width: 72%; }
+      .m-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: .85rem; padding: .3rem .7rem; border-radius: 999px; background: var(--orange); color: var(--on-orange); font-size: 12px; font-weight: 600; box-shadow: 0 8px 20px -8px rgba(200, 99, 62, .7); }
+
+      /* Viz 2: ZIP → Ordner */
+      .v-unzip { display: flex; align-items: center; gap: 1rem; }
+      .file { display: grid; justify-items: center; gap: .45rem; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-2); text-align: center; }
+      .file svg { width: 56px; height: 56px; }
+      .v-unzip .arrow { color: var(--ink-3); }
+      @media (prefers-reduced-motion: no-preference) {
+        .v-unzip .arrow path { stroke-dasharray: 4 4; animation: flow 1.6s linear infinite; }
+        @keyframes flow { to { stroke-dashoffset: -16; } }
+      }
+
+      /* Viz 3: Eingabefeld */
+      .v-input {
+        width: 100%;
+        max-width: 290px;
+        border: 1px solid rgba(200, 99, 62, .55);
+        border-radius: 14px;
+        background: var(--raise);
+        padding: .85rem .9rem .7rem;
+        box-shadow: 0 16px 40px -20px rgba(200, 99, 62, .45);
+      }
+      .v-input .typed { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.12rem; line-height: 1.3; color: var(--ink); }
+      .v-input .typed::after { content: ""; display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.15em; background: var(--orange-hi); animation: caret 1.1s steps(1) infinite; }
+      @keyframes caret { 50% { opacity: 0; } }
+      .v-input .bar { margin-top: .75rem; display: flex; align-items: center; justify-content: space-between; color: var(--ink-3); font-size: 11px; }
+      .v-input .send { width: 24px; height: 24px; border-radius: 7px; background: var(--orange); display: grid; place-items: center; color: var(--on-orange); }
+
+      /* Reihenfolge der Module */
+      .order {
+        margin-top: clamp(1rem, 2vw, 1.5rem);
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: 1.25rem 2.5rem;
+        align-items: center;
+        padding: clamp(1.25rem, 2.4vw, 1.75rem) clamp(1.25rem, 2.4vw, 2rem);
+        border: 1px solid var(--line);
+        border-radius: var(--r-surface);
+        background: var(--raise);
+      }
+      .order p { color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+      .chain { position: relative; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+      .chain::before { content: ""; position: absolute; left: 12%; right: 12%; top: 50%; height: 1px; background: linear-gradient(90deg, rgba(200, 99, 62, .7), var(--line-2)); }
+      .chain li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .55rem;
+        min-height: 52px;
+        padding: .5rem .8rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: var(--bg);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .chain li .n { font-family: 'Fraunces', Georgia, serif; font-weight: 400; color: var(--ink-3); }
+      .chain li i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--shop); }
+      .chain li:first-child { border-color: rgba(200, 99, 62, .6); box-shadow: 0 10px 30px -14px rgba(200, 99, 62, .6); }
+      .chain li:first-child .n { color: var(--orange-hi); }
+
+      /* PDF von null: cremefarbenes Blatt mit Stapel */
+      .zero {
+        margin-top: clamp(1rem, 2vw, 1.5rem);
+        display: grid;
+        grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+        gap: clamp(1.5rem, 4vw, 4rem);
+        align-items: center;
+        padding: clamp(1.75rem, 4vw, 3rem);
+        border: 1px solid var(--line-2);
+        border-radius: var(--r-surface);
+        background:
+          radial-gradient(30rem 18rem at 0% 50%, rgba(200, 99, 62, .1), transparent 70%),
+          linear-gradient(180deg, var(--raise-2), var(--raise));
+        box-shadow: var(--shadow-float);
+        overflow: hidden;
+      }
+      .doc-sheets { position: relative; aspect-ratio: 4 / 4.4; width: 100%; max-width: 280px; margin-inline: auto; }
+      .doc-sheet { position: absolute; inset: 0; border-radius: 12px; background: var(--cream); box-shadow: 0 30px 70px -26px rgba(0, 0, 0, .85), 0 2px 4px rgba(0, 0, 0, .3); }
+      .doc-sheet.s3 { transform: rotate(-7deg) translate(-12px, 8px); background: #CFCBC0; }
+      .doc-sheet.s2 { transform: rotate(-3deg) translate(-5px, 3px); background: #DEDAD0; }
+      .doc-sheet.s1 { padding: 1.3rem 1.25rem; color: var(--cream-ink); display: flex; flex-direction: column; }
+      .doc-sheet .kicker { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #6E6A61; font-weight: 600; }
+      .doc-sheet .t { margin-top: .45rem; font-family: 'Fraunces', Georgia, serif; font-size: 1.45rem; line-height: 1.06; letter-spacing: -.02em; }
+      .doc-sheet .t em { color: var(--orange); }
+      .doc-sheet ol { margin: .9rem 0 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
+      .doc-sheet li { display: grid; grid-template-columns: 1.3rem minmax(0, 1fr); gap: .4rem; font-size: 12.5px; line-height: 1.35; color: #3C3A35; }
+      .doc-sheet li span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--orange-press); padding-top: 1px; }
+      .doc-sheet .lines { margin-top: auto; display: grid; gap: 6px; }
+      .doc-sheet .lines i { display: block; height: 5px; border-radius: 3px; background: #D9D5CB; }
+      .doc-sheet .lines i:nth-child(2) { width: 78%; }
+      .doc-sheet .tag { position: absolute; top: 1rem; right: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 500; color: #fff; background: var(--orange); padding: .15rem .45rem; border-radius: 6px; }
+      .zero h3 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.3rem); line-height: 1.08; }
+      .zero p { margin-top: .9rem; color: var(--ink-2); max-width: 54ch; }
+      .zero .btn { margin-top: 1.6rem; }
+
+      /* ---------- Videos ---------- */
+      .vid-side { display: grid; gap: 1.1rem; }
+      .progress { display: flex; align-items: center; gap: 1rem; color: var(--ink-3); font-size: 14px; }
+      .progress .track { flex: 0 1 220px; height: 4px; border-radius: 4px; background: var(--line-2); overflow: hidden; }
+      .progress .fill { display: block; height: 100%; width: 100%; background: var(--orange); transform-origin: left center; transform: scaleX(0); transition: transform .8s var(--ease); }
+      .progress b { color: var(--ink); font-weight: 600; }
+      .progress > span:last-child { white-space: nowrap; }
+      .note svg { display: inline-block; vertical-align: -3px; margin-right: .35rem; color: var(--ok); }
+
+      .lessons { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 2.5vw, 2rem); }
+      .lesson { scroll-margin-top: 90px; min-width: 0; }
+      .frame {
+        position: relative;
+        aspect-ratio: 1662 / 1080;
+        border-radius: var(--r-surface);
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        background: var(--bg-deep);
+        box-shadow: var(--shadow-float);
+        isolation: isolate;
+      }
+      .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
       .frame-play {
         position: absolute;
         inset: 0;
         width: 100%;
         border: 0;
+        padding: 1.25rem;
         cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.7rem;
-        font-family: inherit;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: .8rem;
+        color: var(--ink);
+        isolation: isolate;
+        overflow: hidden;
         background:
-          radial-gradient(28rem 18rem at 82% -20%, rgba(200, 99, 62, 0.16), transparent 70%),
-          radial-gradient(24rem 16rem at 8% 120%, rgba(47, 111, 79, 0.08), transparent 70%),
-          #EFECE5;
+          radial-gradient(26rem 18rem at 50% 30%, rgba(237, 236, 231, .07), transparent 66%),
+          radial-gradient(22rem 16rem at 8% 100%, rgba(200, 99, 62, .16), transparent 66%),
+          var(--bg-deep);
       }
-      .play-ring {
-        width: 3.4rem;
-        height: 3.4rem;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #fff;
+      .frame-play .poster { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.2s var(--ease); }
+      .frame-play::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 50% 50%, rgba(10, 10, 9, .5), rgba(10, 10, 9, .15) 70%), linear-gradient(180deg, rgba(10, 10, 9, .25), rgba(10, 10, 9, .65)); }
+      .frame-play::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(200, 99, 62, .08); mix-blend-mode: multiply; }
+      .frame-play:hover .poster { transform: scale(1.05); }
+      .frame-play .ring {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--orange);
+        color: var(--on-orange);
         display: grid;
         place-items: center;
-        box-shadow: 0 10px 24px -10px rgba(200, 99, 62, 0.55);
-        transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 18px 44px -12px rgba(200, 99, 62, .7);
+        transition: transform .5s var(--ease), background-color .25s var(--ease-q);
       }
-      .play-ring svg { width: 1.15rem; height: 1.15rem; margin-left: 2px; }
-      .frame-play:hover .play-ring { transform: scale(1.08); }
-      .frame-play:active .play-ring { transform: scale(0.96); }
-      .frame-play:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 0.7rem; }
-      .play-text { font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
-      .frame-ext {
-        position: absolute;
-        right: 0.7rem;
-        bottom: 0.6rem;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.4rem;
+      .frame-play .ring svg { width: 24px; height: 24px; margin-left: 4px; }
+      .frame-play .dur { font-size: 13.5px; color: var(--ink); text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+      .frame-play:hover .ring { transform: scale(1.06); background: #D06A44; }
+      .frame-play:active .ring { transform: scale(.97); background: var(--orange-press); }
+      .frame-play:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: var(--r-surface); }
+      .frame-play .bignum { position: absolute; left: 1.1rem; top: .85rem; font-family: 'Fraunces', Georgia, serif; font-size: 13px; color: var(--ink-2); }
+      .frame-play .loom { position: absolute; right: 1.1rem; top: .85rem; font-size: 12px; color: var(--ink-2); }
+      .lesson-head { display: flex; align-items: baseline; gap: .4rem 1.1rem; margin-top: 1.2rem; }
+      .lesson-head .big {
+        flex: none;
+        font-family: 'Fraunces', Georgia, serif;
+        font-variation-settings: "opsz" 60;
+        font-size: clamp(2.3rem, 1.9rem + 1.4vw, 3.2rem);
+        line-height: .9;
+        letter-spacing: -.04em;
+        color: var(--ink-3);
+        transition: color .4s var(--ease-q);
       }
-      .frame-ext:hover { color: var(--accent); text-decoration: underline; }
-      .frame-ext:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .frame-fallback {
-        position: absolute;
-        inset: 0;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
-        text-align: center;
-        padding: 1rem;
-        background: #EFECE5;
-      }
-      .frame.failed .frame-fallback { display: flex; }
-      .frame-fallback p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
-      .frame-fallback a { color: var(--accent); font-weight: 600; text-decoration: underline; }
-      .frame-fallback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .frame-note {
-        margin: 0.45rem 0 0;
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-      }
-      .frame-note a { color: var(--accent); font-weight: 600; text-decoration: none; }
-      .frame-note a:hover { text-decoration: underline; }
-      .frame-note a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-      .setup-steps { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
-      .setup-steps p {
-        margin: 0;
-        color: var(--text-secondary);
-        font-size: 0.99rem;
-      }
-      .setup-steps p + p { margin-top: 0.7rem; }
-      .setup-steps strong { color: var(--text-primary); font-weight: 600; }
-
-      /* What lands in the inbox — compact, three-up */
-      .next { margin: clamp(2rem, 6vw, 2.75rem) 0 0; }
-      .next-eyebrow {
-        margin: 0;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.74rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .next-list {
-        margin: 1.1rem 0 0;
-        padding: 0;
-        list-style: none;
-        counter-reset: n;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: clamp(1rem, 3vw, 1.6rem);
-      }
-      .next-list li { counter-increment: n; }
-      .next-list .n {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--accent);
-      }
-      .next-list h3 {
-        margin: 0.4rem 0 0;
-        font-size: 0.96rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-      .next-list p {
-        margin: 0.3rem 0 0;
-        color: var(--text-secondary);
-        font-size: 0.88rem;
-        line-height: 1.55;
-      }
-      @media (max-width: 32rem) {
-        .next-list { grid-template-columns: 1fr; gap: 1rem; }
-      }
-
-      .foot {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem 1.5rem;
-        align-items: center;
-      }
-
-      a.home {
+      .lesson.is-seen .lesson-head .big { color: var(--orange); }
+      .lesson-head h3 { flex: 1 1 auto; min-width: 0; font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); }
+      .lesson-head .facts { flex: none; font-size: 13.5px; color: var(--ink-3); white-space: nowrap; }
+      .under { margin-top: .9rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; font-size: 14px; color: var(--ink-3); }
+      .seen {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        color: var(--text-primary);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        padding: 0.55rem 0.9rem;
-        margin-left: -0.9rem;
-        border-radius: 0.5rem;
-        transition: background-color 0.16s ease, transform 0.16s ease;
-      }
-      a.home:hover { background: var(--accent-soft); transform: translateX(2px); }
-      a.home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      a.home:active { transform: translateX(0); }
-
-      .support {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-      }
-      .support a {
-        color: var(--accent);
-        text-decoration: none;
+        gap: .5rem;
+        min-height: 40px;
+        padding: 0 .95rem 0 .75rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: transparent;
+        color: var(--ink-2);
+        font-size: 13.5px;
         font-weight: 500;
-      }
-      .support a:hover { text-decoration: underline; }
-      .support a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
-
-      /* Top bar with help navigation */
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      .topnav { display: flex; gap: 0.4rem; }
-      .topnav a {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.86rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        padding: 0.45rem 0.8rem;
-        border-radius: 0.55rem;
-        border: 1px solid var(--border);
-        background: #fff;
-        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-      }
-      .topnav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
-      .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .topnav a svg { width: 0.95rem; height: 0.95rem; }
-      @media (max-width: 30rem) {
-        .topnav a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
-      }
-
-      /* Accordion (details/summary) — shared with /troubleshooting and /faqs */
-      .acc {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 0.8rem;
-        overflow: hidden;
-      }
-      .acc + .acc { margin-top: 0.75rem; }
-      .acc > summary {
-        list-style: none;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 1rem 1.15rem;
-        font-weight: 600;
-        font-size: 0.98rem;
-        line-height: 1.4;
-        color: var(--text-primary);
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), background-color .2s var(--ease-q), transform .4s var(--ease);
       }
-      .acc > summary::-webkit-details-marker { display: none; }
-      .acc > summary:hover { color: var(--accent); }
-      .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-      .acc .chev { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; color: var(--text-secondary); transition: transform 0.2s ease; }
-      .acc[open] .chev { transform: rotate(90deg); }
-      .acc-tag {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        background: var(--accent-soft);
-        padding: 0.2rem 0.45rem;
-        border-radius: 0.4rem;
-        flex-shrink: 0;
-      }
-      .acc-body { padding: 0 1.15rem 1.2rem; border-top: 1px solid var(--border); }
-      .acc-body > *:first-child { margin-top: 1rem; }
-      .acc-body p { margin: 0 0 0.8rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; }
-      .acc-body p:last-child { margin-bottom: 0; }
-      .acc-body strong { color: var(--text-primary); font-weight: 600; }
-      .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
-      .acc-body a:hover { text-decoration: underline; }
-      .acc-video {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        border-radius: 0.7rem;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #000;
-        margin: 0 0 1.1rem;
-        box-shadow:
-          0 1px 2px rgba(26, 26, 26, 0.05),
-          0 18px 36px -20px rgba(200, 99, 62, 0.32);
-      }
-      .acc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+      .seen .box { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink-3); display: grid; place-items: center; transition: background-color .2s var(--ease-q), border-color .2s var(--ease-q); }
+      .seen .box svg { width: 10px; height: 10px; opacity: 0; transform: scale(.6); transition: opacity .2s var(--ease-q), transform .4s var(--ease); }
+      .seen:hover { color: var(--ink); border-color: var(--ink-3); }
+      .seen:active { transform: scale(.97); }
+      .seen:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .seen[aria-pressed="true"] { color: var(--ink); border-color: rgba(200, 99, 62, .5); background: var(--orange-soft); }
+      .seen[aria-pressed="true"] .box { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+      .seen[aria-pressed="true"] .box svg { opacity: 1; transform: none; }
+      .under .tl { color: var(--ink-2); font-size: 14px; }
 
-      .guidebox {
-        margin: 0 0 1.75rem;
-        padding: 1.15rem 1.3rem;
-        background: var(--accent-soft);
-        border: 1px solid var(--accent);
-        border-radius: 0.9rem;
-        display: flex;
-        flex-wrap: wrap;
+      /* ---------- Fehlermeldung beim ersten Start (Aufklapper) ---------- */
+      .fix {
+        margin-top: clamp(2.5rem, 5vw, 3.5rem);
+        border: 1px solid rgba(200, 99, 62, .4);
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, rgba(200, 99, 62, .08), rgba(200, 99, 62, .02) 40%), var(--raise);
+        scroll-margin-top: 90px;
+      }
+      .fix > summary {
+        list-style: none;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
         align-items: center;
-        gap: 0.75rem 1.25rem;
+        gap: 1rem;
+        padding: 1.2rem clamp(1.1rem, 2.4vw, 1.6rem);
+        cursor: pointer;
+        border-radius: var(--r-surface);
       }
-      .guidebox .gb-text { flex: 1 1 16rem; }
-      .guidebox .gb-text strong { display: block; font-size: 1.02rem; margin-bottom: 0.15rem; color: var(--text-primary); }
-      .guidebox .gb-text span { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; }
-      .dl-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: var(--accent);
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        padding: 0.7rem 1.15rem;
-        border-radius: 0.6rem;
-        white-space: nowrap;
-        transition: filter 0.16s ease, transform 0.16s ease;
-      }
-      .dl-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
-      .dl-btn:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
-
-      /* Numbered steps */
-      .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
-      .steps li {
-        counter-increment: s;
-        position: relative;
-        padding-left: 2.1rem;
-        margin: 0 0 0.9rem;
-        color: var(--text-secondary);
-        font-size: 0.96rem;
-        line-height: 1.6;
-      }
-      .steps li:last-child { margin-bottom: 0; }
-      .steps li::before {
+      .fix > summary::-webkit-details-marker { display: none; }
+      .fix > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .fix > summary:hover .fix-t { color: var(--orange-hi); }
+      .fix > summary:active { opacity: .85; }
+      .fix-ic { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--orange-soft); border: 1px solid rgba(200, 99, 62, .5); color: var(--orange-hi); }
+      .fix-t { display: block; font-weight: 600; font-size: clamp(1.02rem, .98rem + .2vw, 1.12rem); line-height: 1.4; color: var(--ink); transition: color .2s var(--ease-q); }
+      .fix-s { display: block; margin-top: .15rem; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+      .fix .pm { position: relative; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-2); }
+      .fix .pm::before, .fix .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink-2); transition: transform .4s var(--ease); }
+      .fix .pm::after { transform: rotate(90deg); }
+      .fix[open] .pm::after { transform: rotate(0deg); }
+      .fix-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 3.5vw, 3rem); align-items: start; padding: .4rem clamp(1.1rem, 2.4vw, 1.6rem) clamp(1.4rem, 3vw, 2rem); border-top: 1px solid var(--line); padding-top: clamp(1.4rem, 3vw, 2rem); }
+      .fix-media { display: grid; gap: 1.25rem; }
+      .fix-media .frame-play .ring { width: 58px; height: 58px; }
+      .fix-media .frame-play .ring svg { width: 20px; height: 20px; }
+      .fix-media figure { margin: 0; }
+      .fix-media figure img { border-radius: var(--r-field); border: 1px solid var(--line-2); }
+      .fix-media figcaption { margin-top: .6rem; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
+      .fix-copy { color: var(--ink-2); font-size: 16px; line-height: 1.65; }
+      .fix-copy > * + * { margin-top: 1rem; }
+      .ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 1.1rem; }
+      .ol > li { counter-increment: s; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: .8rem; }
+      .ol > li::before {
         content: counter(s);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.78rem;
-        font-weight: 600;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--line-2);
         display: grid;
         place-items: center;
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 14px;
+        color: var(--ink);
       }
-      .steps li strong { color: var(--text-primary); font-weight: 600; }
-
-      /* Command box with copy button */
       .cmd {
-        margin: 0.6rem 0 0.5rem;
-        display: flex;
+        position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
         align-items: center;
-        gap: 0.6rem;
-        background: #1A1A1A;
-        color: #FAFAF7;
-        border-radius: 0.55rem;
-        padding: 0.7rem 0.8rem;
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.82rem;
-        overflow-x: auto;
+        gap: .75rem;
+        margin-top: .6rem;
+        padding: .55rem .55rem .55rem .9rem;
+        border: 1px solid var(--line-2);
+        border-radius: var(--r-field);
+        background: var(--bg-deep);
       }
-      .cmd code { white-space: nowrap; }
-      .cmd .os {
-        flex-shrink: 0;
-        font-size: 0.62rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.6;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 0.35rem;
-        padding: 0.1rem 0.4rem;
-      }
-      .cmd-copy {
-        margin-left: auto;
-        flex-shrink: 0;
+      .cmd .os { font-size: 11.5px; font-weight: 500; color: var(--ink-3); min-width: 4.6rem; }
+      .cmd code { font-size: 13px; color: var(--ink); overflow-x: auto; white-space: nowrap; scrollbar-width: thin; padding-block: .25rem; }
+      .cbtn {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 .8rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: var(--raise);
+        color: var(--ink-2);
+        font-size: 12.5px;
+        font-weight: 500;
         cursor: pointer;
-        background: rgba(255, 255, 255, 0.1);
-        color: #FAFAF7;
-        border: 0;
-        border-radius: 0.4rem;
-        padding: 0.35rem 0.55rem;
-        font-size: 0.72rem;
-        font-weight: 600;
-        font-family: 'Inter', system-ui, sans-serif;
-        transition: background 0.16s ease;
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), transform .4s var(--ease);
       }
-      .cmd-copy:hover { background: rgba(255, 255, 255, 0.22); }
-      .cmd-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .cbtn:hover { color: var(--ink); border-color: var(--ink-3); }
+      .cbtn:active { transform: scale(.96); }
+      .cbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .cbtn.is-done { color: var(--ok); border-color: rgba(95, 174, 133, .5); }
 
-      code.inline {
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 0.85em;
-        padding: 0.05rem 0.3rem;
-        border-radius: 0.3rem;
+      /* ---------- Hilfe ---------- */
+      .help-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+      .help-grid .lead { margin-top: 1.2rem; }
+      .help-grid .btn { margin-top: 1.8rem; }
+      .doors { display: grid; gap: 1rem; }
+      .door {
+        --lift: 0px;
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.3rem 1.4rem;
+        border-radius: var(--r-surface);
+        border: 1px solid var(--line-2);
+        background: linear-gradient(180deg, var(--raise-2), var(--raise));
+        box-shadow: var(--shadow-raise);
+        text-decoration: none;
+        color: var(--ink);
+        transform: translateY(var(--lift));
+        transition: transform .6s var(--ease), border-color .3s var(--ease-q), box-shadow .6s var(--ease);
       }
+      .door:hover { --lift: -3px; border-color: #45433D; box-shadow: var(--shadow-float); }
+      .door:active { --lift: -1px; transition-duration: .15s; }
+      .door:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .door-ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--bg-deep); border: 1px solid var(--line-2); color: var(--orange-hi); }
+      .door b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 1.4rem; line-height: 1.15; letter-spacing: -.02em; }
+      .door span.d { display: block; margin-top: .2rem; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+      .door .go { color: var(--ink-3); transition: transform .5s var(--ease), color .2s var(--ease-q); }
+      .door:hover .go { transform: translateX(4px); color: var(--orange-hi); }
+      .fine { margin-top: 1.6rem; font-size: 14px; line-height: 1.65; color: var(--ink-3); max-width: 60ch; }
+      .fine a { color: var(--ink-2); border-radius: 3px; }
+      .fine a:hover { color: var(--ink); }
+      .fine a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
-      .tip {
-        margin: 0.8rem 0 0;
-        padding: 0.85rem 1rem;
-        background: var(--accent-soft);
-        border-left: 3px solid var(--accent);
-        border-radius: 0.5rem;
-        font-size: 0.9rem;
-        line-height: 1.55;
-        color: var(--text-primary);
+      /* ---------- Handy ---------- */
+      @media (max-width: 960px) {
+        .hero-grid { grid-template-columns: minmax(0, 1fr); }
+        .hero h1 { max-width: 14ch; }
+        .ticket { max-width: 560px; }
+        .sec-head, .help-grid, .order, .fix-body { grid-template-columns: minmax(0, 1fr); }
+        .sec-head { align-items: start; }
+        .steps3 { grid-template-columns: minmax(0, 1fr); }
+        .step { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+        .step-viz { height: auto; min-height: 170px; border-bottom: 0; border-right: 1px solid var(--line); }
       }
-      .tip strong { font-weight: 600; }
-
-      .shot { margin: 1rem 0 0; }
-      .shot img {
-        display: block;
-        width: 100%;
-        height: auto;
-        border: 1px solid var(--border);
-        border-radius: 0.6rem;
+      @media (max-width: 760px) {
+        .zero { grid-template-columns: minmax(0, 1fr); }
+        .doc-sheets { max-width: 220px; }
+        .lessons { grid-template-columns: minmax(0, 1fr); }
       }
-      .shot figcaption {
-        margin: 0.5rem 0 0;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: var(--text-secondary);
+      @media (max-width: 620px) {
+        .step { display: flex; }
+        .step-viz { height: 160px; border-right: 0; border-bottom: 1px solid var(--line); }
+        .chain { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+        .chain::before { left: 1.5rem; right: auto; top: 26px; bottom: 26px; width: 1px; height: auto; background: linear-gradient(180deg, rgba(200, 99, 62, .7), var(--line-2)); }
+        .chain li { justify-content: flex-start; padding-left: 1.1rem; min-height: 48px; }
+        .zero .btn { width: 100%; padding-inline: 1rem; font-size: 15.5px; }
+        .fix > summary { grid-template-columns: minmax(0, 1fr) auto; }
+        .fix-ic { display: none; }
+        .cmd { grid-template-columns: minmax(0, 1fr) auto; }
+        .cmd .os { grid-column: 1 / -1; min-width: 0; }
+        .cmd code { grid-column: 1; }
+        .door { grid-template-columns: 44px minmax(0, 1fr); padding: 1.1rem 1.15rem; }
+        .door-ic { width: 44px; height: 44px; }
+        .door .go { display: none; }
+        .lesson-head { flex-wrap: wrap; }
+        .lesson-head .facts { flex-basis: 100%; padding-left: 0; }
       }
-
-      @keyframes pop {
-        from { transform: scale(0.7); opacity: 0; }
-        to   { transform: scale(1);   opacity: 1; }
+      @media (max-width: 400px) {
+        .t-row { flex-direction: column; align-items: flex-start; }
+        .t-bottom .btn { padding-inline: 1rem; font-size: 15.5px; }
+        .t-badge { border-radius: 10px; padding: .3rem .7rem; }
+        .frame-play .ring { width: 60px; height: 60px; }
       }
-      @keyframes draw { to { stroke-dashoffset: 0; } }
-
+      @media (max-width: 359px) {
+        .t-bottom .btn svg { display: none; }
+      }
       @media (prefers-reduced-motion: reduce) {
-        .stamp, .stamp path { animation: none; }
-        .stamp path { stroke-dashoffset: 0; }
-        a.home { transition: none; }
-        .play-ring { transition: none; }
+        .v-input .typed::after { animation: none; }
+        .js .stamp path { stroke-dashoffset: 0; animation: none; }
       }
     </style>
   </head>
-  <body>
-    <main class="wrap">
-      <div class="topbar">
-        <a class="wordmark" href="/" aria-label="vorflows Startseite">
-          <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+  <body id="top">
+    <a class="skip" href="#videos">Zu den Videos springen</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="vorflows, Startseite">
+          <span class="wordmark">vor<span class="flows">flows</span></span>
+          <span class="prod">für Shopify</span>
         </a>
-        <nav class="topnav" aria-label="Hilfe">
-          <a href="/troubleshooting">Hilfe bei Fehlern</a>
-          <a href="/faqs">FAQs</a>
+        <nav class="nav-links" aria-label="Seitennavigation">
+          <a class="hide-m" href="#start">Start</a>
+          <a class="keep-m" href="#videos">Videos</a>
+          <a class="hide-m" href="/troubleshooting">Hilfe bei Fehlern</a>
+          <a class="hide-m" href="/faqs">FAQs</a>
+          <a class="btn btn--sm btn--ghost" href="/assets/help/Claude-Code-installieren.pdf" download>Anleitung (PDF)</a>
         </nav>
       </div>
+    </header>
 
-      <div class="stamp" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M5 12.5 L10 17.5 L19 6.5" stroke="#FAFAF7" stroke-width="2.6"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-
-      <p class="eyebrow">Kauf bestätigt</p>
-      <h1>Willkommen bei&nbsp;vorflows.</h1>
-      <p class="lead">
-        Deine Zahlung ist eingegangen, den Download-Link bekommst du gleich
-        per E-Mail von Digistore24.
-      </p>
-
-      <aside class="notice notice--setup" role="note">
-        <span class="notice-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4.5" width="18" height="16" rx="2" />
-            <path d="M3 9.5h18M8 2.5v4M16 2.5v4" />
-            <path d="M8.5 14.2l2.2 2.2 4.8-5" />
-          </svg>
-        </span>
-        <div class="notice-body">
-          <span class="notice-badge">Einer von nur 20 Plätzen pro Monat</span>
-          <p class="notice-text"><strong>1:1&nbsp;Setup mit Alex.</strong> Wir richten dein System gemeinsam ein — live im Videocall, deine Fragen direkt geklärt. Du kannst aber auch schon bis zu unserem Termin selbst mit den Videos unten anfangen, wenn du magst — dann sind wir noch schneller.</p>
-          <a class="notice-cta" href="https://cal.com/alexander-duck-qpybqb/30min" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /></svg>
-            1:1 Setup-Termin buchen
-          </a>
-        </div>
-      </aside>
-
-      <section class="tutorial" id="tutorials">
-        <p class="tutorial-eyebrow">Bevor du loslegst</p>
-        <h2>Schau dir zuerst die 4 Tutorials an</h2>
-
-        <div class="guidebox">
-          <div class="gb-text">
-            <strong>Komplett neu? Claude Code noch nie installiert?</strong>
-            <span>Diese PDF richtet VS&nbsp;Code und Claude Code von null ein — Schritt für Schritt, mit allen Befehlen für Mac und Windows und dem kompletten ersten Setup. Ideal als Begleitung zu den Videos.</span>
-          </div>
-          <a class="dl-btn" href="/assets/help/Claude-Code-installieren.pdf" download>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
-            Installations-Anleitung (PDF)
-          </a>
-        </div>
-
-        <div class="videos">
-          <p class="skip-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-            <span><strong>Plugins installieren entfällt.</strong> Alles liegt schon fertig im Ordner — diesen Schritt kannst du überspringen.</span>
-          </p>
-          <div class="video">
-            <div class="label">
-              <span class="num">01</span>
-              <span class="title"><a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">BaseFlow aufsetzen</a></span>
+    <main>
+      <!-- ============ Hero ============ -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="stamp-row rise">
+              <span class="stamp" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17.5 L19 6.5" stroke="#140A05" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+              <span class="eyebrow">Kauf bestätigt</span>
             </div>
-            <div class="frame" data-embed="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647" data-title="BaseFlow aufsetzen">
-              <button type="button" class="frame-play">
-                <span class="play-ring" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
-                </span>
-                <span class="play-text">Video abspielen</span>
-              </button>
-              <a class="frame-ext" href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
-              <div class="frame-fallback" role="status">
-                <p>Das Video lädt hier gerade nicht.</p>
-                <a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+            <h1 class="rise d1">Willkommen bei <em>vorflows</em></h1>
+            <p class="lead rise d2">Deine Zahlung ist eingegangen. Den Download-Link bekommst du gleich per E-Mail von Digistore24. Findest du nichts, schau bitte im Spam-Ordner nach.</p>
+            <div class="hero-jump rise d3">
+              <a class="link" href="#start">So startest du</a>
+              <a class="link" href="#videos">Zu den vier Videos</a>
+            </div>
+          </div>
+
+          <!-- 1:1 Setup-Call (Bonus, 20 Plätze pro Monat) -->
+          <aside class="ticket rise d3" aria-labelledby="t-h">
+            <div class="t-top">
+              <div class="t-row">
+                <p class="t-who"><img src="/assets/images/home/alex-lifestyle-400.webp" width="52" height="52" alt="" /><span><b>Alexander Dück</b>Gründer von vorflows</span></p>
+                <span class="t-badge"><i aria-hidden="true"></i>Einer von nur 20 Plätzen pro Monat</span>
+              </div>
+              <h2 class="t-h" id="t-h">1:1 Setup mit <em>Alex</em></h2>
+              <p class="t-text">Wir richten dein System gemeinsam ein, live im Videocall, und deine Fragen klären wir direkt.</p>
+              <p class="t-facts">
+                <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5" /><path d="M15.5 10.5l6-3.5v10l-6-3.5" /></svg>Videocall</span>
+                <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>30 Minuten</span>
+              </p>
+            </div>
+            <div class="t-perf" aria-hidden="true"></div>
+            <div class="t-bottom">
+              <a class="btn btn--lg" href="https://cal.com/alexander-duck-qpybqb/30min" target="_blank" rel="noopener">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /></svg>
+                1:1 Setup-Termin buchen
+              </a>
+              <p class="t-small">Bis zu unserem Termin kannst du schon selbst mit den Videos unten anfangen, wenn du magst. Dann sind wir noch schneller.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ Start ============ -->
+      <section class="sec" id="start">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Dein Zugang</span>
+              <h2>In drei Schritten <em>startklar</em></h2>
+            </div>
+            <p class="lead">Lade das Produkt herunter und entzippe den Ordner. Öffne ihn in Claude Code und bitte Claude, die Setup-Datei auszuführen. Alles Nötige ist schon im Ordner enthalten, du musst nichts extra installieren.</p>
+          </div>
+
+          <ol class="steps3" role="list">
+            <li class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="v-mail">
+                  <div class="m-head"><span class="m-av">D</span><span><b>Digistore24</b>an dich</span><span class="m-time">gerade eben</span></div>
+                  <div class="m-lines"><i></i><i></i></div>
+                  <span class="m-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>Download-Link</span>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">1</span>
+                <h3>E-Mail von Digistore24</h3>
+                <p>Mit Download-Link. Findest du nichts, prüf den Spam-Ordner.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="v-unzip">
+                  <span class="file">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M12 6h22l10 10v32a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="#1C1C1A" stroke="#33322E" /><path d="M34 6v10h10" stroke="#33322E" /><path d="M22 10h4M26 14h4M22 18h4M26 22h4M22 26h4" stroke="#8C8A82" stroke-width="2" /><rect x="21" y="30" width="10" height="9" rx="2" stroke="#8C8A82" stroke-width="1.6" /></svg>
+                    ZIP-Datei
+                  </span>
+                  <svg class="arrow" width="38" height="12" viewBox="0 0 38 12" fill="none"><path d="M0 6h34" stroke="currentColor" stroke-width="1.5" /><path d="M30 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" /></svg>
+                  <span class="file">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M6 15a3 3 0 0 1 3-3h12l5 5h21a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" fill="rgba(200,99,62,.16)" stroke="#C8633E" /></svg>
+                    Ordner
+                  </span>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">2</span>
+                <h3>Ordner entzippen</h3>
+                <p>Darin liegen Setup-Datei, Skill-Stack, alle Workflows, Anleitungen und Videos.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="v-input">
+                  <span class="typed">Bitte führ die Setup-Datei aus</span>
+                  <div class="bar"><span>Claude Code</span><span class="send"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg></span></div>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">3</span>
+                <h3>In Claude Code öffnen</h3>
+                <p>Setup-Datei ausführen lassen. Alles ist schon im Ordner enthalten.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="order">
+            <p>Starte mit der Installation von <b>Base</b>, führe dann <b>SEO</b> und <b>Clarity</b> aus.</p>
+            <ol class="chain" aria-label="Reihenfolge der Module">
+              <li><span class="n">1</span><i aria-hidden="true"></i>BaseFlow</li>
+              <li><span class="n">2</span><i aria-hidden="true"></i>SEOFlow</li>
+              <li><span class="n">3</span><i aria-hidden="true"></i>ClarityFlow</li>
+            </ol>
+          </div>
+
+          <div class="zero">
+            <div class="doc-sheets" aria-hidden="true">
+              <div class="doc-sheet s3"></div>
+              <div class="doc-sheet s2"></div>
+              <div class="doc-sheet s1">
+                <span class="tag">PDF</span>
+                <span class="kicker">Anleitung</span>
+                <span class="t">Claude Code <em>von null</em> einrichten</span>
+                <ol>
+                  <li><span>01</span>VS&nbsp;Code installieren</li>
+                  <li><span>02</span>Claude Code installieren</li>
+                  <li><span>03</span>Befehle für Mac und Windows</li>
+                  <li><span>04</span>Das erste Setup</li>
+                </ol>
+                <div class="lines"><i></i><i></i></div>
               </div>
             </div>
+            <div>
+              <h3>Komplett neu? Claude Code noch nie installiert?</h3>
+              <p>Diese PDF richtet VS&nbsp;Code und Claude Code von null ein, Schritt für Schritt, mit allen Befehlen für Mac und Windows und dem kompletten ersten Setup. Ideal als Begleitung zu den Videos.</p>
+              <a class="btn" href="/assets/help/Claude-Code-installieren.pdf" download>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12" /><path d="M7 10l5 5 5-5" /><path d="M5 20h14" /></svg>
+                Installations-Anleitung (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Videos ============ -->
+      <section class="sec" id="videos">
+        <div class="wrap">
+          <div class="sec-head" id="tutorials">
+            <div>
+              <span class="eyebrow">Bevor du loslegst</span>
+              <h2>Schau dir zuerst die vier <em>Tutorials</em> an</h2>
+            </div>
+            <div class="vid-side">
+              <p class="note note--ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg><strong>Plugins installieren entfällt.</strong> Alles liegt schon fertig im Ordner, diesen Schritt im Video kannst du überspringen.</p>
+              <div class="progress" aria-live="polite">
+                <span class="track" aria-hidden="true"><span class="fill" id="progFill"></span></span>
+                <span><b id="progN">0</b> von 4 angesehen</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lessons">
+            <article class="lesson" id="video-1" data-lesson="1">
+              <div class="frame" data-embed="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647" data-title="BaseFlow aufsetzen">
+                <button type="button" class="frame-play" aria-label="Video 01 abspielen: BaseFlow aufsetzen">
+                  <img class="poster" src="/assets/images/danke/poster-1.webp" alt="" width="960" height="624" loading="lazy" decoding="async" />
+                  <span class="bignum">01</span><span class="loom">Loom</span>
+                  <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                  <span class="dur">33&nbsp;Min.</span>
+                </button>
+              </div>
+              <div class="lesson-head">
+                <span class="big" aria-hidden="true">01</span>
+                <h3>BaseFlow aufsetzen</h3>
+                <span class="facts">33:26&nbsp;Min.</span>
+              </div>
+              <div class="under">
+                <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                <a class="tl" href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              </div>
+            </article>
+
+            <article class="lesson" id="video-2" data-lesson="2">
+              <div class="frame" data-embed="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217" data-title="Erste Section bauen">
+                <button type="button" class="frame-play" aria-label="Video 02 abspielen: Erste Section bauen">
+                  <img class="poster" src="/assets/images/danke/poster-2.webp" alt="" width="960" height="624" loading="lazy" decoding="async" />
+                  <span class="bignum">02</span><span class="loom">Loom</span>
+                  <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                  <span class="dur">26&nbsp;Min.</span>
+                </button>
+              </div>
+              <div class="lesson-head">
+                <span class="big" aria-hidden="true">02</span>
+                <h3>Erste Section bauen</h3>
+                <span class="facts">25:58&nbsp;Min.</span>
+              </div>
+              <div class="under">
+                <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                <a class="tl" href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              </div>
+            </article>
+
+            <article class="lesson" id="video-3" data-lesson="3">
+              <div class="frame" data-embed="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4" data-title="Suchdaten und Klickdaten verbinden">
+                <button type="button" class="frame-play" aria-label="Video 03 abspielen: Suchdaten und Klickdaten verbinden">
+                  <img class="poster" src="/assets/images/danke/poster-3.webp" alt="" width="960" height="624" loading="lazy" decoding="async" />
+                  <span class="bignum">03</span><span class="loom">Loom</span>
+                  <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                  <span class="dur">37&nbsp;Min.</span>
+                </button>
+              </div>
+              <div class="lesson-head">
+                <span class="big" aria-hidden="true">03</span>
+                <h3>Suchdaten &amp; Klickdaten verbinden</h3>
+                <span class="facts">36:36&nbsp;Min.</span>
+              </div>
+              <div class="under">
+                <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                <a class="tl" href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              </div>
+            </article>
+
+            <article class="lesson" id="video-4" data-lesson="4">
+              <div class="frame" data-embed="https://www.loom.com/embed/49026af0a5014f6486c1225bc63c0c30" data-title="GitHub verbinden und in Shopify einrichten">
+                <button type="button" class="frame-play" aria-label="Video 04 abspielen: GitHub verbinden und in Shopify einrichten">
+                  <img class="poster" src="/assets/images/danke/poster-4.webp" alt="" width="960" height="624" loading="lazy" decoding="async" />
+                  <span class="bignum">04</span><span class="loom">Loom</span>
+                  <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                  <span class="dur">2&nbsp;Min.</span>
+                </button>
+              </div>
+              <div class="lesson-head">
+                <span class="big" aria-hidden="true">04</span>
+                <h3>GitHub verbinden &amp; in Shopify einrichten</h3>
+                <span class="facts">1:41&nbsp;Min.</span>
+              </div>
+              <div class="under">
+                <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                <a class="tl" href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              </div>
+            </article>
           </div>
 
           <!-- Einklapp-Hilfe: nur für den Fehlerfall (Claude noch nicht freigeschaltet) -->
-          <details class="acc">
+          <details class="fix" id="fehler">
             <summary>
-              Fehlermeldung bei der ersten Eingabe? Hier klicken
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+              <span class="fix-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z" /><path d="M12 10v4.5M12 17.6v.1" /></svg></span>
+              <span><span class="fix-t">Fehlermeldung bei der ersten Eingabe?</span><span class="fix-s">Dann muss Claude nur einmalig freigeschaltet werden, das dauert zwei Minuten. Hier klicken.</span></span>
+              <span class="pm" aria-hidden="true"></span>
             </summary>
-            <div class="acc-body">
-              <p>Du hast VS&nbsp;Code und Claude&nbsp;Code wie im Tutorial installiert, bekommst aber bei der ersten Eingabe eine rote Fehlermeldung (z.&nbsp;B. <strong>„claude is not recognized"</strong> oder <strong>„You must run claude to review the updated terms"</strong>)? Dann muss Claude nur einmalig freigeschaltet werden, das dauert zwei Minuten. Schau dir bei Bedarf einmal dieses Video an:</p>
-              <div class="acc-video">
-                <iframe src="https://www.loom.com/embed/3e33bfc9979c4c71902ebf09f0198415"
-                        loading="lazy" allowfullscreen title="Claude Code installieren: Zusatz-Step für Erstnutzer"></iframe>
+            <div class="fix-body">
+              <div class="fix-media">
+                <div class="lesson" data-lesson="fix">
+                  <div class="frame" data-embed="https://www.loom.com/embed/3e33bfc9979c4c71902ebf09f0198415" data-title="Claude Code installieren: Zusatz-Step für Erstnutzer">
+                    <button type="button" class="frame-play" aria-label="Video abspielen: Claude Code freischalten">
+                      <img class="poster" src="/assets/images/danke/poster-fix.webp" alt="" width="960" height="624" loading="lazy" decoding="async" />
+                      <span class="loom">Loom</span>
+                      <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                      <span class="dur">2&nbsp;Min.</span>
+                    </button>
+                  </div>
+                  <div class="under"><span>Zusatz-Schritt für Erstnutzer</span><a class="tl" href="https://www.loom.com/share/3e33bfc9979c4c71902ebf09f0198415" target="_blank" rel="noopener">Auf Loom ansehen ↗</a></div>
+                </div>
+                <figure>
+                  <img src="/assets/help/claude-setup-theme-select.png" alt="Claude-Einrichtung im Terminal: Design auswählen und durchklicken" loading="lazy" width="1031" height="525" />
+                  <figcaption>So sieht die Einrichtung aus: Design mit den Pfeiltasten wählen, mit Enter bestätigen und Schritt für Schritt weiterklicken (anmelden, dann Bedingungen bestätigen), bis Claude bereit ist.</figcaption>
+                </figure>
               </div>
-              <p><strong>Nur falls eine Fehlermeldung bereits bei deiner ersten Eingabe erscheint</strong>, führ diese Schritte aus:</p>
-              <ol class="steps">
-                <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code oben im Menü auf <strong>Terminal → Neues Terminal</strong>. Unten erscheint ein Eingabefeld.</li>
-                <li><strong>Claude installieren.</strong> Kopier die Zeile für dein Gerät, klick ins Terminal, füg sie ein, drück Enter. Danach das Terminal einmal schließen und neu öffnen.
-                  <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cmd-copy">Kopieren</button></div>
-                  <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
-                </li>
-                <li><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="inline">claude</code> ins Terminal, Enter. Jetzt die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: zuerst ein Design mit den <strong>Pfeiltasten</strong> wählen (z.&nbsp;B. „Dark mode") und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten eine normale Eingabezeile erscheint (Claude ist dann bereit) — <strong>erst dann</strong> das Terminal schließen.</li>
-              </ol>
-              <figure class="shot">
-                <img src="/assets/help/claude-setup-theme-select.png" alt="Claude-Einrichtung im Terminal: Design auswählen und durchklicken" loading="lazy" width="1031" height="525" />
-                <figcaption>So sieht die Einrichtung aus: Design mit den Pfeiltasten wählen, mit Enter bestätigen und Schritt für Schritt weiterklicken (anmelden → Bedingungen bestätigen), bis Claude bereit ist.</figcaption>
-              </figure>
-              <p class="tip">Wichtig: Brichst du die Einrichtung ab oder schließt das Terminal zu früh, kommt dieselbe Meldung wieder. Und im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht <strong>nicht</strong> — es muss in Claude Code selbst passieren. Mehr unter <a href="/troubleshooting">Hilfe bei Fehlern</a>.</p>
+              <div class="fix-copy">
+                <p>Du hast VS&nbsp;Code und Claude&nbsp;Code wie im Tutorial installiert, bekommst aber bei der ersten Eingabe eine rote Fehlermeldung (z.&nbsp;B. <strong>„claude is not recognized“</strong> oder <strong>„You must run claude to review the updated terms“</strong>)? Dann muss Claude nur einmalig freigeschaltet werden, das dauert zwei Minuten. Schau dir bei Bedarf einmal das Video an.</p>
+                <p><strong>Nur falls eine Fehlermeldung bereits bei deiner ersten Eingabe erscheint</strong>, führ diese Schritte aus:</p>
+                <ol class="ol">
+                  <li><div><strong>Terminal öffnen.</strong> In VS&nbsp;Code oben im Menü auf <strong>Terminal, Neues Terminal</strong>. Unten erscheint ein Eingabefeld.</div></li>
+                  <li><div><strong>Claude installieren.</strong> Kopier die Zeile für dein Gerät, klick ins Terminal, füg sie ein, drück Enter. Danach das Terminal einmal schließen und neu öffnen.
+                    <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cbtn" data-copy-code>Kopieren</button></div>
+                    <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cbtn" data-copy-code>Kopieren</button></div>
+                  </div></li>
+                  <li><div><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="in">claude</code> ins Terminal, Enter. Jetzt die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: zuerst ein Design mit den <strong>Pfeiltasten</strong> wählen (z.&nbsp;B. „Dark mode“) und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten eine normale Eingabezeile erscheint (Claude ist dann bereit), und schließ <strong>erst dann</strong> das Terminal.</div></li>
+                </ol>
+                <p class="note note--warm"><strong>Wichtig:</strong> Brichst du die Einrichtung ab oder schließt das Terminal zu früh, kommt dieselbe Meldung wieder. Im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht <strong>nicht</strong>, es muss in Claude Code selbst passieren. Mehr unter <a class="tl" href="/troubleshooting">Hilfe bei Fehlern</a>.</p>
+              </div>
             </div>
           </details>
-
-          <div class="video">
-            <div class="label">
-              <span class="num">02</span>
-              <span class="title"><a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Erste Section bauen</a></span>
-            </div>
-            <div class="frame" data-embed="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217" data-title="Erste Section bauen">
-              <button type="button" class="frame-play">
-                <span class="play-ring" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
-                </span>
-                <span class="play-text">Video abspielen</span>
-              </button>
-              <a class="frame-ext" href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
-              <div class="frame-fallback" role="status">
-                <p>Das Video lädt hier gerade nicht.</p>
-                <a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="video">
-            <div class="label">
-              <span class="num">03</span>
-              <span class="title"><a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Suchdaten &amp; Klickdaten verbinden</a></span>
-            </div>
-            <div class="frame" data-embed="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4" data-title="Suchdaten und Klickdaten verbinden">
-              <button type="button" class="frame-play">
-                <span class="play-ring" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
-                </span>
-                <span class="play-text">Video abspielen</span>
-              </button>
-              <a class="frame-ext" href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
-              <div class="frame-fallback" role="status">
-                <p>Das Video lädt hier gerade nicht.</p>
-                <a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="video">
-            <div class="label">
-              <span class="num">04</span>
-              <span class="title"><a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">GitHub verbinden &amp; in Shopify einrichten</a></span>
-            </div>
-            <div class="frame" data-embed="https://www.loom.com/embed/49026af0a5014f6486c1225bc63c0c30?hideEmbedTopBar=true&hide_owner=true" data-title="GitHub verbinden und in Shopify einrichten">
-              <button type="button" class="frame-play">
-                <span class="play-ring" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
-                </span>
-                <span class="play-text">Video abspielen</span>
-              </button>
-              <a class="frame-ext" href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
-              <div class="frame-fallback" role="status">
-                <p>Das Video lädt hier gerade nicht.</p>
-                <a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="setup-steps">
-          <p>Starte mit der Installation von <strong>Base</strong>, führe dann <strong>SEO</strong> und <strong>Clarity</strong> aus.</p>
-          <p>Lade das Produkt herunter und entzippe den Ordner. Öffne ihn in Claude Code und bitte Claude, die Setup-Datei auszuführen. Alles Nötige ist schon im Ordner enthalten — du musst nichts extra installieren.</p>
         </div>
       </section>
 
-      <section class="next">
-        <p class="next-eyebrow">Dein Zugang</p>
-        <ol class="next-list">
-          <li>
-            <span class="n">01</span>
-            <h3>E-Mail von Digistore24</h3>
-            <p>Mit Download-Link. Findest du nichts, prüf den Spam-Ordner.</p>
-          </li>
-          <li>
-            <span class="n">02</span>
-            <h3>Ordner entzippen</h3>
-            <p>Setup-Datei, Skill-Stack, alle Workflows, Anleitungen, Videos.</p>
-          </li>
-          <li>
-            <span class="n">03</span>
-            <h3>In Claude Code öffnen</h3>
-            <p>Setup-Datei ausführen lassen — alles ist schon im Ordner enthalten.</p>
-          </li>
-        </ol>
+      <!-- ============ Hilfe ============ -->
+      <section class="sec" id="hilfe">
+        <div class="wrap help-grid">
+          <div>
+            <span class="eyebrow">Hilfe</span>
+            <h2>Wenn etwas <em>hakt</em></h2>
+            <p class="lead">Die häufigsten Fehlermeldungen und Fragen sind schon beantwortet. Findest du deine nicht, schreib mir einfach.</p>
+            <a class="btn btn--ghost" href="mailto:alex@adolution.de?subject=Frage%20zu%20vorflows">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6 8.5-6" /></svg>
+              alex@adolution.de
+            </a>
+          </div>
+          <div>
+            <div class="doors">
+              <a class="door" href="/troubleshooting">
+                <span class="door-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.5 17.3a1.8 1.8 0 0 0 2.6 2.6l5.8-5.8a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.3-.4-.4-2.3z" /></svg></span>
+                <span><b>Hilfe bei Fehlern</b><span class="d">Fehlermeldungen und wie du sie behebst</span></span>
+                <svg class="go" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+              <a class="door" href="/faqs">
+                <span class="door-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.3-2.5 3.8M12 17.2v.1" /></svg></span>
+                <span><b>FAQs</b><span class="d">Antworten zu Setup, Claude und deinem Shop</span></span>
+                <svg class="go" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+            <p class="fine">Frage zur Bestellung? <a href="mailto:alex@adolution.de">alex@adolution.de</a>. 14 Tage Rückgaberecht. Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde. Die Abbuchung erfolgt durch Digistore24.com.</p>
+          </div>
+        </div>
       </section>
-
-      <hr class="divider" />
-
-      <div class="foot">
-        <a class="home" href="/">
-          <span aria-hidden="true">←</span> Zurück zur Startseite
-        </a>
-        <p class="support">
-          Frage zur Bestellung? <a href="mailto:alex@adolution.de">alex@adolution.de</a> · 14 Tage Rückgaberecht.<br />
-          Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.<br />
-          Die Abbuchung erfolgt durch Digistore24.com.
-        </p>
-      </div>
     </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav aria-label="Rechtliches">
+          <a href="/">Startseite</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </nav>
+        <p class="tm">Shopify ist eine Marke von Shopify Inc. Claude ist eine Marke von Anthropic. vorflows ist ein eigenständiges Angebot der AMD Media GmbH und steht in keiner Verbindung zu diesen Unternehmen.</p>
+      </div>
+    </footer>
 
     <script>
       // Google Ads purchase conversion. transaction_id (falls Digistore die
@@ -931,54 +929,92 @@
     <script src="https://event.webinarjam.com/t/sale/0qgn9gagi1/v2?price=0.00&currency=USD"></script>
 
     <script>
-      // Loom-Embeds erst per Klick laden. Grund: 4 gleichzeitige Embed-Requests
-      // liefen in Looms Rate-Limit, einzelne Frames blieben weiß. Die Facade lädt
-      // genau ein Video pro Klick; kommt das Embed trotzdem nicht (Blocker,
-      // Netzwerk), erscheint nach 7s der Loom-Direktlink als Fallback.
-      document.querySelectorAll('.frame[data-embed]').forEach(function (frame) {
-        var btn = frame.querySelector('.frame-play');
-        if (!btn) return;
-        btn.addEventListener('click', function () {
-          var src = frame.getAttribute('data-embed');
-          var iframe = document.createElement('iframe');
-          iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
-          iframe.setAttribute('allowfullscreen', '');
-          iframe.title = frame.getAttribute('data-title') || 'Tutorial-Video';
-          var loaded = false;
-          iframe.addEventListener('load', function () { loaded = true; });
-          setTimeout(function () {
-            if (!loaded) frame.classList.add('failed');
-          }, 7000);
-          frame.appendChild(iframe);
-          btn.remove();
-          var ext = frame.querySelector('.frame-ext');
-          if (ext) ext.remove();
-          // Loom-Fehlseiten feuern trotzdem 'load' → Ausfall ist von außen nicht
-          // sicher erkennbar. Deshalb steht der Direktlink nach dem Klick immer da.
-          var share = frame.querySelector('.frame-fallback a');
-          if (share) {
-            var note = document.createElement('p');
-            note.className = 'frame-note';
-            note.innerHTML = 'Video lädt nicht? <a href="' + share.href + '" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>';
-            frame.insertAdjacentElement('afterend', note);
-          }
-        });
-      });
-    </script>
-
-    <script>
-      // Copy-Buttons in den Befehl-Boxen (Installations-Hilfe)
-      document.querySelectorAll('.cmd-copy').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var code = btn.parentElement.querySelector('code');
-          if (!code || !navigator.clipboard) return;
-          navigator.clipboard.writeText(code.textContent.trim()).then(function () {
-            var prev = btn.textContent;
-            btn.textContent = 'Kopiert';
-            setTimeout(function () { btn.textContent = prev; }, 1400);
+      (function () {
+        /* ---------- Videos: Loom erst per Klick laden ----------
+           4 gleichzeitige Embed-Requests liefen in Looms Rate-Limit, einzelne Frames
+           blieben weiß. Jeder Klick lädt genau ein Video. Lädt es trotzdem nicht
+           (Blocker, Netzwerk), steht unter jedem Video immer der Loom-Direktlink. */
+        var KEY = 'vf_danke_seen';
+        var TOTAL = 4;
+        var seen = [];
+        try { seen = JSON.parse(localStorage.getItem(KEY) || '[]') || []; } catch (e) { seen = []; }
+        function save() { try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {} }
+        function render() {
+          document.querySelectorAll('.lesson[data-lesson]').forEach(function (l) {
+            var n = l.getAttribute('data-lesson');
+            var on = seen.indexOf(n) > -1;
+            l.classList.toggle('is-seen', on);
+            var b = l.querySelector('.seen');
+            if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          var c = seen.filter(function (n) { return n !== 'fix'; }).length;
+          var nEl = document.getElementById('progN');
+          var fEl = document.getElementById('progFill');
+          if (nEl) nEl.textContent = c;
+          if (fEl) fEl.style.transform = 'scaleX(' + (c / TOTAL) + ')';
+        }
+        function mark(n, on) {
+          var i = seen.indexOf(n);
+          if (on && i < 0) seen.push(n);
+          if (!on && i > -1) seen.splice(i, 1);
+          save(); render();
+        }
+        document.querySelectorAll('.lesson[data-lesson]').forEach(function (l) {
+          var n = l.getAttribute('data-lesson');
+          var b = l.querySelector('.seen');
+          if (b) b.addEventListener('click', function () { mark(n, b.getAttribute('aria-pressed') !== 'true'); });
+          var frame = l.querySelector('.frame[data-embed]');
+          var play = frame && frame.querySelector('.frame-play');
+          if (!play) return;
+          play.addEventListener('click', function () {
+            var src = frame.getAttribute('data-embed');
+            var iframe = document.createElement('iframe');
+            iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'hideEmbedTopBar=true&hide_owner=true&hide_share=true&hide_title=true&autoplay=1';
+            iframe.title = frame.getAttribute('data-title') || 'Tutorial-Video';
+            iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            frame.appendChild(iframe);
+            play.remove();
+            if (n !== 'fix') mark(n, true);
           });
         });
-      });
+        render();
+
+        /* ---------- Befehle kopieren ---------- */
+        function copyText(text, done) {
+          function legacy() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { if (document.execCommand('copy')) done(); } catch (e) {}
+            ta.remove();
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, legacy);
+          } else { legacy(); }
+        }
+        document.querySelectorAll('[data-copy-code]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var code = btn.parentElement.querySelector('code');
+            if (!code) return;
+            copyText(code.textContent.trim(), function () {
+              btn.classList.add('is-done');
+              btn.textContent = 'Kopiert';
+              clearTimeout(btn._t);
+              btn._t = setTimeout(function () { btn.classList.remove('is-done'); btn.textContent = 'Kopieren'; }, 1500);
+            });
+          });
+        });
+
+        /* Sprungmarke #fehler: Aufklapper öffnen */
+        function openFix() { if (location.hash === '#fehler') { var d = document.getElementById('fehler'); if (d) d.open = true; } }
+        openFix();
+        window.addEventListener('hashchange', openFix);
+      })();
     </script>
   </body>
 </html>

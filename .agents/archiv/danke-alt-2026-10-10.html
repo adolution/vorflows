@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kauf bestätigt — vorflows</title>
+    <meta name="description" content="Danke für deinen Kauf. Dein Zugang zu vorflows ist unterwegs." />
+    <!-- Thank-you page: never index -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#C8633E" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css" /></noscript>
+
+    <!-- Google Ads — purchase conversion fires from this page.
+         danke.html lives on vorflows.com, so gtag reads the _gcl_aw cookie
+         set when the visitor first landed with a gclid → click is attributed
+         automatically, no offline import needed. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'AW-18158480775');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18158480775"></script>
+
+    <style>
+      :root {
+        --bg: #FAFAF7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #5C5C5C;
+        --border: #E5E3DD;
+        --accent: #C8633E;
+        --accent-hover: #B05530;
+        --accent-soft: rgba(200, 99, 62, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { margin: 0; }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 40rem at 85% -10%, rgba(200, 99, 62, 0.10), transparent 70%),
+          radial-gradient(50rem 38rem at -10% 110%, rgba(47, 111, 79, 0.06), transparent 70%);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wordmark img { height: 26px; width: auto; display: block; }
+
+      .stamp {
+        margin-top: clamp(1.75rem, 6vw, 3rem);
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow:
+          0 1px 2px rgba(200, 99, 62, 0.25),
+          0 12px 28px -10px rgba(200, 99, 62, 0.5);
+        display: grid;
+        place-items: center;
+        animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) both;
+      }
+      .stamp svg { width: 26px; height: 26px; }
+      .stamp path {
+        stroke-dasharray: 30;
+        stroke-dashoffset: 30;
+        animation: draw 0.45s 0.28s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      }
+
+      .eyebrow {
+        margin: 1.5rem 0 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+
+      h1 {
+        margin: 0.5rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2.1rem, 7vw, 3.1rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .lead {
+        margin: 1rem 0 0;
+        max-width: 34rem;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+      }
+
+      /* Post-purchase notice — elevated card, sits high under the welcome */
+      .notice {
+        margin: clamp(1.5rem, 5vw, 2rem) 0 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        padding: 1.1rem 1.25rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.9rem;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.04),
+          0 16px 32px -24px rgba(200, 99, 62, 0.45);
+      }
+      .notice-icon {
+        flex-shrink: 0;
+        width: 2.1rem;
+        height: 2.1rem;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .notice-icon svg { width: 1.1rem; height: 1.1rem; }
+      .notice-body { margin: 0; }
+      .notice-badge {
+        display: inline-block;
+        margin: 0 0 0.3rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .notice-text {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--text-primary);
+      }
+      .notice-text strong { font-weight: 600; }
+      .notice--setup .notice-text { margin-bottom: 0; }
+      .notice-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.95rem;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        border: 0;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.7rem 1.15rem;
+        border-radius: 0.6rem;
+        transition: filter 0.16s ease, transform 0.16s ease;
+      }
+      .notice-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+      .notice-cta:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+      .divider {
+        margin: clamp(2rem, 6vw, 3rem) 0 0;
+        border: 0;
+        border-top: 1px solid var(--border);
+      }
+
+      /* Tutorial — highlighted callout, sits high so it can't be missed */
+      .tutorial {
+        margin: clamp(1.75rem, 5vw, 2.5rem) 0 0;
+        padding: clamp(1.4rem, 5vw, 2.25rem);
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 99, 62, 0.2);
+        border-radius: 1rem;
+      }
+      .tutorial-eyebrow {
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .tutorial-eyebrow::before {
+        content: "";
+        width: 1.6rem;
+        height: 1px;
+        background: var(--accent);
+      }
+      .tutorial h2 {
+        margin: 0.55rem 0 0;
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.5rem, 5vw, 2.1rem);
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+      }
+
+      .videos {
+        margin: 1.4rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .skip-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.55rem;
+        margin: 0;
+        padding: 0.65rem 0.85rem;
+        background: #fff;
+        border: 1px solid rgba(200, 99, 62, 0.22);
+        border-radius: 0.6rem;
+        font-size: 0.86rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+      .skip-note svg { flex-shrink: 0; width: 16px; height: 16px; color: var(--accent); margin-top: 0.1rem; }
+      .skip-note strong { color: var(--text-primary); font-weight: 600; }
+      .video .label {
+        display: flex;
+        align-items: baseline;
+        gap: 0.65rem;
+        margin-bottom: 0.6rem;
+      }
+      .video .num {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .video .title {
+        font-weight: 600;
+        font-size: 0.99rem;
+        letter-spacing: -0.01em;
+      }
+      .video .frame {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #EFECE5;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.05),
+          0 18px 36px -20px rgba(200, 99, 62, 0.32);
+      }
+      .video .frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      /* Loom lädt erst per Klick: 4 parallele Embed-Requests liefen ins
+         Loom-Rate-Limit (weiße Frames). Facade + Direktlink als Fallback. */
+      .video .title a { color: inherit; text-decoration: none; }
+      .video .title a:hover { color: var(--accent); text-decoration: underline; }
+      .video .title a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .frame-play {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        font-family: inherit;
+        background:
+          radial-gradient(28rem 18rem at 82% -20%, rgba(200, 99, 62, 0.16), transparent 70%),
+          radial-gradient(24rem 16rem at 8% 120%, rgba(47, 111, 79, 0.08), transparent 70%),
+          #EFECE5;
+      }
+      .play-ring {
+        width: 3.4rem;
+        height: 3.4rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 10px 24px -10px rgba(200, 99, 62, 0.55);
+        transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .play-ring svg { width: 1.15rem; height: 1.15rem; margin-left: 2px; }
+      .frame-play:hover .play-ring { transform: scale(1.08); }
+      .frame-play:active .play-ring { transform: scale(0.96); }
+      .frame-play:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 0.7rem; }
+      .play-text { font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
+      .frame-ext {
+        position: absolute;
+        right: 0.7rem;
+        bottom: 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.4rem;
+      }
+      .frame-ext:hover { color: var(--accent); text-decoration: underline; }
+      .frame-ext:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .frame-fallback {
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 1rem;
+        background: #EFECE5;
+      }
+      .frame.failed .frame-fallback { display: flex; }
+      .frame-fallback p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
+      .frame-fallback a { color: var(--accent); font-weight: 600; text-decoration: underline; }
+      .frame-fallback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .frame-note {
+        margin: 0.45rem 0 0;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+      .frame-note a { color: var(--accent); font-weight: 600; text-decoration: none; }
+      .frame-note a:hover { text-decoration: underline; }
+      .frame-note a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .setup-steps { margin: clamp(1.75rem, 5vw, 2.5rem) 0 0; }
+      .setup-steps p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.99rem;
+      }
+      .setup-steps p + p { margin-top: 0.7rem; }
+      .setup-steps strong { color: var(--text-primary); font-weight: 600; }
+
+      /* What lands in the inbox — compact, three-up */
+      .next { margin: clamp(2rem, 6vw, 2.75rem) 0 0; }
+      .next-eyebrow {
+        margin: 0;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .next-list {
+        margin: 1.1rem 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: n;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(1rem, 3vw, 1.6rem);
+      }
+      .next-list li { counter-increment: n; }
+      .next-list .n {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .next-list h3 {
+        margin: 0.4rem 0 0;
+        font-size: 0.96rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .next-list p {
+        margin: 0.3rem 0 0;
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      @media (max-width: 32rem) {
+        .next-list { grid-template-columns: 1fr; gap: 1rem; }
+      }
+
+      .foot {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        align-items: center;
+      }
+
+      a.home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.55rem 0.9rem;
+        margin-left: -0.9rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.16s ease, transform 0.16s ease;
+      }
+      a.home:hover { background: var(--accent-soft); transform: translateX(2px); }
+      a.home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      a.home:active { transform: translateX(0); }
+
+      .support {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+      .support a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .support a:hover { text-decoration: underline; }
+      .support a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+      /* Top bar with help navigation */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .topnav { display: flex; gap: 0.4rem; }
+      .topnav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.55rem;
+        border: 1px solid var(--border);
+        background: #fff;
+        transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+      .topnav a:hover { color: var(--accent); border-color: rgba(200, 99, 62, 0.4); background: var(--accent-soft); }
+      .topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .topnav a svg { width: 0.95rem; height: 0.95rem; }
+      @media (max-width: 30rem) {
+        .topnav a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+      }
+
+      /* Accordion (details/summary) — shared with /troubleshooting and /faqs */
+      .acc {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 0.8rem;
+        overflow: hidden;
+      }
+      .acc + .acc { margin-top: 0.75rem; }
+      .acc > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 1rem 1.15rem;
+        font-weight: 600;
+        font-size: 0.98rem;
+        line-height: 1.4;
+        color: var(--text-primary);
+      }
+      .acc > summary::-webkit-details-marker { display: none; }
+      .acc > summary:hover { color: var(--accent); }
+      .acc > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .acc .chev { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; color: var(--text-secondary); transition: transform 0.2s ease; }
+      .acc[open] .chev { transform: rotate(90deg); }
+      .acc-tag {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 0.2rem 0.45rem;
+        border-radius: 0.4rem;
+        flex-shrink: 0;
+      }
+      .acc-body { padding: 0 1.15rem 1.2rem; border-top: 1px solid var(--border); }
+      .acc-body > *:first-child { margin-top: 1rem; }
+      .acc-body p { margin: 0 0 0.8rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; }
+      .acc-body p:last-child { margin-bottom: 0; }
+      .acc-body strong { color: var(--text-primary); font-weight: 600; }
+      .acc-body a { color: var(--accent); text-decoration: none; font-weight: 500; }
+      .acc-body a:hover { text-decoration: underline; }
+      .acc-video {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+        margin: 0 0 1.1rem;
+        box-shadow:
+          0 1px 2px rgba(26, 26, 26, 0.05),
+          0 18px 36px -20px rgba(200, 99, 62, 0.32);
+      }
+      .acc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+      .guidebox {
+        margin: 0 0 1.75rem;
+        padding: 1.15rem 1.3rem;
+        background: var(--accent-soft);
+        border: 1px solid var(--accent);
+        border-radius: 0.9rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem 1.25rem;
+      }
+      .guidebox .gb-text { flex: 1 1 16rem; }
+      .guidebox .gb-text strong { display: block; font-size: 1.02rem; margin-bottom: 0.15rem; color: var(--text-primary); }
+      .guidebox .gb-text span { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; }
+      .dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.7rem 1.15rem;
+        border-radius: 0.6rem;
+        white-space: nowrap;
+        transition: filter 0.16s ease, transform 0.16s ease;
+      }
+      .dl-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+      .dl-btn:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+      /* Numbered steps */
+      .steps { margin: 0.5rem 0 0.8rem; padding: 0; list-style: none; counter-reset: s; }
+      .steps li {
+        counter-increment: s;
+        position: relative;
+        padding-left: 2.1rem;
+        margin: 0 0 0.9rem;
+        color: var(--text-secondary);
+        font-size: 0.96rem;
+        line-height: 1.6;
+      }
+      .steps li:last-child { margin-bottom: 0; }
+      .steps li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+      }
+      .steps li strong { color: var(--text-primary); font-weight: 600; }
+
+      /* Command box with copy button */
+      .cmd {
+        margin: 0.6rem 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #1A1A1A;
+        color: #FAFAF7;
+        border-radius: 0.55rem;
+        padding: 0.7rem 0.8rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.82rem;
+        overflow-x: auto;
+      }
+      .cmd code { white-space: nowrap; }
+      .cmd .os {
+        flex-shrink: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.35rem;
+        padding: 0.1rem 0.4rem;
+      }
+      .cmd-copy {
+        margin-left: auto;
+        flex-shrink: 0;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        color: #FAFAF7;
+        border: 0;
+        border-radius: 0.4rem;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        font-family: 'Inter', system-ui, sans-serif;
+        transition: background 0.16s ease;
+      }
+      .cmd-copy:hover { background: rgba(255, 255, 255, 0.22); }
+      .cmd-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      code.inline {
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.85em;
+        padding: 0.05rem 0.3rem;
+        border-radius: 0.3rem;
+      }
+
+      .tip {
+        margin: 0.8rem 0 0;
+        padding: 0.85rem 1rem;
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--text-primary);
+      }
+      .tip strong { font-weight: 600; }
+
+      .shot { margin: 1rem 0 0; }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+      }
+      .shot figcaption {
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
+      @keyframes pop {
+        from { transform: scale(0.7); opacity: 0; }
+        to   { transform: scale(1);   opacity: 1; }
+      }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+
+      @media (prefers-reduced-motion: reduce) {
+        .stamp, .stamp path { animation: none; }
+        .stamp path { stroke-dashoffset: 0; }
+        a.home { transition: none; }
+        .play-ring { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="topbar">
+        <a class="wordmark" href="/" aria-label="vorflows Startseite">
+          <img src="/brand_assets/logos/10d.1-wordmark.svg" alt="vorflows" width="130" height="26" />
+        </a>
+        <nav class="topnav" aria-label="Hilfe">
+          <a href="/troubleshooting">Hilfe bei Fehlern</a>
+          <a href="/faqs">FAQs</a>
+        </nav>
+      </div>
+
+      <div class="stamp" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12.5 L10 17.5 L19 6.5" stroke="#FAFAF7" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <p class="eyebrow">Kauf bestätigt</p>
+      <h1>Willkommen bei&nbsp;vorflows.</h1>
+      <p class="lead">
+        Deine Zahlung ist eingegangen, den Download-Link bekommst du gleich
+        per E-Mail von Digistore24.
+      </p>
+
+      <aside class="notice notice--setup" role="note">
+        <span class="notice-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4.5" width="18" height="16" rx="2" />
+            <path d="M3 9.5h18M8 2.5v4M16 2.5v4" />
+            <path d="M8.5 14.2l2.2 2.2 4.8-5" />
+          </svg>
+        </span>
+        <div class="notice-body">
+          <span class="notice-badge">Einer von nur 20 Plätzen pro Monat</span>
+          <p class="notice-text"><strong>1:1&nbsp;Setup mit Alex.</strong> Wir richten dein System gemeinsam ein — live im Videocall, deine Fragen direkt geklärt. Du kannst aber auch schon bis zu unserem Termin selbst mit den Videos unten anfangen, wenn du magst — dann sind wir noch schneller.</p>
+          <a class="notice-cta" href="https://cal.com/alexander-duck-qpybqb/30min" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /></svg>
+            1:1 Setup-Termin buchen
+          </a>
+        </div>
+      </aside>
+
+      <section class="tutorial" id="tutorials">
+        <p class="tutorial-eyebrow">Bevor du loslegst</p>
+        <h2>Schau dir zuerst die 4 Tutorials an</h2>
+
+        <div class="guidebox">
+          <div class="gb-text">
+            <strong>Komplett neu? Claude Code noch nie installiert?</strong>
+            <span>Diese PDF richtet VS&nbsp;Code und Claude Code von null ein — Schritt für Schritt, mit allen Befehlen für Mac und Windows und dem kompletten ersten Setup. Ideal als Begleitung zu den Videos.</span>
+          </div>
+          <a class="dl-btn" href="/assets/help/Claude-Code-installieren.pdf" download>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+            Installations-Anleitung (PDF)
+          </a>
+        </div>
+
+        <div class="videos">
+          <p class="skip-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+            <span><strong>Plugins installieren entfällt.</strong> Alles liegt schon fertig im Ordner — diesen Schritt kannst du überspringen.</span>
+          </p>
+          <div class="video">
+            <div class="label">
+              <span class="num">01</span>
+              <span class="title"><a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">BaseFlow aufsetzen</a></span>
+            </div>
+            <div class="frame" data-embed="https://www.loom.com/embed/1e4b82d2dd58463b84592d9a8b800647" data-title="BaseFlow aufsetzen">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/1e4b82d2dd58463b84592d9a8b800647" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Einklapp-Hilfe: nur für den Fehlerfall (Claude noch nicht freigeschaltet) -->
+          <details class="acc">
+            <summary>
+              Fehlermeldung bei der ersten Eingabe? Hier klicken
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </summary>
+            <div class="acc-body">
+              <p>Du hast VS&nbsp;Code und Claude&nbsp;Code wie im Tutorial installiert, bekommst aber bei der ersten Eingabe eine rote Fehlermeldung (z.&nbsp;B. <strong>„claude is not recognized"</strong> oder <strong>„You must run claude to review the updated terms"</strong>)? Dann muss Claude nur einmalig freigeschaltet werden, das dauert zwei Minuten. Schau dir bei Bedarf einmal dieses Video an:</p>
+              <div class="acc-video">
+                <iframe src="https://www.loom.com/embed/3e33bfc9979c4c71902ebf09f0198415"
+                        loading="lazy" allowfullscreen title="Claude Code installieren: Zusatz-Step für Erstnutzer"></iframe>
+              </div>
+              <p><strong>Nur falls eine Fehlermeldung bereits bei deiner ersten Eingabe erscheint</strong>, führ diese Schritte aus:</p>
+              <ol class="steps">
+                <li><strong>Terminal öffnen.</strong> In VS&nbsp;Code oben im Menü auf <strong>Terminal → Neues Terminal</strong>. Unten erscheint ein Eingabefeld.</li>
+                <li><strong>Claude installieren.</strong> Kopier die Zeile für dein Gerät, klick ins Terminal, füg sie ein, drück Enter. Danach das Terminal einmal schließen und neu öffnen.
+                  <div class="cmd"><span class="os">Windows</span><code>irm https://claude.ai/install.ps1 | iex</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                  <div class="cmd"><span class="os">Mac</span><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button" class="cmd-copy">Kopieren</button></div>
+                </li>
+                <li><strong>Einrichtung komplett durchklicken.</strong> Tipp <code class="inline">claude</code> ins Terminal, Enter. Jetzt die kurze Einrichtung <strong>ganz zu Ende</strong> machen, nicht abbrechen: zuerst ein Design mit den <strong>Pfeiltasten</strong> wählen (z.&nbsp;B. „Dark mode") und Enter, dann im Browser anmelden, danach die Nutzungsbedingungen mit Enter bestätigen. Warte, bis unten eine normale Eingabezeile erscheint (Claude ist dann bereit) — <strong>erst dann</strong> das Terminal schließen.</li>
+              </ol>
+              <figure class="shot">
+                <img src="/assets/help/claude-setup-theme-select.png" alt="Claude-Einrichtung im Terminal: Design auswählen und durchklicken" loading="lazy" width="1031" height="525" />
+                <figcaption>So sieht die Einrichtung aus: Design mit den Pfeiltasten wählen, mit Enter bestätigen und Schritt für Schritt weiterklicken (anmelden → Bedingungen bestätigen), bis Claude bereit ist.</figcaption>
+              </figure>
+              <p class="tip">Wichtig: Brichst du die Einrichtung ab oder schließt das Terminal zu früh, kommt dieselbe Meldung wieder. Und im Browser-Login oder in der Claude-Desktop-App zu bestätigen reicht <strong>nicht</strong> — es muss in Claude Code selbst passieren. Mehr unter <a href="/troubleshooting">Hilfe bei Fehlern</a>.</p>
+            </div>
+          </details>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">02</span>
+              <span class="title"><a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Erste Section bauen</a></span>
+            </div>
+            <div class="frame" data-embed="https://www.loom.com/embed/fea009bdd3c843c4806bc1d9688e3217" data-title="Erste Section bauen">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/fea009bdd3c843c4806bc1d9688e3217" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">03</span>
+              <span class="title"><a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Suchdaten &amp; Klickdaten verbinden</a></span>
+            </div>
+            <div class="frame" data-embed="https://www.loom.com/embed/bd325e2246c247bc88b863d9db331ca4" data-title="Suchdaten und Klickdaten verbinden">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/bd325e2246c247bc88b863d9db331ca4" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="video">
+            <div class="label">
+              <span class="num">04</span>
+              <span class="title"><a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">GitHub verbinden &amp; in Shopify einrichten</a></span>
+            </div>
+            <div class="frame" data-embed="https://www.loom.com/embed/49026af0a5014f6486c1225bc63c0c30?hideEmbedTopBar=true&hide_owner=true" data-title="GitHub verbinden und in Shopify einrichten">
+              <button type="button" class="frame-play">
+                <span class="play-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+                <span class="play-text">Video abspielen</span>
+              </button>
+              <a class="frame-ext" href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>
+              <div class="frame-fallback" role="status">
+                <p>Das Video lädt hier gerade nicht.</p>
+                <a href="https://www.loom.com/share/49026af0a5014f6486c1225bc63c0c30" target="_blank" rel="noopener">Hier klicken und direkt auf Loom ansehen ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-steps">
+          <p>Starte mit der Installation von <strong>Base</strong>, führe dann <strong>SEO</strong> und <strong>Clarity</strong> aus.</p>
+          <p>Lade das Produkt herunter und entzippe den Ordner. Öffne ihn in Claude Code und bitte Claude, die Setup-Datei auszuführen. Alles Nötige ist schon im Ordner enthalten — du musst nichts extra installieren.</p>
+        </div>
+      </section>
+
+      <section class="next">
+        <p class="next-eyebrow">Dein Zugang</p>
+        <ol class="next-list">
+          <li>
+            <span class="n">01</span>
+            <h3>E-Mail von Digistore24</h3>
+            <p>Mit Download-Link. Findest du nichts, prüf den Spam-Ordner.</p>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <h3>Ordner entzippen</h3>
+            <p>Setup-Datei, Skill-Stack, alle Workflows, Anleitungen, Videos.</p>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <h3>In Claude Code öffnen</h3>
+            <p>Setup-Datei ausführen lassen — alles ist schon im Ordner enthalten.</p>
+          </li>
+        </ol>
+      </section>
+
+      <hr class="divider" />
+
+      <div class="foot">
+        <a class="home" href="/">
+          <span aria-hidden="true">←</span> Zurück zur Startseite
+        </a>
+        <p class="support">
+          Frage zur Bestellung? <a href="mailto:alex@adolution.de">alex@adolution.de</a> · 14 Tage Rückgaberecht.<br />
+          Eine Rückgabe ist nur möglich, wenn die dazugehörige Schulung noch nicht in Anspruch genommen wurde.<br />
+          Die Abbuchung erfolgt durch Digistore24.com.
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Google Ads purchase conversion. transaction_id (falls Digistore die
+      // Bestell-ID an die Thank-You-URL hängt) dedupliziert Reloads.
+      (function () {
+        var p = new URLSearchParams(location.search);
+        var orderId = p.get('order') || p.get('orderid') || p.get('oid') || p.get('order_id') || '';
+        var data = { send_to: 'AW-18158480775/VDg2CKiF_ascEIfb0dJD', value: 1499.0, currency: 'EUR' };
+        if (orderId) data.transaction_id = orderId;
+        if (window.gtag) gtag('event', 'conversion', data);
+      })();
+    </script>
+
+    <!-- WebinarJam Sale-Tracking — meldet WJ, welcher Webinar-Registrant gekauft hat
+         (Webinar-Attribution). Bei Pixel-Wechsel hier austauschen. Doku/Merker:
+         memory project_wj_sale_pixel_danke.md -->
+    <script src="https://event.webinarjam.com/t/sale/0qgn9gagi1/v2?price=0.00&currency=USD"></script>
+
+    <script>
+      // Loom-Embeds erst per Klick laden. Grund: 4 gleichzeitige Embed-Requests
+      // liefen in Looms Rate-Limit, einzelne Frames blieben weiß. Die Facade lädt
+      // genau ein Video pro Klick; kommt das Embed trotzdem nicht (Blocker,
+      // Netzwerk), erscheint nach 7s der Loom-Direktlink als Fallback.
+      document.querySelectorAll('.frame[data-embed]').forEach(function (frame) {
+        var btn = frame.querySelector('.frame-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var src = frame.getAttribute('data-embed');
+          var iframe = document.createElement('iframe');
+          iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.title = frame.getAttribute('data-title') || 'Tutorial-Video';
+          var loaded = false;
+          iframe.addEventListener('load', function () { loaded = true; });
+          setTimeout(function () {
+            if (!loaded) frame.classList.add('failed');
+          }, 7000);
+          frame.appendChild(iframe);
+          btn.remove();
+          var ext = frame.querySelector('.frame-ext');
+          if (ext) ext.remove();
+          // Loom-Fehlseiten feuern trotzdem 'load' → Ausfall ist von außen nicht
+          // sicher erkennbar. Deshalb steht der Direktlink nach dem Klick immer da.
+          var share = frame.querySelector('.frame-fallback a');
+          if (share) {
+            var note = document.createElement('p');
+            note.className = 'frame-note';
+            note.innerHTML = 'Video lädt nicht? <a href="' + share.href + '" target="_blank" rel="noopener">Auf Loom ansehen ↗</a>';
+            frame.insertAdjacentElement('afterend', note);
+          }
+        });
+      });
+    </script>
+
+    <script>
+      // Copy-Buttons in den Befehl-Boxen (Installations-Hilfe)
+      document.querySelectorAll('.cmd-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var code = btn.parentElement.querySelector('code');
+          if (!code || !navigator.clipboard) return;
+          navigator.clipboard.writeText(code.textContent.trim()).then(function () {
+            var prev = btn.textContent;
+            btn.textContent = 'Kopiert';
+            setTimeout(function () { btn.textContent = prev; }, 1400);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SEOFlow — Shopify-SEO mit echten Such-Daten | vorflows</title>
+    <title>SEOFlow: Shopify-SEO mit echten Such-Daten | vorflows</title>
     <meta name="description" content="SEOFlow: SEO-Loop für Shopify. Such-Daten rein, Theme-Code raus. Claude erkennt Rankings auf Seite 2 und schreibt Meta-Tags und Schema direkt ins Theme." />
     <meta name="author" content="vorflows" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-    <meta name="theme-color" content="#C8633E" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="content-language" content="de-DE" />
     <meta name="language" content="German" />
@@ -22,14 +22,14 @@
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="vorflows" />
     <meta property="og:url" content="https://vorflows.com/seoflow" />
-    <meta property="og:title" content="SEOFlow — Shopify-SEO mit echten Such-Daten" />
+    <meta property="og:title" content="SEOFlow: Shopify-SEO mit echten Such-Daten" />
     <meta property="og:description" content="Such-Daten rein, Theme-Code raus. Claude erkennt Ranking-Lücken und schreibt Optimierungen direkt ins Shopify-Theme." />
     <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="vorflows SEOFlow — Shopify-SEO-Workflow mit Claude Code" />
+    <meta property="og:image:alt" content="vorflows SEOFlow: Shopify-SEO-Workflow mit Claude Code" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SEOFlow — Shopify-SEO mit echten Such-Daten" />
+    <meta name="twitter:title" content="SEOFlow: Shopify-SEO mit echten Such-Daten" />
     <meta name="twitter:description" content="Such-Daten rein, Theme-Code raus. SEO-Loop für Shopify mit Claude Code." />
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
@@ -167,227 +167,258 @@
     }
     </script>
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="style" href="/assets/fonts/fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/module-page.css?v=20260909" />
+    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/module-page.css?v=20261010" />
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
-  <body>
+  <body class="mod mod--seo">
+    <a class="skip" href="#main">Zum Inhalt springen</a>
 
-    <nav class="nav" id="nav">
-      <div class="container nav-inner">
-        <a href="/" class="wordmark" aria-label="vorflows">vorflows</a>
-        <div class="nav-actions">
-          <a href="/" class="nav-back">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Zurück zur Startseite
-          </a>
-          <a href="/sales" class="nav-buy">vorflows kaufen</a>
-        </div>
-      </div>
-    </nav>
+    <!-- NAV -->
+    <header class="nav"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav class="nav-links" aria-label="Seitennavigation">
+        <a class="hide-m" href="/sales">Für Shopify</a>
+        <a class="hide-m" href="/adsflow">AdsFlow</a>
+        <a class="hide-m" href="/faqs">FAQs</a>
+        <a class="btn nav-buy" href="/sales">vorflows kaufen</a>
+      </nav>
+    </div></header>
 
-    <header class="mod-hero">
-      <div class="container mod-hero-grid">
-        <div class="mod-hero-text">
-          <div class="meta mod-eyebrow">Modul 02 · SEOFlow · Stand Mai 2026</div>
-          <h1 class="mod-h1">SEO für Shopify, mit echten <em>Such-Daten</em>.</h1>
-          <p class="mod-lead">SEOFlow ist der SEO-Loop von vorflows. Such-Daten rein, Theme-Code raus. Claude erkennt, wo dein Shop auf Seite 2 hängt, schreibt Meta-Tags, Headings und strukturierte Daten direkt ins Theme. Keine SEO-App, kein Plugin-Kram.</p>
-          <div class="mod-ctas">
-            <a href="/sales#preis" class="btn btn-primary">Im Bundle enthalten</a>
-            <a href="#workflow" class="btn btn-ghost">Wie der Loop läuft ↓</a>
-          </div>
-          <ul class="mod-quickfacts">
-            <li><strong>30–40 Min</strong> Setup</li>
-            <li><strong>Wöchentlich</strong> Loop</li>
-            <li><strong>Direkt</strong> ins Theme</li>
-          </ul>
-        </div>
-        <div class="mod-hero-art">
-          <img src="/brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box — Shopify-SEO mit Claude Code" width="600" height="600" decoding="async" fetchpriority="high" />
-        </div>
-      </div>
-    </header>
+    <main id="main">
 
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Das Problem</div>
-        <h2 class="mod-h2">Du hast Impressions. Niemand klickt.</h2>
-        <p class="mod-prose">Dein Shop sammelt Impressions auf Hunderten Long-Tail-Keywords. Position 11, 12, 17. Klicks gehen an die Top 10. Du siehst es in deinen Such-Daten, aber pro Keyword einzeln zu reagieren ist Vollzeit-Arbeit.</p>
-        <p class="mod-prose">Klassische SEO-Apps zeigen dir, was zu tun ist. Sie schreiben aber keinen Code. Agenturen schreiben Code, brauchen aber zwei Wochen pro Sprint. SEOFlow tut beides in einem Loop. Datenanalyse plus Code-Output.</p>
-      </div>
-    </section>
-
-    <section class="mod-section mod-section-alt" id="workflow">
-      <div class="container">
-        <div class="meta mod-eyebrow">So läuft der Loop</div>
-        <h2 class="mod-h2 mod-h2-center">Daten lesen. Code schreiben. Du publishst.</h2>
-        <ol class="mod-steps">
-          <li class="mod-step">
-            <span class="mod-step-num">01</span>
-            <h3 class="mod-step-title">Such-Daten verbinden.</h3>
-            <p class="mod-step-body">Einmalige Verbindung mit deinem Such-Plattform-Account. Claude liest Impressions, Klicks, Position und CTR pro Query und URL. Direkt aus der API, ohne Export-Geschiebe.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">02</span>
-            <h3 class="mod-step-title">Ranking-Lücken finden.</h3>
-            <p class="mod-step-body">Claude markiert Queries auf <code>Pos 11–20</code>, Pages mit hoher Impression aber CTR unter 2 %, und Themen mit Cannibalization. Du bekommst eine priorisierte Liste mit Impact-Score.</p>
-          </li>
-          <li class="mod-step">
-            <span class="mod-step-num">03</span>
-            <h3 class="mod-step-title">Theme-Optimierungen schreiben.</h3>
-            <p class="mod-step-body">Title-Tags, Meta-Descriptions, H1, Bild-Alt, JSON-LD. Direkt ins Theme-Duplicate. Du reviewst im Shopify-Preview und publishst manuell.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">Was SEOFlow optimiert</div>
-        <h2 class="mod-h2">On-Page, Technical, Content. Alles im Theme.</h2>
-        <p class="mod-prose">SEOFlow deckt vier SEO-Bereiche ab. Direkt im Shopify-Theme, ohne externe SEO-App.</p>
-        <ul class="mod-replace-list">
-          <li><strong>On-Page SEO</strong> — Title-Tags, Meta-Descriptions, H1/H2-Hierarchie, Bild-Alt-Texte mit Keyword-Fokus.</li>
-          <li><strong>Technical SEO</strong> — Schema.org JSON-LD (Product, Organization, BreadcrumbList, FAQ), Canonicals, Hreflang für DACH-Stores.</li>
-          <li><strong>Content-Optimierung</strong> — Featured-Snippet-Format, AI-Overview-readable Passagen, Long-Tail-Keyword-Integration ohne Stuffing.</li>
-          <li><strong>Sitemap-Hygiene</strong> — Validierung, Image-Sitemaps, Lastmod-Sync mit Theme-Updates.</li>
-          <li><strong>Monitoring</strong> — wöchentlicher Crawl, Warnung bei Position-Drop, Diff zur Vorwoche.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="mod-section mod-section-alt">
-      <div class="container">
-        <div class="meta mod-eyebrow">Was SEOFlow enthält</div>
-        <h2 class="mod-h2 mod-h2-center">Daten-Skill, Theme-Editor, Monitoring.</h2>
-        <div class="mod-cards">
-          <article class="mod-card">
-            <h3 class="mod-card-title">Such-Daten-Skill</h3>
-            <p class="mod-card-body">Liest deine Such-API direkt. Aggregiert pro Query, URL, Country, Device. Erkennt Trends im 28-Tage-Fenster.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Theme-SEO-Editor</h3>
-            <p class="mod-card-body">Schreibt Meta-Tags, Headings und JSON-LD direkt in Shopify-Liquid. Berücksichtigt Translations und Custom-Theme-Settings.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Schema-Generator</h3>
-            <p class="mod-card-body">Erzeugt valides Schema.org JSON-LD für Product, Organization, FAQ, BreadcrumbList. Validiert vor Publish.</p>
-          </article>
-          <article class="mod-card">
-            <h3 class="mod-card-title">Ranking-Monitor</h3>
-            <p class="mod-card-body">Wöchentlicher Pull. Mail bei Position-Drop größer 5 Plätze. Diff-Report mit Hypothese pro Drop.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">So läuft ein Loop ab</div>
-        <h2 class="mod-h2">Von Such-Daten bis zum publishten Theme.</h2>
-        <p class="mod-prose">Ein SEO-Loop in SEOFlow ist kein einmaliger Audit. Er ist ein wiederholbarer Durchlauf, der echte Such-Daten liest, Theme-Code schreibt und Ranking-Bewegungen weiter überwacht. So sieht ein typischer Loop aus:</p>
-        <p class="mod-prose"><strong>1. Daten lesen.</strong> Claude verbindet sich mit deiner Such-Performance-Quelle und sortiert URL-Query-Paare nach Position 11–20. Das sind die Keywords, bei denen du Impressions bekommst, aber kaum Klicks.</p>
-        <p class="mod-prose"><strong>2. Lücken priorisieren.</strong> Aus den Daten kommt eine Liste: welche Seite hat das größte Klick-Potenzial bei welcher Optimierung. Title-Tag-Pattern, fehlendes Schema, dünner Content, falsches Hauptkeyword — sortiert nach Impact.</p>
-        <p class="mod-prose"><strong>3. Code-Änderung schreiben.</strong> Claude schreibt die On-Page-Anpassung im Theme-Duplicate. Title, Meta, H1-Struktur, JSON-LD, interne Verlinkung. Du bekommst den Diff zur Review.</p>
-        <p class="mod-prose"><strong>4. Preview, Publish, Logging.</strong> Du öffnest den Preview, prüfst die Render-Ausgabe, drückst Publish. Datum und erwarteter Effekt landen im Ranking-Monitor.</p>
-        <p class="mod-prose"><strong>5. Bewegung beobachten.</strong> Nach vier bis acht Wochen liest Claude die Such-Daten erneut. Hat die Änderung Klicks oder Position bewegt? Halten, weiter optimieren oder zur nächsten Lücke springen.</p>
-        <p class="mod-prose">Kein externes SEO-Tool nötig, keine Audit-Reports zum Selber-Abarbeiten. Jeder Loop ist im Theme-Code dokumentiert, jeder Effekt ist messbar.</p>
-      </div>
-    </section>
-
-    <section class="mod-section">
-      <div class="container-prose">
-        <div class="meta mod-eyebrow">FAQ</div>
-        <h2 class="mod-h2">Was du dich zurecht fragst.</h2>
-        <details class="mod-faq">
-          <summary>Welche Such-Daten nutzt SEOFlow?</summary>
-          <p>Reale Suchdaten aus deinem eigenen Such-Plattform-Account: Impressions, Klicks, Position und CTR pro Query und URL. Die Verbindung läuft über deinen Account, vorflows hostet keine Daten.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Welche SEO-Bereiche deckt SEOFlow ab?</summary>
-          <p>On-Page (Titles, Meta-Descriptions, Headings, Bild-Alt), Technical (Schema.org, Canonicals, Hreflang, Sitemap), Content (Snippet-Format, AI-Overview-readable Passagen) und Monitoring (wöchentlicher Crawl mit Drop-Warnung).</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Ersetzt SEOFlow eine SEO-Agentur?</summary>
-          <p>Für Shopify-Stores im DACH-Raum: weitgehend ja. Strategische Keyword-Recherche und Linkbuilding bleiben außen vor. Den Rest macht Claude schneller als jede Agentur.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Wie oft soll ich SEOFlow laufen lassen?</summary>
-          <p>Wöchentlicher Check passt. Such-Daten haben drei Tage Lag. Nach jedem Lauf bekommst du eine priorisierte Liste, du entscheidest, was umgesetzt wird.</p>
-        </details>
-        <details class="mod-faq">
-          <summary>Funktioniert SEOFlow neben einer Shopify-SEO-App?</summary>
-          <p>Ja, ist aber meist überflüssig. SEOFlow schreibt direkt ins Theme, du brauchst keine separate App. Apps für Meta-Optimierung oder Schema werden überflüssig.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="mod-cta-band">
-      <div class="container-prose mod-cta-inner">
-        <div class="meta mod-eyebrow mod-eyebrow-light">Bundle</div>
-        <h2 class="mod-cta-title">SEOFlow ist eines von drei Modulen.</h2>
-        <p class="mod-cta-body">Im vorflows Bundle bekommst du SEOFlow plus <a href="/baseflow">BaseFlow</a> (Theme-Workflow) und <a href="/clarityflow">ClarityFlow</a> (Verhaltensdaten-Loop). Kein Abo, lebenslange Updates.</p>
-        <a href="/sales#preis" class="btn btn-primary btn-lg">Bundle ansehen</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <div class="wordmark" style="margin-bottom: 8px;">vorflows</div>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0; max-width: 32ch;">
-              Das System für KI-gestützten Shop-Umbau, Ranking und Optimierung.
-            </p>
-          </div>
-          <div class="footer-col">
-            <h4>Module</h4>
-            <ul>
-              <li><a href="/baseflow">BaseFlow</a></li>
-              <li><a href="/seoflow">SEOFlow</a></li>
-              <li><a href="/clarityflow">ClarityFlow</a></li>
+      <!-- HERO -->
+      <section class="mh" aria-labelledby="h1">
+        <div class="wrap mh-grid">
+          <div class="mh-copy">
+            <div class="mh-top rise d1">
+              <span class="world world--shop"><i></i>vorflows für Shopify</span>
+              <nav class="switch" aria-label="Module von vorflows für Shopify">
+                <a href="/baseflow">BaseFlow</a>
+                <a href="/seoflow" aria-current="page">SEOFlow</a>
+                <a href="/clarityflow">ClarityFlow</a>
+              </nav>
+            </div>
+            <h1 id="h1" class="rise d2">SEO für Shopify, mit echten <em>Such-Daten</em></h1>
+            <p class="lead rise d3">SEOFlow ist der SEO-Loop von vorflows. Such-Daten rein, Theme-Code raus. Claude erkennt, wo dein Shop auf Seite 2 hängt, schreibt Meta-Tags, Headings und strukturierte Daten direkt ins Theme. Keine SEO-App, kein Plugin-Kram.</p>
+            <div class="mh-ctas rise d4">
+              <a href="/sales#preis" class="btn">Im Bundle enthalten</a>
+              <a href="#workflow" class="btn btn--ghost">Wie der Loop läuft <span class="arr arr--down" aria-hidden="true">↓</span></a>
+            </div>
+            <ul class="facts rise d5">
+              <li><b>30 bis 40 Min</b><span>Setup</span></li>
+              <li><b>Wöchentlich</b><span>Loop</span></li>
+              <li><b>Direkt</b><span>ins Theme</span></li>
             </ul>
+            <p class="stand rise d5">Modul 2 von 3, Stand Mai 2026</p>
           </div>
-          <div class="footer-col">
-            <h4>Produkt</h4>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/sales#ablauf">Workflow</a></li>
-              <li><a href="/sales#preis">Pricing</a></li>
-              <li><a href="/sales#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="/impressum">Impressum</a></li>
-              <li><a href="/datenschutz">Datenschutz</a></li>
-            </ul>
+          <div class="mh-art rise d3">
+            <span class="bx"><img src="/brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="SEOFlow Modul-Box, Shopify-SEO mit Claude Code" width="600" height="600" decoding="async" fetchpriority="high" /></span>
           </div>
         </div>
-        <div class="footer-bottom">
-          <span>© 2026 vorflows</span>
-          <span>built with claude code</span>
-        </div>
-      </div>
-    </footer>
+      </section>
 
-    <script>
-      const nav = document.getElementById('nav');
-      const onScroll = () => {
-        if (window.scrollY > 8) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    </script>
+      <!-- PROBLEM -->
+      <section class="sec" aria-labelledby="h-problem">
+        <div class="wrap split">
+          <div class="split-head">
+            <p class="label">Das Problem</p>
+            <h2 id="h-problem">Du hast Impressions, aber niemand klickt</h2>
+          </div>
+          <div class="split-body">
+            <p class="body">Dein Shop sammelt Impressions auf Hunderten Long-Tail-Keywords. Position 11, 12, 17. Klicks gehen an die Top 10. Du siehst es in deinen Such-Daten, aber pro Keyword einzeln zu reagieren ist Vollzeit-Arbeit.</p>
+            <p class="body">Klassische SEO-Apps zeigen dir, was zu tun ist. Sie schreiben aber keinen Code. Agenturen schreiben Code, brauchen aber zwei Wochen pro Sprint. SEOFlow tut beides in einem Loop: Datenanalyse plus Code-Output.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKFLOW -->
+      <section class="sec" id="workflow" aria-labelledby="h-workflow">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">So läuft der Loop</p>
+            <h2 id="h-workflow">Daten lesen, Code schreiben, du publishst</h2>
+          </div>
+          <ol class="track">
+            <li>
+              <span class="n">01</span>
+              <h3>Such-Daten verbinden</h3>
+              <p>Einmalige Verbindung mit deinem Such-Plattform-Account. Claude liest Impressions, Klicks, Position und CTR pro Query und URL. Direkt aus der API, ohne Export-Geschiebe.</p>
+            </li>
+            <li>
+              <span class="n">02</span>
+              <h3>Ranking-Lücken finden</h3>
+              <p>Claude markiert Queries auf <code>Pos 11 bis 20</code>, Pages mit hoher Impression aber CTR unter 2 %, und Themen mit Cannibalization. Du bekommst eine priorisierte Liste mit Impact-Score.</p>
+            </li>
+            <li>
+              <span class="n">03</span>
+              <h3>Theme-Optimierungen schreiben</h3>
+              <p>Title-Tags, Meta-Descriptions, H1, Bild-Alt, JSON-LD. Direkt ins Theme-Duplicate. Du reviewst im Shopify-Preview und publishst manuell.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- WAS SEOFLOW OPTIMIERT -->
+      <section class="sec" aria-labelledby="h-areas">
+        <div class="wrap split">
+          <div class="split-head is-sticky">
+            <p class="label">Was SEOFlow optimiert</p>
+            <h2 id="h-areas">On-Page, Technical, Content: alles im Theme</h2>
+            <p class="body">SEOFlow deckt vier SEO-Bereiche ab. Direkt im Shopify-Theme, ohne externe SEO-App.</p>
+          </div>
+          <div class="ledger">
+            <dl>
+              <div><dt>On-Page SEO</dt><dd>Title-Tags, Meta-Descriptions, H1/H2-Hierarchie, Bild-Alt-Texte mit Keyword-Fokus.</dd></div>
+              <div><dt>Technical SEO</dt><dd>Schema.org JSON-LD (Product, Organization, BreadcrumbList, FAQ), Canonicals, Hreflang für DACH-Stores.</dd></div>
+              <div><dt>Content-Optimierung</dt><dd>Featured-Snippet-Format, AI-Overview-readable Passagen, Long-Tail-Keyword-Integration ohne Stuffing.</dd></div>
+              <div><dt>Sitemap-Hygiene</dt><dd>Validierung, Image-Sitemaps, Lastmod-Sync mit Theme-Updates.</dd></div>
+              <div><dt>Monitoring</dt><dd>Wöchentlicher Crawl, Warnung bei Position-Drop, Diff zur Vorwoche.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- WAS DRIN IST -->
+      <section class="sec" aria-labelledby="h-kit">
+        <div class="wrap">
+          <div class="sh">
+            <p class="label">Was SEOFlow enthält</p>
+            <h2 id="h-kit">Daten-Skill, Theme-Editor, Monitoring</h2>
+          </div>
+          <div class="kit">
+            <article>
+              <h3>Such-Daten-Skill</h3>
+              <p>Liest deine Such-API direkt. Aggregiert pro Query, URL, Country, Device. Erkennt Trends im 28-Tage-Fenster.</p>
+            </article>
+            <article>
+              <h3>Theme-SEO-Editor</h3>
+              <p>Schreibt Meta-Tags, Headings und JSON-LD direkt in Shopify-Liquid. Berücksichtigt Translations und Custom-Theme-Settings.</p>
+            </article>
+            <article>
+              <h3>Schema-Generator</h3>
+              <p>Erzeugt valides Schema.org JSON-LD für Product, Organization, FAQ, BreadcrumbList. Validiert vor Publish.</p>
+            </article>
+            <article>
+              <h3>Ranking-Monitor</h3>
+              <p>Wöchentlicher Pull. Mail bei Position-Drop größer 5 Plätze. Diff-Report mit Hypothese pro Drop.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABLAUF EINES LOOPS -->
+      <section class="sec" aria-labelledby="h-loop">
+        <div class="wrap loop">
+          <div class="loop-side">
+            <p class="label">So läuft ein Loop ab</p>
+            <h2 id="h-loop">Von Such-Daten bis zum publishten Theme</h2>
+            <p class="body">Ein SEO-Loop in SEOFlow ist kein einmaliger Audit. Er ist ein wiederholbarer Durchlauf, der echte Such-Daten liest, Theme-Code schreibt und Ranking-Bewegungen weiter überwacht. So sieht ein typischer Loop aus:</p>
+            <figure class="win">
+              <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Ranking-Lücken</span></div>
+              <div class="win-body">
+                <ul class="win-rows">
+                  <li><b>Pos 11 bis 20</b><span>Keywords mit Impressions, aber kaum Klicks</span></li>
+                  <li><b>CTR unter 2 %</b><span>Pages mit hoher Impression</span></li>
+                  <li><b>Cannibalization</b><span>Themen, um die mehrere Seiten konkurrieren</span></li>
+                </ul>
+                <p class="win-res"><span class="pr" aria-hidden="true">&gt;</span><span>Priorisierte Liste mit Impact-Score</span></p>
+              </div>
+              <figcaption>Was Claude in den Such-Daten markiert</figcaption>
+            </figure>
+          </div>
+          <div class="loop-main">
+            <ol class="steps steps--loop">
+              <li>
+                <h3>Daten lesen</h3>
+                <p>Claude verbindet sich mit deiner Such-Performance-Quelle und sortiert URL-Query-Paare nach Position 11 bis 20. Das sind die Keywords, bei denen du Impressions bekommst, aber kaum Klicks.</p>
+              </li>
+              <li>
+                <h3>Lücken priorisieren</h3>
+                <p>Aus den Daten kommt eine Liste: welche Seite hat das größte Klick-Potenzial bei welcher Optimierung. Title-Tag-Pattern, fehlendes Schema, dünner Content, falsches Hauptkeyword, alles sortiert nach Impact.</p>
+              </li>
+              <li>
+                <h3>Code-Änderung schreiben</h3>
+                <p>Claude schreibt die On-Page-Anpassung im Theme-Duplicate. Title, Meta, H1-Struktur, JSON-LD, interne Verlinkung. Du bekommst den Diff zur Review.</p>
+              </li>
+              <li>
+                <h3>Preview, Publish, Logging</h3>
+                <p>Du öffnest den Preview, prüfst die Render-Ausgabe, drückst Publish. Datum und erwarteter Effekt landen im Ranking-Monitor.</p>
+              </li>
+              <li>
+                <h3>Bewegung beobachten</h3>
+                <p>Nach vier bis acht Wochen liest Claude die Such-Daten erneut. Hat die Änderung Klicks oder Position bewegt? Halten, weiter optimieren oder zur nächsten Lücke springen.</p>
+              </li>
+            </ol>
+            <p class="loop-again"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.76-4.24M16 3.5v3.2h-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Wiederholbarer Durchlauf</p>
+            <p class="note loop-end">Kein externes SEO-Tool nötig, keine Audit-Reports zum Selber-Abarbeiten. Jeder Loop ist im Theme-Code dokumentiert, jeder Effekt ist messbar.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec" id="faq" aria-labelledby="h-faq">
+        <div class="wrap faq">
+          <div class="faq-side">
+            <h2 id="h-faq">Was du dich zu Recht fragst</h2>
+          </div>
+          <div class="qa">
+            <details class="mod-faq">
+              <summary>Welche Such-Daten nutzt SEOFlow?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Reale Suchdaten aus deinem eigenen Such-Plattform-Account: Impressions, Klicks, Position und CTR pro Query und URL. Die Verbindung läuft über deinen Account, vorflows hostet keine Daten.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Welche SEO-Bereiche deckt SEOFlow ab?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>On-Page (Titles, Meta-Descriptions, Headings, Bild-Alt), Technical (Schema.org, Canonicals, Hreflang, Sitemap), Content (Snippet-Format, AI-Overview-readable Passagen) und Monitoring (wöchentlicher Crawl mit Drop-Warnung).</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Ersetzt SEOFlow eine SEO-Agentur?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Für Shopify-Stores im DACH-Raum: weitgehend ja. Strategische Keyword-Recherche und Linkbuilding bleiben außen vor. Den Rest macht Claude schneller als jede Agentur.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Wie oft soll ich SEOFlow laufen lassen?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Wöchentlicher Check passt. Such-Daten haben drei Tage Lag. Nach jedem Lauf bekommst du eine priorisierte Liste, du entscheidest, was umgesetzt wird.</p></div>
+            </details>
+            <details class="mod-faq">
+              <summary>Funktioniert SEOFlow neben einer Shopify-SEO-App?<span class="pm" aria-hidden="true"></span></summary>
+              <div class="ans"><p>Ja, ist aber meist überflüssig. SEOFlow schreibt direkt ins Theme, du brauchst keine separate App. Apps für Meta-Optimierung oder Schema werden überflüssig.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUNDLE -->
+      <section class="fin" aria-labelledby="h-fin">
+        <div class="wrap">
+          <div class="trio">
+            <a class="trio-item" href="/baseflow"><span class="bx"><img src="/brand_assets/boxes/base-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">BaseFlow</span></a>
+            <span class="trio-item is-seo is-current" aria-current="page"><span class="bx"><img src="/brand_assets/boxes/seo-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">SEOFlow</span></span>
+            <a class="trio-item" href="/clarityflow"><span class="bx"><img src="/brand_assets/boxes/clarity-tonal-1x1-transparent.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /></span><span class="nm">ClarityFlow</span></a>
+          </div>
+          <h2 id="h-fin">SEOFlow ist eines von drei Modulen</h2>
+          <p class="body">Im vorflows Bundle bekommst du SEOFlow plus <a class="tl" href="/baseflow">BaseFlow</a> (Theme-Workflow) und <a class="tl" href="/clarityflow">ClarityFlow</a> (Verhaltensdaten-Loop). Kein Abo, lebenslange Updates.</p>
+          <a href="/sales#preis" class="btn btn--lg">Bundle ansehen</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="foot"><div class="wrap">
+      <a class="brand" href="/" aria-label="vorflows, Startseite"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+      <nav aria-label="Weitere Seiten">
+        <a href="/sales">vorflows für Shopify</a><a href="/adsflow">AdsFlow</a><a href="/replay">Shopify-Workshop</a>
+        <a href="/blog">Blog</a><a href="/faqs">FAQs</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a>
+        <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+      </nav>
+      <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
+    </div></footer>
   </body>
 </html>
