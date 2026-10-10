@@ -8,18 +8,24 @@ Meta-Blau `#0081FB` = alles in Metas Welt (Schalter, Werbekonto). Blau nie als C
 ## Preis + Countdown
 
 Kauf-Link: `https://www.digistore24.com/product/690701?voucher=<gutschein>&ds24tr=vf_adsflow_<A|B>` (Produkt 690701).
-Preis-Stufen im Script (`PRICE.steps`): Launch **199 € netto statt 399 €**, Gutschein `adlaunch`, gültig bis
-**2026-10-11 23:59 (Berlin)**. Danach steigt der Preis alle 7 Tage. **Für jede neue Stufe einen Eintrag ergänzen**
-(Preis, Gutschein aus Digistore, Ende). Ist keine Stufe aktiv, zeigt die Seite automatisch 399 € ohne Gutschein,
-Countdown und Launch-Leiste verschwinden. Digistore rechnet netto + 19 % MwSt. (199 € → 236,81 € brutto), deshalb
+Preis-Stufen im Script (`PRICE.steps`): Launch **299 € netto statt 499 €** (seit 2026-10-10, 15 Tage), Gutschein `adlaunch`
+(Digistore: 200 € Rabatt auf die erste Zahlung, Produktpreis 499 €), gültig bis **2026-10-24 23:59 (Berlin)**. Danach gilt
+der Normalpreis 499 €, keine weiteren Stufen geplant. **Für eine neue Stufe einen Eintrag ergänzen**
+(Preis, Gutschein aus Digistore, Ende). Ist keine Stufe aktiv, zeigt die Seite automatisch 499 € ohne Gutschein,
+Countdown und Launch-Leiste verschwinden. Digistore rechnet netto + 19 % MwSt. (299 € → 355,81 € brutto), deshalb
 steht auf der Seite „zzgl. MwSt.“. Gutschein-Ablauf in Digistore muss zum `end` passen.
+In Digistore gibt es zusätzlich einen Ratenplan (299 € + 2 × 120 €), die Seite nennt ihn nicht.
 
 ## Social Proof
 
-Testimonials stammen aus dem Webinar-Deck (`~/Adolution/vorflows-ads/webinar/deck-A-startupads.html`, A13 bis A13e)
-und `sales.html` (Adrian), Wortlaut unverändert (Kürzungen nur ganze Sätze oder mit […]). Sie betreffen vorflows
-(Shopify-Systeme). Alex 2026-10-04: KEIN Hinweis „Stimmen zu vorflows“ auf der Seite, die Zuordnung der Bewertungen klärt er später selbst. Referenzen im Alex-Block aus
-`live-workshop.html` (404/Atlas/Quiver, Höhle der Löwen, 20.000+ Bestellungen, 1.000+ Kursteilnehmende).
+Seit 2026-10-10 **keine Kundenzitate mehr** (die alten waren vorflows-/Shopify-Stimmen). An den drei Stellen stehen
+stattdessen Sätze aus Sicht der Zielgruppe, jeweils mit Antwortzeile und **bewusst ohne Namen/Firma**:
+oben „Kommt dir einer dieser Sätze bekannt vor?“ (Schmerz), Mitte die größte Sorge („Ich lasse doch keine KI an mein
+Werbekonto.“), im Angebot „Vielleicht denkst du gerade“. Keine erfundenen Bewertungen mit Namen: erfundene
+Kundenstimmen sind nach UWG (Anhang Nr. 23b/23c) unzulässig. Echte AdsFlow-Stimmen später mit Einverständnis einsetzen.
+Referenzen im Alex-Block aus `live-workshop.html` (404/Atlas/Quiver „alle mit Multimillionen-Funding“, Höhle der Löwen,
+20.000+ Bestellungen, 1.000+ Kursteilnehmende), Fakt „1.200+ Anzeigen mit diesem System bereits gebaut“ (Alex 2026-10-10).
+Shop-Umsatz-Screenshot (`beleg-umsatz.webp`) seit 2026-10-10 nicht mehr auf der Seite, Datei bleibt liegen.
 
 ## Produkt-Claims (geprüft 2026-10-04 gegen AdsFlow-2026-10-03)
 

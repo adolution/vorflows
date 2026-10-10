@@ -474,18 +474,19 @@
       .v-side { display: grid; gap: 1.75rem; padding-top: .4rem; }
       .v-side figure + figure { padding-top: 1.75rem; border-top: 1px solid var(--line); }
       .v-side blockquote, .offer-quotes blockquote { font-size: clamp(1.1rem, 1rem + .35vw, 1.3rem); line-height: 1.38; }
-      .voices figcaption, .bigquote figcaption, .offer-quotes figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; margin-top: 1rem; font-size: 14px; }
-      .voices figcaption b, .bigquote figcaption b, .offer-quotes figcaption b { font-weight: 500; color: var(--ink); }
-      .voices figcaption span, .bigquote figcaption span, .offer-quotes figcaption span { color: var(--ink-3); }
-      .v-main figcaption b::before, .bigquote figcaption b::before { content: ""; display: inline-block; width: 22px; height: 1.5px; margin-right: .6rem; vertical-align: .3em; background: var(--orange); }
+      .voices figcaption, .bigquote figcaption, .offer-quotes figcaption { position: relative; margin-top: 1rem; padding-left: 2.1rem; max-width: 52ch; font-size: 15px; line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
+      .voices figcaption::before, .bigquote figcaption::before, .offer-quotes figcaption::before { content: ""; position: absolute; left: 0; top: .78em; width: 22px; height: 1.5px; background: var(--orange); }
+      .voices-label { margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .02em; line-height: 1.4; color: var(--orange-hi); font-variation-settings: normal; }
       @media (max-width: 860px) { .voices-grid { grid-template-columns: 1fr; } }
 
       .bigquote { padding-block: 0 var(--section); text-align: center; }
       .bigquote blockquote { font-style: normal; max-width: 26ch; margin: 0 auto; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.8rem, 1.1rem + 2.6vw, 3.2rem); line-height: 1.16; letter-spacing: -.025em; text-wrap: balance; }
-      .bigquote figcaption { justify-content: center; margin-top: 1.6rem; }
+      .bigquote figcaption { max-width: 46ch; margin: 1.6rem auto 0; padding: 1.1rem 0 0; }
+      .bigquote figcaption::before { left: 50%; top: 0; transform: translateX(-50%); }
       .bigquote blockquote em { font-style: italic; color: var(--orange-hi); }
 
-      .offer-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+      .offer-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem clamp(1.5rem, 4vw, 4rem); margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+      .oq-label { grid-column: 1 / -1; margin: 0 0 .5rem; font-size: 14px; font-weight: 500; letter-spacing: .02em; color: var(--orange-hi); }
       @media (max-width: 760px) { .offer-quotes { grid-template-columns: 1fr; } }
 
       /* ---------- Countdown im Angebot ---------- */
@@ -1176,11 +1177,9 @@
         max-width: 30ch;
         color: var(--ink);
       }
-      .rev { margin: 2.5rem 0 0; }
-      .rev .shot { border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); background: #F4F4F2; box-shadow: var(--shadow-raise); max-width: 520px; }
       .facts { display: flex; flex-wrap: wrap; gap: 1.75rem 2.75rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
       .facts div b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2.2rem; line-height: 1; letter-spacing: -.03em; }
-      .facts div span { display: block; margin-top: .4rem; font-size: 14px; color: var(--ink-3); }
+      .facts div span { display: block; max-width: 17ch; margin-top: .4rem; font-size: 14px; line-height: 1.45; color: var(--ink-3); }
       @media (max-width: 900px) {
         .alex-grid { grid-template-columns: 1fr; }
         .photo { aspect-ratio: 5 / 4; }
@@ -1498,8 +1497,8 @@
   </head>
   <body>
     <a class="launchbar" id="top" href="#angebot" data-cta="bar">
-      <span class="lb-txt"><b class="lb-lbl">Launch-Preis:</b> 199&nbsp;€ <span class="lb-statt">statt</span> <s>399&nbsp;€</s></span>
-      <span class="lb-cd" aria-label="Zeit bis zur Preiserhöhung"><span data-cd-short>7 Tage</span></span>
+      <span class="lb-txt"><b class="lb-lbl">Launch-Preis:</b> 299&nbsp;€ <span class="lb-statt">statt</span> <s>499&nbsp;€</s></span>
+      <span class="lb-cd" aria-label="Zeit bis zur Preiserhöhung"><span data-cd-short>14 Tage</span></span>
     </a>
     <header class="nav">
       <div class="wrap">
@@ -1510,8 +1509,8 @@
         <nav class="nav-links" aria-label="Seitennavigation">
           <a href="#ablauf">Ablauf</a>
           <a href="#ordner">Im Ordner</a>
-          <a href="#stimmen">Stimmen</a>
           <a href="#angebot">Preis</a>
+          <a href="#faq">Fragen</a>
           <a class="btn" href="#angebot" data-cta="nav">AdsFlow holen</a>
         </nav>
       </div>
@@ -1554,23 +1553,24 @@
         </div>
       </section>
 
-      <!-- ============ STIMMEN (oben) ============ -->
+      <!-- ============ KENNST DU DAS? (oben) ============ -->
+      <!-- Sätze aus Sicht der Zielgruppe, bewusst ohne Namen: das sind keine Kundenstimmen. -->
       <section class="voices" id="stimmen" aria-labelledby="h-voices">
         <div class="wrap">
-          <h2 class="sr" id="h-voices">Stimmen von Kund:innen</h2>
+          <h2 class="voices-label" id="h-voices" data-reveal>Kommt dir einer dieser Sätze bekannt vor?</h2>
           <div class="voices-grid">
             <figure class="v-main" data-reveal>
-              <blockquote>„Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.“</blockquote>
-              <figcaption><b>Markus Bonk</b><span>Rheinland.Coffee</span></figcaption>
+              <blockquote>„Ich weiß, dass ich mehr Anzeigen testen müsste. Aber jede neue kostet mich im Ads Manager eine halbe Stunde, also laufen seit Wochen dieselben drei.“</blockquote>
+              <figcaption>Mit AdsFlow reicht ein Satz an Claude, und die neuen Anzeigen liegen fertig in deinem Werbekonto.</figcaption>
             </figure>
             <div class="v-side">
               <figure data-reveal="2">
-                <blockquote>„Wir hatten schon mit KI gearbeitet. Aber erst seit dem Setup von Alex merken wir, wie ineffizient wir vorher waren und wie viel schneller und vor allem zuverlässiger es geht.“</blockquote>
-                <figcaption><b>Leo</b><span>Pure U, Skincare Brand</span></figcaption>
+                <blockquote>„Ideen für neue Hooks hätte ich genug. Mir fehlt nur die Zeit, sie alle zu schreiben und einzustellen.“</blockquote>
+                <figcaption>Claude schreibt die Texte und stellt jede Anzeige im passenden Format für Feed und Story ein.</figcaption>
               </figure>
               <figure data-reveal="3">
-                <blockquote>„Alles schnell eingerichtet und sofort SEO- und Conversion-Optimierungen erkannt und umgesetzt. Genau, was ich mir vorgestellt hab.“</blockquote>
-                <figcaption><b>Stefan Kisker</b><span>Prometheus Performance GmbH</span></figcaption>
+                <blockquote>„Meine Texte schreibt schon eine KI. Das Einstellen im Ads Manager bleibt trotzdem an mir hängen.“</blockquote>
+                <figcaption>Genau diesen Teil übernimmt AdsFlow, inklusive UTM-Parametern und ausgeschalteten Extras.</figcaption>
               </figure>
             </div>
           </div>
@@ -1678,7 +1678,7 @@
               <span class="packet p1"></span><span class="packet p2"></span><span class="packet p3"></span>
               <div class="acct"><i></i><i></i><i></i></div>
               <span class="tag t1">Claude</span>
-              <span class="tag t2">Metas offizieller Connector</span>
+              <span class="tag t2">Sicherer Connector</span>
               <span class="tag t3">Dein Werbekonto</span>
             </div>
           </div>
@@ -1734,7 +1734,7 @@
       <section class="sec" id="beweis" aria-labelledby="h-proof" style="padding-top: 0;">
         <div class="wrap">
           <div class="proof-head">
-            <h2 id="h-proof" data-reveal>Kein Mockup. Das ist <em>mein</em> Werbekonto.</h2>
+            <h2 id="h-proof" data-reveal>So sieht das in <em>meinem</em> Werbekonto aus.</h2>
             <p class="lead" data-reveal="2">Die Bilder hier stammen aus dem Video. test 1 bis 5 hat Claude angelegt, während ich geredet habe. In der Kampagne laufen 43 Anzeigen, und keine davon habe ich selbst eingestellt.</p>
           </div>
           <div class="proof-grid">
@@ -1762,12 +1762,12 @@
         </div>
       </section>
 
-      <!-- ============ STIMME (Mitte) ============ -->
-      <section class="bigquote" aria-label="Stimme von Michael Bodeske">
+      <!-- ============ SORGE (Mitte) ============ -->
+      <section class="bigquote" aria-label="Die häufigste Sorge">
         <div class="wrap">
           <figure data-reveal>
-            <blockquote>„Ich hatte bisher Agenturen und Freelancer, irgendwie zehn unterschiedliche Entwickler und Berater, und ich muss sagen: die sind alle schlechter. […] Dein Tool ist <em>gnadenlos gut</em>.“</blockquote>
-            <figcaption><b>Michael Bodeske</b><span>massagesesselwelt.de</span></figcaption>
+            <blockquote>„Ich lasse doch keine KI an mein <em>Werbekonto</em>.“</blockquote>
+            <figcaption>Verständlich. Deshalb legt AdsFlow jede Anzeige ausgeschaltet an, und die Werkzeuge zum Einschalten und Ändern sind gesperrt. Live schaltest nur du.</figcaption>
           </figure>
         </div>
       </section>
@@ -1984,18 +1984,14 @@
             <div class="facts" data-reveal="3">
               <div><b>9</b><span>Jahre Online-Marketing</span></div>
               <div><b>59</b><span>Werbekonten, die ich verwalte</span></div>
-              <div><b>43</b><span>Anzeigen in einer Kampagne, null von Hand</span></div>
+              <div><b>1.200+</b><span>Anzeigen mit diesem System bereits gebaut</span></div>
             </div>
             <ul class="creds" data-reveal="3">
-              <li>Kunden aus KI-Startups wie 404, Atlas und Quiver (8,3 Mio. € Funding)</li>
+              <li>Kunden aus KI-Startups wie 404, Atlas und Quiver (alle mit Multimillionen-Funding)</li>
               <li>Marketing-Beratung für Unternehmen aus „Die Höhle der Löwen“</li>
               <li>20.000+ Bestellungen in zwei eigenen Online-Shops</li>
               <li>1.000+ Teilnehmende in meinen Kursen zu SEO und Ads</li>
             </ul>
-            <figure class="rev" data-reveal="3">
-              <div class="shot"><img src="/assets/images/adsflow/beleg-umsatz.webp" width="1400" height="512" loading="lazy" alt="Screenshot aus Shopify-Statistiken: Gesamtumsatz im Zeitverlauf 514.078,74 Euro" /></div>
-              <figcaption>Einer meiner eigenen Shops, Statistik in Shopify: 514.078,74 € Gesamtumsatz.</figcaption>
-            </figure>
           </div>
         </div>
       </section>
@@ -2043,17 +2039,17 @@
               <div class="offer-top">
                 <div class="offer-name"><b>AdsFlow</b><span>für Founder, Shops und Selbstständige</span></div>
                 <!-- Preis + Countdown kommen aus PRICE (Script). Statischer Stand = Launch-Phase. -->
-                <div class="price"><s data-price-old>399&nbsp;€</s><b data-price>199&nbsp;€</b><span>zzgl. MwSt., einmalig</span></div>
+                <div class="price"><s data-price-old>499&nbsp;€</s><b data-price>299&nbsp;€</b><span>zzgl. MwSt., einmalig</span></div>
               </div>
               <div class="launch" id="launch">
                 <p class="launch-head">Launch-Preis endet in</p>
                 <div class="cd" role="timer" aria-live="off">
-                  <span><b data-cd="d">7</b><i>Tage</i></span>
+                  <span><b data-cd="d">14</b><i>Tage</i></span>
                   <span><b data-cd="h">00</b><i>Std.</i></span>
                   <span><b data-cd="m">00</b><i>Min.</i></span>
                   <span><b data-cd="s">00</b><i>Sek.</i></span>
                 </div>
-                <p class="launch-note">Ab dann steigt der Preis, und zwar alle 7 Tage. Schau gern in einer Woche noch mal rein, dann steht hier mehr. Ob du zum Launch-Preis einsteigst, entscheidest du.</p>
+                <p class="launch-note">Danach kostet AdsFlow regulär 499&nbsp;€. Ob du zum Launch-Preis einsteigst, entscheidest du.</p>
               </div>
               <ul class="incl">
                 <li><b>Der komplette AdsFlow-Ordner</b> mit allen Skills, Regeln und der Ideen-Bibliothek</li>
@@ -2062,7 +2058,7 @@
                 <li><b>Deine erste Anzeige</b> baut Claude auf Wunsch direkt danach mit dir zusammen</li>
                 <li><b>Hilfe per Mail</b>, wenn irgendwo etwas hakt</li>
               </ul>
-              <a class="btn btn--lg" id="buy" href="https://www.digistore24.com/product/690701?voucher=adlaunch&amp;ds24tr=vf_adsflow" target="_blank" rel="noopener" data-cta="offer"><span>AdsFlow für <span data-price-btn>199&nbsp;€</span> holen</span> <span class="arr" aria-hidden="true">→</span></a>
+              <a class="btn btn--lg" id="buy" href="https://www.digistore24.com/product/690701?voucher=adlaunch&amp;ds24tr=vf_adsflow" target="_blank" rel="noopener" data-cta="offer"><span>AdsFlow für <span data-price-btn>299&nbsp;€</span> holen</span> <span class="arr" aria-hidden="true">→</span></a>
               <p class="fine"><span data-voucher-note>Der Gutschein <b>adlaunch</b> steckt schon im Link.</span> Sichere Zahlung über Digistore24. Dazu kommen dein Claude-Abo und, wenn du KI-Bilder willst, ein Bild-KI-Dienst.</p>
             </div>
             <div class="fit" data-reveal="2">
@@ -2084,13 +2080,14 @@
             </div>
           </div>
           <div class="offer-quotes">
+            <p class="oq-label">Vielleicht denkst du gerade</p>
             <figure data-reveal>
-              <blockquote>„Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle. Hat sich sofort gelohnt.“</blockquote>
-              <figcaption><b>Adrian</b><span>Founder, Skincare D2C</span></figcaption>
+              <blockquote>„Eine Agentur kostet mich jeden Monat mehr als AdsFlow einmal.“</blockquote>
+              <figcaption>AdsFlow zahlst du einmal. Laufend kommt nur dein Claude-Abo dazu.</figcaption>
             </figure>
             <figure data-reveal="2">
-              <blockquote>„Das ist genau das, wonach ich schon seit Wochen gesucht habe. Dankeschön!“</blockquote>
-              <figcaption><b>Manuela Wonning</b><span>Royal Vitality, Fashion</span></figcaption>
+              <blockquote>„Ich will meine Anzeigen selbst in der Hand behalten, aber nicht mehr alles selbst klicken.“</blockquote>
+              <figcaption>Du gibst Ideen und Texte frei und schaltest selbst live. Das Klicken übernimmt Claude.</figcaption>
             </figure>
           </div>
         </div>
@@ -2242,7 +2239,7 @@
     </footer>
 
     <div class="dock" id="dock" aria-hidden="true">
-      <p class="t"><b>AdsFlow</b>199&nbsp;€ statt <s>399&nbsp;€</s></p>
+      <p class="t"><b>AdsFlow</b>299&nbsp;€ statt <s>499&nbsp;€</s></p>
       <a class="btn" href="#angebot" data-cta="dock" tabindex="-1">AdsFlow holen</a>
     </div>
 
@@ -2257,15 +2254,15 @@
 
         var META_PIXEL_ID = '2002118703756086';
         var VARIANT = window.__afVariant === 'B' ? 'B' : 'A';
-        // Preis-Stufen. Der Launch-Preis gilt bis `end`, danach steigt der Preis alle 7 Tage.
+        // Preis-Stufen. Der Launch-Preis (15 Tage ab 10.10.) gilt bis `end`, danach gilt `regular`.
         // Neue Stufe = neuer Eintrag (Preis + Gutschein wie in Digistore angelegt, `end` = Ablauf).
         // Ist keine Stufe mehr aktiv, zeigt die Seite den Normalpreis ohne Gutschein und ohne Countdown.
         var PRICE = {
           url: 'https://www.digistore24.com/product/690701',
           track: 'vf_adsflow',
-          regular: 399,
+          regular: 499,
           steps: [
-            { price: 199, voucher: 'adlaunch', end: '2026-10-11T23:59:59+02:00' }
+            { price: 299, voucher: 'adlaunch', end: '2026-10-24T23:59:59+02:00' }
           ]
         };
         // VSL v3 (1,2x), drei Stufen auf Vercel Blob. Neuer Schnitt = neue Dateinamen (1 Jahr immutable gecacht).

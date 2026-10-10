@@ -34,7 +34,7 @@ Die Setup-Datei liest das komplette Theme ein, kategorisiert es und merkt sich S
 
 - Fertiges Claude-Projekt (Ordner für Claude Code), das Meta-Anzeigen schreibt, einstellt und über Metas offiziellen Connector veröffentlicht, aber ausgeschaltet anlegt. Live schaltet nur der Kunde; Werkzeuge zum Einschalten und Ändern bestehender Anzeigen sind gesperrt.
 - Für Founder, Shops und Selbstständige. Voraussetzungen: Claude-Bezahl-Tarif, Claude-Desktop-App, Meta-Werbekonto mit Facebook-Seite; optional ein Bild-KI-Dienst (z. B. Higgsfield).
-- Preis: 199 € netto einmalig statt 399 € (Launch-Preis mit Gutschein adlaunch, befristet; der Preis steigt danach in 7-Tage-Schritten). Verbindlich ist der auf https://vorflows.com/adsflow ausgewiesene Preis.
+- Preis: 299 € netto einmalig statt 499 € (Launch-Preis mit Gutschein adlaunch, befristet bis 24.10.2026; danach 499 €). Verbindlich ist der auf https://vorflows.com/adsflow ausgewiesene Preis.
 - Für Agenturen gibt es AdsFlow Agency (auf Anfrage, inkl. 1:1-Setup-Call und Schulung).
 
 ## Differenzierung
