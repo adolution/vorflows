@@ -42,8 +42,8 @@ Shop-Umsatz-Screenshot (`beleg-umsatz.webp`) seit 2026-10-10 nicht mehr auf der 
 
 | | Headline | Unterzeile | Herkunft |
 |---|---|---|---|
-| **A** | „Du würdest längst mehr Anzeigen testen, wäre da nicht der Ads Manager“ | „Im Video siehst du in meinem eigenen Werbekonto, wie Claude die Anzeigen schreibt und einstellt, während ich nebenher erzähle.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
-| **B** | „Ein Satz an Claude reicht für 40 fertige Meta Ads in deinem Werbekonto“ | „Claude schreibt die Texte, setzt die Einstellungen und nimmt für Feed und Story das passende Format. Im Video kannst du in meinem Konto live zuschauen.“ | Hormozi (Value Equation) |
+| **A** | „Du testest zu wenig Anzeigen, und schuld ist der Ads Manager“ | „Im Video siehst du in meinem eigenen Werbekonto, wie Claude die Anzeigen schreibt und einstellt, während ich nebenher erzähle.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
+| **B** | „40 fertige Meta Ads aus einem Satz an Claude“ | „Claude schreibt die Texte, setzt die Einstellungen und nimmt für Feed und Story das passende Format. Im Video kannst du in meinem Konto live zuschauen.“ | Hormozi (Value Equation) |
 
 Copy-Pass 2026-10-10 (Alex: „klingt nach KI“): Wortlaut beider Varianten neu, Winkel gleich. Bis 10.10. lief
 A = „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ / B = „Ein Satz an Claude. 40 fertige Meta Ads in
