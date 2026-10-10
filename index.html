@@ -77,7 +77,7 @@
         {
           "@type": "FAQPage",
           "mainEntity": [
-            { "@type": "Question", "name": "Wer steckt hinter vorflows?", "acceptedAnswer": { "@type": "Answer", "text": "Alexander Dück. vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld. Erreichbar ist er direkt unter alex@adolution.de." } },
+            { "@type": "Question", "name": "Ist vorflows seriös, und wer steckt dahinter?", "acceptedAnswer": { "@type": "Answer", "text": "Alexander Dück. vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld. Erreichbar ist er direkt unter alex@adolution.de." } },
             { "@type": "Question", "name": "Was ist der Unterschied zwischen vorflows und AdsFlow?", "acceptedAnswer": { "@type": "Answer", "text": "vorflows für Shopify arbeitet in deinem Shop: Theme, Apps, Suchdaten und Klickdaten. AdsFlow arbeitet in deinem Meta-Werbekonto und baut dort Anzeigen für Facebook und Instagram. Beide nutzen Claude und sind unabhängig voneinander." } },
             { "@type": "Question", "name": "Ist das ein Abo?", "acceptedAnswer": { "@type": "Answer", "text": "Nein, beide Systeme sind ein Einmalkauf. Laufend zahlst du nur dein eigenes Claude-Abo." } }
           ]
@@ -419,6 +419,23 @@
         .door-body > .btn { grid-column: 1 / -1; margin: 1rem; width: calc(100% - 2rem); }
       }
 
+      /* Handy: Name direkt unter die Headline, dann sofort die Türen, Kurztext danach */
+      @media (max-width: 720px) {
+        .hero > .wrap { display: flex; flex-direction: column; }
+        .hero-top, .hero-intro { display: contents; }
+        .hero-top > div:first-child { order: 1; }
+        .me { order: 2; margin-top: 1.25rem; }
+        .me img { width: 44px; height: 44px; }
+        .doors { order: 3; margin-top: 1.5rem; }
+        .hero-intro .lead { order: 4; margin-top: 1.75rem; }
+        .trust { order: 5; }
+      }
+      /* Niedrige Laptop-Bildschirme: Türen samt Knopf im ersten Bild */
+      @media (min-width: 961px) and (max-height: 800px) {
+        .hero { padding-top: 1.75rem; }
+        .doors { margin-top: 1.75rem; }
+      }
+
       /* Hero-Einstieg: gestaffelt, nur Opacity + Transform */
       @media (prefers-reduced-motion: no-preference) {
         .js .rise { opacity: 0; transform: translateY(22px); animation: rise 1s var(--ease) forwards; }
@@ -601,7 +618,7 @@
         .sys-card .btn { padding-inline: 1.1rem; font-size: 15px; }
       }
 
-      /* ---------- Live-Workshop ---------- */
+      /* ---------- Workshop-Aufzeichnung ---------- */
       .ws {
         display: grid;
         grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -693,6 +710,35 @@
       }
 
       footer.foot { border-top: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--ink-3); font-size: 13.5px; }
+
+      /* ---------- Handy-Leiste: beide Systeme immer erreichbar ---------- */
+      /* Deckend, ohne Blur (Safari 26). Nur am Handy, nur zwischen Hero und Vergleich. */
+      .dock {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 60;
+        display: none;
+        gap: .6rem;
+        padding: .65rem var(--gutter) calc(.65rem + env(safe-area-inset-bottom));
+        background-color: var(--bg);
+        border-top: 1px solid var(--line-2);
+        transform: translateY(110%);
+        transition: transform .6s var(--ease);
+      }
+      .dock.show { transform: none; }
+      .dock .btn { flex: 1 1 0; min-width: 0; min-height: 46px; padding: 0 .8rem; font-size: 14.5px; }
+      .dock .d-shop { flex-grow: 1.4; }
+      .dock .l-short { display: none; }
+      @media (max-width: 760px) {
+        .dock { display: flex; }
+        footer.foot { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
+      }
+      @media (max-width: 359px) {
+        .dock .l-full { display: none; }
+        .dock .l-short { display: inline; }
+      }
       .foot .wrap { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 3rem; align-items: start; }
       .foot nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; justify-content: flex-end; }
       .foot nav a { text-decoration: none; color: var(--ink-2); border-radius: 3px; min-height: 32px; display: inline-flex; align-items: center; }
@@ -721,7 +767,7 @@
           <a href="/adsflow" data-cta="nav_adsflow">AdsFlow</a>
           <a href="#stimmen">Stimmen</a>
           <a href="#alex">Über mich</a>
-          <a class="btn btn--ghost" href="/live-workshop" data-cta="nav_workshop">Kostenloser Workshop</a>
+          <a class="btn btn--ghost" href="/replay" data-cta="nav_replay">Workshop ansehen</a>
         </nav>
       </div>
     </header>
@@ -735,9 +781,9 @@
               <span class="eyebrow rise d1">Claude-Systeme von Alexander Dück</span>
               <h1 id="h1" class="rise d2">vorflows macht aus Claude deinen <em class="s">Shopify&#8209;Entwickler</em> und dein <em class="m">Anzeigen&#8209;Team</em></h1>
             </div>
-            <div class="hero-intro rise d3">
-              <p class="me"><img src="/assets/images/home/alex-lifestyle-400.webp" width="52" height="52" alt="" /><span><b>Alexander Dück</b>Gründer von vorflows</span></p>
-              <p class="lead">Ich mache seit acht Jahren Online-Marketing. Was in meinen eigenen Shops und bei meinen Kunden funktioniert hat, steckt in zwei fertigen Ordnern für Claude. Claude macht die Arbeit, und live geht nur, was du freigibst.</p>
+            <div class="hero-intro">
+              <p class="me rise d3"><img src="/assets/images/home/alex-lifestyle-400.webp" width="52" height="52" alt="" /><span><b>Alexander Dück</b>Gründer von vorflows</span></p>
+              <p class="lead rise d3">Ich mache seit acht Jahren Online-Marketing. Was in meinen eigenen Shops und bei meinen Kunden funktioniert hat, steckt in zwei fertigen Ordnern für Claude. Claude macht die Arbeit, und live geht nur, was du freigibst.</p>
             </div>
           </div>
 
@@ -818,7 +864,7 @@
             </figure>
             <div class="v-side" data-reveal="2">
               <figure>
-                <blockquote>„Nach 3 Monaten kannst du es selbst. Zehnmal mehr wert als jede Agentur.“</blockquote>
+                <blockquote>„Zehnmal mehr wert als jede Agentur.“</blockquote>
                 <figcaption class="who"><img src="/assets/images/home/av-robin-96.webp" srcset="/assets/images/home/av-robin-96.webp 1x, /assets/images/home/av-robin-192.webp 2x" width="40" height="40" alt="" loading="lazy" /><span><b>Robin</b>404 und Atlas, Google Cloud Partner<span class="world world--alex"><i></i>über meine Beratung</span></span></figcaption>
               </figure>
               <figure>
@@ -883,8 +929,8 @@
             </figure>
           </div>
           <div class="alex-copy">
-            <h2 id="h-alex" data-reveal>Hinter vorflows stehe ich mit meinem <em>Namen</em></h2>
-            <p class="body" data-reveal="2">Ich bin Alexander Dück, die meisten sagen Alex. Seit acht Jahren mache ich Online-Marketing, habe eine eigene Agentur und zwei eigene Shopify-Shops mit zusammen über 20.000 Bestellungen.</p>
+            <h2 id="h-alex" data-reveal>Wer hinter vorflows <em>steckt</em></h2>
+            <p class="body" data-reveal="2">Ich bin Alexander Dück, die meisten sagen Alex. Seit acht Jahren mache ich Online-Marketing, habe eine eigene Agentur und zwei eigene Shopify-Shops mit über 20.000 Bestellungen.</p>
             <p class="body" data-reveal="2">Mit Claude arbeite ich jeden Tag, für meine Shops, für meine Kunden und für die Anzeigen von vorflows. Was dabei zuverlässig funktioniert, kommt in die Ordner.</p>
             <p class="credo" data-reveal="2">Deshalb verkaufe ich nur Systeme, die ich selbst <em>jeden Tag</em> benutze.</p>
             <div class="facts" data-reveal="3">
@@ -954,15 +1000,15 @@
         </div>
       </section>
 
-      <!-- ============ LIVE-WORKSHOP ============ -->
+      <!-- ============ WORKSHOP-AUFZEICHNUNG ============ -->
       <section class="sec" id="workshop" aria-labelledby="h-ws" style="padding-top: 0;">
         <div class="wrap">
           <div class="ws" data-reveal>
             <div class="ws-copy">
-              <span class="eyebrow">Kostenlos und live</span>
+              <span class="eyebrow">Kostenlose Aufzeichnung</span>
               <h2 id="h-ws" style="margin-top: .8rem;">Lieber erst mal <em>zuschauen</em>?</h2>
-              <p class="body">Im Live-Workshop baue ich mit Claude vor deinen Augen einen Shopify-Shop um. Du siehst, wie das System arbeitet, und kannst mir zwischendurch deine Fragen stellen.</p>
-              <a class="btn btn--ghost" href="/live-workshop" data-cta="ws_workshop">Zum Live-Workshop <span class="arr" aria-hidden="true">→</span></a>
+              <p class="body">In der Aufzeichnung meines letzten Workshops baue ich mit Claude vor deinen Augen einen Shopify-Shop um. Du siehst, wie das System arbeitet, und kannst direkt zu den Stellen springen, die dich interessieren.</p>
+              <a class="btn btn--ghost" href="/replay" data-cta="ws_replay">Aufzeichnung ansehen <span class="arr" aria-hidden="true">→</span></a>
             </div>
             <div class="ws-media">
               <img src="/assets/images/home/workshop-shop.webp" srcset="/assets/images/home/workshop-shop-372.webp 372w, /assets/images/home/workshop-shop.webp 744w" sizes="(max-width: 860px) 100vw, 520px" width="744" height="837" loading="lazy" alt="" />
@@ -983,7 +1029,7 @@
           </div>
           <div data-reveal="2">
             <details>
-              <summary>Wer steckt hinter vorflows?<span class="pm" aria-hidden="true"></span></summary>
+              <summary>Ist vorflows seriös, und wer steckt dahinter?<span class="pm" aria-hidden="true"></span></summary>
               <div class="ans"><p>Ich, Alexander Dück. vorflows ist ein Angebot der AMD Media GmbH aus Bielefeld, alle Angaben stehen im <a href="/impressum">Impressum</a>. Du erreichst mich direkt unter <a href="mailto:alex@adolution.de">alex@adolution.de</a> oder auf <a href="https://www.linkedin.com/in/alexander-d%C3%BCck-312383188/" target="_blank" rel="noopener">LinkedIn</a>.</p></div>
             </details>
             <details>
@@ -1023,7 +1069,7 @@
               <a class="btn btn--lg" href="/sales" data-cta="final_vorflows">vorflows für Shopify <span class="arr" aria-hidden="true">→</span></a>
               <a class="btn btn--lg" href="/adsflow" data-cta="final_adsflow">AdsFlow für Meta Ads <span class="arr" aria-hidden="true">→</span></a>
             </div>
-            <p class="sub">Oder erst mal kostenlos zuschauen: <a href="/live-workshop" data-cta="final_workshop">zum Live-Workshop</a></p>
+            <p class="sub">Oder erst mal kostenlos zuschauen: <a href="/replay" data-cta="final_replay">Aufzeichnung vom letzten Workshop</a></p>
           </div>
         </div>
       </section>
@@ -1035,7 +1081,7 @@
         <nav aria-label="Weitere Seiten">
           <a href="/sales">vorflows für Shopify</a>
           <a href="/adsflow">AdsFlow</a>
-          <a href="/live-workshop">Live-Workshop</a>
+          <a href="/replay">Workshop-Aufzeichnung</a>
           <a href="/blog">Blog</a>
           <a href="/faqs">FAQs</a>
           <a href="/impressum">Impressum</a>
@@ -1045,6 +1091,11 @@
         <p class="tm">Shopify ist eine Marke von Shopify Inc. Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. vorflows und AdsFlow sind eigenständige Angebote der AMD Media GmbH und stehen in keiner Verbindung zu diesen Unternehmen.</p>
       </div>
     </footer>
+
+    <div class="dock" id="dock" aria-hidden="true">
+      <a class="btn d-shop" href="/sales" data-cta="dock_vorflows" tabindex="-1" aria-label="vorflows für Shopify"><span class="l-full">vorflows für Shopify</span><span class="l-short" aria-hidden="true">Für Shopify</span></a>
+      <a class="btn d-meta" href="/adsflow" data-cta="dock_adsflow" tabindex="-1">AdsFlow</a>
+    </div>
 
     <script>
       /* ================================================================
@@ -1145,6 +1196,30 @@
           if (next) { next.setAttribute('tabindex', '-1'); next.focus({ preventScroll: true }); }
           hubEvent('voices_more');
         });
+
+        // ── Handy-Leiste ──────────────────────────────────────────────
+        // Sichtbar, wenn die Türen oben rausgescrollt sind; aus, solange Vergleich oder Schluss
+        // (die eigene Buttons haben) im Bild sind.
+        var dock = document.getElementById('dock');
+        var dockLinks = dock.querySelectorAll('a');
+        var pastDoors = false, inOffer = {};
+        function setDock() {
+          var off = Object.keys(inOffer).some(function (k) { return inOffer[k]; });
+          var show = pastDoors && !off;
+          dock.classList.toggle('show', show);
+          dock.setAttribute('aria-hidden', show ? 'false' : 'true');
+          Array.prototype.forEach.call(dockLinks, function (a) { a.tabIndex = show ? 0 : -1; });
+        }
+        new IntersectionObserver(function (es) {
+          var e = es[0];
+          pastDoors = !e.isIntersecting && e.boundingClientRect.top < 0;
+          setDock();
+        }).observe(document.querySelector('.doors'));
+        var offerIO = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { inOffer[e.target.id || e.target.className] = e.isIntersecting; });
+          setDock();
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.sys, .final, footer.foot'), function (el) { offerIO.observe(el); });
 
         // ── Kopfzeile: Linie beim Scrollen ────────────────────────────
         var nav = document.querySelector('.nav');

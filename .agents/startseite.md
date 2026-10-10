@@ -5,14 +5,18 @@ Stand 2026-10-10. Datei `index.html` → `https://vorflows.com/`. Bis 2026-10-09
 
 **Zweck:** Leute, die „vorflows“ googeln, nachdem sie eine Anzeige oder einen LinkedIn-Post gesehen haben. Sie wollen
 prüfen, ob das seriös ist, wer dahinter steckt und was genau verkauft wird. Danach sollen sie zum passenden System:
-`/sales` (vorflows für Shopify) oder `/adsflow` (AdsFlow für Meta Ads). Der kostenlose Live-Workshop ist als dritter,
-leiserer Weg verlinkt (Kopfzeile, eigener Kasten, Schluss), weil Workshop-Interessierte früher direkt dort landeten.
+`/sales` (vorflows für Shopify) oder `/adsflow` (AdsFlow für Meta Ads). Als dritter, leiserer Weg ist die
+**Aufzeichnung des letzten Workshops** (`/replay`) verlinkt (Kopfzeile „Workshop ansehen“, eigener Kasten, Schluss, Footer).
+Seit 2026-10-10 gibt es keinen laufenden Live-Workshop, deshalb nicht `/live-workshop` verlinken; wenn wieder einer
+läuft, die vier Links zurückstellen.
 
 ## Aufbau
 
 1. **Hero:** H1 „vorflows macht aus Claude deinen Shopify-Entwickler und dein Anzeigen-Team“, rechts Alex mit Name +
    Kurztext, darunter zwei gleich gewichtete **Türen** (je Video-Standbild, Welt-Markierung, Text, Button).
    Darunter Gesichter-Reihe + „Kunden wie 404, Atlas und Paddy AI …“ → `#stimmen`.
+   **Handy (≤ 720 px):** Reihenfolge per CSS `order` umgestellt: Headline → Name/Foto → Türen → Kurztext → Gesichter,
+   damit die erste Tür samt Knopf ab 360 px im ersten Bild steht und die zweite angeschnitten sichtbar ist.
 2. **Namen-Laufband:** Kunden und Käufer als Text (keine Logos vorhanden).
 3. **Stimmen `#stimmen`:** 12 echte Zitate. Jede trägt ihre Herkunft:
    - grün „über vorflows für Shopify“ = Käufer, Wortlaut wie auf `/sales` (Bodeske, Bonk, Kisker, Leo/PURE U, Adrian, Wonning)
@@ -21,14 +25,17 @@ leiserer Weg verlinkt (Kopfzeile, eigener Kasten, Schluss), weil Workshop-Intere
      Gedankenstriche in den Zitaten durch Komma/Doppelpunkt ersetzt, sonst unverändert.
    - **Keine AdsFlow-Stimmen**, solange es keine echten gibt (siehe `.agents/adsflow-page.md`). Keine erfundenen Zitate.
    - Handy: erst 4 Kacheln, Rest hinter „Alle Stimmen zeigen“.
-4. **Alex `#alex`:** Workshop-Foto (Beweis) + Lifestyle-Foto (sympathisch), Ich-Text, Fakten (8 Jahre, 20.000+,
+4. **Alex `#alex`** („Wer hinter vorflows steckt“; „Dahinter stehe ich mit meinem Namen“ klang Alex zu sehr nach HiPP): Workshop-Foto (Beweis) + Lifestyle-Foto (sympathisch), Ich-Text, Fakten (8 Jahre, 20.000+,
    1.000+, 1.200+), Referenzen, LinkedIn/Instagram/Mail, AMD Media GmbH + Impressum-Link.
 5. **Vergleich `#systeme`:** zwei Karten mit gleichen Zeilen (Subgrid): Für wen, Was Claude übernimmt, Was du
    entscheidest, Im Paket, Was du brauchst, Preis. Darunter die gemeinsame Regel (live geht nur, was du freigibst).
-6. **Live-Workshop `#workshop`:** Kasten mit Terracotta-Laden (rechte Hälfte von `brand_assets/webinar/storefront.webp`).
+6. **Aufzeichnung `#workshop`:** Kasten „Lieber erst mal zuschauen?“ → `/replay`, mit Terracotta-Laden (rechte Hälfte von `brand_assets/webinar/storefront.webp`).
 7. **FAQ `#fragen`:** Marken-Check-Fragen (wer, Unterschied, beide nötig, Abo, Programmieren, Sicherheit, Zahlung).
    Links daneben Alex-Porträt + Mail.
 8. **Schluss:** „Womit soll Claude für dich anfangen?“ mit beiden Buttons.
+9. **Handy-Leiste `.dock` (≤ 760 px):** deckend, zwei Buttons „vorflows für Shopify“ + „AdsFlow“ (unter 360 px „Für Shopify“).
+   Erscheint, sobald die Türen oben raus sind, und verschwindet, solange Vergleich, Schluss oder Footer im Bild sind.
+   Das ist die einzige feste Leiste am Handy (Kopfzeile scrollt dort mit).
 
 ## Farbregel
 
@@ -63,7 +70,8 @@ OG-Bild `brand_assets/og-home.jpg` per `node render-og-home.mjs` (lokaler Server
 Clarity `wnn5d5ehwn` + Meta Pixel `2002118703756086` (nur PageView), lokal nichts. Attribution (`vf_lw_attr`, `_fbc`,
 `_fbp`, `vf_ext_id`) wie LP/Replay/AdsFlow, damit UTM und fbclid bis zur Kaufseite mitlaufen.
 Clarity-Tag `vf_page=home`, Events `hub_view`, `hub_cta_<data-cta>` (z. B. `hub_cta_door_vorflows`,
-`hub_cta_door_adsflow`, `hub_cta_sys_*`, `hub_cta_final_*`, `hub_cta_nav_*`, `hub_cta_ws_workshop`), `hub_voices_more`.
+`hub_cta_door_adsflow`, `hub_cta_sys_*`, `hub_cta_final_*`, `hub_cta_nav_*`, `hub_cta_dock_*`, `hub_cta_ws_replay`,
+`hub_cta_nav_replay`, `hub_cta_final_replay`), `hub_voices_more`.
 Im Clarity-MCP über den Titel „vorflows · Claude-Systeme für Shopify und Meta Ads“ filtern.
 
 ## Routing
