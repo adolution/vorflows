@@ -42,8 +42,17 @@ Shop-Umsatz-Screenshot (`beleg-umsatz.webp`) seit 2026-10-10 nicht mehr auf der 
 
 | | Headline | Unterzeile | Herkunft |
 |---|---|---|---|
-| **A** | „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ | „43 Anzeigen in meinem Werbekonto, keine einzige habe ich selbst eingestellt. Im Video zeige ich dir, wie Claude das macht.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
-| **B** | „Ein Satz an Claude. 40 fertige Meta Ads in deinem Werbekonto.“ | „Texte, Einstellungen, Formate: alles erledigt. Im Video siehst du live, wie es in meinem Konto passiert.“ | Hormozi (Value Equation) |
+| **A** | „Du würdest längst mehr Anzeigen testen, wäre da nicht der Ads Manager“ | „Im Video siehst du in meinem eigenen Werbekonto, wie Claude die Anzeigen schreibt und einstellt, während ich nebenher erzähle.“ | Schwartz (Problem-Mechanismus) + Ogilvy (Beweis) |
+| **B** | „Ein Satz an Claude reicht für 40 fertige Meta Ads in deinem Werbekonto“ | „Claude schreibt die Texte, setzt die Einstellungen und nimmt für Feed und Story das passende Format. Im Video kannst du in meinem Konto live zuschauen.“ | Hormozi (Value Equation) |
+
+Copy-Pass 2026-10-10 (Alex: „klingt nach KI“): Wortlaut beider Varianten neu, Winkel gleich. Bis 10.10. lief
+A = „Du testest zu wenig Anzeigen. Schuld ist der Ads Manager.“ / B = „Ein Satz an Claude. 40 fertige Meta Ads in
+deinem Werbekonto.“ → Auswertung vor/nach dem 10.10. getrennt lesen. Die `<title>`-Texte bleiben absichtlich alt
+(Clarity-Kennung).
+
+**Copy-Regeln der Seite (Alex 2026-10-10):** Überschriften ohne Schlusspunkt (Fragen behalten „?“). Keine Paare aus
+kurzen Hauptsätzen („X. Y.“), keine abgeschwächten Negationen als Pointe („keine einzige …“, „null von Hand“,
+„Claude kann das gar nicht“), lieber ein ganzer, natürlicher Satz. „43 Anzeigen“ höchstens im Beleg-Block.
 
 Nur Headline + Unterzeile unterscheiden sich, Rest identisch. **Clientseitig, eine Datei** (keine Middleware, keine
 B-Datei): Inline-Script im `<head>` lost vor dem ersten Paint aus, Cookie **`vf_ab_af`** (90 Tage), `?ab=A|B`
@@ -134,7 +143,8 @@ hängt eine Zeile an und schickt eine Mail an alex@adolution.de (Reply-To = Anfr
 Deployment `AKfycbxwoFmr…P96eT1h` (@1). Einmalig nötig:
 
 1. Script im Editor öffnen (`npx @google/clasp open-script` im Ordner), Funktion `authorizeOnce` ausführen,
-   Zugriff erlauben → Testzeile + Test-Mail kommen an. (Einziger offener Schritt, Stand 2026-10-04.)
+   Zugriff erlauben → Testzeile + Test-Mail kommen an. **Erledigt 2026-10-10:** Webhook antwortet (falsches Secret → `forbidden`),
+   End-to-End-Test über `vorflows.com/api/adsflow-agency` → `stored: true`, Zeile `e2e-test@vorflows.com` im Sheet (darf gelöscht werden).
 2. Erledigt 2026-10-04: Secret in `secret.js` (gepusht, Deployment @3), Vercel-Env `ADSFLOW_AGENCY_WEBHOOK`
    + `ADSFLOW_AGENCY_SECRET` (Production) gesetzt.
 
