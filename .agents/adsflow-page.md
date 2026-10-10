@@ -134,3 +134,38 @@ Deployment `AKfycbxwoFmr…P96eT1h` (@1). Einmalig nötig:
 
 Code-Änderung: `npx @google/clasp push -f && npx @google/clasp create-deployment -i <deploymentId>` (URL bleibt gleich).
 Hinweis: `.agents/` ist auf vorflows.com öffentlich abrufbar, deshalb hier keine vollständige Webhook-URL und kein Secret.
+
+## Danke-Seite `/danke-adsflow` (seit 2026-10-10)
+
+Datei `danke-adsflow.html` → `https://vorflows.com/danke-adsflow`, `noindex`, nicht in Sitemap/llms.txt.
+**In Digistore (Produkt 690701) als Danke-Seite eintragen** (Stand 2026-10-10 noch offen). Look = LP `/adsflow`
+(gleiche Tokens, Terracotta = Claude/Aktion, Meta-Blau = Metas Welt).
+
+Aufbau: Hero mit Pflicht-Download „Bitte zuerst diese Datei herunterladen und lesen.“
+(`assets/help/AdsFlow-Zuerst-lesen.pdf` = Kopie von `product/adsflow/00-ZUERST-LESEN.pdf`, **bei jedem Release neu kopieren**)
+→ drei Schritte (Wortlaut aus `~/Downloads/AdsFlow/docs/kunden-kommunikation.md`, Text 3, ohne Gedankenstriche)
+→ 8 Loom-Videos in drei Teilen → Spickzettel „Sätze“ (aus Produkt-README) → Installation von null → FAQ → Hilfe.
+
+Videos (Reihenfolge von Alex, Titel aus den Transkripten neu formuliert):
+
+| # | Titel | Loom-ID | Dauer |
+|---|---|---|---|
+| 01 | Setup und Sicherheit | fcacd86099f74f62907536fe32fc2889 | 8:15 |
+| 02 | Claude richtig nutzen | 1b4b86929446447bbfe40c1d1d7bf5bd | 5:08 |
+| 03 | Meta-Werbekonto verbinden | 5ba2934fa1954f7f95002103fef04ca1 | 3:42 |
+| 04 | Das Setup starten | 87ec2f62ac064d0e8ca2784c75652669 | 2:29 |
+| 05 | KI-Bilder mit Higgsfield (optional) | b85ad39bbd9a4f98b50bc752aa7c63e4 | 5:29 |
+| 06 | Die ersten Anzeigen | 10935fb0ca7942b5995365274a64c27a | 8:34 |
+| 07 | Jeden Tag neue Creatives | 5148b04a739a452d9402804f0547d23d | 5:25 |
+| 08 | Connector-Rechte (optional) | 31a56db6f72646a6806382b430c7804c | 2:37 |
+
+- Loom lädt erst per Klick (Facade, wegen Loom-Rate-Limit wie auf `/danke`). Rahmen 1662:1080 = Videoformat.
+- Vorschaubilder + Screenshots in `assets/images/adsflow/danke/`: `poster-1..8.webp` (Frames aus den Videos,
+  weichgezeichnet + abgedunkelt, damit Chat-Titel/Konten nicht lesbar sind), Ausschnitte `connector-dialog`,
+  `erweiterung`, `modus-menue`, `medienbibliothek` (Kontoname weichgezeichnet), `spalten-id`, `tool-rechte`,
+  `higgsfield-mcp`. Neues Video = neue Datei (Assets sind 1 Jahr immutable gecacht).
+- „Angesehen“-Häkchen + Fortschritt pro Browser in `localStorage` (`vf_af_danke_seen`), Play-Klick hakt automatisch ab.
+- FAQ-Suche clientseitig (Umlaute normalisiert), Kategorien zählen sich selbst.
+- Modell-Empfehlung für AdsFlow (laut Video 2): Opus Standard, Sonnet bei Limit, **Fable + Haiku nie**; Effort Medium,
+  bei flachen Ergebnissen High. Weicht bewusst von `/faqs` (Shopify) ab.
+- Kein Tracking eingebaut (kein Purchase-Pixel, kein Clarity), Stand 2026-10-10.

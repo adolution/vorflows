@@ -1,0 +1,2450 @@
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>AdsFlow: Kauf bestätigt, Videos und Hilfe · vorflows</title>
+    <meta name="description" content="Danke für deinen Kauf. Hier findest du alle Videoanleitungen zu AdsFlow, die Installation von Claude Code und Antworten auf die häufigsten Fragen." />
+    <!-- Danke-Seite für Käufer:innen: nie indexieren -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0E0E0D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://www.loom.com" />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    <style>
+      /* ================================================================
+         vorflows · AdsFlow Danke-Seite (/danke-adsflow)
+         Gleiche Sprache wie die Landingpage /adsflow: dunkler Grund mit
+         Studiolicht, Fraunces + Inter.
+         Farbregel wie auf der LP:
+           Terracotta #C8633E = Claude / AdsFlow / deine Aktion.
+           Meta-Blau  #0081FB = alles in Metas Welt (Werbekonto, Schalter,
+           Connector). Blau nie als CTA oder Glow.
+         Doku: .agents/adsflow-page.md (Abschnitt Danke-Seite)
+         ================================================================ */
+      :root {
+        --bg: #0E0E0D;
+        --bg-deep: #0A0A09;
+        --raise: #151514;
+        --raise-2: #1C1C1A;
+        --line: #252523;
+        --line-2: #33322E;
+        --ink: #EDECE7;
+        --ink-2: #B6B4AC;
+        --ink-3: #8C8A82;
+        --cream: #EFEDE6;
+        --cream-ink: #1A1A1A;
+        --orange: #C8633E;
+        --orange-hi: #E27B54;
+        --orange-press: #B05530;
+        --on-orange: #140A05;
+        --orange-soft: rgba(200, 99, 62, .1);
+        --meta: #0081FB;
+        --meta-deep: #0064E0;
+        --meta-ink: #4DA6FF;
+        --ok: #5FAE85;
+
+        --ease: cubic-bezier(.16, 1, .3, 1);
+        --ease-q: cubic-bezier(.25, 1, .5, 1);
+
+        --gutter: clamp(1rem, 4.5vw, 2.5rem);
+        --section: clamp(4.5rem, 10vw, 8.5rem);
+        --r-surface: 18px;
+        --r-field: 12px;
+
+        --shadow-float:
+          inset 0 1px 0 rgba(237, 236, 231, .05),
+          0 1px 2px rgba(0, 0, 0, .4),
+          0 24px 60px -18px rgba(0, 0, 0, .7),
+          0 40px 120px -40px rgba(200, 99, 62, .14);
+        --shadow-raise:
+          inset 0 1px 0 rgba(237, 236, 231, .04),
+          0 18px 40px -22px rgba(0, 0, 0, .8);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      /* Korn über allem, fix, klickdurchlässig */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        pointer-events: none;
+        opacity: .5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+      img { display: block; max-width: 100%; height: auto; }
+      a { color: inherit; }
+      button { font: inherit; color: inherit; }
+      ::selection { background: rgba(200, 99, 62, .35); color: var(--ink); }
+
+      .wrap { position: relative; width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
+      .sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+      section { position: relative; }
+      .sec { padding-block: var(--section); }
+      .sec + .sec { border-top: 1px solid var(--line); }
+
+      /* ---------- Typo ---------- */
+      h1, h2, h3, .display {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -.03em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      h1, h2 { font-variation-settings: "opsz" 60; }
+      h2 { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.6rem); line-height: 1.05; }
+      h3 { font-size: clamp(1.4rem, 1.1rem + 1.1vw, 1.9rem); line-height: 1.14; letter-spacing: -.02em; }
+      h1 em, h2 em, h3 em { font-style: italic; color: var(--orange-hi); }
+      p { margin: 0; }
+      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .25vw, 1.2rem); line-height: 1.65; max-width: 58ch; }
+      .body { color: var(--ink-2); max-width: 62ch; }
+      .body + .body { margin-top: 1em; }
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .say { font-family: 'Fraunces', Georgia, serif; font-style: italic; color: var(--ink); }
+      code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .86em; }
+      code.in {
+        background: rgba(237, 236, 231, .06);
+        border: 1px solid var(--line-2);
+        padding: .05em .4em;
+        border-radius: 6px;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      b, strong { font-weight: 600; color: var(--ink); }
+      .meta-c { color: var(--meta-ink); }
+      .or-c { color: var(--orange-hi); }
+
+      /* ---------- Buttons + Links ---------- */
+      .btn {
+        --lift: 0px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        min-height: 52px;
+        padding: .7rem 1.6rem;
+        border-radius: 999px;
+        border: 0;
+        background: var(--orange);
+        color: var(--on-orange);
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.3;
+        letter-spacing: -.005em;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 220, 200, .35),
+          0 1px 2px rgba(0, 0, 0, .35),
+          0 14px 34px -12px rgba(200, 99, 62, .55);
+        transform: translateY(var(--lift));
+        transition: transform .5s var(--ease), background-color .25s var(--ease-q), box-shadow .5s var(--ease);
+      }
+      .btn svg { flex: none; }
+      .btn:hover { --lift: -2px; background: #D06A44; }
+      .btn:active { --lift: 1px; background: var(--orange-press); transition-duration: .12s; }
+      .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .btn--ghost {
+        background: transparent;
+        color: var(--ink);
+        box-shadow: inset 0 0 0 1px var(--line-2);
+      }
+      .btn--ghost:hover { background: rgba(237, 236, 231, .05); }
+      .btn--ghost:active { background: rgba(237, 236, 231, .08); }
+      .btn--sm { min-height: 40px; padding: .4rem 1.05rem; font-size: 14.5px; }
+
+      .link {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        min-height: 44px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 6px;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-size: 100% 1px;
+        background-position: 0 calc(100% - 10px);
+        background-repeat: no-repeat;
+        transition: color .2s var(--ease-q);
+      }
+      .link:hover { color: var(--orange-hi); }
+      .link:active { opacity: .7; }
+      .link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .tl { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; border-radius: 3px; transition: color .2s var(--ease-q), text-decoration-color .2s var(--ease-q); }
+      .tl:hover { color: var(--orange-hi); text-decoration-color: currentColor; }
+      .tl:active { opacity: .7; }
+      .tl:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+      /* ---------- Kopfzeile ---------- */
+      /* Deckend, ohne Blur (Safari 26 färbt Statusleiste/Toolbar nur mit deckender Leiste). Handy: scrollt mit. */
+      .nav { position: sticky; top: 0; z-index: 50; background-color: var(--bg); border-bottom: 1px solid var(--line); }
+      .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; height: 68px; }
+      .brand { display: inline-flex; align-items: baseline; gap: .7rem; text-decoration: none; border-radius: 6px; }
+      .brand:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .wordmark { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
+      .wordmark .flows { font-style: italic; color: var(--orange); transition: color .2s var(--ease-q); }
+      .brand:hover .flows { color: var(--orange-hi); }
+      .brand .prod { font-size: 13px; font-weight: 500; color: var(--ink-3); padding-left: .7rem; border-left: 1px solid var(--line-2); line-height: 1; }
+      .nav-links { display: flex; align-items: center; gap: 1.7rem; }
+      .nav-links a:not(.btn) {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        text-decoration: none;
+        padding: .4rem 0;
+        border-radius: 4px;
+        transition: color .2s var(--ease-q);
+      }
+      .nav-links a:not(.btn):hover { color: var(--ink); }
+      .nav-links a:not(.btn):active { opacity: .7; }
+      .nav-links a:not(.btn):focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      .nav-links a.is-here { color: var(--ink); }
+
+      /* ---------- Hero ---------- */
+      .hero { position: relative; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); isolation: isolate; overflow-x: clip; }
+      .hero::before {
+        /* Studiolicht: warm links (Claude), kühl rechts (Meta) */
+        content: "";
+        position: absolute;
+        inset: -68px 0 -4rem 0;
+        z-index: -1;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(#000 70%, transparent);
+        mask-image: linear-gradient(#000 70%, transparent);
+        background:
+          radial-gradient(52rem 34rem at 40% -10%, rgba(237, 236, 231, .07), transparent 62%),
+          radial-gradient(40rem 30rem at 4% 70%, rgba(200, 99, 62, .12), transparent 66%),
+          radial-gradient(36rem 28rem at 100% 40%, rgba(0, 100, 224, .08), transparent 66%);
+      }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+      .stamp-row { display: flex; align-items: center; gap: .9rem; }
+      .stamp {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: var(--orange);
+        display: grid;
+        place-items: center;
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 12px 30px -10px rgba(200, 99, 62, .6);
+      }
+      .stamp svg { width: 22px; height: 22px; }
+      .stamp path { stroke-dasharray: 30; stroke-dashoffset: 0; }
+      .js .stamp path { stroke-dashoffset: 30; animation: draw .55s .25s var(--ease) forwards; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      .hero h1 {
+        margin-top: 1.1rem;
+        font-size: clamp(2.6rem, 1.2rem + 4.6vw, 5rem);
+        line-height: 1.02;
+        letter-spacing: -.035em;
+        max-width: 14ch;
+      }
+      .hero .lead { margin-top: 1.4rem; }
+      .bookmark {
+        margin-top: 1.8rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .7rem 1rem;
+        padding: .9rem 1rem .9rem 1.1rem;
+        max-width: 36rem;
+        border: 1px dashed var(--line-2);
+        border-radius: var(--r-field);
+        color: var(--ink-2);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .bookmark p { flex: 1 1 16rem; }
+      .bookmark svg { color: var(--orange-hi); }
+
+      /* Das PDF als Objekt: cremefarbenes Blatt mit Stapel dahinter */
+      .doc { position: relative; padding: 0 0 0 0; }
+      .doc-sheets { position: relative; aspect-ratio: 4 / 4.6; max-width: 380px; margin-inline: auto; }
+      .doc-sheet {
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        background: var(--cream);
+        box-shadow: 0 30px 70px -26px rgba(0, 0, 0, .85), 0 2px 4px rgba(0, 0, 0, .3);
+      }
+      .doc-sheet.s3 { transform: rotate(-7deg) translate(-14px, 10px); background: #CFCBC0; }
+      .doc-sheet.s2 { transform: rotate(-3deg) translate(-6px, 4px); background: #DEDAD0; }
+      .doc-sheet.s1 { padding: 1.6rem 1.5rem; color: var(--cream-ink); display: flex; flex-direction: column; }
+      .doc-sheet .kicker { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #7A766C; font-weight: 600; }
+      .doc-sheet .t { margin-top: .5rem; font-family: 'Fraunces', Georgia, serif; font-size: 1.75rem; line-height: 1.05; letter-spacing: -.02em; }
+      .doc-sheet .t em { color: var(--orange); }
+      .doc-sheet ol { margin: 1.1rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+      .doc-sheet li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: .5rem; font-size: 13px; line-height: 1.4; color: #3C3A35; }
+      .doc-sheet li span { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--orange); padding-top: 1px; }
+      .doc-sheet .lines { margin-top: auto; display: grid; gap: 7px; }
+      .doc-sheet .lines i { display: block; height: 6px; border-radius: 3px; background: #D9D5CB; }
+      .doc-sheet .lines i:nth-child(2) { width: 82%; }
+      .doc-sheet .lines i:nth-child(3) { width: 64%; }
+      .doc-sheet .tag { position: absolute; top: 1.2rem; right: 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: #fff; background: var(--orange); padding: .2rem .5rem; border-radius: 6px; }
+      .doc-cta { position: relative; z-index: 2; margin-top: -1.6rem; display: flex; flex-direction: column; align-items: center; gap: .6rem; text-align: center; }
+      .doc-cta .btn { max-width: 23rem; }
+      .doc-cta small { color: var(--ink-3); font-size: 13.5px; }
+
+      /* ---------- Section-Kopf ---------- */
+      .sec-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
+      .sec-head .lead { justify-self: start; }
+      .sec-head h2 { margin-top: .8rem; }
+
+      /* ---------- Start: drei Schritte ---------- */
+      .steps3 { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+      .step {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, var(--raise), var(--bg));
+        box-shadow: var(--shadow-raise);
+        overflow: hidden;
+      }
+      .step-viz {
+        position: relative;
+        height: 190px;
+        display: grid;
+        place-items: center;
+        border-bottom: 1px solid var(--line);
+        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .05), transparent 70%), var(--bg-deep);
+        padding: 1rem;
+      }
+      .step-txt { padding: 1.3rem 1.35rem 1.5rem; }
+      .num {
+        display: inline-grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--line-2);
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 15px;
+        color: var(--ink);
+      }
+      .step h3 { margin-top: .8rem; font-size: 1.32rem; }
+      .step p { margin-top: .55rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+      .step .hint { margin-top: .8rem; font-size: 14px; color: var(--ink-3); }
+
+      /* Viz 1: ZIP → Ordner */
+      .v-unzip { display: flex; align-items: center; gap: 1rem; }
+      .file {
+        display: grid;
+        justify-items: center;
+        gap: .45rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--ink-2);
+        text-align: center;
+      }
+      .file svg { width: 56px; height: 56px; }
+      .v-unzip .arrow { color: var(--ink-3); }
+
+      /* Viz 2: Ordnerbaum */
+      .tree { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1; display: grid; gap: .5rem; width: 100%; max-width: 270px; }
+      .tree .row { display: flex; align-items: center; gap: .5rem; padding: .45rem .6rem; border-radius: 8px; white-space: nowrap; }
+      .tree .row svg { flex: none; width: 15px; height: 15px; }
+      .tree .outer { color: var(--ink-3); }
+      .tree .outer .x { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-3); }
+      .tree .inner { margin-left: 1.3rem; color: var(--ink); background: var(--orange-soft); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .5); }
+      .tree .inner svg { color: var(--orange-hi); }
+      .tree .inner .x { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--orange-hi); }
+      .tree .kid { margin-left: 2.6rem; color: var(--ink-3); padding-block: .1rem; }
+
+      /* Viz 3: Eingabefeld */
+      .v-input {
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid rgba(200, 99, 62, .55);
+        border-radius: 14px;
+        background: var(--raise);
+        padding: .85rem .9rem .7rem;
+        box-shadow: 0 16px 40px -20px rgba(200, 99, 62, .45);
+      }
+      .v-input .typed { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.2rem; color: var(--ink); }
+      .v-input .typed::after { content: ""; display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.15em; background: var(--orange-hi); animation: caret 1.1s steps(1) infinite; }
+      @keyframes caret { 50% { opacity: 0; } }
+      .v-input .bar { margin-top: .75rem; display: flex; align-items: center; justify-content: space-between; color: var(--ink-3); font-size: 11px; }
+      .v-input .send { width: 24px; height: 24px; border-radius: 7px; background: var(--orange); display: grid; place-items: center; color: var(--on-orange); }
+
+      /* ---------- Kopierfelder ---------- */
+      .copy {
+        position: relative;
+        margin-top: .9rem;
+        border: 1px solid var(--line-2);
+        border-radius: var(--r-field);
+        background: var(--bg-deep);
+        padding: .8rem 1rem .85rem;
+      }
+      .copy .lbl { display: block; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; padding-right: 6.5rem; }
+      .copy .txt { color: var(--ink); font-size: 15px; line-height: 1.6; }
+      .copy .txt p + p { margin-top: .6em; }
+      .copy .txt.say { font-size: 1.25rem; line-height: 1.3; }
+      .copy .txt.mono { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; word-break: break-all; }
+      .copy.is-meta { border-color: rgba(0, 129, 251, .35); }
+      .copy.is-meta .lbl { color: var(--meta-ink); }
+      .cbtn {
+        position: absolute;
+        top: .55rem;
+        right: .55rem;
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        min-height: 32px;
+        padding: 0 .7rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: var(--raise);
+        color: var(--ink-2);
+        font-size: 12.5px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), transform .4s var(--ease);
+      }
+      .cbtn:hover { color: var(--ink); border-color: var(--ink-3); }
+      .cbtn:active { transform: scale(.96); }
+      .cbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .cbtn.is-done { color: var(--ok); border-color: rgba(95, 174, 133, .5); }
+      .cbtn svg { width: 14px; height: 14px; }
+
+      /* ---------- Videos ---------- */
+      .progress { margin-top: 1.6rem; display: flex; align-items: center; gap: 1rem; color: var(--ink-3); font-size: 14px; }
+      .progress .track { flex: 0 1 220px; height: 4px; border-radius: 4px; background: var(--line-2); overflow: hidden; }
+      .progress .fill { display: block; height: 100%; width: 100%; background: var(--orange); transform-origin: left center; transform: scaleX(0); transition: transform .8s var(--ease); }
+      .progress b { color: var(--ink); font-weight: 600; }
+      .progress > span:last-child { white-space: nowrap; }
+
+      .phase { margin-top: clamp(3.5rem, 7vw, 5.5rem); display: flex; align-items: center; gap: 1rem; }
+      .phase .eyebrow { color: var(--orange-hi); white-space: nowrap; }
+      .phase::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+      .phase .sub { color: var(--ink-3); font-size: 14px; white-space: nowrap; }
+
+      .lesson { margin-top: clamp(2rem, 4vw, 3rem); scroll-margin-top: 90px; }
+      .lesson + .lesson { padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+      .lesson-head { display: flex; align-items: baseline; gap: 1rem 1.4rem; flex-wrap: wrap; }
+      .lesson-head .big {
+        font-family: 'Fraunces', Georgia, serif;
+        font-variation-settings: "opsz" 60;
+        font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem);
+        line-height: .9;
+        letter-spacing: -.04em;
+        color: var(--ink-3);
+        transition: color .4s var(--ease-q);
+      }
+      .lesson.is-seen .lesson-head .big { color: var(--orange); }
+      .lesson-head h3 { flex: 1 1 18rem; }
+      .lesson-head .facts { display: flex; align-items: center; gap: .6rem; font-size: 13.5px; color: var(--ink-3); }
+      .pill { display: inline-flex; align-items: center; min-height: 24px; padding: 0 .6rem; border-radius: 999px; border: 1px solid var(--line-2); font-size: 12px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+      .pill.opt { color: var(--ink-3); border-style: dashed; }
+      .pill.first { color: var(--orange-hi); border-color: rgba(200, 99, 62, .45); }
+      .lesson-grid { margin-top: 1.4rem; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 3.5vw, 3rem); align-items: start; }
+      .lesson-video { position: sticky; top: 92px; }
+      .lesson-notes > p.body { font-size: 16px; }
+      .lesson-notes > * + * { margin-top: 1.25rem; }
+
+      .frame {
+        position: relative;
+        aspect-ratio: 1662 / 1080;
+        border-radius: var(--r-surface);
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        background: var(--bg-deep);
+        box-shadow: var(--shadow-float);
+        isolation: isolate;
+      }
+      .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+      .frame-play {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        border: 0;
+        padding: 1.5rem;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 1rem;
+        color: var(--ink);
+        isolation: isolate;
+        overflow: hidden;
+        background:
+          radial-gradient(26rem 18rem at 50% 30%, rgba(237, 236, 231, .07), transparent 66%),
+          radial-gradient(22rem 16rem at 8% 100%, rgba(200, 99, 62, .16), transparent 66%),
+          radial-gradient(22rem 16rem at 100% 100%, rgba(0, 100, 224, .09), transparent 66%),
+          var(--bg-deep);
+      }
+      .frame-play .poster { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.2s var(--ease); }
+      .frame-play::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 50% 50%, rgba(10, 10, 9, .55), rgba(10, 10, 9, .2) 70%), linear-gradient(180deg, rgba(10, 10, 9, .35), rgba(10, 10, 9, .6)); }
+      .frame-play:hover .poster { transform: scale(1.05); }
+      .frame-play .ring {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: var(--orange);
+        color: var(--on-orange);
+        display: grid;
+        place-items: center;
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 18px 44px -12px rgba(200, 99, 62, .7);
+        transition: transform .5s var(--ease), background-color .25s var(--ease-q);
+      }
+      .frame-play .ring svg { width: 26px; height: 26px; margin-left: 4px; }
+      .frame-play .cap { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.1rem, 1rem + .6vw, 1.45rem); letter-spacing: -.02em; text-align: center; max-width: 22ch; line-height: 1.2; }
+      .frame-play .dur { font-size: 13px; color: var(--ink-2); }
+      .frame-play:hover .ring { transform: scale(1.06); background: #D06A44; }
+      .frame-play:active .ring { transform: scale(.97); background: var(--orange-press); }
+      .frame-play:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: var(--r-surface); }
+      .frame-play .bignum { position: absolute; left: 1.2rem; top: .9rem; font-family: 'Fraunces', Georgia, serif; font-size: 13px; color: var(--ink-2); letter-spacing: .02em; }
+      .frame-play .loom { position: absolute; right: 1.2rem; top: .9rem; font-size: 12px; color: var(--ink-2); }
+      .under { margin-top: .8rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; font-size: 14px; color: var(--ink-3); }
+      .under a { color: var(--ink-2); }
+      .seen {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        min-height: 36px;
+        padding: 0 .9rem 0 .7rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: transparent;
+        color: var(--ink-2);
+        font-size: 13.5px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color .2s var(--ease-q), border-color .2s var(--ease-q), background-color .2s var(--ease-q), transform .4s var(--ease);
+      }
+      .seen .box { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink-3); display: grid; place-items: center; transition: background-color .2s var(--ease-q), border-color .2s var(--ease-q); }
+      .seen .box svg { width: 10px; height: 10px; opacity: 0; transform: scale(.6); transition: opacity .2s var(--ease-q), transform .4s var(--ease); }
+      .seen:hover { color: var(--ink); border-color: var(--ink-3); }
+      .seen:active { transform: scale(.97); }
+      .seen:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .seen[aria-pressed="true"] { color: var(--ink); border-color: rgba(200, 99, 62, .5); background: var(--orange-soft); }
+      .seen[aria-pressed="true"] .box { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+      .seen[aria-pressed="true"] .box svg { opacity: 1; transform: none; }
+
+      /* Liste mit Nummern (Anleitungen) */
+      .ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: .85rem; }
+      .ol > li { counter-increment: s; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: .75rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+      .ol > li::before {
+        content: counter(s);
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 1px solid var(--line-2);
+        display: grid;
+        place-items: center;
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 13px;
+        color: var(--ink);
+        margin-top: .05rem;
+      }
+      .ol > li > div > * + * { margin-top: .7rem; }
+      .ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .6rem; }
+      .ul li { position: relative; padding-left: 1.2rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
+      .ul li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+      .ul.hollow li::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-3); }
+      .ul.no li::before { background: transparent; width: 9px; height: 1.5px; top: .78em; border-radius: 1px; background: var(--ink-3); }
+
+      .note {
+        border-radius: var(--r-field);
+        border: 1px solid var(--line-2);
+        background: var(--raise);
+        padding: .95rem 1.1rem;
+        color: var(--ink-2);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .note b { color: var(--ink); }
+      .note.warm { border-color: rgba(200, 99, 62, .35); background: linear-gradient(180deg, rgba(200, 99, 62, .07), rgba(200, 99, 62, .02)); }
+      .note.meta { border-color: rgba(0, 129, 251, .3); background: linear-gradient(180deg, rgba(0, 129, 251, .06), rgba(0, 129, 251, .015)); }
+
+      /* Pfad (Menüpunkte nacheinander) */
+      .path { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: 13.5px; }
+      .path span { display: inline-flex; align-items: center; min-height: 28px; padding: 0 .65rem; border-radius: 8px; background: var(--raise-2); border: 1px solid var(--line-2); color: var(--ink); white-space: nowrap; }
+      .path span.end { border-color: rgba(200, 99, 62, .55); color: var(--orange-hi); }
+      .path span.meta { border-color: rgba(0, 129, 251, .45); color: var(--meta-ink); }
+      .path i { font-style: normal; color: var(--ink-3); }
+
+      /* Echte Ausschnitte aus den Videos */
+      .shot { margin: 0; }
+      .shot .pic {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        background: var(--bg-deep);
+        box-shadow: var(--shadow-raise);
+      }
+      .shot img { width: 100%; height: auto; }
+      .shot figcaption { margin-top: .55rem; font-size: 13.5px; line-height: 1.5; color: var(--ink-3); }
+      .shot.narrow .pic { max-width: 340px; }
+      button.pic { display: block; width: 100%; padding: 0; cursor: zoom-in; transition: border-color .2s var(--ease-q); }
+      button.pic:hover { border-color: var(--ink-3); }
+      button.pic:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+      /* ---------- Erklär-Grafiken (alle als echtes HTML/SVG) ---------- */
+      .viz {
+        border: 1px solid var(--line);
+        border-radius: var(--r-field);
+        background: radial-gradient(20rem 10rem at 50% 0%, rgba(237, 236, 231, .04), transparent 70%), var(--bg-deep);
+        padding: 1.1rem 1.1rem 1rem;
+      }
+      .viz-cap { margin-top: .8rem; font-size: 13px; line-height: 1.5; color: var(--ink-3); }
+
+      /* Status: Wird bearbeitet → Inaktiv → Ein */
+      .v-status { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); align-items: start; gap: .5rem; }
+      .v-status .st { display: grid; justify-items: center; gap: .55rem; text-align: center; font-size: 12.5px; line-height: 1.4; color: var(--ink-3); }
+      .v-status .chip { display: inline-flex; align-items: center; gap: .45rem; min-height: 30px; padding: 0 .7rem; border-radius: 999px; background: var(--raise-2); border: 1px solid var(--line-2); color: var(--ink); font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+      .v-status .spin { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--ink-3); border-top-color: transparent; animation: spin 1s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .v-status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); }
+      .v-status .arr { padding-top: .35rem; color: var(--ink-3); }
+      .sw { position: relative; width: 40px; height: 22px; border-radius: 999px; background: var(--meta); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15); }
+      .sw::after { content: ""; position: absolute; top: 3px; left: 21px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+      .sw.off { background: var(--line-2); }
+      .sw.off::after { left: 3px; background: var(--ink-3); }
+      .v-status .chip.on { border-color: rgba(0, 129, 251, .45); }
+      .v-status .st > span:not(.chip) { overflow-wrap: anywhere; hyphens: auto; }
+      /* Im schmalen Notizen-Spalt untereinander statt nebeneinander */
+      .lesson-notes .v-status { grid-template-columns: minmax(0, 1fr); justify-items: start; gap: .65rem; }
+      .lesson-notes .v-status .st { grid-template-columns: auto minmax(0, 1fr); justify-items: start; align-items: center; text-align: left; gap: .8rem; width: 100%; }
+      .lesson-notes .v-status .arr { display: none; }
+
+      /* Upload-Regel: Bilder zusammen, Videos einzeln */
+      .v-upload { display: grid; gap: .9rem; }
+      .v-upload .row { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); align-items: center; gap: .8rem; font-size: 13px; color: var(--ink-2); }
+      .v-upload .row > b { font-weight: 500; }
+      .v-upload .lane { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; }
+      .v-upload .thumb { width: 22px; height: 28px; border-radius: 4px; background: linear-gradient(160deg, #3A3934, #262521); border: 1px solid var(--line-2); }
+      .v-upload .thumb.vid { position: relative; }
+      .v-upload .thumb.vid::after { content: ""; position: absolute; left: 8px; top: 9px; border-left: 7px solid var(--ink-2); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+      .v-upload .grp { display: flex; gap: 3px; padding: 4px; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(0, 129, 251, .45); }
+      .v-upload .go { color: var(--meta-ink); font-size: 12px; white-space: nowrap; }
+      .v-upload .solo { display: inline-flex; align-items: center; gap: 3px; padding: 4px; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(0, 129, 251, .45); }
+
+      /* Fluss: Claude ↔ Connector ↔ Werbekonto */
+      .v-flow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(1.5rem, .6fr) minmax(0, 1fr) minmax(1.5rem, .6fr) minmax(0, 1fr); align-items: center; text-align: center; }
+      .v-flow .node { display: grid; justify-items: center; gap: .5rem; font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+      .v-flow .node b { display: block; color: var(--ink); font-weight: 500; font-size: 13px; }
+      .v-flow .ico { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; border: 1px solid var(--line-2); background: var(--raise-2); }
+      .v-flow .ico.or { border-color: rgba(200, 99, 62, .55); color: var(--orange-hi); box-shadow: 0 10px 30px -14px rgba(200, 99, 62, .6); }
+      .v-flow .ico.mt { border-color: rgba(0, 129, 251, .5); color: var(--meta-ink); }
+      .v-flow .wire { height: 1px; background: linear-gradient(90deg, var(--orange), var(--meta)); position: relative; top: -14px; }
+      .v-flow .wire.b { background: linear-gradient(90deg, var(--line-2), var(--meta)); }
+
+      /* Modelle */
+      .v-models { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; align-items: end; }
+      .v-models .m { display: grid; gap: .5rem; justify-items: center; text-align: center; }
+      .v-models .bar { width: 100%; max-width: 64px; border-radius: 8px 8px 3px 3px; background: var(--raise-2); border: 1px solid var(--line-2); }
+      .v-models .m:nth-child(1) .bar { height: 34px; }
+      .v-models .m:nth-child(2) .bar { height: 58px; }
+      .v-models .m:nth-child(3) .bar { height: 84px; background: linear-gradient(180deg, var(--orange-hi), var(--orange)); border-color: var(--orange); box-shadow: 0 14px 34px -14px rgba(200, 99, 62, .7); }
+      .v-models .m:nth-child(4) .bar { height: 112px; }
+      .v-models .name { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; color: var(--ink); line-height: 1; }
+      .v-models .m.x .name { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--ink-3); }
+      .v-models .why { font-size: 11.5px; line-height: 1.35; color: var(--ink-3); min-height: 2.7em; overflow-wrap: anywhere; hyphens: auto; }
+      .v-models .m.std .why { color: var(--orange-hi); font-weight: 500; }
+      .v-axis { margin-top: .7rem; display: flex; align-items: center; gap: .5rem; font-size: 11.5px; color: var(--ink-3); }
+      .v-axis::before { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2)); }
+      .v-axis::after { content: "→"; }
+
+      /* Kontextfenster */
+      .v-ctx .meter { position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; margin-top: 1.9rem; }
+      .v-ctx .meter i { height: 24px; border-radius: 4px; background: var(--raise-2); border: 1px solid var(--line); }
+      .v-ctx .meter i.f { background: rgba(200, 99, 62, .5); border-color: rgba(200, 99, 62, .6); }
+      .v-ctx .meter i.f2 { background: rgba(200, 99, 62, .78); border-color: var(--orange); }
+      .v-ctx .flag { position: absolute; bottom: calc(100% + 6px); left: 40%; width: 10%; display: grid; justify-items: center; font-size: 11.5px; color: var(--orange-hi); white-space: nowrap; }
+      .v-ctx .flag::after { content: ""; width: 1px; height: 6px; background: var(--orange-hi); margin-top: 2px; }
+      .v-ctx .scale { margin-top: .45rem; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink-3); }
+      .v-ctx .legend { margin-top: .9rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+      .v-ctx .legend b { display: block; font-weight: 500; color: var(--ink); margin-bottom: .1rem; }
+
+      /* Fünf-Stunden-Fenster */
+      .v-window { position: relative; padding-top: .3rem; }
+      .v-window .lane { position: relative; height: 30px; margin-top: .45rem; border-radius: 8px; background: rgba(237, 236, 231, .025); }
+      .v-window .lbl { font-size: 11.5px; color: var(--ink-3); }
+      .v-window .blk { position: absolute; top: 0; bottom: 0; border-radius: 8px; display: flex; align-items: center; padding: 0 .55rem; font-size: 11.5px; font-weight: 500; white-space: nowrap; overflow: hidden; }
+      .v-window .w1 { left: 7.14%; width: 35.72%; background: rgba(200, 99, 62, .22); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .55); color: var(--orange-hi); }
+      .v-window .w2 { left: 42.86%; width: 35.72%; background: rgba(200, 99, 62, .12); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .35); color: var(--orange-hi); }
+      .v-window .work { left: 21.43%; width: 57.14%; background: var(--raise-2); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--ink); }
+      .v-window .pin { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); border-radius: 2px; }
+      .v-window .ticks { position: relative; height: 18px; margin-top: .5rem; font-size: 11px; color: var(--ink-3); }
+      .v-window .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+      .v-window .phone { position: absolute; left: 7.14%; top: -1.55rem; transform: translateX(-12%); font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
+
+      /* Ordner-Karte */
+      .v-map { display: grid; gap: .35rem; font-size: 13px; }
+      .v-map .r { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) auto; gap: .75rem; align-items: center; padding: .5rem .65rem; border-radius: 9px; }
+      .v-map .r code { color: var(--ink); font-size: 12.5px; }
+      .v-map .r span { color: var(--ink-3); line-height: 1.35; }
+      .v-map .r em { font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+      .v-map .r.you { background: var(--orange-soft); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .4); }
+      .v-map .r.you em { color: var(--orange-hi); }
+      .v-map .r.you span { color: var(--ink-2); }
+
+      /* Schleife (Produktfoto-Prüfung, Tagesablauf) */
+      .v-loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; position: relative; counter-reset: lp; }
+      .v-loop .s { position: relative; display: grid; gap: .35rem; padding: .7rem .7rem .75rem; border-radius: 10px; background: var(--raise-2); border: 1px solid var(--line-2); font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+      .v-loop .s b { font-weight: 500; color: var(--ink); font-size: 13px; }
+      .v-loop .s .who { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--orange-hi); }
+      .v-loop .s.you .who { color: var(--ink); }
+      .v-loop .s.mt { border-color: rgba(0, 129, 251, .4); }
+      .v-loop .s.mt .who { color: var(--meta-ink); }
+      .v-loop .back { grid-column: 1 / -1; display: flex; align-items: center; gap: .5rem; font-size: 11.5px; color: var(--ink-3); }
+      .v-loop .back::before { content: "↺"; color: var(--orange-hi); font-size: 14px; }
+      .v-loop.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lesson-notes .v-loop:not(.three) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      /* Manuell vs. Auto */
+      .v-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+      .v-modes .md { padding: .8rem .85rem; border-radius: 10px; border: 1px solid var(--line-2); background: var(--raise-2); font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+      .v-modes .md b { display: block; font-weight: 500; color: var(--ink); font-size: 13.5px; margin-bottom: .25rem; }
+      .v-modes .md.pick { border-color: rgba(200, 99, 62, .5); }
+      .v-modes .md.pick b::after { content: " · meine Wahl"; color: var(--orange-hi); font-weight: 500; font-size: 12px; }
+      .v-modes .asks { margin-top: .6rem; display: flex; gap: 3px; flex-wrap: wrap; }
+      .v-modes .asks i { width: 14px; height: 6px; border-radius: 3px; background: var(--ink-3); opacity: .55; }
+      .v-modes .asks i.ok { background: var(--ok); opacity: .8; }
+      .v-modes .asks i.stop { background: var(--orange); opacity: 1; }
+
+      /* ---------- Sätze ---------- */
+      .phrases { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(1.5rem, 4vw, 4rem); }
+      .phrase {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: .2rem 1rem;
+        align-items: start;
+        width: 100%;
+        padding: 1.05rem .2rem 1.1rem;
+        border: 0;
+        border-top: 1px solid var(--line);
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 0;
+        transition: background-color .25s var(--ease-q);
+      }
+      .phrase .say { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); line-height: 1.25; transition: color .2s var(--ease-q); }
+      .phrase .what { grid-column: 1; font-size: 14.5px; line-height: 1.55; color: var(--ink-3); }
+      .phrase .ci { grid-row: 1 / span 2; grid-column: 2; align-self: center; display: inline-flex; align-items: center; gap: .3rem; font-size: 12px; color: var(--ink-3); opacity: .7; transition: opacity .2s var(--ease-q), color .2s var(--ease-q); }
+      .phrase .ci svg { width: 14px; height: 14px; }
+      .phrase:hover .say { color: var(--orange-hi); }
+      .phrase:hover .ci { opacity: 1; color: var(--ink-2); }
+      .phrase:active { background: rgba(237, 236, 231, .03); }
+      .phrase:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
+      .phrase.is-done .ci { color: var(--ok); opacity: 1; }
+      .phrase var { font-style: normal; color: var(--ink-3); font-family: 'Inter', sans-serif; font-size: .78em; letter-spacing: 0; padding: 0 .3em; margin: 0 .1em; border: 1px dashed var(--line-2); border-radius: 5px; vertical-align: .08em; }
+
+      /* ---------- Installation ---------- */
+      .inst { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.75rem, 4vw, 4rem); align-items: start; }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-surface);
+        background: linear-gradient(180deg, var(--raise), var(--bg));
+        box-shadow: var(--shadow-raise);
+        padding: clamp(1.3rem, 3vw, 1.8rem);
+      }
+      .card h3 { font-size: 1.45rem; }
+      .card > * + * { margin-top: 1.1rem; }
+      .need { display: grid; gap: .85rem; }
+      .need li { list-style: none; display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: .8rem; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+      .need li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; margin-top: .55em; background: var(--orange); }
+      .need li.opt::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-3); }
+      .need { margin: 0; padding: 0; }
+      .inst-steps > .ol > li { font-size: 16px; }
+      .inst-steps > .ol > li strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: .15rem; }
+      .os-tabs { display: inline-flex; gap: .3rem; padding: 3px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-deep); }
+      .os-tabs button { min-height: 32px; padding: 0 .9rem; border-radius: 999px; border: 0; background: transparent; color: var(--ink-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: color .2s var(--ease-q), background-color .2s var(--ease-q); }
+      .os-tabs button:hover { color: var(--ink); }
+      .os-tabs button:active { opacity: .8; }
+      .os-tabs button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .os-tabs button[aria-selected="true"] { background: var(--raise-2); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-2); }
+      [data-os-panel][hidden] { display: none; }
+      .term .copy { background: #0B0B0A; }
+      .term .copy .txt { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #E9E7DF; word-break: break-all; }
+
+      /* ---------- FAQ ---------- */
+      .faq-grid { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 5rem); }
+      .faq-side { position: sticky; top: 100px; align-self: start; }
+      .search { position: relative; }
+      .search input {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 1rem 0 2.6rem;
+        border-radius: var(--r-field);
+        border: 1px solid var(--line-2);
+        background: var(--bg-deep);
+        color: var(--ink);
+        font: inherit;
+        font-size: 15.5px;
+        transition: border-color .2s var(--ease-q);
+      }
+      .search input::placeholder { color: var(--ink-3); }
+      .search input:hover { border-color: var(--ink-3); }
+      .search input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(200, 99, 62, .2); }
+      .search svg { position: absolute; left: .9rem; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); color: var(--ink-3); pointer-events: none; }
+      .cats { margin: 1.4rem 0 0; padding: 0; list-style: none; display: grid; gap: .1rem; }
+      .cats a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 40px; padding: 0 .75rem; border-radius: 9px; color: var(--ink-2); text-decoration: none; font-size: 15px; transition: color .2s var(--ease-q), background-color .2s var(--ease-q); }
+      .cats a span { font-size: 12.5px; color: var(--ink-3); }
+      .cats a:hover { color: var(--ink); background: rgba(237, 236, 231, .04); }
+      .cats a:active { opacity: .7; }
+      .cats a:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+      .cats a.is-here { color: var(--ink); background: rgba(237, 236, 231, .05); box-shadow: inset 2px 0 0 var(--orange); }
+      .faq-side .mail { margin-top: 1.6rem; font-size: 14.5px; color: var(--ink-3); line-height: 1.6; }
+      .faq-group + .faq-group { margin-top: clamp(3rem, 6vw, 4.5rem); }
+      .faq-group { scroll-margin-top: 90px; }
+      .faq-group > h3 { display: flex; align-items: baseline; gap: .8rem; }
+      .faq-group > h3 .c { font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0; color: var(--ink-3); }
+      .faq-group > p { margin-top: .5rem; color: var(--ink-3); font-size: 15px; }
+      .faq-list { margin-top: 1.3rem; }
+      details.q { border-bottom: 1px solid var(--line); }
+      details.q:first-child { border-top: 1px solid var(--line); }
+      details.q > summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        min-height: 64px;
+        padding: 1rem 0;
+        cursor: pointer;
+        font-size: clamp(1rem, .97rem + .18vw, 1.08rem);
+        font-weight: 500;
+        line-height: 1.45;
+        color: var(--ink);
+        border-radius: 6px;
+        transition: color .2s var(--ease-q);
+      }
+      details.q > summary::-webkit-details-marker { display: none; }
+      details.q > summary:hover { color: var(--orange-hi); }
+      details.q > summary:active { opacity: .8; }
+      details.q > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+      details.q > summary .tag { flex: none; font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); border: 1px solid var(--line-2); border-radius: 6px; padding: .1rem .4rem; margin-right: -.4rem; }
+      details.q > summary .t { flex: 1; }
+      .pm { position: relative; flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-2); }
+      .pm::before, .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink-2); transition: transform .4s var(--ease); }
+      .pm::after { transform: rotate(90deg); }
+      details[open] > summary .pm::after { transform: rotate(0deg); }
+      .ans { padding: 0 3rem 1.6rem 0; color: var(--ink-2); font-size: 16px; }
+      .ans > * + * { margin-top: .9rem; }
+      .ans .ol > li, .ans .ul li { font-size: 15.5px; }
+      .faq-empty { display: none; margin-top: 1.5rem; color: var(--ink-2); }
+      .faq-empty.on { display: block; }
+      .faq-group.hide, details.q.hide { display: none; }
+      mark { background: rgba(200, 99, 62, .3); color: var(--ink); border-radius: 3px; padding: 0 .1em; }
+
+      /* ---------- Hilfe ---------- */
+      .help { position: relative; padding-block: clamp(5rem, 11vw, 9rem); overflow: hidden; isolation: isolate; border-top: 1px solid var(--line); }
+      .help::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(36rem 22rem at 30% 60%, rgba(200, 99, 62, .14), transparent 70%),
+          radial-gradient(50rem 26rem at 80% 120%, rgba(0, 100, 224, .07), transparent 70%);
+      }
+      .help-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      .help h2 { font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4rem); }
+      .help .lead { margin-top: 1.2rem; }
+      .help .contact { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.6rem; }
+      .help .small { margin-top: 1.4rem; font-size: 14px; color: var(--ink-3); }
+
+      footer.foot { border-top: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--ink-3); font-size: 13.5px; }
+      .foot .wrap { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 3rem; align-items: start; }
+      .foot nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; justify-content: flex-end; }
+      .foot nav a { text-decoration: none; color: var(--ink-2); border-radius: 3px; min-height: 32px; display: inline-flex; align-items: center; transition: color .2s var(--ease-q); }
+      .foot nav a:hover { color: var(--ink); }
+      .foot nav a:active { opacity: .7; }
+      .foot nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+      .foot .tm { grid-column: 1 / -1; max-width: 80ch; line-height: 1.6; }
+
+      /* ---------- Großansicht für Screenshots ---------- */
+      .zoom { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1.25rem; background: rgba(10, 10, 9, .94); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease-q); }
+      .zoom.on { opacity: 1; pointer-events: auto; }
+      .zoom[hidden] { display: none; }
+      .zoom img { max-width: min(1200px, 100%); max-height: 86vh; width: auto; border-radius: 12px; border: 1px solid var(--line-2); transform: scale(.97); transition: transform .5s var(--ease); }
+      .zoom.on img { transform: none; }
+      .zoom button { position: absolute; top: 1rem; right: 1rem; min-height: 44px; padding: 0 1rem; border-radius: 999px; border: 1px solid var(--line-2); background: var(--raise); color: var(--ink); cursor: pointer; font-size: 14px; }
+      .zoom button:hover { border-color: var(--ink-3); }
+      .zoom button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+      /* ---------- Einblenden beim Laden (nur Hero) ---------- */
+      .js .rise { opacity: 0; transform: translateY(14px); animation: rise .9s var(--ease) forwards; }
+      .js .rise.d1 { animation-delay: .08s; }
+      .js .rise.d2 { animation-delay: .16s; }
+      .js .rise.d3 { animation-delay: .26s; }
+      .js .rise.d4 { animation-delay: .36s; }
+      @keyframes rise { to { opacity: 1; transform: none; } }
+
+      /* ================================================================
+         Tablet + Handy (Regeln gesammelt, geprüft bei 320/360/390/430 px)
+         ================================================================ */
+      @media (max-width: 1020px) {
+        .steps3 { grid-template-columns: minmax(0, 1fr); }
+        .step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+        .step-viz { height: auto; min-height: 190px; border-bottom: 0; border-right: 1px solid var(--line); }
+      }
+      @media (max-width: 960px) {
+        .hero-grid { grid-template-columns: minmax(0, 1fr); }
+        .doc { max-width: 420px; }
+        .sec-head { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+        .lesson-grid { grid-template-columns: minmax(0, 1fr); }
+        .lesson-video { position: static; }
+        .inst { grid-template-columns: minmax(0, 1fr); }
+        .faq-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+        .faq-side { position: static; }
+        .cats { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .4rem; scrollbar-width: none; }
+        .cats::-webkit-scrollbar { display: none; }
+        .cats a { white-space: nowrap; border: 1px solid var(--line-2); border-radius: 999px; min-height: 38px; }
+        .cats a.is-here { box-shadow: none; border-color: var(--orange); }
+        .faq-side .mail { display: none; }
+        .help-grid { grid-template-columns: minmax(0, 1fr); }
+        .ans { padding-right: 0; }
+      }
+      @media (max-width: 860px) {
+        .nav-links a.hide-m { display: none; }
+        .brand .prod { display: none; }
+      }
+      @media (max-width: 760px) {
+        .nav { position: relative; }
+        html { scroll-padding-top: 16px; }
+        .lesson, .faq-group { scroll-margin-top: 16px; }
+        .phrases { grid-template-columns: minmax(0, 1fr); }
+        .step { grid-template-columns: minmax(0, 1fr); }
+        .step-viz { border-right: 0; border-bottom: 1px solid var(--line); min-height: 170px; }
+        .foot .wrap { grid-template-columns: minmax(0, 1fr); }
+        .foot nav { justify-content: flex-start; }
+        .phase .sub { display: none; }
+        .v-ctx .legend { grid-template-columns: minmax(0, 1fr); }
+        .v-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .v-loop.three { grid-template-columns: minmax(0, 1fr); }
+        /* Handy: Beschriftungen in Grafiken nie unter 12 px */
+        .v-loop .s .who, .v-models .why, .v-axis, .v-window .lbl, .v-window .ticks, .v-window .phone, .v-window .blk, .v-ctx .flag, .v-ctx .scale, .v-map .r em, .copy .lbl, .viz-cap, .v-status .st, .v-upload .go, .file, .tree, .lesson-head .facts, .frame-play .loom { font-size: 12px; }
+      }
+      @media (max-width: 480px) {
+        body { font-size: 16px; }
+        .nav .wrap { height: 60px; }
+        .nav-links { gap: 1.1rem; }
+        .nav-links .btn { display: none; }
+        .hero h1 { font-size: clamp(2.4rem, 11vw, 3rem); }
+        .doc-sheets { max-width: 300px; }
+        .doc-sheet .t { font-size: 1.45rem; }
+        .doc-sheet li { font-size: 12px; }
+        .lesson-head { gap: .4rem 1rem; }
+        .lesson-head h3 { flex-basis: 100%; order: 3; }
+        .frame-play .poster { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.2s var(--ease); }
+      .frame-play::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 50% 50%, rgba(10, 10, 9, .55), rgba(10, 10, 9, .2) 70%), linear-gradient(180deg, rgba(10, 10, 9, .35), rgba(10, 10, 9, .6)); }
+      .frame-play:hover .poster { transform: scale(1.05); }
+      .frame-play .ring { width: 62px; height: 62px; }
+        .copy .lbl { padding-right: 5.6rem; }
+        .v-status { grid-template-columns: minmax(0, 1fr); justify-items: start; gap: .6rem; }
+        .v-status .st { grid-template-columns: auto minmax(0, 1fr); justify-items: start; align-items: center; text-align: left; gap: .7rem; width: 100%; }
+        .v-status .arr { display: none; }
+        .v-flow { grid-template-columns: minmax(0, 1fr); gap: .3rem; }
+        .v-flow .wire { width: 1px; height: 18px; justify-self: center; top: 0; background: linear-gradient(180deg, var(--orange), var(--meta)); }
+        .v-flow .wire.b { background: linear-gradient(180deg, var(--line-2), var(--meta)); }
+        .v-map .r { grid-template-columns: minmax(0, 1fr) auto; }
+        .v-map .r span { grid-column: 1 / -1; grid-row: 2; }
+        .v-window .blk { padding: 0 .35rem; }
+        .phrase .ci span { display: none; }
+      }
+      @media (hover: none) {
+        .phrase .ci { opacity: 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .js .rise { animation: rise-fade .15s linear forwards; transform: none; }
+        @keyframes rise-fade { to { opacity: 1; } }
+        .js .stamp path { animation: none; stroke-dashoffset: 0; }
+        .frame-play .poster { transition: none; }
+        .v-status .spin, .v-input .typed::after { animation: none; }
+        .btn, .frame-play .ring, .seen, .seen .box svg, .cbtn, .pm::before, .pm::after, .zoom img, .progress .fill { transition-duration: .01ms; }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="vorflows AdsFlow, nach oben">
+          <span class="wordmark">vor<span class="flows">flows</span></span>
+          <span class="prod">AdsFlow</span>
+        </a>
+        <nav class="nav-links" aria-label="Seitennavigation">
+          <a href="#start" class="hide-m">Start</a>
+          <a href="#videos">Videos</a>
+          <a href="#saetze" class="hide-m">Sätze</a>
+          <a href="#installation" class="hide-m">Installation</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn--sm btn--ghost" href="/assets/help/AdsFlow-Zuerst-lesen.pdf" download="AdsFlow-Zuerst-lesen.pdf">Anleitung (PDF)</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ Hero ============ -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="stamp-row rise">
+              <span class="stamp" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17.5 L19 6.5" stroke="#140A05" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+              <span class="eyebrow">Kauf bestätigt</span>
+            </div>
+            <h1 class="rise d1">Willkommen bei <em>AdsFlow</em>.</h1>
+            <p class="lead rise d2">Deine Zahlung ist eingegangen. Den Download-Link für deinen AdsFlow-Ordner schickt dir Digistore24 gleich per E-Mail. Findest du nichts, schau bitte im Spam-Ordner nach.</p>
+            <div class="bookmark rise d3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12v17l-6-4.2-6 4.2z" /></svg>
+              <p>Speicher dir diese Seite als Lesezeichen. Kommen neue Fragen dazu, ergänze ich die Antworten hier.</p>
+              <button type="button" class="btn btn--sm btn--ghost" data-copy-url>Link kopieren</button>
+            </div>
+          </div>
+
+          <div class="doc rise d4">
+            <div class="doc-sheets" aria-hidden="true">
+              <div class="doc-sheet s3"></div>
+              <div class="doc-sheet s2"></div>
+              <div class="doc-sheet s1">
+                <span class="tag">PDF</span>
+                <span class="kicker">00 · Zuerst lesen</span>
+                <span class="t">AdsFlow <em>von null</em> einrichten</span>
+                <ol>
+                  <li><span>01</span>VS&nbsp;Code installieren</li>
+                  <li><span>02</span>Terminal öffnen</li>
+                  <li><span>03</span>Claude Code installieren</li>
+                  <li><span>04</span>„Lies SETUP.md“</li>
+                </ol>
+                <div class="lines"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="doc-cta">
+              <a class="btn" href="/assets/help/AdsFlow-Zuerst-lesen.pdf" download="AdsFlow-Zuerst-lesen.pdf">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12" /><path d="M7 10l5 5 5-5" /><path d="M5 20h14" /></svg>
+                Bitte zuerst diese Datei herunterladen und lesen.
+              </a>
+              <small>Die Installation von null, für Mac und Windows. Sie liegt auch in deinem Ordner.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Start in drei Schritten ============ -->
+      <section class="sec" id="start">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Dein Start</span>
+              <h2>In drei Schritten <em>startklar</em>.</h2>
+            </div>
+            <p class="lead">Ab dem dritten Schritt übernimmt Claude. Es richtet alles mit dir zusammen ein, erklärt jeden Schritt und wartet auf dich. Pause ist jederzeit okay, mit „Setup fortsetzen“ geht es später weiter.</p>
+          </div>
+
+          <div class="steps3">
+            <article class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="v-unzip">
+                  <span class="file">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M12 6h22l10 10v32a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="#1C1C1A" stroke="#33322E" /><path d="M34 6v10h10" stroke="#33322E" /><path d="M22 10h4M26 14h4M22 18h4M26 22h4M22 26h4" stroke="#8C8A82" stroke-width="2" /><rect x="21" y="30" width="10" height="9" rx="2" stroke="#8C8A82" stroke-width="1.6" /></svg>
+                    AdsFlow.zip
+                  </span>
+                  <svg class="arrow" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h31M26 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" /></svg>
+                  <span class="file">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M6 15a3 3 0 0 1 3-3h12l5 5h21a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" fill="rgba(200,99,62,.16)" stroke="#C8633E" /></svg>
+                    adsflow
+                  </span>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">1</span>
+                <h3>ZIP entpacken</h3>
+                <p>Windows: Rechtsklick auf die Datei und „Alle extrahieren“. Mac: Doppelklick. Darin liegt der Ordner <code class="in">adsflow</code>.</p>
+              </div>
+            </article>
+
+            <article class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="tree">
+                  <div class="row outer"><svg viewBox="0 0 16 16" fill="none"><path d="M1.5 4.5a1 1 0 0 1 1-1h3.6l1.5 1.5h5.9a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z" stroke="currentColor" /></svg>AdsFlow-2026-10-03 <span class="x">nicht diesen</span></div>
+                  <div class="row inner"><svg viewBox="0 0 16 16" fill="none"><path d="M1.5 4.5a1 1 0 0 1 1-1h3.6l1.5 1.5h5.9a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z" fill="rgba(200,99,62,.25)" stroke="currentColor" /></svg>adsflow <span class="x">diesen öffnen</span></div>
+                  <div class="row kid">├ 00-ZUERST-LESEN.pdf</div>
+                  <div class="row kid">├ SETUP.md</div>
+                  <div class="row kid">└ …</div>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">2</span>
+                <h3>Ordner in VS&nbsp;Code öffnen</h3>
+                <p>Menü „Datei, Ordner öffnen“ (File, Open Folder) und den <b>inneren</b> Ordner <code class="in">adsflow</code> wählen. Die Frage „Do you trust the authors …?“ bestätigst du mit „Yes, I trust the authors“.</p>
+                <p class="hint">Öffnest du den Überordner, lädt Claude die Regeln von AdsFlow nicht.</p>
+              </div>
+            </article>
+
+            <article class="step">
+              <div class="step-viz" aria-hidden="true">
+                <div class="v-input">
+                  <span class="typed">Lies SETUP.md</span>
+                  <div class="bar"><span>Claude Code</span><span class="send"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg></span></div>
+                </div>
+              </div>
+              <div class="step-txt">
+                <span class="num">3</span>
+                <h3>Claude einen Satz schreiben</h3>
+                <p>Im Claude-Fenster von VS&nbsp;Code eine neue Session öffnen, oder über „Terminal, Neues Terminal“ <code class="in">claude</code> eintippen und Enter drücken. Dann genau das schreiben:</p>
+                <div class="copy">
+                  <span class="lbl">Startsatz</span>
+                  <div class="txt say" data-copy-src>Lies SETUP.md</div>
+                  <button type="button" class="cbtn" data-copy>Kopieren</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <p class="body" style="margin-top:1.6rem">Noch kein Visual Studio Code oder Claude Code auf dem Rechner? <a class="tl" href="#installation">Hier geht es Schritt für Schritt von null los</a>, das dauert einmalig etwa zehn Minuten.</p>
+        </div>
+      </section>
+
+      <!-- ============ Videos ============ -->
+      <section class="sec" id="videos">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Videoanleitungen</span>
+              <h2>Acht Videos in der Reihenfolge, in der du sie <em>brauchst</em>.</h2>
+            </div>
+            <div>
+              <p class="lead">Schau dir die ersten beiden an, bevor du startest. Die anderen nimmst du, wenn du an der jeweiligen Stelle bist. Das Setup im Ordner erklärt jeden Schritt zusätzlich selbst.</p>
+              <div class="progress" aria-live="polite">
+                <span class="track" aria-hidden="true"><span class="fill" id="progFill"></span></span>
+                <span><b id="progN">0</b> von 8 angesehen</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Teil 1 ===== -->
+          <div class="phase"><span class="eyebrow">Teil 1 · Vorbereiten</span><span class="sub">vor dem Start ansehen</span></div>
+
+          <article class="lesson" id="video-1" data-lesson="1">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">01</span>
+              <h3>Setup und Sicherheit</h3>
+              <span class="facts"><span class="pill first">Zuerst</span>8:15&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/fcacd86099f74f62907536fe32fc2889" data-title="AdsFlow 01: Setup und Sicherheit">
+                  <button type="button" class="frame-play" aria-label="Video 01 abspielen: Setup und Sicherheit">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-1.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">01</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Setup und Sicherheit</span>
+                    <span class="dur">8:15&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/fcacd86099f74f62907536fe32fc2889" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Was du brauchst, wie du die Claude-Erweiterung in VS&nbsp;Code installierst und deinen Ordner öffnest. Dazu, warum AdsFlow nichts live schaltet und keine Budgets anfasst.</p>
+                <figure class="shot narrow">
+                  <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/erweiterung.webp" width="322" height="238" alt="VS Code, Erweiterungen: die offizielle Erweiterung Claude Code von Anthropic mit blauem Haken" loading="lazy" decoding="async" /></button>
+                  <figcaption>Erweiterungen (Extensions) links öffnen und „Claude“ suchen. Richtig ist <b>Claude Code von Anthropic</b> mit blauem Haken. Danach „Login with Subscription“.</figcaption>
+                </figure>
+                <ol class="ol">
+                  <li><div><b>Ordner öffnen:</b> oben „File, Open Folder“, den Ordner <code class="in">adsflow</code> einmal anklicken (nicht hineingehen) und auf „Öffnen“.</div></li>
+                  <li><div><b>Neue Session:</b> im Claude-Fenster auf „New Session“ und den Startsatz <span class="say">„Lies SETUP.md“</span> schreiben.</div></li>
+                  <li><div><b>Rote Fehlermeldung bei der ersten Nachricht?</b> Dann ist Claude Code auf dem Rechner noch nicht fertig eingerichtet. <a class="tl" href="#fehler">So behebst du das</a>.</div></li>
+                </ol>
+                <div class="note warm"><b>Zur Sicherheit:</b> Claude legt Anzeigen immer ausgeschaltet an und ändert keine Budgets. Die Werkzeuge zum Einschalten und Ändern sind im Ordner gesperrt. Drängst du Claude trotzdem immer wieder zu Budgetänderungen, verlässt du den Rahmen, für den das System gebaut ist. Budgets würde ich Claude nie überlassen.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson" id="video-2" data-lesson="2">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">02</span>
+              <h3>Claude richtig nutzen: Sessions, Modelle, Auto-Modus</h3>
+              <span class="facts"><span class="pill first">Zuerst</span>5:08&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/1b4b86929446447bbfe40c1d1d7bf5bd" data-title="AdsFlow 02: Claude richtig nutzen">
+                  <button type="button" class="frame-play" aria-label="Video 02 abspielen: Claude richtig nutzen">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-2.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">02</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Claude richtig nutzen</span>
+                    <span class="dur">5:08&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/1b4b86929446447bbfe40c1d1d7bf5bd" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Claude arbeitet anders als ChatGPT. Diese fünf Dinge solltest du einmal gehört haben, dann läuft der Rest von allein.</p>
+                <ol class="ol">
+                  <li><div><b>Pro Aufgabe eine neue Session.</b> Lange Chats machen Claude schlechter, weil das Kontextfenster voll läuft.</div></li>
+                  <li><div><b>Wichtiges merken lassen,</b> damit es auch in neuen Sessions da ist.
+                    <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Bitte merke dir, was wir in diesem Chat gemacht haben, damit ich das auch in anderen Sessions zur Verfügung habe.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                  </div></li>
+                  <li><div><b>Opus als Standard.</b> Kommst du zu schnell ans Limit, probier Sonnet. Fable und Haiku nimmst du für AdsFlow nicht.</div></li>
+                  <li><div><b>Effort auf Medium.</b> Wirken Texte oder Ideen flach, stell auf High.</div></li>
+                  <li><div><b>Erst Manuell, dann Auto.</b> Im ersten Durchlauf darfst du jede Anfrage selbst bestätigen. Läuft alles, wechselst du auf Auto.</div></li>
+                </ol>
+                <figure class="shot">
+                  <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/modus-menue.webp" width="752" height="382" alt="Claude Code in VS Code: Menü mit den Modi Manual, Edit automatically, Plan und Auto, darunter Effort Medium" loading="lazy" decoding="async" /></button>
+                  <figcaption>Unten rechts im Chatfeld: Modus (hier <b>Auto</b>) und Effort. Das Modell steht links daneben (hier Opus, Medium).</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== Teil 2 ===== -->
+          <div class="phase"><span class="eyebrow">Teil 2 · Einrichten</span><span class="sub">einmalig, etwa 20 bis 30 Minuten</span></div>
+
+          <article class="lesson" id="video-3" data-lesson="3">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">03</span>
+              <h3>Meta-Werbekonto verbinden</h3>
+              <span class="facts">3:42&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/5ba2934fa1954f7f95002103fef04ca1" data-title="AdsFlow 03: Meta-Werbekonto verbinden">
+                  <button type="button" class="frame-play" aria-label="Video 03 abspielen: Meta-Werbekonto verbinden">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-3.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">03</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Meta-Werbekonto verbinden</span>
+                    <span class="dur">3:42&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/5ba2934fa1954f7f95002103fef04ca1" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Damit Claude in VS&nbsp;Code Anzeigen in deinem Werbekonto anlegen kann, fügst du einmal Metas offiziellen Connector in der Claude-Desktop-App hinzu. Das Setup führt dich auch selbst hin, das Video zeigt es zum Nachklicken.</p>
+                <div class="copy is-meta"><span class="lbl">Name, genau so schreiben</span><div class="txt mono" data-copy-src>Meta Ads MCP</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="copy is-meta" style="margin-top:.6rem"><span class="lbl">Adresse (Remote MCP server URL)</span><div class="txt mono" data-copy-src>https://mcp.facebook.com/ads</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="path" aria-label="Weg in der Claude-App"><span>Claude-App</span><i>›</i><span>Anpassen</span><i>›</i><span>Konnektoren</span><i>›</i><span>+ Hinzufügen</span><i>›</i><span class="end">Benutzerdefinierter Connector</span></div>
+                <figure class="shot">
+                  <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/connector-dialog.webp" width="586" height="543" alt="Claude-App: Dialog Benutzerdefinierten Connector hinzufügen mit Name Meta Ads MCP und Adresse https://mcp.facebook.com/ads" loading="lazy" decoding="async" /></button>
+                  <figcaption>So sieht es ausgefüllt aus. Dann „Weiter“ beziehungsweise „Hinzufügen“.</figcaption>
+                </figure>
+                <ol class="ol">
+                  <li><div>Beim neuen Eintrag auf <b>Verbinden</b> klicken und mit dem Facebook-Konto anmelden, das Zugriff auf dein Werbekonto hat.</div></li>
+                  <li><div>Werbekonto auswählen und alle Berechtigungen bestätigen, <b>ohne Häkchen zu entfernen</b>. Sonst kann Claude später zwar Zahlen lesen, aber keine Anzeigen anlegen.</div></li>
+                  <li><div><b>VS&nbsp;Code komplett schließen</b> und neu öffnen. Erst dann bekommt Claude die Verbindung mit.</div></li>
+                </ol>
+                <div class="note meta">Der Connector gehört Meta selbst, deshalb steht er nicht in Claudes Verzeichnis. Claude sieht dein Facebook-Passwort nie, und du kannst die Verbindung in der App jederzeit trennen.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson" id="video-4" data-lesson="4">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">04</span>
+              <h3>Das Setup starten</h3>
+              <span class="facts">2:29&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/87ec2f62ac064d0e8ca2784c75652669" data-title="AdsFlow 04: Das Setup starten">
+                  <button type="button" class="frame-play" aria-label="Video 04 abspielen: Das Setup starten">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-4.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">04</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Das Setup starten</span>
+                    <span class="dur">2:29&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/87ec2f62ac064d0e8ca2784c75652669" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Ein Satz, und Claude geht alle Dateien im Ordner durch und führt dich durch das komplette Setup, inklusive Verbindung zu deinem Werbekonto.</p>
+                <div class="copy"><span class="lbl">Startsatz</span><div class="txt say" data-copy-src>Lies SETUP.md</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="viz" aria-hidden="true">
+                  <div class="v-loop three">
+                    <div class="s"><span class="who">Claude</span><b>Fragt dich ab</b>Wie du AdsFlow nutzen willst, Marke, Zielgruppe, Material.</div>
+                    <div class="s mt"><span class="who">Meta</span><b>Verbindet dein Konto</b>Über den Connector aus Video 3.</div>
+                    <div class="s"><span class="who">Claude</span><b>Bietet die erste Anzeige an</b>Freiwillig, etwa 10 bis 15 Minuten.</div>
+                  </div>
+                </div>
+                <ul class="ul">
+                  <li>Hakt etwas, sag es Claude direkt: „XY funktioniert nicht, bitte richte das.“ Alles Nötige liegt im Ordner.</li>
+                  <li>Pause machen? Später einfach <span class="say">„Setup fortsetzen“</span> schreiben.</li>
+                  <li>Danach entscheidest du, ob du ein KI-Tool für Bilder anbindest (Video 5) oder deine eigenen Bilder und Videos hochlädst.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson" id="video-5" data-lesson="5">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">05</span>
+              <h3>KI-Bilder und Videos mit Higgsfield</h3>
+              <span class="facts"><span class="pill opt">Optional</span>5:29&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/b85ad39bbd9a4f98b50bc752aa7c63e4" data-title="AdsFlow 05: KI-Bilder mit Higgsfield">
+                  <button type="button" class="frame-play" aria-label="Video 05 abspielen: KI-Bilder und Videos mit Higgsfield">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-5.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">05</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">KI-Bilder mit Higgsfield</span>
+                    <span class="dur">5:29&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/b85ad39bbd9a4f98b50bc752aa7c63e4" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Nur wenn Claude deine Werbebilder und Videos selbst erstellen soll. Higgsfield ist das Tool, mit dem ich AdsFlow getestet habe. Ohne KI-Tool läuft AdsFlow genauso, dann mit deinen eigenen Bildern.</p>
+                <figure class="shot">
+                  <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/higgsfield-mcp.webp" width="568" height="258" alt="Higgsfield, Seite MCP: Reiter Claude Code ausgewählt, darunter ein Text zum Kopieren mit Copy-Knopf" loading="lazy" decoding="async" /></button>
+                  <figcaption>Bei Higgsfield oben auf „MCP“, dann den Reiter <b>Claude Code</b> wählen (nicht „Claude“), auf „Copy“ klicken und den Text in Claude einfügen.</figcaption>
+                </figure>
+                <p class="body" style="font-size:15.5px">Kommt Claude im Chatfenster nicht weiter, schick das hier hinterher und gib die Befehle dann im Terminal ein:</p>
+                <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Ich kann auch das Terminal nutzen. Sag mir, was ich eingeben soll, um die Installation abzuschließen.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="path" aria-label="Terminal starten"><span>Terminal</span><i>›</i><span>New Terminal</span><i>›</i><span><code>claude</code></span><i>›</i><span class="end">Yes, I trust this folder</span></div>
+                <div class="viz">
+                  <div class="v-loop" aria-hidden="true">
+                    <div class="s"><span class="who">Claude</span><b>Bild erzeugen</b>mit deinem Produktfoto als Vorlage</div>
+                    <div class="s"><span class="who">Claude</span><b>Vergleichen</b>Stimmt das Produkt mit dem Original überein?</div>
+                    <div class="s"><span class="who">Claude</span><b>Prompt anpassen</b>Fehler benennen, nachschärfen</div>
+                    <div class="s"><span class="who">Claude</span><b>Neu erzeugen</b>bis das Produkt sitzt</div>
+                    <span class="back">Diese Schleife läuft ohne dich, so oft wie nötig</span>
+                  </div>
+                  <p class="viz-cap">Das übliche fünf- bis zehnmalige Nachbessern, bis ein Produkt richtig aussieht, nimmt dir Claude ab.</p>
+                </div>
+                <div class="note">Du nutzt ein anderes Tool? Schreib Claude <span class="say">„Richte <var>dein KI-Tool</var> ein“</span>. Claude sucht den offiziellen Weg. Gibt es keinen, schreibt Claude dir fertige Prompts, und du erzeugst die Bilder im Tool selbst.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== Teil 3 ===== -->
+          <div class="phase"><span class="eyebrow">Teil 3 · Loslegen</span><span class="sub">ab jetzt jeden Tag</span></div>
+
+          <article class="lesson" id="video-6" data-lesson="6">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">06</span>
+              <h3>Die ersten Anzeigen: Medienbibliothek und ein Satz</h3>
+              <span class="facts">8:34&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/10935fb0ca7942b5995365274a64c27a" data-title="AdsFlow 06: Die ersten Anzeigen">
+                  <button type="button" class="frame-play" aria-label="Video 06 abspielen: Die ersten Anzeigen">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-6.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">06</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Die ersten Anzeigen</span>
+                    <span class="dur">8:34&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/10935fb0ca7942b5995365274a64c27a" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Das Einzige, was du selbst machst: Bilder oder Videos in die Medienbibliothek laden. Den Rest erledigt Claude, nachdem du einen Satz geschrieben hast.</p>
+                <ol class="ol">
+                  <li><div><b>Medienbibliothek öffnen.</b>
+                    <div class="path"><span class="meta">Werbeanzeigenmanager</span><i>›</i><span>Alle Tools</span><i>›</i><span>Medienbibliothek</span><i>›</i><span class="end">Werbekonto-Medien</span></div>
+                    <p>Oben das richtige Werbekonto auswählen, falls du mehrere hast.</p>
+                    <figure class="shot">
+                      <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/medienbibliothek.webp" width="1168" height="610" alt="Meta Medienbibliothek: links Werbekonto-Medien, oben Add Media, geöffneter Dialog Bilder hochladen" loading="lazy" decoding="async" /></button>
+                      <figcaption>„Add Media“, dann „Add Image“ oder „Add Video“.</figcaption>
+                    </figure>
+                  </div></li>
+                  <li><div><b>Hochladen: Bilder zusammen, Videos einzeln.</b>
+                    <div class="viz" aria-hidden="true">
+                      <div class="v-upload">
+                        <div class="row"><b>Bilder</b><div class="lane"><span class="grp"><span class="thumb"></span><span class="thumb"></span><span class="thumb"></span><span class="thumb"></span><span class="thumb"></span></span><span class="go">→ ein Upload</span></div></div>
+                        <div class="row"><b>Videos</b><div class="lane"><span class="solo"><span class="thumb vid"></span></span><span class="go">→</span><span class="solo"><span class="thumb vid"></span></span><span class="go">→</span><span class="solo"><span class="thumb vid"></span></span><span class="go">→ je einzeln</span></div></div>
+                      </div>
+                    </div>
+                    <p>Viele Videos auf einmal tauchen bei Meta manchmal doppelt auf oder landen in der falschen Anzeige.</p>
+                  </div></li>
+                  <li><div><b>Dateien danach nicht mehr umbenennen.</b> Claude findet sie im Konto über den Dateinamen.</div></li>
+                  <li><div><b>Claude Bescheid geben.</b> Hast du nur Hochkant- oder nur quadratische Versionen, sag es dazu.
+                    <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Ich habe gerade fünf Bilder in mein Werbekonto hochgeladen, bitte bau die Ads.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                  </div></li>
+                  <li><div><b>Läuft schon eine Kampagne?</b> Dann gib Claude die ID der Anzeigengruppe, in die neue Anzeigen sollen. Hast du noch keine Kampagne, baut Claude sie dir komplett.
+                    <div class="path"><span>Spalten</span><i>›</i><span>Spalten anpassen</span><i>›</i><span>„id“ suchen</span><i>›</i><span class="end">ID der Anzeigengruppe</span></div>
+                    <figure class="shot">
+                      <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/spalten-id.webp" width="768" height="478" alt="Werbeanzeigenmanager, Spalten anpassen: Suche nach id, Häkchen bei ID der Anzeigengruppe" loading="lazy" decoding="async" /></button>
+                      <figcaption>Häkchen setzen, speichern, die Tabelle ganz nach rechts scrollen und die ID kopieren.</figcaption>
+                    </figure>
+                    <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Leg in Zukunft alle neuen Anzeigen in die Anzeigengruppe mit dieser ID: </div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                  </div></li>
+                  <li><div><b>Warten, bis „Inaktiv“ dasteht, dann einschalten.</b>
+                    <div class="viz" aria-hidden="true">
+                      <div class="v-status">
+                        <div class="st"><span class="chip"><span class="spin"></span>Wird bearbeitet</span><span>Meta prüft, 5 bis 10 Minuten. Bei neuen Konten bis zu einem Tag.</span></div>
+                        <span class="arr">→</span>
+                        <div class="st"><span class="chip"><span class="dot"></span>Inaktiv</span><span>Prüfung durch, Anzeige ist ausgeschaltet.</span></div>
+                        <span class="arr">→</span>
+                        <div class="st"><span class="chip on"><span class="sw"></span>Einschalten</span><span>Das machst nur du, im Werbeanzeigenmanager.</span></div>
+                      </div>
+                    </div>
+                    <p>Solange „Wird bearbeitet“ in der Spalte Auslieferung steht, nichts einschalten. Mach in der Zeit etwas anderes und schau in zehn bis fünfzehn Minuten wieder rein.</p>
+                  </div></li>
+                </ol>
+                <div class="note warm"><b>Noch fauler:</b> Bring Claude einen Kurzbefehl bei. Danach reicht jeden Tag <span class="say">„Mach Ads“</span>.
+                  <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Wenn ich ab jetzt „Mach Ads“ schreibe, nimm alle Bilder, die ich an dem Tag in die Medienbibliothek hochgeladen habe, schreib die Headlines und Texte dazu und leg die Anzeigen ausgeschaltet in meine Anzeigengruppe. Merk dir das bitte.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson" id="video-7" data-lesson="7">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">07</span>
+              <h3>Jeden Tag neue Creatives, automatisch</h3>
+              <span class="facts">5:25&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/5148b04a739a452d9402804f0547d23d" data-title="AdsFlow 07: Jeden Tag neue Creatives">
+                  <button type="button" class="frame-play" aria-label="Video 07 abspielen: Jeden Tag neue Creatives">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-7.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">07</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Jeden Tag neue Creatives</span>
+                    <span class="dur">5:25&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/5148b04a739a452d9402804f0547d23d" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Bei Meta Ads gewinnt, wer möglichst verschiedene Anzeigen testet, nicht zehn Varianten derselben. So lässt du Claude jeden Tag neue erstellen und nach einer Woche auswerten.</p>
+                <div class="viz" aria-hidden="true">
+                  <div class="v-loop">
+                    <div class="s"><span class="who">Claude</span><b>Erstellt 10 Creatives</b>im Hintergrund, mit Texten</div>
+                    <div class="s you"><span class="who">Du</span><b>Lädst hoch</b>einmal am Tag in die Medienbibliothek</div>
+                    <div class="s you"><span class="who">Du</span><b>„Mach Ads“</b>Claude legt alles ausgeschaltet an</div>
+                    <div class="s"><span class="who">Claude</span><b>Wertet aus</b>nach sieben Tagen, auf Zuruf</div>
+                    <span class="back">und am nächsten Morgen wieder von vorn</span>
+                  </div>
+                </div>
+                <div class="copy"><span class="lbl">Prompt · 10 verschiedene Creatives</span><div class="txt" data-copy-src>Schau dir bitte meine Marke an und erstelle mir 10 Creatives, die so verschieden wie möglich sind, jeweils als Hochkant- und als 1:1-Version. Nutze dafür Higgsfield und leg sie alle in meinen Downloads-Ordner. Achte darauf, dass die Botschaften so verschieden wie möglich sind, denn wir wollen möglichst viele Angles testen.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="copy"><span class="lbl">Prompt · jeden Tag automatisch</span><div class="txt" data-copy-src>Es muss doch einen Weg geben, das so zu automatisieren, dass du mir jeden Tag zehn neue Werbeanzeigen in einen Ordner legst. Generier sie im Hintergrund mit Higgsfield oder meinem verbundenen KI-Tool, sobald ich meinen Laptop aufklappe. Schreib die Headlines und Texte dazu und leg alles fertig ab, sodass ich die Bilder nur noch einmal am Tag in mein Werbekonto hochladen und dir sagen muss, dass du sie einbauen sollst.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <div class="copy"><span class="lbl">Prompt · nach sieben Tagen</span><div class="txt" data-copy-src>Analysier bitte die Performance in meinem Werbekonto und sag mir, was die nächsten Schritte sind und was du an meiner Stelle tun würdest.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                <p class="body" style="font-size:15px">Wie die Automatik läuft, hängt von deinem Rechner ab. Claude prüft das und richtet es passend ein, am Mac zum Beispiel als Hintergrundaufgabe, die beim Aufklappen startet. Das Einbauen ins Werbekonto würde ich nicht automatisieren. Dieses letzte Stück Kontrolle behalte ich bewusst selbst.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson" id="video-8" data-lesson="8">
+            <div class="lesson-head">
+              <span class="big" aria-hidden="true">08</span>
+              <h3>Connector-Rechte einstellen</h3>
+              <span class="facts"><span class="pill opt">Optional</span>2:37&nbsp;Min.</span>
+            </div>
+            <div class="lesson-grid">
+              <div class="lesson-video">
+                <div class="frame" data-embed="https://www.loom.com/embed/31a56db6f72646a6806382b430c7804c" data-title="AdsFlow 08: Connector-Rechte einstellen">
+                  <button type="button" class="frame-play" aria-label="Video 08 abspielen: Connector-Rechte einstellen">
+                    <img class="poster" src="/assets/images/adsflow/danke/poster-8.webp" alt="" width="960" height="616" loading="lazy" decoding="async" />
+                    <span class="bignum">08</span><span class="loom">Loom</span>
+                    <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z" /></svg></span>
+                    <span class="cap">Connector-Rechte einstellen</span>
+                    <span class="dur">2:37&nbsp;Min.</span>
+                  </button>
+                </div>
+                <div class="under">
+                  <button type="button" class="seen" aria-pressed="false"><span class="box"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.2 4.7-5" /></svg></span>Angesehen</button>
+                  <a class="tl" href="https://www.loom.com/share/31a56db6f72646a6806382b430c7804c" target="_blank" rel="noopener">Auf Loom öffnen ↗</a>
+                </div>
+              </div>
+              <div class="lesson-notes">
+                <p class="body">Für alle, die ganz sicher gehen wollen. Im Connector kannst du einzelne Werkzeuge blockieren, die AdsFlow ohnehin nicht braucht. Nötig ist das nicht, Claude nutzt sie nur, wenn du ausdrücklich darum bittest.</p>
+                <div class="path"><span>Anpassen</span><i>›</i><span>Konnektoren</span><i>›</i><span>Meine</span><i>›</i><span class="meta">Meta Ads MCP</span></div>
+                <figure class="shot">
+                  <button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/tool-rechte.webp" width="1058" height="480" alt="Claude-App, Connector Meta Ads MCP: Liste der Schreib- und Lösch-Werkzeuge, bei Ads activate entity wird Blockiert gewählt" loading="lazy" decoding="async" /></button>
+                  <figcaption>Rechts neben jedem Werkzeug: erlauben, nachfragen oder blockieren (Kreis mit Strich).</figcaption>
+                </figure>
+                <div class="viz">
+                  <p style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500">Kandidaten zum Blockieren</p>
+                  <ul class="ul" style="margin-top:.7rem">
+                    <li><code class="in">Ads activate entity</code>, schaltet Anzeigen ein</li>
+                    <li><code class="in">Ads boost ig post</code>, bewirbt Instagram-Beiträge</li>
+                    <li><code class="in">Ads catalog …</code>, Katalog und Produktfeeds</li>
+                    <li>Werkzeuge, die Pixel-Events löschen</li>
+                  </ul>
+                  <p class="viz-cap">Werkzeuge zum Lesen und zum Anlegen von Anzeigen braucht AdsFlow. Die bleiben offen.</p>
+                </div>
+                <div class="note">Geht nach dem Blockieren etwas nicht mehr, stell das Werkzeug zurück auf „Genehmigung erforderlich“. Weißt du bei einem Werkzeug nicht, was es tut: Screenshot machen und Claude fragen.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ Sätze ============ -->
+      <section class="sec" id="saetze">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Spickzettel</span>
+              <h2>Diese Sätze versteht <em>AdsFlow</em>.</h2>
+            </div>
+            <p class="lead">Du redest mit Claude in normalem Deutsch, Tippfehler inklusive. Diese Sätze lösen die fertigen Abläufe im Ordner aus. Antippen kopiert den Satz.</p>
+          </div>
+
+          <div class="phrases">
+            <button type="button" class="phrase" data-phrase="Neue Ads"><span class="say">„Neue Ads“</span><span class="what">Konzepte und Texte, im Vollausbau auch Bilder, dann ausgeschaltet ins Werbekonto.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Wie laufen meine Ads?"><span class="say">„Wie laufen meine Ads?“</span><span class="what">Claude liest die Zahlen, ordnet sie ein und merkt sich, was funktioniert. Geändert wird dabei nichts.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Neue Video-Ads"><span class="say">„Neue Video-Ads“</span><span class="what">Video-Anzeigen mit deinem echten Produkt, nur im Vollausbau mit KI-Tool.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Mach Varianten von "><span class="say">„Mach Varianten von <var>Anzeige</var>“</span><span class="what">Neue Fassungen einer guten Anzeige, jeweils mit einer Änderung.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Welche Ideen hast du?"><span class="say">„Welche Ideen hast du?“</span><span class="what">Vorschläge aus einer Sammlung bewährter Anzeigen-Typen. Was schon lief, kommt nicht doppelt.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Analysier die Ads von "><span class="say">„Analysier die Ads von <var>Wettbewerber</var>“</span><span class="what">Was die Konkurrenz in der Werbebibliothek schaltet und wo Lücken für dich sind.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Sammle Kundenstimmen"><span class="say">„Sammle Kundenstimmen“</span><span class="what">Die Worte deiner Kundschaft als Rohstoff für Hooks und Texte.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Lass uns die erste Anzeige bauen"><span class="say">„Lass uns die erste Anzeige bauen“</span><span class="what">Eine geführte erste Anzeige, Schritt für Schritt erklärt.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Richte mein KI-Tool ein"><span class="say">„Richte <var>dein KI-Tool</var> ein“</span><span class="what">Claude recherchiert den offiziellen Weg und führt dich durch die Anbindung.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Stell auf Nur-Upload um"><span class="say">„Stell auf Nur-Upload um“</span><span class="what">Ohne KI-Tool weiterarbeiten, mit deinen eigenen Bildern und Videos.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Erklär mir Tracking"><span class="say">„Erklär mir Tracking“</span><span class="what">Warum Meta ohne Pixel und Conversions API im Dunkeln optimiert.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Verbinde Meta neu"><span class="say">„Verbinde Meta neu“</span><span class="what">Wenn die Verbindung hakt oder ein weiteres Werbekonto dazukommt.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Erklär mir das System"><span class="say">„Erklär mir das System“</span><span class="what">Claude führt dich durch den Ordner und beantwortet deine Fragen.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+            <button type="button" class="phrase" data-phrase="Setup fortsetzen"><span class="say">„Setup fortsetzen“</span><span class="what">Macht dort weiter, wo du das Setup unterbrochen hast.</span><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg><span>Kopieren</span></span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Installation ============ -->
+      <section class="sec" id="installation">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Ganz neu dabei</span>
+              <h2>Claude Code von <em>null</em> einrichten.</h2>
+            </div>
+            <p class="lead">Du installierst nur zwei Dinge: Visual Studio Code, ein kostenloses Programm zum Arbeiten mit Dateien, und Claude Code darin. Einmalig etwa zehn Minuten.</p>
+          </div>
+
+          <div class="inst">
+            <aside class="card">
+              <h3>Was du brauchst</h3>
+              <ul class="need">
+                <li><span><b>Ein Claude-Konto mit Bezahl-Tarif</b> auf <a class="tl" href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>. Claude Code läuft nicht im Gratis-Konto. Für den Start reicht Pro, bei sehr viel Nutzung oder als Agentur später Max.</span></li>
+                <li><span><b>Visual Studio Code,</b> kostenlos auf <a class="tl" href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a>.</span></li>
+                <li><span><b>Die Claude-Desktop-App,</b> kostenlos auf <a class="tl" href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a>, mit demselben Claude-Konto angemeldet.</span></li>
+                <li><span><b>Ein Meta-Werbekonto</b> samt Facebook-Seite. Hast du schon mal eine Anzeige geschaltet, gibt es beides.</span></li>
+                <li class="opt"><span><b>Optional ein KI-Tool</b> für Bilder und Videos, empfohlen ist Higgsfield. Geht auch später.</span></li>
+              </ul>
+              <div class="viz">
+                <div class="v-flow" aria-hidden="true">
+                  <div class="node"><span class="ico or"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" /></svg></span><span><b>Claude Code</b>in VS&nbsp;Code</span></div>
+                  <span class="wire"></span>
+                  <div class="node"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" /><path d="M12 16v5" /></svg></span><span><b>Meta Ads MCP</b>in der Claude-App</span></div>
+                  <span class="wire b"></span>
+                  <div class="node"><span class="ico mt"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18M7 15h4" /></svg></span><span><b>Dein Werbekonto</b>bei Meta</span></div>
+                </div>
+                <p class="viz-cap">Darum brauchst du die Desktop-App: Dort hängt der Connector zu Meta, und Claude Code in VS&nbsp;Code nutzt ihn mit.</p>
+              </div>
+              <div class="note meta"><b>Vorher kurz absichern:</b> Aktiviere die Zwei-Faktor-Authentifizierung für dein Facebook-Konto. Facebook, Einstellungen, Passwort und Sicherheit, Zweistufige Authentifizierung.</div>
+            </aside>
+
+            <div class="inst-steps">
+              <ol class="ol">
+                <li><div><strong>VS Code installieren</strong>Auf <a class="tl" href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a> den Download für Mac oder Windows laden. Mac: die Datei öffnen und „Visual Studio Code“ in den Programme-Ordner ziehen. Windows: durch die Installation klicken, alle Voreinstellungen passen. Danach einmal starten.</div></li>
+                <li><div><strong>Claude-Erweiterung installieren</strong>Links auf das Symbol für Erweiterungen (Extensions) klicken, „Claude“ suchen und <b>Claude Code von Anthropic</b> mit blauem Haken installieren. Dann auf „Login with Subscription“ und mit deinem Claude-Konto anmelden, also mit deinem Abo und nicht mit einem API-Schlüssel. Sonst fehlt später die Verbindung zu Meta.
+                  <figure class="shot narrow"><button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/erweiterung.webp" width="322" height="238" alt="VS Code, Erweiterungen: Claude Code von Anthropic mit blauem Haken" loading="lazy" decoding="async" /></button></figure>
+                </div></li>
+                <li><div><strong>Ordner öffnen und starten</strong>„File, Open Folder“, den inneren Ordner <code class="in">adsflow</code> auswählen, dem Ordner vertrauen. Im Claude-Fenster eine neue Session öffnen und <span class="say">„Lies SETUP.md“</span> schreiben.</div></li>
+              </ol>
+
+              <div class="card" id="fehler" style="margin-top:2rem">
+                <h3>Rote Fehlermeldung bei der ersten Nachricht?</h3>
+                <p class="body" style="font-size:16px">Zum Beispiel „claude is not recognized“ oder „Claude Code process exited with code 1“. Dann ist Claude Code auf dem Rechner noch nicht fertig eingerichtet. Das passiert genau einmal und ist in ein paar Minuten erledigt.</p>
+                <ol class="ol">
+                  <li><div><b>Terminal öffnen:</b> oben im Menü „Terminal, Neues Terminal“ (New Terminal). Unten erscheint ein Eingabefeld.</div></li>
+                  <li><div><b>Claude installieren:</b> Befehl für dein System kopieren, ins Terminal einfügen, Enter.
+                    <div class="term">
+                      <div class="os-tabs" role="tablist" aria-label="Betriebssystem">
+                        <button type="button" role="tab" aria-selected="true" data-os="mac">Mac</button>
+                        <button type="button" role="tab" aria-selected="false" data-os="win">Windows</button>
+                      </div>
+                      <div data-os-panel="mac">
+                        <div class="copy"><span class="lbl">Mac · Terminal</span><div class="txt" data-copy-src>curl -fsSL https://claude.ai/install.sh | bash</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                      </div>
+                      <div data-os-panel="win" hidden>
+                        <div class="copy"><span class="lbl">Windows · PowerShell</span><div class="txt" data-copy-src>irm https://claude.ai/install.ps1 | iex</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                        <p style="margin-top:.6rem;font-size:14px;color:var(--ink-3)">Steht in der Terminal-Leiste „cmd“ statt „PowerShell“? Über den kleinen Pfeil neben dem Plus ein Terminal vom Typ PowerShell öffnen.</p>
+                      </div>
+                    </div>
+                  </div></li>
+                  <li><div><b>Einrichtung bis zum Ende durchklicken:</b> <code class="in">claude</code> eintippen, Enter. Design mit den Pfeiltasten wählen, im Browser anmelden, die Nutzungsbedingungen mit Enter bestätigen. Erst wenn unten eine normale Eingabezeile steht, das Terminal schließen.
+                    <figure class="shot"><button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/help/claude-setup-theme-select.png" width="1031" height="525" alt="Claude-Einrichtung im Terminal: Auswahl des Designs" loading="lazy" decoding="async" /></button><figcaption>Diesen Bildschirm nicht schließen, sondern Schritt für Schritt durchklicken.</figcaption></figure>
+                  </div></li>
+                  <li><div><b>VS&nbsp;Code einmal komplett schließen</b> und neu öffnen. Die Meldung ist weg.</div></li>
+                </ol>
+                <p class="note">Wichtig: Brichst du die Einrichtung ab, kommt dieselbe Meldung wieder. Im Browser oder in der Desktop-App zu bestätigen reicht nicht, es muss in Claude Code im Terminal passieren. Weitere Fehler findest du in den <a class="tl" href="#faq-install">FAQ unter Installation</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="sec" id="faq">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="eyebrow">Fragen und Antworten</span>
+              <h2>Hier steht alles, was bisher <em>gefragt</em> wurde.</h2>
+            </div>
+            <p class="lead">Fehlt deine Frage, frag zuerst Claude im Ordner. Kommt dort keine gute Antwort, schreib mir. Ich nehme die Frage dann hier auf.</p>
+          </div>
+
+          <div class="faq-grid">
+            <aside class="faq-side">
+              <label class="search">
+                <span class="sr">FAQ durchsuchen</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+                <input type="search" id="faqSearch" placeholder="Frage suchen, z. B. Limit" autocomplete="off" />
+              </label>
+              <ul class="cats" id="faqCats">
+                <li><a href="#faq-install">Installation und Fehler <span data-count="faq-install"></span></a></li>
+                <li><a href="#faq-claude">Claude richtig nutzen <span data-count="faq-claude"></span></a></li>
+                <li><a href="#faq-limits">Limits und Abo <span data-count="faq-limits"></span></a></li>
+                <li><a href="#faq-meta">Meta und Sicherheit <span data-count="faq-meta"></span></a></li>
+                <li><a href="#faq-ads">Anzeigen und Auswertung <span data-count="faq-ads"></span></a></li>
+                <li><a href="#faq-ordner">Ordner und Updates <span data-count="faq-ordner"></span></a></li>
+              </ul>
+              <p class="mail">Keine Antwort gefunden? <a class="tl" href="mailto:alex@adolution.de?subject=Frage%20zu%20AdsFlow">alex@adolution.de</a>, am besten mit Screenshot.</p>
+            </aside>
+
+            <div id="faqBody">
+              <!-- ===== Installation und Fehler ===== -->
+              <div class="faq-group" id="faq-install">
+                <h3>Installation und Fehler</h3>
+                <p>Die Meldungen, die beim ersten Start am häufigsten auftauchen.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">„claude is not recognized“ oder „process exited with code 1“</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Beide Meldungen haben dieselbe Ursache: Claude Code ist auf dem Rechner noch nicht installiert oder die Einrichtung wurde nicht zu Ende geklickt. Die Lösung steht oben unter <a class="tl" href="#fehler">Rote Fehlermeldung bei der ersten Nachricht</a>, mit den Befehlen für Mac und Windows.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">„claude“ wird nach der Installation nicht erkannt</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Das Terminal kennt den neuen Befehl erst nach einem Neustart. Schließ das Terminal (Mülleimer-Symbol) und öffne ein neues über „Terminal, Neues Terminal“. Hilft das nicht, VS&nbsp;Code einmal ganz schließen und neu öffnen.</p>
+                      <p>Stand unter Windows beim Installieren ein gelber Hinweis wie „… is not in your PATH“? Dann ist Claude richtig installiert, Windows weiß nur noch nicht, wo das Programm liegt. Diese Zeile ins selbe Terminal einfügen und Enter drücken. Es kommt keine Rückmeldung, das ist richtig so. Danach ein neues Terminal öffnen.</p>
+                      <div class="copy"><span class="lbl">Windows · PowerShell</span><div class="txt mono" data-copy-src>$p=[Environment]::GetEnvironmentVariable("Path","User"); [Environment]::SetEnvironmentVariable("Path", $p + ";$env:USERPROFILE\.local\bin", "User")</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">„You must run claude in the terminal to review the updated terms“</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Die einmalige Einrichtung im Terminal ist nicht abgeschlossen, meist weil das Terminal beim Auswählen des Designs zu früh geschlossen wurde. Klick in der Meldung auf „Resolve in Terminal“ oder tipp im Terminal <code class="in">claude</code> und Enter.</p>
+                      <ol class="ol">
+                        <li><div>Design mit den Pfeiltasten wählen, Enter.</div></li>
+                        <li><div>Im Browser anmelden, falls gefragt.</div></li>
+                        <li><div>Die Nutzungsbedingungen mit Enter bestätigen.</div></li>
+                        <li><div>Warten, bis unten eine normale Eingabezeile erscheint. Erst dann schließen.</div></li>
+                      </ol>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Claude kennt die AdsFlow-Regeln nicht oder reagiert nicht auf „Lies SETUP.md“</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Fast immer ist der falsche Ordner offen. Unter Windows legt „Alle extrahieren“ einen Überordner an, in dem erst der eigentliche Ordner <code class="in">adsflow</code> liegt. Öffnest du den Überordner, lädt Claude die Regeln und Skills nicht.</p>
+                      <div class="viz" aria-hidden="true">
+                        <div class="tree">
+                          <div class="row outer"><svg viewBox="0 0 16 16" fill="none"><path d="M1.5 4.5a1 1 0 0 1 1-1h3.6l1.5 1.5h5.9a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z" stroke="currentColor" /></svg>AdsFlow-2026-10-03 <span class="x">falsch</span></div>
+                          <div class="row inner"><svg viewBox="0 0 16 16" fill="none"><path d="M1.5 4.5a1 1 0 0 1 1-1h3.6l1.5 1.5h5.9a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z" fill="rgba(200,99,62,.25)" stroke="currentColor" /></svg>adsflow <span class="x">richtig</span></div>
+                        </div>
+                      </div>
+                      <p>So prüfst du es: Links im Explorer müssen direkt <code class="in">SETUP.md</code>, <code class="in">CLAUDE.md</code> und der Ordner <code class="in">guidelines</code> stehen. Siehst du dort nur einen einzelnen Ordner, öffne über „File, Open Folder“ den inneren.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">„Restricted Mode“ oder „Do you trust the authors?“</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>VS&nbsp;Code fragt beim ersten Öffnen eines Ordners, ob du ihm vertraust. Solange oben „Restricted Mode“ steht, kann Claude dort nicht richtig arbeiten. Auf „Manage“ klicken und „Trust this folder“ beziehungsweise „Yes, I trust the authors“ wählen.</p>
+                      <p>Claude Code stellt im Terminal dieselbe Frage noch einmal („Yes, I trust this folder“). Auch die bestätigst du. Im Ordner liegen nur Text-Dateien, du kannst vorher gern durchklicken.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich habe das Setup unterbrochen. Muss ich von vorn anfangen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Nein. Claude merkt sich, wie weit ihr gekommen seid. Neue Session öffnen und <span class="say">„Setup fortsetzen“</span> schreiben.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Claude bietet nur Optionen an, bei denen ich selbst klicken muss</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Du musst keine davon nehmen. Wähl unten in der Liste „Other“ und schreib frei, was du willst, zum Beispiel: „Das soll ohne Handarbeit gehen. Finde einen Weg, wie du es selbst erledigst.“ Meist findet Claude dann einen automatischen Weg.</p>
+                      <p>Zwei Dinge machst du bei AdsFlow aber bewusst selbst: Bilder und Videos in die Medienbibliothek laden und fertige Anzeigen einschalten.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Läuft AdsFlow auf Mac und Windows?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja, auf beiden. VS&nbsp;Code und Claude Code gibt es für beide Systeme, die Befehle für die Installation stehen oben getrennt nach Mac und Windows.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- ===== Claude richtig nutzen ===== -->
+              <div class="faq-group" id="faq-claude">
+                <h3>Claude richtig nutzen</h3>
+                <p>Modelle, Sessions, Kontext und wie du Claude Feedback gibst.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">Welches Claude-Modell nehme ich?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-models">
+                          <div class="m x"><span class="why">zu schwach für gute Anzeigen</span><span class="bar"></span><span class="name">Haiku</span></div>
+                          <div class="m"><span class="why">wenn das Limit drückt</span><span class="bar"></span><span class="name">Sonnet</span></div>
+                          <div class="m std"><span class="why">dein Standard</span><span class="bar"></span><span class="name">Opus</span></div>
+                          <div class="m x"><span class="why">zu groß, frisst dein Limit</span><span class="bar"></span><span class="name">Fable</span></div>
+                        </div>
+                        <div class="v-axis">mehr Rechenleistung, schneller am Limit</div>
+                      </div>
+                      <p><b>Opus</b> ist dein Standard. Damit habe ich AdsFlow gebaut und nutze es jeden Tag.</p>
+                      <p><b>Sonnet</b> probierst du, wenn du mit Opus zu schnell an dein Fünf-Stunden-Limit kommst. Werden die Ergebnisse schlechter, wieder zurück zu Opus.</p>
+                      <p><b>Fable</b> und <b>Haiku</b> nimmst du für AdsFlow nicht. Fable ist für diese Aufgaben überdimensioniert und leert dein Limit in kurzer Zeit, Haiku reicht für gute Texte nicht.</p>
+                      <p class="note">Mit neuen Modellen kann sich die Empfehlung ändern. Hier steht immer der aktuelle Stand.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Mit Opus planen, mit Sonnet ausführen: wie geht das?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <ol class="ol">
+                        <li><div><b>Opus um einen Plan bitten,</b> zum Beispiel: „Erstelle mir eine Strategie für die nächsten 20 Anzeigen als md-Datei.“</div></li>
+                        <li><div><b>Plan speichern lassen.</b> Opus legt ihn als Datei im Ordner ab.</div></li>
+                        <li><div><b>Zu Sonnet wechseln</b> und den Plan aus der Datei abarbeiten lassen.</div></li>
+                      </ol>
+                      <p>So denkt das starke Modell, und das günstigere arbeitet ab. Dein Limit hält dadurch deutlich länger.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Welchen Effort stelle ich ein?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Effort steuert, wie lange Claude nachdenkt, bevor es antwortet. Für AdsFlow reicht <b>Medium</b>. Wirken Texte oder Anzeigen-Ideen flach, stell auf <b>High</b>. Noch höher lohnt sich hier nicht, das kostet nur Limit.</p>
+                      <p>Sind dir die Ergebnisse zu flach, geh in dieser Reihenfolge vor: erst das Modell auf Opus, dann den Effort hoch.</p>
+                      <figure class="shot"><button type="button" class="pic" data-zoom aria-label="Screenshot vergrößern"><img src="/assets/images/adsflow/danke/modus-menue.webp" width="752" height="382" alt="Claude Code in VS Code: Modus-Menü mit Effort-Regler" loading="lazy" decoding="async" /></button><figcaption>Effort, Modus und Modell findest du unten im Chatfeld.</figcaption></figure>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Manueller Modus oder Auto-Modus?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-modes">
+                          <div class="md"><b>Manuell</b>Du bestätigst jede einzelne Anfrage selbst.<div class="asks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                          <div class="md pick"><b>Auto</b>Claude prüft jede Anfrage und hält bei riskanten an.<div class="asks"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="stop"></i><i class="ok"></i><i class="ok"></i></div></div>
+                        </div>
+                      </div>
+                      <p>Am Anfang steht der Modus meist auf <b>Manual</b>. Dann fragt Claude bei jedem Schritt um Erlaubnis. Für den ersten Durchlauf ist das gut, um ein Gefühl zu bekommen. Verstehst du eine Abfrage nicht, mach ein Foto davon und frag einen KI-Chat deiner Wahl, was sie bedeutet.</p>
+                      <p>Läuft alles, wechsle auf <b>Auto</b>. Claude prüft dann jede Anfrage selbst und hält bei riskanten an, zum Beispiel wenn ein Budget geändert werden soll. Ich arbeite nur im Auto-Modus und hatte damit noch kein einziges Problem.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Warum werden Antworten in langen Chats schlechter?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-ctx">
+                          <div class="meter">
+                            <span class="flag">/compact</span>
+                            <i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f2"></i><i></i><i></i><i></i><i></i><i></i>
+                          </div>
+                          <div class="scale"><span>leer</span><span>40 bis 50 %</span><span>voll</span></div>
+                          <div class="legend">
+                            <span><b>Neue Aufgabe</b>neue Session, Balken leer</span>
+                            <span><b>Zwischenschritt</b>/compact, Balken schrumpft</span>
+                            <span><b>Voll</b>Antworten werden schwächer</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p>Claude liest vor jeder Antwort den ganzen bisherigen Chat neu. Je länger der Chat, desto mehr kostet das, dein Limit ist schneller voll und die Antworten werden mit der Zeit schlechter. Lange Chats, wie man sie von ChatGPT kennt, sind bei Claude keine gute Idee.</p>
+                      <p>Unten im Chat erscheint irgendwann ein oranger Halbkreis. Fährst du drüber, siehst du den Füllstand. Ab 40 bis 50 Prozent draufklicken oder <code class="in">/compact</code> eintippen, dann fasst Claude das Wichtigste zusammen und macht Platz.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie und wann starte ich eine neue Session?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Immer, wenn du eine neue Aufgabe beginnst, für die der bisherige Chat keine Rolle spielt. Also im Zweifel für jede Runde Anzeigen.</p>
+                      <p>Im Claude-Fenster oben rechts auf den Knopf für eine neue Session klicken. Oder links in der Seitenleiste auf das Claude-Symbol und dann auf „+ New Session“.</p>
+                      <p><code class="in">/compact</code> nimmst du dagegen, wenn du einen Zwischenschritt erreicht hast und im selben Chat weitermachen willst.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Kann ich Wissen aus einem Chat in einem anderen nutzen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja. Bitte Claude, es sich zu merken. Claude speichert es dann in seinen Dateien im Ordner und hat es in jeder neuen Session dabei.</p>
+                      <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Bitte merke dir, was wir in diesem Chat gemacht haben, damit ich das auch in anderen Sessions zur Verfügung habe.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Claude macht etwas, das mir nicht gefällt. Was tun?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Sag es direkt und bitte Claude, es sich zu merken. AdsFlow speichert jede Rückmeldung zu Texten und Bildern dauerhaft im Ordner <code class="in">feedback</code> und liest sie bei jedem Durchlauf. Du sagst Dinge also genau einmal.</p>
+                      <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Das war nicht richtig, das hätte anders sein müssen, und zwar so: … Bitte speichere dir das für die Zukunft, damit du den Fehler nicht noch einmal machst.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                      <p>Je konkreter, desto besser. „Die Headline ist zu lang, maximal sechs Wörter“ hilft mehr als „gefällt mir nicht“.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich verstehe nicht, was Claude von mir will</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Frag einfach nach. Das passiert zum Beispiel, wenn Claude erwähnt, dass Meta-Tracking gerade wichtig wäre, und du nicht weißt, wo du das findest.</p>
+                      <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Kannst du mir das bitte noch mal in einfacher Sprache erklären und mir Schritt für Schritt sagen, was ich tun soll?</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie zeige ich Claude am besten, was ich meine?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Mit Screenshots, das geht schneller als beschreiben. Gefällt dir an einem Bild etwas nicht oder hakt etwas im Werbeanzeigenmanager: Screenshot machen und Claude darauf zeigen.</p>
+                      <div class="copy"><span class="lbl">Beispiel</span><div class="txt" data-copy-src>Schau dir den letzten Screenshot in meinem Downloads-Ordner an. Da passt mir XY nicht, bitte ändere das.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                      <p>Du kannst auf dem Screenshot auch rot umkreisen oder Pfeile ziehen. Claude liest solche Markierungen mit.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Muss ich sauber tippen oder perfekte Prompts schreiben?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Nein. Tippfehler und fehlende Umlaute sind egal, und Diktieren funktioniert genauso. Wichtiger als die einzelne Eingabe ist der Kontext, der schon im Ordner liegt: deine Marke, deine Zielgruppe, die Regeln und dein Feedback. Je kürzer deine Sätze bleiben können, desto besser funktioniert das System.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Kann ich vom Handy aus weiterarbeiten?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja. Steht unten im Chatfeld von VS&nbsp;Code „Remote Control“, kannst du laufende Sessions vom Handy steuern.</p>
+                      <ol class="ol">
+                        <li><div>Rechner anlassen und die Session in VS&nbsp;Code offen lassen.</div></li>
+                        <li><div>Claude-App öffnen, oben auf die drei Striche, dann auf <b>Code</b>.</div></li>
+                        <li><div>Die verbundene Session wählen und ganz normal schreiben, auch per Sprachnachricht.</div></li>
+                      </ol>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- ===== Limits und Abo ===== -->
+              <div class="faq-group" id="faq-limits">
+                <h3>Limits und Abo</h3>
+                <p>Wie das Fünf-Stunden-Fenster funktioniert und wie du länger am Stück arbeitest.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">Welches Claude-Abo brauche ich?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Einen Bezahl-Tarif, Claude Code läuft nicht im Gratis-Konto. Für den Start reicht <b>Pro</b>. Merkst du, dass du sehr viel damit arbeitest, oder betreust du als Agentur mehrere Kunden, brauchst du irgendwann <b>Max</b>.</p>
+                      <p>Melde dich in VS&nbsp;Code immer mit deinem Abo an („Login with Subscription“), nicht mit einem API-Schlüssel. Sonst lädt Claude Code den Meta-Connector aus der App nicht.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie funktioniert das Session-Limit?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Claude rechnet in einem Fünf-Stunden-Fenster. Der Timer startet <b>mit deiner ersten Nachricht</b>, nicht zu einer festen Uhrzeit. Innerhalb des Fensters hast du ein Kontingent. Ist es aufgebraucht, erscheint „Session limit reached“, und es geht erst weiter, wenn die fünf Stunden seit deiner ersten Nachricht um sind.</p>
+                      <p>Wie schnell das Kontingent voll läuft, hängt vom Modell, vom Effort und von der Länge deines Chats ab. Kurze Sessions und <code class="in">/compact</code> strecken es deutlich.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Trick: das Zeitfenster morgens vorstarten</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-window">
+                          <span class="lbl">Limit-Fenster</span>
+                          <div class="lane" style="margin-top:1.9rem">
+                            <span class="phone">07:00 Nachricht vom Handy</span>
+                            <span class="blk w1">Fenster 1</span>
+                            <span class="blk w2">Fenster 2</span>
+                            <span class="pin" style="left:42.86%"></span>
+                          </div>
+                          <span class="lbl" style="display:block;margin-top:.7rem">Deine Arbeitszeit</span>
+                          <div class="lane"><span class="blk work">am Laptop</span></div>
+                          <div class="ticks"><span style="left:0%;transform:none">06</span><span style="left:21.43%">09</span><span style="left:42.86%">12</span><span style="left:64.29%">15</span><span style="left:78.57%">17</span><span style="left:100%;transform:translateX(-100%)">20 Uhr</span></div>
+                        </div>
+                        <p class="viz-cap">Das Fenster setzt sich um 12 Uhr zurück, mitten in deiner Arbeitszeit. Du arbeitest am Stück weiter.</p>
+                      </div>
+                      <ol class="ol">
+                        <li><div><b>Claude-App aufs Handy</b> holen und mit demselben Konto anmelden.</div></li>
+                        <li><div><b>Direkt nach dem Aufstehen eine Nachricht schicken.</b>
+                          <div class="copy"><span class="lbl">Nachricht</span><div class="txt" data-copy-src>Guten Morgen Claude, antworte mir nicht, aber starte bitte deine Session.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                        </div></li>
+                        <li><div><b>Ganz normal in den Tag starten.</b> Bis du am Laptop sitzt, sind oft schon zwei bis drei Stunden des Fensters vorbei.</div></li>
+                      </ol>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wo sehe ich, wie viel ich schon verbraucht habe?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>In VS&nbsp;Code im Menü, das sich mit <code class="in">/</code> im Chatfeld öffnet, unter „Account“ und „Usage“. In der Claude-App in den Einstellungen unter „Nutzung“.</p>
+                      <p><b>Session (5 h)</b> zeigt, wie voll dein aktuelles Fenster ist und wann es sich zurücksetzt. <b>Weekly (7 Tage)</b> zeigt dein Wochenkontingent. Ein kurzer Blick vor einer großen Runde erspart dir, mittendrin ausgebremst zu werden.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich stoße ständig ans Limit. Was tun?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Erst die günstigen Hebel: kurze Sessions statt Dauerchat, <code class="in">/compact</code> an Zwischenschritten, Effort auf Medium und Routineaufgaben mit Sonnet.</p>
+                      <p>Reicht das nicht, musst du nicht dauerhaft mehr zahlen. Du kannst gezielt für einen Monat auf den größeren Plan wechseln und danach wieder zurück. Leg dir für so einen Monat vorher zurecht, was viel Rechenleistung braucht, zum Beispiel eine große Runde neuer Creatives oder die Wettbewerbsanalyse.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Können zwei Personen ein Claude-Konto nutzen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Wenn ihr an denselben Anzeigen arbeitet: ja. Ihr meldet euch beide mit demselben Konto an. Bedenkt nur, dass ihr euch dann dasselbe Fünf-Stunden-Fenster teilt. Getrennte Abos lohnen sich erst, wenn ihr wirklich an verschiedenen Dingen arbeitet.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- ===== Meta und Sicherheit ===== -->
+              <div class="faq-group" id="faq-meta">
+                <h3>Meta-Verbindung und Sicherheit</h3>
+                <p>Was Claude in deinem Werbekonto darf und was nicht, und was hilft, wenn die Verbindung hakt.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">Kann Claude meine Anzeigen live schalten oder Budgets ändern?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-status">
+                          <div class="st"><span class="chip"><span class="sw off"></span>Ausgeschaltet</span><span>So legt Claude jede Anzeige an.</span></div>
+                          <span class="arr">→</span>
+                          <div class="st"><span class="chip"><span class="dot"></span>Inaktiv</span><span>Metas Prüfung ist durch.</span></div>
+                          <span class="arr">→</span>
+                          <div class="st"><span class="chip on"><span class="sw"></span>Live</span><span>Schaltest nur du.</span></div>
+                        </div>
+                      </div>
+                      <p>Claude legt jede Anzeige ausgeschaltet an. Die Werkzeuge zum Einschalten und zum Ändern bestehender Anzeigen, Budgets und Status sind in den Einstellungen des Ordners gesperrt. Live schaltest du selbst, nachdem Metas Prüfung durch ist.</p>
+                      <p>Claude Code ist ein mächtiges Werkzeug. Wer Claude immer wieder drängt, Regeln zu umgehen, oder Einstellungen im Ordner verändert, arbeitet außerhalb dessen, wofür AdsFlow gebaut ist. Nutze es für das, wofür es da ist: Anzeigen ausgeschaltet anlegen, auswerten und neue bauen.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Kann Meta mein Konto einschränken, weil Claude zu viel macht?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Meta schaut genauer hin, wenn in kurzer Zeit Hunderte Aktionen in einem Konto passieren, etwa ständiges Hin- und Herändern im Sekundentakt. Der Ablauf in AdsFlow bleibt weit darunter. Ich habe ihn in über 50 Werbekonten getestet, ohne dass Meta etwas beanstandet hat.</p>
+                      <p>Deshalb nutzt AdsFlow die Verbindung nur für den Anzeigen-Ablauf. Lass Claude bitte keine anderen Kontoeinstellungen ändern und keine Massen-Änderungen machen.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ist der Connector sicher und offiziell?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja. Den Connector unter <code class="in">https://mcp.facebook.com/ads</code> betreibt Meta selbst, er kostet nichts. Weil er von Meta kommt und nicht von Anthropic, steht er nicht in Claudes Verzeichnis und wird als eigener Connector hinzugefügt. Du kannst das gern selbst nachprüfen, indem du danach suchst.</p>
+                      <p>Du meldest dich ganz normal bei Facebook an. Claude sieht dein Passwort nie, und in der App trennst du die Verbindung mit einem Klick.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Claude findet nach dem Neustart keine Meta-Werkzeuge</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Meist ist Claude Code nicht mit deinem Abo angemeldet, sondern zum Beispiel mit einem API-Schlüssel. Dann lädt es keine Connectors aus der App.</p>
+                      <ol class="ol">
+                        <li><div>In Claude Code <code class="in">/status</code> eintippen und die Anmeldung ansehen.</div></li>
+                        <li><div>Mit <code class="in">/login</code> neu anmelden und dein Claude-Konto wählen.</div></li>
+                        <li><div>VS&nbsp;Code komplett schließen und neu öffnen.</div></li>
+                      </ol>
+                      <p>Mit <code class="in">/mcp</code> siehst du, ob „claude.ai Meta Ads MCP“ in der Liste steht und verbunden ist.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Zahlen lesen klappt, Anzeigen anlegen nicht</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Beim Verbinden wurde eine Berechtigung abgewählt. Verbinde neu (siehe nächste Frage) und bestätige alle Berechtigungen, ohne Häkchen zu entfernen.</p>
+                      <p>Hilft das nicht, ist im Business-Portfolio vielleicht das Anlegen durch KI-Werkzeuge gesperrt. Wer volle Kontrolle über das Portfolio hat, schaut in den Business-Einstellungen unter „Integrationen“ beim „Ads MCP Server“ nach. AdsFlow braucht dort das Erstellen von Kampagnen, Anzeigengruppen und Anzeigen.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Es lief wochenlang, jetzt kommen Anmeldefehler. Oder: weiteres Werbekonto freigeben</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Die Facebook-Anmeldung hält nicht ewig. In beiden Fällen verbindest du neu:</p>
+                      <div class="path"><span>Claude-App</span><i>›</i><span>Anpassen</span><i>›</i><span>Konnektoren</span><i>›</i><span class="meta">Meta Ads MCP</span><i>›</i><span>Trennen</span><i>›</i><span class="end">Verbinden</span></div>
+                      <p>Im Facebook-Fenster die Auswahl anpassen, alle Berechtigungen bestätigen und VS&nbsp;Code neu starten. Oder schreib Claude einfach <span class="say">„Verbinde Meta neu“</span>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Mein Werbekonto taucht im Facebook-Fenster nicht auf</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Dein Facebook-Zugang ist nicht auf das Werbekonto berechtigt. Prüf im Business Manager, ob du als Person mit Zugriff auf das Werbekonto eingetragen bist.</p>
+                      <p>Meldet Claude, das Konto sei für den Connector nicht freigeschaltet (<code class="in">is_ads_mcp_enabled</code> ist falsch), lässt Meta dieses Konto noch nicht über den Connector arbeiten. Daran lässt sich von außen nichts drehen. Später erneut versuchen oder ein anderes Werbekonto nehmen.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich habe einen Team- oder Enterprise-Tarif</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Dann darf nur die Inhaberin oder der Inhaber der Organisation eigene Connectors hinzufügen: Organisationseinstellungen, Konnektoren, Hinzufügen, Benutzerdefiniert, Web. Name <code class="in">Meta Ads MCP</code>, Adresse <code class="in">https://mcp.facebook.com/ads</code>. Danach verbindet sich jede Person selbst über Anpassen, Konnektoren.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Welche Connector-Rechte sollte ich blockieren?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Nötig ist es nicht, weil AdsFlow die gefährlichen Werkzeuge im Ordner sperrt. Willst du trotzdem ganz sicher gehen, blockierst du in der App das Einschalten von Anzeigen, das Bewerben von Instagram-Beiträgen, die Katalog-Werkzeuge und das Löschen von Pixel-Events. Wie das geht, zeigt <a class="tl" href="#video-8">Video 8</a>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Claude fragt nach einem API-Schlüssel für ein KI-Tool</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Schlüssel gehören nie in den Chat und nie in eine Datei im Ordner. Befehle mit Schlüssel gibt dir Claude mit einem Platzhalter vor, und du tippst sie selbst ins Terminal. Ist ein Schlüssel doch im Chat gelandet, lösch ihn im Konto des Tools und erzeug einen neuen.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- ===== Anzeigen und Auswertung ===== -->
+              <div class="faq-group" id="faq-ads">
+                <h3>Anzeigen, Bilder und Auswertung</h3>
+                <p>Vom Bild bis zur Auswertung nach sieben Tagen.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">Muss ich ein KI-Tool für Bilder nutzen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Nein. AdsFlow hat zwei Modi. Im <b>Vollausbau</b> entwickelt Claude Konzepte, schreibt die Texte, erzeugt Bilder und auf Wunsch Videos und legt alles an. Im <b>Nur-Upload</b> bringst du fertige Bilder und Videos mit, selbst gedreht, von einer Designagentur oder aus Canva, und Claude übernimmt Texte, Einstellungen und das Anlegen.</p>
+                      <p>Wechseln geht jederzeit mit <span class="say">„Richte Higgsfield ein“</span> oder <span class="say">„Stell auf Nur-Upload um“</span>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Welches KI-Tool funktioniert?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Getestet ist AdsFlow mit <b>Higgsfield</b>. Andere Tools lassen sich anbinden, wenn sie einen offiziellen Weg für Claude Code haben, also einen Connector, einen MCP-Server oder ein Kommandozeilen-Programm. Such einfach nach dem Namen deines Tools plus „MCP“, oder schreib Claude <span class="say">„Richte <var>dein Tool</var> ein“</span>.</p>
+                      <p>Gibt es keinen offiziellen Weg, schreibt Claude dir fertige Prompts, und du erzeugst die Bilder im Tool selbst.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wo lege ich eigene Bilder, Logos und Produktfotos ab?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Logos, Produktfotos und Brandbook ziehst du in <code class="in">kontext/material</code>. Fertige Anzeigen-Bilder und Videos für den Nur-Upload kommen in <code class="in">assets/eingang</code>. Du kannst Claude aber auch einfach sagen, wo sie liegen: „In meinem Downloads-Ordner sind vier neue Anzeigen.“ Claude findet sie und weiß, was zu tun ist.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Brauche ich jedes Bild quadratisch und hochkant?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Am besten ja: quadratisch (oder 4:5) für den Feed, hochkant 9:16 für Story und Reels. Claude ordnet die passenden Paare selbst nach Motiv zu. Hast du nur eine Version, sag es dazu, etwa „Ich habe nur die Hochkant-Versionen“.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Warum muss ich die Bilder selbst hochladen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Dateien von deinem Rechner kann der Connector derzeit nicht zu Meta hochladen. Das ist der eine Handgriff, den du machst. Meta schaltet das Hochladen gerade nach und nach frei, und KI-Bilder, die noch beim KI-Tool liegen, kann Claude teilweise direkt übergeben. Frag Claude einfach, ob es bei dir schon geht.</p>
+                      <p>Wie das Hochladen geht, zeigt <a class="tl" href="#video-6">Video 6</a>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wann darf ich die Anzeigen einschalten?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Wenn in der Spalte Auslieferung „Inaktiv“ steht. Direkt nach dem Anlegen steht dort „Wird bearbeitet“, Meta prüft dann noch. Das dauert meist fünf bis zehn Minuten, bei frischen Werbekonten manchmal bis zu einem Tag. Während „Wird bearbeitet“ dasteht, nichts einschalten.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie sage ich Claude, in welche Anzeigengruppe die Anzeigen sollen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Mit der ID der Anzeigengruppe. Im Werbeanzeigenmanager auf „Spalten“, „Spalten anpassen“, nach „id“ suchen, „ID der Anzeigengruppe“ anhaken und speichern. Die ID steht dann ganz rechts in der Tabelle. Kopieren und Claude geben, dann merkt es sich die Gruppe.</p>
+                      <p>Ich bin ein Fan von Konsolidierung: eine Kampagne, eine Anzeigengruppe, darin die Creatives. Hast du mehrere Produkte, Länder oder Sprachen, sag Claude, welche Art Anzeige in welche Gruppe gehört.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich habe noch gar keine Kampagne</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Kein Problem. Dann baut Claude dir die komplette Kampagne mit Anzeigengruppe und Anzeigen, alles ausgeschaltet. Das Setup geht das mit dir durch.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wann und wie werte ich meine Anzeigen aus?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Gib neuen Anzeigen etwa sieben Tage. Dann schreib <span class="say">„Wie laufen meine Ads?“</span> oder ausführlicher:</p>
+                      <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Analysier bitte die Performance in meinem Werbekonto und sag mir, was die nächsten Schritte sind und was du an meiner Stelle tun würdest.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                      <p>Claude liest die Zahlen, sagt dir, welche Anzeigen tragen, welche schwach sind und wo es noch zu wenig Daten gibt, und speichert die Erkenntnisse für die nächste Runde. Am Konto ändert sich dabei nichts.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Brauche ich Meta-Tracking?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Für sinnvolle Ergebnisse ja. Ohne Pixel und Conversions API weiß Meta nicht, wer gekauft hat, und kann nicht auf Käufe optimieren. Das Tracking ist nicht Teil von AdsFlow. Das Setup fragt danach und erklärt dir, warum es wichtig ist. Mehr dazu mit <span class="say">„Erklär mir Tracking“</span>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Die Texte klingen mir zu sehr nach KI</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Jeder Text läuft durch einen Anti-KI-Durchgang, und die Texte bauen auf den Prinzipien großer Werbetexter wie Eugene Schwartz und David Ogilvy auf. Nach jeder Copy siehst du, welches Prinzip von wem drinsteckt.</p>
+                      <p>Passt dir trotzdem etwas nicht, sag es konkret. Dein Feedback wird gespeichert und gilt ab der nächsten Runde.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Geht das alles noch schneller?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja, und darum geht es: so faul wie möglich so viele verschiedene Creatives wie möglich testen. Alles, was du öfter schreibst, bringst du Claude einmal als Kurzbefehl bei, zum Beispiel <span class="say">„Mach Ads“</span>. Wie Claude dir jeden Tag automatisch neue Creatives vorbereitet, zeigt <a class="tl" href="#video-7">Video 7</a>.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- ===== Ordner und Updates ===== -->
+              <div class="faq-group" id="faq-ordner">
+                <h3>Ordner, Updates und Rechner</h3>
+                <p>Was im Ordner liegt, neue Versionen, Projekte wechseln und umziehen.</p>
+                <div class="faq-list">
+                  <details class="q">
+                    <summary><span class="t">Wofür sind die vielen Dateien im Ordner?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <div class="viz" aria-hidden="true">
+                        <div class="v-map">
+                          <div class="r you"><code>kontext/</code><span>Marke, Zielgruppe, Material. Hier lebt dein Wissen.</span><em>du</em></div>
+                          <div class="r you"><code>assets/</code><span>Deine Ablage, in eingang/ fertige Bilder und Videos.</span><em>du</em></div>
+                          <div class="r"><code>creatives/</code><span>KI-Bilder und Videos, ein Ordner pro Runde.</span><em>anschauen</em></div>
+                          <div class="r"><code>feedback/</code><span>Deine Rückmeldungen und Erkenntnisse aus den Zahlen.</span><em>Claude</em></div>
+                          <div class="r"><code>runs/</code><span>Protokoll jedes Durchlaufs.</span><em>Claude</em></div>
+                          <div class="r"><code>guidelines/</code><span>Alle Regeln mit Begründung.</span><em>lesenswert</em></div>
+                          <div class="r"><code>CLAUDE.md …</code><span>Betriebsregeln, Einstellungen, Gedächtnis.</span><em>Claude</em></div>
+                        </div>
+                      </div>
+                      <p>Du fasst nur <code class="in">kontext</code> und <code class="in">assets</code> an. Den Rest pflegt Claude, und alles davon kannst du jederzeit lesen. Lieber im Gespräch? Schreib <span class="say">„Erklär mir das System“</span>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich nutze schon das vorflows-System für Shopify. Brauche ich ein eigenes Projekt?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Nein, du kannst AdsFlow in dein bestehendes Projekt holen. Öffne dein Projekt in VS&nbsp;Code und schreib:</p>
+                      <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Schau dir den neuesten heruntergeladenen Ordner an und integriere ihn bitte in dieses Projekt.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                      <p>Willst du beides lieber getrennt halten, öffnest du AdsFlow als eigenen Ordner und wechselst über „File, Open Recent“.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie wechsle ich zwischen mehreren Projekten?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>In VS&nbsp;Code über „File, Open Folder“ den gewünschten Ordner öffnen. Nach ein paar Wechseln geht es schneller über „File, Open Recent“.</p>
+                      <p>Einen eingerichteten Ordner nicht umbenennen oder verschieben, sonst findet VS&nbsp;Code ihn beim nächsten Öffnen nicht mehr.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Darf der Ordner in OneDrive, iCloud oder Dropbox liegen?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Besser nicht. Cloud-Ordner synchronisieren ständig und sperren Dateien kurz, während Claude arbeitet. Das kann zu Lese- und Speicherfehlern führen. Leg den Ordner in einen normalen lokalen Ordner, zum Beispiel unter „Dokumente“.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Eine neue AdsFlow-Version ist da. Wie übernehme ich meine Daten?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Beide Ordner heißen <code class="in">adsflow</code>, die neue Version darf den alten also nicht überschreiben.</p>
+                      <ol class="ol">
+                        <li><div><b>Alten Ordner umbenennen,</b> zum Beispiel in <code class="in">adsflow-alt</code>, oder die neue ZIP an einem anderen Ort entpacken.</div></li>
+                        <li><div><b>Neuen Ordner in VS&nbsp;Code öffnen.</b></div></li>
+                        <li><div><b>Claude die Daten holen lassen.</b> Kontext, Feedback, Protokolle und Einstellungen kommen mit, ein neues Setup ist nicht nötig.
+                          <div class="copy"><span class="lbl">Satz</span><div class="txt say" data-copy-src>Übernimm meine Daten aus dem alten Ordner</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                        </div></li>
+                      </ol>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Wie ziehe ich AdsFlow auf einen anderen Rechner um?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <ol class="ol">
+                        <li><div><b>Ordner zippen</b> (Mac: Rechtsklick, „Komprimieren“. Windows: „Senden an, ZIP-komprimierter Ordner“) und auf dem neuen Rechner entpacken.</div></li>
+                        <li><div><b>VS&nbsp;Code, Claude Code und die Claude-App</b> neu installieren und mit demselben Konto anmelden. Der Meta-Connector hängt an deinem Claude-Konto und ist sofort wieder da.</div></li>
+                        <li><div><b>Ordner öffnen und prüfen lassen.</b>
+                          <div class="copy"><span class="lbl">Prompt</span><div class="txt" data-copy-src>Ich habe dieses System von meinem alten Laptop auf diesen übertragen. Prüf bitte, ob alles steht: Claude Code, die Verbindung zu meinem Meta-Werbekonto und mein KI-Tool. Falls etwas fehlt, führ mich Schritt für Schritt durch die Einrichtung.</div><button type="button" class="cbtn" data-copy>Kopieren</button></div>
+                        </div></li>
+                      </ol>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Ich betreue mehrere Marken oder Kunden</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>AdsFlow ist für eine Marke mit einem Werbekonto gebaut. Ein weiteres Werbekonto gibst du über <span class="say">„Verbinde Meta neu“</span> frei. Betreust du als Agentur mehrere Kunden, gibt es AdsFlow Agency mit einem eigenen Ordner pro Kunde. Schreib mir dafür kurz an <a class="tl" href="mailto:alex@adolution.de?subject=AdsFlow%20Agency">alex@adolution.de</a>.</p>
+                    </div>
+                  </details>
+                  <details class="q">
+                    <summary><span class="t">Gibt es eine ausführliche Schulung zu Claude Code?</span><span class="pm" aria-hidden="true"></span></summary>
+                    <div class="ans">
+                      <p>Ja, auf Anfrage. Darin geht es darum, Claude über die Anzeigen hinaus einzusetzen, zum Beispiel im Kundensupport, im E-Mail-Postfach oder im Shop. Sie liegt in einem ganz anderen Preisrahmen als AdsFlow. Bei Interesse schreib mir an <a class="tl" href="mailto:alex@adolution.de?subject=Claude-Code-Schulung">alex@adolution.de</a>.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <p class="faq-empty" id="faqEmpty">Dazu habe ich noch keine Antwort. Frag Claude im Ordner oder schreib mir an <a class="tl" href="mailto:alex@adolution.de?subject=Frage%20zu%20AdsFlow">alex@adolution.de</a>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Hilfe ============ -->
+      <section class="help" id="hilfe">
+        <div class="wrap help-grid">
+          <div>
+            <span class="eyebrow">Hakt etwas?</span>
+            <h2>Frag zuerst <em>Claude</em>, dann mich.</h2>
+            <p class="lead">Alles, was AdsFlow braucht, liegt im Ordner. Sag Claude, was nicht funktioniert, meistens ist es danach in einer Minute gelöst. Hilft das nicht, schreib mir mit einem Screenshot der Stelle, an der es hakt.</p>
+            <div class="contact">
+              <a class="btn" href="mailto:alex@adolution.de?subject=Frage%20zu%20AdsFlow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6 8.5-6" /></svg>
+                alex@adolution.de
+              </a>
+              <a class="link" href="#videos">Zurück zu den Videos</a>
+            </div>
+            <p class="small">Die Abbuchung erfolgt durch Digistore24.com.</p>
+          </div>
+          <div>
+            <div class="copy">
+              <span class="lbl">Wenn etwas nicht klappt</span>
+              <div class="txt" data-copy-src>Das hat gerade nicht funktioniert: … Kannst du mir in einfacher Sprache erklären, woran es liegt, und es dann bitte für mich richten?</div>
+              <button type="button" class="cbtn" data-copy>Kopieren</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="vorflows, nach oben"><span class="wordmark">vor<span class="flows">flows</span></span></a>
+        <nav aria-label="Rechtliches">
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="mailto:alex@adolution.de">alex@adolution.de</a>
+        </nav>
+        <p class="tm">Meta, Facebook und Instagram sind Marken von Meta Platforms, Inc. Claude ist eine Marke von Anthropic. AdsFlow ist ein eigenständiges Produkt von vorflows und steht in keiner Verbindung zu Meta oder Anthropic.</p>
+      </div>
+    </footer>
+
+    <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Screenshot groß" hidden>
+      <img alt="" />
+      <button type="button" data-zoom-close>Schließen</button>
+    </div>
+
+    <script>
+      (function () {
+        /* ---------- Kopieren ---------- */
+        function copyText(text, done) {
+          function legacy() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { if (document.execCommand('copy')) done(); } catch (e) {}
+            ta.remove();
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, legacy);
+          } else { legacy(); }
+        }
+        function flash(el, label) {
+          var prev = el.getAttribute('data-prev') || el.textContent;
+          el.setAttribute('data-prev', prev);
+          el.classList.add('is-done');
+          if (label) el.textContent = label;
+          clearTimeout(el._t);
+          el._t = setTimeout(function () {
+            el.classList.remove('is-done');
+            if (label) el.textContent = prev;
+          }, 1500);
+        }
+        document.querySelectorAll('[data-copy]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var src = btn.parentElement.querySelector('[data-copy-src]');
+            if (!src) return;
+            var ps = src.querySelectorAll('p');
+            var text = ps.length
+              ? Array.prototype.map.call(ps, function (p) { return p.textContent.trim(); }).join('\n\n')
+              : src.textContent.trim();
+            copyText(text, function () { flash(btn, 'Kopiert'); });
+          });
+        });
+        document.querySelectorAll('.phrase').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var lbl = btn.querySelector('.ci span');
+            copyText(btn.getAttribute('data-phrase'), function () {
+              btn.classList.add('is-done');
+              if (lbl) { lbl.textContent = 'Kopiert'; }
+              clearTimeout(btn._t);
+              btn._t = setTimeout(function () { btn.classList.remove('is-done'); if (lbl) lbl.textContent = 'Kopieren'; }, 1500);
+            });
+          });
+        });
+        var urlBtn = document.querySelector('[data-copy-url]');
+        if (urlBtn) urlBtn.addEventListener('click', function () {
+          copyText(location.origin + location.pathname, function () { flash(urlBtn, 'Link kopiert'); });
+        });
+
+        /* ---------- Videos: Loom erst per Klick laden ----------
+           Mehrere gleichzeitige Loom-Embeds liefen auf /danke ins Rate-Limit (weiße Frames).
+           Deshalb lädt jeder Klick genau ein Video. */
+        var KEY = 'vf_af_danke_seen';
+        var seen = [];
+        try { seen = JSON.parse(localStorage.getItem(KEY) || '[]') || []; } catch (e) { seen = []; }
+        function save() { try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {} }
+        function render() {
+          document.querySelectorAll('.lesson').forEach(function (l) {
+            var n = l.getAttribute('data-lesson');
+            var on = seen.indexOf(n) > -1;
+            l.classList.toggle('is-seen', on);
+            var b = l.querySelector('.seen');
+            if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          var c = seen.length;
+          var nEl = document.getElementById('progN');
+          var fEl = document.getElementById('progFill');
+          if (nEl) nEl.textContent = c;
+          if (fEl) fEl.style.transform = 'scaleX(' + (c / 8) + ')';
+        }
+        function mark(n, on) {
+          var i = seen.indexOf(n);
+          if (on && i < 0) seen.push(n);
+          if (!on && i > -1) seen.splice(i, 1);
+          save(); render();
+        }
+        document.querySelectorAll('.lesson').forEach(function (l) {
+          var n = l.getAttribute('data-lesson');
+          var b = l.querySelector('.seen');
+          if (b) b.addEventListener('click', function () { mark(n, b.getAttribute('aria-pressed') !== 'true'); });
+          var frame = l.querySelector('.frame[data-embed]');
+          var play = frame && frame.querySelector('.frame-play');
+          if (!play) return;
+          play.addEventListener('click', function () {
+            var src = frame.getAttribute('data-embed') + '?hideEmbedTopBar=true&hide_owner=true&hide_share=true&hide_title=true&autoplay=1';
+            var iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.title = frame.getAttribute('data-title') || 'AdsFlow Videoanleitung';
+            iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            frame.appendChild(iframe);
+            play.remove();
+            mark(n, true);
+          });
+        });
+        render();
+
+        /* ---------- Installation: Mac / Windows ---------- */
+        var isWin = /Win/i.test(navigator.platform || '') || /Windows/i.test(navigator.userAgent || '');
+        document.querySelectorAll('.os-tabs').forEach(function (tabs) {
+          var root = tabs.parentElement;
+          function pick(os) {
+            tabs.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-os') === os ? 'true' : 'false'); });
+            root.querySelectorAll('[data-os-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-os-panel') !== os; });
+          }
+          tabs.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-os')); }); });
+          if (isWin) pick('win');
+        });
+
+        /* ---------- Screenshots groß ---------- */
+        var zoom = document.getElementById('zoom');
+        var zImg = zoom.querySelector('img');
+        var lastFocus = null;
+        function closeZoom() {
+          zoom.classList.remove('on');
+          setTimeout(function () { zoom.hidden = true; }, 300);
+          if (lastFocus) lastFocus.focus();
+        }
+        document.querySelectorAll('[data-zoom]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var img = b.querySelector('img');
+            if (!img) return;
+            lastFocus = b;
+            zImg.src = img.currentSrc || img.src;
+            zImg.alt = img.alt;
+            zoom.hidden = false;
+            requestAnimationFrame(function () { zoom.classList.add('on'); });
+            zoom.querySelector('[data-zoom-close]').focus();
+          });
+        });
+        zoom.addEventListener('click', function (e) { if (e.target === zoom || e.target.hasAttribute('data-zoom-close')) closeZoom(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !zoom.hidden) closeZoom(); });
+
+        /* ---------- FAQ: Suche + Zähler ---------- */
+        var groups = Array.prototype.slice.call(document.querySelectorAll('.faq-group'));
+        groups.forEach(function (g) {
+          var c = document.querySelector('[data-count="' + g.id + '"]');
+          if (c) c.textContent = g.querySelectorAll('details.q').length;
+        });
+        var input = document.getElementById('faqSearch');
+        var empty = document.getElementById('faqEmpty');
+        function norm(s) { return s.toLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss'); }
+        groups.forEach(function (g) {
+          g.querySelectorAll('details.q').forEach(function (d) { d._txt = norm(d.textContent); });
+        });
+        var openedBySearch = [];
+        input.addEventListener('input', function () {
+          var q = norm(input.value.trim());
+          var terms = q.split(/\s+/).filter(Boolean);
+          var hits = 0;
+          openedBySearch.forEach(function (d) { d.open = false; });
+          openedBySearch = [];
+          groups.forEach(function (g) {
+            var gh = 0;
+            g.querySelectorAll('details.q').forEach(function (d) {
+              var ok = !terms.length || terms.every(function (t) { return d._txt.indexOf(t) > -1; });
+              d.classList.toggle('hide', !ok);
+              if (ok) gh++;
+            });
+            g.classList.toggle('hide', gh === 0);
+            hits += gh;
+          });
+          if (terms.length && hits > 0 && hits <= 3) {
+            document.querySelectorAll('details.q:not(.hide)').forEach(function (d) { if (!d.open) { d.open = true; openedBySearch.push(d); } });
+          }
+          empty.classList.toggle('on', terms.length > 0 && hits === 0);
+        });
+
+        /* Aktive Kategorie markieren */
+        var catLinks = Array.prototype.slice.call(document.querySelectorAll('#faqCats a'));
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (!en.isIntersecting) return;
+              catLinks.forEach(function (a) { a.classList.toggle('is-here', a.getAttribute('href') === '#' + en.target.id); });
+            });
+          }, { rootMargin: '-30% 0px -60% 0px' });
+          groups.forEach(function (g) { io.observe(g); });
+        }
+
+        /* Sprungmarke auf eine Frage: aufklappen */
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            var t = null;
+            try { t = document.querySelector(a.getAttribute('href')); } catch (e) {}
+            if (t && t.tagName === 'DETAILS') t.open = true;
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
