@@ -6,7 +6,9 @@ Stand 2026-10-10. Datei `index.html` → `https://vorflows.com/`. Bis 2026-10-09
 **Zweck:** Leute, die „vorflows“ googeln, nachdem sie eine Anzeige oder einen LinkedIn-Post gesehen haben. Sie wollen
 prüfen, ob das seriös ist, wer dahinter steckt und was genau verkauft wird. Danach sollen sie zum passenden System:
 `/sales` (vorflows für Shopify) oder `/adsflow` (AdsFlow für Meta Ads). Als dritter, leiserer Weg ist die
-**Aufzeichnung des letzten Workshops** (`/replay`) verlinkt (Kopfzeile „Workshop ansehen“, eigener Kasten, Schluss, Footer).
+**Aufzeichnung des letzten Workshops** (`/replay`) verlinkt (Kopfzeile „Shopify-Workshop“, eigener Kasten, Schluss, Footer).
+Immer **„Shopify-Workshop“** schreiben (Alex 2026-10-10), damit klar ist, dass es nicht um Meta geht. Ausnahme: Foto-Text
+und Referenz „Workshops vor Ort“ im Alex-Block, das Foto zeigt einen Meta-Ads-Workshop.
 Seit 2026-10-10 gibt es keinen laufenden Live-Workshop, deshalb nicht `/live-workshop` verlinken; wenn wieder einer
 läuft, die vier Links zurückstellen.
 
