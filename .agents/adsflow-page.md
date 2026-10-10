@@ -67,15 +67,22 @@ Auswertung:
 
 ## VSL-Video (nicht im Repo)
 
-Quelle: `~/Adolution/motion-system/vsl/test/meta-ads-full_v3.mp4` (12:36,7) auf **1,2×** beschleunigt
-(Bild `setpts=PTS/1.2`, Ton `atempo=1.2`, Tonhöhe bleibt) → **10:30,6**. Drei Stufen, H.264 High,
-`aq-mode=3` (gegen Banding im dunklen Lichtpool), 2-s-Keyframes zum Spulen, `+faststart`:
+Live seit 2026-10-10: **v4** = `~/Adolution/motion-system/vsl/test/meta-ads-full_v4.mp4` (12:36,7, Schnitt wie v3) auf **1,1×**
+(Bild `setpts=PTS/1.1`, Ton `atempo=1.1`, Tonhöhe bleibt) → **11:27,9**. Alex: 1,2× war „ein ganz klein wenig zu hektisch“.
+Neu in v4: Hinweis „Nach 5 Minuten siehst du die fertigen Anzeigen, danach kommen die Details.“ mit Zeitleiste oben im Bild
+(1,1×: 0:04 bis 0:09, weil Alex „in fünf Minuten“ sagt), Pfeil in die Ecke unten rechts „Hier kannst du die
+Video-Geschwindigkeit erhöhen, wenn du magst.“ (1,1×: 0:59 bis 1:04; dort sitzt im Chrome-/Safari-Player das Tempo-Menü).
+Encodes: preset slow, H.264 High, `aq-mode=3` (gegen Banding im dunklen Lichtpool), 2-s-Keyframes zum Spulen, `+faststart`
+(Skript-Einstellungen wie v3, aus dem x264-SEI gelesen):
 
 | Datei (Vercel Blob `video/…`) | Auflösung | Größe |
 |---|---|---|
-| `adsflow-vsl-v3-1080.mp4` | 1920×1080, CRF 22, max 3 Mbit/s, AAC 128k | 94 MB (Ø 1,19 Mbit/s) |
-| `adsflow-vsl-v3-720.mp4` | 1280×720, CRF 22, max 1,8 Mbit/s, AAC 96k | 50 MB (Ø 0,64 Mbit/s) |
-| `adsflow-vsl-v3-480.mp4` | 854×480, CRF 23, max 0,95 Mbit/s, AAC 80k | 27 MB (Ø 0,35 Mbit/s) |
+| `adsflow-vsl-v4-1080.mp4` | 1920×1080, CRF 22, max 3 Mbit/s, AAC 128k | 105 MB (Ø 1,23 Mbit/s) |
+| `adsflow-vsl-v4-720.mp4` | 1280×720, CRF 22, max 1,8 Mbit/s, AAC 96k | 56 MB (Ø 0,65 Mbit/s) |
+| `adsflow-vsl-v4-480.mp4` | 854×480, CRF 23, max 0,95 Mbit/s, AAC 80k | 30 MB (Ø 0,34 Mbit/s) |
+
+v3 (1,2×, `adsflow-vsl-v3-*`) bleibt im Blob liegen. Wiederholungen „40/43 Anzeigen“ im Video: 2:45, 2:54, 3:45, 10:14
+(1,1×); Schnittvorschlag 3:45 (Block „40 Creatives … eine Stunde … buggy“), Alex 2026-10-10: noch nicht schneiden.
 
 Store `vorflows-media`, Basis-URL `https://ywogisjwo1efkri1.public.blob.vercel-storage.com/video/`.
 Upload wie Replay (§9 in `live-workshop-tracking.md`): `vercel blob put <datei> --rw-token $BLOB_READ_WRITE_TOKEN
@@ -84,8 +91,8 @@ Upload wie Replay (§9 in `live-workshop-tracking.md`): `vercel blob put <datei>
 
 Auswahl im Browser (`pickRes()`): Datensparen oder 2G/3G → 480, Handy (≤ 760 px) → 720,
 Desktop mit `downlink < 2.5` → 720, sonst 1080. Das Video lädt erst beim Klick auf Play
-(Poster `assets/images/adsflow/vsl-poster*.webp` = LCP). Untertitel: `assets/video/adsflow-vsl-v3.vtt`
-(aus der v3-SRT, Zeiten ÷ 1,2, Schreibweisen Claude/Higgsfield/Ogilvy korrigiert), im Player zuschaltbar.
+(Poster `assets/images/adsflow/vsl-poster*.webp` = LCP). Untertitel: `assets/video/adsflow-vsl-v4.vtt`
+(aus der v4-SRT, Zeiten ÷ 1,1, Schreibweisen Claude/Higgsfield/Ogilvy korrigiert), im Player zuschaltbar.
 
 ## Feste Leisten (Sticky-CTA)
 
