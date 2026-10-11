@@ -80,7 +80,7 @@ Falls nach dem Video Fragen offen sind, antworte einfach auf diese Mail. Die les
 Viele Grüße
 Alex
 
-PS: Wenn Shopify gerade nicht dein Thema ist, kannst du dich ganz unten austragen. Nehm ich dir nicht übel.`,
+PS: Wenn Automatisierungen und Dinge mit KI bauen gerade nicht dein Thema sind, kannst du dich ganz unten austragen. Nehm ich dir nicht übel.`,
   },
 
   // Nur im Sheet (Liste 17): Workshop-Status unbekannt, evtl. nie etwas bekommen. Neutral formuliert.
@@ -103,7 +103,7 @@ Falls bei deiner Anmeldung damals etwas schiefgelaufen ist und du gar keinen Zug
 Viele Grüße
 Alex
 
-PS: Wenn Shopify gerade nicht dein Thema ist, kannst du dich ganz unten austragen. Nehm ich dir nicht übel.`,
+PS: Wenn Automatisierungen und Dinge mit KI bauen gerade nicht dein Thema sind, kannst du dich ganz unten austragen. Nehm ich dir nicht übel.`,
   },
 
   R2: {
@@ -138,7 +138,7 @@ Falls du die Aufzeichnung noch nicht angefangen hast, das ist der Workshop, um d
 
 Ab Minute 8 arbeite ich live mit Claude Code an einem echten Shop. Am Ende kommt das Angebot, und weil die 1:1-Schulung dazugehört, gibt es dafür nur wenige Plätze. Gerade ist noch etwas frei. Wie viele es genau sind, siehst du auf der Seite, sobald das Angebot im Video kommt.
 
-Und falls Shopify und KI gerade kein Thema für dich sind, ist das völlig okay. Dann kannst du dich unten austragen.
+Und falls Automatisierungen und Dinge mit KI bauen gerade nicht dein Thema sind, ist das völlig okay. Dann kannst du dich unten austragen.
 
 Viele Grüße
 Alex`,
@@ -210,7 +210,7 @@ zum Schluss noch zu dem Teil des Angebots, nach dem mich am meisten gefragt wird
 
 Das ist kein Gruppencall. Du bist mit mir allein im Call, oder eine Person aus deinem Team. Zuerst prüfen wir, ob dein Setup sauber läuft. Danach gehen wir die Ideen durch, die in deinem Shop am meisten bringen. Rechne mit zwei bis drei Stunden, dazu kommt der Setup-Call am Anfang.
 
-Weil ich das selbst mache, gibt es pro Monat nur 20 dieser Plätze, und für diesen Monat sind nur noch wenige frei. Wie viele genau, siehst du auf der Seite. vorflows kostet mit Schulung 1.499 Euro statt 2.000 Euro, und wenn dir das auf einmal zu viel ist, kannst du beim Bezahlen auch Raten wählen.
+Weil ich das selbst mache, gibt es pro Monat nur 20 dieser Plätze, und für diesen Monat sind nur noch wenige frei. Wie viele genau, siehst du auf der Seite. vorflows kostet mit Schulung diesen Monat 1.499 Euro statt 2.000 Euro, und wenn dir das auf einmal zu viel ist, kannst du beim Bezahlen auch Raten wählen.
 
 ${a(link('/sales', 'bundle-p3', '#schulung'), 'Freie Plätze ansehen')}
 
@@ -262,7 +262,7 @@ ich war ein paar Wochen ziemlich ruhig, und das hatte einen Grund. Ich habe etwa
 
 ${ADSFLOW_CORE('adsflow-a1-kunde')}
 
-Da du Claude schon eingerichtet hast, bist du schneller startklar als die meisten. Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, das gilt bis Sonntag, 2. November.
+Da du Claude schon eingerichtet hast, bist du schneller startklar als die meisten. Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, das gilt bis Montag, 2. November.
 
 Wenn du Fragen hast oder wissen willst, ob das für deinen Shop passt, antworte einfach auf diese Mail.
 
@@ -281,7 +281,7 @@ du warst im Workshop live dabei, als Claude einen Shopify-Shop umgebaut hat. Sei
 
 ${ADSFLOW_CORE('adsflow-a1-live')}
 
-AdsFlow ist deutlich kleiner als vorflows und kostet zum Launch 299 Euro statt 499 Euro, bis Sonntag, 2. November.
+AdsFlow automatisiert einen der wichtigsten Teile jedes E-Commerce-Business: deine Werbeanzeigen. Zum Launch kostet es 299 Euro statt 499 Euro, bis Montag, 2. November.
 
 Wenn du Fragen hast, antworte einfach auf diese Mail. Ich lese alles selbst.
 
@@ -313,7 +313,7 @@ Alex`,
 
 „Ich lasse doch keine KI an mein Werbekonto.“ Diesen Satz verstehe ich gut, ich hätte ihn vor einem Jahr auch gesagt. Deshalb ist AdsFlow so gebaut, dass du die Kontrolle nie abgibst:
 
-Claude legt jede Anzeige ausgeschaltet an. Die Werkzeuge zum Einschalten und Ändern sind gesperrt, live schaltest also immer du selbst im Ads Manager. Die Verbindung läuft über Metas offiziellen Connector. Wenn du fragst „Wie laufen meine Ads?“, liest Claude die Zahlen nur und ändert nichts am Konto.
+Claude legt jede Anzeige ausgeschaltet an. Die Werkzeuge zum Einschalten und Ändern sind gesperrt, live schaltest also immer du selbst im Ads Manager. Die Verbindung läuft über einen sicheren Connector. Wenn du fragst „Wie laufen meine Ads?“, liest Claude die Zahlen nur und ändert nichts am Konto.
 
 Was du brauchst: ein Claude-Konto mit Bezahl-Tarif, die kostenlose Claude-Desktop-App und dein Meta-Werbekonto. Die Einrichtung macht Claude mit dir zusammen. Du öffnest den Ordner, schreibst „Lies SETUP.md“, und Claude führt dich Schritt für Schritt durch.
 
@@ -336,7 +336,7 @@ Die Texte stützen sich auf Werbetexter wie Eugene Schwartz und David Ogilvy und
 
 Und was dir nicht gefällt, sagst du einmal. Das landet als feste Regel im Ordner, und Claude macht denselben Fehler kein zweites Mal.
 
-Der Launch-Preis gilt noch bis Sonntag, 2. November: ${a(link('/adsflow', 'adsflow-a4'), 'Den Ordner auf der Seite durchklicken')}
+Der Launch-Preis gilt noch bis Montag, 2. November: ${a(link('/adsflow', 'adsflow-a4'), 'Den Ordner auf der Seite durchklicken')}
 
 Viele Grüße
 Alex`,
@@ -345,15 +345,15 @@ Alex`,
   // ── AdsFlow Welle 2: Workshop-Anmeldungen ohne Kauf (Liste 7) ──
   B1: {
     subject: 'Etwas Neues für deine Meta-Anzeigen',
-    preview: 'Kleiner als vorflows und sofort nützlich, wenn du Anzeigen auf Facebook und Instagram schaltest.',
+    preview: 'Claude schreibt deine Meta-Anzeigen und legt sie fertig in deinem Werbekonto an. Live schaltest du selbst.',
     why: WHY_WORKSHOP,
     body: `${HI}
 
-{% if contact.RP_PITCH %}du hast dir die Aufzeichnung vom Workshop bis zum Angebot angesehen, danke dafür. Falls der Umbau deines Shops gerade nicht dran ist: Ich habe noch etwas gebaut, das kleiner ist und sofort hilft, wenn du Meta-Anzeigen schaltest.{% elif contact.RP_START %}du hast in die Aufzeichnung vom Workshop reingeschaut. Heute geht es um etwas anderes, das ich in den letzten Wochen gebaut habe und das genauso mit Claude arbeitet, nur für deine Meta-Anzeigen.{% else %}du hattest dich für meinen Workshop „KI + Shopify“ angemeldet. Heute habe ich etwas Kleineres für dich, das ich in den letzten Wochen gebaut habe. Es arbeitet genauso mit Claude, nur für deine Meta-Anzeigen.{% endif %} Es heißt AdsFlow.
+{% if contact.RP_PITCH %}du hast dir die Aufzeichnung vom Workshop bis zum Angebot angesehen, danke dafür. Ich habe in den letzten Wochen etwas Neues gebaut, das einen der wichtigsten Teile jedes E-Commerce-Business automatisiert: deine Meta-Anzeigen.{% elif contact.RP_START %}du hast in die Aufzeichnung vom Workshop reingeschaut. Heute geht es um etwas anderes, das ich in den letzten Wochen gebaut habe und das genauso mit Claude arbeitet, nur für deine Meta-Anzeigen.{% else %}du hattest dich für meinen Workshop „KI + Shopify“ angemeldet. Heute habe ich etwas Neues für dich, das ich in den letzten Wochen gebaut habe. Es arbeitet genauso mit Claude und automatisiert einen der wichtigsten Teile jedes E-Commerce-Business: deine Meta-Anzeigen.{% endif %} Es heißt AdsFlow.
 
 ${ADSFLOW_CORE('adsflow-b1')}
 
-Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, bis Sonntag, 2. November.
+Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, bis Montag, 2. November.
 
 Wenn du Fragen hast, antworte einfach auf diese Mail.
 
@@ -365,6 +365,23 @@ Alex`,
   A1KX: { from: 'A1K', subject: 'Ein Satz an Claude, 40 fertige Anzeigen', preview: 'So sieht das in meinem eigenen Werbekonto aus. Eingeschaltet wird nichts ohne dich.' },
   A1GX: { from: 'A1G', subject: 'Ein Satz an Claude, 40 fertige Anzeigen', preview: 'So sieht das in meinem eigenen Werbekonto aus. Eingeschaltet wird nichts ohne dich.' },
   B1X: { from: 'B1', subject: 'Ein Satz an Claude, 40 fertige Anzeigen', preview: 'So sieht das in meinem eigenen Werbekonto aus. Eingeschaltet wird nichts ohne dich.' },
+
+  D0: {
+    subject: 'Morgen endet der Launch-Preis für AdsFlow',
+    preview: 'Bis Montag um Mitternacht gilt noch der Launch-Preis. Danach nicht mehr, auch nicht verlängert.',
+    body: `${HI}
+
+kurzer Hinweis, damit es dich nicht überrascht: Morgen, Montag um Mitternacht, endet der Launch-Preis für AdsFlow. Danach kostet es 499 Euro statt 299 Euro, und ich verlängere das nicht noch einmal.
+
+Falls du noch überlegst, ob sich das für dich lohnt, eine einfache Rechnung: Wenn dich eine neue Anzeige im Ads Manager eine halbe Stunde kostet, sind 40 Anzeigen zwanzig Stunden Arbeit. Mit AdsFlow schreibst du Claude einen Satz, gibst die Texte frei und schaltest die fertigen Anzeigen selbst live. Mit diesem System sind schon über 1.200 Anzeigen entstanden.
+
+${a(link('/adsflow', 'adsflow-d0'), 'AdsFlow ansehen')}
+
+Wenn noch eine Frage offen ist, antworte einfach auf diese Mail. Ich antworte dir vor Montagabend.
+
+Viele Grüße
+Alex`,
+  },
 
   D1: {
     subject: 'Heute endet der Launch-Preis für AdsFlow',

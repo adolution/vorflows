@@ -9,7 +9,7 @@ Tracking-Grundlage: `.agents/brevo-tracking.md`.
 ## Sicherungen
 
 - Versand nur mit Env **`MAIL_ENGINE=on`** und nur, wenn `adolution.de` in Brevo **authentifiziert** ist (sonst Trockenlauf, Log `gate`).
-- Pro Kontakt höchstens 1 Mail pro Tag (`MAIL_LAST`), höchstens 3 in 7 Tagen, außer KA, KB, D1, D2.
+- Pro Kontakt höchstens 1 Mail pro Tag (`MAIL_LAST`), höchstens 3 in 7 Tagen. KA/KB ignorieren die Wochengrenze, D0/D1/D2 (Deadline) ignorieren alle Grenzen und stehen in der Rangfolge vorn (Alex 2026-10-11).
 - Ausgeschlossen: Liste 8, Brevo-Sperre. Käufer (Liste 5/15 oder `PRODUKTE`) fallen aus den Verkaufsmails.
 - Zustand pro Kontakt in `MAILS_SENT` (`Schritt:Datum,…`), `MAIL_LAST`, `MAIL_OPEN` (Webhook).
 - Auth: `Authorization: Bearer $CRON_SECRET` (Vercel-Cron) oder `?key=`. Trockenlauf: `?dry=1&today=YYYY-MM-DD`.
@@ -39,10 +39,11 @@ Tracking-Grundlage: `.agents/brevo-tracking.md`.
 | B1 | B1 | Welle 2 ab Mo 26.10.; wer den Pitch sah: erst 2 Tage nach P3 |
 | B1X | B1X | B1 nicht geöffnet, +2 Tage |
 | B2, B3 | A2, A3 | Welle 2 mit Öffnung/Besuch, je +2 Tage, bis 1.11. |
-| D1 | D1 | 2.11. morgens, alle im AdsFlow-Strang ohne Kauf |
+| D0 | D0 | So 1.11. morgens, alle im AdsFlow-Strang ohne Kauf (Vortag) |
+| D1 | D1 | Mo 2.11. morgens, alle im AdsFlow-Strang ohne Kauf |
 | D2 | D2 | 2.11. abends, AdsFlow-Seite besucht, ohne Kauf |
 
-Simulation mit echten Kontakten: ~3.750 Mails, max. 10 pro Person in 3 Wochen (Brevo Starter: 5.000/Monat).
+Simulation mit echten Kontakten: ~3.700 bis 4.300 Mails, max. 10 pro Person in 3 Wochen (Brevo Starter: 5.000/Monat).
 Brevo-Kampagne 1 (alte Replay-Mail, 15.10.) muss **pausiert** sein, R1 kommt jetzt aus der Steuerung.
 
 ## Kauf-Abgleich und Öffnungen

@@ -14,7 +14,8 @@ const LAUNCH_START = '2026-10-11';
 const AF_END = '2026-11-02';
 const AF_LAST_MAIL_DAY = '2026-11-01';
 const WEEK_CAP = 3; // höchstens 3 Mails in 7 Tagen, außer Kauf-Hilfe und Deadline
-const URGENT = new Set(['KA', 'KB', 'D1', 'D2']);
+const URGENT = new Set(['KA', 'KB', 'D0', 'D1', 'D2']);
+const DEADLINE = new Set(['D0', 'D1', 'D2']); // ignorieren alle Grenzen, auch 1 pro Tag
 
 const berlinDay = (d = new Date()) => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(d);
 const addDays = (day, n) => {
@@ -66,13 +67,16 @@ function view(c) {
 function rules(T, evening) {
   const s = (v, k) => v.sent[k];
   const R = [];
-  R.push(['KA', 'KA', (v) => v.afChk >= LAUNCH_START && T >= addDays(v.afChk, 1) && !v.buyerAF && !s(v, 'KA')]);
+  const KA = ['KA', 'KA', (v) => v.afChk >= LAUNCH_START && T >= addDays(v.afChk, 1) && !v.buyerAF && !s(v, 'KA')];
   if (evening) {
     R.push(['D2', 'D2', (v) => T === AF_END && v.afVisit && !v.buyerAF && !s(v, 'D2')]);
+    R.push(KA);
     return R;
   }
-  R.push(['KB', 'KB', (v) => v.rpChk >= LAUNCH_START && T >= addDays(v.rpChk, 1) && !v.buyerBundle && !s(v, 'KB')]);
+  R.push(['D0', 'D0', (v) => T === addDays(AF_END, -1) && !v.buyerAF && (s(v, 'A1') || s(v, 'B1')) && !s(v, 'D0')]);
   R.push(['D1', 'D1', (v) => T === AF_END && !v.buyerAF && (s(v, 'A1') || s(v, 'B1')) && !s(v, 'D1')]);
+  R.push(KA);
+  R.push(['KB', 'KB', (v) => v.rpChk >= LAUNCH_START && T >= addDays(v.rpChk, 1) && !v.buyerBundle && !s(v, 'KB')]);
 
   // Bundle-Nachfass nach gesehenem Pitch
   R.push(['P1', 'P1', (v) => v.rpPitch && T >= addDays(v.rpPitch, 1) && !v.buyerBundle && !s(v, 'P1')]);
@@ -112,9 +116,10 @@ export function planDay(contacts, T, evening) {
   for (const c of contacts) {
     const v = view(c);
     if (v.blocked) continue;
-    if (!evening && v.last === T) continue;
+    const today = !evening && v.last === T;
     const week = Object.values(v.sent).filter((d) => d > addDays(T, -7)).length;
     for (const [step, mail, cond] of R) {
+      if (today && !DEADLINE.has(step)) continue;
       if (week >= WEEK_CAP && !URGENT.has(step)) continue;
       if (!cond(v)) continue;
       const m = typeof mail === 'function' ? mail(v) : mail;
