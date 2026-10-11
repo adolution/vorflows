@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "crons": [
+    { "path": "/api/mail-engine", "schedule": "0 8 * * *" },
+    { "path": "/api/mail-engine?evening=1", "schedule": "0 16 * * *" }
+  ],
   "redirects": [
     { "source": "/webinar", "destination": "/live-workshop", "permanent": true },
     { "source": "/index-b", "destination": "/", "permanent": true }
