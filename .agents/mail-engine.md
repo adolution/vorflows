@@ -23,20 +23,20 @@ Tracking-Grundlage: `.agents/brevo-tracking.md`.
 | Welle 2 | Liste 7 (nicht gesehen, nicht gekauft) |
 | Nur im Sheet | Liste 17 (88 Kontakte, Quelle „sheet“, WebinarJam unbekannt) → neutrale Replay-Mail R1S, sonst wie Liste 7 |
 
-## Ablauf (Start 2026-10-12, AdsFlow-Launch bis 2026-11-02 23:59)
+## Ablauf (Start Di 2026-10-13, AdsFlow-Launch bis 2026-11-02 23:59)
 
 | Schritt | Mail | Wer / wann |
 |---|---|---|
-| A1 | A1K / A1G | Welle 1, ab 12.10. (Puffer bis 18.10.) |
+| A1 | A1K / A1G | Welle 1, ab Di 13.10. (Puffer bis 19.10.) |
 | A1X | A1KX / A1GX | Welle 1, A1 nicht geöffnet, kein Besuch, 3 bis 5 Tage nach A1 (neuer Betreff) |
-| A2, A3, A4 | A2, A3, A4 | Welle 1 mit Öffnung/Besuch, ab 15.10. / 19.10. / 26.10., je ≥ 3 Tage Abstand |
-| R1 | R1 / R1S | Liste 7 ohne Replay-Start, ab 13.10. (Puffer bis 19.10.) |
+| A2, A3, A4 | A2, A3, A4 | Welle 1 mit Öffnung/Besuch, ab 16.10. / 20.10. / 27.10., je ≥ 3 Tage Abstand |
+| R1 | R1 / R1S | Liste 7 ohne Replay-Start, ab Mi 14.10. (Puffer bis 20.10.) |
 | R2 | R2 | Replay nicht gestartet, 2 bis 5 Tage nach R1 |
-| R3 | R3 | Replay nicht gestartet, ≥ 4 Tage nach R2, bis 23.10. |
-| RW | RW | Replay gestartet, Pitch nicht erreicht, 2 Tage nach Start, bis 28.10. |
+| R3 | R3 | Replay nicht gestartet, ≥ 4 Tage nach R2, bis 24.10. |
+| RW | RW | Replay gestartet, Pitch nicht erreicht, 2 Tage nach Start, bis 29.10. |
 | P1, P2, P3 | P1 bis P3 | Pitch gesehen (Liste 10), +1 / +3 / +5 Tage, bis Bundle-Kauf |
 | KB / KA | KB / KA | Kauf-Klick Bundle / AdsFlow ohne Kauf, +1 Tag |
-| B1 | B1 | Welle 2 ab 24.10.; wer den Pitch sah: erst 2 Tage nach P3 |
+| B1 | B1 | Welle 2 ab Mo 26.10.; wer den Pitch sah: erst 2 Tage nach P3 |
 | B1X | B1X | B1 nicht geöffnet, +2 Tage |
 | B2, B3 | A2, A3 | Welle 2 mit Öffnung/Besuch, je +2 Tage, bis 1.11. |
 | D1 | D1 | 2.11. morgens, alle im AdsFlow-Strang ohne Kauf |

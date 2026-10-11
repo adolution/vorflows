@@ -80,24 +80,24 @@ function rules(T, evening) {
   R.push(['P3', 'P3', (v) => s(v, 'P2') && T >= addDays(s(v, 'P2'), 2) && !v.buyerBundle && !s(v, 'P3')]);
 
   // Replay-Strecke (Liste 7). Liste 17 = nur im Sheet, bekommt die neutrale Fassung.
-  R.push(['R1', (v) => (v.lists.has(L.sheetOnly) ? 'R1S' : 'R1'), (v) => v.lists.has(L.noshow) && !v.rpStart && T >= '2026-10-13' && T <= '2026-10-19' && !v.buyerBundle && !s(v, 'R1')]);
-  R.push(['RW', 'RW', (v) => v.lists.has(L.noshow) && v.rpStart && !v.rpPitch && T >= addDays(v.rpStart, 2) && T <= '2026-10-28' && !v.buyerBundle && !s(v, 'RW')]);
-  R.push(['R2', 'R2', (v) => v.lists.has(L.noshow) && s(v, 'R1') && !v.rpStart && T >= maxDay('2026-10-15', addDays(s(v, 'R1'), 2)) && T <= addDays(s(v, 'R1'), 5) && !v.buyerBundle && !s(v, 'R2')]);
-  R.push(['R3', 'R3', (v) => v.lists.has(L.noshow) && s(v, 'R2') && !v.rpStart && T >= maxDay('2026-10-19', addDays(s(v, 'R2'), 4)) && T <= '2026-10-23' && !v.buyerBundle && !s(v, 'R3')]);
+  R.push(['R1', (v) => (v.lists.has(L.sheetOnly) ? 'R1S' : 'R1'), (v) => v.lists.has(L.noshow) && !v.rpStart && T >= '2026-10-14' && T <= '2026-10-20' && !v.buyerBundle && !s(v, 'R1')]);
+  R.push(['RW', 'RW', (v) => v.lists.has(L.noshow) && v.rpStart && !v.rpPitch && T >= addDays(v.rpStart, 2) && T <= '2026-10-29' && !v.buyerBundle && !s(v, 'RW')]);
+  R.push(['R2', 'R2', (v) => v.lists.has(L.noshow) && s(v, 'R1') && !v.rpStart && T >= maxDay('2026-10-16', addDays(s(v, 'R1'), 2)) && T <= addDays(s(v, 'R1'), 5) && !v.buyerBundle && !s(v, 'R2')]);
+  R.push(['R3', 'R3', (v) => v.lists.has(L.noshow) && s(v, 'R2') && !v.rpStart && T >= maxDay('2026-10-20', addDays(s(v, 'R2'), 4)) && T <= '2026-10-24' && !v.buyerBundle && !s(v, 'R3')]);
 
   // AdsFlow Welle 1: Käufer (vor dem Launch) + Live-Zuschauer
   const a1 = (v) => s(v, 'A1');
-  R.push(['A1', (v) => (v.lists.has(L.buyer) ? 'A1K' : 'A1G'), (v) => v.w1 && !v.buyerAF && T >= '2026-10-12' && T <= '2026-10-18' && !a1(v)]);
+  R.push(['A1', (v) => (v.lists.has(L.buyer) ? 'A1K' : 'A1G'), (v) => v.w1 && !v.buyerAF && T >= '2026-10-13' && T <= '2026-10-19' && !a1(v)]);
   R.push(['A1X', (v) => (v.lists.has(L.buyer) ? 'A1KX' : 'A1GX'), (v) => v.w1 && !v.buyerAF && a1(v) && !v.engagedSince(a1(v)) && T >= addDays(a1(v), 3) && T <= addDays(a1(v), 5) && !s(v, 'A1X')]);
-  R.push(['A2', 'A2', (v) => v.w1 && !v.buyerAF && a1(v) && v.engagedSince(a1(v)) && T >= maxDay('2026-10-15', addDays(a1(v), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A2')]);
-  R.push(['A3', 'A3', (v) => v.w1 && !v.buyerAF && s(v, 'A2') && T >= maxDay('2026-10-19', addDays(s(v, 'A2'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A3')]);
-  R.push(['A4', 'A4', (v) => v.w1 && !v.buyerAF && s(v, 'A3') && T >= maxDay('2026-10-26', addDays(s(v, 'A3'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A4')]);
+  R.push(['A2', 'A2', (v) => v.w1 && !v.buyerAF && a1(v) && v.engagedSince(a1(v)) && T >= maxDay('2026-10-16', addDays(a1(v), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A2')]);
+  R.push(['A3', 'A3', (v) => v.w1 && !v.buyerAF && s(v, 'A2') && T >= maxDay('2026-10-20', addDays(s(v, 'A2'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A3')]);
+  R.push(['A4', 'A4', (v) => v.w1 && !v.buyerAF && s(v, 'A3') && T >= maxDay('2026-10-27', addDays(s(v, 'A3'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A4')]);
 
   // AdsFlow Welle 2: Liste 7 ohne Kauf. Wer den Pitch gesehen hat, erst nach dem Bundle-Nachfass.
   const entry = (v) => {
-    if (!v.rpPitch) return '2026-10-24';
-    if (s(v, 'P3')) return maxDay('2026-10-24', addDays(s(v, 'P3'), 2));
-    return maxDay('2026-10-24', addDays(v.rpPitch, 8));
+    if (!v.rpPitch) return '2026-10-26';
+    if (s(v, 'P3')) return maxDay('2026-10-26', addDays(s(v, 'P3'), 2));
+    return maxDay('2026-10-26', addDays(v.rpPitch, 8));
   };
   R.push(['B1', 'B1', (v) => v.w2 && !v.buyerAF && T >= entry(v) && T <= AF_LAST_MAIL_DAY && !s(v, 'B1')]);
   R.push(['B1X', 'B1X', (v) => v.w2 && !v.buyerAF && s(v, 'B1') && !v.engagedSince(s(v, 'B1')) && T >= addDays(s(v, 'B1'), 2) && T <= AF_LAST_MAIL_DAY && !s(v, 'B1X')]);
