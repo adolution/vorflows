@@ -43,8 +43,10 @@ Standard: sofort beim Morgenlauf (~10 Uhr Berlin). `SEND_LATER` plant A1G (Live-
 | B1 | B1 | Welle 2 ab Mo 26.10.; wer den Pitch sah: erst 2 Tage nach P3 |
 | B1X | B1X | B1 nicht geöffnet, +2 Tage |
 | B2, B3 | A2, A3 | Welle 2 mit Öffnung/Besuch, je +2 Tage, bis 1.11. |
-| D0 | D0 | So 1.11. morgens, alle im AdsFlow-Strang ohne Kauf (Vortag) |
-| D1 | D1 | Mo 2.11. morgens, alle im AdsFlow-Strang ohne Kauf |
+| U1 | U1 | Bundle-Kauf ab 11.10. (per Digistore-IPN), Tag nach dem Kauf: Upsell „Wenn du deine Anzeigen auch automatisieren willst“. Neue Käufer verlassen Welle 1/2. |
+| U2 | A3 | Upsell-Käufer mit Öffnung/Besuch, 3 Tage nach U1 |
+| D0 | D0 | So 1.11. morgens, alle mit A1/B1/U1/P1 ohne AdsFlow-Kauf (Vortag) |
+| D1 | D1 | Mo 2.11. morgens, alle mit A1/B1/U1/P1 ohne AdsFlow-Kauf |
 | D2 | D2 | 2.11. abends, AdsFlow-Seite besucht, ohne Kauf |
 
 Simulation mit echten Kontakten: ~3.700 bis 4.300 Mails, max. 10 pro Person in 3 Wochen (Brevo Starter: 5.000/Monat).

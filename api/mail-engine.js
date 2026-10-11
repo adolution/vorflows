@@ -65,9 +65,10 @@ function view(c) {
     buyerAF: lists.has(L.afBuyer) || /690701|adsflow/i.test(produkte),
     blocked: c.emailBlacklisted || lists.has(L.unsub),
   };
-  const newBuyer = dayOf(a.KAUF_DATUM) >= LAUNCH_START;
-  v.w1 = (lists.has(L.buyer) && !newBuyer) || lists.has(L.live);
-  v.w2 = lists.has(L.noshow) && !v.w1 && !v.buyerBundle;
+  v.kauf = dayOf(a.KAUF_DATUM);
+  v.newBundleBuyer = v.buyerBundle && v.kauf >= LAUNCH_START; // kauft während der Strecke → Upsell-Strecke
+  v.w1 = !v.newBundleBuyer && (lists.has(L.buyer) || lists.has(L.live));
+  v.w2 = !v.newBundleBuyer && lists.has(L.noshow) && !lists.has(L.buyer) && !v.buyerBundle;
   v.engagedSince = (d) => (v.open && v.open >= d) || (v.seen && v.seen >= d);
   return v;
 }
@@ -76,16 +77,22 @@ function view(c) {
 function rules(T, evening) {
   const s = (v, k) => v.sent[k];
   const R = [];
+  // Wer bekommt die Deadline-Mails: alle in einer AdsFlow-Strecke, Upsell-Käufer und alle aus dem Bundle-Nachfass
+  const inAF = (v) => s(v, 'A1') || s(v, 'B1') || s(v, 'U1') || s(v, 'P1');
   const KA = ['KA', 'KA', (v) => v.afChk >= LAUNCH_START && T >= addDays(v.afChk, 1) && !v.buyerAF && !s(v, 'KA')];
   if (evening) {
     R.push(['D2', 'D2', (v) => T === AF_END && v.afVisit && !v.buyerAF && !s(v, 'D2')]);
     R.push(KA);
     return R;
   }
-  R.push(['D0', 'D0', (v) => T === addDays(AF_END, -1) && !v.buyerAF && (s(v, 'A1') || s(v, 'B1')) && !s(v, 'D0')]);
-  R.push(['D1', 'D1', (v) => T === AF_END && !v.buyerAF && (s(v, 'A1') || s(v, 'B1')) && !s(v, 'D1')]);
+  R.push(['D0', 'D0', (v) => T === addDays(AF_END, -1) && !v.buyerAF && inAF(v) && !s(v, 'D0')]);
+  R.push(['D1', 'D1', (v) => T === AF_END && !v.buyerAF && inAF(v) && !s(v, 'D1')]);
   R.push(KA);
   R.push(['KB', 'KB', (v) => v.rpChk >= LAUNCH_START && T >= addDays(v.rpChk, 1) && !v.buyerBundle && !s(v, 'KB')]);
+
+  // Upsell: Bundle-Kauf ab Strecken-Start → Tag danach U1, bei Interesse 3 Tage später AdsFlow 3
+  R.push(['U1', 'U1', (v) => v.newBundleBuyer && !v.buyerAF && T >= addDays(v.kauf, 1) && T <= AF_LAST_MAIL_DAY && !s(v, 'U1')]);
+  R.push(['U2', 'A3', (v) => v.newBundleBuyer && !v.buyerAF && s(v, 'U1') && v.engagedSince(s(v, 'U1')) && T >= addDays(s(v, 'U1'), 3) && T <= AF_LAST_MAIL_DAY && !s(v, 'U2')]);
 
   // Bundle-Nachfass nach gesehenem Pitch
   R.push(['P1', 'P1', (v) => v.rpPitch && T >= addDays(v.rpPitch, 1) && !v.buyerBundle && !s(v, 'P1')]);

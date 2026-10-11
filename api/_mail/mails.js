@@ -366,6 +366,27 @@ Alex`,
   A1GX: { from: 'A1G', subject: 'Ein Satz an Claude, 40 fertige Anzeigen', preview: 'So sieht das in meinem eigenen Werbekonto aus. Eingeschaltet wird nichts ohne dich.' },
   B1X: { from: 'B1', subject: 'Ein Satz an Claude, 40 fertige Anzeigen', preview: 'So sieht das in meinem eigenen Werbekonto aus. Eingeschaltet wird nichts ohne dich.' },
 
+  // Upsell: Tag nach dem Bundle-Kauf (Alex 2026-10-11: frische Käufer sind am wärmsten)
+  U1: {
+    subject: 'Wenn du deine Anzeigen auch automatisieren willst',
+    preview: 'Es arbeitet genauso mit Claude wie vorflows, nur für deine Meta-Anzeigen.',
+    why: WHY_BUYER,
+    body: `${HI}
+
+danke, dass du dich für vorflows entschieden hast. Ich freue mich schon darauf, deinen Shop mit dir einzurichten.
+
+Eine Sache wollte ich dir gleich zeigen, weil sie gut dazu passt: Wenn du deine Anzeigen auch automatisieren willst, gibt es AdsFlow. Es arbeitet genauso mit Claude wie vorflows, nur für deine Meta-Anzeigen. Du schreibst „Neue Ads“, Claude schreibt die Texte, holt sich dein Okay und legt die Anzeigen fertig in deinem Werbekonto an, im Feed quadratisch und in der Story hochkant, mit allen Meta-Extras auf aus. Eingeschaltet wird dabei nichts, live schaltest du selbst.
+
+Weil du Claude Code mit vorflows sowieso einrichtest, bist du damit schnell startklar. Im Video zeige ich dir das in meinem eigenen Werbekonto: ${a(link('/adsflow', 'adsflow-upsell'), 'AdsFlow im Video ansehen')}
+
+Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, bis Montag, 2. November.
+
+Wenn du Fragen hast, zu vorflows oder zu AdsFlow, antworte einfach auf diese Mail.
+
+Viele Grüße
+Alex`,
+  },
+
   D0: {
     subject: 'Morgen endet der Launch-Preis für AdsFlow',
     preview: 'Bis Montag um Mitternacht gilt noch der Launch-Preis. Danach nicht mehr, auch nicht verlängert.',
