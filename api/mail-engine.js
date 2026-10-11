@@ -16,12 +16,21 @@ const AF_LAST_MAIL_DAY = '2026-11-01';
 const WEEK_CAP = 3; // höchstens 3 Mails in 7 Tagen, außer Kauf-Hilfe und Deadline
 const URGENT = new Set(['KA', 'KB', 'D0', 'D1', 'D2']);
 const DEADLINE = new Set(['D0', 'D1', 'D2']); // ignorieren alle Grenzen, auch 1 pro Tag
+// Diese Mails gehen nicht sofort, sondern am selben Tag um 14 Uhr (Berlin) raus, damit zuerst
+// die engagiertesten Empfänger Signale an Gmail/GMX senden (Alex 2026-10-11).
+const SEND_LATER = { A1G: 14, R1S: 14 };
 
 const berlinDay = (d = new Date()) => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(d);
 const addDays = (day, n) => {
   const d = new Date(day + 'T12:00:00Z');
   d.setUTCDate(d.getUTCDate() + n);
   return d.toISOString().slice(0, 10);
+};
+const berlinAt = (day, hour) => {
+  const noonUtc = new Date(day + 'T12:00:00Z');
+  const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', hour: '2-digit', hourCycle: 'h23' }).format(noonUtc));
+  const off = h - 12; // +1 Winterzeit, +2 Sommerzeit
+  return new Date(Date.UTC(+day.slice(0, 4), +day.slice(5, 7) - 1, +day.slice(8, 10), hour - off)).toISOString();
 };
 const maxDay = (...ds) => ds.filter(Boolean).sort().pop();
 const dayOf = (v) => (v ? String(v).slice(0, 10) : '');
@@ -170,7 +179,19 @@ async function sendGroup(g, T, evening, byId) {
       recipients: { listIds: [list.id], exclusionListIds: [L.unsub] },
     }),
   });
-  await brevo(`/emailCampaigns/${camp.id}/sendNow`, { method: 'POST' });
+  const at = SEND_LATER[g.mail] && !evening ? berlinAt(T, SEND_LATER[g.mail]) : null;
+  let scheduledAt = null;
+  if (at && new Date(at) > new Date(Date.now() + 10 * 60 * 1000)) {
+    try {
+      await brevo(`/emailCampaigns/${camp.id}`, { method: 'PUT', body: JSON.stringify({ scheduledAt: at }) });
+      scheduledAt = at;
+    } catch (e) {
+      console.log('mail-engine schedule fallback', g.mail, String(e.message));
+      await brevo(`/emailCampaigns/${camp.id}/sendNow`, { method: 'POST' });
+    }
+  } else {
+    await brevo(`/emailCampaigns/${camp.id}/sendNow`, { method: 'POST' });
+  }
   const contacts = g.ids.map((id) => {
     const prev = (byId.get(id)?.attributes?.MAILS_SENT || '').trim();
     return { id, attributes: { MAILS_SENT: (prev ? prev + ',' : '') + `${g.step}:${T}`, MAIL_LAST: T } };
@@ -178,7 +199,7 @@ async function sendGroup(g, T, evening, byId) {
   for (let i = 0; i < contacts.length; i += 100) {
     await brevo('/contacts/batch', { method: 'POST', body: JSON.stringify({ contacts: contacts.slice(i, i + 100) }) });
   }
-  return { label, campaignId: camp.id, listId: list.id, count: g.ids.length };
+  return { label, campaignId: camp.id, listId: list.id, count: g.ids.length, scheduledAt };
 }
 
 export default async function handler(req, res) {

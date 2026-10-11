@@ -15,6 +15,10 @@ Tracking-Grundlage: `.agents/brevo-tracking.md`.
 - Auth: `Authorization: Bearer $CRON_SECRET` (Vercel-Cron) oder `?key=`. Trockenlauf: `?dry=1&today=YYYY-MM-DD`.
   Secret lokal `~/.vf_cron_secret`.
 
+## Uhrzeit
+
+Standard: sofort beim Morgenlauf (~10 Uhr Berlin). `SEND_LATER` plant A1G (Live-Zuschauer) und R1S (nur Sheet) als Brevo-Kampagne auf 14 Uhr desselben Tages, damit zuerst die engagiertesten Empfänger Signale senden. Bis dahin kann die Kampagne in Brevo noch gestoppt werden.
+
 ## Segmente
 
 | Segment | Woher |
