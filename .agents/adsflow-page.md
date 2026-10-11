@@ -9,7 +9,7 @@ Meta-Blau `#0081FB` = alles in Metas Welt (Schalter, Werbekonto). Blau nie als C
 
 Kauf-Link: `https://www.digistore24.com/product/690701?voucher=<gutschein>&ds24tr=vf_adsflow_<A|B>` (Produkt 690701).
 Preis-Stufen im Script (`PRICE.steps`): Launch **299 € netto statt 499 €** (seit 2026-10-10, 15 Tage), Gutschein `adlaunch`
-(Digistore: 200 € Rabatt auf die erste Zahlung, Produktpreis 499 €), gültig bis **2026-10-24 23:59 (Berlin)**. Danach gilt
+(Digistore: 200 € Rabatt auf die erste Zahlung, Produktpreis 499 €), gültig bis **2026-11-02 23:59 (Berlin)** (am 2026-10-11 von 24.10. verlängert, einmalig, keine weitere Verlängerung). Danach gilt
 der Normalpreis 499 €, keine weiteren Stufen geplant. **Für eine neue Stufe einen Eintrag ergänzen**
 (Preis, Gutschein aus Digistore, Ende). Ist keine Stufe aktiv, zeigt die Seite automatisch 499 € ohne Gutschein,
 Countdown und Launch-Leiste verschwinden. Digistore rechnet netto + 19 % MwSt. (299 € → 355,81 € brutto), deshalb

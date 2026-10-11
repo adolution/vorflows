@@ -2,6 +2,7 @@
 <html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
+    <script src="/assets/vf-id.js?v=20261011"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>vorflows für Shopify: Claude baut deinen Shop um, du gibst frei</title>
     <meta name="description" content="Ein Ordner macht Claude zum Entwickler deines Shopify-Shops. Claude ersetzt Apps, baut Sections und verbessert SEO und Conversion anhand deiner Shopdaten. Gearbeitet wird an einer Theme-Kopie, live schaltest nur du." />
@@ -4067,6 +4068,10 @@
         function cEvent(name, props) {
           props = props || {};
           var p = {}; for (var k in props) p[k] = props[k]; p.variant = variant;
+          if (window.vfTag) {
+            if (name === 'digistore_redirect') window.vfTag(name);
+            else if (/^hero_video_pct_/.test(name)) window.vfTag('sales_video_pct', { pct: props.milestone });
+          }
           if (consentState === 'denied') return;
           clarityEvent(name);
           trackFb(name, p);

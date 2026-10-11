@@ -486,6 +486,9 @@ Clarity-Tags: `lw_page=replay`, `lw_replay=played|p25|p50|p75|complete`.
 Clarity-Tag `lw_replay_offer=shown`, sobald die Knöpfe sichtbar sind. Lokal (localhost) lädt die Seite weder Clarity
 noch Pixel und sendet nichts, nur `console.info`.
 
+**Brevo-Tagging (seit 2026-10-11):** `lwTrack` ruft zusätzlich `vfTag` (`assets/vf-id.js`) → `/api/brevo-track`,
+markiert Mail-Klicker in Brevo (RP_START, RP_PCT, RP_PITCH, Listen 9 bis 11). Doku `.agents/brevo-tracking.md`.
+
 **Wo andocken:** neue Events über `lwTrack(...)` in `replay.html`; Kapitel-Zeiten in der `<ol>` (`data-t`).
 Bei neuem Video: Blob-Upload mit neuem Namen, `<source src>`, Preconnect-Host und Fallback-Link tauschen,
 Kapitel neu setzen (Szenenwechsel: `ffmpeg -vf "select='gt(scene,0.35)',showinfo"`), Poster + OG neu rendern.

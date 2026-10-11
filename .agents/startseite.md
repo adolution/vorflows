@@ -50,8 +50,8 @@ oder Glow.
 
 Nur im Vergleichskasten `#systeme`:
 - vorflows: `1.499 € netto, einmalig`, Strike `2.000 €`, „Ratenzahlung möglich“ (muss zu `sales.html` passen).
-- AdsFlow: `299 € zzgl. MwSt.` statt `499 €`, „Launch-Preis bis 24.10.“. Ab `AF_LAUNCH_END` im Script
-  (`2026-10-24T23:59:59+02:00`) ersetzt JS den Inhalt von `[data-af-price]` durch `499 € zzgl. MwSt., einmalig`.
+- AdsFlow: `299 € zzgl. MwSt.` statt `499 €`, „Launch-Preis bis 2.11.“. Ab `AF_LAUNCH_END` im Script
+  (`2026-11-02T23:59:59+01:00`, verlängert 2026-10-11) ersetzt JS den Inhalt von `[data-af-price]` durch `499 € zzgl. MwSt., einmalig`.
   Neue AdsFlow-Preisstufe → Markup + `AF_LAUNCH_END` hier anpassen (Quelle: `PRICE.steps` in `adsflow.html`).
 Die Startseite hat keinen eigenen Kauf-Link, alle Buttons gehen auf `/sales` bzw. `/adsflow`.
 Die Zahl „noch N verfügbar“ der 1:1-Schulung steht bewusst nicht hier (nur auf `/sales`, `/replay`).

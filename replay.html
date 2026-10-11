@@ -2,6 +2,7 @@
 <html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
+    <script src="/assets/vf-id.js?v=20261011"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Aufzeichnung: KI + Shopify Live-Workshop · vorflows</title>
     <meta name="description" content="Die Aufzeichnung des Live-Workshops vom 10.09.2026: 52 Minuten, in denen ich mit Claude Code einen echten Shopify-Shop umbaue. Darunter alles aus dem Workshop zum Nachlesen und Ausprobieren." />
@@ -4515,6 +4516,7 @@
           props = props || {};
           props.variant = variant;
           props.page = 'replay';
+          if (window.vfTag) window.vfTag(name, props);
           if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
           if (attr.utm_content) props.utm_content = attr.utm_content;
           if (LOCAL) { console.info('[track]', name, clarityName || '', props); return; }

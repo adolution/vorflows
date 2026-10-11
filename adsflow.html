@@ -2,6 +2,7 @@
 <html lang="de" class="no-js">
   <head>
     <meta charset="utf-8" />
+    <script src="/assets/vf-id.js?v=20261011"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>AdsFlow: Du testest zu wenig Anzeigen · vorflows</title>
     <meta name="description" content="AdsFlow ist ein fertiges Claude-Projekt für Meta Ads. Es schreibt deine Anzeigen, stellt sie richtig ein und legt sie ausgeschaltet in dein Werbekonto, live schaltest du selbst." />
@@ -2254,7 +2255,7 @@
 
         var META_PIXEL_ID = '2002118703756086';
         var VARIANT = window.__afVariant === 'B' ? 'B' : 'A';
-        // Preis-Stufen. Der Launch-Preis (15 Tage ab 10.10.) gilt bis `end`, danach gilt `regular`.
+        // Preis-Stufen. Der Launch-Preis (ab 10.10., am 11.10. bis 2.11. verlängert) gilt bis `end`, danach gilt `regular`.
         // Neue Stufe = neuer Eintrag (Preis + Gutschein wie in Digistore angelegt, `end` = Ablauf).
         // Ist keine Stufe mehr aktiv, zeigt die Seite den Normalpreis ohne Gutschein und ohne Countdown.
         var PRICE = {
@@ -2262,7 +2263,7 @@
           track: 'vf_adsflow',
           regular: 499,
           steps: [
-            { price: 299, voucher: 'adlaunch', end: '2026-10-24T23:59:59+02:00' }
+            { price: 299, voucher: 'adlaunch', end: '2026-11-02T23:59:59+01:00' }
           ]
         };
         // VSL v3 (1,2x), drei Stufen auf Vercel Blob. Neuer Schnitt = neue Dateinamen (1 Jahr immutable gecacht).
@@ -2335,6 +2336,7 @@
         function afTrack(name, props, clarityName, email) {
           props = props || {};
           props.page = 'adsflow';
+          if (window.vfTag) window.vfTag(name, props);
           props.variant = VARIANT;
           if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
           if (attr.utm_content) props.utm_content = attr.utm_content;
