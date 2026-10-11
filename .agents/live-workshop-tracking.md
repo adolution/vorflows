@@ -452,7 +452,12 @@ Player hängt dann oben, die Leiste unten) und im Schluss (+ Link „Weiterschau
 **1:1-Schulung im Angebot (seit 2026-10-08):** Zeile im Angebotskasten (Avatar, „Inklusive: 1:1-Schulung mit mir“, „noch N von 20 frei“),
 Satz im Schluss, Handy-Leiste „vorflows + 1:1-Schulung“, seit 2026-10-09 auch Abschnitt `#schulung`, Angebot `#preis` und
 die Kauf-Fragen im FAQ. Alles `data-offer`, also erst nach dem Pitch. Ebenso die zwei Kauf-Zwischenstopps (`.inline-cta`)
-und alle Sprungmarken in die Fragerunde (hinter 41:16). Zahl in `data-bonus-left` von Hand (auf /replay 5 Stellen).
+und alle Sprungmarken in die Fragerunde (hinter 41:16). Zahl in `data-bonus-left` von Hand (auf /replay 10 Stellen).
+**Freie Plätze immer sichtbar (seit 2026-10-12, Alex):** „1:1-Schulung: noch N von 20 Plätzen frei“ steht auch VOR dem Pitch,
+ohne Preis und ohne Kauf-Link: Streifen `.seats` direkt unter dem Video (mit 20 Kästchen `[data-seats]`, die das Skript aus der
+ersten `data-bonus-left`-Zahl füllt; `data-pre-offer`, nach dem Pitch übernimmt der Angebotskasten), Pill in der Kopfzeile
+(`.nav-seats`, ab 761 px, Text wird unter 1180/1040 px kürzer), im Mini-Player (`.fb-seats`, Handy immer, Desktop bis zum Angebot),
+eigene Zeile in der Handy-Leiste (`.dock-seats`, vor und nach dem Angebot) und Pill im Schluss (`.final-seats`, `data-pre-offer`).
 Auf /replay und /replay-voll nie „Clarity“, „Search Console“ oder „GitHub“ (Alex 2026-10-08).
 Checkout: `https://www.digistore24.com/product/688983?voucher=launch&ds24tr=vf_replay` (Voucher MUSS mit, Basis 2.000 €).
 Video = v5 (Motion-Fassung, freigegeben 2026-10-06). Alle `data-t`/`data-live`-Zeiten beider Seiten sind v5-Zeiten; Weiterschauen-Key `vf_lw_replay_t_v5`.
