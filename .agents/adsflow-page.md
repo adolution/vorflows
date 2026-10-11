@@ -116,6 +116,16 @@ die zum Anfang des Explorers zurückspringt. Desktop unverändert. Klasse heißt
 Clarity (`af_*`) + Meta Pixel/CAPI mit Event-ID-Dedup, gleicher Attribution-Block wie LP/Replay
 (`vf_lw_attr`, `_fbc`/`_fbp`). Lokal (localhost) wird nichts gesendet, nur `console.info`.
 
+**Kauf-Link-Attribution (seit 2026-10-11, `checkoutParams()`):** Der Kauf-Button hängt an den Digistore-Link
+zusätzlich `utm_source/medium/campaign/content/term` (aus URL oder gespeichertem `vf_lw_attr`, 90 Tage),
+`fbclid` (aus URL oder `_fbc`-Cookie) und `cid` = unsere `external_id`. Werte werden auf Digistore-Zeichen
+gekürzt (`[A-Za-z0-9ÄÖÜäöüß.,_-]`, Rest → `_`, max. 120). Digistore zeigt UTMs pro Kauf (getPurchaseTracking,
+Statistik, auch für Raten); `fbclid` soll dem Meta-Pixel auf dem Bestellformular ein `_fbc` geben (ob Digistores
+CAPI-Purchase das mitschickt, ist nicht dokumentiert → im Events Manager beim Testkauf prüfen).
+Kauf-Event selbst kommt von Digistore (Facebook-IPN unter Einstellungen → Integrationen), **kein eigenes Purchase
+auf `/danke-adsflow`** (sonst Doppelzählung; falls doch, nur mit `eventID: 'purchase.' + order_id`).
+Bekannt: Digistores Formular-Pixel meldet `InitiateCheckout` mit 499 € auch bei Gutschein; dort läuft außerdem der WebinarJam-Sale-Cookie.
+
 | Meta-Event | Clarity-Event | Wann |
 |---|---|---|
 | `ViewContent` `{content_name:'AdsFlow'}` | `af_view` | Seitenaufruf |

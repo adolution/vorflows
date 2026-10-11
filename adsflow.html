@@ -2377,11 +2377,23 @@
           for (var i = 0; i < PRICE.steps.length; i++) { if (now < Date.parse(PRICE.steps[i].end)) return PRICE.steps[i]; }
           return null;
         }
+        // Attribution ans Bestellformular: UTMs landen in Digistores Statistik (auch bei Raten),
+        // fbclid lässt das Meta-Pixel auf dem Bestellformular ein _fbc setzen, cid = unsere external_id.
+        // Digistore erlaubt in Tracking-Feldern nur Buchstaben, Ziffern, . , _ - → Rest wird zu _.
+        var ds24Safe = function (v) { return String(v).replace(/[^0-9A-Za-zÄÖÜäöüß.,_-]+/g, '_').slice(0, 120); };
+        function checkoutParams() {
+          var out = [];
+          KEYS.forEach(function (k) { var v = params.get(k) || attr[k]; if (v) out.push(k + '=' + encodeURIComponent(ds24Safe(v))); });
+          var fbclid = params.get('fbclid') || (getCookie('_fbc') || '').split('.').slice(3).join('.');
+          if (fbclid) out.push('fbclid=' + encodeURIComponent(fbclid));
+          if (extId) out.push('cid=' + encodeURIComponent(ds24Safe(extId)));
+          return out.length ? '&' + out.join('&') : '';
+        }
         function applyPrice() {
           step = activeStep();
           var price = step ? step.price : PRICE.regular;
           var q = '?' + (step && step.voucher ? 'voucher=' + encodeURIComponent(step.voucher) + '&' : '') + 'ds24tr=' + PRICE.track + '_' + VARIANT;
-          buy.href = PRICE.url + q;
+          buy.href = PRICE.url + q + checkoutParams();
           each('[data-price], [data-price-btn]', function (el) { el.textContent = eur(price); });
           each('[data-price-old], [data-voucher-note]', function (el) { el.hidden = !step; });
           document.getElementById('launch').classList.toggle('is-off', !step);
