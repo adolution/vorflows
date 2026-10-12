@@ -2816,6 +2816,73 @@
         .fviz { border-left: 0; border-top: 1px solid var(--line); min-height: 300px; }
         .fpane { min-height: 0; }
       }
+
+      /* ---------- Drei Wege, Handy-Umbau (2026-10-12) ----------
+         „Stell es live“ sitzt in der Bühne, damit man die Animation sieht. Handy: Reiter als
+         kompakte Dreier-Leiste mit Kurznamen, flachere Bühne, keine automatische Führung. */
+      .stab .l-sm { display: none; }
+      .sys-stage { position: relative; }
+      .stage-act { position: absolute; left: 0; right: 0; bottom: 1.1rem; z-index: 4; display: flex; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .35s var(--ease-q), transform .5s var(--ease), visibility 0s linear .35s; }
+      .sys[data-s="3"] .stage-act { opacity: 1; visibility: visible; transform: none; transition: opacity .45s var(--ease-q) .25s, transform .6s var(--ease) .25s, visibility 0s; }
+      .sys[data-s="3"] .sys-stage { padding-bottom: 4.5rem; }
+      .golive { display: inline-flex; align-items: center; gap: .55rem; min-height: 44px; padding: 0 1.15rem; border: 0; border-radius: 999px; background: var(--ink); color: #FFFFFF; font: inherit; font-size: 14.5px; font-weight: 500; letter-spacing: -.01em; cursor: pointer; box-shadow: 0 1px 2px rgba(20, 20, 19, .2), 0 12px 24px -12px rgba(20, 20, 19, .5); transition: transform .4s var(--spring), background-color .2s var(--ease-q), opacity .2s; }
+      .golive i { width: 8px; height: 8px; border-radius: 50%; background: var(--shop); box-shadow: 0 0 0 3px rgba(149, 191, 71, .25); }
+      .golive:hover { background: #2A2A28; }
+      .golive:active { transform: scale(.96); }
+      .golive:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+      .sys.go .golive { opacity: .55; pointer-events: none; }
+      @media (max-width: 760px) {
+        .sys-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .stab, .stab:first-child { grid-template-columns: minmax(0, 1fr); align-items: start; gap: .15rem; padding: .8rem .65rem .85rem; }
+        .stab + .stab { border-top: 0; border-left: 1px solid var(--line); }
+        .stab b { font-size: 13.5px; line-height: 1.25; }
+        .stab small { font-size: 11.5px; line-height: 1.3; }
+        .stab .l-lg { display: none; }
+        .stab .l-sm { display: inline; }
+        .sys-stage { min-height: 250px; padding: .75rem .5rem; }
+        .sys[data-s="3"] .sys-stage { padding-bottom: 4.25rem; }
+        .mid { height: 180px; }
+        .stage-act { bottom: .9rem; }
+        .sys-verdict { padding: 1.2rem 1.1rem 1.4rem; }
+        .sys-verdict h3 { font-size: 1.3rem; }
+      }
+
+      /* ---------- Klick-Hinweis (2026-10-12, wie /adsflow) ----------
+         Ein Zeiger fährt einmal auf ein anklickbares Element und klickt, damit klar ist, dass man es
+         bedienen kann. Desktop: Mauszeiger, Handy: Hand. Regler: Ziehbewegung. Einmal pro Element,
+         erste eigene Berührung beendet ihn. Ohne Bewegungswunsch gar nicht. */
+      .ph-cur { position: absolute; left: 0; top: 0; z-index: 45; width: 0; height: 0; pointer-events: none; }
+      .ph-cur svg { position: absolute; color: var(--ink); filter: drop-shadow(0 0 1.5px #FFFFFF) drop-shadow(0 6px 10px rgba(20, 20, 19, .3)); }
+      .ph-cur.arrow svg { left: -5px; top: -3px; width: 26px; height: 26px; transform-origin: 5px 3px; }
+      .ph-cur.hand svg { left: -16px; top: -7px; width: 38px; height: 38px; transform-origin: 16px 7px; }
+      .ph-cur .ring { position: absolute; left: -18px; top: -18px; width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
+      .ph-cur svg { animation: phTap 2.4s var(--ease) 2 both; }
+      .ph-cur .ring { animation: phRing 2.4s ease-out 2 both; }
+      .ph-cur.drag svg { animation: phDrag 3s var(--ease) 1 both; }
+      .ph-cur.drag .ring { animation: none; }
+      .ph-cur.out { opacity: 0; transition: opacity .25s var(--ease-q); }
+      @keyframes phTap {
+        0% { opacity: 0; transform: translate(26px, 30px); }
+        22%, 36% { opacity: 1; transform: none; }
+        42% { transform: scale(.84); }
+        52% { transform: none; }
+        80% { opacity: 1; transform: none; }
+        100% { opacity: 0; transform: translate(8px, 10px); }
+      }
+      @keyframes phRing {
+        0%, 39% { opacity: 0; transform: scale(.35); }
+        43% { opacity: .95; transform: scale(.45); }
+        76%, 100% { opacity: 0; transform: scale(1.6); }
+      }
+      @keyframes phDrag {
+        0% { opacity: 0; transform: translate(10px, 26px); }
+        16% { opacity: 1; transform: none; }
+        22% { transform: scale(.88); }
+        45% { transform: translateX(-46px) scale(.88); }
+        70% { transform: translateX(46px) scale(.88); }
+        84% { opacity: 1; transform: scale(.88); }
+        100% { opacity: 0; transform: translate(6px, 12px); }
+      }
     </style>
   </head>
   <body>
@@ -3341,13 +3408,13 @@
           </div>
           <div class="panel sys" id="sys" data-s="1" data-reveal>
             <div class="sys-tabs" role="tablist" aria-label="Drei Wege, Claude mit dem Shop zu verbinden">
-              <button class="stab s1" role="tab" type="button" id="st-1" aria-controls="sv-1" aria-selected="true"><b>1 · Connector-App</b><small>Unsicher</small><span class="prog"></span></button>
-              <button class="stab s2" role="tab" type="button" id="st-2" aria-controls="sv-2" aria-selected="false" tabindex="-1"><b>2 · Kopie auf deinem Rechner</b><small>Im Paket</small><span class="prog"></span></button>
-              <button class="stab s3" role="tab" type="button" id="st-3" aria-controls="sv-3" aria-selected="false" tabindex="-1"><b>3 · Zwei Zwischenspeicher</b><small>Optional, mein Setup</small><span class="prog"></span></button>
+              <button class="stab s1" role="tab" type="button" id="st-1" aria-controls="sv-1" aria-selected="true"><b><span class="l-lg">1 · Connector-App</span><span class="l-sm">1 · Connector</span></b><small>Unsicher</small><span class="prog"></span></button>
+              <button class="stab s2" role="tab" type="button" id="st-2" aria-controls="sv-2" aria-selected="false" tabindex="-1"><b><span class="l-lg">2 · Kopie auf deinem Rechner</span><span class="l-sm">2 · Kopie</span></b><small>Im Paket</small><span class="prog"></span></button>
+              <button class="stab s3" role="tab" type="button" id="st-3" aria-controls="sv-3" aria-selected="false" tabindex="-1"><b><span class="l-lg">3 · Zwei Zwischenspeicher</span><span class="l-sm">3 · Zwei Speicher</span></b><small><span class="l-lg">Optional, mein Setup</span><span class="l-sm">Optional</span></small><span class="prog"></span></button>
             </div>
 
-            <div class="sys-stage" aria-hidden="true">
-              <div class="node">
+            <div class="sys-stage">
+              <div class="node" aria-hidden="true">
                 <div class="core">
                   <svg viewBox="0 0 92 92">
                     <circle cx="46" cy="46" r="40" fill="rgba(188,90,53,.1)" />
@@ -3360,7 +3427,7 @@
                 <span class="node-lbl">Claude Code</span>
               </div>
 
-              <div class="mid">
+              <div class="mid" aria-hidden="true">
                 <div class="layer ly1">
                   <span class="wire"></span><span class="wire b"></span>
                   <span class="run o"><span class="dotp"></span></span>
@@ -3393,7 +3460,7 @@
                 </div>
               </div>
 
-              <div class="node">
+              <div class="node" aria-hidden="true">
                 <div class="shopcard" id="shopCard"><i></i><span class="im" style="display: block;"></span><i></i><i></i><span class="live"></span></div>
                 <span class="node-lbl">Dein Live-Shop</span>
                 <div class="vaultm">
@@ -3403,6 +3470,9 @@
                   <span class="ok"></span>
                 </div>
                 <span class="noacc">kein Zugriff für Claude</span>
+              </div>
+              <div class="stage-act">
+                <button class="golive" type="button" id="goLive"><i aria-hidden="true"></i>„Stell es live“ sagen</button>
               </div>
             </div>
 
@@ -3419,7 +3489,6 @@
                 <h3>Mit zwei Zwischenspeichern geht es erst auf dein Wort live.</h3>
                 <p>Wer mag, bekommt zwei Zwischenspeicher für sein Theme. In Zwischenspeicher 1 arbeitet Claude, und du siehst das Ergebnis direkt in der Shopify-Vorschau. Erst wenn du sagst „stell es live“, wandert es in Zwischenspeicher 2, der mit deinem Live-Theme verbunden ist. Änderungen, die du selbst im Theme-Editor machst, kommen automatisch zurück. Claude richtet das mit dir ein, du klickst nur ein paar Knöpfe.</p>
                 <div style="display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; align-items: center;">
-                  <button class="ghost solid" type="button" id="goLive">„Stell es live“ ausprobieren</button>
                 </div>
               </div>
             </div>
@@ -4733,7 +4802,7 @@
           markTab(stabs, i);
           sys.setAttribute('data-s', String(i + 1));
           verdicts.forEach(function (d, j) { d.classList.toggle('on', j === i); });
-          if (user) { clearTimeout(sysAuto); sys.classList.remove('auto'); clarityEvent('sales_system_' + (i + 1)); }
+          if (user) { sysGuided = true; clearTimeout(sysAuto); sys.classList.remove('auto'); clarityEvent('sales_system_' + (i + 1)); }
         }
         tabsKeys(stabs, sysSet);
         function sysGuide(i) {
@@ -4743,7 +4812,7 @@
             sysAuto = setTimeout(function () { sysGuide(i + 1); }, 8000);
           } else sys.classList.remove('auto');
         }
-        whenSeen('sys', function () { if (!sysGuided && !reduce) { sysGuided = true; sysGuide(0); } });
+        whenSeen('sys', function () { if (!sysGuided && !reduce && !matchMedia('(max-width: 760px)').matches) { sysGuided = true; sysGuide(0); } });
         var goBusy = false;
         $('goLive').addEventListener('click', function () {
           if (goBusy) return; goBusy = true;
@@ -4942,6 +5011,71 @@
           updDock();
         });
         map.forEach(function (m) { dockIO.observe(document.querySelector(m[1])); });
+      })();
+    </script>
+      <script>
+      // Klick-Hinweis: zeigt einmal pro Element, dass man es anklicken oder ziehen kann.
+      (function () {
+        if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+        var mobile = matchMedia('(max-width: 760px)').matches;
+        var ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l0 16.5 4.6-4.4 3.1 6.9 3.2-1.4-3.1-6.8h6.4z" fill="currentColor" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+        var HAND = '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M64,64a48,48,0,0,1,96,0,8,8,0,0,1-16,0,32,32,0,0,0-64,0,8,8,0,0,1-16,0Zm143.23,56c-8.61.4-15.23,7.82-15.23,16.43v7.28a8.17,8.17,0,0,1-7.47,8.25,8,8,0,0,1-8.53-8V120.45c0-8.61-6.62-16-15.23-16.43A16,16,0,0,0,144,120v15.73a8.17,8.17,0,0,1-7.47,8.25,8,8,0,0,1-8.53-8V64.45c0-8.61-6.62-16-15.23-16.43A16,16,0,0,0,96,64V183.74a8.19,8.19,0,0,1-6.72,8.16l-.12,0a6.09,6.09,0,0,1-6-3.09l-21-36.44c-4.3-7.46-13.74-10.57-21.4-6.62A16,16,0,0,0,34.15,168L65.1,228.05A8,8,0,0,0,72,232H208a8,8,0,0,0,7.16-4.42c.36-.72,8.84-15.06,8.84-40.65V136A16,16,0,0,0,207.23,120Z"/></svg>';
+        // [Bereich, Ziel darin, Optionen]
+        var spots = [
+          ['demoPanel', '#dt-2'],
+          ['sys', '#st-2', { mobileOnly: true }],
+          ['sys', '#goLive', { whenAttr: ['data-s', '3'] }],
+          ['kitchen', '#kmap button'],
+          ['compare', '.cmp-knob', { drag: true }],
+          ['meterPanel', '#unplug'],
+          ['shipdemo', '#sdPlus'],
+          ['tapzone', '.tz-opt:nth-child(2)'],
+          ['chg', '#chgHand'],
+          ['calc', '#calcM', { drag: true, range: true }],
+          ['lock', '#lock'],
+          ['tabs', '#t-daten'],
+          ['ftabs', '#ft-2']
+        ];
+        var busy = false;
+        spots.forEach(function (sp) {
+          var area = document.getElementById(sp[0]); if (!area) return;
+          var o = sp[2] || {};
+          if (o.mobileOnly && !mobile) return;
+          var t = sp[1] === '#' + sp[0] ? area : area.querySelector(sp[1]) || document.querySelector(sp[1]);
+          if (!t) return;
+          var done = false, wait = 0, cur = null;
+          function stop() { done = true; clearTimeout(wait); if (cur) { cur.classList.add('out'); var c = cur; setTimeout(function () { c.remove(); }, 260); cur = null; busy = false; } }
+          area.addEventListener('pointerdown', stop, { passive: true });
+          area.addEventListener('keydown', stop);
+          function play() {
+            if (done || busy) return;
+            if (o.whenAttr && area.getAttribute(o.whenAttr[0]) !== o.whenAttr[1]) return;
+            var r = t.getBoundingClientRect();
+            if (r.width === 0 || r.top < 60 || r.bottom > innerHeight - 110) return;
+            busy = true; done = true;
+            var vl = Math.max(r.left, 12), vr = Math.min(r.right, innerWidth - 12);
+            var x = vl + Math.min((vr - vl) * .5, 64), y = r.top + r.height * .58;
+            if (o.range) { var v = (t.value - t.min) / (t.max - t.min); x = r.left + 11 + v * (r.width - 22); y = r.top + r.height / 2; }
+            if (o.drag && !o.range) { x = r.left + r.width / 2; y = r.top + r.height / 2; }
+            cur = document.createElement('span');
+            cur.className = 'ph-cur ' + (fine ? 'arrow' : 'hand') + (o.drag ? ' drag' : '');
+            cur.setAttribute('aria-hidden', 'true');
+            cur.innerHTML = '<i class="ring"></i>' + (fine ? ARROW : HAND);
+            cur.style.left = Math.round(x + scrollX) + 'px';
+            cur.style.top = Math.round(y + scrollY) + 'px';
+            document.body.appendChild(cur);
+            cur.querySelector('svg').addEventListener('animationend', function () { if (cur) { cur.remove(); cur = null; } busy = false; });
+          }
+          var io = new IntersectionObserver(function (es) {
+            es.forEach(function (en) {
+              clearTimeout(wait);
+              if (en.isIntersecting) wait = setTimeout(play, 900);
+            });
+          }, { threshold: .6, rootMargin: '-8% 0px -18% 0px' });
+          io.observe(t);
+          if (o.whenAttr) new MutationObserver(function () { clearTimeout(wait); wait = setTimeout(function () { if (!done) play(); }, 1400); }).observe(area, { attributes: true, attributeFilter: [o.whenAttr[0]] });
+        });
       })();
     </script>
   </body>
