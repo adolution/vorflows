@@ -1601,8 +1601,9 @@
       .today-intro .lead { margin-top: 1.4rem; }
       .ten {
         display: flex;
-        align-items: flex-end;
-        gap: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
         margin-top: 2.5rem;
         padding: 1.4rem 1.5rem;
         border-radius: var(--r-surface);
@@ -1612,7 +1613,7 @@
       .big-num { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: clamp(3.4rem, 2.6rem + 3vw, 5rem); line-height: .9; white-space: nowrap; font-variant-numeric: tabular-nums; }
       .big-num small { font-size: .42em; letter-spacing: -.01em; color: var(--ink-3); margin-left: .1em; }
       .big-num .to { color: var(--orange-hi); }
-      .ten p { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; padding-bottom: .3rem; }
+      .ten p { font-size: 15px; max-width: 46ch; color: var(--ink-2); line-height: 1.5; padding-bottom: .3rem; }
       .outcomes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
       .outcomes li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 0 1rem; padding: 1.8rem 0; border-bottom: 1px solid var(--line); }
       .outcomes .n { font-size: 1.15rem; color: var(--orange-hi); padding-top: .3rem; }
@@ -2970,7 +2971,61 @@
       .btn { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 1px 2px rgba(22, 22, 22, .12), 0 12px 26px -12px rgba(191, 86, 49, .45); }
       .btn:hover { background: #AE4E2C; }
       .stage, .stage video { background: #0A0A09; border-color: transparent; }
-      .scratch-hint, .cmp-lab, .zoom-badge { color: #FFFFFF; border-color: transparent; }
+      .cmp-lab, .zoom-badge { color: #FFFFFF; border-color: transparent; }
+      .scratch-hint { background: #FFFFFF; color: var(--ink); border-color: var(--line-2); box-shadow: 0 6px 18px -8px rgba(22, 22, 22, .25); }
+
+      /* Video: Weiterschauen-Pille liegt auf dem dunklen Video, bleibt hell beschriftet */
+      .resume { color: #EDECE7; border-color: rgba(237, 236, 231, .18); }
+      .resume .ghost { color: #EDECE7; border-color: rgba(237, 236, 231, .35); }
+      .resume .ghost:hover { color: #FFFFFF; border-color: rgba(237, 236, 231, .7); }
+      .stage.is-float { box-shadow: 0 24px 60px -20px rgba(22, 22, 22, .35), 0 0 0 1px var(--line-2); }
+      .stage.is-float .float-bar { background: #FFFFFF; }
+      @media (max-width: 760px) {
+        .stage.is-float, body.offer-on.dock-on .stage.is-float { box-shadow: 0 14px 30px -14px rgba(22, 22, 22, .3), 0 1px 0 var(--line-2); }
+      }
+
+      /* Demo: Terminal und Handy hell statt schwarzer Block */
+      .term { background: #FFFFFF; border-color: var(--line-2); box-shadow: var(--shadow-raise); }
+      .term-bar { background: var(--raise-2); }
+      .term-bar i { background: #D6D6D3; }
+      .t-ask { background: var(--raise-2); }
+      .phone { background: #E9E9E6; box-shadow: inset 0 0 0 1px #D6D6D3, 0 24px 50px -24px rgba(22, 22, 22, .3); }
+      .ph { background: linear-gradient(160deg, #EDEDEA, #DCDCD8); box-shadow: 0 12px 22px -12px rgba(22, 22, 22, .3); }
+      .ph::before { background: #FFFFFF; }
+      .sp i { background: #E6E6E4; }
+
+      /* Schalter hell */
+      .lock .big-sw, .agt .sw { background: #DCDCD8; box-shadow: inset 0 1px 3px rgba(22, 22, 22, .18); }
+      .lock .big-sw::after, .agt .sw::after { background: #FFFFFF; box-shadow: 0 2px 6px rgba(22, 22, 22, .25); }
+      .agt input:checked + .sw::after { background: #FFFFFF; }
+
+      /* Drei Wege: Tresor mit Bestellungen/Kundendaten hell */
+      .vaultm { background: #FFFFFF; border-color: var(--line-2); }
+      .vaultm .inside { color: var(--ink-2); }
+      .vaultm .door { background: linear-gradient(180deg, #F1F1EF, #E2E2DF); }
+      .vaultm .door::before { border-color: #B9B9B5; }
+
+      /* Zähler + Stecker: Aluminium statt Graphit */
+      .meter { background: linear-gradient(160deg, #FFFFFF 0%, #EDEDEA 55%, #DEDEDA 100%); box-shadow: inset 0 1px 0 #FFFFFF, 0 0 0 1px var(--line-2), 0 20px 36px -18px rgba(22, 22, 22, .3); }
+      .meter-win { background: #FFFFFF; box-shadow: inset 0 1px 4px rgba(22, 22, 22, .12), 0 0 0 1px var(--line); }
+      .meter-foot .scr { background: #C9C9C5; box-shadow: inset 0 1px 1px rgba(22, 22, 22, .25); }
+      .meter-foot .brandplate { color: var(--ink-3); }
+      .cord { background: linear-gradient(180deg, #D3D3CF, #B5B5B0); box-shadow: 0 6px 10px -6px rgba(22, 22, 22, .3); }
+      .plug { background: linear-gradient(160deg, #F4F4F2, #D9D9D5); box-shadow: inset 0 1px 0 #FFFFFF, 0 0 0 1px var(--line-2), 0 10px 20px -10px rgba(22, 22, 22, .3); }
+      .plug::after { background: linear-gradient(#A9A9A4, #A9A9A4) top / 100% 4px no-repeat, linear-gradient(#A9A9A4, #A9A9A4) bottom / 100% 4px no-repeat; }
+      .socket { background: linear-gradient(160deg, #FFFFFF, #E6E6E3); box-shadow: inset 0 1px 0 #FFFFFF, 0 0 0 1px var(--line-2), 0 14px 30px -16px rgba(22, 22, 22, .3); }
+      .socket::before, .socket::after { background: #3A3A38; box-shadow: none; }
+
+      /* Kleinteile */
+      .mail .av { background: #E6E6E4; }
+      .receipts i { background: #E6E6E4; }
+      .receipts i::before { background: #C9C9C5; box-shadow: 0 5px 0 #C9C9C5, 0 10px 0 #D6D6D3; }
+      .zoom-x:hover { background: #E6E6E4; }
+      .offer-box { border-color: rgba(191, 86, 49, .4); background: radial-gradient(30rem 14rem at 0% 0%, rgba(191, 86, 49, .08), transparent 70%), #FFFFFF; }
+      .fb-buy:hover { background: #AE4E2C; }
+      /* Dunkle Terminal-Screenshots als helle Fassung (invertiert, Farbton zurückgedreht) */
+      .proof-row .shot.zoomable, .bento .shotcell .shot.zoomable { background: #FFFFFF; }
+      .proof-row .shot.zoomable img, .bento .shotcell .shot.zoomable img { filter: invert(1) hue-rotate(180deg) brightness(1.13) contrast(1.06); }
       .slotbox::before { background: #2A2A28; }
       .cover { color: #EDECE7; }
     </style>
@@ -5253,15 +5308,15 @@
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
           ctx.globalCompositeOperation = 'source-over';
           var g = ctx.createLinearGradient(0, 0, w, h);
-          g.addColorStop(0, '#2B2A27'); g.addColorStop(.5, '#3A3834'); g.addColorStop(1, '#262522');
+          g.addColorStop(0, '#E4E4E1'); g.addColorStop(.5, '#EEEEEB'); g.addColorStop(1, '#DCDCD8');
           ctx.fillStyle = g;
           ctx.fillRect(0, 0, w, h);
           // Glas: weiche Lichtkante oben, feine Schlieren
           var hl = ctx.createLinearGradient(0, 0, 0, h * .45);
-          hl.addColorStop(0, 'rgba(255,255,255,.10)'); hl.addColorStop(1, 'rgba(255,255,255,0)');
+          hl.addColorStop(0, 'rgba(255,255,255,.6)'); hl.addColorStop(1, 'rgba(255,255,255,0)');
           ctx.fillStyle = hl; ctx.fillRect(0, 0, w, h * .45);
-          ctx.globalAlpha = .05;
-          ctx.fillStyle = '#ffffff';
+          ctx.globalAlpha = .06;
+          ctx.fillStyle = '#161616';
           for (var i = -h; i < w; i += 22) { ctx.beginPath(); ctx.moveTo(i, h); ctx.lineTo(i + h * .6, 0); ctx.lineTo(i + h * .6 + 6, 0); ctx.lineTo(i + 6, h); ctx.fill(); }
           ctx.globalAlpha = 1;
         }

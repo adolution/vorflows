@@ -1601,8 +1601,9 @@
       .today-intro .lead { margin-top: 1.4rem; }
       .ten {
         display: flex;
-        align-items: flex-end;
-        gap: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
         margin-top: 2.5rem;
         padding: 1.4rem 1.5rem;
         border-radius: var(--r-surface);
@@ -1612,7 +1613,7 @@
       .big-num { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: clamp(3.4rem, 2.6rem + 3vw, 5rem); line-height: .9; white-space: nowrap; font-variant-numeric: tabular-nums; }
       .big-num small { font-size: .42em; letter-spacing: -.01em; color: var(--ink-3); margin-left: .1em; }
       .big-num .to { color: var(--orange-hi); }
-      .ten p { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; padding-bottom: .3rem; }
+      .ten p { font-size: 15px; max-width: 46ch; color: var(--ink-2); line-height: 1.5; padding-bottom: .3rem; }
       .outcomes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
       .outcomes li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 0 1rem; padding: 1.8rem 0; border-bottom: 1px solid var(--line); }
       .outcomes .n { font-size: 1.15rem; color: var(--orange-hi); padding-top: .3rem; }
