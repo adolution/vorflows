@@ -15,9 +15,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://www.loom.com" />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-var-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-italic-latin.woff2" crossorigin />
+    <!-- fonts.css nur noch für das Logo (Fraunces) -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/fonts/clean.css" />
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
@@ -25,7 +27,11 @@
       /* ================================================================
          vorflows · AdsFlow Danke-Seite (/danke-adsflow)
          Gleiche Sprache wie die Landingpage /adsflow: dunkler Grund mit
-         Studiolicht, Fraunces + Inter.
+         Studiolicht.
+         Schrift (2026-10-12, wie /adsflow): alles Inter Tight, Überschriften
+         Gewicht 400 mit enger Laufweite. Instrument Serif kursiv NUR als Akzent
+         (--accent): Hero-Wort, Schluss-Wort, große Videonummern. Fraunces nur im Logo.
+         Flächen: höchstens eine Ebene, keine Karte in der Karte.
          Farbregel wie auf der LP:
            Terracotta #C8633E = Claude / AdsFlow / deine Aktion.
            Meta-Blau  #0081FB = alles in Metas Welt (Werbekonto, Schalter,
@@ -54,6 +60,9 @@
         --meta-ink: #4DA6FF;
         --ok: #5FAE85;
 
+        --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+        --accent: 'Instrument Serif', Georgia, serif;
+
         --ease: cubic-bezier(.16, 1, .3, 1);
         --ease-q: cubic-bezier(.25, 1, .5, 1);
 
@@ -78,9 +87,10 @@
       body {
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family: var(--sans);
         font-size: 17px;
-        line-height: 1.7;
+        line-height: 1.55;
+        letter-spacing: -.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
@@ -108,29 +118,31 @@
 
       /* ---------- Typo ---------- */
       h1, h2, h3, .display {
-        font-family: 'Fraunces', Georgia, serif;
+        font-family: var(--sans);
         font-weight: 400;
-        letter-spacing: -.03em;
+        letter-spacing: -.04em;
         margin: 0;
         text-wrap: balance;
       }
-      h1, h2 { font-variation-settings: "opsz" 60; }
-      h2 { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.6rem); line-height: 1.05; }
-      h3 { font-size: clamp(1.4rem, 1.1rem + 1.1vw, 1.9rem); line-height: 1.14; letter-spacing: -.02em; }
-      h1 em, h2 em, h3 em { font-style: italic; color: var(--orange-hi); }
+      h2 { font-size: clamp(2rem, 1.35rem + 2.5vw, 3.4rem); line-height: 1.02; }
+      h3 { font-size: clamp(1.3rem, 1.1rem + .7vw, 1.65rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 450; }
+      /* Hervorhebungen in Überschriften sind normaler Text. Serif-Akzent nur über .acc */
+      h1 em, h2 em, h3 em { font-style: normal; color: inherit; }
+      .acc, h1 em.acc, h2 em.acc { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--orange-hi); }
       p { margin: 0; }
-      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .25vw, 1.2rem); line-height: 1.65; max-width: 58ch; }
+      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .2vw, 1.15rem); line-height: 1.55; max-width: 56ch; }
       .body { color: var(--ink-2); max-width: 62ch; }
       .body + .body { margin-top: 1em; }
       .eyebrow {
         display: inline-block;
         font-size: 12px;
         font-weight: 500;
-        letter-spacing: .1em;
+        letter-spacing: .08em;
         text-transform: uppercase;
         color: var(--ink-3);
       }
-      .say { font-family: 'Fraunces', Georgia, serif; font-style: italic; color: var(--ink); }
+      .say { color: var(--ink); font-weight: 500; }
+      .say var { font-style: normal; color: var(--ink-2); }
       code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .86em; }
       code.in {
         background: rgba(237, 236, 231, .06);
@@ -158,10 +170,10 @@
         border: 0;
         background: var(--orange);
         color: var(--on-orange);
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
         line-height: 1.3;
-        letter-spacing: -.005em;
+        letter-spacing: -.015em;
         text-decoration: none;
         text-align: center;
         cursor: pointer;
@@ -265,9 +277,10 @@
       @keyframes draw { to { stroke-dashoffset: 0; } }
       .hero h1 {
         margin-top: 1.1rem;
-        font-size: clamp(2.6rem, 1.2rem + 4.6vw, 5rem);
-        line-height: 1.02;
-        letter-spacing: -.035em;
+        font-size: clamp(2.6rem, 1.2rem + 4.4vw, 4.8rem);
+        line-height: 1;
+        letter-spacing: -.045em;
+        padding-bottom: .06em;
         max-width: 14ch;
       }
       .hero .lead { margin-top: 1.4rem; }
@@ -302,16 +315,16 @@
       .doc-sheet.s2 { transform: rotate(-3deg) translate(-6px, 4px); background: #DEDAD0; }
       .doc-sheet.s1 { padding: 1.6rem 1.5rem; color: var(--cream-ink); display: flex; flex-direction: column; }
       .doc-sheet .kicker { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #7A766C; font-weight: 600; }
-      .doc-sheet .t { margin-top: .5rem; font-family: 'Fraunces', Georgia, serif; font-size: 1.75rem; line-height: 1.05; letter-spacing: -.02em; }
-      .doc-sheet .t em { color: var(--orange); }
+      .doc-sheet .t { margin-top: .5rem; font-size: 1.65rem; line-height: 1.05; letter-spacing: -.04em; }
+      .doc-sheet .t em { font-style: normal; color: var(--orange); }
       .doc-sheet ol { margin: 1.1rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
       .doc-sheet li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: .5rem; font-size: 13px; line-height: 1.4; color: #3C3A35; }
-      .doc-sheet li span { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--orange); padding-top: 1px; }
+      .doc-sheet li span { font-size: 11.5px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--orange); padding-top: 1px; }
       .doc-sheet .lines { margin-top: auto; display: grid; gap: 7px; }
       .doc-sheet .lines i { display: block; height: 6px; border-radius: 3px; background: #D9D5CB; }
       .doc-sheet .lines i:nth-child(2) { width: 82%; }
       .doc-sheet .lines i:nth-child(3) { width: 64%; }
-      .doc-sheet .tag { position: absolute; top: 1.2rem; right: 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: #fff; background: var(--orange); padding: .2rem .5rem; border-radius: 6px; }
+      .doc-sheet .tag { position: absolute; top: 1.2rem; right: 1.2rem; font-size: 11px; font-weight: 600; color: #fff; background: var(--orange); padding: .2rem .5rem; border-radius: 6px; }
       .doc-cta { position: relative; z-index: 2; margin-top: -1.6rem; display: flex; flex-direction: column; align-items: center; gap: .6rem; text-align: center; }
       .doc-cta .btn { max-width: 23rem; }
       .doc-cta small { color: var(--ink-3); font-size: 13.5px; }
@@ -327,22 +340,17 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--line);
-        border-radius: var(--r-surface);
-        background: linear-gradient(180deg, var(--raise), var(--bg));
-        box-shadow: var(--shadow-raise);
-        overflow: hidden;
       }
       .step-viz {
         position: relative;
         height: 190px;
         display: grid;
         place-items: center;
-        border-bottom: 1px solid var(--line);
-        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .05), transparent 70%), var(--bg-deep);
+        border-radius: var(--r-field);
+        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .045), transparent 70%), var(--bg-deep);
         padding: 1rem;
       }
-      .step-txt { padding: 1.3rem 1.35rem 1.5rem; }
+      .step-txt { padding: 1.3rem 0 0; }
       .num {
         display: inline-grid;
         place-items: center;
@@ -350,11 +358,11 @@
         height: 30px;
         border-radius: 50%;
         border: 1px solid var(--line-2);
-        font-family: 'Fraunces', Georgia, serif;
-        font-size: 15px;
+        font-size: 14px;
+        font-weight: 500;
         color: var(--ink);
       }
-      .step h3 { margin-top: .8rem; font-size: 1.32rem; }
+      .step h3 { margin-top: .8rem; font-size: 1.3rem; }
       .step p { margin-top: .55rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
       .step .hint { margin-top: .8rem; font-size: 14px; color: var(--ink-3); }
 
@@ -377,10 +385,10 @@
       .tree .row { display: flex; align-items: center; gap: .5rem; padding: .45rem .6rem; border-radius: 8px; white-space: nowrap; }
       .tree .row svg { flex: none; width: 15px; height: 15px; }
       .tree .outer { color: var(--ink-3); }
-      .tree .outer .x { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-3); }
+      .tree .outer .x { margin-left: auto; font-family: var(--sans); font-size: 11px; color: var(--ink-3); }
       .tree .inner { margin-left: 1.3rem; color: var(--ink); background: var(--orange-soft); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .5); }
       .tree .inner svg { color: var(--orange-hi); }
-      .tree .inner .x { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--orange-hi); }
+      .tree .inner .x { margin-left: auto; font-family: var(--sans); font-size: 11px; font-weight: 600; color: var(--orange-hi); }
       .tree .kid { margin-left: 2.6rem; color: var(--ink-3); padding-block: .1rem; }
 
       /* Viz 3: Eingabefeld */
@@ -393,7 +401,7 @@
         padding: .85rem .9rem .7rem;
         box-shadow: 0 16px 40px -20px rgba(200, 99, 62, .45);
       }
-      .v-input .typed { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.2rem; color: var(--ink); }
+      .v-input .typed { font-size: 1.15rem; font-weight: 500; letter-spacing: -.02em; color: var(--ink); }
       .v-input .typed::after { content: ""; display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.15em; background: var(--orange-hi); animation: caret 1.1s steps(1) infinite; }
       @keyframes caret { 50% { opacity: 0; } }
       .v-input .bar { margin-top: .75rem; display: flex; align-items: center; justify-content: space-between; color: var(--ink-3); font-size: 11px; }
@@ -411,7 +419,7 @@
       .copy .lbl { display: block; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; padding-right: 6.5rem; }
       .copy .txt { color: var(--ink); font-size: 15px; line-height: 1.6; }
       .copy .txt p + p { margin-top: .6em; }
-      .copy .txt.say { font-size: 1.25rem; line-height: 1.3; }
+      .copy .txt.say { font-size: 1.2rem; line-height: 1.3; letter-spacing: -.025em; }
       .copy .txt.mono { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; word-break: break-all; }
       .copy.is-meta { border-color: rgba(0, 129, 251, .35); }
       .copy.is-meta .lbl { color: var(--meta-ink); }
@@ -447,7 +455,7 @@
       .progress > span:last-child { white-space: nowrap; }
 
       .phase { margin-top: clamp(3.5rem, 7vw, 5.5rem); display: flex; align-items: center; gap: 1rem; }
-      .phase .eyebrow { color: var(--orange-hi); white-space: nowrap; }
+      .phase .eyebrow { color: var(--ink-3); white-space: nowrap; }
       .phase::after { content: ""; flex: 1; height: 1px; background: var(--line); }
       .phase .sub { color: var(--ink-3); font-size: 14px; white-space: nowrap; }
 
@@ -455,11 +463,12 @@
       .lesson + .lesson { padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
       .lesson-head { display: flex; align-items: baseline; gap: 1rem 1.4rem; flex-wrap: wrap; }
       .lesson-head .big {
-        font-family: 'Fraunces', Georgia, serif;
-        font-variation-settings: "opsz" 60;
-        font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem);
-        line-height: .9;
-        letter-spacing: -.04em;
+        font-family: var(--accent);
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(3rem, 2.3rem + 2.2vw, 4.2rem);
+        line-height: .85;
+        letter-spacing: -.01em;
         color: var(--ink-3);
         transition: color .4s var(--ease-q);
       }
@@ -520,12 +529,12 @@
         transition: transform .5s var(--ease), background-color .25s var(--ease-q);
       }
       .frame-play .ring svg { width: 26px; height: 26px; margin-left: 4px; }
-      .frame-play .cap { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.1rem, 1rem + .6vw, 1.45rem); letter-spacing: -.02em; text-align: center; max-width: 22ch; line-height: 1.2; }
+      .frame-play .cap { font-size: clamp(1.1rem, 1rem + .55vw, 1.4rem); letter-spacing: -.035em; text-align: center; max-width: 22ch; line-height: 1.2; }
       .frame-play .dur { font-size: 13px; color: var(--ink-2); }
       .frame-play:hover .ring { transform: scale(1.06); background: #D06A44; }
       .frame-play:active .ring { transform: scale(.97); background: var(--orange-press); }
       .frame-play:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: var(--r-surface); }
-      .frame-play .bignum { position: absolute; left: 1.2rem; top: .9rem; font-family: 'Fraunces', Georgia, serif; font-size: 13px; color: var(--ink-2); letter-spacing: .02em; }
+      .frame-play .bignum { position: absolute; left: 1.2rem; top: .9rem; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
       .frame-play .loom { position: absolute; right: 1.2rem; top: .9rem; font-size: 12px; color: var(--ink-2); }
       .under { margin-top: .8rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; font-size: 14px; color: var(--ink-3); }
       .under a { color: var(--ink-2); }
@@ -564,8 +573,8 @@
         border: 1px solid var(--line-2);
         display: grid;
         place-items: center;
-        font-family: 'Fraunces', Georgia, serif;
-        font-size: 13px;
+        font-size: 12.5px;
+        font-weight: 500;
         color: var(--ink);
         margin-top: .05rem;
       }
@@ -577,17 +586,15 @@
       .ul.no li::before { background: transparent; width: 9px; height: 1.5px; top: .78em; border-radius: 1px; background: var(--ink-3); }
 
       .note {
-        border-radius: var(--r-field);
-        border: 1px solid var(--line-2);
-        background: var(--raise);
-        padding: .95rem 1.1rem;
+        border-top: 1px solid var(--line-2);
+        padding-top: .9rem;
         color: var(--ink-2);
         font-size: 15px;
         line-height: 1.6;
       }
       .note b { color: var(--ink); }
-      .note.warm { border-color: rgba(200, 99, 62, .35); background: linear-gradient(180deg, rgba(200, 99, 62, .07), rgba(200, 99, 62, .02)); }
-      .note.meta { border-color: rgba(0, 129, 251, .3); background: linear-gradient(180deg, rgba(0, 129, 251, .06), rgba(0, 129, 251, .015)); }
+      .note.warm { border-top-color: rgba(200, 99, 62, .55); }
+      .note.meta { border-top-color: rgba(0, 129, 251, .5); }
 
       /* Pfad (Menüpunkte nacheinander) */
       .path { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: 13.5px; }
@@ -614,7 +621,6 @@
 
       /* ---------- Erklär-Grafiken (alle als echtes HTML/SVG) ---------- */
       .viz {
-        border: 1px solid var(--line);
         border-radius: var(--r-field);
         background: radial-gradient(20rem 10rem at 50% 0%, rgba(237, 236, 231, .04), transparent 70%), var(--bg-deep);
         padding: 1.1rem 1.1rem 1rem;
@@ -670,7 +676,7 @@
       .v-models .m:nth-child(2) .bar { height: 58px; }
       .v-models .m:nth-child(3) .bar { height: 84px; background: linear-gradient(180deg, var(--orange-hi), var(--orange)); border-color: var(--orange); box-shadow: 0 14px 34px -14px rgba(200, 99, 62, .7); }
       .v-models .m:nth-child(4) .bar { height: 112px; }
-      .v-models .name { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; color: var(--ink); line-height: 1; }
+      .v-models .name { font-size: 1rem; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
       .v-models .m.x .name { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--ink-3); }
       .v-models .why { font-size: 11.5px; line-height: 1.35; color: var(--ink-3); min-height: 2.7em; overflow-wrap: anywhere; hyphens: auto; }
       .v-models .m.std .why { color: var(--orange-hi); font-weight: 500; }
@@ -703,22 +709,23 @@
       .v-window .phone { position: absolute; left: 7.14%; top: -1.55rem; transform: translateX(-12%); font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
 
       /* Ordner-Karte */
-      .v-map { display: grid; gap: .35rem; font-size: 13px; }
-      .v-map .r { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) auto; gap: .75rem; align-items: center; padding: .5rem .65rem; border-radius: 9px; }
+      .v-map { display: grid; font-size: 13px; }
+      .v-map .r { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) auto; gap: .75rem; align-items: center; padding: .55rem 0; }
+      .v-map .r + .r { border-top: 1px solid var(--line); }
       .v-map .r code { color: var(--ink); font-size: 12.5px; }
       .v-map .r span { color: var(--ink-3); line-height: 1.35; }
       .v-map .r em { font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
-      .v-map .r.you { background: var(--orange-soft); box-shadow: inset 0 0 0 1px rgba(200, 99, 62, .4); }
+      .v-map .r.you code { color: var(--orange-hi); }
       .v-map .r.you em { color: var(--orange-hi); }
       .v-map .r.you span { color: var(--ink-2); }
 
       /* Schleife (Produktfoto-Prüfung, Tagesablauf) */
       .v-loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; position: relative; counter-reset: lp; }
-      .v-loop .s { position: relative; display: grid; gap: .35rem; padding: .7rem .7rem .75rem; border-radius: 10px; background: var(--raise-2); border: 1px solid var(--line-2); font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+      .v-loop .s { position: relative; display: grid; align-content: start; gap: .35rem; padding: .7rem 0 .75rem; border-top: 1px solid var(--line-2); font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
       .v-loop .s b { font-weight: 500; color: var(--ink); font-size: 13px; }
       .v-loop .s .who { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--orange-hi); }
       .v-loop .s.you .who { color: var(--ink); }
-      .v-loop .s.mt { border-color: rgba(0, 129, 251, .4); }
+      .v-loop .s.mt { border-top-color: rgba(0, 129, 251, .55); }
       .v-loop .s.mt .who { color: var(--meta-ink); }
       .v-loop .back { grid-column: 1 / -1; display: flex; align-items: center; gap: .5rem; font-size: 11.5px; color: var(--ink-3); }
       .v-loop .back::before { content: "↺"; color: var(--orange-hi); font-size: 14px; }
@@ -727,9 +734,9 @@
 
       /* Manuell vs. Auto */
       .v-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
-      .v-modes .md { padding: .8rem .85rem; border-radius: 10px; border: 1px solid var(--line-2); background: var(--raise-2); font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+      .v-modes .md { padding: .8rem 0 0; border-top: 1px solid var(--line-2); font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
       .v-modes .md b { display: block; font-weight: 500; color: var(--ink); font-size: 13.5px; margin-bottom: .25rem; }
-      .v-modes .md.pick { border-color: rgba(200, 99, 62, .5); }
+      .v-modes .md.pick { border-top-color: rgba(200, 99, 62, .6); }
       .v-modes .md.pick b::after { content: " · meine Wahl"; color: var(--orange-hi); font-weight: 500; font-size: 12px; }
       .v-modes .asks { margin-top: .6rem; display: flex; gap: 3px; flex-wrap: wrap; }
       .v-modes .asks i { width: 14px; height: 6px; border-radius: 3px; background: var(--ink-3); opacity: .55; }
@@ -753,7 +760,7 @@
         border-radius: 0;
         transition: background-color .25s var(--ease-q);
       }
-      .phrase .say { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); line-height: 1.25; transition: color .2s var(--ease-q); }
+      .phrase .say { font-size: clamp(1.1rem, 1.02rem + .35vw, 1.3rem); line-height: 1.25; letter-spacing: -.025em; transition: color .2s var(--ease-q); }
       .phrase .what { grid-column: 1; font-size: 14.5px; line-height: 1.55; color: var(--ink-3); }
       .phrase .ci { grid-row: 1 / span 2; grid-column: 2; align-self: center; display: inline-flex; align-items: center; gap: .3rem; font-size: 12px; color: var(--ink-3); opacity: .7; transition: opacity .2s var(--ease-q), color .2s var(--ease-q); }
       .phrase .ci svg { width: 14px; height: 14px; }
@@ -762,18 +769,15 @@
       .phrase:active { background: rgba(237, 236, 231, .03); }
       .phrase:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
       .phrase.is-done .ci { color: var(--ok); opacity: 1; }
-      .phrase var { font-style: normal; color: var(--ink-3); font-family: 'Inter', sans-serif; font-size: .78em; letter-spacing: 0; padding: 0 .3em; margin: 0 .1em; border: 1px dashed var(--line-2); border-radius: 5px; vertical-align: .08em; }
+      .phrase var { font-style: normal; color: var(--ink-3); font-weight: 400; font-size: .78em; letter-spacing: 0; padding: 0 .3em; margin: 0 .1em; border: 1px dashed var(--line-2); border-radius: 5px; vertical-align: .08em; }
 
       /* ---------- Installation ---------- */
       .inst { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.75rem, 4vw, 4rem); align-items: start; }
       .card {
-        border: 1px solid var(--line);
-        border-radius: var(--r-surface);
-        background: linear-gradient(180deg, var(--raise), var(--bg));
-        box-shadow: var(--shadow-raise);
-        padding: clamp(1.3rem, 3vw, 1.8rem);
+        border-top: 1px solid var(--line-2);
+        padding-top: clamp(1.3rem, 3vw, 1.6rem);
       }
-      .card h3 { font-size: 1.45rem; }
+      .card h3 { font-size: 1.4rem; }
       .card > * + * { margin-top: 1.1rem; }
       .need { display: grid; gap: .85rem; }
       .need li { list-style: none; display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: .8rem; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
@@ -823,7 +827,7 @@
       .faq-group + .faq-group { margin-top: clamp(3rem, 6vw, 4.5rem); }
       .faq-group { scroll-margin-top: 90px; }
       .faq-group > h3 { display: flex; align-items: baseline; gap: .8rem; }
-      .faq-group > h3 .c { font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0; color: var(--ink-3); }
+      .faq-group > h3 .c { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--ink-3); }
       .faq-group > p { margin-top: .5rem; color: var(--ink-3); font-size: 15px; }
       .faq-list { margin-top: 1.3rem; }
       details.q { border-bottom: 1px solid var(--line); }
@@ -874,7 +878,7 @@
           radial-gradient(50rem 26rem at 80% 120%, rgba(0, 100, 224, .07), transparent 70%);
       }
       .help-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-      .help h2 { font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4rem); }
+      .help h2 { font-size: clamp(2.2rem, 1.4rem + 3vw, 3.8rem); line-height: 1; letter-spacing: -.045em; }
       .help .lead { margin-top: 1.2rem; }
       .help .contact { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.6rem; }
       .help .small { margin-top: 1.4rem; font-size: 14px; color: var(--ink-3); }
@@ -910,9 +914,10 @@
          Tablet + Handy (Regeln gesammelt, geprüft bei 320/360/390/430 px)
          ================================================================ */
       @media (max-width: 1020px) {
-        .steps3 { grid-template-columns: minmax(0, 1fr); }
-        .step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-        .step-viz { height: auto; min-height: 190px; border-bottom: 0; border-right: 1px solid var(--line); }
+        .steps3 { grid-template-columns: minmax(0, 1fr); row-gap: clamp(2.25rem, 5vw, 3rem); }
+        .step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(1.25rem, 3vw, 2rem); }
+        .step-viz { height: auto; min-height: 190px; }
+        .step-txt { padding-top: 0; }
       }
       @media (max-width: 960px) {
         .hero-grid { grid-template-columns: minmax(0, 1fr); }
@@ -941,7 +946,8 @@
         .lesson, .faq-group { scroll-margin-top: 16px; }
         .phrases { grid-template-columns: minmax(0, 1fr); }
         .step { grid-template-columns: minmax(0, 1fr); }
-        .step-viz { border-right: 0; border-bottom: 1px solid var(--line); min-height: 170px; }
+        .step-viz { min-height: 170px; }
+        .step-txt { padding-top: 1.2rem; }
         .foot .wrap { grid-template-columns: minmax(0, 1fr); }
         .foot nav { justify-content: flex-start; }
         .phase .sub { display: none; }
@@ -1021,7 +1027,7 @@
               </span>
               <span class="eyebrow">Kauf bestätigt</span>
             </div>
-            <h1 class="rise d1">Willkommen bei <em>AdsFlow</em>.</h1>
+            <h1 class="rise d1">Willkommen bei <em class="acc">AdsFlow</em>.</h1>
             <p class="lead rise d2">Deine Zahlung ist eingegangen. Den Download-Link für deinen AdsFlow-Ordner schickt dir Digistore24 gleich per E-Mail. Findest du nichts, schau bitte im Spam-Ordner nach.</p>
             <div class="bookmark rise d3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12v17l-6-4.2-6 4.2z" /></svg>
@@ -2209,7 +2215,7 @@
         <div class="wrap help-grid">
           <div>
             <span class="eyebrow">Hakt etwas?</span>
-            <h2>Frag zuerst <em>Claude</em>, dann mich.</h2>
+            <h2>Frag zuerst <em class="acc">Claude</em>, dann mich.</h2>
             <p class="lead">Alles, was AdsFlow braucht, liegt im Ordner. Sag Claude, was nicht funktioniert, meistens ist es danach in einer Minute gelöst. Hilft das nicht, schreib mir mit einem Screenshot der Stelle, an der es hakt.</p>
             <div class="contact">
               <a class="btn" href="mailto:alex@adolution.de?subject=Frage%20zu%20AdsFlow">

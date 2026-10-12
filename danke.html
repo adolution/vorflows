@@ -14,9 +14,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-var-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-italic-latin.woff2" crossorigin />
+    <!-- fonts.css nur noch für das Logo (Fraunces) -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/fonts/clean.css" />
     <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
@@ -36,11 +38,34 @@
       /* ================================================================
          vorflows · Käufer-Danke für „vorflows für Shopify“ (/danke)
          Gleiche Sprache wie /danke-adsflow und /sales: dunkler Grund,
-         Studiolicht, Fraunces + Inter. Basis in /assets/site-dark.css.
+         Studiolicht. Basis in /assets/site-dark.css, Schrift darüber hier
+         überschrieben (Inter Tight + Instrument Serif als Akzent, 2026-10-12).
+         Flächen: höchstens eine Ebene, keine Karte in der Karte.
          Farbregel: Terracotta = deine Aktion. Shopify-Grün nur als
          Markierung der drei Module (Punkt), nie als Knopf oder Glow.
          Die alte helle Fassung liegt in .agents/archiv/danke-alt-2026-10-10.html.
          ================================================================ */
+
+      /* ---------- Schrift-Overrides zu site-dark.css (2026-10-12, wie /adsflow) ----------
+         Alles Inter Tight, Überschriften Gewicht 400 mit enger Laufweite. Instrument Serif
+         kursiv NUR als Akzent über .acc / --accent. Fraunces nur noch im Logo (.wordmark).
+         site-dark.css bleibt unverändert, weil andere Seiten sie nutzen. */
+      :root {
+        --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+        --accent: 'Instrument Serif', Georgia, serif;
+      }
+      body { font-family: var(--sans); line-height: 1.55; letter-spacing: -.01em; }
+      h1, h2, h3, .display { font-family: var(--sans); font-weight: 400; letter-spacing: -.04em; font-variation-settings: normal; }
+      h1 { line-height: 1; letter-spacing: -.045em; }
+      h2 { font-size: clamp(2rem, 1.35rem + 2.5vw, 3.4rem); line-height: 1.02; }
+      h3 { font-size: clamp(1.3rem, 1.1rem + .7vw, 1.65rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 450; }
+      /* Hervorhebungen in Überschriften sind normaler Text. Serif-Akzent nur über .acc */
+      h1 em, h2 em, h3 em { font-style: normal; color: inherit; }
+      .acc, h1 em.acc, h2 em.acc { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--orange-hi); }
+      .lead { font-size: clamp(1.06rem, 1rem + .2vw, 1.15rem); line-height: 1.55; max-width: 56ch; }
+      .eyebrow { letter-spacing: .08em; color: var(--ink-3); }
+      .say { font-family: inherit; font-style: normal; font-weight: 500; }
+      .btn { font-weight: 500; letter-spacing: -.015em; }
 
       /* ---------- Hero ---------- */
       .hero { position: relative; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); isolation: isolate; overflow-x: clip; }
@@ -74,7 +99,7 @@
       .stamp path { stroke-dasharray: 30; stroke-dashoffset: 0; }
       .js .stamp path { stroke-dashoffset: 30; animation: draw .55s .3s var(--ease) forwards; }
       @keyframes draw { to { stroke-dashoffset: 0; } }
-      .hero h1 { margin-top: 1.2rem; font-size: clamp(2.7rem, 1.2rem + 4.8vw, 5.2rem); line-height: 1.01; letter-spacing: -.038em; max-width: 12ch; }
+      .hero h1 { margin-top: 1.2rem; font-size: clamp(2.6rem, 1.2rem + 4.4vw, 4.8rem); line-height: 1; letter-spacing: -.045em; padding-bottom: .06em; max-width: 12ch; }
       .hero .lead { margin-top: 1.4rem; max-width: 46ch; }
       .hero-jump { display: flex; flex-wrap: wrap; gap: .25rem 1.6rem; margin-top: 1.6rem; }
 
@@ -82,9 +107,7 @@
       .ticket {
         position: relative;
         border-radius: 22px;
-        background:
-          radial-gradient(28rem 16rem at 100% 0%, rgba(200, 99, 62, .14), transparent 70%),
-          linear-gradient(180deg, var(--raise-2), var(--raise));
+        background: var(--raise);
         border: 1px solid var(--line-2);
         box-shadow:
           inset 0 1px 0 rgba(237, 236, 231, .06),
@@ -112,7 +135,7 @@
         line-height: 1.3;
       }
       .t-badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--orange-hi); }
-      .t-h { margin-top: 1.5rem; font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem); line-height: 1.04; }
+      .t-h { margin-top: 1.5rem; font-size: clamp(1.9rem, 1.4rem + 1.7vw, 2.6rem); line-height: 1.02; letter-spacing: -.045em; }
       .t-text { margin-top: .8rem; color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 40ch; }
       .t-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: 1.1rem; font-size: 14px; color: var(--ink-3); }
       .t-facts span { display: inline-flex; align-items: center; gap: .45rem; }
@@ -145,22 +168,17 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--line);
-        border-radius: var(--r-surface);
-        background: linear-gradient(180deg, var(--raise), var(--bg));
-        box-shadow: var(--shadow-raise);
-        overflow: hidden;
       }
       .step-viz {
         position: relative;
         height: 190px;
         display: grid;
         place-items: center;
-        border-bottom: 1px solid var(--line);
-        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .05), transparent 70%), var(--bg-deep);
+        border-radius: var(--r-field);
+        background: radial-gradient(18rem 10rem at 50% 0%, rgba(237, 236, 231, .045), transparent 70%), var(--bg-deep);
         padding: 1rem;
       }
-      .step-txt { padding: 1.3rem 1.35rem 1.5rem; }
+      .step-txt { padding: 1.3rem 0 0; }
       .num {
         display: inline-grid;
         place-items: center;
@@ -168,12 +186,12 @@
         height: 30px;
         border-radius: 50%;
         border: 1px solid var(--line-2);
-        font-family: 'Fraunces', Georgia, serif;
-        font-size: 15px;
+        font-size: 14px;
+        font-weight: 500;
         line-height: 1;
         color: var(--ink);
       }
-      .step h3 { margin-top: .8rem; font-size: 1.32rem; }
+      .step h3 { margin-top: .8rem; font-size: 1.3rem; }
       .step p { margin-top: .55rem; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
 
       /* Viz 1: Mail von Digistore24 */
@@ -197,7 +215,7 @@
 
       /* Viz 2: ZIP → Ordner */
       .v-unzip { display: flex; align-items: center; gap: 1rem; }
-      .file { display: grid; justify-items: center; gap: .45rem; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-2); text-align: center; }
+      .file { display: grid; justify-items: center; gap: .45rem; font-size: 12.5px; color: var(--ink-2); text-align: center; }
       .file svg { width: 56px; height: 56px; }
       .v-unzip .arrow { color: var(--ink-3); }
       @media (prefers-reduced-motion: no-preference) {
@@ -215,7 +233,7 @@
         padding: .85rem .9rem .7rem;
         box-shadow: 0 16px 40px -20px rgba(200, 99, 62, .45);
       }
-      .v-input .typed { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.12rem; line-height: 1.3; color: var(--ink); }
+      .v-input .typed { font-size: 1.08rem; font-weight: 500; line-height: 1.3; letter-spacing: -.02em; color: var(--ink); }
       .v-input .typed::after { content: ""; display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.15em; background: var(--orange-hi); animation: caret 1.1s steps(1) infinite; }
       @keyframes caret { 50% { opacity: 0; } }
       .v-input .bar { margin-top: .75rem; display: flex; align-items: center; justify-content: space-between; color: var(--ink-3); font-size: 11px; }
@@ -228,10 +246,9 @@
         grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
         gap: 1.25rem 2.5rem;
         align-items: center;
-        padding: clamp(1.25rem, 2.4vw, 1.75rem) clamp(1.25rem, 2.4vw, 2rem);
-        border: 1px solid var(--line);
-        border-radius: var(--r-surface);
-        background: var(--raise);
+        margin-top: clamp(2.5rem, 5vw, 3.5rem);
+        padding-top: clamp(1.5rem, 3vw, 2rem);
+        border-top: 1px solid var(--line);
       }
       .order p { color: var(--ink-2); font-size: 16px; line-height: 1.6; }
       .chain { position: relative; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
@@ -252,7 +269,7 @@
         color: var(--ink);
         white-space: nowrap;
       }
-      .chain li .n { font-family: 'Fraunces', Georgia, serif; font-weight: 400; color: var(--ink-3); }
+      .chain li .n { font-weight: 400; font-variant-numeric: tabular-nums; color: var(--ink-3); }
       .chain li i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--shop); }
       .chain li:first-child { border-color: rgba(200, 99, 62, .6); box-shadow: 0 10px 30px -14px rgba(200, 99, 62, .6); }
       .chain li:first-child .n { color: var(--orange-hi); }
@@ -264,14 +281,9 @@
         grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
         gap: clamp(1.5rem, 4vw, 4rem);
         align-items: center;
-        padding: clamp(1.75rem, 4vw, 3rem);
-        border: 1px solid var(--line-2);
-        border-radius: var(--r-surface);
-        background:
-          radial-gradient(30rem 18rem at 0% 50%, rgba(200, 99, 62, .1), transparent 70%),
-          linear-gradient(180deg, var(--raise-2), var(--raise));
-        box-shadow: var(--shadow-float);
-        overflow: hidden;
+        margin-top: clamp(2rem, 4vw, 3rem);
+        padding-top: clamp(2.25rem, 4.5vw, 3.25rem);
+        border-top: 1px solid var(--line);
       }
       .doc-sheets { position: relative; aspect-ratio: 4 / 4.4; width: 100%; max-width: 280px; margin-inline: auto; }
       .doc-sheet { position: absolute; inset: 0; border-radius: 12px; background: var(--cream); box-shadow: 0 30px 70px -26px rgba(0, 0, 0, .85), 0 2px 4px rgba(0, 0, 0, .3); }
@@ -279,16 +291,16 @@
       .doc-sheet.s2 { transform: rotate(-3deg) translate(-5px, 3px); background: #DEDAD0; }
       .doc-sheet.s1 { padding: 1.3rem 1.25rem; color: var(--cream-ink); display: flex; flex-direction: column; }
       .doc-sheet .kicker { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #6E6A61; font-weight: 600; }
-      .doc-sheet .t { margin-top: .45rem; font-family: 'Fraunces', Georgia, serif; font-size: 1.45rem; line-height: 1.06; letter-spacing: -.02em; }
-      .doc-sheet .t em { color: var(--orange); }
+      .doc-sheet .t { margin-top: .45rem; font-size: 1.4rem; line-height: 1.05; letter-spacing: -.04em; }
+      .doc-sheet .t em { font-style: normal; color: var(--orange); }
       .doc-sheet ol { margin: .9rem 0 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
       .doc-sheet li { display: grid; grid-template-columns: 1.3rem minmax(0, 1fr); gap: .4rem; font-size: 12.5px; line-height: 1.35; color: #3C3A35; }
-      .doc-sheet li span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--orange-press); padding-top: 1px; }
+      .doc-sheet li span { font-size: 11px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--orange-press); padding-top: 1px; }
       .doc-sheet .lines { margin-top: auto; display: grid; gap: 6px; }
       .doc-sheet .lines i { display: block; height: 5px; border-radius: 3px; background: #D9D5CB; }
       .doc-sheet .lines i:nth-child(2) { width: 78%; }
-      .doc-sheet .tag { position: absolute; top: 1rem; right: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 500; color: #fff; background: var(--orange); padding: .15rem .45rem; border-radius: 6px; }
-      .zero h3 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.3rem); line-height: 1.08; }
+      .doc-sheet .tag { position: absolute; top: 1rem; right: 1rem; font-size: 10.5px; font-weight: 600; color: #fff; background: var(--orange); padding: .15rem .45rem; border-radius: 6px; }
+      .zero h3 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); line-height: 1.05; letter-spacing: -.04em; font-weight: 400; }
       .zero p { margin-top: .9rem; color: var(--ink-2); max-width: 54ch; }
       .zero .btn { margin-top: 1.6rem; }
 
@@ -300,6 +312,9 @@
       .progress b { color: var(--ink); font-weight: 600; }
       .progress > span:last-child { white-space: nowrap; }
       .note svg { display: inline-block; vertical-align: -3px; margin-right: .35rem; color: var(--ok); }
+      .note, .note--ok, .note--warm { padding: .9rem 0 0; border: 0; border-top: 1px solid var(--line-2); border-radius: 0; background: none; }
+      .note--ok { border-top-color: rgba(95, 174, 133, .5); }
+      .note--warm { border-top-color: rgba(200, 99, 62, .55); }
 
       .lessons { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 2.5vw, 2rem); }
       .lesson { scroll-margin-top: 90px; min-width: 0; }
@@ -353,21 +368,22 @@
       .frame-play:hover .ring { transform: scale(1.06); background: #D06A44; }
       .frame-play:active .ring { transform: scale(.97); background: var(--orange-press); }
       .frame-play:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: var(--r-surface); }
-      .frame-play .bignum { position: absolute; left: 1.1rem; top: .85rem; font-family: 'Fraunces', Georgia, serif; font-size: 13px; color: var(--ink-2); }
+      .frame-play .bignum { position: absolute; left: 1.1rem; top: .85rem; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
       .frame-play .loom { position: absolute; right: 1.1rem; top: .85rem; font-size: 12px; color: var(--ink-2); }
       .lesson-head { display: flex; align-items: baseline; gap: .4rem 1.1rem; margin-top: 1.2rem; }
       .lesson-head .big {
         flex: none;
-        font-family: 'Fraunces', Georgia, serif;
-        font-variation-settings: "opsz" 60;
-        font-size: clamp(2.3rem, 1.9rem + 1.4vw, 3.2rem);
-        line-height: .9;
-        letter-spacing: -.04em;
+        font-family: var(--accent);
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(2.7rem, 2.1rem + 1.8vw, 3.7rem);
+        line-height: .85;
+        letter-spacing: -.01em;
         color: var(--ink-3);
         transition: color .4s var(--ease-q);
       }
       .lesson.is-seen .lesson-head .big { color: var(--orange); }
-      .lesson-head h3 { flex: 1 1 auto; min-width: 0; font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); }
+      .lesson-head h3 { flex: 1 1 auto; min-width: 0; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.55rem); }
       .lesson-head .facts { flex: none; font-size: 13.5px; color: var(--ink-3); white-space: nowrap; }
       .under { margin-top: .9rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; font-size: 14px; color: var(--ink-3); }
       .seen {
@@ -398,9 +414,9 @@
       /* ---------- Fehlermeldung beim ersten Start (Aufklapper) ---------- */
       .fix {
         margin-top: clamp(2.5rem, 5vw, 3.5rem);
-        border: 1px solid rgba(200, 99, 62, .4);
+        border: 1px solid var(--line-2);
         border-radius: var(--r-surface);
-        background: linear-gradient(180deg, rgba(200, 99, 62, .08), rgba(200, 99, 62, .02) 40%), var(--raise);
+        background: var(--raise);
         scroll-margin-top: 90px;
       }
       .fix > summary {
@@ -418,7 +434,7 @@
       .fix > summary:hover .fix-t { color: var(--orange-hi); }
       .fix > summary:active { opacity: .85; }
       .fix-ic { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--orange-soft); border: 1px solid rgba(200, 99, 62, .5); color: var(--orange-hi); }
-      .fix-t { display: block; font-weight: 600; font-size: clamp(1.02rem, .98rem + .2vw, 1.12rem); line-height: 1.4; color: var(--ink); transition: color .2s var(--ease-q); }
+      .fix-t { display: block; font-weight: 500; font-size: clamp(1.02rem, .98rem + .2vw, 1.12rem); line-height: 1.4; color: var(--ink); transition: color .2s var(--ease-q); }
       .fix-s { display: block; margin-top: .15rem; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
       .fix .pm { position: relative; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-2); }
       .fix .pm::before, .fix .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink-2); transition: transform .4s var(--ease); }
@@ -443,8 +459,8 @@
         border: 1px solid var(--line-2);
         display: grid;
         place-items: center;
-        font-family: 'Fraunces', Georgia, serif;
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: 500;
         color: var(--ink);
       }
       .cmd {
@@ -484,28 +500,23 @@
       .help-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
       .help-grid .lead { margin-top: 1.2rem; }
       .help-grid .btn { margin-top: 1.8rem; }
-      .doors { display: grid; gap: 1rem; }
+      .doors { display: grid; border-bottom: 1px solid var(--line); }
       .door {
-        --lift: 0px;
         display: grid;
-        grid-template-columns: 48px minmax(0, 1fr) auto;
+        grid-template-columns: 32px minmax(0, 1fr) auto;
         align-items: center;
         gap: 1.1rem;
-        padding: 1.3rem 1.4rem;
-        border-radius: var(--r-surface);
-        border: 1px solid var(--line-2);
-        background: linear-gradient(180deg, var(--raise-2), var(--raise));
-        box-shadow: var(--shadow-raise);
+        padding: 1.3rem 0;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
         text-decoration: none;
         color: var(--ink);
-        transform: translateY(var(--lift));
-        transition: transform .6s var(--ease), border-color .3s var(--ease-q), box-shadow .6s var(--ease);
       }
-      .door:hover { --lift: -3px; border-color: #45433D; box-shadow: var(--shadow-float); }
-      .door:active { --lift: -1px; transition-duration: .15s; }
-      .door:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-      .door-ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--bg-deep); border: 1px solid var(--line-2); color: var(--orange-hi); }
-      .door b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 1.4rem; line-height: 1.15; letter-spacing: -.02em; }
+      .door:active { opacity: .75; }
+      .door:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
+      .door-ic { width: 32px; height: 32px; display: grid; place-items: center; color: var(--orange-hi); }
+      .door b { display: block; font-weight: 450; font-size: 1.3rem; line-height: 1.15; letter-spacing: -.03em; transition: color .2s var(--ease-q); }
+      .door:hover b { color: var(--orange-hi); }
       .door span.d { display: block; margin-top: .2rem; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
       .door .go { color: var(--ink-3); transition: transform .5s var(--ease), color .2s var(--ease-q); }
       .door:hover .go { transform: translateX(4px); color: var(--orange-hi); }
@@ -522,8 +533,10 @@
         .sec-head, .help-grid, .order, .fix-body { grid-template-columns: minmax(0, 1fr); }
         .sec-head { align-items: start; }
         .steps3 { grid-template-columns: minmax(0, 1fr); }
-        .step { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
-        .step-viz { height: auto; min-height: 170px; border-bottom: 0; border-right: 1px solid var(--line); }
+        .steps3 { row-gap: clamp(2.25rem, 5vw, 3rem); }
+        .step { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: clamp(1.25rem, 3vw, 2rem); }
+        .step-viz { height: auto; min-height: 170px; }
+        .step-txt { padding-top: 0; }
       }
       @media (max-width: 760px) {
         .zero { grid-template-columns: minmax(0, 1fr); }
@@ -532,7 +545,8 @@
       }
       @media (max-width: 620px) {
         .step { display: flex; }
-        .step-viz { height: 160px; border-right: 0; border-bottom: 1px solid var(--line); }
+        .step-viz { height: 160px; }
+        .step-txt { padding-top: 1.2rem; }
         .chain { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
         .chain::before { left: 1.5rem; right: auto; top: 26px; bottom: 26px; width: 1px; height: auto; background: linear-gradient(180deg, rgba(200, 99, 62, .7), var(--line-2)); }
         .chain li { justify-content: flex-start; padding-left: 1.1rem; min-height: 48px; }
@@ -542,8 +556,8 @@
         .cmd { grid-template-columns: minmax(0, 1fr) auto; }
         .cmd .os { grid-column: 1 / -1; min-width: 0; }
         .cmd code { grid-column: 1; }
-        .door { grid-template-columns: 44px minmax(0, 1fr); padding: 1.1rem 1.15rem; }
-        .door-ic { width: 44px; height: 44px; }
+        .door { grid-template-columns: 28px minmax(0, 1fr); padding: 1.1rem 0; }
+        .door-ic { width: 28px; height: 28px; }
         .door .go { display: none; }
         .lesson-head { flex-wrap: wrap; }
         .lesson-head .facts { flex-basis: 100%; padding-left: 0; }
@@ -592,7 +606,7 @@
               </span>
               <span class="eyebrow">Kauf bestätigt</span>
             </div>
-            <h1 class="rise d1">Willkommen bei <em>vorflows</em></h1>
+            <h1 class="rise d1">Willkommen bei <em class="acc">vorflows</em></h1>
             <p class="lead rise d2">Deine Zahlung ist eingegangen. Den Download-Link bekommst du gleich per E-Mail von Digistore24. Findest du nichts, schau bitte im Spam-Ordner nach.</p>
             <div class="hero-jump rise d3">
               <a class="link" href="#start">So startest du</a>
@@ -872,7 +886,7 @@
         <div class="wrap help-grid">
           <div>
             <span class="eyebrow">Hilfe</span>
-            <h2>Wenn etwas <em>hakt</em></h2>
+            <h2>Wenn etwas <em class="acc">hakt</em></h2>
             <p class="lead">Die häufigsten Fehlermeldungen und Fragen sind schon beantwortet. Findest du deine nicht, schreib mir einfach.</p>
             <a class="btn btn--ghost" href="mailto:alex@adolution.de?subject=Frage%20zu%20vorflows">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6 8.5-6" /></svg>

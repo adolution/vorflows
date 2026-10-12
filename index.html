@@ -28,9 +28,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-home.jpg" />
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-var-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-italic-latin.woff2" crossorigin />
+    <!-- fonts.css nur noch für das Logo (Fraunces) -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/fonts/clean.css" />
 
     <script type="application/ld+json">
     {
@@ -91,7 +93,11 @@
     <style>
       /* ================================================================
          vorflows · Startseite (Marken-Hub für Leute, die „vorflows“ googeln)
-         Sprache = /adsflow: dunkler Grund mit Studiolicht, Fraunces + Inter.
+         Sprache = /adsflow: dunkler Grund mit Studiolicht.
+         Schrift (2026-10-12, wie /adsflow): alles Inter Tight, Überschriften
+         Gewicht 400 mit enger Laufweite. Instrument Serif kursiv NUR als Akzent
+         (.acc): Hero-Wörter, Kennzahlen, Preise, Schluss-Wort. Fraunces nur im Logo.
+         Flächen: höchstens eine Ebene, keine Karte in der Karte.
          Farbregel (je Farbe eine Bedeutung):
            Terracotta    #C8633E = vorflows / deine Aktion (alle CTAs).
            Shopify-Grün  #95BF47 = alles zu „vorflows für Shopify“.
@@ -120,6 +126,9 @@
         --meta: #0081FB;
         --meta-ink: #4DA6FF;
 
+        --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+        --accent: 'Instrument Serif', Georgia, serif;
+
         --ease: cubic-bezier(.16, 1, .3, 1);
         --ease-q: cubic-bezier(.25, 1, .5, 1);
 
@@ -144,9 +153,10 @@
       body {
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family: var(--sans);
         font-size: 17px;
-        line-height: 1.7;
+        line-height: 1.55;
+        letter-spacing: -.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
@@ -171,33 +181,33 @@
 
       /* ---------- Typo ---------- */
       h1, h2, h3 {
-        font-family: 'Fraunces', Georgia, serif;
+        font-family: var(--sans);
         font-weight: 400;
-        letter-spacing: -.03em;
+        letter-spacing: -.04em;
         margin: 0;
         text-wrap: balance;
       }
-      h2 { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.9rem); line-height: 1.04; }
-      /* Fraunces: optische Größe deckeln wie auf /adsflow, sonst greift der kontrastreiche Display-Schnitt */
-      h1, h2, .facts b { font-variation-settings: "opsz" 60; }
-      h3 { font-size: clamp(1.45rem, 1.1rem + 1.2vw, 2rem); line-height: 1.12; letter-spacing: -.02em; }
+      h2 { font-size: clamp(2rem, 1.35rem + 2.5vw, 3.4rem); line-height: 1.02; }
+      h3 { font-size: clamp(1.3rem, 1.1rem + .7vw, 1.65rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 450; }
       em { font-style: italic; }
-      h1 em, h2 em, h3 em { color: var(--orange-hi); }
-      h1 em.s { color: var(--shop-ink); }
-      h1 em.m { color: var(--meta-ink); }
+      /* Hervorhebungen in Überschriften sind normaler Text. Serif-Akzent nur über .acc */
+      h1 em, h2 em, h3 em { font-style: normal; color: inherit; }
+      .acc, h1 em.acc, h2 em.acc { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--orange-hi); }
+      h1 em.acc.s { color: var(--shop-ink); }
+      h1 em.acc.m { color: var(--meta-ink); }
       p { margin: 0; }
-      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .25vw, 1.2rem); line-height: 1.65; max-width: 58ch; }
+      .lead { color: var(--ink-2); font-size: clamp(1.06rem, 1rem + .2vw, 1.15rem); line-height: 1.55; max-width: 56ch; }
       .body { color: var(--ink-2); max-width: 60ch; }
       .body + .body { margin-top: 1em; }
       .eyebrow {
         display: inline-block;
         font-size: 12px;
         font-weight: 500;
-        letter-spacing: .1em;
+        letter-spacing: .08em;
         text-transform: uppercase;
         color: var(--ink-3);
       }
-      .label { margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .02em; line-height: 1.4; color: var(--orange-hi); font-variation-settings: normal; }
+      .label { margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem); font-size: 15px; font-weight: 400; letter-spacing: -.01em; line-height: 1.4; color: var(--ink-3); }
 
       /* Welt-Markierung: Punkt + Text in der Farbe des Systems */
       .world { display: inline-flex; align-items: center; gap: .5rem; font-size: 13px; font-weight: 500; line-height: 1.3; letter-spacing: .01em; }
@@ -220,9 +230,9 @@
         border: 0;
         background: var(--orange);
         color: var(--on-orange);
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
-        letter-spacing: -.005em;
+        letter-spacing: -.015em;
         text-decoration: none;
         white-space: nowrap;
         cursor: pointer;
@@ -328,8 +338,8 @@
         margin-top: 1.1rem;
         max-width: 19ch;
         font-size: clamp(2.2rem, 1.1rem + 3.4vw, 4.1rem);
-        line-height: 1.05;
-        letter-spacing: -.033em;
+        line-height: 1;
+        letter-spacing: -.045em;
         padding-bottom: .06em;
       }
       .hero-intro { padding-bottom: .5rem; }
@@ -359,8 +369,8 @@
         transform: translateY(var(--lift));
         transition: transform .6s var(--ease), border-color .3s var(--ease-q), box-shadow .6s var(--ease);
       }
-      .door:hover { --lift: -4px; border-color: #45433D; box-shadow: var(--shadow-float); }
-      .door:active { --lift: -1px; transition-duration: .15s; }
+      .door:hover { border-color: #45433D; }
+      .door:active { border-color: var(--ink-3); transition-duration: .15s; }
       .door:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
       .door-media { position: relative; overflow: hidden; background: var(--bg-deep); border-right: 1px solid var(--line); }
       .door-media img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 0% 50%); transition: transform .9s var(--ease); }
@@ -384,7 +394,7 @@
       }
       .door-vid::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 4px 0 4px 7px; border-color: transparent transparent transparent var(--orange-hi); }
       .door-body { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2vw, 1.6rem); min-width: 0; }
-      .door h2 { margin-top: .55rem; font-size: clamp(1.5rem, 1.2rem + .9vw, 1.95rem); line-height: 1.08; letter-spacing: -.025em; }
+      .door h2 { margin-top: .55rem; font-size: clamp(1.5rem, 1.2rem + .9vw, 1.9rem); line-height: 1.08; letter-spacing: -.04em; }
       .door-text { margin-top: .6rem; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
       .door-meta { margin: .55rem 0 1.25rem; font-size: 13.5px; line-height: 1.5; color: var(--ink-3); }
       .door .btn { margin-top: auto; min-height: 46px; padding: 0 1.2rem; font-size: 15px; }
@@ -459,7 +469,7 @@
       }
       .marquee-track { display: flex; width: max-content; }
       .marquee ul { display: flex; gap: 2.6rem; margin: 0; padding: 1.25rem 1.3rem; list-style: none; }
-      .marquee li { position: relative; font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; color: var(--ink); white-space: nowrap; letter-spacing: -.01em; }
+      .marquee li { position: relative; font-size: 1.15rem; color: var(--ink); white-space: nowrap; letter-spacing: -.02em; }
       .marquee li::after { content: ""; position: absolute; right: -1.37rem; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: var(--orange); }
       @media (prefers-reduced-motion: no-preference) {
         .marquee-track { animation: marquee 52s linear infinite; }
@@ -470,7 +480,7 @@
         .names .wrap { grid-template-columns: 1fr; gap: 0; padding-inline: 0; }
         .names-label { padding: 1.1rem var(--gutter) 0; max-width: none; }
         .marquee ul { padding-block: .7rem 1.2rem; }
-        .marquee li { font-size: 1.15rem; }
+        .marquee li { font-size: 1.05rem; }
       }
 
       /* ---------- Sektionen ---------- */
@@ -493,13 +503,13 @@
       /* ---------- Stimmen ---------- */
       .voices { padding-block: clamp(3.5rem, 8vw, 6.5rem) var(--section); }
       .voices figure { margin: 0; }
-      .voices blockquote { margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: normal; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
-      .voices blockquote em { font-style: italic; color: var(--orange-hi); }
+      .voices blockquote { margin: 0; font-style: normal; letter-spacing: -.03em; color: var(--ink); text-wrap: pretty; }
+      .voices blockquote em { font-style: normal; }
       .v-top { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-      .v-main blockquote { font-size: clamp(1.55rem, 1.1rem + 1.6vw, 2.35rem); line-height: 1.22; }
+      .v-main blockquote { font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); line-height: 1.15; letter-spacing: -.035em; }
       .v-side { display: grid; gap: 1.75rem; padding-top: .4rem; }
       .v-side figure + figure { padding-top: 1.75rem; border-top: 1px solid var(--line); }
-      .v-side blockquote, .wall blockquote { font-size: clamp(1.08rem, 1rem + .3vw, 1.25rem); line-height: 1.4; }
+      .v-side blockquote, .wall blockquote { font-size: clamp(1.08rem, 1rem + .3vw, 1.25rem); line-height: 1.32; letter-spacing: -.02em; }
       .who { display: flex; align-items: center; gap: .75rem; margin-top: 1.1rem; }
       .who img { flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
       .who .ini { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--raise-2); border: 1px solid var(--line-2); font-size: 14px; font-weight: 500; color: var(--ink-2); }
@@ -512,14 +522,14 @@
         gap: clamp(1rem, 2vw, 1.5rem);
         margin-top: clamp(3rem, 6vw, 4.5rem);
       }
+      .wall { column-gap: clamp(1.5rem, 3vw, 2.5rem); row-gap: 0; }
       .wall figure {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: clamp(1.25rem, 2.2vw, 1.75rem);
-        border-radius: var(--r-surface);
-        background: var(--raise);
-        border: 1px solid var(--line);
+        margin: 0;
+        padding: 1.5rem 0 1.75rem;
+        border-top: 1px solid var(--line);
       }
       .more { display: none; margin-top: 1.25rem; width: 100%; }
       @media (max-width: 960px) {
@@ -558,10 +568,10 @@
       }
       .photo-2 img { width: 100%; height: 100%; object-fit: cover; }
       .alex-copy .body { margin-top: 1.5rem; }
-      .credo { margin-top: 1.75rem; max-width: 32ch; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.35rem, 1.05rem + .9vw, 1.8rem); line-height: 1.3; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
-      .credo em { font-style: italic; color: var(--orange-hi); }
+      .credo { margin-top: 1.75rem; max-width: 32ch; font-size: clamp(1.3rem, 1.05rem + .8vw, 1.7rem); line-height: 1.22; letter-spacing: -.035em; color: var(--ink); text-wrap: pretty; }
+      .credo em { font-style: normal; }
       .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
-      .facts div b { display: block; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2.1rem; line-height: 1; letter-spacing: -.03em; }
+      .facts div b { display: block; font-family: var(--accent); font-style: italic; font-weight: 400; font-size: 2.6rem; line-height: 1; letter-spacing: -.01em; color: var(--ink); }
       .facts div span { display: block; margin-top: .45rem; font-size: 13.5px; line-height: 1.45; color: var(--ink-3); }
       .creds { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: .65rem; }
       .creds li { position: relative; padding-left: 1.5rem; font-size: 15.5px; color: var(--ink-2); line-height: 1.5; }
@@ -587,34 +597,31 @@
         grid-row: span 8;
         grid-template-rows: subgrid;
         row-gap: 0;
-        padding: clamp(1.5rem, 3vw, 2.25rem);
-        border-radius: 22px;
-        background: linear-gradient(180deg, var(--raise-2), var(--raise));
-        border: 1px solid var(--line-2);
-        box-shadow: var(--shadow-raise);
+        padding: 1.5rem 0 0;
+        border-top: 1px solid var(--line-2);
       }
-      .sys-card::before { content: ""; position: absolute; left: clamp(1.5rem, 3vw, 2.25rem); top: -1px; width: 56px; height: 2px; border-radius: 2px; }
+      .sys-card::before { content: ""; position: absolute; left: 0; top: -1px; width: 56px; height: 2px; border-radius: 2px; }
       .sys--shop::before { background: var(--shop); }
       .sys--meta::before { background: var(--meta); }
       .sys-card header { padding-bottom: 1.4rem; }
-      .sys-card h3 { margin-top: .5rem; font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.3rem); }
+      .sys-card h3 { margin-top: .5rem; font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.3rem); font-weight: 400; letter-spacing: -.04em; }
       .sys-card dl { display: contents; }
       .sys-card dl > div { padding: 1rem 0; border-top: 1px solid var(--line); }
       .sys-card dt { font-size: 13.5px; color: var(--ink-3); }
       .sys-card dd { margin: .25rem 0 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.55; }
       .sys-card dd b { color: var(--ink); font-weight: 500; }
       .sys-card .price-row dd { font-size: 16px; }
-      .sys-card .price-row b { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 1.6rem; letter-spacing: -.02em; }
+      .sys-card .price-row b { font-family: var(--accent); font-style: italic; font-weight: 400; font-size: 2rem; line-height: 1.1; letter-spacing: -.01em; }
       .sys-card .price-row s { color: var(--ink-3); }
       .sys-card .btn { align-self: end; justify-self: start; margin-top: 1.25rem; }
       .rule { display: flex; align-items: flex-start; gap: .9rem; margin-top: clamp(2rem, 4vw, 2.75rem); max-width: 70ch; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; }
       .rule svg { flex: none; width: 22px; height: 22px; margin-top: .1rem; color: var(--orange-hi); }
       @media (max-width: 860px) {
         .sys { grid-template-columns: minmax(0, 1fr); }
-        .sys-card + .sys-card { margin-top: 1.25rem; }
+        .sys-card + .sys-card { margin-top: 3rem; }
       }
       @media (max-width: 360px) {
-        .sys-card { padding: 1.4rem 1.15rem; }
+        .sys-card { padding: 1.4rem 0 0; }
         .sys-card .btn { padding-inline: 1.1rem; font-size: 15px; }
       }
 
@@ -784,7 +791,7 @@
           <div class="hero-top">
             <div>
               <span class="eyebrow rise d1">Claude-Systeme von Alexander Dück</span>
-              <h1 id="h1" class="rise d2">vorflows macht aus Claude deinen <em class="s">Shopify&#8209;Entwickler</em> und dein <em class="m">Anzeigen&#8209;Team</em></h1>
+              <h1 id="h1" class="rise d2">vorflows macht aus Claude deinen <em class="acc s">Shopify&#8209;Entwickler</em> und dein <em class="acc m">Anzeigen&#8209;Team</em></h1>
             </div>
             <div class="hero-intro">
               <p class="me rise d3"><img src="/assets/images/home/alex-lifestyle-400.webp" width="52" height="52" alt="" /><span><b>Alexander Dück</b>Gründer von vorflows</span></p>
@@ -1068,7 +1075,7 @@
       <!-- ============ SCHLUSS ============ -->
       <section class="final" aria-labelledby="h-final">
         <div class="wrap">
-          <h2 id="h-final" data-reveal>Womit soll Claude für dich <em>anfangen</em>?</h2>
+          <h2 id="h-final" data-reveal>Womit soll Claude für dich <em class="acc">anfangen</em>?</h2>
           <div data-reveal="2">
             <div class="final-ctas">
               <a class="btn btn--lg" href="/sales" data-cta="final_vorflows">vorflows für Shopify <span class="arr" aria-hidden="true">→</span></a>

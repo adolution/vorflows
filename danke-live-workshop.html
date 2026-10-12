@@ -14,9 +14,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-var-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-italic-latin.woff2" crossorigin />
+    <!-- fonts.css nur noch für das Logo (Fraunces) -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/assets/fonts/clean.css" />
     <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
@@ -27,7 +29,30 @@
          laute Botschaft) → Show-Up-Video → Umfrage/doneCard → .joinbox →
          Testimonial → Fuß. Klassen, an denen JS hängt, bleiben unverändert.
          Doku: .agents/live-workshop-tracking.md
+         Schrift (2026-10-12, wie /adsflow): Inter Tight, Instrument Serif
+         kursiv nur im Alert-Wort. Flächen: keine Karte in der Karte.
          ================================================================ */
+      /* ---------- Schrift-Overrides zu site-dark.css (2026-10-12, wie /adsflow) ----------
+         Alles Inter Tight, Überschriften Gewicht 400 mit enger Laufweite. Instrument Serif
+         kursiv NUR als Akzent über .acc / --accent. Fraunces nur noch im Logo (.wordmark).
+         site-dark.css bleibt unverändert, weil andere Seiten sie nutzen. */
+      :root {
+        --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+        --accent: 'Instrument Serif', Georgia, serif;
+      }
+      body { font-family: var(--sans); line-height: 1.55; letter-spacing: -.01em; }
+      h1, h2, h3, .display { font-family: var(--sans); font-weight: 400; letter-spacing: -.04em; font-variation-settings: normal; }
+      h1 { line-height: 1; letter-spacing: -.045em; }
+      h2 { font-size: clamp(2rem, 1.35rem + 2.5vw, 3.4rem); line-height: 1.02; }
+      h3 { font-size: clamp(1.3rem, 1.1rem + .7vw, 1.65rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 450; }
+      /* Hervorhebungen in Überschriften sind normaler Text. Serif-Akzent nur über .acc */
+      h1 em, h2 em, h3 em { font-style: normal; color: inherit; }
+      .acc, h1 em.acc, h2 em.acc { font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--orange-hi); }
+      .lead { font-size: clamp(1.06rem, 1rem + .2vw, 1.15rem); line-height: 1.55; max-width: 56ch; }
+      .eyebrow { letter-spacing: .08em; color: var(--ink-3); }
+      .say { font-family: inherit; font-style: normal; font-weight: 500; }
+      .btn { font-weight: 500; letter-spacing: -.015em; }
+
       [hidden] { display: none !important; }
       body { min-height: 100vh; display: flex; flex-direction: column; }
 
@@ -67,8 +92,8 @@
       .confirm-alert__track > i { display: block; height: 100%; width: 100%; border-radius: 999px; background: #FFF3EC; transform: scaleX(0); transform-origin: 0 50%; animation: halfway .9s .35s var(--ease) forwards; }
       @keyframes halfway { to { transform: scaleX(.5); } }
 
-      .confirm-alert h1 { color: #FFF7F1; font-size: clamp(2rem, 1.35rem + 3.2vw, 3rem); line-height: 1.05; letter-spacing: -.032em; max-width: 19ch; }
-      .confirm-alert h1 em { color: #FFF7F1; font-style: italic; text-decoration: underline; text-decoration-color: rgba(255, 247, 241, .5); text-decoration-thickness: 2px; text-underline-offset: .14em; }
+      .confirm-alert h1 { color: #FFF7F1; font-size: clamp(2rem, 1.35rem + 3vw, 2.9rem); line-height: 1.02; letter-spacing: -.045em; max-width: 19ch; }
+      .confirm-alert h1 em { color: #FFF7F1; font-family: var(--accent); font-style: italic; font-weight: 400; letter-spacing: -.01em; text-decoration: underline; text-decoration-color: rgba(255, 247, 241, .5); text-decoration-thickness: 2px; text-underline-offset: .14em; }
       .confirm-alert__body { margin-top: 1rem; max-width: 34rem; font-size: clamp(1.03rem, 1rem + .2vw, 1.12rem); line-height: 1.6; color: rgba(255, 243, 236, .96); }
       .confirm-alert__body strong { color: #FFF7F1; }
       .confirm-alert__hint { margin-top: .8rem; max-width: 34rem; font-size: 15px; line-height: 1.6; color: rgba(255, 243, 236, .84); }
@@ -76,7 +101,7 @@
       .confirm-alert__btn {
         --lift: 0px;
         display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 1.3rem; padding: 0 1.4rem;
-        border-radius: 999px; background: #FFF3EC; color: #8C3C20; font-weight: 600; font-size: 15.5px; text-decoration: none;
+        border-radius: 999px; background: #FFF3EC; color: #8C3C20; font-weight: 500; font-size: 15.5px; text-decoration: none;
         box-shadow: inset 0 -1px 0 rgba(140, 60, 32, .12), 0 10px 24px -10px rgba(0, 0, 0, .45);
         transform: translateY(var(--lift));
         transition: transform .5s var(--ease), background-color .2s var(--ease-q), box-shadow .5s var(--ease);
@@ -92,22 +117,22 @@
       .ty-video-el { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r-surface); background: #000; border: 1px solid var(--line-2); box-shadow: var(--shadow-float); }
 
       /* ---------- Umfrage ---------- */
-      .survey { margin-top: clamp(2rem, 5vw, 2.8rem); padding: clamp(1.4rem, 5vw, 2.2rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: linear-gradient(180deg, var(--raise-2), var(--raise)); box-shadow: var(--shadow-float); }
-      .survey-head { font-size: clamp(1.35rem, 1.15rem + .9vw, 1.65rem); line-height: 1.2; letter-spacing: -.022em; }
+      .survey { margin-top: clamp(2rem, 5vw, 2.8rem); padding: clamp(1.4rem, 5vw, 2.2rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: var(--raise); box-shadow: var(--shadow-float); }
+      .survey-head { font-size: clamp(1.3rem, 1.15rem + .7vw, 1.55rem); line-height: 1.2; letter-spacing: -.035em; }
       .progress { display: flex; align-items: center; gap: .9rem; margin-top: 1.1rem; }
       .progress .bar { flex: 1; height: 4px; border-radius: 999px; background: var(--line-2); overflow: hidden; }
       .progress .fill { display: block; width: 100%; height: 100%; border-radius: 999px; background: var(--orange-hi); transform: scaleX(.1667); transform-origin: 0 50%; transition: transform .5s var(--ease); }
       .progress .pct { min-width: 3.4em; text-align: right; font-size: 13px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 
       .q-step { margin-top: 1.6rem; }
-      .q-eyebrow { font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--orange-hi); }
-      .q-title { margin-top: .45rem; font-size: clamp(1.45rem, 1.2rem + 1.1vw, 1.85rem); line-height: 1.15; letter-spacing: -.024em; }
+      .q-eyebrow { font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
+      .q-title { margin-top: .45rem; font-size: clamp(1.4rem, 1.2rem + .9vw, 1.75rem); line-height: 1.12; letter-spacing: -.035em; }
       .q-sub { margin-top: .55rem; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
       .q-options { display: grid; gap: .6rem; margin-top: 1.25rem; }
       .q-opt {
         appearance: none; display: flex; align-items: center; gap: .85rem; width: 100%; min-height: 56px; padding: .8rem 1.1rem;
         text-align: left; font: inherit; font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--ink);
-        background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r-field); cursor: pointer;
+        background: transparent; border: 1px solid var(--line-2); border-radius: var(--r-field); cursor: pointer;
         transition: border-color .2s var(--ease-q), background-color .2s var(--ease-q), transform .3s var(--ease);
       }
       .q-opt::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--ink-3); transition: border-color .2s var(--ease-q), background-color .2s var(--ease-q), box-shadow .2s var(--ease-q); }
@@ -140,14 +165,14 @@
       .done { margin-top: clamp(2rem, 5vw, 2.8rem); padding: clamp(1.4rem, 5vw, 2.2rem); border: 1px solid rgba(95, 174, 133, .4); border-radius: var(--r-surface); background: linear-gradient(180deg, rgba(95, 174, 133, .1), rgba(95, 174, 133, .03)); }
       .done-ic { position: relative; display: block; width: 36px; height: 36px; border-radius: 50%; background: rgba(95, 174, 133, .15); border: 1px solid rgba(95, 174, 133, .55); }
       .done-ic::after { content: ""; position: absolute; left: 11px; top: 11px; width: 12px; height: 6px; border-left: 2px solid var(--ok); border-bottom: 2px solid var(--ok); transform: rotate(-45deg); }
-      .done h2 { margin-top: 1rem; font-size: clamp(1.5rem, 1.25rem + 1vw, 1.95rem); line-height: 1.15; }
+      .done h2 { margin-top: 1rem; font-size: clamp(1.45rem, 1.25rem + .8vw, 1.85rem); line-height: 1.12; letter-spacing: -.035em; }
       .done .q-sub { max-width: 34rem; margin-top: .6rem; }
 
       /* ---------- Zugangslink + Kalender ---------- */
-      .joinbox { margin-top: clamp(1.4rem, 4vw, 2rem); padding: clamp(1.3rem, 4vw, 1.8rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: linear-gradient(180deg, var(--raise), var(--bg)); box-shadow: var(--shadow-raise); }
-      .joinbox__eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--orange-hi); }
+      .joinbox { margin-top: clamp(1.4rem, 4vw, 2rem); padding: clamp(1.3rem, 4vw, 1.8rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: var(--raise); box-shadow: var(--shadow-raise); }
+      .joinbox__eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
       .joinbox__eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--orange-hi); box-shadow: 0 0 0 3px rgba(200, 99, 62, .2); }
-      .joinbox__title { margin-top: .5rem; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.3rem, 1.15rem + .6vw, 1.55rem); line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
+      .joinbox__title { margin-top: .5rem; font-size: clamp(1.25rem, 1.15rem + .5vw, 1.5rem); font-weight: 450; line-height: 1.2; letter-spacing: -.035em; color: var(--ink); }
       .joinbox__sub { margin-top: .4rem; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
       .joinbox__sub strong { color: var(--ink); font-weight: 600; }
       .joinbox__linkrow { display: flex; align-items: stretch; gap: .55rem; margin-top: 1.05rem; }
@@ -164,7 +189,7 @@
       .joinbox__copy {
         --lift: 0px;
         flex: none; min-height: 48px; padding: 0 1.2rem; border: 0; border-radius: 999px; cursor: pointer; white-space: nowrap;
-        background: var(--orange); color: var(--on-orange); font-size: 14.5px; font-weight: 600;
+        background: var(--orange); color: var(--on-orange); font-size: 14.5px; font-weight: 500;
         box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 1px 2px rgba(0, 0, 0, .35), 0 12px 28px -12px rgba(200, 99, 62, .55);
         transform: translateY(var(--lift));
         transition: transform .5s var(--ease), background-color .25s var(--ease-q);
@@ -173,15 +198,15 @@
       .joinbox__copy:active { --lift: 1px; background: var(--orange-press); transition-duration: .12s; }
       .joinbox__copy:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
       .joinbox__copy.is-done { background: var(--ok); color: #07130C; }
-      .joinbox__save { display: flex; align-items: flex-start; gap: .6rem; margin-top: .9rem; padding: .75rem .9rem; border-radius: var(--r-field); border: 1px solid rgba(200, 99, 62, .35); background: rgba(200, 99, 62, .08); font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+      .joinbox__save { display: flex; align-items: flex-start; gap: .6rem; margin-top: .9rem; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
       .joinbox__save svg { flex: none; width: 16px; height: 16px; margin-top: .15rem; color: var(--orange-hi); }
-      .joinbox__caltitle { margin-top: 1.25rem; font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--ink); }
+      .joinbox__caltitle { margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid var(--line); font-size: 14.5px; font-weight: 500; line-height: 1.45; color: var(--ink); }
       .joinbox__cals { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .55rem; margin-top: .65rem; }
       .joinbox__cal {
         --lift: 0px;
         display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: .55rem 1rem;
         border-radius: 999px; color: var(--ink); background: transparent; box-shadow: inset 0 0 0 1px var(--line-2);
-        font-size: 14.5px; font-weight: 600; line-height: 1.3; text-align: center; text-decoration: none;
+        font-size: 14.5px; font-weight: 500; line-height: 1.3; text-align: center; text-decoration: none;
         transform: translateY(var(--lift));
         transition: transform .5s var(--ease), background-color .2s var(--ease-q), box-shadow .3s var(--ease-q);
       }
@@ -197,7 +222,7 @@
 
       /* ---------- Stimme ---------- */
       .ty-quote { margin: clamp(2.4rem, 6vw, 3.2rem) 0 0; max-width: 36rem; padding-left: 1.3rem; border-left: 2px solid var(--orange); }
-      .ty-quote blockquote { margin: 0; font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 60; font-size: clamp(1.15rem, 1.05rem + .5vw, 1.35rem); line-height: 1.42; letter-spacing: -.015em; color: var(--ink); text-wrap: pretty; }
+      .ty-quote blockquote { margin: 0; font-size: clamp(1.15rem, 1.05rem + .45vw, 1.3rem); line-height: 1.32; letter-spacing: -.025em; color: var(--ink); text-wrap: pretty; }
       .ty-quote blockquote::before { content: "\201E"; color: var(--orange-hi); }
       .ty-quote blockquote::after { content: "\201C"; color: var(--orange-hi); }
       .ty-quote figcaption { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; margin-top: 1rem; font-size: 14px; line-height: 1.4; }
