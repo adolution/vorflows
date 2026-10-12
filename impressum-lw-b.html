@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Impressum · vorflows</title>
     <meta name="robots" content="noindex, follow" />
-    <meta name="theme-color" content="#0E0E0D" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#FAFAF9" />
+    <meta name="color-scheme" content="light" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/site-light.css?v=20261012" />
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     <style>
       /* vorflows · Rechtstext im Workshop-Funnel (Variante B, ohne Home-Navigation, kein Kauf-Button) */
@@ -67,9 +67,7 @@
         inset: 0;
         z-index: -1;
         pointer-events: none;
-        background:
-          radial-gradient(26rem 16rem at 0% 0%, rgba(200, 99, 62, .13), transparent 70%),
-          radial-gradient(20rem 14rem at 100% 100%, rgba(237, 236, 231, .035), transparent 70%);
+        background: none;
       }
       .fact--main dd { margin-top: 0; }
       .fact .org {
@@ -90,7 +88,7 @@
         color: var(--ink);
         font-variant-numeric: lining-nums tabular-nums;
       }
-      .fact .tl { display: inline-block; padding-block: .55rem; margin-block: -.55rem; color: var(--ink); text-decoration-color: rgba(226, 123, 84, .55); overflow-wrap: anywhere; }
+      .fact .tl { display: inline-block; padding-block: .55rem; margin-block: -.55rem; color: var(--ink); text-decoration-color: rgba(188, 90, 53, .55); overflow-wrap: anywhere; }
       @media (max-width: 699px) {
         .fact--main { gap: 2rem; padding: 1.4rem 1.35rem 1.5rem; }
       }
@@ -110,7 +108,7 @@
       .legal-text .prose > h2:first-child { margin-top: 0; }
 
       /* ---------- Cookie-Hinweis mittig (Test-Modus-Logik unverändert, nur neuer Look) ---------- */
-      .cookie-backdrop { position: fixed; inset: 0; z-index: 1099; background: rgba(10, 10, 9, .66); }
+      .cookie-backdrop { position: fixed; inset: 0; z-index: 1099; background: rgba(20, 20, 19, .34); }
       .cookie-backdrop[hidden] { display: none; }
       .cookie-banner {
         position: fixed;
@@ -143,7 +141,7 @@
 
       .cookie-title { margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink); }
       .cookie-text { margin: .45rem 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
-      .cookie-text a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 123, 84, .55); text-underline-offset: 2px; border-radius: 3px; transition: color .2s var(--ease-q); }
+      .cookie-text a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(188, 90, 53, .55); text-underline-offset: 2px; border-radius: 3px; transition: color .2s var(--ease-q); }
       .cookie-text a:hover { color: var(--orange-hi); }
       .cookie-text a:active { opacity: .7; }
       .cookie-text a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
@@ -164,7 +162,7 @@
       .cookie-btn-ghost { border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); }
       .cookie-btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); }
       .cookie-btn-primary { border: 0; background: var(--orange); color: var(--on-orange); font-weight: 600; box-shadow: inset 0 1px 0 rgba(255, 220, 200, .3); }
-      .cookie-btn-primary:hover { background: #D06A44; }
+      .cookie-btn-primary:hover { background: #AD4F2C; }
       .cookie-btn-primary:active { background: var(--orange-press); }
       @media (max-width: 560px) {
         .cookie-text { font-size: 12.5px; line-height: 1.5; }

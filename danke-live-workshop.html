@@ -7,8 +7,8 @@
     <meta name="description" content="Deine Anmeldung zum Live-Workshop ist bestätigt." />
     <!-- Thank-you page: never index -->
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#0E0E0D" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#FAFAF9" />
+    <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
@@ -19,7 +19,7 @@
     <!-- fonts.css nur noch für das Logo (Fraunces) -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="stylesheet" href="/assets/fonts/clean.css" />
-    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/site-light.css?v=20261012" />
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
     <style>
@@ -59,9 +59,7 @@
       /* Studiolicht hinter dem Alert */
       .ty-light {
         position: absolute; top: 0; left: 0; right: 0; height: 56rem; z-index: 0; pointer-events: none;
-        background:
-          radial-gradient(46rem 28rem at 50% -6%, rgba(237, 236, 231, .07), transparent 64%),
-          radial-gradient(34rem 26rem at 32% 24%, rgba(200, 99, 62, .17), transparent 66%);
+        background: none;
       }
       .ty-wrap { z-index: 1; flex: 1; max-width: calc(44rem + 2 * var(--gutter)); padding-top: clamp(1.4rem, 4vw, 2.4rem); padding-bottom: 3rem; }
       .ty-top { display: flex; align-items: center; min-height: 44px; }
@@ -78,9 +76,9 @@
         color: #FFF3EC;
         box-shadow:
           inset 0 1px 0 rgba(255, 228, 212, .22),
-          0 1px 2px rgba(0, 0, 0, .4),
-          0 30px 70px -26px rgba(0, 0, 0, .8),
-          0 40px 120px -36px rgba(200, 99, 62, .5);
+          0 1px 2px rgba(20, 20, 19, .12),
+          0 30px 60px -30px rgba(20, 20, 19, .28),
+          0 30px 80px -40px rgba(188, 90, 53, .22);
         animation: alertIn .8s .05s var(--ease) both;
       }
       .confirm-alert::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(28rem 16rem at 0% 0%, rgba(255, 236, 224, .14), transparent 70%); }
@@ -140,7 +138,7 @@
       .q-opt:hover::before { border-color: var(--ink-2); }
       .q-opt:active { transform: scale(.99); }
       .q-opt:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-      .q-opt.selected { border-color: var(--orange); background: rgba(200, 99, 62, .12); }
+      .q-opt.selected { border-color: var(--orange); background: rgba(188, 90, 53, .12); }
       .q-opt.selected::before { border-color: var(--orange-hi); background: var(--orange-hi); box-shadow: inset 0 0 0 3px var(--raise-2); }
 
       .q-back { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; margin: .8rem 0 0 -.7rem; padding: 0 .7rem; border: 0; border-radius: 999px; background: none; font: inherit; font-size: 14px; font-weight: 500; color: var(--ink-3); cursor: pointer; transition: color .2s var(--ease-q), background-color .2s var(--ease-q); }
@@ -157,7 +155,7 @@
       }
       .phone-row input::placeholder { color: var(--ink-3); }
       .phone-row input[type="tel"]:focus,
-      .phone-row input[type="text"]:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(200, 99, 62, .25); }
+      .phone-row input[type="text"]:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(188, 90, 53, .25); }
       .phone-row .btn { width: 100%; }
       .phone-hint { margin-top: .1rem; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
 
@@ -171,7 +169,7 @@
       /* ---------- Zugangslink + Kalender ---------- */
       .joinbox { margin-top: clamp(1.4rem, 4vw, 2rem); padding: clamp(1.3rem, 4vw, 1.8rem); border: 1px solid var(--line-2); border-radius: var(--r-surface); background: var(--raise); box-shadow: var(--shadow-raise); }
       .joinbox__eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
-      .joinbox__eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--orange-hi); box-shadow: 0 0 0 3px rgba(200, 99, 62, .2); }
+      .joinbox__eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--orange-hi); box-shadow: 0 0 0 3px rgba(188, 90, 53, .2); }
       .joinbox__title { margin-top: .5rem; font-size: clamp(1.25rem, 1.15rem + .5vw, 1.5rem); font-weight: 450; line-height: 1.2; letter-spacing: -.035em; color: var(--ink); }
       .joinbox__sub { margin-top: .4rem; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
       .joinbox__sub strong { color: var(--ink); font-weight: 600; }
@@ -190,11 +188,11 @@
         --lift: 0px;
         flex: none; min-height: 48px; padding: 0 1.2rem; border: 0; border-radius: 999px; cursor: pointer; white-space: nowrap;
         background: var(--orange); color: var(--on-orange); font-size: 14.5px; font-weight: 500;
-        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 1px 2px rgba(0, 0, 0, .35), 0 12px 28px -12px rgba(200, 99, 62, .55);
+        box-shadow: inset 0 1px 0 rgba(255, 220, 200, .35), 0 1px 2px rgba(0, 0, 0, .35), 0 12px 28px -12px rgba(188, 90, 53, .55);
         transform: translateY(var(--lift));
         transition: transform .5s var(--ease), background-color .25s var(--ease-q);
       }
-      .joinbox__copy:hover { --lift: -2px; background: #D06A44; }
+      .joinbox__copy:hover { --lift: -2px; background: #AD4F2C; }
       .joinbox__copy:active { --lift: 1px; background: var(--orange-press); transition-duration: .12s; }
       .joinbox__copy:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
       .joinbox__copy.is-done { background: var(--ok); color: #07130C; }

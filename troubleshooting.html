@@ -6,8 +6,8 @@
     <title>Hilfe bei Fehlern · vorflows</title>
     <meta name="description" content="Lösungen für die häufigsten Fehlermeldungen rund um vorflows." />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#0E0E0D" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#FAFAF9" />
+    <meta name="color-scheme" content="light" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/logos/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/logos/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/logos/apple-touch-icon.png" />
@@ -15,7 +15,7 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-400-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400-latin.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="/assets/site-dark.css?v=20261010" />
+    <link rel="stylesheet" href="/assets/site-light.css?v=20261012" />
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
     <style>
@@ -70,7 +70,7 @@
       .chip:hover { color: var(--ink); border-color: var(--ink-3); }
       .chip:active { transform: scale(.97); }
       .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-      .chip.is-here { color: var(--ink); border-color: rgba(200, 99, 62, .6); background-color: var(--orange-soft); }
+      .chip.is-here { color: var(--ink); border-color: rgba(188, 90, 53, .6); background-color: var(--orange-soft); }
       .chip.is-here .n { color: var(--orange-hi); }
       /* Desktop: Leiste klebt unter der Kopfzeile (beide deckend, ohne Blur) */
       @media (min-width: 761px) {
@@ -105,14 +105,14 @@
       .qa summary .t { flex: 1; min-width: 0; overflow-wrap: anywhere; }
       .qa .ans { font-size: 16px; line-height: 1.7; }
       .ans p { color: var(--ink-2); }
-      .ans a:not(.btn) { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 123, 84, .55); text-underline-offset: 3px; text-decoration-thickness: 1px; border-radius: 3px; overflow-wrap: anywhere; transition: color .2s var(--ease-q), text-decoration-color .2s var(--ease-q); }
+      .ans a:not(.btn) { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(188, 90, 53, .55); text-underline-offset: 3px; text-decoration-thickness: 1px; border-radius: 3px; overflow-wrap: anywhere; transition: color .2s var(--ease-q), text-decoration-color .2s var(--ease-q); }
       .ans a:not(.btn):hover { color: var(--orange-hi); text-decoration-color: currentColor; }
       .ans a:not(.btn):active { opacity: .7; }
       .ans a:not(.btn):focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
       code.inline {
         font-family: 'JetBrains Mono', ui-monospace, monospace;
         font-size: max(12px, .84em);
-        background: rgba(237, 236, 231, .06);
+        background: rgba(20, 20, 19, .06);
         border: 1px solid var(--line-2);
         padding: .05em .4em;
         border-radius: 6px;
@@ -168,7 +168,7 @@
         border: 1px solid var(--line-2);
         border-radius: var(--r-field);
         background: var(--bg-deep);
-        box-shadow: inset 0 1px 0 rgba(237, 236, 231, .03);
+        box-shadow: inset 0 1px 0 rgba(20, 20, 19, .03);
       }
       .steps .prompt, .steps .cmd { margin-top: .8rem; }
       .cmd + .cmd { margin-top: .55rem; }
@@ -233,9 +233,7 @@
         inset: 0;
         z-index: -1;
         pointer-events: none;
-        background:
-          radial-gradient(36rem 22rem at 18% 75%, rgba(200, 99, 62, .1), transparent 70%),
-          radial-gradient(30rem 18rem at 95% 0%, rgba(237, 236, 231, .035), transparent 70%);
+        background: none;
       }
       .contact-grid { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.4rem clamp(1.5rem, 3vw, 2.5rem); align-items: start; max-width: 880px; }
       .contact .face { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); box-shadow: var(--shadow-raise); }
