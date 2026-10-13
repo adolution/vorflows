@@ -262,7 +262,7 @@ ich war ein paar Wochen ziemlich ruhig, und das hatte einen Grund. Ich habe etwa
 
 ${ADSFLOW_CORE('adsflow-a1-kunde')}
 
-Da du Claude schon eingerichtet hast, bist du schneller startklar als die meisten. Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, das gilt bis Montag, 2. November.
+Da du Claude schon eingerichtet hast, bist du schneller startklar als die meisten. Zum Launch kostet AdsFlow 299 Euro netto statt 499 Euro, das gilt bis Montag, 2. November.
 
 Wenn du Fragen hast oder wissen willst, ob das für deinen Shop passt, antworte einfach auf diese Mail.
 
@@ -281,7 +281,7 @@ du warst im Workshop live dabei, als Claude einen Shopify-Shop umgebaut hat. Sei
 
 ${ADSFLOW_CORE('adsflow-a1-live')}
 
-AdsFlow automatisiert einen der wichtigsten Teile jedes E-Commerce-Business: deine Werbeanzeigen. Zum Launch kostet es 299 Euro statt 499 Euro, bis Montag, 2. November.
+AdsFlow automatisiert einen der wichtigsten Teile jedes E-Commerce-Business: deine Werbeanzeigen. Zum Launch kostet es 299 Euro netto statt 499 Euro, bis Montag, 2. November.
 
 Wenn du Fragen hast, antworte einfach auf diese Mail. Ich lese alles selbst.
 
@@ -353,7 +353,7 @@ Alex`,
 
 ${ADSFLOW_CORE('adsflow-b1')}
 
-Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, bis Montag, 2. November.
+Zum Launch kostet AdsFlow 299 Euro netto statt 499 Euro, bis Montag, 2. November.
 
 Wenn du Fragen hast, antworte einfach auf diese Mail.
 
@@ -379,7 +379,7 @@ Eine Sache wollte ich dir gleich zeigen, weil sie gut dazu passt: Wenn du deine 
 
 Weil du Claude Code mit vorflows sowieso einrichtest, bist du damit schnell startklar. Im Video zeige ich dir das in meinem eigenen Werbekonto: ${a(link('/adsflow', 'adsflow-upsell'), 'AdsFlow im Video ansehen')}
 
-Zum Launch kostet AdsFlow 299 Euro statt 499 Euro, bis Montag, 2. November.
+Zum Launch kostet AdsFlow 299 Euro netto statt 499 Euro, bis Montag, 2. November.
 
 Wenn du Fragen hast, zu vorflows oder zu AdsFlow, antworte einfach auf diese Mail.
 
@@ -392,7 +392,7 @@ Alex`,
     preview: 'Bis Montag um Mitternacht gilt noch der Launch-Preis. Danach nicht mehr, auch nicht verlängert.',
     body: `${HI}
 
-kurzer Hinweis, damit es dich nicht überrascht: Morgen, Montag um Mitternacht, endet der Launch-Preis für AdsFlow. Danach kostet es 499 Euro statt 299 Euro, und ich verlängere das nicht noch einmal.
+kurzer Hinweis, damit es dich nicht überrascht: Morgen, Montag um Mitternacht, endet der Launch-Preis für AdsFlow. Danach kostet es 499 Euro netto statt 299 Euro, und ich verlängere das nicht noch einmal.
 
 Falls du noch überlegst, ob sich das für dich lohnt, eine einfache Rechnung: Wenn dich eine neue Anzeige im Ads Manager eine halbe Stunde kostet, sind 40 Anzeigen zwanzig Stunden Arbeit. Mit AdsFlow schreibst du Claude einen Satz, gibst die Texte frei und schaltest die fertigen Anzeigen selbst live. Mit diesem System sind schon über 1.200 Anzeigen entstanden.
 
@@ -409,7 +409,7 @@ Alex`,
     preview: 'Ab Mitternacht kostet AdsFlow den regulären Preis. Hier die kurze Version, worum es geht.',
     body: `${HI}
 
-kurz zur Info: Heute um Mitternacht endet der Launch-Preis für AdsFlow. Danach kostet es 499 Euro statt 299 Euro. Das ist keine künstliche Deadline, der Launch ist dann einfach vorbei, und ich verlängere ihn nicht noch einmal.
+kurz zur Info: Heute um Mitternacht endet der Launch-Preis für AdsFlow. Danach kostet es 499 Euro netto statt 299 Euro. Das ist keine künstliche Deadline, der Launch ist dann einfach vorbei, und ich verlängere ihn nicht noch einmal.
 
 Falls du noch überlegst, hier die kurze Version:
 
