@@ -531,3 +531,6 @@ Scroll/Dwell/FAQ-Events unverändert. `danke-live-workshop.html` wird vom neuen 
 **B-Datei:** `live-workshop-b.html` = Kopie von A mit `noindex` + Titel „(Variante B)“, nur per `?ab=B` erreichbar.
 
 **Test:** `node test-replay-optin.mjs` (Server :3001, API gemockt): Validierung, POST-Body, Erfolgszustand, Screenshots.
+
+
+Nachfass für Liste 21/22: mail-engine Schritte Q0/Q1/Q3/RW/C1 bis C4, siehe `.agents/mail-engine.md` (2026-10-13). Schutz: Vorname ohne Links, max. 1 Link-Mail pro Adresse/Tag, Liste 8/gesperrt bleibt draußen.

@@ -5,7 +5,7 @@ import { sign } from './brevo-track.js';
 // POST {email, vorname, hp, attr} → Kontakt in Brevo (neu: Liste „unbestätigt“), dann eine schlichte
 // Einzelmail mit dem Link zur Aufzeichnung. Der Link ist zugleich die Bestätigung (Double-Opt-in):
 // GET ?c=<id>.<hmac> → Liste „bestätigt“, RP_OPTIN_OK, VF_TOKEN setzen → weiter auf /replay?vt=…
-// Die Versand-Steuerung (mail-engine) schreibt diese Listen bisher NICHT an.
+// Nachfass (Q0 Erinnerung, Q1/Q3, RW, P1-P3, C1-C4) macht die Versand-Steuerung, siehe .agents/mail-engine.md
 
 const BREVO = 'https://api.brevo.com/v3';
 const LIST = { pending: 21, confirmed: 22, unsub: 8 };

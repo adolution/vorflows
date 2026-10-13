@@ -52,6 +52,30 @@ Standard: sofort beim Morgenlauf (~10 Uhr Berlin). `SEND_LATER` plant A1G (Live-
 Simulation mit echten Kontakten: ~3.700 bis 4.300 Mails, max. 10 pro Person in 3 Wochen (Brevo Starter: 5.000/Monat).
 Brevo-Kampagne 1 (alte Replay-Mail, 15.10.) muss **pausiert** sein, R1 kommt jetzt aus der Steuerung.
 
+## Anforderer der Aufzeichnung (/live-workshop, seit 2026-10-13)
+
+Wer: Liste 22 (bestätigt) bzw. 21 (unbestätigt), **ohne Liste 4**. Alte Workshop-Leads, die nochmal anfordern,
+bleiben in ihrer bisherigen Strecke (R/A/B). Zeitlos, ohne Enddatum, Start jeweils ab `RP_OPTIN` / `RP_OPTIN_OK`.
+R1 bis R3 bleiben nur Liste 7 (Texte beziehen sich auf die Anmeldung zum Live-Termin).
+
+| Schritt | Mail | Wann |
+|---|---|---|
+| Q0 | Q0 | unbestätigt, 1 bis 5 Tage nach Anforderung, einmalig. **Einzelmail** (`/smtp/email`) mit eigenem Bestätigungslink, ohne Abmeldelink, sagt „letzte Mail“. Danach nie wieder. |
+| Q1 | Q1 | bestätigt, Video nicht gestartet, +1 Tag |
+| Q3 | Q3 | weiter nicht gestartet, +3 Tage nach Q1, letzte Mail zum Video |
+| RW | RW | gestartet, Angebot nicht erreicht, +2 Tage nach Start (für Liste 7 nur bis 29.10.) |
+| P1 bis P3, KB | wie oben | Angebot gesehen / Kauf-Klick |
+| C1 | C1 | AdsFlow-Einstieg: 2 Tage nach P3, sonst 2 Tage nach Q3, sonst 4 Tage nach RW |
+| C1X | C1 neuer Betreff | C1 nicht geöffnet, 3 bis 5 Tage danach |
+| C2, C3, C4 | A2, A3, A4 | C1 geöffnet/besucht, je +3 Tage |
+
+## Sale-Logik (zeitlos)
+
+`AF_SALE = { bis, satz }` in `mails.js`. `mailFor(key, { T })` ersetzt `%%SALE%%` nur, solange `T <= bis`, sonst
+fällt der Absatz weg. D0/D1/D2 hängen an `AF_SALE.bis`. Neuer Sale: nur `AF_SALE` ändern (und D-Texte prüfen).
+Texte für Anforderer dürfen kein Datum, kein „neu“, kein „ich war still“ fest enthalten. U1 geht jetzt bis 7 Tage
+nach dem Kauf (statt bis 1.11.), U2 ohne Enddatum.
+
 ## Kauf-Abgleich und Öffnungen
 
 - `api/ds24-ipn.js`: Digistore-IPN (URL mit `?k=hookKey('ds24')`, in `~/.vf_hook_urls`). `on_payment` 688983 → Liste 5,

@@ -1,4 +1,5 @@
-import { mailFor } from './_mail/mails.js';
+import { mailFor, AF_SALE } from './_mail/mails.js';
+import { optinToken } from './replay-optin.js';
 
 // Versand-Steuerung für Replay-, Bundle- und AdsFlow-Strecke. Doku: .agents/mail-engine.md
 // Läuft per Vercel-Cron morgens und abends. Pro Kontakt höchstens eine Mail pro Lauf und Tag
@@ -9,16 +10,17 @@ export const config = { maxDuration: 60 };
 
 const BREVO = 'https://api.brevo.com/v3';
 const SEND_FOLDER = 16;
-const L = { all: 4, buyer: 5, live: 6, noshow: 7, unsub: 8, afBuyer: 15, sheetOnly: 17 };
+const L = { all: 4, buyer: 5, live: 6, noshow: 7, unsub: 8, afBuyer: 15, sheetOnly: 17, rpPending: 21, rpConfirmed: 22 };
 const LAUNCH_START = '2026-10-11';
-const AF_END = '2026-11-02';
-const AF_LAST_MAIL_DAY = '2026-11-01';
+const AF_END = AF_SALE.bis; // Ende des aktuellen/letzten AdsFlow-Sales, Pflege nur in mails.js
+const AF_LAST_MAIL_DAY = '2026-11-01'; // Ende der Launch-Wellen A/B (fest, Launch 2026)
 const WEEK_CAP = 3; // höchstens 3 Mails in 7 Tagen, außer Kauf-Hilfe und Deadline
 const URGENT = new Set(['KA', 'KB', 'D0', 'D1', 'D2']);
 const DEADLINE = new Set(['D0', 'D1', 'D2']); // ignorieren alle Grenzen, auch 1 pro Tag
 // Diese Mails gehen nicht sofort, sondern am selben Tag um 14 Uhr (Berlin) raus, damit zuerst
 // die engagiertesten Empfänger Signale an Gmail/GMX senden (Alex 2026-10-11).
 const SEND_LATER = { A1G: 14, R1S: 14 };
+const SINGLE = new Set(['Q0']); // Einzelversand statt Kampagne
 
 const berlinDay = (d = new Date()) => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(d);
 const addDays = (day, n) => {
@@ -66,6 +68,11 @@ function view(c) {
     blocked: c.emailBlacklisted || lists.has(L.unsub),
   };
   v.kauf = dayOf(a.KAUF_DATUM);
+  v.optin = dayOf(a.RP_OPTIN);
+  v.optinOk = dayOf(a.RP_OPTIN_OK);
+  // Anforderer der Aufzeichnung über /live-workshop. Alte Workshop-Leads (Liste 4) bleiben in ihrer Strecke.
+  v.pend = lists.has(L.rpPending) && !lists.has(L.rpConfirmed) && !lists.has(L.all) && !v.optinOk;
+  v.req = lists.has(L.rpConfirmed) && !lists.has(L.all) && !!v.optinOk;
   v.newBundleBuyer = v.buyerBundle && v.kauf >= LAUNCH_START; // kauft während der Strecke → Upsell-Strecke
   v.w1 = !v.newBundleBuyer && (lists.has(L.buyer) || lists.has(L.live));
   v.w2 = !v.newBundleBuyer && lists.has(L.noshow) && !lists.has(L.buyer) && !v.buyerBundle;
@@ -78,7 +85,7 @@ function rules(T, evening) {
   const s = (v, k) => v.sent[k];
   const R = [];
   // Wer bekommt die Deadline-Mails: alle in einer AdsFlow-Strecke, Upsell-Käufer und alle aus dem Bundle-Nachfass
-  const inAF = (v) => s(v, 'A1') || s(v, 'B1') || s(v, 'U1') || s(v, 'P1');
+  const inAF = (v) => s(v, 'A1') || s(v, 'B1') || s(v, 'C1') || s(v, 'U1') || s(v, 'P1');
   const KA = ['KA', 'KA', (v) => v.afChk >= LAUNCH_START && T >= addDays(v.afChk, 1) && !v.buyerAF && !s(v, 'KA')];
   if (evening) {
     R.push(['D2', 'D2', (v) => T === AF_END && v.afVisit && !v.buyerAF && !s(v, 'D2')]);
@@ -91,8 +98,8 @@ function rules(T, evening) {
   R.push(['KB', 'KB', (v) => v.rpChk >= LAUNCH_START && T >= addDays(v.rpChk, 1) && !v.buyerBundle && !s(v, 'KB')]);
 
   // Upsell: Bundle-Kauf ab Strecken-Start → Tag danach U1, bei Interesse 3 Tage später AdsFlow 3
-  R.push(['U1', 'U1', (v) => v.newBundleBuyer && !v.buyerAF && T >= addDays(v.kauf, 1) && T <= AF_LAST_MAIL_DAY && !s(v, 'U1')]);
-  R.push(['U2', 'A3', (v) => v.newBundleBuyer && !v.buyerAF && s(v, 'U1') && v.engagedSince(s(v, 'U1')) && T >= addDays(s(v, 'U1'), 3) && T <= AF_LAST_MAIL_DAY && !s(v, 'U2')]);
+  R.push(['U1', 'U1', (v) => v.newBundleBuyer && !v.buyerAF && T >= addDays(v.kauf, 1) && T <= addDays(v.kauf, 7) && !s(v, 'U1')]);
+  R.push(['U2', 'A3', (v) => v.newBundleBuyer && !v.buyerAF && s(v, 'U1') && v.engagedSince(s(v, 'U1')) && T >= addDays(s(v, 'U1'), 3) && !s(v, 'U2')]);
 
   // Bundle-Nachfass nach gesehenem Pitch
   R.push(['P1', 'P1', (v) => v.rpPitch && T >= addDays(v.rpPitch, 1) && !v.buyerBundle && !s(v, 'P1')]);
@@ -101,9 +108,28 @@ function rules(T, evening) {
 
   // Replay-Strecke (Liste 7). Liste 17 = nur im Sheet, bekommt die neutrale Fassung.
   R.push(['R1', (v) => (v.lists.has(L.sheetOnly) ? 'R1S' : 'R1'), (v) => v.lists.has(L.noshow) && !v.rpStart && T >= '2026-10-14' && T <= '2026-10-20' && !v.buyerBundle && !s(v, 'R1')]);
-  R.push(['RW', 'RW', (v) => v.lists.has(L.noshow) && v.rpStart && !v.rpPitch && T >= addDays(v.rpStart, 2) && T <= '2026-10-29' && !v.buyerBundle && !s(v, 'RW')]);
+  R.push(['RW', 'RW', (v) => ((v.lists.has(L.noshow) && T <= '2026-10-29') || v.req) && v.rpStart && !v.rpPitch && T >= addDays(v.rpStart, 2) && !v.buyerBundle && !s(v, 'RW')]);
   R.push(['R2', 'R2', (v) => v.lists.has(L.noshow) && s(v, 'R1') && !v.rpStart && T >= maxDay('2026-10-16', addDays(s(v, 'R1'), 2)) && T <= addDays(s(v, 'R1'), 5) && !v.buyerBundle && !s(v, 'R2')]);
   R.push(['R3', 'R3', (v) => v.lists.has(L.noshow) && s(v, 'R2') && !v.rpStart && T >= maxDay('2026-10-20', addDays(s(v, 'R2'), 4)) && T <= '2026-10-24' && !v.buyerBundle && !s(v, 'R3')]);
+
+  // Anforderer der Aufzeichnung (/live-workshop). Zeitlos, ohne Enddatum. Doku: .agents/mail-engine.md
+  R.push(['Q0', 'Q0', (v) => v.pend && v.optin && T >= addDays(v.optin, 1) && T <= addDays(v.optin, 5) && !s(v, 'Q0')]);
+  R.push(['Q1', 'Q1', (v) => v.req && !v.rpStart && !v.buyerBundle && T >= addDays(v.optinOk, 1) && !s(v, 'Q1')]);
+  R.push(['Q3', 'Q3', (v) => v.req && !v.rpStart && !v.buyerBundle && s(v, 'Q1') && T >= addDays(s(v, 'Q1'), 3) && !s(v, 'Q3')]);
+  // AdsFlow für Anforderer: erst nach der Bundle-Strecke (P3), nach Q3 oder nach RW ohne Pitch
+  const cEntry = (v) => {
+    if (s(v, 'P3')) return addDays(s(v, 'P3'), 2);
+    if (v.rpPitch) return null; // P1 bis P3 laufen noch
+    if (s(v, 'Q3')) return addDays(s(v, 'Q3'), 2);
+    if (s(v, 'RW')) return addDays(s(v, 'RW'), 4);
+    return null;
+  };
+  const c1 = (v) => s(v, 'C1');
+  R.push(['C1', 'C1', (v) => v.req && !v.buyerAF && !v.buyerBundle && cEntry(v) && T >= cEntry(v) && !c1(v)]);
+  R.push(['C1X', 'C1X', (v) => v.req && !v.buyerAF && c1(v) && !v.engagedSince(c1(v)) && T >= addDays(c1(v), 3) && T <= addDays(c1(v), 5) && !s(v, 'C1X')]);
+  R.push(['C2', 'A2', (v) => v.req && !v.buyerAF && c1(v) && v.engagedSince(c1(v)) && T >= addDays(c1(v), 3) && !s(v, 'C2')]);
+  R.push(['C3', 'A3', (v) => v.req && !v.buyerAF && s(v, 'C2') && T >= addDays(s(v, 'C2'), 3) && !s(v, 'C3')]);
+  R.push(['C4', 'A4', (v) => v.req && !v.buyerAF && s(v, 'C3') && T >= addDays(s(v, 'C3'), 3) && !s(v, 'C4')]);
 
   // AdsFlow Welle 1: Käufer (vor dem Launch) + Live-Zuschauer
   const a1 = (v) => s(v, 'A1');
@@ -167,8 +193,40 @@ export async function loadContacts() {
   return all;
 }
 
+// Q0 geht als Einzelmail (Transaktions-API), weil jeder Kontakt seinen eigenen Bestätigungslink braucht
+async function sendSingles(g, T, byId) {
+  const secret = process.env.VF_TRACK_SECRET;
+  if (!secret) throw new Error('VF_TRACK_SECRET fehlt');
+  let count = 0;
+  for (const id of g.ids) {
+    const c = byId.get(id);
+    if (!c || !c.email) continue;
+    const vorname = (c.attributes && c.attributes.VORNAME) || '';
+    const m = mailFor(g.mail, { T, vorname, optin: `https://vorflows.com/api/replay-optin?c=${optinToken(id, secret)}` });
+    await brevo('/smtp/email', {
+      method: 'POST',
+      body: JSON.stringify({
+        sender: { name: 'Alex von vorflows', email: 'alex@adolution.de' },
+        replyTo: { name: 'Alex von vorflows', email: 'alex@adolution.de' },
+        to: [{ email: c.email, ...(vorname ? { name: vorname } : {}) }],
+        subject: m.subject,
+        htmlContent: m.html,
+        tags: ['mail-engine', g.step],
+      }),
+    });
+    const prev = (c.attributes?.MAILS_SENT || '').trim();
+    await brevo(`/contacts/${id}?identifierType=contact_id`, {
+      method: 'PUT',
+      body: JSON.stringify({ attributes: { MAILS_SENT: (prev ? prev + ',' : '') + `${g.step}:${T}`, MAIL_LAST: T } }),
+    });
+    count++;
+  }
+  return { label: `${g.step} ${g.mail} ${T} einzeln`, count };
+}
+
 async function sendGroup(g, T, evening, byId) {
-  const mail = mailFor(g.mail);
+  if (SINGLE.has(g.mail)) return sendSingles(g, T, byId);
+  const mail = mailFor(g.mail, { T });
   const label = `${g.step} ${g.mail} ${T}${evening ? ' abends' : ''}`;
   const list = await brevo('/contacts/lists', { method: 'POST', body: JSON.stringify({ name: 'Versand ' + label, folderId: SEND_FOLDER }) });
   for (let i = 0; i < g.ids.length; i += 150) {
