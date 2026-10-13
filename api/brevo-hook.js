@@ -24,7 +24,9 @@ export default async function handler(req, res) {
   const items = Array.isArray(body) ? body : [body];
   for (const ev of items) {
     const email = String(ev.email || '').trim().toLowerCase();
-    if (!email || !['opened', 'click', 'unique_opened', 'proxy_open'].includes(ev.event)) continue;
+    // proxy_open = Apple Mail Privacy Protection: öffnet automatisch, ohne dass jemand liest. Zählt nicht,
+    // sonst bekämen echte Nicht-Leser nie die zweite Mail (Alex 2026-10-13).
+    if (!email || !['opened', 'click', 'unique_opened'].includes(ev.event)) continue;
     try {
       await fetch(`${BREVO}/contacts/${encodeURIComponent(email)}`, {
         method: 'PUT',
