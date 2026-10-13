@@ -180,7 +180,7 @@ async function sendGroup(g, T, evening, byId) {
       name: 'Auto ' + label,
       subject: mail.subject,
       previewText: mail.preview,
-      sender: { id: 1 },
+      sender: { name: 'Alex von vorflows', email: 'alex@adolution.de' },
       replyTo: 'alex@adolution.de',
       htmlContent: mail.html,
       recipients: { listIds: [list.id], exclusionListIds: [L.unsub] },
