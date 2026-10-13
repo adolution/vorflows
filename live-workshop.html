@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um. · vorflows</title>
-  <meta name="description" content="Kostenloser Live-Workshop für Shopify-Founder. In 60 Minuten baue ich mit KI live einen Shop um: mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
+  <title>Workshop-Aufzeichnung: Sieh zu, wie ich mit KI einen Shopify-Shop umbaue · vorflows</title>
+  <meta name="description" content="Kostenlose Aufzeichnung vom Live-Workshop am 10. September 2026: In 52 Minuten baue ich mit KI einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Ohne eine Zeile Code." />
   <meta name="author" content="vorflows" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="theme-color" content="#FAFAF9" />
@@ -23,16 +23,16 @@
   <meta property="og:locale" content="de_DE" />
   <meta property="og:site_name" content="vorflows" />
   <meta property="og:url" content="https://vorflows.com/live-workshop" />
-  <meta property="og:title" content="Live-Workshop: Ich baue mit KI vor deinen Augen einen Shopify-Shop um." />
-  <meta property="og:description" content="In 60 Minuten baue ich mit KI live einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
+  <meta property="og:title" content="Workshop-Aufzeichnung: Sieh zu, wie ich mit KI einen Shopify-Shop umbaue" />
+  <meta property="og:description" content="Die Aufzeichnung vom Live-Workshop: In 52 Minuten baue ich mit KI einen Shopify-Shop um. Mehr Umsatz, höhere Rankings, 5.232 Euro im Jahr an App-Kosten gespart. Kostenlos, ohne eine Zeile Code." />
   <meta property="og:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="vorflows Live-Workshop für Shopify-Founder" />
+  <meta property="og:image:alt" content="Aufzeichnung vom vorflows Live-Workshop für Shopify-Founder" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Live-Workshop: Shopify-Shop mit KI umbauen" />
-  <meta name="twitter:description" content="In 60 Minuten live: Apps ersetzen, ranken, Conversion-Rate verbessern. Kostenlos, ohne eine Zeile Code." />
+  <meta name="twitter:title" content="Workshop-Aufzeichnung: Shopify-Shop mit KI umbauen" />
+  <meta name="twitter:description" content="Aufzeichnung, 52 Minuten: Apps ersetzen, ranken, Conversion-Rate verbessern. Kostenlos, ohne eine Zeile Code." />
   <meta name="twitter:image" content="https://vorflows.com/brand_assets/og-image.jpg" />
 
   <!-- Self-hosted Fonts + gemeinsame Basis im dunklen Look (wie /adsflow, /sales, Startseite) -->
@@ -44,17 +44,17 @@
 
   <style>
     /* ============================================================
-       vorflows · Live-Workshop-Anmeldung (Variante A · dunkler Look)
-       Basis: /assets/site-dark.css (Tokens, Typo, .btn, .qa, .foot, .rise).
+       vorflows · Replay-Anmeldung (seit 2026-10-13, vorher Live-Workshop-LP)
+       Basis: /assets/site-light.css (Tokens, Typo, .btn, .qa, .foot, .rise).
        Funnel: kein Kauf-Button, keine Links zu anderen Seiten der Website.
-       Klassen, an denen JS/Tracking hängt, bleiben: .nav#nav, .lw-hero,
-       .lw-final, .sticky-cta, [data-webinar-cta], .lwq*, #reg-note,
-       .cookie-*, details (FAQ). Doku: .agents/live-workshop-tracking.md
+       Jeder [data-webinar-cta] öffnet das Popup #lwqModal, Formular #optinForm
+       → /api/replay-optin → Brevo schickt den Link (Double-Opt-in).
+       Doku: .agents/live-workshop-tracking.md §10
        ============================================================ */
     [hidden] { display: none !important; }
     html { scroll-padding-top: 84px; }
 
-    /* ---------- Kopfzeile: die EINE feste Leiste (auch am Handy, trägt „Platz sichern") ---------- */
+    /* ---------- Kopfzeile: die EINE feste Leiste (auch am Handy, trägt „Aufzeichnung ansehen") ---------- */
     .nav { position: sticky; top: 0; padding-top: env(safe-area-inset-top); border-bottom-color: transparent; transition: border-color .3s var(--ease-q); }
     .nav.scrolled { border-bottom-color: var(--line); }
     @media (max-width: 760px) {
@@ -101,6 +101,15 @@
     .datebar .lbl { font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--ink-3); }
     .datebar .dt { grid-column: 1 / -1; font-family: var(--sans); font-weight: 450; font-size: clamp(1.2rem, 1.1rem + .45vw, 1.45rem); line-height: 1.2; letter-spacing: -.015em; color: var(--ink); }
     @media (max-width: 360px) { .datebar .dt { font-size: 1.06rem; } }
+    /* Aufzeichnung statt Live: Punkt ruht, kein Pulsieren */
+    .datebar .ldot { background: var(--ink-3); }
+    .datebar .ldot::after { content: none; }
+
+    /* Kennzeichen „Aufzeichnung“: Aufnahme-Punkt in Pille */
+    .rec-pill { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.4rem; padding: .4rem .9rem .4rem .75rem; border: 1px solid var(--line-2); border-radius: 999px; background: var(--raise-2); box-shadow: var(--shadow-raise); font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--ink-2); }
+    .rec { position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px var(--orange-soft); }
+    .rec--ok { background: #3F7D4E; box-shadow: 0 0 0 3px rgba(63, 125, 78, .16); }
+    @media (max-width: 760px) { .rec-pill { margin-bottom: 1rem; font-size: 13.5px; } }
 
     @media (max-width: 760px) {
       .lw-hero { display: block; min-height: 0; padding-top: clamp(13rem, 58vw, 17rem); padding-bottom: 3.5rem; }
@@ -260,20 +269,6 @@
     .lw-final .cta-sub { margin-top: 1rem; font-size: 14px; color: var(--ink-3); }
     @media (max-width: 560px) { .lw-final > .wrap > .btn { width: 100%; } }
 
-    /* Fallback-Karte, falls das Anmeldefenster nicht aufgeht (schwebend, deckend) */
-    #reg-note { position: fixed; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 80; display: flex; flex-direction: column; align-items: center; gap: .75rem; width: calc(100% - 32px); max-width: 360px; padding: 1.3rem 1.4rem; text-align: center; background: var(--raise-2); border: 1px solid var(--line-2); border-radius: var(--r-surface); box-shadow: var(--shadow-float); }
-    #reg-note .reg-head { font-size: 15.5px; font-weight: 600; color: var(--ink); }
-    #reg-note .reg-fallback { font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
-    #reg-note .reg-fallback a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(188, 90, 53, .6); text-underline-offset: 3px; }
-    #reg-note .reg-fallback a:hover { color: var(--orange-hi); }
-    #reg-note .reg-fallback a:active { opacity: .7; }
-    #reg-note .reg-fallback a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 3px; }
-
-    /* WebinarJam-CSS setzt auf .wj-embed-button eigene Transition, Hover-Deckkraft und outline:none.
-       Unsere Pille behält Federung + sichtbaren Fokus. */
-    .lwq .btn.wj-embed-button, #reg-note .btn.wj-embed-button { transition: transform .5s var(--ease), background-color .25s var(--ease-q), box-shadow .5s var(--ease); opacity: 1; }
-    .lwq .btn.wj-embed-button:hover, #reg-note .btn.wj-embed-button:hover, .lwq .btn.wj-embed-button:focus:hover, #reg-note .btn.wj-embed-button:focus:hover { opacity: 1; }
-    .lwq .btn.wj-embed-button:focus-visible, #reg-note .btn.wj-embed-button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
     /* ---------- Fußzeile ---------- */
     footer.foot { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
@@ -292,7 +287,7 @@
     .lwq-close:hover { color: var(--ink); background: var(--raise); }
     .lwq-close:active { transform: scale(.94); }
     .lwq-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-    .lwq-kicker { display: flex; align-items: center; gap: .7rem; padding-right: 3rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
+    .lwq-kicker { display: flex; align-items: center; gap: .6rem; padding-right: 3rem; font-size: 13.5px; font-weight: 500; line-height: 1.4; color: var(--ink-3); }
     .lwq-kicker .seg { display: inline-flex; gap: 4px; }
     .lwq-kicker .seg i { width: 18px; height: 3px; border-radius: 2px; background: var(--line-2); }
     .lwq-kicker .seg i.on { background: var(--orange-hi); }
@@ -301,8 +296,30 @@
     .lwq-sub { margin-top: .8rem; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
     .lwq-step > .btn { width: 100%; margin-top: 1.4rem; }
     .lwq-step > .btn + .btn { margin-top: .7rem; }
-    .lwq-choices { display: grid; gap: .7rem; margin-top: 1.5rem; }
-    .lwq-choices .btn { width: 100%; }
+    .lwq-step > .lwq-sub + .lwq-sub { margin-top: .6rem; }
+    .lwq-step[data-step="done"] .lwq-title:focus { outline: none; }
+    .lwq-again { display: block; margin: 1rem auto 0; padding: .4rem .6rem; border: 0; border-radius: 6px; background: none; color: var(--ink-3); font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: color .2s var(--ease-q), transform .3s var(--ease); }
+    .lwq-again:hover { color: var(--ink); }
+    .lwq-again:active { transform: scale(.97); }
+    .lwq-again:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+    /* Replay-Formular */
+    .optin { display: grid; gap: .9rem; margin-top: 1.4rem; }
+    .fld { display: grid; gap: .35rem; }
+    .fld span { font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--ink-2); }
+    .fld input { width: 100%; min-height: 50px; padding: 0 1rem; border: 1px solid var(--line-2); border-radius: 12px; background: var(--bg); color: var(--ink); font: inherit; font-size: 16px; transition: border-color .2s var(--ease-q), box-shadow .25s var(--ease-q); }
+    .fld input:hover { border-color: var(--ink-3); }
+    .fld input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-soft); }
+    .fld input:focus-visible { outline: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .optin .btn { width: 100%; margin-top: .3rem; }
+    .optin .btn:disabled { opacity: .7; cursor: progress; }
+    .optin-err { margin: 0; font-size: 14px; line-height: 1.5; color: #A3341C; }
+    .optin-legal { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--ink-3); }
+    .optin-legal a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; border-radius: 3px; }
+    .optin-legal a:hover { color: var(--orange-hi); }
+    .optin-legal a:active { opacity: .7; }
+    .optin-legal a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
     /* ---------- Cookie-Hinweis (schwebend, deckend) ---------- */
     .cookie-backdrop { position: fixed; inset: 0; z-index: 1099; background: rgba(20, 20, 19, .34); animation: lwFade .25s var(--ease-q); }
@@ -345,24 +362,25 @@
   <!-- ===================== NAV (Funnel: nur Wordmark + Anmelde-CTA) ===================== -->
   <header class="nav" id="nav">
     <div class="wrap">
-      <a href="#top" class="brand" aria-label="Nach oben"><span class="wordmark">vor<span class="flows">flows</span></span><span class="prod">Live-Workshop</span></a>
+      <a href="#top" class="brand" aria-label="Nach oben"><span class="wordmark">vor<span class="flows">flows</span></span><span class="prod">Workshop-Aufzeichnung</span></a>
       <div class="nav-right">
-        <button class="btn btn--sm" type="button" data-webinar-cta>Platz sichern</button>
+        <button class="btn btn--sm" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
       </div>
     </div>
   </header>
 
   <main>
   <!-- ===================== HERO ===================== -->
-  <section class="lw-hero" aria-label="Live-Workshop">
+  <section class="lw-hero" aria-label="Workshop-Aufzeichnung">
     <div class="vbg" aria-hidden="true"><img src="/assets/images/alex-workshop-square.jpg" alt="" fetchpriority="high" /></div>
     <div class="wrap">
-      <h1 class="rise d1">Ich baue mit KI vor deinen Augen einen <em>Shopify-Shop</em> um</h1>
-      <p class="lead rise d2">Live in 60 Minuten: Apps ersetzen, ranken, Conversion-Rate verbessern. Ohne Code.</p>
+      <p class="rec-pill rise d1"><span class="rec" aria-hidden="true"></span>Aufzeichnung vom Live-Workshop</p>
+      <h1 class="rise d1">Sieh zu, wie ich mit KI einen <em>Shopify-Shop</em> umbaue</h1>
+      <p class="lead rise d2">52 Minuten am echten Shop: Apps ersetzen, ranken, Conversion-Rate verbessern. Ohne Code. Trag deine E-Mail ein, dann schicke ich dir den Link.</p>
       <div class="hero-act rise d3">
-        <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
+        <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live aufgezeichnet am</span><span class="dt" data-webinar-date>Donnerstag, 10. September 2026</span></div>
         <div class="cta-row">
-          <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
+          <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
         </div>
       </div>
     </div>
@@ -373,7 +391,7 @@
     <div class="wrap">
       <div class="agenda">
         <div class="sec-head">
-          <h2>Das baue ich <em>live</em> in den Shop</h2>
+          <h2>Das baue ich in der Aufzeichnung <em>live</em> in den Shop</h2>
           <p class="lead">Ich rede nicht über KI. Ich öffne den Shop und mache es vor deinen Augen.</p>
         </div>
         <ol class="steps">
@@ -405,9 +423,9 @@
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Stefan Kisker</span><span class="lw-quote-co">Prometheus Performance GmbH</span></figcaption>
       </figure>
       <div class="inline-cta">
-        <p class="ic-line">Genau das siehst du <em>live</em></p>
-        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · 60 Min · mit Q&amp;A</p>
+        <p class="ic-line">Genau das siehst du in der <em>Aufzeichnung</em></p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
+        <p class="ic-note">Aufgezeichnet am <span data-webinar-date>Donnerstag, 10. September 2026</span> · 52 Min · mit Fragerunde</p>
       </div>
     </div>
   </section>
@@ -437,8 +455,8 @@
       </div>
       <div class="inline-cta">
         <p class="ic-line">Lern es von jemandem, der es <em>täglich</em> macht</p>
-        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · ohne Vorkenntnisse</p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
+        <p class="ic-note">Kostenlos · ohne Vorkenntnisse</p>
       </div>
     </div>
   </section>
@@ -449,7 +467,7 @@
       <div class="cost">
         <div>
           <p class="costline">Ein typischer App-Stack kostet dich <span class="big">5.232 Euro</span> im Jahr. Neun Abos, Monat für Monat.</p>
-          <p class="lead">Im Workshop rechnest du live mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
+          <p class="lead">In der Aufzeichnung rechnest du mit, wie viel davon sich mit Code einmalig ersetzen lässt. Du siehst die Mechanik, kein Verkaufsgespräch.</p>
         </div>
         <div class="cost-card">
           <span class="meta">436 Euro im Monat</span>
@@ -468,9 +486,9 @@
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Adrian</span><span class="lw-quote-co">Founder, Skincare D2C</span></figcaption>
       </figure>
       <div class="inline-cta">
-        <p class="ic-line">Rechne live mit, was <em>weg</em> kann</p>
-        <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-        <p class="ic-note"><span data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span> · live</p>
+        <p class="ic-line">Rechne mit, was <em>weg</em> kann</p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
+        <p class="ic-note">Der Link kommt per Mail</p>
       </div>
     </div>
   </section>
@@ -480,7 +498,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2>Du brauchst keinen <em>Entwickler</em> dafür</h2>
-        <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. Ich nehme sie dir live auseinander.</p>
+        <p class="lead">Die drei Sätze, die Founder vom Loslegen abhalten. In der Aufzeichnung nehme ich sie dir auseinander.</p>
       </div>
       <div class="objs">
         <div class="obj">
@@ -504,9 +522,9 @@
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Michael Bodeske</span><span class="lw-quote-co">massagesesselwelt.de</span></figcaption>
       </figure>
       <div class="inline-cta">
-        <p class="ic-line">Kein Code, kein Risiko, nur <em>60 Minuten</em></p>
-        <button class="btn btn--lg" type="button" data-webinar-cta>Platz sichern</button>
-        <p class="ic-note">Kostenlos · live · keine Aufzeichnung</p>
+        <p class="ic-line">Kein Code, kein Risiko, nur <em>52 Minuten</em></p>
+        <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
+        <p class="ic-note">Kostenlos · mit Kapiteln zum Springen</p>
       </div>
     </div>
   </section>
@@ -527,11 +545,11 @@
         </div>
         <div class="qual-no">
           <p class="qlabel">Nicht für dich, wenn</p>
-          <h3>Du nur zuschauen willst</h3>
+          <h3>Du eine Abkürzung ohne Mitdenken suchst</h3>
           <ul class="no">
             <li>Du noch keinen Shop hast und nur stöbern willst</li>
             <li>Du eine Ein-Klick-App suchst, die alles allein macht</li>
-            <li>Du nicht bereit bist, 60 Minuten konzentriert dabei zu sein</li>
+            <li>Du dir keine Stunde Zeit nehmen willst, um konzentriert zuzuschauen</li>
           </ul>
         </div>
       </div>
@@ -548,15 +566,15 @@
       <div class="beta">
         <div>
           <div class="sec-head">
-            <h2>Bis heute lief das nur in <em>geschlossener Beta</em></h2>
-            <p class="lead">Zum ersten Mal zeige ich das System öffentlich, weil die Beta-Resultate es rechtfertigen.</p>
+            <h2>Bis zum Workshop lief das nur in <em>geschlossener Beta</em></h2>
+            <p class="lead">Im Workshop habe ich das System zum ersten Mal öffentlich gezeigt, weil die Beta-Resultate es rechtfertigen.</p>
             <p class="lead">Wer das jetzt nutzt, baut einen echten Vorsprung auf. Was heute wenige tun, machen in zwei Jahren alle.</p>
           </div>
           <figure class="lw-quote">
             <blockquote>Heute ändere ich hunderte Produkte mit einem einzigen Befehl. Das spart mir jede Woche mehrere Stunden. Ich bin immer noch total geflasht, das war jeden Cent wert.</blockquote>
             <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Markus Bonk</span><span class="lw-quote-co">Rheinland.Coffee</span></figcaption>
           </figure>
-          <p class="live-note">Keine Aufzeichnung. Nur wer live dabei ist, sieht jeden Schritt.</p>
+          <p class="live-note">In der Aufzeichnung siehst du jeden Schritt am echten Shop.</p>
         </div>
         <figure class="stagephoto">
           <img src="/assets/images/alex-workshop-square.jpg" alt="Alex live auf der Bühne vor Publikum" loading="lazy" width="2268" height="2268" />
@@ -571,24 +589,28 @@
       <h2>Häufige Fragen</h2>
       <div class="faq qa">
         <details class="faq-item" open>
-          <summary>Kostet der Workshop etwas?<span class="pm" aria-hidden="true"></span></summary>
-          <div class="faq-body ans">Nein, der Live-Workshop ist komplett kostenlos.</div>
+          <summary>Kostet die Aufzeichnung etwas?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Nein, die Aufzeichnung ist komplett kostenlos.</div>
         </details>
         <details class="faq-item">
           <summary>Brauche ich Vorkenntnisse im Coden?<span class="pm" aria-hidden="true"></span></summary>
           <div class="faq-body ans">Nein. Du musst kein Entwickler sein. Du musst nur sagen können, was du willst. Genau das zeige ich live.</div>
         </details>
         <details class="faq-item">
-          <summary>Gibt es eine Aufzeichnung?<span class="pm" aria-hidden="true"></span></summary>
-          <div class="faq-body ans">Nein, es gibt keine Aufzeichnung. Jeden Schritt siehst du nur live, und nur dort kannst du direkt Fragen stellen. Plane also fest mit dem Termin.</div>
+          <summary>Wie bekomme ich die Aufzeichnung?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Trag deinen Vornamen und deine E-Mail-Adresse ein. Du bekommst direkt eine Mail mit dem Link. Ein Klick darauf bestätigt deine Adresse und startet die Aufzeichnung. Keine Mail da? Schau im Spam- oder Werbung-Ordner nach.</div>
         </details>
         <details class="faq-item">
           <summary>Für welchen Shop ist das gedacht?<span class="pm" aria-hidden="true"></span></summary>
           <div class="faq-body ans">Für laufende Shopify-Shops. Ich zeige alles an einer echten Produktseite: Apps ersetzen, ranken, Conversion-Rate verbessern.</div>
         </details>
         <details class="faq-item">
-          <summary>Wie lange dauert es?<span class="pm" aria-hidden="true"></span></summary>
-          <div class="faq-body ans">Circa 60 Minuten. Je nach Menge der Fragen kann es auch bis zu 90 Minuten dauern. Plane dir also etwas Zeit ein.</div>
+          <summary>Wie lang ist die Aufzeichnung?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">52 Minuten, die Fragerunde vom Live-Termin ist mit drin. Unter dem Video springst du direkt zu den Kapiteln, die dich interessieren.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Kann ich trotzdem Fragen stellen?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-body ans">Ja. Antworte einfach auf die Mail mit dem Link, die Antwort kommt von mir persönlich.</div>
         </details>
       </div>
     </div>
@@ -598,54 +620,48 @@
   <section class="lw-final">
     <div class="vbg" aria-hidden="true"><img src="/brand_assets/webinar/appstack.webp" alt="" loading="lazy" /></div>
     <div class="wrap">
-      <h2>Sei <em>live</em> dabei</h2>
-      <p class="lead">In 60 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
-      <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live-Termin</span><span class="dt" data-webinar-date>Donnerstag, 10. September · 11:00 Uhr</span></div>
-      <button class="btn btn--lg" type="button" data-webinar-cta>Kostenlos anmelden</button>
-      <p class="cta-sub">Live mit Fragerunde am Ende · keine Aufzeichnung</p>
+      <h2>Schau dir die <em>Aufzeichnung</em> an</h2>
+      <p class="lead">In 52 Minuten baue ich vor deinen Augen einen Shopify-Shop um. Du gehst raus und weißt, was KI im Shop machen kann und wo die Grenzen sind.</p>
+      <div class="datebar"><span class="ldot" aria-hidden="true"></span><span class="lbl">Live aufgezeichnet am</span><span class="dt" data-webinar-date>Donnerstag, 10. September 2026</span></div>
+      <button class="btn btn--lg" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
+      <p class="cta-sub">Kostenlos · Link per Mail · mit Fragerunde am Ende</p>
       <figure class="lw-quote lw-quote--mini">
         <blockquote>Das ist genau das, wonach ich schon seit Wochen gesucht habe.</blockquote>
         <figcaption><span class="lw-quote-dot" aria-hidden="true"></span><span class="lw-quote-name">Manuela Wonning</span><span class="lw-quote-co">Royal Vitality, Fashion</span></figcaption>
       </figure>
-      <div id="reg-note" role="status" aria-live="polite" hidden>
-        <p class="reg-head">Kein Fenster aufgegangen?</p>
-        <button class="btn wj-embed-button" type="button" data-webinarHash="0qgn9gag">Kostenlos anmelden</button>
-        <p class="reg-fallback">Oder schreib an
-          <a href="mailto:alex@adolution.de?subject=Workshop-Platz">alex@adolution.de</a>.</p>
-      </div>
     </div>
   </section>
   </main>
 
   <!-- ===================== STICKY MOBILE-CTA (bewusst aus, siehe CSS) ===================== -->
   <div class="sticky-cta" id="stickyCta" aria-hidden="true">
-    <button class="btn" type="button" data-webinar-cta>Kostenlos anmelden</button>
+    <button class="btn" type="button" data-webinar-cta>Aufzeichnung ansehen</button>
   </div>
 
-  <!-- ===================== COMMITMENT-LADDER (Qualify-Modal) ===================== -->
+  <!-- ===================== REPLAY-ANFORDERUNG (Popup-Formular → /api/replay-optin → Brevo) ===================== -->
   <div class="lwq-backdrop" id="lwqBackdrop" hidden></div>
   <div class="lwq" id="lwqModal" hidden role="dialog" aria-modal="true" aria-labelledby="lwqTitle">
     <button class="lwq-close" id="lwqClose" type="button" aria-label="Schließen">&times;</button>
-    <div class="lwq-step" data-step="1">
-      <p class="lwq-kicker"><span class="seg" aria-hidden="true"><i class="on"></i><i></i></span>Schritt 1 von 2</p>
-      <p class="lwq-title" id="lwqTitle">Hast du einen Shopify-Shop?</p>
-      <p class="lwq-sub">Dieser Live-Workshop ist <strong>nur für bestehende Shopify-Shops</strong>. Ohne eigenen Shop bringt er dir nichts. Bitte sei hier ehrlich.</p>
-      <div class="lwq-choices">
-        <button class="btn btn--lg" type="button" data-lwq-shopify="yes">Ja, hab ich</button>
-        <button class="btn btn--ghost" type="button" data-lwq-shopify="no">Nein, hab ich nicht</button>
-      </div>
+    <div class="lwq-step" data-step="form">
+      <p class="lwq-kicker"><span class="rec" aria-hidden="true"></span>Aufzeichnung vom 10. September 2026</p>
+      <p class="lwq-title" id="lwqTitle">Wohin soll ich dir den Link schicken?</p>
+      <p class="lwq-sub">Du bekommst sofort eine Mail. Ein Klick darauf startet die Aufzeichnung.</p>
+      <form class="optin" id="optinForm" novalidate>
+        <label class="fld"><span>Vorname</span><input type="text" name="vorname" autocomplete="given-name" maxlength="40" /></label>
+        <label class="fld"><span>E-Mail-Adresse</span><input type="email" name="email" autocomplete="email" inputmode="email" required maxlength="254" /></label>
+        <label class="hp" aria-hidden="true">Website<input type="text" name="hp" tabindex="-1" autocomplete="off" /></label>
+        <p class="optin-err" id="optinErr" role="alert" hidden></p>
+        <button class="btn btn--lg" type="submit" id="optinBtn">Aufzeichnung anfordern</button>
+        <p class="optin-legal">Mit der Anforderung bekommst du den Link und danach gelegentlich Mails von mir rund um KI im Shopify-Shop. Abmelden geht mit einem Klick in jeder Mail. Details in der <a href="/datenschutz-lw-b">Datenschutzerklärung</a>.</p>
+      </form>
     </div>
-    <div class="lwq-step" data-step="2" hidden>
-      <p class="lwq-kicker"><span class="seg" aria-hidden="true"><i class="on"></i><i class="on"></i></span>Schritt 2 von 2</p>
-      <p class="lwq-title">Kannst du am Donnerstag, 10. September, 11:00 Uhr?</p>
-      <p class="lwq-sub">60 Minuten, live, mit Fragerunde. Keine Aufzeichnung.</p>
-      <button class="btn btn--lg wj-embed-button" type="button" data-lwq-confirm data-webinarHash="0qgn9gag">Ja, der Termin passt</button>
-    </div>
-    <div class="lwq-step" data-step="reject" hidden>
-      <p class="lwq-title">Ich habe ein passenderes Angebot für dich</p>
-      <p class="lwq-sub">Wenn du keinen Shop hast, bringt dir der Live-Workshop leider <strong>gar nichts</strong>. Alles, was ich zeige, läuft direkt im Shopify-Theme. Schreib mir stattdessen kurz, dann melde ich mich mit etwas, das wirklich zu dir passt.</p>
-      <a class="btn btn--lg" data-lwq-mailto href="mailto:alex@adolution.de?subject=Interesse%3A%20KI%20%2B%20Shopify%20(noch%20kein%20Shop)&amp;body=Hallo%2C%0A%0Aich%20habe%20noch%20keinen%20Shop%2C%20bin%20aber%20trotzdem%20interessiert%20am%20Thema%20KI%20%2B%20Shopify.%0A%0AViele%20Gr%C3%BC%C3%9Fe%0A">Passenderes Angebot anfragen</a>
-      <button class="btn btn--ghost" type="button" data-lwq-done>Nein danke, schließen</button>
+    <div class="lwq-step" data-step="done" hidden>
+      <p class="lwq-kicker"><span class="rec rec--ok" aria-hidden="true"></span>Unterwegs</p>
+      <p class="lwq-title" tabindex="-1">Schau in dein Postfach</p>
+      <p class="lwq-sub">Die Mail mit dem Link ist an <strong id="optinMail"></strong> unterwegs, Absender „Alex von vorflows“. Ein Klick auf „Aufzeichnung ansehen“ bestätigt deine Adresse und startet das Video.</p>
+      <p class="lwq-sub">Nichts da nach zwei Minuten? Schau im Spam- oder Werbung-Ordner nach.</p>
+      <button class="btn btn--ghost" type="button" data-lwq-done>Schließen</button>
+      <button class="lwq-again" type="button" data-lwq-again>Andere Adresse eingeben</button>
     </div>
   </div>
 
@@ -692,95 +708,81 @@
 
   <script>
     // ---- Termin zentral pflegen (eine Stelle, identisch zu A) ----
-    var WEBINAR_DATE = 'Donnerstag, 10. September · 11:00 Uhr'; // Live-Termin (eine Stelle, identisch zu A/B)
+    var WEBINAR_DATE = 'Donnerstag, 10. September 2026'; // Tag der Aufzeichnung (eine Stelle)
     document.querySelectorAll('[data-webinar-date]').forEach(function(e){ e.textContent = WEBINAR_DATE; });
 
-    // ---- Sign-up CTA → übergibt an Formular (später WebinarJam-Embed) ----
-    function openWebinarForm(){
-      var n = document.getElementById('reg-note');
-      if(n){ n.hidden = false; }
-    }
-
-    // ---- Commitment-Ladder: Termin bestätigen → Shopify-Qualifier → Formular ----
+    // ---- Replay-Anforderung: CTA → Popup-Formular → /api/replay-optin (Brevo schickt den Link) ----
     (function(){
       var modal = document.getElementById('lwqModal'), bd = document.getElementById('lwqBackdrop');
-      if(!modal || !bd){ document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', openWebinarForm); }); return; }
+      var form = document.getElementById('optinForm');
+      if(!modal || !bd || !form) return;
       var steps = modal.querySelectorAll('.lwq-step');
-      var lastFocused = null;
-      var visibleButtons = function(){
-        return Array.prototype.filter.call(modal.querySelectorAll('button'), function(el){ return !el.closest('[hidden]'); });
+      var err = document.getElementById('optinErr'), btn = document.getElementById('optinBtn');
+      var lastFocused = null, busy = false;
+      var ls = { get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+                 set:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
+      var track = function(name, props){ if(window.lwEvent) window.lwEvent(name, props); };
+      var focusables = function(){
+        return Array.prototype.filter.call(modal.querySelectorAll('button, input:not([tabindex="-1"]), a[href]'), function(el){ return !el.closest('[hidden]'); });
       };
       var show = function(step){
-        steps.forEach(function(s){ s.hidden = (s.getAttribute('data-step') !== String(step)); });
-        var first = modal.querySelector('.lwq-step[data-step="' + step + '"] .btn');
+        steps.forEach(function(s){ s.hidden = (s.getAttribute('data-step') !== step); });
+        var first = step === 'form' ? form.querySelector('input[name="' + (form.vorname.value ? 'email' : 'vorname') + '"]') : modal.querySelector('.lwq-step[data-step="done"] .lwq-title');
         if(first) first.focus();
       };
-      var open = function(){ lastFocused = document.activeElement; modal.hidden = false; bd.hidden = false; show(1); };
+      var open = function(){
+        lastFocused = document.activeElement; modal.hidden = false; bd.hidden = false;
+        show(ls.get('vf_replay_req') ? 'done' : 'form');
+        var m = ls.get('vf_replay_req'); if(m) document.getElementById('optinMail').textContent = m;
+      };
       var close = function(){
         modal.hidden = true; bd.hidden = true;
         if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus({preventScroll:true});
         lastFocused = null;
       };
-      var track = function(name){ if(window.clarity) window.clarity('event', name); if(window.gtag) window.gtag('event', name); if(window.fbq) window.fbq('trackCustom', name); };
-      // ---- WJ-Popup-Diagnose: geht das Registrierungs-Popup nach Shopify-Ja wirklich auf? ----
-      var wjProbed = false;
-      var armWjProbe = function(){
-        if(wjProbed) return; wjProbed = true;
-        var opened = false, cardShown = false, ticks = 0;
-        var rn = document.getElementById('reg-note');
-        var popupOpen = function(){
-          var els = document.querySelectorAll('iframe');
-          for(var i = 0; i < els.length; i++){
-            var el = els[i], r = el.getBoundingClientRect(), src = el.getAttribute('src') || '';
-            if(r.width > 300 && r.height > 300) return true;                        // grosses Overlay-Iframe = Popup (Domain egal)
-            if(/webinarjam|genndi/i.test(src) && r.width > 50 && r.height > 50) return true;
-          }
-          return false;
-        };
-        var iv = setInterval(function(){
-          ticks++;
-          if(!opened && popupOpen()){
-            opened = true; track('lw_wj_open');
-            if(cardShown && rn){ rn.hidden = true; cardShown = false; }             // verfrueht gezeigte Karte wieder weg
-          }
-          if(!opened && !cardShown && ticks >= 27){                                 // ~4s: noch kein Popup -> Karte zeigen
-            cardShown = true; track('lw_wj_fallback_shown');
-            if(rn) rn.hidden = false;
-          }
-          if(opened || ticks >= 53){                                                // ~8s Ende
-            clearInterval(iv);
-            if(!opened) track('lw_wj_noopen');                                      // echtes Scheitern (nie aufgegangen)
-          }
-        }, 150);
-      };
-      // Commit-Cookie (45 min): Danke-Seite feuert CompleteRegistration nur mit
-      // diesem Cookie (oder WJ-Referrer) → Mail-Wiederkehr zählt nicht doppelt.
-      var setCommitCookie = function(){ try { document.cookie = 'vf_lw_commit=1; path=/; max-age=2700; SameSite=Lax'; } catch(e){} };
-      var rnBtn = document.querySelector('#reg-note .wj-embed-button');
-      if(rnBtn) rnBtn.addEventListener('click', function(){ setCommitCookie(); track('lw_wj_fallback_click'); });
+      var fail = function(msg){ err.textContent = msg; err.hidden = false; };
       document.querySelectorAll('[data-webinar-cta]').forEach(function(b){ b.addEventListener('click', open); });
       document.getElementById('lwqClose').addEventListener('click', close);
       bd.addEventListener('click', close);
       modal.querySelectorAll('[data-lwq-done]').forEach(function(b){ b.addEventListener('click', close); });
+      modal.querySelectorAll('[data-lwq-again]').forEach(function(b){ b.addEventListener('click', function(){ show('form'); }); });
       modal.addEventListener('keydown', function(e){
         if(e.key !== 'Tab') return;
-        var f = visibleButtons(); if(!f.length) return;
+        var f = focusables(); if(!f.length) return;
         var first = f[0], last = f[f.length - 1];
         if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
         else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
       });
-      modal.querySelectorAll('[data-lwq-shopify]').forEach(function(b){
-        b.addEventListener('click', function(){
-          if(b.getAttribute('data-lwq-shopify') === 'yes'){ track('lw_qualify_yes'); show(2); }
-          else { track('lw_qualify_no'); show('reject'); }
-        });
-      });
-      modal.querySelectorAll('[data-lwq-confirm]').forEach(function(b){ b.addEventListener('click', function(){ setCommitCookie(); track('lw_commit_date'); armWjProbe(); close(); }); });
-      modal.querySelectorAll('[data-lwq-mailto]').forEach(function(b){ b.addEventListener('click', function(){ track('lw_no_shop_mailto'); }); }); // No-Shop schreibt Mail · KEIN Lead-Event
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !modal.hidden) close(); });
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(busy) return;
+        err.hidden = true;
+        var email = form.email.value.trim(), vorname = form.vorname.value.trim();
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail('Bitte prüf deine E-Mail-Adresse.'); form.email.focus(); return; }
+        busy = true; btn.disabled = true; btn.textContent = 'Wird gesendet …';
+        track('lw_replay_submit');
+        var attr = null; try{ attr = JSON.parse(ls.get('vf_lw_attr') || 'null'); }catch(x){}
+        fetch('/api/replay-optin', { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ email: email, vorname: vorname, hp: form.hp.value, attr: attr }) })
+          .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function(){
+            ls.set('vf_replay_req', email); ls.set('vf_known_email', email.toLowerCase());
+            document.getElementById('optinMail').textContent = email;
+            if(window.lwLead) window.lwLead(email);
+            track('lw_replay_ok');
+            show('done');
+          })
+          .catch(function(x){
+            track('lw_replay_error', { code: String(x && x.message || '') });
+            fail('Das hat gerade nicht geklappt. Versuch es bitte noch einmal oder schreib mir an alex@adolution.de.');
+          })
+          .then(function(){ busy = false; btn.disabled = false; btn.textContent = 'Aufzeichnung anfordern'; });
+      });
     })();
 
-    // ---- Nav border on scroll + scroll-progress ----
+
     (function(){
       var nav = document.getElementById('nav');
       var bar = document.getElementById('scrollProgress');
@@ -867,6 +869,19 @@
               email: knownEmail || undefined } }),
           keepalive:true }).catch(function(){});
       } catch(e){}
+
+      // Replay angefordert → Lead (Pixel + CAPI, gleiche event_id). Aufruf aus dem Replay-Formular.
+      window.lwLead = function(email){
+        var id = uuid();
+        try { fbq('track', 'Lead', { content_name: 'replay-optin' }, { eventID: id }); } catch(e){}
+        try {
+          fetch('/api/capi', { method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ event_name:'Lead', event_id:id, event_source_url:location.href,
+              custom_data:{ content_name:'replay-optin' }, user_data:{ external_id:extId, country:'de',
+                fbp:getCookie('_fbp')||null, fbc:getCookie('_fbc')||null, email: email } }),
+            keepalive:true }).catch(function(){});
+        } catch(e){}
+      };
     })();
   </script>
 
@@ -889,6 +904,7 @@
         if(window.gtag) window.gtag('event', name, props);
         if(window.fbq) window.fbq('trackCustom', name, props);
       };
+      window.lwEvent = cEvent; // fürs Replay-Formular
 
       // Variant-Tag (filterbar im Clarity-Dashboard + zählbar via smartEvents)
       var tagged = false;
@@ -906,7 +922,7 @@
           else if(b.closest('.nav')) loc = 'nav';
           else if(b.closest('.lw-hero, .hero')) loc = 'hero';
           else if(b.closest('.lw-final, .closeband')) loc = 'final';
-          cEvent('lw_signup_click', { loc: loc });
+          cEvent('lw_replay_click', { loc: loc });
         });
       });
 
@@ -950,7 +966,5 @@
     })();
   </script>
 
-  <!-- WebinarJam Registrierungs-Popup (Button-Embed). formTemplate/formColor = WJ-Presets, siehe .agents/live-workshop-tracking.md -->
-  <script src="https://event.webinarjam.com/register/0qgn9gag/embed-button?formTemplate=2&formColor=4&buttonText=Kostenlos%20anmelden"></script>
 </body>
 </html>

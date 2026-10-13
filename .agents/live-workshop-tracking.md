@@ -1,5 +1,8 @@
 # Live-Workshop — Tracking & A/B-Test (Stand 2026-06-12)
 
+> **⚠️ Seit 2026-10-13: `/live-workshop` ist die Replay-Anmeldung (§10).** Kein WebinarJam mehr, kein Qualifier-Modal,
+> kein `lw_signup_click`/`lw_commit_date`/`lw_wj_*`. Abschnitte 1 bis 8 beschreiben den alten Live-Funnel (Historie).
+
 Single source of truth für alles Tracking/Experiment auf der Live-Workshop-LP.
 Bei Änderungen an Events, Danke-Seite, Formular oder Test-Setup: **diese Datei mitpflegen.**
 
@@ -497,3 +500,34 @@ markiert Mail-Klicker in Brevo (RP_START, RP_PCT, RP_PITCH, Listen 9 bis 11). Do
 **Wo andocken:** neue Events über `lwTrack(...)` in `replay.html`; Kapitel-Zeiten in der `<ol>` (`data-t`).
 Bei neuem Video: Blob-Upload mit neuem Namen, `<source src>`, Preconnect-Host und Fallback-Link tauschen,
 Kapitel neu setzen (Szenenwechsel: `ffmpeg -vf "select='gt(scene,0.35)',showinfo"`), Poster + OG neu rendern.
+
+
+## 10. Replay-Anmeldung auf `/live-workshop` (seit 2026-10-13)
+
+Alex 2026-10-13: Die Live-Workshop-Seite ist jetzt die Anmeldeseite für die Aufzeichnung vom 10.09.2026. Alle
+Website-Links „Shopify-Workshop“ → `/replay` zeigen jetzt als „Workshop-Aufzeichnung“ auf `/live-workshop`
+(Startseite: Nav, Workshop-Abschnitt, Schluss, Fußzeile; Fußzeilen von faqs, troubleshooting, baseflow, seoflow,
+clarityflow, impressum, datenschutz, blog/*). `/replay` selbst bleibt offen erreichbar (Mails, /sales).
+
+**Ablauf**
+1. Jeder `[data-webinar-cta]` öffnet das Popup `#lwqModal` mit Formular `#optinForm` (Vorname optional, E-Mail, Honeypot `hp`).
+2. `POST /api/replay-optin` → Brevo:
+   - neuer Kontakt: anlegen mit `RP_OPTIN`, `QUELLE` (`replay-optin · utm_source · utm_campaign`), `VORNAME`, `OPTIN_IP`, Liste **21 „Replay angefordert (unbestätigt)“**.
+   - bekannter Kontakt: nichts überschreiben, nur `RP_OPTIN` (+ `VORNAME`, falls leer), Liste 21 falls noch nicht bestätigt.
+   - dann **Einzelmail** (`/smtp/email`, Tag `replay-optin`, Absender „Alex von vorflows“ <alex@adolution.de>), schlicht, ohne Werbung.
+3. Link in der Mail: `/api/replay-optin?c=<id>.<hmac16>` (HMAC über `optin:<id>`, eigenes Token, nicht VF_TOKEN).
+   Klick = Double-Opt-in: `RP_OPTIN_OK`, `VF_TOKEN` setzen, Liste **22 „Replay angefordert (bestätigt)“**, aus 21 raus,
+   dann 302 auf `/replay?vt=…&utm_source=brevo&utm_medium=email&utm_campaign=replay-optin` (Tagging aus §brevo-tracking greift sofort).
+   Ungültiger Token → `/replay` ohne vt.
+4. Env: `BREVO_API_KEY`, `VF_TRACK_SECRET` (gibt es schon). Listen-IDs stehen oben in `api/replay-optin.js` (`LIST`).
+
+**Versand-Steuerung:** `api/mail-engine.js` schreibt Liste 21/22 bisher **nicht** an. Nachfass-Strecke für Replay-Anforderer = offen.
+
+**Tracking (Seite):** `lw_replay_click` (loc hero/nav/inline/final), `lw_replay_submit`, `lw_replay_ok`, `lw_replay_error`
+(alle über `cEvent`, Clarity + fbq trackCustom). Bei Erfolg **Meta `Lead`** (Pixel + CAPI, gleiche event_id, mit E-Mail),
+`localStorage.vf_known_email` + `vf_replay_req` (Popup zeigt beim nächsten Öffnen „Schau in dein Postfach“ mit „Andere Adresse eingeben“).
+Scroll/Dwell/FAQ-Events unverändert. `danke-live-workshop.html` wird vom neuen Ablauf nicht mehr benutzt (Datei bleibt).
+
+**B-Datei:** `live-workshop-b.html` = Kopie von A mit `noindex` + Titel „(Variante B)“, nur per `?ab=B` erreichbar.
+
+**Test:** `node test-replay-optin.mjs` (Server :3001, API gemockt): Validierung, POST-Body, Erfolgszustand, Screenshots.

@@ -65,7 +65,7 @@ Setup-Garantie: Bei Setup nach Anleitung und Funktionsausfall gibt es Geld zurü
 - [Startseite](https://vorflows.com/): Überblick über vorflows, Alexander Dück, Kundenstimmen und beide Systeme
 - [AdsFlow](https://vorflows.com/adsflow): Claude-Projekt für Meta Ads, mit Video, Preis und FAQ
 - [vorflows kaufen](https://vorflows.com/sales): Kaufseite mit Mechanik, Modulen, Preis und FAQ. Maßgebliche Quelle für den Preis.
-- [Live-Workshop](https://vorflows.com/live-workshop): kostenloser Live-Workshop, in dem Alex mit Claude einen Shopify-Shop umbaut
+- [Workshop-Aufzeichnung](https://vorflows.com/live-workshop): kostenlose Aufzeichnung des Live-Workshops vom 10.09.2026, in dem Alex mit Claude einen Shopify-Shop umbaut (Link kommt per E-Mail)
 - [BaseFlow](https://vorflows.com/baseflow): Theme-Optimization-Workflow
 - [SEOFlow](https://vorflows.com/seoflow): SEO-Workflow mit Search Console
 - [ClarityFlow](https://vorflows.com/clarityflow): Verhaltensdaten-Loop mit Microsoft Clarity
