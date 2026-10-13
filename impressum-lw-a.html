@@ -71,8 +71,7 @@
       }
       .fact--main dd { margin-top: 0; }
       .fact .org {
-        font-family: 'Fraunces', Georgia, serif;
-        font-variation-settings: "opsz" 60;
+        font-family: var(--sans); font-weight: 450;
         font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3rem);
         line-height: 1.02;
         letter-spacing: -.03em;
@@ -81,7 +80,7 @@
       .fact .addr { margin-top: 1rem; font-size: 17px; line-height: 1.65; color: var(--ink-2); }
       .fact .id-row {
         margin-top: .45rem;
-        font-family: 'Fraunces', Georgia, serif;
+        font-family: var(--sans); font-weight: 450;
         font-size: 1.55rem;
         line-height: 1.2;
         letter-spacing: .01em;
@@ -124,7 +123,7 @@
         border: 1px solid var(--line-2);
         background: var(--raise-2);
         box-shadow: var(--shadow-float);
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: var(--sans);
       }
       .cookie-banner[hidden] { display: none; }
       .cookie-banner .cookie-actions { justify-content: center; }
@@ -139,7 +138,7 @@
         @keyframes cookieFade { from { opacity: 0; } to { opacity: 1; } }
       }
 
-      .cookie-title { margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink); }
+      .cookie-title { margin: 0; font-family: var(--sans); font-size: 15px; font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink); }
       .cookie-text { margin: .45rem 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
       .cookie-text a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(188, 90, 53, .55); text-underline-offset: 2px; border-radius: 3px; transition: color .2s var(--ease-q); }
       .cookie-text a:hover { color: var(--orange-hi); }
