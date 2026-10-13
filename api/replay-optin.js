@@ -13,6 +13,11 @@ const SENDER = { name: 'Alex von vorflows', email: 'alex@adolution.de' };
 const ORIGIN = 'https://vorflows.com';
 const WORKSHOP_DAY = '10. September';
 
+// Abgemeldete/gesperrte Kontakte nie in eine Strecke zurückholen
+const isBlocked = (c) => !!(c && (c.emailBlacklisted || (c.listIds || []).includes(LIST.unsub)));
+// Vorname nur aus Buchstaben, Leerzeichen, Bindestrich, Apostroph: keine Links/Domains im Mailtext
+const cleanName = (s) => String(s || '').normalize('NFC').replace(/[^\p{L}\p{M} '-]/gu, '').replace(/\s+/g, ' ').trim().slice(0, 40);
+
 const today = () => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());
 const EMAIL_RE = /^[^\s@<>()",;:]{1,64}@[A-Za-z0-9.-]{1,253}\.[A-Za-z]{2,24}$/;
 
@@ -83,7 +88,9 @@ export default async function handler(req, res) {
     if (id) {
       try {
         const c = await brevo(`/contacts/${id}?identifierType=contact_id`);
-        if (c.ok) {
+        if (c.ok && isBlocked(c.j)) {
+          dest = `${ORIGIN}/replay?utm_source=brevo&utm_medium=email&utm_campaign=replay-optin`;
+        } else if (c.ok) {
           const cur = c.j.attributes || {};
           const vt = `${id}.${sign(id, SECRET)}`;
           const attrs = {};
@@ -114,7 +121,7 @@ export default async function handler(req, res) {
   const body = await readBody(req);
   if (body.hp) return res.status(200).json({ ok: true }); // Honeypot: Bots bekommen ein stilles Ok
   const email = String(body.email || '').trim().toLowerCase();
-  const vorname = String(body.vorname || '').trim().replace(/\s+/g, ' ').slice(0, 40);
+  const vorname = cleanName(body.vorname);
   if (!EMAIL_RE.test(email)) return res.status(400).json({ error: 'email' });
 
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim().slice(0, 45);
@@ -129,11 +136,13 @@ export default async function handler(req, res) {
       // Bekannter Kontakt: Felder nicht überschreiben, nur Anfrage vermerken
       id = ex.j.id;
       const cur = ex.j.attributes || {};
+      // Höchstens eine Link-Mail pro Adresse und Tag (Schutz gegen Mail-Bombing über das Formular)
+      if (String(cur.RP_OPTIN || '').slice(0, 10) === today()) return res.status(200).json({ ok: true });
       const attrs = { RP_OPTIN: today() };
       if (vorname && !cur.VORNAME) attrs.VORNAME = vorname;
       const confirmed = (ex.j.listIds || []).includes(LIST.confirmed);
       const put = { attributes: attrs };
-      if (!confirmed) put.listIds = [LIST.pending];
+      if (!confirmed && !isBlocked(ex.j)) put.listIds = [LIST.pending];
       await brevo(`/contacts/${id}?identifierType=contact_id`, { method: 'PUT', body: JSON.stringify(put) });
     } else if (ex.status === 404) {
       const attrs = { RP_OPTIN: today(), QUELLE: quelle };
