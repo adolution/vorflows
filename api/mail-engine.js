@@ -6,7 +6,7 @@ import { optinToken } from './replay-optin.js';
 // (abends nur D2). Versendet wird als normale Brevo-Kampagne an eine Liste im Ordner 16.
 // Ohne MAIL_ENGINE=on oder mit ?dry=1 wird nur geplant, nicht verschickt.
 
-export const config = { maxDuration: 60 };
+export const config = { maxDuration: 300 };
 
 const BREVO = 'https://api.brevo.com/v3';
 const SEND_FOLDER = 16;
@@ -224,6 +224,19 @@ async function sendSingles(g, T, byId) {
   return { label: `${g.step} ${g.mail} ${T} einzeln`, count };
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// wartet, bis Brevo die Kontakte in der Versandliste führt (max. ~30 s)
+async function waitForList(listId, expected) {
+  for (let i = 0; i < 10; i++) {
+    const r = await brevo(`/contacts/lists/${listId}/contacts?limit=1`);
+    if ((r.count || 0) >= Math.min(expected, 1) && (r.count || 0) >= expected * 0.9) return r.count;
+    await sleep(3000);
+  }
+  console.log('mail-engine list not filled', listId, expected);
+  return 0;
+}
+
 async function sendGroup(g, T, evening, byId) {
   if (SINGLE.has(g.mail)) return sendSingles(g, T, byId);
   const mail = mailFor(g.mail, { T });
@@ -232,18 +245,27 @@ async function sendGroup(g, T, evening, byId) {
   for (let i = 0; i < g.ids.length; i += 150) {
     await brevo(`/contacts/lists/${list.id}/contacts/add`, { method: 'POST', body: JSON.stringify({ ids: g.ids.slice(i, i + 150) }) });
   }
-  const camp = await brevo('/emailCampaigns', {
-    method: 'POST',
-    body: JSON.stringify({
-      name: 'Auto ' + label,
-      subject: mail.subject,
-      previewText: mail.preview,
-      sender: { name: 'Alex von vorflows', email: 'alex@adolution.de' },
-      replyTo: 'alex@adolution.de',
-      htmlContent: mail.html,
-      recipients: { listIds: [list.id], exclusionListIds: [L.unsub] },
-    }),
+  // Brevo befüllt die Liste teils verzögert; ohne Warten scheitert die Kampagne mit
+  // „There are no contacts associated with the given recipients info“ (R1 am 2026-10-14)
+  await waitForList(list.id, g.ids.length);
+  const campBody = JSON.stringify({
+    name: 'Auto ' + label,
+    subject: mail.subject,
+    previewText: mail.preview,
+    sender: { name: 'Alex von vorflows', email: 'alex@adolution.de' },
+    replyTo: 'alex@adolution.de',
+    htmlContent: mail.html,
+    recipients: { listIds: [list.id], exclusionListIds: [L.unsub] },
   });
+  let camp;
+  for (let attempt = 1; ; attempt++) {
+    try { camp = await brevo('/emailCampaigns', { method: 'POST', body: campBody }); break; }
+    catch (e) {
+      if (attempt >= 4 || !/no contacts associated/i.test(String(e.message))) throw e;
+      console.log('mail-engine retry campaign', g.mail, attempt);
+      await sleep(5000 * attempt);
+    }
+  }
   const at = SEND_LATER[g.mail] && !evening ? berlinAt(T, SEND_LATER[g.mail]) : null;
   let scheduledAt = null;
   if (at && new Date(at) > new Date(Date.now() + 10 * 60 * 1000)) {
