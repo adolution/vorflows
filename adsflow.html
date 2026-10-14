@@ -260,7 +260,10 @@
       .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 68px; }
       .brand { display: inline-flex; align-items: baseline; gap: .7rem; text-decoration: none; border-radius: 6px; }
       .brand:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-      .wordmark { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
+      /* Logo-Schrift nur mit den Buchstaben von „vorflows“ (19 KB statt 146 KB für ganz Fraunces) */
+      @font-face { font-family: 'VF Wordmark'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(/assets/fonts/fraunces-400-wordmark.woff2) format('woff2'); }
+      @font-face { font-family: 'VF Wordmark'; font-style: italic; font-weight: 400 500; font-display: swap; src: url(/assets/fonts/fraunces-400-italic-wordmark.woff2) format('woff2'); }
+      .wordmark { font-family: 'VF Wordmark', Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
       .wordmark .flows { font-style: italic; color: var(--orange); transition: color .2s var(--ease-q); }
       .brand:hover .flows { color: var(--orange-hi); }
       .brand .prod { font-size: 13px; font-weight: 500; color: var(--ink-3); padding-left: .7rem; border-left: 1px solid var(--line-2); line-height: 1; }
@@ -2437,18 +2440,28 @@
         var isLocal = /^(localhost|127\.)/.test(location.hostname);
 
         // ── Clarity + Pixel (nicht lokal) ─────────────────────────────
+        // Warteschlangen sofort, Skripte (~300 KB) erst nach dem Seiten-Load: bei schwachem Netz
+        // bekommen Poster und Schriften die Bandbreite. Ereignisse davor landen in der Queue.
+        function afterLoad(fn) {
+          if (document.readyState === 'complete') fn();
+          else window.addEventListener('load', function () { setTimeout(fn, 0); }, { once: true });
+        }
         if (!isLocal) {
           (function (c, l, a, r, i, t, y) {
             c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+            afterLoad(function () {
+              t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+              y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+            });
           })(window, document, 'clarity', 'script', 'wnn5d5ehwn');
 
           !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-            t = b.createElement(e); t.async = !0; t.src = v;
-            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+            afterLoad(function () {
+              t = b.createElement(e); t.async = !0; t.src = v;
+              s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+            });
           }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
           var am = { external_id: extId, country: 'de' };
           if (leadEmail) am.em = leadEmail;
