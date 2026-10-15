@@ -35,10 +35,10 @@ Standard: sofort beim Morgenlauf (~10 Uhr Berlin). `SEND_LATER` plant A1G (Live-
 | A1X | A1KX / A1GX | Welle 1, A1 nicht geöffnet, kein Besuch, 3 bis 5 Tage nach A1 (neuer Betreff) |
 | A2, A3, A4 | A2, A3, A4 | Welle 1 mit Öffnung/Besuch, ab 16.10. / 20.10. / 27.10., je ≥ 3 Tage Abstand |
 | R1 | R1 / R1S | Liste 7 ohne Replay-Start, ab Mi 14.10. (Puffer bis 20.10.) |
-| R2 | R2 | Replay nicht gestartet, 2 bis 5 Tage nach R1 |
+| R2 | R2 | Replay nicht gestartet, 2 bis 5 Tage nach R1. Seit 2026-10-15 Link auf /sales (Kurzfassung, 5 Min) |
 | R3 | R3 | Replay nicht gestartet, ≥ 4 Tage nach R2, bis 24.10. |
-| RW | RW | Replay gestartet, Pitch nicht erreicht, 2 Tage nach Start, bis 29.10. |
-| P1, P2, P3 | P1 bis P3 | Pitch gesehen (Liste 10), +1 / +3 / +5 Tage, bis Bundle-Kauf |
+| RW | RW | Replay gestartet, Angebot nicht gesehen, 1 Tag nach Start, bis 29.10. Seit 2026-10-15 Link auf /sales („alles in Kürze“), weil am 15.10. nur 2 von 9 Startern bis 37:23 kamen |
+| P1, P2, P3 | P1 bis P3 | Angebot gesehen = Pitch (Liste 10) **oder** `SALES_VISIT`, +1 / +3 / +5 Tage, bis Bundle-Kauf |
 | KB / KA | KB / KA | Kauf-Klick Bundle / AdsFlow ohne Kauf, +1 Tag |
 | B1 | B1 | Welle 2 ab Mo 26.10.; wer den Pitch sah: erst 2 Tage nach P3 |
 | B1X | B1X | B1 nicht geöffnet, +2 Tage |

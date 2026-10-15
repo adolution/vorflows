@@ -58,6 +58,9 @@ ${paras}
 
 const SCARCITY_REPLAY = `Zum Angebot am Ende gehört eine 1:1-Schulung mit mir an deinem Shop. Die mache ich selbst, deshalb gibt es davon nur 20 im Monat, und wer zuerst zugreift, bekommt den Platz. Wie viele gerade noch frei sind, siehst du auf der Seite, sobald im Video das Angebot kommt.`;
 
+// Für Mails, die auf /sales (Kurzfassung, 5 Minuten) verlinken: dort stehen Angebot und freie Plätze sofort
+const SCARCITY_SALES = `Zum Angebot gehört eine 1:1-Schulung mit mir an deinem Shop. Die mache ich selbst, deshalb gibt es davon nur 20 im Monat, und wer zuerst zugreift, bekommt den Platz. Wie viele gerade noch frei sind, steht auf der Seite direkt beim Angebot.`;
+
 const ADSFLOW_CORE = (c) => `Ich weiß nicht, wie das bei dir ist, aber in den meisten Shops, die ich mir anschaue, laufen seit Wochen dieselben drei Anzeigen. An Ideen fehlt es da selten. Jede neue Anzeige kostet im Ads Manager eben eine halbe Stunde, und Meta schaltet dabei jedes Mal Extras an, die keiner bestellt hat, von Musik unter dem Bild bis zu abgeschnittenen Produkten.
 
 AdsFlow ist ein Ordner, den du in Claude öffnest. Du schreibst „Neue Ads“, Claude schreibt die Texte, holt sich dein Okay und legt die Anzeigen fertig in deinem Werbekonto an: im Feed quadratisch, in der Story hochkant, mit UTM-Parametern und mit allen Meta-Extras auf aus. Eingeschaltet wird dabei nichts. Live schaltest du selbst, dafür hat Claude gar keine Berechtigung.
@@ -119,19 +122,22 @@ Alex
 PS: Wenn Automatisierungen und Dinge mit KI bauen gerade nicht dein Thema sind, kannst du dich ganz unten austragen. Nehm ich dir nicht übel.`,
   },
 
+  // R2 seit 2026-10-15 auf /sales: wer die 52 Minuten nicht anfängt, bekommt die Kurzfassung (5 Minuten, Angebot sofort sichtbar)
   R2: {
-    subject: 'Die Aufzeichnung ist noch online',
-    preview: 'Mit Kapiteln zum Springen, damit du nicht 52 Minuten am Stück schauen musst.',
+    subject: 'Der Workshop in fünf Minuten',
+    preview: 'Falls 52 Minuten gerade nicht drin sind, hier ist das Wichtigste als kurzes Video.',
     why: WHY_WORKSHOP,
     body: `${HI}
 
-du hattest dich für meinen Workshop „KI + Shopify“ angemeldet. Die Aufzeichnung ist online, und du kannst sie dir in Ruhe ansehen.
+du hattest dich für meinen Workshop „KI + Shopify“ angemeldet, und vor ein paar Tagen habe ich dir die Aufzeichnung geschickt. Ich kann gut verstehen, wenn 52 Minuten neben dem Shop gerade nicht drin sind. Deshalb hier die kurze Fassung, ein Video von fünf Minuten mit den Stellen, auf die es ankommt.
 
-${a(link('/replay', 'replay-2'), 'Zur Aufzeichnung')}
+${a(link('/sales', 'replay-2-kurz'), 'Kurzfassung ansehen')}
 
-Du musst nicht alles am Stück schauen. Unter dem Video stehen Kapitel, mit denen du direkt zu einer Stelle springst, zum Beispiel dahin, wo Claude eine Section baut, für die du sonst jeden Monat eine App bezahlst. Oder dahin, wo es in den Suchdaten Seiten findet, die knapp vor Seite 1 stehen.
+Du siehst darin, wie Claude in einem echten Shopify-Shop eine App ersetzt, eine Versandleiste baut und aus Klick- und Suchdaten ableitet, was im Shop als Nächstes verbessert werden sollte. Am Live-Shop ändert sich dabei nichts, bevor du es freigibst, weil Claude an einer Kopie des Themes arbeitet. Unter dem Video steht, was alles in vorflows steckt und wie die Einrichtung abläuft.
 
-Weil mich das ein paar Leute gefragt haben: Das Angebot kommt am Ende des Videos. Die 1:1-Schulung, die dazugehört, kann ich nur ein paar Leuten im Monat geben.
+${SCARCITY_SALES}
+
+Wenn dir beim Schauen eine Frage kommt, antworte einfach auf diese Mail. Ich lese alles selbst.
 
 Viele Grüße
 Alex`,
@@ -221,20 +227,23 @@ Viele Grüße
 Alex`,
   },
 
-  // RW: Liste 7 und Anforderer, Aufzeichnung gestartet, Angebot nicht erreicht
+  // RW: Liste 7 und Anforderer, Aufzeichnung gestartet, Angebot nicht erreicht.
+  // Seit 2026-10-15 auf /sales statt zurück ins lange Video: am 15.10. kamen nur 2 von 9 Startern bis zum Angebot (37:23).
   RW: {
-    subject: 'Da, wo du aufgehört hast',
-    preview: 'Wenn du die Seite wieder öffnest, läuft das Video an deiner Stelle weiter.',
+    subject: 'Das Wichtigste aus dem Workshop in fünf Minuten',
+    preview: 'Falls dir die ganze Aufzeichnung zu lang war, hier ist alles Wichtige auf einer Seite.',
     why: WHY_LEAD,
     body: `${HI}
 
-du hast in die Aufzeichnung vom Workshop reingeschaut, danke dafür. Wenn du die Seite im selben Browser wieder öffnest, läuft das Video da weiter, wo du aufgehört hast.
+du hast in die Aufzeichnung vom Workshop reingeschaut, danke dafür. Das Video ist lang, und ich weiß, dass neben dem Shop selten Zeit für eine knappe Stunde am Stück bleibt. Deshalb habe ich dir hier noch einmal alles in Kürze zusammengestellt.
 
-${a(link('/replay', 'replay-weiter'), 'Weiterschauen')}
+${a(link('/sales', 'replay-kurz'), 'Kurzfassung ansehen')}
 
-Im hinteren Teil zeige ich, wonach ich nach dem Workshop am häufigsten gefragt wurde: was genau im Ordner mit den 119 Fähigkeiten steckt, wie die Einrichtung abläuft und was das im Vergleich zu deinen Apps im Jahr kostet. Danach stelle ich das Angebot vor.
+Oben auf der Seite läuft ein Video von fünf Minuten mit den Stellen aus dem Workshop, auf die es ankommt. Darunter steht, wonach ich danach am häufigsten gefragt wurde: was genau im Ordner mit den 119 Fähigkeiten steckt, wie die Einrichtung abläuft und was das im Vergleich zu deinen Apps im Jahr kostet.
 
-${SCARCITY_REPLAY}
+${SCARCITY_SALES}
+
+Falls du lieber die ganze Aufzeichnung zu Ende schauen willst, öffne einfach den Link aus meiner ersten Mail noch einmal. Das Video läuft dann da weiter, wo du aufgehört hast.
 
 Viele Grüße
 Alex`,
@@ -246,7 +255,7 @@ Alex`,
     why: WHY_LEAD,
     body: `${HI}
 
-du hast dir die Aufzeichnung bis zum Angebot angesehen. Damit du dir besser vorstellen kannst, wie das bei dir aussehen würde, beschreibe ich dir die erste Woche, so wie sie bei den meisten läuft.
+{% if contact.RP_PITCH %}du hast dir die Aufzeichnung bis zum Angebot angesehen.{% else %}du hast dir vorflows angesehen.{% endif %} Damit du dir besser vorstellen kannst, wie das bei dir aussehen würde, beschreibe ich dir die erste Woche, so wie sie bei den meisten läuft.
 
 Am Anfang steht der Setup-Call mit mir. Wir richten Claude Code zusammen ein und verbinden deinen Shop so, dass die KI nur an einer Kopie deines Themes arbeitet. Danach suchst du dir die erste App aus, die rausfliegen soll. Adrian, einer der ersten Nutzer, hat mir dazu geschrieben: „Hab innerhalb der ersten Stunde schon eine App ersetzt, für die ich monatlich zahle.“
 

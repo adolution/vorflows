@@ -60,6 +60,7 @@ function view(c) {
     seen: dayOf(a.LAST_SEEN),
     rpStart: dayOf(a.RP_START),
     rpPitch: dayOf(a.RP_PITCH),
+    salesVisit: dayOf(a.SALES_VISIT),
     rpChk: maxDay(dayOf(a.RP_CHECKOUT), dayOf(a.SALES_CHECKOUT)),
     afVisit: dayOf(a.AF_VISIT),
     afChk: dayOf(a.AF_CHECKOUT),
@@ -67,6 +68,8 @@ function view(c) {
     buyerAF: lists.has(L.afBuyer) || /690701|adsflow/i.test(produkte),
     blocked: c.emailBlacklisted || lists.has(L.unsub),
   };
+  // Angebot gesehen = Pitch in der Aufzeichnung oder /sales besucht (Kurzfassung, seit 2026-10-15 Ziel von RW/R2)
+  v.offer = [v.rpPitch, v.salesVisit].filter(Boolean).sort()[0] || '';
   v.kauf = dayOf(a.KAUF_DATUM);
   v.optin = dayOf(a.RP_OPTIN);
   v.optinOk = dayOf(a.RP_OPTIN_OK);
@@ -101,16 +104,16 @@ function rules(T, evening) {
   R.push(['U1', 'U1', (v) => v.newBundleBuyer && !v.buyerAF && T >= addDays(v.kauf, 1) && T <= addDays(v.kauf, 7) && !s(v, 'U1')]);
   R.push(['U2', 'A3', (v) => v.newBundleBuyer && !v.buyerAF && s(v, 'U1') && v.engagedSince(s(v, 'U1')) && T >= addDays(s(v, 'U1'), 3) && !s(v, 'U2')]);
 
-  // Bundle-Nachfass nach gesehenem Pitch
-  R.push(['P1', 'P1', (v) => v.rpPitch && T >= addDays(v.rpPitch, 1) && !v.buyerBundle && !s(v, 'P1')]);
+  // Bundle-Nachfass nach gesehenem Angebot (Pitch in der Aufzeichnung oder /sales)
+  R.push(['P1', 'P1', (v) => v.offer && T >= addDays(v.offer, 1) && !v.buyerBundle && !s(v, 'P1')]);
   R.push(['P2', 'P2', (v) => s(v, 'P1') && T >= addDays(s(v, 'P1'), 2) && !v.buyerBundle && !s(v, 'P2')]);
   R.push(['P3', 'P3', (v) => s(v, 'P2') && T >= addDays(s(v, 'P2'), 2) && !v.buyerBundle && !s(v, 'P3')]);
 
   // Replay-Strecke (Liste 7). Liste 17 = nur im Sheet, bekommt die neutrale Fassung.
   R.push(['R1', (v) => (v.lists.has(L.sheetOnly) ? 'R1S' : 'R1'), (v) => v.lists.has(L.noshow) && !v.rpStart && T >= '2026-10-14' && T <= '2026-10-20' && !v.buyerBundle && !s(v, 'R1')]);
-  R.push(['RW', 'RW', (v) => ((v.lists.has(L.noshow) && T <= '2026-10-29') || v.req) && v.rpStart && !v.rpPitch && T >= addDays(v.rpStart, 2) && !v.buyerBundle && !s(v, 'RW')]);
+  R.push(['RW', 'RW', (v) => ((v.lists.has(L.noshow) && T <= '2026-10-29') || v.req) && v.rpStart && !v.offer && T >= addDays(v.rpStart, 1) && !v.buyerBundle && !s(v, 'RW')]);
   R.push(['R2', 'R2', (v) => v.lists.has(L.noshow) && s(v, 'R1') && !v.rpStart && T >= maxDay('2026-10-16', addDays(s(v, 'R1'), 2)) && T <= addDays(s(v, 'R1'), 5) && !v.buyerBundle && !s(v, 'R2')]);
-  R.push(['R3', 'R3', (v) => v.lists.has(L.noshow) && s(v, 'R2') && !v.rpStart && T >= maxDay('2026-10-20', addDays(s(v, 'R2'), 4)) && T <= '2026-10-24' && !v.buyerBundle && !s(v, 'R3')]);
+  R.push(['R3', 'R3', (v) => v.lists.has(L.noshow) && s(v, 'R2') && !v.rpStart && !v.offer && T >= maxDay('2026-10-20', addDays(s(v, 'R2'), 4)) && T <= '2026-10-24' && !v.buyerBundle && !s(v, 'R3')]);
 
   // Anforderer der Aufzeichnung (/live-workshop). Zeitlos, ohne Enddatum. Doku: .agents/mail-engine.md
   R.push(['Q0', 'Q0', (v) => v.pend && v.optin && T >= addDays(v.optin, 1) && T <= addDays(v.optin, 5) && !s(v, 'Q0')]);
@@ -119,7 +122,7 @@ function rules(T, evening) {
   // AdsFlow für Anforderer: erst nach der Bundle-Strecke (P3), nach Q3 oder nach RW ohne Pitch
   const cEntry = (v) => {
     if (s(v, 'P3')) return addDays(s(v, 'P3'), 2);
-    if (v.rpPitch) return null; // P1 bis P3 laufen noch
+    if (v.offer) return null; // P1 bis P3 laufen noch
     if (s(v, 'Q3')) return addDays(s(v, 'Q3'), 2);
     if (s(v, 'RW')) return addDays(s(v, 'RW'), 4);
     return null;
@@ -141,9 +144,9 @@ function rules(T, evening) {
 
   // AdsFlow Welle 2: Liste 7 ohne Kauf. Wer den Pitch gesehen hat, erst nach dem Bundle-Nachfass.
   const entry = (v) => {
-    if (!v.rpPitch) return '2026-10-26';
+    if (!v.offer) return '2026-10-26';
     if (s(v, 'P3')) return maxDay('2026-10-26', addDays(s(v, 'P3'), 2));
-    return maxDay('2026-10-26', addDays(v.rpPitch, 8));
+    return maxDay('2026-10-26', addDays(v.offer, 8));
   };
   R.push(['B1', 'B1', (v) => v.w2 && !v.buyerAF && T >= entry(v) && T <= AF_LAST_MAIL_DAY && !s(v, 'B1')]);
   R.push(['B1X', 'B1X', (v) => v.w2 && !v.buyerAF && s(v, 'B1') && !v.engagedSince(s(v, 'B1')) && T >= addDays(s(v, 'B1'), 2) && T <= AF_LAST_MAIL_DAY && !s(v, 'B1X')]);
