@@ -415,14 +415,14 @@ Alex`,
   },
 
   // K1: Bundle-Käufer (vor dem Launch), ersetzt A3 bzw. einmaliger letzter Versuch für Nicht-Öffner (Alex 2026-10-16).
-  // Der Kunden-Kauf ist echt (16.10., Bestandskunde), ohne Namen. Nichts über ihn erfinden.
+  // Die Kunden-Käufe sind echt (16.10. Digistore + ein Kauf direkt bei Alex), ohne Namen. Nichts über sie erfinden.
   K1: {
     subject: 'AdsFlow für alle, die schon mit vorflows arbeiten',
     preview: 'Dein Claude-Konto ist schon eingerichtet. Damit fällt der größte Teil der Einrichtung weg.',
     why: WHY_BUYER,
     body: `${HI}
 
-du arbeitest schon mit vorflows, deshalb schreibe ich dir zu AdsFlow noch einmal gesondert. Diese Woche hat sich der erste vorflows-Kunde AdsFlow dazugeholt, und ich glaube, dass es für viele von euch genauso gut passt.
+du arbeitest schon mit vorflows, deshalb schreibe ich dir zu AdsFlow noch einmal gesondert. Die ersten vorflows-Kunden haben sich AdsFlow schon dazugeholt, und ich glaube, dass es für viele von euch genauso gut passt.
 
 Du kennst die Arbeitsweise ja schon. Du sagst Claude in normalen Worten, was passieren soll, und gibst das Ergebnis frei. Bei AdsFlow ist das genauso, nur für deine Meta-Anzeigen: Du schreibst „Neue Ads“, Claude schreibt die Texte, holt sich dein Okay und legt die Anzeigen im richtigen Format für Feed und Story in deinem Werbekonto an. Das Claude-Konto hast du schon, für die Einrichtung öffnest du den Ordner und schreibst „Lies SETUP.md“. Neu ist eigentlich nur die Verbindung zu deinem Werbekonto.
 
