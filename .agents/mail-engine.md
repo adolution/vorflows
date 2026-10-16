@@ -34,6 +34,8 @@ Standard: sofort beim Morgenlauf (~10 Uhr Berlin). `SEND_LATER` plant A1G (Live-
 | A1 | A1K / A1G | Welle 1, ab Di 13.10. (Puffer bis 19.10.) |
 | A1X | A1KX / A1GX | Welle 1, A1 nicht geöffnet, kein Besuch, 3 bis 5 Tage nach A1 (neuer Betreff) |
 | A2, A3, A4 | A2, A3, A4 | Welle 1 mit Öffnung/Besuch, ab 16.10. / 20.10. / 27.10., je ≥ 3 Tage Abstand |
+| A3 → K1 | K1 | Bundle-Käufer (Liste 5) bekommen statt A3 die Kunden-Mail K1 („AdsFlow für alle, die schon mit vorflows arbeiten“, Beleg: erster Kunden-Kauf 16.10., ohne Namen). Keine Mail zusätzlich (Alex 2026-10-16) |
+| K1 | K1 | Käufer mit A1/A1X ohne Reaktion (kein A2): einmal K1 ab 20.10., ≥ 4 Tage nach A1X, letzter Versuch vor D0/D1 |
 | R1 | R1 / R1S | Liste 7 ohne Replay-Start, ab Mi 14.10. (Puffer bis 20.10.) |
 | R2 | R2 | Replay nicht gestartet, 2 bis 5 Tage nach R1. Seit 2026-10-15 Link auf /sales (Kurzfassung, 5 Min) |
 | R3 | R3 | Replay nicht gestartet, ≥ 4 Tage nach R2, bis 24.10. |

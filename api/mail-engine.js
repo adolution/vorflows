@@ -139,7 +139,10 @@ function rules(T, evening) {
   R.push(['A1', (v) => (v.lists.has(L.buyer) ? 'A1K' : 'A1G'), (v) => v.w1 && !v.buyerAF && T >= '2026-10-13' && T <= '2026-10-19' && !a1(v)]);
   R.push(['A1X', (v) => (v.lists.has(L.buyer) ? 'A1KX' : 'A1GX'), (v) => v.w1 && !v.buyerAF && a1(v) && !v.engagedSince(a1(v)) && T >= addDays(a1(v), 3) && T <= addDays(a1(v), 5) && !s(v, 'A1X')]);
   R.push(['A2', 'A2', (v) => v.w1 && !v.buyerAF && a1(v) && v.engagedSince(a1(v)) && T >= maxDay('2026-10-16', addDays(a1(v), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A2')]);
-  R.push(['A3', 'A3', (v) => v.w1 && !v.buyerAF && s(v, 'A2') && T >= maxDay('2026-10-20', addDays(s(v, 'A2'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A3')]);
+  // Bundle-Käufer bekommen statt A3 die Kunden-Mail K1 (keine Mail zusätzlich)
+  R.push(['A3', (v) => (v.lists.has(L.buyer) && !v.sent.K1 ? 'K1' : 'A3'), (v) => v.w1 && !v.buyerAF && s(v, 'A2') && T >= maxDay('2026-10-20', addDays(s(v, 'A2'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A3')]);
+  // Käufer ohne Reaktion auf A1/A1X: einmal K1 als letzter Versuch vor D0/D1, frühestens 4 Tage nach A1X
+  R.push(['K1', 'K1', (v) => v.w1 && v.lists.has(L.buyer) && !v.buyerAF && a1(v) && !s(v, 'A2') && !s(v, 'K1') && T >= maxDay('2026-10-20', addDays(s(v, 'A1X') || a1(v), 4)) && T <= AF_LAST_MAIL_DAY]);
   R.push(['A4', 'A4', (v) => v.w1 && !v.buyerAF && s(v, 'A3') && T >= maxDay('2026-10-27', addDays(s(v, 'A3'), 3)) && T <= AF_LAST_MAIL_DAY && !s(v, 'A4')]);
 
   // AdsFlow Welle 2: Liste 7 ohne Kauf. Wer den Pitch gesehen hat, erst nach dem Bundle-Nachfass.

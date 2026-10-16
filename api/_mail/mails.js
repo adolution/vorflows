@@ -414,6 +414,30 @@ Viele Grüße
 Alex`,
   },
 
+  // K1: Bundle-Käufer (vor dem Launch), ersetzt A3 bzw. einmaliger letzter Versuch für Nicht-Öffner (Alex 2026-10-16).
+  // Der Kunden-Kauf ist echt (16.10., Bestandskunde), ohne Namen. Nichts über ihn erfinden.
+  K1: {
+    subject: 'AdsFlow für alle, die schon mit vorflows arbeiten',
+    preview: 'Dein Claude-Konto ist schon eingerichtet. Damit fällt der größte Teil der Einrichtung weg.',
+    why: WHY_BUYER,
+    body: `${HI}
+
+du arbeitest schon mit vorflows, deshalb schreibe ich dir zu AdsFlow noch einmal gesondert. Diese Woche hat sich der erste vorflows-Kunde AdsFlow dazugeholt, und ich glaube, dass es für viele von euch genauso gut passt.
+
+Du kennst die Arbeitsweise ja schon. Du sagst Claude in normalen Worten, was passieren soll, und gibst das Ergebnis frei. Bei AdsFlow ist das genauso, nur für deine Meta-Anzeigen: Du schreibst „Neue Ads“, Claude schreibt die Texte, holt sich dein Okay und legt die Anzeigen im richtigen Format für Feed und Story in deinem Werbekonto an. Das Claude-Konto hast du schon, für die Einrichtung öffnest du den Ordner und schreibst „Lies SETUP.md“. Neu ist eigentlich nur die Verbindung zu deinem Werbekonto.
+
+Falls du dich fragst, ob die KI dann an dein Werbekonto darf: Claude legt jede Anzeige ausgeschaltet an, live schaltest immer du selbst.
+
+${a(link('/adsflow', 'adsflow-k1'), 'AdsFlow im Video ansehen')}
+
+%%SALE%%
+
+Wenn du wissen willst, ob sich das für deinen Shop lohnt, schreib mir kurz, wie du deine Anzeigen gerade baust. Ich sag dir ehrlich, ob AdsFlow dir Zeit spart.
+
+Viele Grüße
+Alex`,
+  },
+
   A4: {
     subject: 'Was in dem AdsFlow-Ordner steckt',
     preview: 'Was ich in neun Jahren über Anzeigen gelernt habe, so aufgeschrieben, dass Claude danach arbeitet.',
