@@ -2470,10 +2470,12 @@
         }
 
         var META_STANDARD = { InitiateCheckout: 1, ViewContent: 1, Lead: 1 };
-        function afTrack(name, props, clarityName, email) {
+        // tagName: Name fürs Brevo-Tagging, falls anders als das Meta-Event (null = nicht taggen).
+        function afTrack(name, props, clarityName, email, tagName) {
           props = props || {};
           props.page = 'adsflow';
-          if (window.vfTag) window.vfTag(name, props);
+          var tag = tagName === undefined ? name : tagName;
+          if (tag && window.vfTag) window.vfTag(tag, props);
           props.variant = VARIANT;
           if (attr.utm_campaign) props.utm_campaign = attr.utm_campaign;
           if (attr.utm_content) props.utm_content = attr.utm_content;
@@ -2558,9 +2560,61 @@
         buy.addEventListener('click', function () {
           afTrack('InitiateCheckout', { content_name: 'AdsFlow', value: step ? step.price : PRICE.regular, currency: 'EUR', voucher: step ? step.voucher : '' }, 'af_checkout');
         });
+        // Erster Klick auf einen „AdsFlow holen“-Sprung (Kopfzeile, Hero, Leiste, Schluss) = Kaufinteresse vor dem Preis.
+        var ctaSent = false;
         Array.prototype.forEach.call(document.querySelectorAll('[data-cta]:not(#buy)'), function (a) {
-          a.addEventListener('click', function () { if (window.clarity) window.clarity('event', 'af_cta_' + a.getAttribute('data-cta')); });
+          a.addEventListener('click', function () {
+            var loc = a.getAttribute('data-cta');
+            if (window.clarity) window.clarity('event', 'af_cta_' + loc);
+            if (!ctaSent) { ctaSent = true; afTrack('AF_CTA_Click', { loc: loc }, null, null, null); }
+          });
         });
+
+        // ── Engagement für Meta (je Event 1× pro Seitenaufruf) ────────
+        // Eigene Eventnamen statt Parameter, damit jede Stufe im Ads Manager eine eigene Spalte
+        // (benutzerdefinierte Conversion) bekommt. Doku: .agents/adsflow-page.md → Tracking.
+        var sent = {};
+        function once(name, props, clarityName) {
+          if (sent[name]) return;
+          sent[name] = 1;
+          afTrack(name, props || {}, clarityName, null, null);
+          checkEngaged();
+        }
+        // Aktive Zeit: zählt nur, solange der Tab sichtbar ist.
+        var activeSec = 0;
+        var TIME_MARKS = [15, 30, 60, 120, 300];
+        setInterval(function () {
+          if (document.visibilityState !== 'visible') return;
+          activeSec++;
+          TIME_MARKS.forEach(function (s) { if (activeSec >= s) once('AF_Time_' + s + 's', { sec: s }, 'af_time_' + s); });
+        }, 1000);
+        // Scrolltiefe der ganzen Seite.
+        var maxScroll = 0;
+        var SCROLL_MARKS = [25, 50, 75, 90];
+        function onScroll() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          if (h <= 0) return;
+          var p = Math.round(window.scrollY / h * 100);
+          if (p <= maxScroll) return;
+          maxScroll = p;
+          SCROLL_MARKS.forEach(function (m) { if (p >= m) once('AF_Scroll_' + m, { pct: m }, 'af_scroll_' + m); });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // Abschnitte gesehen: Beispiel-Ads, Ordner, Preis, FAQ, Agentur.
+        var SECTIONS = [['#beweis', 'AF_Seen_Proof'], ['#ordner', 'AF_Seen_Folder'], ['#angebot', 'AF_Seen_Offer'], ['#faq', 'AF_Seen_FAQ'], ['#agentur', 'AF_Seen_Agency']];
+        var secIO = new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            SECTIONS.forEach(function (s) { if (en.target.matches(s[0])) once(s[1], {}, 'af_seen_' + s[0].slice(1)); });
+            secIO.unobserve(en.target);
+          });
+        }, { rootMargin: '0px 0px -40% 0px' });
+        SECTIONS.forEach(function (s) { var el = document.querySelector(s[0]); if (el) secIO.observe(el); });
+        // Sammel-Signal „echtes Interesse“: 60 s aktiv UND (Hälfte gescrollt ODER Video zu 25 % gesehen).
+        function checkEngaged() {
+          if (sent.AF_Engaged) return;
+          if (sent.AF_Time_60s && (sent.AF_Scroll_50 || sent.AF_VSL_25)) once('AF_Engaged', {}, 'af_engaged');
+        }
 
         // ── Video-Bühne ───────────────────────────────────────────────
         // Stufe nach Gerät + Verbindung: 480p bei Datensparen/langsamem Netz, 720p auf dem Handy
@@ -2592,16 +2646,26 @@
             document.getElementById('stageErrLink').href = src;
             err.hidden = false;
           });
+          // Meta: AF_VSL_25 / _50 / _75 / _95 einzeln (Brevo bekommt weiter AF_VSL_Progress {pct}).
+          // Zusätzlich echte Sehzeit (ohne Vorspulen): AF_VSL_10s / _30s / _60s.
+          var watched = 0, lastT = null;
           v.addEventListener('timeupdate', function () {
+            var t = v.currentTime;
+            if (lastT !== null && !v.paused && t > lastT && t - lastT < 1.5) watched += t - lastT;
+            lastT = t;
+            [10, 30, 60].forEach(function (s) { if (watched >= s) once('AF_VSL_' + s + 's', { sec: s }, 'af_vsl_' + s + 's'); });
             if (!v.duration || !isFinite(v.duration)) return;
-            var pct = v.currentTime / v.duration * 100;
+            var pct = t / v.duration * 100;
             [25, 50, 75, 95].forEach(function (m) {
               if (pct >= m && !vslMarks[m]) {
                 vslMarks[m] = 1;
-                afTrack('AF_VSL_Progress', { pct: m }, m === 95 ? 'af_vsl_complete' : 'af_vsl_' + m);
+                afTrack('AF_VSL_' + m, { pct: m }, m === 95 ? 'af_vsl_complete' : 'af_vsl_' + m, null, 'AF_VSL_Progress');
+                sent['AF_VSL_' + m] = 1;
+                checkEngaged();
               }
             });
           });
+          v.addEventListener('seeking', function () { lastT = null; });
           stage.appendChild(v);
           stage.classList.add('is-playing');
           v.play().catch(function () {});

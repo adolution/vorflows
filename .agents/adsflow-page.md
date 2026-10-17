@@ -130,11 +130,17 @@ Bekannt: Digistores Formular-Pixel meldet `InitiateCheckout` mit 499 € auch be
 |---|---|---|
 | `ViewContent` `{content_name:'AdsFlow'}` | `af_view` | Seitenaufruf |
 | `AF_VSL_Play` `{res}` | `af_vsl_play` | Klick auf Play (Tag `af_vsl_res`) |
-| `AF_VSL_Progress` `{pct}` | `af_vsl_25` / `_50` / `_75` / `af_vsl_complete` | Watch-Depth, je 1× pro Seitenaufruf |
+| `AF_VSL_25` / `_50` / `_75` / `_95` `{pct}` | `af_vsl_25` / `_50` / `_75` / `af_vsl_complete` | Video-Position, je 1× pro Seitenaufruf (bis 2026-10-17 hieß das in Meta `AF_VSL_Progress {pct}`; Brevo bekommt weiter `AF_VSL_Progress`) |
+| `AF_VSL_10s` / `_30s` / `_60s` `{sec}` | `af_vsl_10s` … | echte Sehzeit ohne Vorspulen |
+| `AF_Time_15s` / `_30s` / `_60s` / `_120s` / `_300s` | `af_time_*` | aktive Zeit, nur bei sichtbarem Tab |
+| `AF_Scroll_25` / `_50` / `_75` / `_90` | `af_scroll_*` | Scrolltiefe der ganzen Seite |
+| `AF_Seen_Proof` / `_Folder` / `_Offer` / `_FAQ` / `_Agency` | `af_seen_*` | Oberkante von #beweis/#ordner/#angebot/#faq/#agentur erreicht 60 % Bildschirmhöhe |
+| `AF_CTA_Click` `{loc}` | (`af_cta_*` wie bisher) | erster Klick auf einen „AdsFlow holen“-Sprung |
+| `AF_Engaged` | `af_engaged` | 60 s aktiv UND (`AF_Scroll_50` ODER `AF_VSL_25`) |
 | `InitiateCheckout` | `af_checkout` | Kauf-Button im Angebot |
 | `Lead` `{clients, spend}` | `af_agency_lead` | Agentur-Formular erfolgreich |
 | – | `af_agency_q1` / `_q2` | Formular-Fragen beantwortet |
-| – | `af_cta_hero` / `nav` / `dock` / `final`, `af_folder_*` (+ `af_folder_pager` = Weiter-Leiste mobil), `af_lock_try`, `af_toggles_replay` | Interaktionen |
+| – | `af_cta_hero` / `nav` / `dock` / `final` / `bar`, `af_folder_*` (+ `af_folder_pager` = Weiter-Leiste mobil), `af_lock_try`, `af_toggles_replay` | Interaktionen |
 
 ## Sicherheit Formular
 
@@ -212,3 +218,9 @@ Videos (Reihenfolge von Alex, Titel aus den Transkripten neu formuliert):
 - Modell-Empfehlung für AdsFlow (laut Video 2): Opus Standard, Sonnet bei Limit, **Fable + Haiku nie**; Effort Medium,
   bei flachen Ergebnissen High. Weicht bewusst von `/faqs` (Shopify) ab.
 - Kein Tracking eingebaut (kein Purchase-Pixel, kein Clarity), Stand 2026-10-10.
+
+### Engagement-Events im Ads Manager (seit 2026-10-17)
+Alle `AF_*`-Engagement-Events gehen per Pixel + CAPI (Dedup über eventID) raus, nicht an Brevo (`tagName = null` in `afTrack`).
+Custom Events erscheinen im Ads Manager nur als Spalte, wenn es dazu eine **benutzerdefinierte Conversion** gibt
+(Events Manager → Benutzerdefinierte Conversions → Event = z. B. `AF_VSL_50`). Neues Event = eigener Name, kein Parameter.
+Test: `node test-af-engagement.mjs` (Server auf :3001, lokal loggt `afTrack` nur `[track]` in die Konsole).
