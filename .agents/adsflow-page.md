@@ -136,6 +136,8 @@ Bekannt: Digistores Formular-Pixel meldet `InitiateCheckout` mit 499 € auch be
 | `AF_Scroll_25` / `_50` / `_75` / `_90` | `af_scroll_*` | Scrolltiefe der ganzen Seite |
 | `AF_Seen_Proof` / `_Folder` / `_Offer` / `_FAQ` / `_Agency` | `af_seen_*` | Oberkante von #beweis/#ordner/#angebot/#faq/#agentur erreicht 60 % Bildschirmhöhe |
 | `AF_CTA_Click` `{loc}` | (`af_cta_*` wie bisher) | erster Klick auf einen „AdsFlow holen“-Sprung |
+| `AF_Agency_Click` `{loc: hero/final}` | `af_agency_click_*` | Klick auf „Ich bin eine Agentur“ / „Zur Agentur-Version“ |
+| `AF_Agency_Start` `{clients}` / `AF_Agency_Step2` `{spend}` | `af_agency_start` / `_step2` | Agentur-Formular Frage 1 / 2 beantwortet (abgeschickt = `Lead`) |
 | `AF_Engaged` | `af_engaged` | 60 s aktiv UND (`AF_Scroll_50` ODER `AF_VSL_25`) |
 | `InitiateCheckout` | `af_checkout` | Kauf-Button im Angebot |
 | `Lead` `{clients, spend}` | `af_agency_lead` | Agentur-Formular erfolgreich |

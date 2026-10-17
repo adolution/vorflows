@@ -2610,6 +2610,11 @@
           });
         }, { rootMargin: '0px 0px -40% 0px' });
         SECTIONS.forEach(function (s) { var el = document.querySelector(s[0]); if (el) secIO.observe(el); });
+        // „Ich bin eine Agentur“ (Hero) / „Zur Agentur-Version“ (Schluss).
+        Array.prototype.forEach.call(document.querySelectorAll('a[href="#agentur"]'), function (a) {
+          var loc = a.closest('.hero') ? 'hero' : a.closest('.final') ? 'final' : 'other';
+          a.addEventListener('click', function () { once('AF_Agency_Click', { loc: loc }, 'af_agency_click_' + loc); });
+        });
         // Sammel-Signal „echtes Interesse“: 60 s aktiv UND (Hälfte gescrollt ODER Video zu 25 % gesehen).
         function checkEngaged() {
           if (sent.AF_Engaged) return;
@@ -2876,6 +2881,9 @@
           r.addEventListener('change', function () {
             var n = +r.closest('.qf-step').getAttribute('data-step');
             if (window.clarity) window.clarity('event', 'af_agency_q' + n);
+            // Meta: Formular begonnen (1. Antwort) und bis zur E-Mail-Frage gekommen (2. Antwort).
+            if (n === 1) once('AF_Agency_Start', { clients: r.value }, 'af_agency_start');
+            if (n === 2) once('AF_Agency_Step2', { spend: r.value }, 'af_agency_step2');
             setTimeout(function () { go(n + 1, true); }, reduce ? 0 : 260);
           });
         });
